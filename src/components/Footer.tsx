@@ -5,7 +5,7 @@ export default function Footer() {
         By Akshaya Parida check the repo on{" "}
         <a
           target="_blank"
-          href="https://github.com/akshayaparida/akshayaparida.github.io"
+          href="https://github.com/akshayaparida/portfolio"
           rel="noopener noreferrer"
         >
           GitHub
