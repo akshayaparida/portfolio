@@ -10,6 +10,401 @@
 
 body {
   font-family: var(--font-eczar), serif;
-  background: #0a0a0a;
+  background: #ffffff;
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header a:hover {
+  color: #2ec248;
+}
+
+header nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+header nav a {
+  font-size: 1.5rem;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+/* Hero Section */
+.intro-header {
+  margin-bottom: 1rem;
+}
+
+.intro-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #000000 0%, #2ec248 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro-header p {
+  font-size: 1.5rem;
+  color: #666666;
+  font-weight: 500;
+}
+
+.intro-description {
+  font-size: 1.125rem;
+  color: #333333;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+/* Status Widget */
+.status-widget {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.status-icon {
+  color: #2ec248;
+  font-size: 1rem;
+}
+
+.status-badge {
+  background: #e8f5e9;
+  border: 1px solid #2ec248;
+}
+
+/* Links Container */
+.links-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.link-arrow {
+  color: #2ec248;
+  font-size: 1.25rem;
+}
+
+.links-container a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.links-container a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2ec248;
+  transition: width 0.3s ease;
+}
+
+.links-container a:hover::after {
+  width: 100%;
+}
+
+.links-container a:hover {
+  color: #2ec248;
+}
+
+/* GitHub Section */
+.github-section {
+  margin-top: 3rem;
+}
+
+.github-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.github-contribution-wrapper {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.github-contribution-wrapper:hover {
+  transform: translateY(-4px);
+}
+
+.github-chart {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Projects Section */
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #000000;
+}
+
+.cards-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+.project-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.project-card.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card:hover {
+  border-color: #2ec248;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(46, 194, 72, 0.15);
+}
+
+.project-card h4 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #000000;
+}
+
+.project-card > div:first-child > p:first-of-type {
+  color: #666666;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-button-secondary {
+  background: #e8f5e9;
+  border: 1px solid #2ec248;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.card-button-secondary p {
+  color: #2ec248;
+  margin: 0;
+}
+
+.project-card > div:first-child > p:last-of-type {
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.project-links a {
+  padding: 0.5rem 1.5rem;
+  background: #2ec248;
   color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.project-links a:hover {
+  background: #25a03a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 194, 72, 0.3);
+}
+
+.img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.big-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background: #f5f5f5;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+footer p {
+  color: #666666;
+  font-size: 1rem;
+}
+
+footer a {
+  color: #2ec248;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #25a03a;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .intro-header h1 {
+    font-size: 2rem;
+  }
+
+  .intro-header p {
+    font-size: 1.25rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+
+  .status-widget {
+    flex-direction: column;
+  }
+
+  .links-container {
+    gap: 1rem;
+  }
+
+  .github-contribution-wrapper {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .intro-header p {
+    font-size: 1.125rem;
+  }
+
+  header nav {
+    gap: 1rem;
+  }
+
+  header nav a {
+    font-size: 1.25rem;
+  }
+}
+
+/* Cursor Effect */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #2ec248;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fade-out 0.8s ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
 }
