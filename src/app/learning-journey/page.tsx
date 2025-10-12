@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Header from '@/components/Header';
 import { LearningModule } from '@/types/learning';
 import { learningModules } from '@/data/learningJourney';
 
@@ -17,7 +16,6 @@ export default function LearningJourneyPage() {
   useEffect(() => {
     const savedVersion = localStorage.getItem(STORAGE_KEY + '-version');
     if (savedVersion !== DATA_VERSION) {
-      // Clear old data if version mismatch
       localStorage.removeItem(STORAGE_KEY);
       localStorage.setItem(STORAGE_KEY + '-version', DATA_VERSION);
     }
@@ -41,129 +39,62 @@ export default function LearningJourneyPage() {
 
   if (isLoading) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fafafa' }}>
-        <p style={{ color: '#666' }}>Loading...</p>
+      <div className="loading-screen">
+        <p>Loading...</p>
       </div>
     );
   }
 
-  const completedCount = modules.reduce((acc, m) => 
-    acc + (m.subModules?.filter(s => s.status === 'completed').length || (m.status === 'completed' ? 1 : 0)), 0
-  );
-
   return (
-    <div style={{ height: '100vh', overflow: 'hidden', background: '#fafafa', display: 'flex', flexDirection: 'column' }}>
+    <div className="journey-container">
       {/* Home Link */}
-      <div style={{ padding: '20px 40px' }}>
-        <Link href="/" style={{
-          display: 'inline-block',
-          padding: '10px 20px',
-          background: '#fff',
-          border: '2px solid #1a1a1a',
-          borderRadius: '8px',
-          color: '#1a1a1a',
-          textDecoration: 'none',
-          fontWeight: '600',
-          fontSize: '14px',
-          transition: 'all 0.2s',
-          boxShadow: '3px 3px 0 #1a1a1a'
-        }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.transform = 'translate(-2px, -2px)';
-          e.currentTarget.style.boxShadow = '5px 5px 0 #1a1a1a';
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.transform = 'translate(0, 0)';
-          e.currentTarget.style.boxShadow = '3px 3px 0 #1a1a1a';
-        }}>
+      <div className="home-link-wrapper">
+        <Link href="/" className="home-link">
           Home
         </Link>
       </div>
 
       {/* Main Content */}
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px 40px 20px', overflow: 'hidden', minHeight: 0 }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', display: 'flex', flexDirection: 'column', height: '100%', minHeight: 0 }}>
-          <h1 style={{ fontSize: '26px', fontWeight: '700', marginBottom: '6px', color: '#1a1a1a', textAlign: 'center' }}>
+      <main className="main-content">
+        <div className="content-wrapper">
+          <h1 className="page-title">
             AI Engineering Learning Journey
           </h1>
-          <p style={{ fontSize: '12px', color: '#666', textAlign: 'center', marginBottom: '20px' }}>
-            Scroll horizontally to see progress • Click modules for details
+          <p className="page-subtitle">
+            Scroll horizontally • Click modules for details
           </p>
 
           {/* Horizontal Timeline */}
-          <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center', minHeight: 0 }}>
+          <div className="timeline-wrapper">
             {/* Horizontal line */}
-            <div style={{
-              position: 'absolute',
-              left: '0',
-              right: '0',
-              top: '50%',
-              height: '3px',
-              background: '#1a1a1a',
-              transform: 'translateY(-50%)'
-            }} />
+            <div className="timeline-line" />
 
             {/* Scrollable container */}
-            <div style={{
-              width: '100%',
-              overflowX: 'auto',
-              overflowY: 'hidden',
-              position: 'relative'
-            }}>
-              <div style={{
-                display: 'flex',
-                gap: '100px',
-                minWidth: 'max-content',
-                padding: '0 40px',
-                position: 'relative'
-              }}>
+            <div className="scroll-container">
+              <div className="modules-container">
                 {modules.map((module, index) => {
                   const hasSubModules = module.subModules && module.subModules.length > 0;
-                  const completedSubs = module.subModules?.filter(s => s.status === 'completed').length || 0;
-                  const totalSubs = module.subModules?.length || 1;
-                  const isComplete = hasSubModules ? completedSubs === totalSubs : module.status === 'completed';
-                  const isInProgress = hasSubModules ? completedSubs > 0 && completedSubs < totalSubs : module.status === 'in-progress';
 
                   return (
-                    <div key={module.id} style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div key={module.id} className="module-wrapper">
                       {/* Module box */}
                       <button
                         onClick={() => setSelectedModule(module)}
-                        style={{
-                          padding: '12px 14px',
-                          background: '#fff',
-                          border: '3px solid #1a1a1a',
-                          borderRadius: '10px',
-                          cursor: 'pointer',
-                          position: 'relative',
-                          zIndex: 2,
-                          transition: 'all 0.2s',
-                          boxShadow: '4px 4px 0 #1a1a1a',
-                          textAlign: 'left'
-                        }}
                         className="module-box"
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.transform = 'translate(-2px, -2px)';
-                          e.currentTarget.style.boxShadow = '6px 6px 0 #1a1a1a';
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.transform = 'translate(0, 0)';
-                          e.currentTarget.style.boxShadow = '4px 4px 0 #1a1a1a';
-                        }}
                       >
-                        <div style={{ fontSize: '11px', fontWeight: '600', color: '#666', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                        <div className="module-number">
                           Module {index + 1}
                         </div>
-                        <div style={{ fontSize: '15px', fontWeight: '700', color: '#1a1a1a', lineHeight: '1.3', marginBottom: '6px' }}>
+                        <div className="module-title">
                           {module.title}
                         </div>
-                        <div style={{ fontSize: '11px', color: '#666', lineHeight: '1.4', marginBottom: '6px' }}>
+                        <div className="module-description">
                           {module.description}
                         </div>
                         {hasSubModules && (
-                          <div style={{ fontSize: '9px', color: '#666', marginTop: '4px' }}>
+                          <div className="module-topics">
                             {module.subModules?.map((sub) => (
-                              <div key={sub.id} style={{ marginBottom: '2px' }}>
+                              <div key={sub.id} className="topic-item">
                                 • {sub.title}
                               </div>
                             ))}
@@ -172,262 +103,475 @@ export default function LearningJourneyPage() {
                       </button>
 
                       {/* Connector line to timeline */}
-                      <div style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: '50%',
-                        width: '3px',
-                        height: '30px',
-                        background: '#1a1a1a',
-                        transform: 'translateX(-50%)'
-                      }} />
+                      <div className="connector-line" />
                     </div>
                   );
-                })}
-              </div>
+                })}</div>
             </div>
           </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer style={{
-        padding: '1rem 2rem',
-        textAlign: 'center',
-        background: '#fff',
-        borderTop: '1px solid #e0e0e0'
-      }}>
-        <p style={{ color: '#666', fontSize: '0.9rem', margin: 0 }}>
-          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-        </p>
+      <footer className="footer">
+        <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
       </footer>
 
       {/* Modal Popup */}
       {selectedModule && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '20px',
-            animation: 'fadeIn 0.2s ease-out'
-          }}
-          className="modal-overlay"
-          onClick={() => setSelectedModule(null)}
-        >
-          <div
-            style={{
-              background: '#fff',
-              border: '3px solid #1a1a1a',
-              borderRadius: '16px',
-              maxWidth: '700px',
-              width: '100%',
-              maxHeight: '80vh',
-              overflow: 'auto',
-              position: 'relative',
-              boxShadow: '8px 8px 0 #1a1a1a',
-              animation: 'slideUp 0.3s ease-out'
-            }}
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay" onClick={() => setSelectedModule(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             {/* Close button */}
-            <button
-              onClick={() => setSelectedModule(null)}
-              style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                width: '36px',
-                height: '36px',
-                border: '2px solid #1a1a1a',
-                borderRadius: '50%',
-                background: '#fff',
-                cursor: 'pointer',
-                fontSize: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: '700',
-                transition: 'all 0.2s'
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.background = '#1a1a1a';
-                e.currentTarget.style.color = '#fff';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.background = '#fff';
-                e.currentTarget.style.color = '#1a1a1a';
-              }}
-            >
+            <button onClick={() => setSelectedModule(null)} className="close-button">
               ×
             </button>
 
-            <div style={{ padding: '32px' }}>
-              <h2 style={{ fontSize: '24px', fontWeight: '700', marginBottom: '10px', color: '#1a1a1a', paddingRight: '40px' }}>
-                {selectedModule.title}
-              </h2>
-              <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px', lineHeight: '1.6' }}>
-                {selectedModule.description}
-              </p>
+            <div className="modal-inner">
+              <h2 className="modal-title">{selectedModule.title}</h2>
+              <p className="modal-description">{selectedModule.description}</p>
 
-              {/* Why study this & Importance */}
+              {/* Detailed Content */}
               {selectedModule.detailedContent && (
-                <div style={{
-                  padding: '20px',
-                  background: '#fafafa',
-                  border: '2px solid #e0e0e0',
-                  borderRadius: '8px',
-                  marginBottom: '32px'
-                }}>
-                  <div style={{ fontSize: '14px', color: '#1a1a1a', lineHeight: '1.7', whiteSpace: 'pre-line' }}>
-                    {selectedModule.detailedContent}
-                  </div>
+                <div className="modal-detailed-content">
+                  <div>{selectedModule.detailedContent}</div>
                 </div>
               )}
 
-              {/* Sub-modules or content */}
-              {selectedModule.subModules && selectedModule.subModules.length > 0 ? (
-                <div>
-                  <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '16px', color: '#1a1a1a', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    Topics Covered
-                  </h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {/* Sub-modules */}
+              {selectedModule.subModules && selectedModule.subModules.length > 0 && (
+                <div className="modal-submodules">
+                  <h3 className="submodules-title">Topics Covered</h3>
+                  <div className="submodules-list">
                     {selectedModule.subModules.map((sub) => (
-                      <div key={sub.id} style={{
-                        padding: '16px',
-                        background: '#fafafa',
-                        border: '2px solid #e0e0e0',
-                        borderRadius: '8px'
-                      }}>
-                        <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                          <div style={{
-                            width: '20px',
-                            height: '20px',
-                            borderRadius: '50%',
-                            border: '2px solid #1a1a1a',
-                            background: sub.status === 'completed' ? '#1a1a1a' : 'transparent',
-                            flexShrink: 0,
-                            marginTop: '2px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                          }}>
-                            {sub.status === 'completed' && (
-                              <span style={{ color: '#fff', fontSize: '12px', fontWeight: '700' }}>✓</span>
-                            )}
-                          </div>
-                          <div style={{ flex: 1 }}>
-                            <div style={{ fontSize: '15px', fontWeight: '600', color: '#1a1a1a', marginBottom: '4px' }}>
-                              {sub.title}
-                            </div>
-                            <div style={{ fontSize: '13px', color: '#666' }}>
-                              {sub.description}
-                            </div>
+                      <div key={sub.id} className="submodule-item">
+                        <div className="submodule-checkbox">
+                          {sub.status === 'completed' && <span>✓</span>}
+                        </div>
+                        <div className="submodule-content">
+                          <div className="submodule-title">{sub.title}</div>
+                          <div className="submodule-description">{sub.description}</div>
 
-                            {/* Resources for this sub-module */}
-                            {sub.resources && sub.resources.length > 0 && (
-                              <div style={{ marginTop: '12px' }}>
-                                <div style={{ fontSize: '12px', fontWeight: '700', color: '#666', marginBottom: '8px', textTransform: 'uppercase' }}>
-                                  Resources
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                                  {sub.resources.map((resource, idx) => (
-                                    <a
-                                      key={idx}
-                                      href={resource.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      style={{
-                                        fontSize: '13px',
-                                        color: '#3b82f6',
-                                        textDecoration: 'none',
-                                        fontWeight: '600',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '6px'
-                                      }}
-                                      onMouseOver={(e) => e.currentTarget.style.textDecoration = 'underline'}
-                                      onMouseOut={(e) => e.currentTarget.style.textDecoration = 'none'}
-                                    >
-                                      <span>→</span> {resource.title}
-                                      <span style={{ fontSize: '10px', color: '#999', textTransform: 'uppercase' }}>
-                                        ({resource.type})
-                                      </span>
-                                    </a>
-                                  ))}
-                                </div>
+                          {/* Resources */}
+                          {sub.resources && sub.resources.length > 0 && (
+                            <div className="submodule-resources">
+                              <div className="resources-title">Resources</div>
+                              <div className="resources-list">
+                                {sub.resources.map((resource, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={resource.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="resource-link"
+                                  >
+                                    <span>→</span> {resource.title}
+                                    <span className="resource-type">({resource.type})</span>
+                                  </a>
+                                ))}
                               </div>
-                            )}
-                          </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              ) : (
-                selectedModule.resources && selectedModule.resources.length > 0 && (
-                  <div>
-                    <h3 style={{ fontSize: '16px', fontWeight: '700', marginBottom: '16px', color: '#1a1a1a', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      Learning Resources
-                    </h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                      {selectedModule.resources.map((resource, idx) => (
-                        <a
-                          key={idx}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            padding: '16px',
-                            background: '#fafafa',
-                            border: '2px solid #e0e0e0',
-                            borderRadius: '8px',
-                            textDecoration: 'none',
-                            color: '#1a1a1a',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            transition: 'all 0.2s'
-                          }}
-                          onMouseOver={(e) => {
-                            e.currentTarget.style.borderColor = '#1a1a1a';
-                            e.currentTarget.style.background = '#fff';
-                          }}
-                          onMouseOut={(e) => {
-                            e.currentTarget.style.borderColor = '#e0e0e0';
-                            e.currentTarget.style.background = '#fafafa';
-                          }}
-                        >
-                          <div>
-                            <div style={{ fontSize: '15px', fontWeight: '600', marginBottom: '4px' }}>
-                              {resource.title}
-                            </div>
-                            <div style={{ fontSize: '12px', color: '#999', textTransform: 'uppercase', fontWeight: '600' }}>
-                              {resource.type}
-                            </div>
-                          </div>
-                          <span style={{ fontSize: '24px' }}>→</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )
               )}
             </div>
           </div>
         </div>
       )}
 
-      <style>{`
+      <style jsx>{`
+        /* Base Styles */
+        .loading-screen {
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #fafafa;
+          color: #666;
+        }
+
+        .journey-container {
+          height: 100vh;
+          overflow: hidden;
+          background: #fafafa;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .home-link-wrapper {
+          padding: 20px 40px;
+        }
+
+        .home-link {
+          display: inline-block;
+          padding: 10px 20px;
+          background: #fff;
+          border: 2px solid #1a1a1a;
+          borderRadius: 8px;
+          color: #1a1a1a;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 14px;
+          transition: all 0.2s;
+          box-shadow: 3px 3px 0 #1a1a1a;
+        }
+
+        .home-link:hover {
+          transform: translate(-2px, -2px);
+          box-shadow: 5px 5px 0 #1a1a1a;
+        }
+
+        .main-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          padding: 20px 40px;
+          overflow: hidden;
+          min-height: 0;
+        }
+
+        .content-wrapper {
+          max-width: 1400px;
+          margin: 0 auto;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          min-height: 0;
+        }
+
+        .page-title {
+          font-size: 26px;
+          font-weight: 700;
+          margin-bottom: 6px;
+          color: #1a1a1a;
+          text-align: center;
+        }
+
+        .page-subtitle {
+          font-size: 12px;
+          color: #666;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .timeline-wrapper {
+          position: relative;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          min-height: 0;
+        }
+
+        .timeline-line {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 3px;
+          background: #1a1a1a;
+          transform: translateY(-50%);
+        }
+
+        .scroll-container {
+          width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+          position: relative;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: thin;
+        }
+
+        .modules-container {
+          display: flex;
+          gap: 100px;
+          min-width: max-content;
+          padding: 0 40px;
+          position: relative;
+        }
+
+        .module-wrapper {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .module-box {
+          padding: 12px 14px;
+          background: #fff;
+          border: 3px solid #1a1a1a;
+          border-radius: 10px;
+          cursor: pointer;
+          position: relative;
+          z-index: 2;
+          transition: all 0.2s;
+          box-shadow: 4px 4px 0 #1a1a1a;
+          text-align: left;
+          min-width: 200px;
+          max-width: 240px;
+        }
+
+        .module-box:hover {
+          transform: translate(-2px, -2px);
+          box-shadow: 6px 6px 0 #1a1a1a;
+        }
+
+        .module-number {
+          font-size: 11px;
+          font-weight: 600;
+          color: #666;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .module-title {
+          font-size: 15px;
+          font-weight: 700;
+          color: #1a1a1a;
+          line-height: 1.3;
+          margin-bottom: 6px;
+        }
+
+        .module-description {
+          font-size: 11px;
+          color: #666;
+          line-height: 1.4;
+          margin-bottom: 6px;
+        }
+
+        .module-topics {
+          font-size: 9px;
+          color: #666;
+          margin-top: 4px;
+        }
+
+        .topic-item {
+          margin-bottom: 2px;
+        }
+
+        .connector-line {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          width: 3px;
+          height: 30px;
+          background: #1a1a1a;
+          transform: translateX(-50%);
+        }
+
+        .footer {
+          padding: 1rem 2rem;
+          text-align: center;
+          background: #fff;
+          border-top: 1px solid #e0e0e0;
+        }
+
+        .footer p {
+          color: #666;
+          font-size: 0.9rem;
+          margin: 0;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          padding: 20px;
+          animation: fadeIn 0.2s ease-out;
+        }
+
+        .modal-content {
+          background: #fff;
+          border: 3px solid #1a1a1a;
+          border-radius: 16px;
+          max-width: 700px;
+          width: 100%;
+          max-height: 80vh;
+          overflow: auto;
+          position: relative;
+          box-shadow: 8px 8px 0 #1a1a1a;
+          animation: slideUp 0.3s ease-out;
+        }
+
+        .close-button {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 36px;
+          height: 36px;
+          border: 2px solid #1a1a1a;
+          border-radius: 50%;
+          background: #fff;
+          cursor: pointer;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          transition: all 0.2s;
+          z-index: 10;
+        }
+
+        .close-button:hover {
+          background: #1a1a1a;
+          color: #fff;
+        }
+
+        .modal-inner {
+          padding: 32px;
+        }
+
+        .modal-title {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 10px;
+          color: #1a1a1a;
+          padding-right: 40px;
+        }
+
+        .modal-description {
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 24px;
+          line-height: 1.6;
+        }
+
+        .modal-detailed-content {
+          padding: 20px;
+          background: #fafafa;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          margin-bottom: 32px;
+          font-size: 14px;
+          color: #1a1a1a;
+          line-height: 1.7;
+          white-space: pre-line;
+        }
+
+        .modal-submodules {
+          margin-top: 24px;
+        }
+
+        .submodules-title {
+          font-size: 16px;
+          font-weight: 700;
+          margin-bottom: 16px;
+          color: #1a1a1a;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .submodules-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .submodule-item {
+          padding: 16px;
+          background: #fafafa;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          display: flex;
+          align-items: start;
+          gap: 12px;
+        }
+
+        .submodule-checkbox {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          border: 2px solid #1a1a1a;
+          background: transparent;
+          flex-shrink: 0;
+          margin-top: 2px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 12px;
+          font-weight: 700;
+          color: #fff;
+        }
+
+        .submodule-checkbox span {
+          background: #1a1a1a;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .submodule-content {
+          flex: 1;
+        }
+
+        .submodule-title {
+          font-size: 15px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 4px;
+        }
+
+        .submodule-description {
+          font-size: 13px;
+          color: #666;
+        }
+
+        .submodule-resources {
+          margin-top: 12px;
+        }
+
+        .resources-title {
+          font-size: 12px;
+          font-weight: 700;
+          color: #666;
+          margin-bottom: 8px;
+          text-transform: uppercase;
+        }
+
+        .resources-list {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .resource-link {
+          font-size: 13px;
+          color: #3b82f6;
+          text-decoration: none;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .resource-link:hover {
+          text-decoration: underline;
+        }
+
+        .resource-type {
+          font-size: 10px;
+          color: #999;
+          text-transform: uppercase;
+        }
+
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
         }
+
         @keyframes slideUp {
           from {
             opacity: 0;
@@ -438,100 +582,169 @@ export default function LearningJourneyPage() {
             transform: translateY(0);
           }
         }
-        /* Hide scrollbar but keep functionality */
-        *::-webkit-scrollbar {
-          height: 8px;
-        }
-        *::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 4px;
-        }
-        *::-webkit-scrollbar-thumb {
-          background: #1a1a1a;
-          border-radius: 4px;
-        }
-        *::-webkit-scrollbar-thumb:hover {
-          background: #333;
-        }
 
-        /* Mobile Responsive Styles */
-        .page-title {
-          fontSize: 26px;
-        }
-        .page-subtitle {
-          fontSize: 12px;
-        }
-        .module-box {
-          minWidth: 200px;
-          maxWidth: 240px;
-        }
-        .modules-container {
-          gap: 100px;
-        }
-
+        /* Tablet (768px and below) */
         @media (max-width: 768px) {
-          .home-link-container {
-            padding: 12px 15px !important;
+          .home-link-wrapper {
+            padding: 15px 20px;
           }
+
           .main-content {
-            padding: 10px 15px !important;
+            padding: 15px 20px;
           }
+
           .page-title {
-            fontSize: 20px !important;
+            font-size: 20px;
           }
+
           .page-subtitle {
-            fontSize: 11px !important;
+            font-size: 11px;
           }
-          .module-box {
-            minWidth: 160px !important;
-            maxWidth: 180px !important;
-            padding: 10px 12px !important;
-          }
+
           .modules-container {
-            gap: 60px !important;
-            padding: 0 15px !important;
+            gap: 60px;
+            padding: 0 20px;
+          }
+
+          .module-box {
+            min-width: 160px;
+            max-width: 180px;
+            padding: 10px 12px;
+          }
+
+          .modal-overlay {
+            padding: 15px;
+          }
+
+          .modal-content {
+            max-width: 95%;
+            max-height: 85vh;
+            border-radius: 12px;
+          }
+
+          .modal-inner {
+            padding: 20px;
+          }
+
+          .modal-title {
+            font-size: 20px;
           }
         }
 
+        /* Mobile (480px and below) */
         @media (max-width: 480px) {
-          .home-link-container {
-            padding: 10px !important;
+          .home-link-wrapper {
+            padding: 10px 15px;
           }
+
+          .home-link {
+            padding: 8px 16px;
+            font-size: 13px;
+          }
+
           .main-content {
-            padding: 10px !important;
+            padding: 10px 15px;
           }
+
           .page-title {
-            fontSize: 18px !important;
+            font-size: 18px;
           }
+
           .page-subtitle {
-            fontSize: 10px !important;
-            marginBottom: 10px !important;
+            font-size: 10px;
+            margin-bottom: 15px;
           }
-          .module-box {
-            minWidth: 140px !important;
-            maxWidth: 160px !important;
-            padding: 8px 10px !important;
-            touch-action: manipulation;
-          }
+
           .modules-container {
-            gap: 40px !important;
-            padding: 0 10px !important;
+            gap: 40px;
+            padding: 0 15px;
           }
+
+          .module-box {
+            min-width: 140px;
+            max-width: 160px;
+            padding: 8px 10px;
+          }
+
+          .module-number {
+            font-size: 10px;
+          }
+
+          .module-title {
+            font-size: 13px;
+          }
+
+          .module-description {
+            font-size: 10px;
+          }
+
+          .module-topics {
+            font-size: 8px;
+          }
+
           .scroll-container {
             touch-action: pan-x;
-            overscroll-behavior-x: contain;
           }
+
           .modal-overlay {
-            padding: 10px !important;
+            padding: 10px;
           }
+
           .modal-content {
-            maxWidth: 98% !important;
-            maxHeight: 90vh !important;
-            borderRadius: 10px !important;
-            boxShadow: 4px 4px 0 #1a1a1a !important;
+            max-width: 98%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 4px 4px 0 #1a1a1a;
           }
+
           .modal-inner {
-            padding: 16px !important;
+            padding: 16px;
+          }
+
+          .modal-title {
+            font-size: 18px;
+            padding-right: 35px;
+          }
+
+          .modal-description {
+            font-size: 13px;
+          }
+
+          .close-button {
+            width: 30px;
+            height: 30px;
+            top: 15px;
+            right: 15px;
+            font-size: 18px;
+          }
+
+          .modal-detailed-content {
+            padding: 15px;
+            font-size: 13px;
+          }
+
+          .submodule-item {
+            padding: 12px;
+          }
+
+          .submodule-title {
+            font-size: 14px;
+          }
+
+          .submodule-description {
+            font-size: 12px;
+          }
+        }
+
+        /* Extra small (360px and below) */
+        @media (max-width: 360px) {
+          .module-box {
+            min-width: 120px;
+            max-width: 140px;
+          }
+
+          .modules-container {
+            gap: 30px;
           }
         }
       `}</style>
