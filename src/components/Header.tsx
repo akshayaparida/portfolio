@@ -5,6 +5,9 @@ export default function Header() {
     <header>
       <Link href="/">Akshaya Parida</Link>
       <nav>
+        <Link href="/learning-journey" style={{ textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+          Learning Journey
+        </Link>
         <a target="_blank" href="https://github.com/akshayaparida" rel="noopener noreferrer">
           <i className="fa-brands fa-github"></i>
         </a>
