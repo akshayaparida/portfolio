@@ -130,19 +130,18 @@ export default function LearningJourneyPage() {
                       <button
                         onClick={() => setSelectedModule(module)}
                         style={{
-                          padding: '14px 18px',
+                          padding: '12px 14px',
                           background: '#fff',
                           border: '3px solid #1a1a1a',
                           borderRadius: '10px',
                           cursor: 'pointer',
-                          minWidth: '200px',
-                          maxWidth: '240px',
                           position: 'relative',
                           zIndex: 2,
                           transition: 'all 0.2s',
                           boxShadow: '4px 4px 0 #1a1a1a',
                           textAlign: 'left'
                         }}
+                        className="module-box"
                         onMouseOver={(e) => {
                           e.currentTarget.style.transform = 'translate(-2px, -2px)';
                           e.currentTarget.style.boxShadow = '6px 6px 0 #1a1a1a';
@@ -451,6 +450,70 @@ export default function LearningJourneyPage() {
         }
         *::-webkit-scrollbar-thumb:hover {
           background: #333;
+        }
+
+        /* Mobile Responsive Styles */
+        .page-title {
+          fontSize: 26px;
+        }
+        .page-subtitle {
+          fontSize: 12px;
+        }
+        .module-box {
+          minWidth: 200px;
+          maxWidth: 240px;
+        }
+        .modules-container {
+          gap: 100px;
+        }
+
+        @media (max-width: 768px) {
+          .home-link-container {
+            padding: 12px 15px !important;
+          }
+          .main-content {
+            padding: 10px 15px !important;
+          }
+          .page-title {
+            fontSize: 20px !important;
+          }
+          .page-subtitle {
+            fontSize: 11px !important;
+          }
+          .module-box {
+            minWidth: 160px !important;
+            maxWidth: 180px !important;
+            padding: 10px 12px !important;
+          }
+          .modules-container {
+            gap: 60px !important;
+            padding: 0 15px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .home-link-container {
+            padding: 10px !important;
+          }
+          .main-content {
+            padding: 10px !important;
+          }
+          .page-title {
+            fontSize: 18px !important;
+          }
+          .page-subtitle {
+            fontSize: 10px !important;
+            marginBottom: 10px !important;
+          }
+          .module-box {
+            minWidth: 140px !important;
+            maxWidth: 160px !important;
+            padding: 8px 10px !important;
+          }
+          .modules-container {
+            gap: 40px !important;
+            padding: 0 10px !important;
+          }
         }
       `}</style>
     </div>
