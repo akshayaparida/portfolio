@@ -216,6 +216,7 @@ export default function LearningJourneyPage() {
             padding: '20px',
             animation: 'fadeIn 0.2s ease-out'
           }}
+          className="modal-overlay"
           onClick={() => setSelectedModule(null)}
         >
           <div
@@ -231,6 +232,7 @@ export default function LearningJourneyPage() {
               boxShadow: '8px 8px 0 #1a1a1a',
               animation: 'slideUp 0.3s ease-out'
             }}
+            className="modal-content"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -513,6 +515,18 @@ export default function LearningJourneyPage() {
           .modules-container {
             gap: 40px !important;
             padding: 0 10px !important;
+          }
+          .modal-overlay {
+            padding: 10px !important;
+          }
+          .modal-content {
+            maxWidth: 98% !important;
+            maxHeight: 90vh !important;
+            borderRadius: 10px !important;
+            boxShadow: 4px 4px 0 #1a1a1a !important;
+          }
+          .modal-inner {
+            padding: 16px !important;
           }
         }
       `}</style>
