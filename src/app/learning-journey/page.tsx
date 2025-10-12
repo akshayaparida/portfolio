@@ -163,7 +163,7 @@ export default function LearningJourneyPage() {
                         </div>
                         {hasSubModules && (
                           <div style={{ fontSize: '9px', color: '#666', marginTop: '4px' }}>
-                            {module.subModules?.map((sub, idx) => (
+                            {module.subModules?.map((sub) => (
                               <div key={sub.id} style={{ marginBottom: '2px' }}>
                                 • {sub.title}
                               </div>

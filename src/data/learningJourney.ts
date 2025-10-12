@@ -158,11 +158,11 @@ export const calculateProgress = (modules: LearningModule[]) => {
 };
 
 export const getTotalHours = (modules: LearningModule[]) => {
-  return modules.reduce((sum, m) => sum + m.estimatedHours, 0);
+  return modules.reduce((sum, m) => sum + (m.estimatedHours || 0), 0);
 };
 
 export const getCompletedHours = (modules: LearningModule[]) => {
   return modules
     .filter(m => m.status === 'completed')
-    .reduce((sum, m) => sum + m.estimatedHours, 0);
+    .reduce((sum, m) => sum + (m.estimatedHours || 0), 0);
 };
