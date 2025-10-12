@@ -49,8 +49,8 @@ export default function LearningJourneyPage() {
     <div className="journey-container">
       {/* Home Link */}
       <div className="home-link-wrapper">
-        <Link href="/" className="home-link">
-          Home
+        <Link href="/">
+          <span className="home-link">Home</span>
         </Link>
       </div>
 
@@ -217,6 +217,7 @@ export default function LearningJourneyPage() {
           font-size: 14px;
           transition: all 0.2s;
           box-shadow: 3px 3px 0 #1a1a1a;
+          cursor: pointer;
         }
 
         .home-link:hover {
