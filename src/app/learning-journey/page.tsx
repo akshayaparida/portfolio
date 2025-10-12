@@ -210,7 +210,7 @@ export default function LearningJourneyPage() {
           padding: 10px 20px;
           background: #fff;
           border: 2px solid #1a1a1a;
-          borderRadius: 8px;
+          border-radius: 8px;
           color: #1a1a1a;
           text-decoration: none;
           font-weight: 600;
