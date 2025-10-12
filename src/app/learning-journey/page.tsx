@@ -511,10 +511,15 @@ export default function LearningJourneyPage() {
             minWidth: 140px !important;
             maxWidth: 160px !important;
             padding: 8px 10px !important;
+            touch-action: manipulation;
           }
           .modules-container {
             gap: 40px !important;
             padding: 0 10px !important;
+          }
+          .scroll-container {
+            touch-action: pan-x;
+            overscroll-behavior-x: contain;
           }
           .modal-overlay {
             padding: 10px !important;
