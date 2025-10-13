@@ -5,8 +5,50 @@ import Link from 'next/link';
 import { LearningModule } from '@/types/learning';
 import { learningModules } from '@/data/learningJourney';
 
-const STORAGE_KEY = 'learning-journey-progress';
-const DATA_VERSION = '3';
+const STORAGE_KEY = 'learning-journey-user-progress';
+
+interface UserProgress {
+  [moduleId: string]: {
+    status?: 'not-started' | 'in-progress' | 'completed';
+    subModules?: {
+      [subModuleId: string]: {
+        status?: 'not-started' | 'in-progress' | 'completed';
+      };
+    };
+  };
+}
+
+function mergeProgressWithContent(content: LearningModule[], progress: UserProgress): LearningModule[] {
+  return content.map(module => {
+    const userProgress = progress[module.id];
+    if (!userProgress) return module;
+
+    return {
+      ...module,
+      status: userProgress.status || module.status,
+      subModules: module.subModules?.map(sub => ({
+        ...sub,
+        status: userProgress.subModules?.[sub.id]?.status || sub.status
+      }))
+    };
+  });
+}
+
+function extractProgress(modules: LearningModule[]): UserProgress {
+  const progress: UserProgress = {};
+  modules.forEach(module => {
+    progress[module.id] = {
+      status: module.status,
+      subModules: {}
+    };
+    module.subModules?.forEach(sub => {
+      progress[module.id].subModules![sub.id] = {
+        status: sub.status
+      };
+    });
+  });
+  return progress;
+}
 
 export default function LearningJourneyPage() {
   const [modules, setModules] = useState<LearningModule[]>(learningModules);
@@ -14,26 +56,26 @@ export default function LearningJourneyPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const savedVersion = localStorage.getItem(STORAGE_KEY + '-version');
-    if (savedVersion !== DATA_VERSION) {
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.setItem(STORAGE_KEY + '-version', DATA_VERSION);
-    }
-    
-    const savedProgress = localStorage.getItem(STORAGE_KEY);
-    if (savedProgress) {
+    const savedProgressStr = localStorage.getItem(STORAGE_KEY);
+    if (savedProgressStr) {
       try {
-        setModules(JSON.parse(savedProgress));
+        const savedProgress: UserProgress = JSON.parse(savedProgressStr);
+        const mergedModules = mergeProgressWithContent(learningModules, savedProgress);
+        setModules(mergedModules);
       } catch (error) {
-        console.error('Failed to load:', error);
+        console.error('Failed to load progress:', error);
+        setModules(learningModules);
       }
+    } else {
+      setModules(learningModules);
     }
     setIsLoading(false);
   }, []);
 
   useEffect(() => {
     if (!isLoading) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(modules));
+      const progress = extractProgress(modules);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }
   }, [modules, isLoading]);
 
@@ -114,7 +156,16 @@ export default function LearningJourneyPage() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <p>
+          Last updated: <a 
+            href="https://github.com/akshayaparida/portfolio/commit/afae7426acb88a8a3d7006f56f14971e5a9911aa" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: 'inherit', textDecoration: 'underline' }}
+          >
+            View commit
+          </a>
+        </p>
       </footer>
 
       {/* Modal Popup */}
