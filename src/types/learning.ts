@@ -12,7 +12,9 @@ export interface SubModule {
   title: string;
   description: string;
   status: ModuleStatus;
+  detailedContent?: string;
   resources?: ResourceLink[];
+  subModules?: SubModule[];
 }
 
 export interface LearningModule {

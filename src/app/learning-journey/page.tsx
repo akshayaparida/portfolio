@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { LearningModule } from '@/types/learning';
+import { LearningModule, SubModule } from '@/types/learning';
 import { learningModules } from '@/data/learningJourney';
 
 const STORAGE_KEY = 'learning-journey-user-progress';
@@ -53,6 +53,7 @@ function extractProgress(modules: LearningModule[]): UserProgress {
 export default function LearningJourneyPage() {
   const [modules, setModules] = useState<LearningModule[]>(learningModules);
   const [selectedModule, setSelectedModule] = useState<LearningModule | null>(null);
+  const [selectedSubModule, setSelectedSubModule] = useState<SubModule | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -199,7 +200,20 @@ export default function LearningJourneyPage() {
                           {sub.status === 'completed' && <span>✓</span>}
                         </div>
                         <div className="submodule-content">
-                          <div className="submodule-title">{sub.title}</div>
+                          <div 
+                            className="submodule-title"
+                            onClick={() => {
+                              if (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) {
+                                setSelectedSubModule(sub);
+                              }
+                            }}
+                            style={{ 
+                              cursor: (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) ? 'pointer' : 'default',
+                              textDecoration: (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) ? 'underline' : 'none'
+                            }}
+                          >
+                            {sub.title}
+                          </div>
                           <div className="submodule-description">{sub.description}</div>
 
                           {/* Resources */}
@@ -224,6 +238,70 @@ export default function LearningJourneyPage() {
                           )}
                         </div>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* SubModule Detail Modal */}
+      {selectedSubModule && (
+        <div className="modal-overlay" onClick={() => setSelectedSubModule(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setSelectedSubModule(null)} className="close-button">
+              ×
+            </button>
+
+            <div className="modal-inner">
+              <h2 className="modal-title">{selectedSubModule.title}</h2>
+              <p className="modal-description">{selectedSubModule.description}</p>
+
+              {/* Detailed Content */}
+              {selectedSubModule.detailedContent && (
+                <div className="modal-detailed-content">
+                  <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit' }}>{selectedSubModule.detailedContent}</pre>
+                </div>
+              )}
+
+              {/* Nested SubModules if any */}
+              {selectedSubModule.subModules && selectedSubModule.subModules.length > 0 && (
+                <div className="modal-submodules">
+                  <h3 className="submodules-title">Sub-Topics</h3>
+                  <div className="submodules-list">
+                    {selectedSubModule.subModules.map((nestedSub: SubModule) => (
+                      <div key={nestedSub.id} className="submodule-item">
+                        <div className="submodule-checkbox">
+                          {nestedSub.status === 'completed' && <span>✓</span>}
+                        </div>
+                        <div className="submodule-content">
+                          <div className="submodule-title">{nestedSub.title}</div>
+                          <div className="submodule-description">{nestedSub.description}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Resources */}
+              {selectedSubModule.resources && selectedSubModule.resources.length > 0 && (
+                <div className="submodule-resources" style={{ marginTop: '20px' }}>
+                  <div className="resources-title">Resources</div>
+                  <div className="resources-list">
+                    {selectedSubModule.resources.map((resource, idx) => (
+                      <a
+                        key={idx}
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="resource-link"
+                      >
+                        <span>→</span> {resource.title}
+                        <span className="resource-type">({resource.type})</span>
+                      </a>
                     ))}
                   </div>
                 </div>
