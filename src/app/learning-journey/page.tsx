@@ -158,12 +158,12 @@ export default function LearningJourneyPage() {
       <footer className="footer">
         <p>
           Last updated: <a 
-            href="https://github.com/akshayaparida/portfolio/commit/afae7426acb88a8a3d7006f56f14971e5a9911aa" 
+            href="https://github.com/akshayaparida/portfolio/commit/6728986145281c69fc11f4d09cec6c74b614498c" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'underline' }}
           >
-            View commit
+            October 14, 2025 at 01:40 AM
           </a>
         </p>
       </footer>
