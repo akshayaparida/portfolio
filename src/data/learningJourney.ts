@@ -68,7 +68,7 @@ In production AI systems at companies, these tools are non-negotiable:
           },
           {
             title: 'MLflow Quickstart',
-            url: 'https://mlflow.org/docs/latest/quickstart.html',
+            url: 'https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html',
             type: 'tutorial'
           }
         ]
@@ -121,9 +121,9 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         resources: [
           {
             title: 'Python Essentials for AI Engineering - Interactive Tutorial',
-            url: 'https://scrimba.com/playlist/pKdPeTG',
+            url: 'https://scrimba.com/learn/python',
             type: 'tutorial'
-          },
+          }
           {
             title: 'Python Official Documentation',
             url: 'https://docs.python.org/3/',
