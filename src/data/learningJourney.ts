@@ -123,7 +123,7 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             title: 'Python Essentials for AI Engineering - Interactive Tutorial',
             url: 'https://scrimba.com/learn/python',
             type: 'tutorial'
-          }
+          },
           {
             title: 'Python Official Documentation',
             url: 'https://docs.python.org/3/',
