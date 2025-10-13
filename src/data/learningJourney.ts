@@ -130,62 +130,59 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'documentation'
           },
           {
+            title: 'Lists: Your Go-To for Sequences',
+            url: 'https://docs.python.org/3/tutorial/datastructures.html#more-on-lists',
+            type: 'documentation'
+          },
+          {
+            title: 'Dictionaries: Fast Key-Value Lookups',
+            url: 'https://realpython.com/python-dicts/',
+            type: 'article'
+          },
+          {
+            title: 'List Comprehensions Explained',
+            url: 'https://realpython.com/list-comprehension-python/',
+            type: 'article'
+          },
+          {
+            title: 'Python Type Hints and Typing Module',
+            url: 'https://realpython.com/python-type-checking/',
+            type: 'article'
+          },
+          {
+            title: 'Working with JSON in Python',
+            url: 'https://realpython.com/python-json/',
+            type: 'article'
+          },
+          {
+            title: 'Pathlib: Modern Path Handling',
+            url: 'https://realpython.com/python-pathlib/',
+            type: 'article'
+          },
+          {
             title: 'NumPy Quickstart',
             url: 'https://numpy.org/doc/stable/user/quickstart.html',
+            type: 'tutorial'
+          },
+          {
+            title: 'NumPy for Absolute Beginners',
+            url: 'https://numpy.org/doc/stable/user/absolute_beginners.html',
             type: 'tutorial'
           },
           {
             title: 'Pandas Getting Started',
             url: 'https://pandas.pydata.org/docs/getting_started/index.html',
             type: 'tutorial'
-          }
-        ],
-        subModules: [
+          },
           {
-            id: 'module-2-1-1',
-            title: 'Lists: Your Go-To for Sequences',
-            description: 'Master Python lists for storing feature vectors, batch data, token sequences, and ordered collections',
-            status: 'in-progress',
-            detailedContent: `
-You'll use lists everywhere - storing feature vectors, batch data, token sequences, or any ordered collection that needs to change.
-
-The Essentials:
-Create with [], grow with append(), access by index, slice with start:stop:step, and iterate with for. That's 80% of what you need.
-
-Real Example:
-Building feature vectors with a bias term (you'll see this pattern constantly):
-
-# Feature vector with bias
-features = [1.0]  # bias term
-features.append(age / 100)  # normalized age
-features.append(income / 50000)  # normalized income
-
-Exercise:
-Create a list containing the numbers 1 through 5. Then, append the number 6 and print the element at index 2.
-
-# Your code here:
-numbers = [1, 2, 3, 4, 5]
-numbers.append(6)
-print(numbers[2])  # Output: 3
-
-Key Patterns for AI:
-• Use list comprehensions for transformations: [x * 2 for x in data]
-• Slice for batching: batch = data[start:start+batch_size]
-• Extend for combining: all_features.extend(new_features)
-• Check membership: if token in vocabulary
-            `,
-            resources: [
-              {
-                title: 'Python Lists Tutorial',
-                url: 'https://docs.python.org/3/tutorial/datastructures.html#more-on-lists',
-                type: 'documentation'
-              },
-              {
-                title: 'List Comprehensions Guide',
-                url: 'https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions',
-                type: 'documentation'
-              }
-            ]
+            title: 'Pandas 10 Minutes to Pandas',
+            url: 'https://pandas.pydata.org/docs/user_guide/10min.html',
+            type: 'tutorial'
+          },
+          {
+            title: 'Functional Programming in Python',
+            url: 'https://realpython.com/python-functional-programming/',
+            type: 'article'
           }
         ]
       }

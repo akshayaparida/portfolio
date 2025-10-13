@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { LearningModule, SubModule } from '@/types/learning';
 import { learningModules } from '@/data/learningJourney';
+import gitMetadata from '@/data/git-metadata.json';
 
 const STORAGE_KEY = 'learning-journey-user-progress';
 
@@ -159,12 +160,12 @@ export default function LearningJourneyPage() {
       <footer className="footer">
         <p>
           Last updated: <a 
-            href="https://github.com/akshayaparida/portfolio/commit/6728986145281c69fc11f4d09cec6c74b614498c" 
+            href={gitMetadata.commitUrl}
             target="_blank" 
             rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'underline' }}
           >
-            October 14, 2025 at 01:40 AM
+            {gitMetadata.commitDate}
           </a>
         </p>
       </footer>
