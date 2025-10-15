@@ -135,6 +135,16 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'documentation'
           },
           {
+            title: 'Tuples: Immutable Data Collections',
+            url: 'https://realpython.com/python-tuples/',
+            type: 'article'
+          },
+          {
+            title: 'Sets: Unique Elements and Set Operations',
+            url: 'https://realpython.com/python-sets/',
+            type: 'article'
+          },
+          {
             title: 'Dictionaries: Fast Key-Value Lookups',
             url: 'https://realpython.com/python-dicts/',
             type: 'article'
