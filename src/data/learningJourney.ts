@@ -193,6 +193,31 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             title: 'Functional Programming in Python',
             url: 'https://realpython.com/python-functional-programming/',
             type: 'article'
+          },
+          {
+            title: 'Python Lambda Functions',
+            url: 'https://realpython.com/python-lambda/',
+            type: 'article'
+          },
+          {
+            title: 'Python map() Function',
+            url: 'https://realpython.com/python-map-function/',
+            type: 'article'
+          },
+          {
+            title: 'Python filter() Function',
+            url: 'https://realpython.com/python-filter-function/',
+            type: 'article'
+          },
+          {
+            title: 'Lambda, Map, Filter in Python (GeeksforGeeks)',
+            url: 'https://www.geeksforgeeks.org/python-lambda-anonymous-functions-filter-map-reduce/',
+            type: 'tutorial'
+          },
+          {
+            title: 'Python Lambda Functions - Official Docs',
+            url: 'https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions',
+            type: 'documentation'
           }
         ]
       }
