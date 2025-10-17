@@ -218,6 +218,21 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             title: 'Python Lambda Functions - Official Docs',
             url: 'https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions',
             type: 'documentation'
+          },
+          {
+            title: 'Python Dataclasses Guide',
+            url: 'https://realpython.com/python-data-classes/',
+            type: 'article'
+          },
+          {
+            title: 'Dataclasses - Official Documentation',
+            url: 'https://docs.python.org/3/library/dataclasses.html',
+            type: 'documentation'
+          },
+          {
+            title: 'Python Dataclasses: When and How to Use',
+            url: 'https://www.datacamp.com/tutorial/python-data-classes',
+            type: 'tutorial'
           }
         ]
       }
