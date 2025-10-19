@@ -160,6 +160,21 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'article'
           },
           {
+            title: 'Type Hints Cheat Sheet (mypy)',
+            url: 'https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html',
+            type: 'documentation'
+          },
+          {
+            title: 'Python Typing Module - Official Docs',
+            url: 'https://docs.python.org/3/library/typing.html',
+            type: 'documentation'
+          },
+          {
+            title: 'Type Hints for Busy Programmers',
+            url: 'https://inventwithpython.com/blog/2019/11/24/type-hints-for-busy-python-programmers/',
+            type: 'article'
+          },
+          {
             title: 'Working with JSON in Python',
             url: 'https://realpython.com/python-json/',
             type: 'article'
