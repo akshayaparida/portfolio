@@ -120,21 +120,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         status: 'in-progress',
         resources: [
           {
-            title: 'Python Essentials for AI Engineering - Interactive Tutorial',
-            url: 'https://scrimba.com/learn/python',
-            type: 'tutorial'
-          },
-          {
-            title: 'Python Official Documentation',
-            url: 'https://docs.python.org/3/',
-            type: 'documentation'
-          },
-          {
-            title: 'Lists: Your Go-To for Sequences',
-            url: 'https://docs.python.org/3/tutorial/datastructures.html#more-on-lists',
-            type: 'documentation'
-          },
-          {
             title: 'Tuples: Immutable Data Collections',
             url: 'https://realpython.com/python-tuples/',
             type: 'article'
@@ -170,11 +155,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'documentation'
           },
           {
-            title: 'Type Hints for Busy Programmers',
-            url: 'https://inventwithpython.com/blog/2019/11/24/type-hints-for-busy-python-programmers/',
-            type: 'article'
-          },
-          {
             title: 'Working with JSON in Python',
             url: 'https://realpython.com/python-json/',
             type: 'article'
@@ -185,11 +165,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'documentation'
           },
           {
-            title: 'JSON Encoding and Decoding in Python',
-            url: 'https://www.geeksforgeeks.org/json-load-in-python/',
-            type: 'tutorial'
-          },
-          {
             title: 'Pathlib: Modern Path Handling',
             url: 'https://realpython.com/python-pathlib/',
             type: 'article'
@@ -197,16 +172,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
           {
             title: 'NumPy Quickstart',
             url: 'https://numpy.org/doc/stable/user/quickstart.html',
-            type: 'tutorial'
-          },
-          {
-            title: 'NumPy for Absolute Beginners',
-            url: 'https://numpy.org/doc/stable/user/absolute_beginners.html',
-            type: 'tutorial'
-          },
-          {
-            title: 'Pandas Getting Started',
-            url: 'https://pandas.pydata.org/docs/getting_started/index.html',
             type: 'tutorial'
           },
           {
@@ -235,16 +200,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'article'
           },
           {
-            title: 'Lambda, Map, Filter in Python (GeeksforGeeks)',
-            url: 'https://www.geeksforgeeks.org/python-lambda-anonymous-functions-filter-map-reduce/',
-            type: 'tutorial'
-          },
-          {
-            title: 'Python Lambda Functions - Official Docs',
-            url: 'https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions',
-            type: 'documentation'
-          },
-          {
             title: 'Python Dataclasses Guide',
             url: 'https://realpython.com/python-data-classes/',
             type: 'article'
@@ -254,11 +209,6 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             url: 'https://docs.python.org/3/library/dataclasses.html',
             type: 'documentation'
           },
-          {
-            title: 'Python Dataclasses: When and How to Use',
-            url: 'https://www.datacamp.com/tutorial/python-data-classes',
-            type: 'tutorial'
-          }
         ]
       }
     ]
