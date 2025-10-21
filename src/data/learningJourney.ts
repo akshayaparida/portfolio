@@ -180,6 +180,16 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'article'
           },
           {
+            title: 'JSON Module - Official Documentation',
+            url: 'https://docs.python.org/3/library/json.html',
+            type: 'documentation'
+          },
+          {
+            title: 'JSON Encoding and Decoding in Python',
+            url: 'https://www.geeksforgeeks.org/json-load-in-python/',
+            type: 'tutorial'
+          },
+          {
             title: 'Pathlib: Modern Path Handling',
             url: 'https://realpython.com/python-pathlib/',
             type: 'article'
