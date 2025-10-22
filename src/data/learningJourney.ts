@@ -170,6 +170,11 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'article'
           },
           {
+            title: 'pathlib - Official Documentation',
+            url: 'https://docs.python.org/3/library/pathlib.html',
+            type: 'documentation'
+          },
+          {
             title: 'NumPy Quickstart',
             url: 'https://numpy.org/doc/stable/user/quickstart.html',
             type: 'tutorial'
