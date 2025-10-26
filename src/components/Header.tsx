@@ -8,6 +8,9 @@ export default function Header() {
         <Link href="/learning-journey" style={{ textDecoration: 'underline', textUnderlineOffset: '4px' }}>
           Learning Journey
         </Link>
+        <Link href="/mathematics" style={{ textDecoration: 'underline', textUnderlineOffset: '4px' }}>
+          Mathematics
+        </Link>
         <a target="_blank" href="https://github.com/akshayaparida" rel="noopener noreferrer">
           <i className="fa-brands fa-github"></i>
         </a>
