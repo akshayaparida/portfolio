@@ -215,6 +215,19 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: 'documentation'
           },
         ]
+      },
+      {
+        id: 'module-2-2',
+        title: 'Mathematics is the Language of AI',
+        description: 'Build the mathematical foundation essential for understanding AI algorithms and models',
+        status: 'in-progress',
+        resources: [
+          {
+            title: 'Mathematics for AI - Complete Guide',
+            url: '/mathematics',
+            type: 'course'
+          }
+        ]
       }
     ]
   }
