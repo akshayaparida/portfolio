@@ -6,15 +6,19 @@ import ReactMarkdown from 'react-markdown';
 import { mathematicsModules } from '@/data/mathematics';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
 import MatrixMultiplication from '@/components/math-visualizations/MatrixMultiplication';
+import PCAVisualization from '@/components/math-visualizations/PCAVisualization';
 import GradientDescentPlayground from '@/components/math-visualizations/GradientDescentPlayground';
 import ActivationFunctions from '@/components/math-visualizations/ActivationFunctions';
+import ScalarMultiplication from '@/components/math-visualizations/ScalarMultiplication';
 import gitMetadata from '@/data/git-metadata.json';
 
 const demoComponents: Record<string, React.ComponentType> = {
   'vectors': VectorSpace2D,
   'matrices': MatrixMultiplication,
+  'pca': PCAVisualization,
   'gradient-descent': GradientDescentPlayground,
   'activations': ActivationFunctions,
+  'scalar-mult': ScalarMultiplication,
 };
 
 export default function MathematicsComprehensive() {
@@ -95,7 +99,7 @@ export default function MathematicsComprehensive() {
                 <div className="interactive-section">
                   <div className="interactive-header">
                     <span className="interactive-badge">Interactive Demos</span>
-                    <p>Learn by doing - manipulate these visualizations to build intuition</p>
+                    <p>Learn by doing</p>
                   </div>
 
                   {selectedModule.subModules.map((subModule) => {
@@ -172,12 +176,28 @@ export default function MathematicsComprehensive() {
         }
 
         .markdown-content code {
-          background: #f0f9ff;
+          background: #f5f5f5;
           padding: 2px 6px;
           border-radius: 4px;
           font-family: 'Courier New', monospace;
           font-size: 14px;
-          color: #3b82f6;
+          color: #1a1a1a;
+          border: 1px solid #e0e0e0;
+        }
+
+        .markdown-content pre {
+          background: #2d2d2d;
+          padding: 16px;
+          border-radius: 8px;
+          overflow-x: auto;
+          margin: 16px 0;
+        }
+
+        .markdown-content pre code {
+          background: transparent;
+          border: none;
+          color: #b0b0b0;
+          padding: 0;
         }
       `}</style>
 
@@ -429,6 +449,25 @@ export default function MathematicsComprehensive() {
           padding: 32px;
           border-radius: 8px;
           border: 2px solid #e0e0e0;
+        }
+
+        .content-flow {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .inline-interactive {
+          margin: 48px -16px;
+          padding: 0;
+          background: transparent;
+          border: none;
+        }
+
+        @media (max-width: 768px) {
+          .inline-interactive {
+            margin: 32px 0;
+          }
         }
 
         .interactive-section {

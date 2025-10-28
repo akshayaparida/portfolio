@@ -599,6 +599,41 @@ The gradient is a vector of all partial derivatives:
 
 The gradient points in the direction of steepest increase. To minimize, go opposite direction: -∇f
 
+**Practical Code Examples:**
+
+\`\`\`python path=null start=null
+import numpy as np
+
+# Computing derivatives numerically
+def derivative(f, x, h=1e-5):
+    """Approximate derivative using finite differences"""
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+# Example: f(x) = x²
+f = lambda x: x**2
+x = 3.0
+derivative_value = derivative(f, x)
+print(f"Derivative of x² at x={x}: {derivative_value}")  # Should be 2*3 = 6
+
+# Computing gradient for multi-variable function
+def gradient(f, x, h=1e-5):
+    """Compute gradient vector numerically"""
+    grad = np.zeros_like(x)
+    for i in range(len(x)):
+        x_plus = x.copy()
+        x_minus = x.copy()
+        x_plus[i] += h
+        x_minus[i] -= h
+        grad[i] = (f(x_plus) - f(x_minus)) / (2 * h)
+    return grad
+
+# Example: f(x, y) = x² + 3xy + y²
+f_multi = lambda x: x[0]**2 + 3*x[0]*x[1] + x[1]**2
+point = np.array([2.0, 3.0])
+grad = gradient(f_multi, point)
+print(f"Gradient at [{point[0]}, {point[1]}]: {grad}")  # [2*2 + 3*3, 3*2 + 2*3] = [13, 12]
+\`\`\`
+
 ### 2. Chain Rule - Heart of Backpropagation
 
 **Single Variable Chain Rule:**
@@ -660,6 +695,68 @@ Cons: Need to choose batch size
 
 This is the standard in practice!
 
+**Code Example - Gradient Descent from Scratch:**
+
+\`\`\`python path=null start=null
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Simple gradient descent to minimize f(x) = x²
+def gradient_descent_1d():
+    f = lambda x: x**2
+    df = lambda x: 2*x  # Derivative
+    
+    x = 10.0  # Starting point
+    learning_rate = 0.1
+    history = [x]
+    
+    for i in range(50):
+        gradient = df(x)
+        x = x - learning_rate * gradient  # Update rule
+        history.append(x)
+        if abs(gradient) < 1e-6:  # Convergence check
+            break
+    
+    print(f"Converged to x = {x:.6f} (should be 0)")
+    return history
+
+# Linear regression with gradient descent
+def linear_regression_gd():
+    # Generate synthetic data: y = 3x + 2 + noise
+    np.random.seed(42)
+    X = np.random.randn(100, 1)
+    y = 3 * X + 2 + 0.5 * np.random.randn(100, 1)
+    
+    # Initialize parameters
+    w = np.random.randn(1, 1)  # weight
+    b = np.random.randn(1)      # bias
+    
+    learning_rate = 0.01
+    epochs = 100
+    
+    for epoch in range(epochs):
+        # Forward pass
+        y_pred = X @ w + b
+        
+        # Compute loss (MSE)
+        loss = np.mean((y_pred - y)**2)
+        
+        # Compute gradients
+        dw = (2/len(X)) * X.T @ (y_pred - y)
+        db = (2/len(X)) * np.sum(y_pred - y)
+        
+        # Update parameters
+        w = w - learning_rate * dw
+        b = b - learning_rate * db
+        
+        if epoch % 20 == 0:
+            print(f"Epoch {epoch}: Loss = {loss:.4f}, w = {w[0,0]:.2f}, b = {b[0]:.2f}")
+    
+    print(f"Final: w = {w[0,0]:.2f} (true: 3), b = {b[0]:.2f} (true: 2)")
+
+linear_regression_gd()
+\`\`\`
+
 **Learning Rate Scheduling:**
 
 - Step decay: α = α₀ · (0.5)^(epoch/10)
@@ -697,6 +794,70 @@ w = w - α·m̂/(√v̂ + ε)
 Typical values: α=0.001, β₁=0.9, β₂=0.999, ε=10⁻⁸
 
 Adam is the default choice for most deep learning!
+
+**Code Example - Optimizer Comparison:**
+
+\`\`\`python path=null start=null
+import numpy as np
+
+# SGD with Momentum
+class SGDMomentum:
+    def __init__(self, learning_rate=0.01, momentum=0.9):
+        self.lr = learning_rate
+        self.momentum = momentum
+        self.velocity = None
+    
+    def update(self, params, grads):
+        if self.velocity is None:
+            self.velocity = np.zeros_like(params)
+        
+        self.velocity = self.momentum * self.velocity - self.lr * grads
+        params += self.velocity
+        return params
+
+# Adam Optimizer
+class Adam:
+    def __init__(self, learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8):
+        self.lr = learning_rate
+        self.beta1 = beta1
+        self.beta2 = beta2
+        self.epsilon = epsilon
+        self.m = None  # First moment
+        self.v = None  # Second moment
+        self.t = 0     # Time step
+    
+    def update(self, params, grads):
+        if self.m is None:
+            self.m = np.zeros_like(params)
+            self.v = np.zeros_like(params)
+        
+        self.t += 1
+        
+        # Update biased first and second moments
+        self.m = self.beta1 * self.m + (1 - self.beta1) * grads
+        self.v = self.beta2 * self.v + (1 - self.beta2) * (grads ** 2)
+        
+        # Bias correction
+        m_hat = self.m / (1 - self.beta1 ** self.t)
+        v_hat = self.v / (1 - self.beta2 ** self.t)
+        
+        # Update parameters
+        params -= self.lr * m_hat / (np.sqrt(v_hat) + self.epsilon)
+        return params
+
+# Example usage
+params = np.array([5.0])
+grads = np.array([2.0])
+
+sgd = SGDMomentum(learning_rate=0.1)
+adam = Adam(learning_rate=0.1)
+
+params_sgd = sgd.update(params.copy(), grads)
+params_adam = adam.update(params.copy(), grads)
+
+print(f"SGD+Momentum: {params} -> {params_sgd}")
+print(f"Adam: {params} -> {params_adam}")
+\`\`\`
 
 ### 5. Loss Functions
 
@@ -812,27 +973,19 @@ Solutions:
 - "Pattern Recognition and Machine Learning" by Bishop - Appendix C
 
 **Interactive:**
-- [Seeing Theory](https://seeing-theory.brown.edu/) - Visual calculus
 - [Distill.pub - Momentum](https://distill.pub/2017/momentum/) - Optimizer comparison
+- [TensorFlow Playground](https://playground.tensorflow.org/) - Neural network visualization
+
+**GitHub Repositories:**
+- [Calculus Basics with Python](https://github.com/williamfiset/Algorithms) - Numerical differentiation and optimization examples
+- [Gradient Descent Visualizations](https://github.com/lilipads/gradient_descent_viz) - Visual learning rate and optimizer comparison
+- [Backpropagation from Scratch](https://github.com/parasdahal/deepnet) - Simple neural network with manual backprop
 
 **Papers:**
 - [Adam Optimizer](https://arxiv.org/abs/1412.6980) - Kingma & Ba, 2014
 - [Batch Normalization](https://arxiv.org/abs/1502.03167) - Ioffe & Szegedy, 2015
     `,
-    subModules: [
-      {
-        id: 'gradient-descent',
-        title: 'Interactive: Gradient Descent',
-        description: 'Control learning rate and watch optimization converge',
-        status: 'in-progress'
-      },
-      {
-        id: 'activations',
-        title: 'Interactive: Activation Functions',
-        description: 'See how non-linearity enables deep learning',
-        status: 'in-progress'
-      }
-    ]
+    subModules: []
   },
   {
     id: 'probability-stats',
@@ -999,6 +1152,49 @@ This is why Normal appears everywhere!
 - 95% of data within ±2σ
 - 99.7% of data within ±3σ
 
+**Code Example - Working with Distributions:**
+
+\`\`\`python path=null start=null
+import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+
+# Bernoulli: Single coin flip
+print("=== Bernoulli Distribution ===")
+p = 0.7  # Probability of success
+bernoulli = stats.bernoulli(p)
+print(f"P(X=1) = {bernoulli.pmf(1):.2f}")  # 0.70
+print(f"P(X=0) = {bernoulli.pmf(0):.2f}")  # 0.30
+print(f"Mean = {bernoulli.mean():.2f}, Var = {bernoulli.var():.2f}")
+
+# Binomial: Multiple coin flips
+print("\n=== Binomial Distribution ===")
+n, p = 10, 0.5  # 10 flips, fair coin
+binomial = stats.binom(n, p)
+print(f"P(X=5) = {binomial.pmf(5):.3f}")  # Most likely outcome
+print(f"P(X<=3) = {binomial.cdf(3):.3f}")  # Cumulative
+print(f"Mean = {binomial.mean()}, Var = {binomial.var()}")
+
+# Normal distribution
+print("\n=== Normal Distribution ===")
+mu, sigma = 0, 1  # Standard normal
+normal = stats.norm(mu, sigma)
+print(f"P(-1 < X < 1) = {normal.cdf(1) - normal.cdf(-1):.3f}")  # ~68%
+print(f"P(-2 < X < 2) = {normal.cdf(2) - normal.cdf(-2):.3f}")  # ~95%
+
+# Generate samples
+samples = normal.rvs(size=1000)
+print(f"Sample mean = {np.mean(samples):.3f}, std = {np.std(samples):.3f}")
+
+# Categorical distribution (like softmax output)
+print("\n=== Categorical Distribution ===")
+probs = [0.1, 0.3, 0.4, 0.2]  # 4 classes
+categorical = stats.rv_discrete(values=(range(len(probs)), probs))
+samples = categorical.rvs(size=100)
+print(f"Sampled classes: {np.bincount(samples)}")
+print(f"Expected counts: {[p*100 for p in probs]}")
+\`\`\`
+
 ### 4. Bayes' Theorem
 
 **Formula:**
@@ -1038,6 +1234,81 @@ Assumes features are independent:
 P(y|x₁,...,xₙ) ∝ P(y) · ∏ᵢ P(xᵢ|y)
 
 Used in spam detection, text classification.
+
+**Code Example - Bayes Theorem:**
+
+\`\`\`python path=null start=null
+import numpy as np
+
+# Medical diagnosis example
+def bayes_medical_test():
+    # Given probabilities
+    p_disease = 0.01  # 1% have disease
+    p_positive_given_disease = 0.95  # 95% sensitivity
+    p_positive_given_no_disease = 0.05  # 5% false positive
+    
+    # Compute P(+) using law of total probability
+    p_no_disease = 1 - p_disease
+    p_positive = (p_positive_given_disease * p_disease + 
+                  p_positive_given_no_disease * p_no_disease)
+    
+    # Bayes theorem: P(D|+)
+    p_disease_given_positive = (p_positive_given_disease * p_disease) / p_positive
+    
+    print(f"P(disease) = {p_disease:.1%}")
+    print(f"P(+|disease) = {p_positive_given_disease:.1%}")
+    print(f"P(+|no disease) = {p_positive_given_no_disease:.1%}")
+    print(f"P(disease|+) = {p_disease_given_positive:.1%}")
+    print(f"\nOnly {p_disease_given_positive:.1%} chance despite 95% accurate test!")
+
+bayes_medical_test()
+
+# Naive Bayes for text classification
+class NaiveBayesClassifier:
+    def fit(self, X, y):
+        """X: documents (list of word lists), y: labels"""
+        self.classes = np.unique(y)
+        self.class_priors = {}
+        self.word_probs = {}
+        
+        for c in self.classes:
+            # Class prior
+            self.class_priors[c] = np.mean(y == c)
+            
+            # Word probabilities
+            docs_c = [X[i] for i in range(len(X)) if y[i] == c]
+            words_c = [word for doc in docs_c for word in doc]
+            vocab = set([word for doc in X for word in doc])
+            
+            self.word_probs[c] = {}
+            for word in vocab:
+                # Laplace smoothing
+                count = words_c.count(word)
+                self.word_probs[c][word] = (count + 1) / (len(words_c) + len(vocab))
+    
+    def predict(self, doc):
+        """Predict class for a document"""
+        scores = {}
+        for c in self.classes:
+            # log P(c) + sum log P(word|c)
+            score = np.log(self.class_priors[c])
+            for word in doc:
+                if word in self.word_probs[c]:
+                    score += np.log(self.word_probs[c][word])
+            scores[c] = score
+        return max(scores, key=scores.get)
+
+# Example usage
+X_train = [["free", "money", "win"], ["hello", "meeting", "tomorrow"], 
+           ["buy", "now", "free"], ["schedule", "call", "monday"]]
+y_train = np.array(["spam", "ham", "spam", "ham"])
+
+nb = NaiveBayesClassifier()
+nb.fit(X_train, y_train)
+
+test_doc = ["free", "win"]
+print(f"Document {test_doc} classified as: {nb.predict(test_doc)}")
+\`\`\`
 
 ### 5. Maximum Likelihood Estimation (MLE)
 
@@ -1185,6 +1456,77 @@ P(class=k|x) = e^zₖ / Σⱼ e^zⱼ
 
 Optimize using cross-entropy loss.
 
+**Code Example - Softmax and Cross-Entropy:**
+
+\`\`\`python path=null start=null
+import numpy as np
+
+# Softmax function
+def softmax(logits):
+    """Convert logits to probabilities"""
+    exp_logits = np.exp(logits - np.max(logits))  # Subtract max for numerical stability
+    return exp_logits / np.sum(exp_logits)
+
+# Example: 3-class classification
+logits = np.array([2.0, 1.0, 0.1])  # Raw network outputs
+probs = softmax(logits)
+print(f"Logits: {logits}")
+print(f"Probabilities: {probs}")
+print(f"Sum: {np.sum(probs):.1f}")  # Must be 1.0
+
+# Cross-entropy loss
+def cross_entropy_loss(y_true, y_pred):
+    """y_true: one-hot, y_pred: probabilities"""
+    return -np.sum(y_true * np.log(y_pred + 1e-10))  # Add epsilon for stability
+
+# Example
+y_true = np.array([0, 1, 0])  # True class is 1
+y_pred = np.array([0.1, 0.7, 0.2])  # Predicted probabilities
+loss = cross_entropy_loss(y_true, y_pred)
+print(f"\nCross-entropy loss: {loss:.3f}")
+
+# Lower loss = better predictions
+y_pred_better = np.array([0.05, 0.9, 0.05])
+loss_better = cross_entropy_loss(y_true, y_pred_better)
+print(f"Better prediction loss: {loss_better:.3f}")  # Lower!
+
+# Complete classification example
+def classify_batch():
+    # Batch of 4 samples, 3 classes
+    logits = np.array([
+        [2.0, 1.0, 0.1],
+        [0.5, 2.5, 0.3],
+        [1.0, 0.5, 2.0],
+        [3.0, 0.1, 0.2]
+    ])
+    
+    # Apply softmax to each sample
+    probs = np.array([softmax(logit) for logit in logits])
+    
+    # Predicted classes (argmax)
+    predictions = np.argmax(probs, axis=1)
+    
+    # True labels
+    y_true = np.array([0, 1, 2, 0])
+    
+    # Compute accuracy
+    accuracy = np.mean(predictions == y_true)
+    
+    print(f"\nBatch classification:")
+    print(f"Probabilities:\n{probs}")
+    print(f"Predictions: {predictions}")
+    print(f"True labels: {y_true}")
+    print(f"Accuracy: {accuracy:.1%}")
+    
+    # Compute average cross-entropy loss
+    y_true_onehot = np.eye(3)[y_true]  # Convert to one-hot
+    losses = [cross_entropy_loss(y_true_onehot[i], probs[i]) for i in range(len(y_true))]
+    avg_loss = np.mean(losses)
+    print(f"Average loss: {avg_loss:.3f}")
+
+classify_batch()
+\`\`\`
+
 **Variational Autoencoders (VAEs):**
 Learn probability distribution over latent space:
 
@@ -1237,7 +1579,11 @@ Value functions are expectations over trajectories.
 
 **Interactive:**
 - [Seeing Theory](https://seeing-theory.brown.edu/) - Visual probability
-- [Bayesian Methods for Hackers](http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/) - PyMC tutorials
+
+**GitHub Repositories:**
+- [Probability & Statistics for Data Science](https://github.com/unpingco/Python-for-Probability-Statistics-and-Machine-Learning) - Python examples
+- [Think Stats](https://github.com/AllenDowney/ThinkStats2) - Exploratory data analysis with Python
+- [Statistical Learning](https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning) - R and Python implementations
 
 **Papers:**
 - [Variational Autoencoders](https://arxiv.org/abs/1312.6114) - Kingma & Welling, 2013
