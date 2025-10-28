@@ -44,18 +44,70 @@ export default function MathematicsComprehensive() {
           </div>
 
           <div className="sections-grid">
-            {mathematicsModules.map((module, index) => (
-              <button
-                key={module.id}
-                onClick={() => setSelectedSection(module.id)}
-                className={`section-card ${selectedSection === module.id ? 'active' : ''}`}
-              >
-                <div className="section-number">{index + 1}</div>
-                <div className="section-title">{module.title}</div>
-                <div className="section-description">{module.description}</div>
-                <div className="section-action">Explore Theory + Interactive Demos →</div>
-              </button>
-            ))}
+            {mathematicsModules.map((module, index) => {
+              const getIcon = (id: string) => {
+                switch(id) {
+                  case 'linear-algebra':
+                    return (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        {/* Vector arrows */}
+                        <path d="M4 12l8-8m0 0l8 8m-8-8v16" strokeWidth="2"/>
+                        <path d="M12 20l-4-4m4 4l4-4" strokeWidth="2"/>
+                        {/* Matrix brackets */}
+                        <path d="M2 6v12M22 6v12M2 6h2M2 18h2M22 6h-2M22 18h-2" strokeWidth="2.5"/>
+                        {/* Grid dots */}
+                        <circle cx="8" cy="8" r="1" fill="currentColor"/>
+                        <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                        <circle cx="16" cy="16" r="1" fill="currentColor"/>
+                      </svg>
+                    );
+                  case 'calculus':
+                    return (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        {/* Smooth curve (derivative) */}
+                        <path d="M2 20c2-6 4-8 6-6s2 8 4 6s2-8 4-6s4 0 6 6" strokeWidth="2.5"/>
+                        {/* Tangent line */}
+                        <path d="M8 14l8-4" strokeWidth="2" opacity="0.6"/>
+                        {/* Point of tangency */}
+                        <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                        {/* Gradient symbol ∇ */}
+                        <path d="M4 4l2 4 2-4M4 8h4" strokeWidth="1.5"/>
+                      </svg>
+                    );
+                  case 'probability-stats':
+                    return (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        {/* Dice face */}
+                        <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="2"/>
+                        {/* Bell curve overlay */}
+                        <path d="M7 15c1.5-3 3-4 5-2s3.5 5 5 2" strokeWidth="1.5" opacity="0.5"/>
+                        {/* Dice dots arranged as probability */}
+                        <circle cx="9" cy="9" r="1.2" fill="currentColor"/>
+                        <circle cx="15" cy="9" r="1.2" fill="currentColor"/>
+                        <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+                        <circle cx="9" cy="15" r="1.2" fill="currentColor"/>
+                        <circle cx="15" cy="15" r="1.2" fill="currentColor"/>
+                      </svg>
+                    );
+                  default:
+                    return null;
+                }
+              };
+              return (
+                <button
+                  key={module.id}
+                  onClick={() => setSelectedSection(module.id)}
+                  className={`section-card ${selectedSection === module.id ? 'active' : ''}`}
+                >
+                  <div className="section-icon">{getIcon(module.id)}</div>
+                  <div className="section-content">
+                    <div className="section-title">{module.title}</div>
+                    <div className="section-description">{module.description}</div>
+                    <div className="section-action">Explore Theory + Interactive Demos →</div>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </main>
@@ -82,6 +134,49 @@ export default function MathematicsComprehensive() {
 
             <div className="modal-inner">
               <div className="section-header">
+                <div className="modal-icon">
+                  {(() => {
+                    const getIcon = (id: string) => {
+                      switch(id) {
+                        case 'linear-algebra':
+                          return (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M4 12l8-8m0 0l8 8m-8-8v16" strokeWidth="2"/>
+                              <path d="M12 20l-4-4m4 4l4-4" strokeWidth="2"/>
+                              <path d="M2 6v12M22 6v12M2 6h2M2 18h2M22 6h-2M22 18h-2" strokeWidth="2.5"/>
+                              <circle cx="8" cy="8" r="1" fill="currentColor"/>
+                              <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                              <circle cx="16" cy="16" r="1" fill="currentColor"/>
+                            </svg>
+                          );
+                        case 'calculus':
+                          return (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M2 20c2-6 4-8 6-6s2 8 4 6s2-8 4-6s4 0 6 6" strokeWidth="2.5"/>
+                              <path d="M8 14l8-4" strokeWidth="2" opacity="0.6"/>
+                              <circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/>
+                              <path d="M4 4l2 4 2-4M4 8h4" strokeWidth="1.5"/>
+                            </svg>
+                          );
+                        case 'probability-stats':
+                          return (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="2"/>
+                              <path d="M7 15c1.5-3 3-4 5-2s3.5 5 5 2" strokeWidth="1.5" opacity="0.5"/>
+                              <circle cx="9" cy="9" r="1.2" fill="currentColor"/>
+                              <circle cx="15" cy="9" r="1.2" fill="currentColor"/>
+                              <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
+                              <circle cx="9" cy="15" r="1.2" fill="currentColor"/>
+                              <circle cx="15" cy="15" r="1.2" fill="currentColor"/>
+                            </svg>
+                          );
+                        default:
+                          return null;
+                      }
+                    };
+                    return getIcon(selectedModule.id);
+                  })()}
+                </div>
                 <h1 className="section-main-title">{selectedModule.title}</h1>
                 <p className="section-tagline">{selectedModule.description}</p>
               </div>
@@ -265,7 +360,7 @@ export default function MathematicsComprehensive() {
 
         .sections-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          grid-template-columns: repeat(3, 1fr);
           gap: 24px;
         }
 
@@ -277,11 +372,12 @@ export default function MathematicsComprehensive() {
           cursor: pointer;
           transition: all 0.2s;
           box-shadow: 4px 4px 0 #1a1a1a;
-          text-align: left;
+          text-align: center;
           display: flex;
           flex-direction: column;
-          gap: 16px;
-          min-height: 200px;
+          align-items: center;
+          gap: 20px;
+          min-height: 280px;
         }
 
         .section-card:hover {
@@ -294,17 +390,36 @@ export default function MathematicsComprehensive() {
           border-color: #3b82f6;
         }
 
-        .section-number {
-          width: 48px;
-          height: 48px;
-          background: #1a1a1a;
-          color: #fff;
-          border-radius: 50%;
+        .section-icon {
+          width: 80px;
+          height: 80px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 24px;
-          font-weight: 700;
+          color: #1a1a1a;
+          transition: all 0.3s ease;
+        }
+
+        .section-icon svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .section-card:hover .section-icon {
+          transform: scale(1.1) rotate(5deg);
+          color: #3b82f6;
+        }
+
+        .section-card.active .section-icon {
+          color: #3b82f6;
+        }
+
+        .section-content {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-items: center;
+          text-align: center;
         }
 
         .section-title {
@@ -405,13 +520,31 @@ export default function MathematicsComprehensive() {
           margin-bottom: 48px;
           padding-bottom: 24px;
           border-bottom: 3px solid #e0e0e0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .modal-icon {
+          width: 96px;
+          height: 96px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #3b82f6;
+        }
+
+        .modal-icon svg {
+          width: 100%;
+          height: 100%;
         }
 
         .section-main-title {
           font-size: 42px;
           font-weight: 700;
           color: #1a1a1a;
-          margin: 0 0 12px 0;
+          margin: 0;
         }
 
         .section-tagline {
@@ -557,6 +690,11 @@ export default function MathematicsComprehensive() {
           .sections-grid {
             grid-template-columns: 1fr;
             gap: 16px;
+          }
+
+          .section-icon {
+            width: 64px;
+            height: 64px;
           }
 
           .section-card {

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   const [currentTime, setCurrentTime] = useState("Loading...");
@@ -60,6 +61,7 @@ export default function Hero() {
           <span>Open to AI Engineering roles</span>
         </div>
       </div>
+
       <div className="links-container">
         <i className="fa-solid link-arrow fa-arrow-right"></i>
         <a href="mailto:akshayaparida2811@gmail.com">Email me</a>

@@ -544,6 +544,54 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
 
 Calculus is the mathematics of change and optimization. Without calculus, neural networks couldn't learn - there would be no backpropagation, no gradient descent, no training.
 
+## Math Notation & Pronunciation Guide
+
+Before we dive in, let's decode the symbols you'll see:
+
+**Derivatives:**
+- f'(x) - pronounced "f prime of x" - derivative of f with respect to x
+- df/dx - pronounced "d f d x" - derivative of f with respect to x
+- ∂f/∂x - pronounced "partial f partial x" or "del f del x" - partial derivative
+- d²f/dx² - pronounced "d squared f d x squared" - second derivative
+- ∇f - pronounced "nabla f" or "del f" or "gradient of f" - gradient vector
+
+**Greek Letters:**
+- α (alpha) - learning rate
+- β (beta) - momentum parameter
+- γ (gamma) - discount factor (RL), learning rate decay
+- η (eta) - learning rate (alternative)
+- ε (epsilon) - small constant (e.g., 1e-8)
+- θ (theta) - parameters/weights
+- λ (lambda) - regularization parameter
+
+**Special Symbols:**
+- ≈ - pronounced "approximately equal"
+- → - pronounced "approaches" or "goes to"
+- ∞ - pronounced "infinity"
+- Σ - pronounced "sigma" or "sum"
+- ∫ - pronounced "integral"
+- lim - pronounced "limit"
+- argmin - pronounced "arg min" - argument that minimizes
+- argmax - pronounced "arg max" - argument that maximizes
+
+## Key Jargon Definitions
+
+- **Derivative**: Rate of change of a function; slope at a point
+- **Gradient**: Vector of all partial derivatives; points in direction of steepest increase
+- **Partial Derivative**: Derivative with respect to one variable, holding others constant
+- **Chain Rule**: Method to compute derivative of composite functions
+- **Gradient Descent**: Iterative optimization algorithm that follows negative gradient
+- **Learning Rate**: Step size in gradient descent; how fast we update weights
+- **Epoch**: One complete pass through the entire training dataset
+- **Batch**: Subset of training data used to compute gradient
+- **Loss Function**: Measures how wrong the model's predictions are
+- **Optimizer**: Algorithm that updates weights (SGD, Adam, RMSprop)
+- **Momentum**: Technique that accelerates gradient descent using past gradients
+- **Backpropagation**: Algorithm to compute gradients in neural networks using chain rule
+- **Vanishing Gradient**: Problem where gradients become too small in deep networks
+- **Exploding Gradient**: Problem where gradients become too large, causing instability
+- **Convergence**: When optimization reaches a minimum (gradient ≈ 0)
+
 ## Why Calculus Matters
 
 Neural networks learn by minimizing loss functions. Calculus tells us:
@@ -977,9 +1025,9 @@ Solutions:
 - [TensorFlow Playground](https://playground.tensorflow.org/) - Neural network visualization
 
 **GitHub Repositories:**
-- [Calculus Basics with Python](https://github.com/williamfiset/Algorithms) - Numerical differentiation and optimization examples
-- [Gradient Descent Visualizations](https://github.com/lilipads/gradient_descent_viz) - Visual learning rate and optimizer comparison
-- [Backpropagation from Scratch](https://github.com/parasdahal/deepnet) - Simple neural network with manual backprop
+- [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) - Andrej Karpathy's neural networks from scratch (backprop, optimizers)
+- [Autograd](https://github.com/HIPS/autograd) - Automatic differentiation for NumPy (PyTorch/TensorFlow core concept)
+- [Neural Network Animations](https://github.com/rish-16/sight) - Visualize gradient descent and optimization
 
 **Papers:**
 - [Adam Optimizer](https://arxiv.org/abs/1412.6980) - Kingma & Ba, 2014
@@ -995,6 +1043,70 @@ Solutions:
     detailedContent: `# Probability & Statistics for AI Engineers
 
 AI systems don't give certain answers - they give probability distributions. Understanding probability is essential for working with modern ML, especially generative models and Bayesian methods.
+
+## Math Notation & Pronunciation Guide
+
+Before we dive in, let's decode the symbols you'll see:
+
+**Probability Notation:**
+- P(A) - pronounced "P of A" or "probability of A"
+- P(A|B) - pronounced "P of A given B" - conditional probability
+- P(A ∩ B) - pronounced "P of A and B" or "P of A intersect B" - joint probability
+- P(A ∪ B) - pronounced "P of A or B" or "P of A union B" - union probability
+- Aᶜ - pronounced "A complement" - not A
+- E[X] - pronounced "expected value of X" or "expectation of X"
+- Var(X) - pronounced "variance of X"
+- σ (sigma) - standard deviation
+- μ (mu) - mean
+- θ (theta) - parameters
+
+**Distributions:**
+- X ~ N(μ, σ²) - pronounced "X follows normal distribution with mean mu and variance sigma squared"
+- f(x) - probability density function (PDF)
+- P(X = x) - probability mass function (PMF)
+- F(x) - cumulative distribution function (CDF)
+
+**Greek Letters:**
+- μ (mu) - mean/expected value
+- σ (sigma) - standard deviation
+- σ² (sigma squared) - variance
+- Σ (capital sigma) - summation
+- π (pi) - 3.14159... or probability in some contexts
+- λ (lambda) - rate parameter, eigenvalue
+- ρ (rho) - correlation coefficient
+- τ (tau) - time constant, precision (inverse variance)
+
+**Special Symbols:**
+- ∝ - pronounced "proportional to"
+- ∫ - pronounced "integral"
+- ∏ - pronounced "product" (like Σ but multiplication)
+- ≈ - pronounced "approximately equal"
+- ∼ - pronounced "distributed as" or "follows"
+- ⊥ - pronounced "independent of"
+
+## Key Jargon Definitions
+
+- **Random Variable**: Variable whose value depends on random outcomes
+- **Probability Distribution**: Function describing likelihood of different outcomes
+- **Expected Value**: Average value if experiment repeated many times
+- **Variance**: Measure of spread around the mean
+- **Standard Deviation**: Square root of variance; same units as data
+- **Conditional Probability**: Probability of A given B has occurred
+- **Independence**: Events don't affect each other
+- **Bayes' Theorem**: Update probabilities given new evidence
+- **Prior**: Initial belief before seeing data
+- **Posterior**: Updated belief after seeing data
+- **Likelihood**: Probability of data given hypothesis
+- **PMF**: Probability Mass Function for discrete random variables
+- **PDF**: Probability Density Function for continuous random variables
+- **CDF**: Cumulative Distribution Function; P(X ≤ x)
+- **Bernoulli**: Single binary trial (coin flip)
+- **Binomial**: Multiple independent binary trials
+- **Normal/Gaussian**: Bell curve distribution
+- **Entropy**: Measure of uncertainty/information content
+- **Cross-Entropy**: Loss function for classification
+- **KL Divergence**: Measure of difference between distributions
+- **MLE**: Maximum Likelihood Estimation; find parameters that best explain data
 
 ## Why Probability Matters
 
