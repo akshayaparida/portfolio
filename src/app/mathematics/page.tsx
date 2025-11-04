@@ -22,6 +22,67 @@ const demoComponents: Record<string, React.ComponentType> = {
   'scalar-mult': ScalarMultiplication,
 };
 
+// Separate component for code blocks to properly use hooks
+// Using 'any' type to satisfy ReactMarkdown component interface requirements
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const CodeBlock: React.FunctionComponent<any> = ({ className, children, ...props }) => {
+  const [copied, setCopied] = useState(false);
+  
+  const match = /language-(\w+)/.exec(className || '');
+  const language = match?.[1] || 'text';
+  
+  // Determine if this is inline vs block based on className presence
+  const isBlock = !!match;
+  
+  if (!isBlock) {
+    return <code className={className}>{children}</code>;
+  }
+  
+  // Properly extract the text content for copying
+  const getTextContent = (nodes: React.ReactNode): string => {
+    if (typeof nodes === 'string') {
+      return nodes;
+    } else if (Array.isArray(nodes)) {
+      return nodes.map(getTextContent).join('');
+    } else if (nodes && typeof nodes === 'object') {
+      // Type assertion to handle the React element safely
+      const element = nodes as { props?: { children?: React.ReactNode } };
+      if (element.props?.children) {
+        return getTextContent(element.props.children);
+      }
+    }
+    return '';
+  };
+  
+  const codeString = getTextContent(children);
+  
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeString)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+      });
+  };
+  
+  return (
+    <div className="code-block-wrapper">
+      <div className="code-header">
+        <span className="code-language">{language}</span>
+        <button 
+          className="copy-button" 
+          onClick={handleCopy}
+          title="Copy to clipboard"
+        >
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      <pre className={className}>
+        <code className={className}>{children}</code>
+      </pre>
+    </div>
+  );
+};
+
 export default function MathematicsComprehensive() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
 
@@ -190,53 +251,7 @@ export default function MathematicsComprehensive() {
                   <ReactMarkdown 
                     rehypePlugins={[rehypeHighlight]}
                     components={{
-                      code({className, children, ...props}) {
-                        const match = /language-(\w+)/.exec(className || '');
-                        const language = match?.[1] || 'text';
-                        
-                        // Determine if this is inline vs block based on className presence
-                        const isBlock = !!match;
-                        
-                        if (!isBlock) {
-                          return <code className={className}>{children}</code>;
-                        }
-                        
-                        // Properly extract the text content for copying
-                        const getTextContent = (nodes: React.ReactNode): string => {
-                          if (typeof nodes === 'string') {
-                            return nodes;
-                          } else if (Array.isArray(nodes)) {
-                            return nodes.map(getTextContent).join('');
-                          } else if (nodes && typeof nodes === 'object') {
-                            // Type assertion to handle the React element safely
-                            const element = nodes as { props?: { children?: React.ReactNode } };
-                            if (element.props?.children) {
-                              return getTextContent(element.props.children);
-                            }
-                          }
-                          return '';
-                        };
-                        
-                        const codeString = getTextContent(children);
-                        
-                        return (
-                          <div className="code-block-wrapper">
-                            <div className="code-header">
-                              <span className="code-language">{language}</span>
-                              <button 
-                                className="copy-button" 
-                                onClick={() => navigator.clipboard.writeText(codeString)}
-                                title="Copy to clipboard"
-                              >
-                                Copy
-                              </button>
-                            </div>
-                            <pre className={className}>
-                              <code className={className}>{children}</code>
-                            </pre>
-                          </div>
-                        );
-                      }
+                      code: CodeBlock
                     }}
                   >
                     {selectedModule.detailedContent}
