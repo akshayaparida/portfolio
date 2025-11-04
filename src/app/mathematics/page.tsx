@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
 import { mathematicsModules } from '@/data/mathematics';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
 import MatrixMultiplication from '@/components/math-visualizations/MatrixMultiplication';
@@ -186,7 +187,60 @@ export default function MathematicsComprehensive() {
                   <span className="theory-badge">Theory</span>
                 </div>
                 <div className="markdown-content">
-                  <ReactMarkdown>{selectedModule.detailedContent}</ReactMarkdown>
+                  <ReactMarkdown 
+                    rehypePlugins={[rehypeHighlight]}
+                    components={{
+                      code({className, children, ...props}) {
+                        const match = /language-(\w+)/.exec(className || '');
+                        const language = match?.[1] || 'text';
+                        
+                        // Determine if this is inline vs block based on className presence
+                        const isBlock = !!match;
+                        
+                        if (!isBlock) {
+                          return <code className={className}>{children}</code>;
+                        }
+                        
+                        // Properly extract the text content for copying
+                        const getTextContent = (nodes: React.ReactNode): string => {
+                          if (typeof nodes === 'string') {
+                            return nodes;
+                          } else if (Array.isArray(nodes)) {
+                            return nodes.map(getTextContent).join('');
+                          } else if (nodes && typeof nodes === 'object') {
+                            // Type assertion to handle the React element safely
+                            const element = nodes as { props?: { children?: React.ReactNode } };
+                            if (element.props?.children) {
+                              return getTextContent(element.props.children);
+                            }
+                          }
+                          return '';
+                        };
+                        
+                        const codeString = getTextContent(children);
+                        
+                        return (
+                          <div className="code-block-wrapper">
+                            <div className="code-header">
+                              <span className="code-language">{language}</span>
+                              <button 
+                                className="copy-button" 
+                                onClick={() => navigator.clipboard.writeText(codeString)}
+                                title="Copy to clipboard"
+                              >
+                                Copy
+                              </button>
+                            </div>
+                            <pre className={className}>
+                              <code className={className}>{children}</code>
+                            </pre>
+                          </div>
+                        );
+                      }
+                    }}
+                  >
+                    {selectedModule.detailedContent}
+                  </ReactMarkdown>
                 </div>
               </div>
 
@@ -291,8 +345,121 @@ export default function MathematicsComprehensive() {
         .markdown-content pre code {
           background: transparent;
           border: none;
-          color: #b0b0b0;
+          color: #f8f8f2;
           padding: 0;
+        }
+
+        .code-block-wrapper {
+          position: relative;
+          margin: 16px 0;
+        }
+
+        .code-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #2d2d2d;
+          color: #fff;
+          padding: 6px 12px;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
+          font-size: 12px;
+          font-family: 'Courier New', monospace;
+        }
+
+        .code-language {
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        .copy-button {
+          background: #4a5568;
+          color: white;
+          border: none;
+          padding: 4px 8px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 12px;
+          transition: background 0.2s;
+        }
+
+        .copy-button:hover {
+          background: #2d3748;
+        }
+
+        .markdown-content pre {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          margin-top: 0;
+        }
+        
+        /* Enhanced syntax highlighting with dark theme */
+        .hljs-comment,
+        .hljs-quote {
+          color: #8292a2;
+          font-style: italic;
+        }
+        
+        .hljs-keyword,
+        .hljs-selector-tag,
+        .hljs-subst {
+          color: #f92672;
+          font-weight: bold;
+        }
+        
+        .hljs-number,
+        .hljs-literal,
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-tag .hljs-attr {
+          color: #ae81ff;
+        }
+        
+        .hljs-string,
+        .hljs-doctag {
+          color: #e6db74;
+        }
+        
+        .hljs-title,
+        .hljs-section,
+        .hljs-selector-id {
+          color: #a6e22e;
+          font-weight: bold;
+        }
+        
+        .hljs-subst {
+          color: #f8f8f2;
+        }
+        
+        .hljs-type,
+        .hljs-class .hljs-title {
+          color: #a6e22e;
+        }
+        
+        .hljs-tag,
+        .hljs-name,
+        .hljs-attribute {
+          color: #f92672;
+        }
+        
+        .hljs-regexp,
+        .hljs-link {
+          color: #fd971f;
+        }
+        
+        .hljs-symbol,
+        .hljs-bullet {
+          color: #ae81ff;
+        }
+        
+        .hljs-built_in,
+        .hljs-builtin-name {
+          color: #66d9ef;
+        }
+        
+        .hljs-meta {
+          color: #fd971f;
+          font-weight: bold;
         }
       `}</style>
 
