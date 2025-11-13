@@ -42,7 +42,7 @@ export default function Hero() {
     <section>
       <div className="intro-header">
         <h1>Hi, I&apos;m Akshaya Parida</h1>
-        <h2>AI Engineering</h2>
+        <h3>AI Engineering</h3>
       </div>
       <p className="intro-description">
         Currently hands-on learning in AI engineering.
