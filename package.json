@@ -6,10 +6,12 @@
     "dev": "next dev --turbopack",
     "prebuild": "node scripts/update-git-metadata.js",
     "build": "next build",
+    "postbuild": "node scripts/generate-sitemap.js",
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@lobehub/icons": "^2.43.1",

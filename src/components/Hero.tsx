@@ -42,7 +42,7 @@ export default function Hero() {
     <section>
       <div className="intro-header">
         <h1>Hi, I&apos;m Akshaya Parida</h1>
-        <p>AI Engineering</p>
+        <h2>AI Engineering</h2>
       </div>
       <p className="intro-description">
         Currently hands-on learning in AI engineering.
@@ -79,10 +79,11 @@ export default function Hero() {
           <a href="https://github.com/akshayaparida" target="_blank" rel="noopener noreferrer">
             <Image
               src="https://ghchart.rshah.org/39d353/akshayaparida"
-              alt="GitHub Contribution Graph"
+              alt={`GitHub contribution graph for Akshaya Parida showing activity on ${currentDate}`}
               className="github-chart"
               width={800}
               height={150}
+              loading="lazy"
               unoptimized
             />
           </a>

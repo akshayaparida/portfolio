@@ -69,19 +69,19 @@ export default function Projects() {
 
   return (
     <section>
-      <h2>Lastest Projects</h2>
+      <h2>Latest Projects</h2>
       <div className="cards-grid">
         {projects.map((project, index) => (
-          <div
+          <article
             key={index}
             className="project-card"
-            ref={(el) => {
+            ref={(el: HTMLDivElement | null) => {
               cardsRef.current[index] = el;
             }}
           >
             <div>
-              <h4>{project.title}</h4>
-              <p>{project.date}</p>
+              <h3>{project.title}</h3>
+              <time dateTime={project.date}>{project.date}</time>
               <div className="tech-list">
                 {project.tech.map((tech, techIndex) => (
                   <div key={techIndex} className="card-button-secondary">
@@ -107,12 +107,13 @@ export default function Projects() {
               <Image
                 className="big-img"
                 src={project.image}
-                alt={`${project.title} thumbnail`}
+                alt={`${project.title} project screenshot showing ${project.description.substring(0, 50)}...`}
                 width={300}
                 height={200}
+                loading="lazy"
               />
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </section>
