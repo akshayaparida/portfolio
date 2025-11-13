@@ -60,7 +60,35 @@ header nav a {
 
 header nav a i {
   font-size: 1.25rem;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
+
+header nav a svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+header nav a:hover svg {
+  transform: scale(1.1);
+}
+
+/* Colored social media icons */
+a[href*="github.com"] i {
+  color: #333; /* GitHub dark gray */
+}
+
+a[href*="linkedin.com"] i {
+  color: #0077b5; /* LinkedIn blue */
+}
+
+a[href*="x.com"] i,
+a[href*="twitter.com"] i {
+  color: #1DA1F2; /* Twitter/X blue */
+}
+
+/* The Hugging Face logo will use its own colors via the .Color variant */
+
 
 .header-right {
   display: flex;

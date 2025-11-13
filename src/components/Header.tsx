@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HuggingFace } from "@lobehub/icons";
 
 export default function Header() {
   return (
@@ -14,6 +15,9 @@ export default function Header() {
           </a>
           <a target="_blank" href="https://x.com/akshaya_parida_" rel="noopener noreferrer">
             <i className="fa-brands fa-twitter"></i>
+          </a>
+          <a target="_blank" href="https://huggingface.co/akshayaparida" rel="noopener noreferrer">
+            <HuggingFace.Color size={20} />
           </a>
         </nav>
         <div className="header-learning-links">
