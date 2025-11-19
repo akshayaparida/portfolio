@@ -1,11 +1,12 @@
-import { LearningModule } from '@/types/learning';
+import { LearningModule } from "@/types/learning";
 
 export const learningModules: LearningModule[] = [
   {
-    id: 'module-1',
-    title: 'AI Engineering Foundations',
-    description: 'Master the essential tools and environment setup for professional AI development',
-    status: 'in-progress',
+    id: "module-1",
+    title: "AI Engineering Foundations",
+    description:
+      "Master the essential tools and environment setup for professional AI development",
+    status: "in-progress",
     detailedContent: `
 Why Study This Module:
 Before building AI systems, you need a solid foundation of professional development tools. These tools are used by every AI engineer in the industry and form the backbone of modern software development.
@@ -28,76 +29,80 @@ In production AI systems at companies, these tools are non-negotiable:
     `,
     subModules: [
       {
-        id: 'module-1-1',
-        title: 'The Command-Line Toolkit',
-        description: 'Install Git and Docker for version control and reproducible environments',
-        status: 'in-progress',
+        id: "module-1-1",
+        title: "The Command-Line Toolkit",
+        description:
+          "Install Git and Docker for version control and reproducible environments",
+        status: "in-progress",
         resources: [
           {
-            title: 'Git Official Documentation',
-            url: 'https://git-scm.com/doc',
-            type: 'documentation'
+            title: "Git Official Documentation",
+            url: "https://git-scm.com/doc",
+            type: "documentation",
           },
           {
-            title: 'Docker Get Started Guide',
-            url: 'https://docs.docker.com/get-started/',
-            type: 'documentation'
+            title: "Docker Get Started Guide",
+            url: "https://docs.docker.com/get-started/",
+            type: "documentation",
           },
           {
-            title: 'Learn Git Branching (Interactive)',
-            url: 'https://learngitbranching.js.org/',
-            type: 'tutorial'
-          }
-        ]
+            title: "Learn Git Branching (Interactive)",
+            url: "https://learngitbranching.js.org/",
+            type: "tutorial",
+          },
+        ],
       },
       {
-        id: 'module-1-2',
-        title: 'Python and Project Initialization',
-        description: 'Set up uv, DVC, and MLflow for professional Python project management',
-        status: 'in-progress',
+        id: "module-1-2",
+        title: "Python and Project Initialization",
+        description:
+          "Set up uv, DVC, and MLflow for professional Python project management",
+        status: "in-progress",
         resources: [
           {
-            title: 'uv Documentation',
-            url: 'https://docs.astral.sh/uv/',
-            type: 'documentation'
+            title: "uv Documentation",
+            url: "https://docs.astral.sh/uv/",
+            type: "documentation",
           },
           {
-            title: 'DVC Get Started',
-            url: 'https://dvc.org/doc/start',
-            type: 'tutorial'
+            title: "DVC Get Started",
+            url: "https://dvc.org/doc/start",
+            type: "tutorial",
           },
           {
-            title: 'MLflow Quickstart',
-            url: 'https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html',
-            type: 'tutorial'
-          }
-        ]
+            title: "MLflow Quickstart",
+            url: "https://mlflow.org/docs/latest/getting-started/intro-quickstart/index.html",
+            type: "tutorial",
+          },
+        ],
       },
       {
-        id: 'module-1-3',
-        title: 'IDE and Environment Verification',
-        description: 'Configure VS Code/Cursor and verify your complete development toolchain',
-        status: 'not-started',
+        id: "module-1-3",
+        title: "IDE and Environment Verification",
+        description:
+          "Configure VS Code/Cursor and verify your complete development toolchain",
+        status: "not-started",
         resources: [
           {
-            title: 'VS Code Python Tutorial',
-            url: 'https://code.visualstudio.com/docs/python/python-tutorial',
-            type: 'tutorial'
+            title: "VS Code Python Tutorial",
+            url: "https://code.visualstudio.com/docs/python/python-tutorial",
+            type: "tutorial",
           },
           {
-            title: 'Cursor Documentation',
-            url: 'https://cursor.sh/docs',
-            type: 'documentation'
-          }
-        ]
-      }
-    ]
+            title: "Cursor Documentation",
+            url: "https://cursor.sh/docs",
+            type: "documentation",
+          },
+        ],
+      },
+    ],
   },
   {
-    id: 'module-2',
-    title: 'AI/ML Foundations',
-    description: 'Build core Python and mathematical foundations for AI engineering',
-    status: 'in-progress',
+    id: "module-2",
+    title: "AI/ML Foundations",
+    description:
+      "Build core Python and mathematical foundations for AI engineering",
+    status: "in-progress",
     detailedContent: `
 Why Study This Module:
 Before diving into neural networks and complex AI models, you need to master the Python tools and patterns that AI engineers use daily. This module focuses on practical skills that will make you more productive and your code more reliable.
@@ -114,134 +119,160 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
     `,
     subModules: [
       {
-        id: 'module-2-1',
-        title: 'Python Essentials for AI Engineering',
-        description: 'Master Python data structures, functional tricks, typing, JSON, pathlib, NumPy, and Pandas - all distilled for machine-learning engineers',
-        status: 'in-progress',
+        id: "module-2-1",
+        title: "Python Essentials for AI Engineering",
+        description:
+          "Master Python data structures, functional tricks, typing, JSON, pathlib, NumPy, and Pandas - all distilled for machine-learning engineers",
+        status: "in-progress",
         resources: [
           {
-            title: 'Tuples: Immutable Data Collections',
-            url: 'https://realpython.com/python-tuples/',
-            type: 'article'
+            title: "Tuples: Immutable Data Collections",
+            url: "https://realpython.com/python-tuples/",
+            type: "article",
           },
           {
-            title: 'Sets: Unique Elements and Set Operations',
-            url: 'https://realpython.com/python-sets/',
-            type: 'article'
+            title: "Sets: Unique Elements and Set Operations",
+            url: "https://realpython.com/python-sets/",
+            type: "article",
           },
           {
-            title: 'Dictionaries: Fast Key-Value Lookups',
-            url: 'https://realpython.com/python-dicts/',
-            type: 'article'
+            title: "Dictionaries: Fast Key-Value Lookups",
+            url: "https://realpython.com/python-dicts/",
+            type: "article",
           },
           {
-            title: 'List Comprehensions Explained',
-            url: 'https://realpython.com/list-comprehension-python/',
-            type: 'article'
+            title: "List Comprehensions Explained",
+            url: "https://realpython.com/list-comprehension-python/",
+            type: "article",
           },
           {
-            title: 'Python Type Hints and Typing Module',
-            url: 'https://realpython.com/python-type-checking/',
-            type: 'article'
+            title: "Python Type Hints and Typing Module",
+            url: "https://realpython.com/python-type-checking/",
+            type: "article",
           },
           {
-            title: 'Type Hints Cheat Sheet (mypy)',
-            url: 'https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html',
-            type: 'documentation'
+            title: "Type Hints Cheat Sheet (mypy)",
+            url: "https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html",
+            type: "documentation",
           },
           {
-            title: 'Python Typing Module - Official Docs',
-            url: 'https://docs.python.org/3/library/typing.html',
-            type: 'documentation'
+            title: "Python Typing Module - Official Docs",
+            url: "https://docs.python.org/3/library/typing.html",
+            type: "documentation",
           },
           {
-            title: 'Working with JSON in Python',
-            url: 'https://realpython.com/python-json/',
-            type: 'article'
+            title: "Working with JSON in Python",
+            url: "https://realpython.com/python-json/",
+            type: "article",
           },
           {
-            title: 'JSON Module - Official Documentation',
-            url: 'https://docs.python.org/3/library/json.html',
-            type: 'documentation'
+            title: "JSON Module - Official Documentation",
+            url: "https://docs.python.org/3/library/json.html",
+            type: "documentation",
           },
           {
-            title: 'Pathlib: Modern Path Handling',
-            url: 'https://realpython.com/python-pathlib/',
-            type: 'article'
+            title: "Pathlib: Modern Path Handling",
+            url: "https://realpython.com/python-pathlib/",
+            type: "article",
           },
           {
-            title: 'pathlib - Official Documentation',
-            url: 'https://docs.python.org/3/library/pathlib.html',
-            type: 'documentation'
+            title: "pathlib - Official Documentation",
+            url: "https://docs.python.org/3/library/pathlib.html",
+            type: "documentation",
           },
           {
-            title: 'NumPy Quickstart',
-            url: 'https://numpy.org/doc/stable/user/quickstart.html',
-            type: 'tutorial'
+            title: "NumPy Quickstart",
+            url: "https://numpy.org/doc/stable/user/quickstart.html",
+            type: "tutorial",
           },
           {
-            title: 'Pandas 10 Minutes to Pandas',
-            url: 'https://pandas.pydata.org/docs/user_guide/10min.html',
-            type: 'tutorial'
+            title: "Pandas 10 Minutes to Pandas",
+            url: "https://pandas.pydata.org/docs/user_guide/10min.html",
+            type: "tutorial",
           },
           {
-            title: 'Functional Programming in Python',
-            url: 'https://realpython.com/python-functional-programming/',
-            type: 'article'
+            title: "Functional Programming in Python",
+            url: "https://realpython.com/python-functional-programming/",
+            type: "article",
           },
           {
-            title: 'Python Lambda Functions',
-            url: 'https://realpython.com/python-lambda/',
-            type: 'article'
+            title: "Python Lambda Functions",
+            url: "https://realpython.com/python-lambda/",
+            type: "article",
           },
           {
-            title: 'Python map() Function',
-            url: 'https://realpython.com/python-map-function/',
-            type: 'article'
+            title: "Python map() Function",
+            url: "https://realpython.com/python-map-function/",
+            type: "article",
           },
           {
-            title: 'Python filter() Function',
-            url: 'https://realpython.com/python-filter-function/',
-            type: 'article'
+            title: "Python filter() Function",
+            url: "https://realpython.com/python-filter-function/",
+            type: "article",
           },
           {
-            title: 'Python Dataclasses Guide',
-            url: 'https://realpython.com/python-data-classes/',
-            type: 'article'
+            title: "Python Dataclasses Guide",
+            url: "https://realpython.com/python-data-classes/",
+            type: "article",
           },
           {
-            title: 'Dataclasses - Official Documentation',
-            url: 'https://docs.python.org/3/library/dataclasses.html',
-            type: 'documentation'
+            title: "Dataclasses - Official Documentation",
+            url: "https://docs.python.org/3/library/dataclasses.html",
+            type: "documentation",
           },
-        ]
+        ],
       },
       {
-        id: 'module-2-2',
-        title: 'Mathematics is the Language of AI',
-        description: 'Build the mathematical foundation essential for understanding AI algorithms and models',
-        status: 'in-progress',
+        id: "module-2-2",
+        title: "Mathematics is the Language of AI",
+        description:
+          "Build the mathematical foundation essential for understanding AI algorithms and models",
+        status: "in-progress",
         resources: [
           {
-            title: 'Mathematics for AI - Complete Guide',
-            url: '/mathematics',
-            type: 'course'
-          }
-        ]
-      }
-    ]
-  }
+            title: "Mathematics for AI - Complete Guide",
+            url: "/mathematics",
+            type: "course",
+          },
+        ],
+      },
+      {
+        id: "module-2-3",
+        title: "The Power of Linear Models",
+        description:
+          "Learn how and why to build strong, interpretable baselines: explore linear regression end-to-end, from feature scaling to evaluation, with hands-on notebooks and real data",
+        status: "in-progress",
+        resources: [
+          {
+            title: "Build Your First ML Model: Linear Regression with Python",
+            url: "https://superml.org/tutorials/linear-regression-beginner",
+            type: "tutorial",
+          },
+          {
+            title: "Sklearn Linear Regression: Complete Guide with Examples",
+            url: "https://www.datacamp.com/tutorial/sklearn-linear-regression",
+            type: "tutorial",
+          },
+          {
+            title: "Feature Engineering in Machine Learning",
+            url: "https://www.datacamp.com/tutorial/feature-engineering",
+            type: "article",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 // Calculate overall progress
 export const calculateProgress = (modules: LearningModule[]) => {
-  const completed = modules.filter(m => m.status === 'completed').length;
-  const inProgress = modules.filter(m => m.status === 'in-progress').length;
+  const completed = modules.filter((m) => m.status === "completed").length;
+  const inProgress = modules.filter((m) => m.status === "in-progress").length;
   const total = modules.length;
-  
+
   // Each module contributes to progress: completed = 100%, in-progress = 50%
-  const progress = ((completed * 100) + (inProgress * 50)) / total;
-  
+  const progress = (completed * 100 + inProgress * 50) / total;
+
   return Math.round(progress);
 };
 
@@ -251,6 +282,6 @@ export const getTotalHours = (modules: LearningModule[]) => {
 
 export const getCompletedHours = (modules: LearningModule[]) => {
   return modules
-    .filter(m => m.status === 'completed')
+    .filter((m) => m.status === "completed")
     .reduce((sum, m) => sum + (m.estimatedHours || 0), 0);
 };
