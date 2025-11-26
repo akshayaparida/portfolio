@@ -1,7 +1,22 @@
+"use client";
+
 import gitMetadata from '@/data/git-metadata.json';
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Footer() {
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('/api/analytics')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.visitors?.total) {
+          setVisitorCount(data.visitors.total);
+        }
+      })
+      .catch(err => console.error('Failed to load visitor count:', err));
+  }, []);
+
   return (
     <footer>
       <div>
@@ -14,7 +29,11 @@ export default function Footer() {
           >
             GitHub
           </a>
-          . View <Link href="/analytics" className="underline hover:text-gray-600">Site Analytics</Link>.
+          {visitorCount !== null && (
+            <span className="ml-2 text-gray-500">
+               • Total Visitors: {visitorCount.toLocaleString()}
+            </span>
+          )}
         </p>
         <p>
           Last updated: <a
