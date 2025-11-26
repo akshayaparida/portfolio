@@ -1,4 +1,5 @@
 import gitMetadata from '@/data/git-metadata.json';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -13,6 +14,7 @@ export default function Footer() {
           >
             GitHub
           </a>
+          . View <Link href="/analytics" className="underline hover:text-gray-600">Site Analytics</Link>.
         </p>
         <p>
           Last updated: <a

@@ -18,8 +18,9 @@ export default function ScalarMultiplication() {
     baseVector.point[1] * scalar
   ]
 
-  const baseMag = Math.sqrt(baseVector.point[0] ** 2 + baseVector.point[1] ** 2).toFixed(2)
-  const scaledMag = Math.sqrt(scaledVector[0] ** 2 + scaledVector[1] ** 2).toFixed(2)
+    // Calculate magnitudes (lengths) for display
+    // const _baseMag = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
+    // const _scaledMag = Math.sqrt(scaledVector[0] * scaledVector[0] + scaledVector[1] * scaledVector[1]);
 
   return (
     <div className="w-full max-w-3xl mx-auto my-6 p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm">

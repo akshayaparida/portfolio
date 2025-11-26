@@ -244,6 +244,52 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         status: "in-progress",
         resources: [
           {
+            title: "Jupyter Notebook: An Introduction - Real Python",
+            url: "https://realpython.com/jupyter-notebook-introduction/",
+            type: "article",
+          },
+          {
+            title: "Pandas DataFrame: Working with Data - Real Python",
+            url: "https://realpython.com/pandas-dataframe/",
+            type: "article",
+          },
+          {
+            title: "Linear Regression in Python - Real Python",
+            url: "https://realpython.com/linear-regression-in-python/",
+            type: "article",
+          },
+          {
+            title: "Train Test Split in Python - Real Python",
+            url: "https://realpython.com/train-test-split-python-data/",
+            type: "article",
+          },
+          {
+            title:
+              "Feature Scaling: StandardScaler, MinMaxScaler - Scikit-learn",
+            url: "https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling",
+            type: "documentation",
+          },
+          {
+            title: "Model Evaluation: MSE, R² Score - Scikit-learn",
+            url: "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics",
+            type: "documentation",
+          },
+          {
+            title: "Pipeline: Chaining Estimators - Scikit-learn",
+            url: "https://scikit-learn.org/stable/modules/compose.html#pipeline",
+            type: "documentation",
+          },
+          {
+            title: "Interpreting Linear Regression Coefficients - Real Python",
+            url: "https://realpython.com/linear-regression-in-python/#regression-performance",
+            type: "article",
+          },
+          {
+            title: "Google ML Crash Course: Linear Regression",
+            url: "https://developers.google.com/machine-learning/crash-course/linear-regression",
+            type: "course",
+          },
+          {
             title: "Build Your First ML Model: Linear Regression with Python",
             url: "https://superml.org/tutorials/linear-regression-beginner",
             type: "tutorial",

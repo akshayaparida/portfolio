@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Generate random 3D data points in an ellipsoid shape
 function generateData(numPoints: number = 50) {

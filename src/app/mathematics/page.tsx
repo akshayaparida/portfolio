@@ -25,7 +25,7 @@ const demoComponents: Record<string, React.ComponentType> = {
 // Separate component for code blocks to properly use hooks
 // Using 'any' type to satisfy ReactMarkdown component interface requirements
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CodeBlock: React.FunctionComponent<any> = ({ className, children, ...props }) => {
+const CodeBlock: React.FunctionComponent<any> = ({ className, children }) => {
   const [copied, setCopied] = useState(false);
   
   const match = /language-(\w+)/.exec(className || '');
@@ -106,7 +106,7 @@ export default function MathematicsComprehensive() {
           </div>
 
           <div className="sections-grid">
-            {mathematicsModules.map((module, index) => {
+            {mathematicsModules.map((module) => {
               const getIcon = (id: string) => {
                 switch(id) {
                   case 'linear-algebra':

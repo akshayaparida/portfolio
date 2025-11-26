@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import MathematicsComprehensive from '../page';
+import { render, screen, fireEvent } from "@testing-library/react";
+import MathematicsPage from "../page";
 
 // Mock the data
 jest.mock('@/data/mathematics', () => ({
@@ -78,7 +78,7 @@ describe('Mathematics Page Code Block Functionality', () => {
   });
 
   it('should render code blocks and check if copy buttons exist after functionality is implemented', () => {
-    render(<MathematicsComprehensive />);
+    render(<MathematicsPage />);
     
     // Click on the linear algebra section to open the modal
     const sectionButton = screen.getByText('Linear Algebra');
@@ -90,7 +90,7 @@ describe('Mathematics Page Code Block Functionality', () => {
   });
 
   it('should render copy buttons once implemented', () => {
-    render(<MathematicsComprehensive />);
+    render(<MathematicsPage />);
     
     // Click on the linear algebra section to open the modal
     const sectionButton = screen.getByText('Linear Algebra');
@@ -103,7 +103,7 @@ describe('Mathematics Page Code Block Functionality', () => {
   });
 
   it('should distinguish between inline and block code once implemented', () => {
-    render(<MathematicsComprehensive />);
+    render(<MathematicsPage />);
     
     // Click on the linear algebra section to open the modal
     const sectionButton = screen.getByText('Linear Algebra');
