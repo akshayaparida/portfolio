@@ -5,12 +5,12 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    // Use a unique namespace and key for your portfolio
-    // This service increments the counter on every hit
-    const response = await fetch("https://api.countapi.xyz/hit/akshayaparida-portfolio/visits");
+    // Use counterapi.dev as a reliable alternative
+    // Endpoint: /v1/{namespace}/{key}/up (increments and returns)
+    const response = await fetch("https://api.counterapi.dev/v1/akshayaparida-portfolio/visits/up");
     
     if (!response.ok) {
-      // Fallback if the service is down
+      console.warn("Counter API error:", response.statusText);
       return NextResponse.json({ visitors: { total: 0 } });
     }
 
@@ -18,7 +18,8 @@ export async function GET() {
     
     return NextResponse.json({
       visitors: {
-        total: data.value || 0
+        // counterapi.dev returns { count: 123 }
+        total: data.count || 0
       }
     }, {
       headers: {
