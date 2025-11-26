@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 interface VercelAnalyticsQuery {
   range?: "24h" | "7d" | "30d" | "all";
@@ -54,7 +55,8 @@ async function getVercelAnalytics(range: string) {
   // If environment variables are not set, return mock data
   if (!VERCEL_TOKEN || !VERCEL_PROJECT_ID || VERCEL_TOKEN === "" || VERCEL_PROJECT_ID === "") {
     console.warn("Vercel Analytics credentials not configured. Using mock data.");
-    return getMockAnalyticsData();
+    const mock = getMockAnalyticsData();
+    return { ...mock, debug_reason: "Missing Environment Variables" };
   }
 
   try {
@@ -92,7 +94,8 @@ async function getVercelAnalytics(range: string) {
 
     if (!visitorsRes.ok) {
       console.warn(`Failed to fetch Vercel analytics: ${visitorsRes.statusText}. Falling back to mock data.`);
-      return getMockAnalyticsData();
+      const mock = getMockAnalyticsData();
+      return { ...mock, debug_reason: `Fetch Failed: ${visitorsRes.status} ${visitorsRes.statusText}` };
     }
 
     const [visitorsData, regionsData, pagesData, devicesData] = await Promise.all([
@@ -136,7 +139,8 @@ async function getVercelAnalytics(range: string) {
   } catch (error) {
     console.error("Analytics API error:", error);
     // Return mock data as fallback
-    return getMockAnalyticsData();
+    const mock = getMockAnalyticsData();
+    return { ...mock, debug_reason: `Exception: ${error instanceof Error ? error.message : String(error)}` };
   }
 }
 
@@ -159,7 +163,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(analyticsData, {
       headers: {
-        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
       },
     });
   } catch (error) {
