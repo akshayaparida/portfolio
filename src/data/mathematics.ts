@@ -1706,9 +1706,9 @@ Value functions are expectations over trajectories.
   {
     id: 'linear-models',
     title: 'Linear Models',
-    description: 'Ridge, Lasso, ElasticNet, and Logistic Regression - the extended family',
+    description: 'Ridge, Lasso, ElasticNet, and Logistic Regression - the core family',
     status: 'not-started',
-    detailedContent: `# The Extended Linear Family
+    detailedContent: `# The Linear Family
 
 Linear regression is just the beginning. Once you master it, you can explore the broader family of linear models used in production AI systems.
 
@@ -1911,15 +1911,6 @@ sample = np.array([[0.5, 0.5]])
 prob = model.predict_proba(sample)
 print(f"Probability of Class 1: {prob[0][1]:.4f}")
 \`\`\`
-
-## 📊 Model Comparison Summary
-
-| 🏷️ Model | 🎯 Penalty Shape | ⚡ Key Effect | 🎪 Primary Use Case | 🛠️ Scikit-Learn Class |
-| :--- | :--- | :--- | :--- | :--- |
-| **Ridge (L2)** | 🔵 Circle (Smooth) | Shrinks all coefficients toward zero | Handling multicollinearity, all features relevant | *Ridge* |
-| **Lasso (L1)** | 🔶 Diamond (Sharp) | Sets some coefficients to exactly zero | Feature selection, sparse models | *Lasso* |
-| **ElasticNet** | 🟠 Rounded Diamond | Combines L1 & L2 benefits | Grouped feature selection with correlations | *ElasticNet* |
-| **Logistic** | 🟣 N/A (Sigmoid) | Outputs probability for binary classification | Binary classification problems | *LogisticRegression* |
 
 ## Additional Resources
 

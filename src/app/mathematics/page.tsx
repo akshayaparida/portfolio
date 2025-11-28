@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import { mathematicsModules } from '@/data/mathematics';
+import CodeBlock from '@/components/CodeBlock';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
 import MatrixMultiplication from '@/components/math-visualizations/MatrixMultiplication';
 import PCAVisualization from '@/components/math-visualizations/PCAVisualization';
@@ -22,66 +23,7 @@ const demoComponents: Record<string, React.ComponentType> = {
   'scalar-mult': ScalarMultiplication,
 };
 
-// Separate component for code blocks to properly use hooks
-// Using 'any' type to satisfy ReactMarkdown component interface requirements
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CodeBlock: React.FunctionComponent<any> = ({ className, children }) => {
-  const [copied, setCopied] = useState(false);
-  
-  const match = /language-(\w+)/.exec(className || '');
-  const language = match?.[1] || 'text';
-  
-  // Determine if this is inline vs block based on className presence
-  const isBlock = !!match;
-  
-  if (!isBlock) {
-    return <code className={className}>{children}</code>;
-  }
-  
-  // Properly extract the text content for copying
-  const getTextContent = (nodes: React.ReactNode): string => {
-    if (typeof nodes === 'string') {
-      return nodes;
-    } else if (Array.isArray(nodes)) {
-      return nodes.map(getTextContent).join('');
-    } else if (nodes && typeof nodes === 'object') {
-      // Type assertion to handle the React element safely
-      const element = nodes as { props?: { children?: React.ReactNode } };
-      if (element.props?.children) {
-        return getTextContent(element.props.children);
-      }
-    }
-    return '';
-  };
-  
-  const codeString = getTextContent(children);
-  
-  const handleCopy = () => {
-    navigator.clipboard.writeText(codeString)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-      });
-  };
-  
-  return (
-    <div className="code-block-wrapper">
-      <div className="code-header">
-        <span className="code-language">{language}</span>
-        <button 
-          className="copy-button" 
-          onClick={handleCopy}
-          title="Copy to clipboard"
-        >
-          {copied ? 'Copied!' : 'Copy'}
-        </button>
-      </div>
-      <pre className={className}>
-        <code className={className}>{children}</code>
-      </pre>
-    </div>
-  );
-};
+
 
 export default function MathematicsComprehensive() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
@@ -149,6 +91,22 @@ export default function MathematicsComprehensive() {
                         <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
                         <circle cx="9" cy="15" r="1.2" fill="currentColor"/>
                         <circle cx="15" cy="15" r="1.2" fill="currentColor"/>
+                      </svg>
+                    );
+                  case 'linear-models':
+                    return (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        {/* Axis lines */}
+                        <path d="M3 21h18M3 21V3" strokeWidth="2"/>
+                        {/* Regression Line */}
+                        <path d="M4 18l16-12" strokeWidth="2.5" stroke="currentColor"/>
+                        {/* Data points scattered */}
+                        <circle cx="7" cy="14" r="1.5" fill="currentColor" opacity="0.6"/>
+                        <circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.6"/>
+                        <circle cx="16" cy="11" r="1.5" fill="currentColor" opacity="0.6"/>
+                        <circle cx="18" cy="6" r="1.5" fill="currentColor" opacity="0.6"/>
+                        {/* Sigmoid curve hint */}
+                        <path d="M14 16c2 0 2-4 4-4" strokeWidth="1.5" opacity="0.4" strokeDasharray="2 2"/>
                       </svg>
                     );
                   default:
@@ -230,6 +188,18 @@ export default function MathematicsComprehensive() {
                               <circle cx="12" cy="12" r="1.2" fill="currentColor"/>
                               <circle cx="9" cy="15" r="1.2" fill="currentColor"/>
                               <circle cx="15" cy="15" r="1.2" fill="currentColor"/>
+                            </svg>
+                          );
+                        case 'linear-models':
+                          return (
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M3 21h18M3 21V3" strokeWidth="2"/>
+                              <path d="M4 18l16-12" strokeWidth="2.5" stroke="currentColor"/>
+                              <circle cx="7" cy="14" r="1.5" fill="currentColor" opacity="0.6"/>
+                              <circle cx="12" cy="10" r="1.5" fill="currentColor" opacity="0.6"/>
+                              <circle cx="16" cy="11" r="1.5" fill="currentColor" opacity="0.6"/>
+                              <circle cx="18" cy="6" r="1.5" fill="currentColor" opacity="0.6"/>
+                              <path d="M14 16c2 0 2-4 4-4" strokeWidth="1.5" opacity="0.4" strokeDasharray="2 2"/>
                             </svg>
                           );
                         default:
@@ -362,44 +332,6 @@ export default function MathematicsComprehensive() {
           border: none;
           color: #f8f8f2;
           padding: 0;
-        }
-
-        .code-block-wrapper {
-          position: relative;
-          margin: 16px 0;
-        }
-
-        .code-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: #2d2d2d;
-          color: #fff;
-          padding: 6px 12px;
-          border-top-left-radius: 8px;
-          border-top-right-radius: 8px;
-          font-size: 12px;
-          font-family: 'Courier New', monospace;
-        }
-
-        .code-language {
-          font-weight: bold;
-          text-transform: uppercase;
-        }
-
-        .copy-button {
-          background: #4a5568;
-          color: white;
-          border: none;
-          padding: 4px 8px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 12px;
-          transition: background 0.2s;
-        }
-
-        .copy-button:hover {
-          background: #2d3748;
         }
 
         .markdown-content pre {

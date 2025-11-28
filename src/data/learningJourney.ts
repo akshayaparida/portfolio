@@ -304,6 +304,41 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             url: "https://www.datacamp.com/tutorial/feature-engineering",
             type: "article",
           },
+          {
+            title: "StatQuest: Linear Regression, Clearly Explained",
+            url: "https://www.youtube.com/watch?v=nk2CQITm_eo",
+            type: "video",
+          },
+          {
+            title: "StatQuest: Logistic Regression, Clearly Explained",
+            url: "https://www.youtube.com/watch?v=yIYKR4sgzI8",
+            type: "video",
+          },
+          {
+            title: "StatQuest: Regularization Part 1: Ridge (L2) Regression",
+            url: "https://www.youtube.com/watch?v=Q81RR3yKn30",
+            type: "video",
+          },
+          {
+            title: "StatQuest: Regularization Part 2: Lasso (L1) Regression",
+            url: "https://www.youtube.com/watch?v=NGf0voTMlcs",
+            type: "video",
+          },
+          {
+            title: "StatQuest: Regularization Part 3: Elastic Net Regression",
+            url: "https://www.youtube.com/watch?v=1dKRdX9bfIo",
+            type: "video",
+          },
+          {
+            title: "Scikit-Learn: Regularization Documentation",
+            url: "https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression-and-classification",
+            type: "documentation",
+          },
+          {
+            title: "Towards Data Science: Regularization in Machine Learning",
+            url: "https://towardsdatascience.com/regularization-in-machine-learning-76441ddcf99a",
+            type: "article",
+          },
         ],
       },
     ],
