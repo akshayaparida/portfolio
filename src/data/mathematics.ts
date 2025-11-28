@@ -1708,27 +1708,56 @@ Value functions are expectations over trajectories.
     title: 'Linear Models',
     description: 'Ridge, Lasso, ElasticNet, and Logistic Regression - the core family',
     status: 'not-started',
-    detailedContent: `# The Linear Family
+    detailedContent: `# Linear Models for AI Engineers
 
-Linear regression is just the beginning. Once you master it, you can explore the broader family of linear models used in production AI systems.
+Linear models are the workhorse of machine learning. Beyond simple linear regression, this family includes Ridge, Lasso, ElasticNet, and Logistic Regression - each designed for specific challenges in production systems. These models are interpretable, fast, and form the foundation for understanding more complex algorithms.
+
+## Math Notation & Pronunciation Guide
+
+Before we dive in, let's decode the symbols you'll see:
+
+**Regression Coefficients:**
+- βᵢ (beta i) - coefficient for feature i
+- β₀ (beta zero) - bias term or intercept
+- |β| (absolute beta) - L1 penalty term (absolute value)
+- β² (beta squared) - L2 penalty term (square)
+
+**Regularization Parameters:**
+- λ (lambda) - regularization strength parameter
+- α (alpha) - regularization strength parameter (in scikit-learn)
+- α_mix (alpha mix) - ElasticNet mixing parameter (l1_ratio)
+
+**Model Metrics & Probabilities:**
+- R² (R squared) - coefficient of determination
+- MSE (M-S-E) - mean squared error
+- P(y=1) (P of y equals 1) - probability of positive class
+- logit(p) (logit of p) - log-odds function
+- ŷ (y hat) - predicted value
 
 ## Key Jargon Definitions
 
 - **Regularization**: A technique to prevent overfitting by adding a penalty term to the loss function
-- **L1 Penalty (Lasso)**: Penalty proportional to the absolute value of coefficients ($|\\beta|$)
-- **L2 Penalty (Ridge)**: Penalty proportional to the square of coefficients ($\\beta^2$)
-- **Hyperparameter ($\\lambda$ or $\\alpha$)**: Controls the strength of regularization
-- **Sparsity**: When a model has many coefficients exactly equal to zero
-- **Multicollinearity**: When features are highly correlated with each other
-- **Sigmoid Function**: An S-shaped curve that maps any real number to a value between 0 and 1
-- **Log-Odds**: The logarithm of the odds ratio ($p/(1-p)$), the linear part of logistic regression
+- **L1 Penalty (Lasso)**: Penalty proportional to the absolute value of coefficients (|β|), which can set coefficients exactly to zero
+- **L2 Penalty (Ridge)**: Penalty proportional to the square of coefficients (β²), which shrinks coefficients toward zero without eliminating them
+- **Hyperparameter (λ or α)**: Controls the strength of regularization (higher values = more regularization)
+- **Feature Selection**: The process of automatically selecting the most relevant features for a model
+- **Model Complexity**: How flexible or expressive a model is, balancing between underfitting and overfitting
+- **Sparsity**: When a model has many coefficients exactly equal to zero, resulting in simpler, more interpretable models
+- **Multicollinearity**: When features are highly correlated with each other, causing instability in coefficient estimates
+- **Coefficient Shrinkage**: The process of reducing the magnitude of regression coefficients to prevent overfitting
+- **Sigmoid Function**: An S-shaped curve (f(x) = 1/(1+e^(-x))) that maps any real number to a value between 0 and 1
+- **Log-Odds**: The logarithm of the odds ratio (log(p/(1-p))), the linear part of logistic regression
+- **Overfitting**: When a model learns the training data too well, capturing noise instead of the underlying pattern
+- **Bias-Variance Tradeoff**: The balance between underfitting (high bias) and overfitting (high variance)
+- **Cross-Validation**: Technique to evaluate model performance by splitting data into multiple train/validation sets
+- **Loss Function**: Function that measures how wrong the model's predictions are (e.g., MSE, log-likelihood)
 
 ## Why This Matters
 
 In the real world, data is rarely clean and simple:
-- You will have datasets with more columns (features) than rows (samples)
-- Features will be correlated (e.g., "square footage" and "number of bedrooms")
-- You will need to classify data (spam vs. not spam), not just predict numbers
+- You will have datasets with more **columns (features) than rows (samples)** - leading to overfitting
+- **Features will be correlated** (e.g., "square footage" and "number of bedrooms") - causing multicollinearity
+- You will need to **classify data** (spam vs. not spam), not just predict numbers
 - **Regularization is the secret sauce** that makes linear models robust enough for production.
 
 ## 1. Visualizing the Family
@@ -1786,9 +1815,9 @@ Instead of a straight line fitting data, we fit a probability curve (S-curve) to
           -----------------------------> Input (z)
 \`\`\`
 
-## 🧠 Detailed Model Analysis
+## Detailed Model Analysis
 
-### 1. Ridge Regression (L2 Regularization) 🛡️
+### 1. Ridge Regression (L2 Regularization)
 **"The Dampener" - Shrinking Coefficients Without Elimination**
 
 **Core Concept:** Ridge assumes that *all* your features might be relevant, but some are just noisy. It doesn't delete information; it just turns down the volume on loud, erratic features to prevent them from dominating the prediction.
@@ -1808,7 +1837,7 @@ Instead of a straight line fitting data, we fit a probability curve (S-curve) to
 *   **All Features Relevant**: When you believe all features contain useful information
 *   **Example Application**: **Stock Price Prediction** with 50 correlated moving averages - Ridge keeps them all but dampens noise
 
-### 2. Lasso Regression (L1 Regularization) 🎯
+### 2. Lasso Regression (L1 Regularization)
 **"The Feature Selector" - Eliminating Irrelevant Variables**
 
 **Core Concept:** Lasso assumes that **most features are useless** and only a few are actual signals. It aggressively forces weak features to exactly zero, effectively performing automatic feature selection.
@@ -1828,7 +1857,7 @@ Instead of a straight line fitting data, we fit a probability curve (S-curve) to
 *   **Automatic Feature Selection**: When you want the model to identify the most important features
 *   **Example Application**: **Genomics** with 20,000 gene features to find the 3 that are responsible for a specific disease
 
-### 3. ElasticNet 🔄
+### 3. ElasticNet
 **"The Balanced Approach" - Combining L1 and L2 Advantages**
 
 **Core Concept:** Lasso has a limitation: when features are highly correlated (like twins), Lasso randomly selects one and eliminates the other. ElasticNet addresses this by combining both L1 and L2 penalties, allowing it to perform feature selection while maintaining group stability.
@@ -1848,7 +1877,7 @@ Instead of a straight line fitting data, we fit a probability curve (S-curve) to
 *   **High-Dimensional Data with Correlations**: When you have many features that are internally correlated
 *   **Example Application**: **Bioinformatics** for gene data or **text analysis** where words often appear in groups
 
-### 4. Logistic Regression 📊
+### 4. Logistic Regression
 **"The Binary Classifier" - Converting Linear Output to Probabilities**
 
 **Core Concept:** While the underlying computation is linear ($z = \\beta_0 + \\beta_1x_1 + ... + \\beta_nx_n$), the goal is classification rather than prediction. It transforms the linear output into a probability between 0 and 1 using the sigmoid function, enabling binary classification.

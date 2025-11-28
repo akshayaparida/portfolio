@@ -3,8 +3,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import MathematicsPage from "../page";
 
 // Mock external markdown dependencies to avoid ESM issues in Jest
-jest.mock('react-markdown', () => (props: any) => {
-  return <div data-testid="react-markdown">{props.children}</div>;
+jest.mock('react-markdown', () => {
+  const MockReactMarkdown = (props: { children: React.ReactNode }) => {
+    return <div data-testid="react-markdown">{props.children}</div>;
+  };
+  MockReactMarkdown.displayName = 'MockReactMarkdown';
+  return MockReactMarkdown;
 });
 
 jest.mock('rehype-highlight', () => () => {});

@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 
-// Using 'any' type to satisfy ReactMarkdown component interface requirements
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const CodeBlock: React.FunctionComponent<any> = ({ className, children }) => {
+interface CodeBlockProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+const CodeBlock: React.FunctionComponent<CodeBlockProps> = ({ className, children }) => {
   const [copied, setCopied] = useState(false);
   
   const match = /language-(\w+)/.exec(className || '');
