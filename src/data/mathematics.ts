@@ -66,7 +66,7 @@ In AI, everything is a vector or matrix:
 - Neural network weights are matrices
 - Transformations between layers are matrix multiplications
 
-## What You'll Master
+## What You&apos;ll Master
 
 ### 1. Vectors and Vector Spaces
 
@@ -511,7 +511,7 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
 
 **Video Courses:**
 - [3Blue1Brown - Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) - Best visual intuition
-- [Gilbert Strang's MIT 18.06](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) - Comprehensive lectures
+- [Gilbert Strang&apos;s MIT 18.06](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) - Comprehensive lectures
 
 **Books:**
 - "Linear Algebra and Its Applications" by Gilbert Strang - Classic textbook
@@ -532,7 +532,7 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
 
 **Papers:**
 - [Deep Learning Book - Chapter 2](https://www.deeplearningbook.org/contents/linear_algebra.html) - Goodfellow et al.
-    `,
+    `, 
     subModules: []
   },
   {
@@ -542,11 +542,11 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
     status: 'in-progress',
     detailedContent: `# Calculus for AI Engineers
 
-Calculus is the mathematics of change and optimization. Without calculus, neural networks couldn't learn - there would be no backpropagation, no gradient descent, no training.
+Calculus is the mathematics of change and optimization. Without calculus, neural networks couldn&apos;t learn - there would be no backpropagation, no gradient descent, no training.
 
 ## Math Notation & Pronunciation Guide
 
-Before we dive in, let's decode the symbols you'll see:
+Before we dive in, let&apos;s decode the symbols you&apos;ll see:
 
 **Derivatives:**
 - f'(x) - pronounced "f prime of x" - derivative of f with respect to x
@@ -584,7 +584,7 @@ Before we dive in, let's decode the symbols you'll see:
 - **Learning Rate**: Step size in gradient descent; how fast we update weights
 - **Epoch**: One complete pass through the entire training dataset
 - **Batch**: Subset of training data used to compute gradient
-- **Loss Function**: Measures how wrong the model's predictions are
+- **Loss Function**: Measures how wrong the model&apos;s predictions are
 - **Optimizer**: Algorithm that updates weights (SGD, Adam, RMSprop)
 - **Momentum**: Technique that accelerates gradient descent using past gradients
 - **Backpropagation**: Algorithm to compute gradients in neural networks using chain rule
@@ -597,14 +597,14 @@ Before we dive in, let's decode the symbols you'll see:
 Neural networks learn by minimizing loss functions. Calculus tells us:
 - Which direction to move weights (gradient)
 - How fast to move (learning rate × gradient)
-- When we've reached a minimum (gradient ≈ 0)
+- When we&apos;ve reached a minimum (gradient ≈ 0)
 
-## What You'll Master
+## What You&apos;ll Master
 
 ### 1. Derivatives - Measuring Change
 
 **What is a Derivative?**
-The derivative measures how a function changes when its input changes. It's the slope of the tangent line.
+The derivative measures how a function changes when its input changes. It&apos;s the slope of the tangent line.
 
 Definition: f'(x) = limit as h→0 of [f(x+h) - f(x)] / h
 
@@ -615,13 +615,13 @@ Definition: f'(x) = limit as h→0 of [f(x+h) - f(x)] / h
 
 - Constant rule: d/dx(c) = 0
 
-- Sum rule: d/dx(f + g) = f' + g'
+- Sum rule: d/dx(f + g) = f&apos; + g&apos;
 
-- Product rule: d/dx(f·g) = f'g + fg'
+- Product rule: d/dx(f·g) = f&apos;g + fg&apos;
 
-- Quotient rule: d/dx(f/g) = (f'g - fg') / g²
+- Quotient rule: d/dx(f/g) = (f&apos;g - fg&apos;) / g²
 
-- Chain rule: d/dx(f(g(x))) = f'(g(x)) · g'(x)
+- Chain rule: d/dx(f(g(x))) = f&apos;(g(x)) · g&apos;(x)
 
 **Important Function Derivatives:**
 - d/dx(eˣ) = eˣ
@@ -955,7 +955,7 @@ Input(x) → Linear(W1) → ReLU(σ) → Linear(W2) → Output(y) → Loss(L)
 3. ∂L/∂W₂ = ∂L/∂z₂ · a₁ᵀ
 4. ∂L/∂b₂ = ∂L/∂z₂
 5. ∂L/∂a₁ = W₂ᵀ · ∂L/∂z₂
-6. ∂L/∂z₁ = ∂L/∂a₁ · ReLU'(z₁) where ReLU'(z) = 1 if z>0 else 0
+6. ∂L/∂z₁ = ∂L/∂a₁ · ReLU&apos;(z₁) where ReLU&apos;(z) = 1 if z>0 else 0
 7. ∂L/∂W₁ = ∂L/∂z₁ · xᵀ
 8. ∂L/∂b₁ = ∂L/∂z₁
 
@@ -1025,14 +1025,14 @@ Solutions:
 - [TensorFlow Playground](https://playground.tensorflow.org/) - Neural network visualization
 
 **GitHub Repositories:**
-- [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) - Andrej Karpathy's neural networks from scratch (backprop, optimizers)
+- [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) - Andrej Karpathy&apos;s neural networks from scratch (backprop, optimizers)
 - [Autograd](https://github.com/HIPS/autograd) - Automatic differentiation for NumPy (PyTorch/TensorFlow core concept)
 - [Neural Network Animations](https://github.com/rish-16/sight) - Visualize gradient descent and optimization
 
 **Papers:**
 - [Adam Optimizer](https://arxiv.org/abs/1412.6980) - Kingma & Ba, 2014
 - [Batch Normalization](https://arxiv.org/abs/1502.03167) - Ioffe & Szegedy, 2015
-    `,
+    `, 
     subModules: []
   },
   {
@@ -1042,11 +1042,11 @@ Solutions:
     status: 'not-started',
     detailedContent: `# Probability & Statistics for AI Engineers
 
-AI systems don't give certain answers - they give probability distributions. Understanding probability is essential for working with modern ML, especially generative models and Bayesian methods.
+AI systems don&apos;t give certain answers - they give probability distributions. Understanding probability is essential for working with modern ML, especially generative models and Bayesian methods.
 
 ## Math Notation & Pronunciation Guide
 
-Before we dive in, let's decode the symbols you'll see:
+Before we dive in, let&apos;s decode the symbols you&apos;ll see:
 
 **Probability Notation:**
 - P(A) - pronounced "P of A" or "probability of A"
@@ -1092,8 +1092,8 @@ Before we dive in, let's decode the symbols you'll see:
 - **Variance**: Measure of spread around the mean
 - **Standard Deviation**: Square root of variance; same units as data
 - **Conditional Probability**: Probability of A given B has occurred
-- **Independence**: Events don't affect each other
-- **Bayes' Theorem**: Update probabilities given new evidence
+- **Independence**: Events don&apos;t affect each other
+- **Bayes&apos; Theorem**: Update probabilities given new evidence
 - **Prior**: Initial belief before seeing data
 - **Posterior**: Updated belief after seeing data
 - **Likelihood**: Probability of data given hypothesis
@@ -1116,7 +1116,7 @@ AI deals with uncertainty:
 - Bayesian optimization explores parameter space probabilistically
 - Uncertainty estimation tells us when the model is confident
 
-## What You'll Master
+## What You&apos;ll Master
 
 ### 1. Probability Fundamentals
 
@@ -1307,7 +1307,7 @@ print(f"Sampled classes: {np.bincount(samples)}")
 print(f"Expected counts: {[p*100 for p in probs]}")
 \`\`\`
 
-### 4. Bayes' Theorem
+### 4. Bayes&apos; Theorem
 
 **Formula:**
 P(A|B) = P(B|A) · P(A) / P(B)
@@ -1328,7 +1328,7 @@ Given:
 - Test sensitivity: P(+|D) = 0.95 (95% true positive)
 - False positive rate: P(+|Dᶜ) = 0.05 (5% false positive)
 
-Question: If test positive, what's probability of disease?
+Question: If test positive, what&apos;s probability of disease?
 
 P(D|+) = P(+|D) · P(D) / P(+)
 
@@ -1361,7 +1361,7 @@ def bayes_medical_test():
     
     # Compute P(+) using law of total probability
     p_no_disease = 1 - p_disease
-    p_positive = (p_positive_given_disease * p_disease + 
+    p_positive = (p_positive_given_disease * p_disease +
                   p_positive_given_no_disease * p_no_disease)
     
     # Bayes theorem: P(D|+)
@@ -1411,7 +1411,7 @@ class NaiveBayesClassifier:
         return max(scores, key=scores.get)
 
 # Example usage
-X_train = [["free", "money", "win"], ["hello", "meeting", "tomorrow"], 
+X_train = [["free", "money", "win"], ["hello", "meeting", "tomorrow"],
            ["buy", "now", "free"], ["schedule", "call", "monday"]]
 y_train = np.array(["spam", "ham", "spam", "ham"])
 
@@ -1513,7 +1513,7 @@ If p-value < 0.05: Reject H₀ (statistically significant)
 **Confidence Intervals:**
 95% CI: [μ̂ - 1.96·σ/√n, μ̂ + 1.96·σ/√n]
 
-We're 95% confident true mean is in this interval.
+We&apos;re 95% confident true mean is in this interval.
 
 **A/B Testing:**
 Compare two variants (e.g., website designs):
@@ -1700,7 +1700,235 @@ Value functions are expectations over trajectories.
 **Papers:**
 - [Variational Autoencoders](https://arxiv.org/abs/1312.6114) - Kingma & Welling, 2013
 - [Dropout as Bayesian Approximation](https://arxiv.org/abs/1506.02142) - Gal & Ghahramani, 2016
-    `,
+    `, 
+    subModules: []
+  },
+  {
+    id: 'linear-models',
+    title: 'Linear Models',
+    description: 'Ridge, Lasso, ElasticNet, and Logistic Regression - the extended family',
+    status: 'not-started',
+    detailedContent: `# The Extended Linear Family
+
+Linear regression is just the beginning. Once you master it, you can explore the broader family of linear models used in production AI systems.
+
+## Key Jargon Definitions
+
+- **Regularization**: A technique to prevent overfitting by adding a penalty term to the loss function
+- **L1 Penalty (Lasso)**: Penalty proportional to the absolute value of coefficients ($|\\beta|$)
+- **L2 Penalty (Ridge)**: Penalty proportional to the square of coefficients ($\\beta^2$)
+- **Hyperparameter ($\\lambda$ or $\\alpha$)**: Controls the strength of regularization
+- **Sparsity**: When a model has many coefficients exactly equal to zero
+- **Multicollinearity**: When features are highly correlated with each other
+- **Sigmoid Function**: An S-shaped curve that maps any real number to a value between 0 and 1
+- **Log-Odds**: The logarithm of the odds ratio ($p/(1-p)$), the linear part of logistic regression
+
+## Why This Matters
+
+In the real world, data is rarely clean and simple:
+- You will have datasets with more columns (features) than rows (samples)
+- Features will be correlated (e.g., "square footage" and "number of bedrooms")
+- You will need to classify data (spam vs. not spam), not just predict numbers
+- **Regularization is the secret sauce** that makes linear models robust enough for production.
+
+## 1. Visualizing the Family
+
+### The Foundation: Linear Regression
+A straight line trying to fit through scattered data points.
+
+\`\`\`text
+      y
+      ^
+      |      *        /
+      |            * /
+      |       *     /   <-- The Model (Line)
+      |          * /
+      |      *    /
+      |     *    /
+      |         / *
+      |________/___________ x
+\`\`\`
+
+### Ridge vs Lasso: The "Constraint" View
+The core difference lies in how they constrain the model's "best guess" to prevent overfitting.
+
+\`\`\`text
+       Ridge (L2)                   Lasso (L1)
+     "The Smooth Pull"           "The Sharp Selector"
+
+          |
+      _.-" "-._                    /\\
+    ."    |    ".                /    \\
+   /  ( ) |      \\              / ( )  \\
+--|--( . )|-------|-- x1      -|--( . )--|- x1
+   \\      |      /              \\      /  ^
+    "._   |   _."                \\    /   |
+       "-._.-"                    \\/      |
+          |
+                                     Hits the axis!
+                                     (Feature x1 = 0)
+\`\`\`
+
+### Logistic Regression: The Sigmoid Squasher
+Instead of a straight line fitting data, we fit a probability curve (S-curve) to classify data.
+
+\`\`\`text
+      Probability
+          ^
+      1.0 |__________       ___________
+          |          \\     /
+          |           \\   /
+      0.5 |............\\./............. Decision Boundary
+          |           /   \\
+          |          /     \\
+      0.0 |_________/       \\__________
+          |
+          -----------------------------> Input (z)
+\`\`\`
+
+## 🧠 Detailed Model Analysis
+
+### 1. Ridge Regression (L2 Regularization) 🛡️
+**"The Dampener" - Shrinking Coefficients Without Elimination**
+
+**Core Concept:** Ridge assumes that *all* your features might be relevant, but some are just noisy. It doesn't delete information; it just turns down the volume on loud, erratic features to prevent them from dominating the prediction.
+
+**Mathematical Foundation:**
+*   **Loss Function:** $Loss = MSE + \\lambda \\sum \\beta^2$
+*   **Constraint:** $\\sum \\beta_j^2 \\leq t$ (circular constraint in coefficient space)
+
+**Key Characteristics:**
+*   **Mechanism:** Squaring the coefficients penalizes large outliers heavily
+*   **The Effect:** It shrinks coefficients towards zero but rarely hits zero exactly
+*   **Bias-Variance Tradeoff:** Reduces variance at the cost of some bias
+*   **Feature Handling:** Keeps all features but with reduced influence
+
+**Optimal Use Cases:**
+*   **Multicollinearity**: When two or more features are highly correlated, Ridge splits the weight equally between them
+*   **All Features Relevant**: When you believe all features contain useful information
+*   **Example Application**: **Stock Price Prediction** with 50 correlated moving averages - Ridge keeps them all but dampens noise
+
+### 2. Lasso Regression (L1 Regularization) 🎯
+**"The Feature Selector" - Eliminating Irrelevant Variables**
+
+**Core Concept:** Lasso assumes that **most features are useless** and only a few are actual signals. It aggressively forces weak features to exactly zero, effectively performing automatic feature selection.
+
+**Mathematical Foundation:**
+*   **Loss Function:** $Loss = MSE + \\lambda \\sum |\\beta|$
+*   **Constraint:** $\\sum |\\beta_j| \\leq t$ (diamond-shaped constraint in coefficient space)
+
+**Key Characteristics:**
+*   **Mechanism:** The absolute value constraint creates "corners" at zero, making it statistically likely for coefficients to be exactly zero
+*   **The Effect:** Produces **Sparse Models** - many coefficients become exactly zero
+*   **Feature Selection:** Automatically identifies and removes irrelevant features
+*   **Computational Efficiency:** Results in simpler, faster models
+
+**Optimal Use Cases:**
+*   **High-Dimensional Data**: When you have many more features than samples
+*   **Automatic Feature Selection**: When you want the model to identify the most important features
+*   **Example Application**: **Genomics** with 20,000 gene features to find the 3 that are responsible for a specific disease
+
+### 3. ElasticNet 🔄
+**"The Balanced Approach" - Combining L1 and L2 Advantages**
+
+**Core Concept:** Lasso has a limitation: when features are highly correlated (like twins), Lasso randomly selects one and eliminates the other. ElasticNet addresses this by combining both L1 and L2 penalties, allowing it to perform feature selection while maintaining group stability.
+
+**Mathematical Foundation:**
+*   **Loss Function:** $Loss = MSE + \\lambda_1 \\sum |\\beta| + \\lambda_2 \\sum \\beta^2$
+*   **Balance Parameter:** The $\\alpha$ parameter controls the mix between Lasso (L1) and Ridge (L2) penalties
+
+**Key Characteristics:**
+*   **Mechanism:** Linearly combines L1 (Lasso) and L2 (Ridge) penalties to get the benefits of both
+*   **The Effect:** Performs feature selection like Lasso while handling correlated features like Ridge
+*   **Grouping Effect:** Correlated features tend to be selected or eliminated together
+*   **Versatility:** More robust than either Lasso or Ridge alone
+
+**Optimal Use Cases:**
+*   **Grouped Features**: When you have sets of correlated features that should be selected together
+*   **High-Dimensional Data with Correlations**: When you have many features that are internally correlated
+*   **Example Application**: **Bioinformatics** for gene data or **text analysis** where words often appear in groups
+
+### 4. Logistic Regression 📊
+**"The Binary Classifier" - Converting Linear Output to Probabilities**
+
+**Core Concept:** While the underlying computation is linear ($z = \\beta_0 + \\beta_1x_1 + ... + \\beta_nx_n$), the goal is classification rather than prediction. It transforms the linear output into a probability between 0 and 1 using the sigmoid function, enabling binary classification.
+
+**Mathematical Foundation:**
+*   **Linear Combination:** $z = \\beta_0 + \\beta_1x_1 + ... + \\beta_nx_n$
+*   **Sigmoid Transformation:** $P(y=1) = \\frac{1}{1+e^{-z}}$ (maps any real number to [0,1])
+*   **Log-Odds:** $log(\\frac{P(y=1)}{1-P(y=1)}) = z$ (linear in the parameters)
+
+**Key Characteristics:**
+*   **Output:** Probability estimates that can be thresholded for classification
+*   **Interpretability:** Coefficients represent the log-odds change per unit feature change
+*   **Multi-class Extension:** Can be extended to multi-class problems (One-vs-Rest, Softmax)
+*   **Regularization Compatible:** Can be combined with L1/L2 penalties (Logistic with L1/L2)
+
+**Optimal Use Cases:**
+*   **Binary Classification**: When the outcome is yes/no, true/false, positive/negative
+*   **Probability Estimation**: When you need estimated probabilities, not just classifications
+*   **Example Applications**: **Spam Detection** (Spam vs Not Spam), **Credit Approval** (Default vs Pay), **Medical Diagnosis** (Disease vs Healthy)
+
+## 3. Practical Code Examples
+
+**Ridge and Lasso with Scikit-Learn:**
+
+\`\`\`python path=null start=null
+from sklearn.linear_model import Ridge, Lasso
+import numpy as np
+
+# Synthetic data: 100 samples, 10 features
+X = np.random.randn(100, 10)
+y = 3 * X[:, 0] + 2 * X[:, 1] + 0.5 * np.random.randn(100) # Only first 2 features matter
+
+# Ridge Regression
+ridge = Ridge(alpha=1.0) # Alpha is the regularization strength
+ridge.fit(X, y)
+print("Ridge Coeffs:", ridge.coef_)
+# Result: All 10 coeffs are non-zero, but small ones are shrunk.
+
+# Lasso Regression
+lasso = Lasso(alpha=0.1)
+lasso.fit(X, y)
+print("Lasso Coeffs:", lasso.coef_)
+# Result: Ideally, only indices 0 and 1 are non-zero. Others are 0.
+\`\`\`
+
+**Logistic Regression:**
+
+\`\`\`python path=null start=null
+from sklearn.linear_model import LogisticRegression
+
+# Binary classification data
+X = np.random.randn(100, 2)
+y = (X[:, 0] + X[:, 1] > 0).astype(int) # Class 1 if sum > 0
+
+model = LogisticRegression()
+model.fit(X, y)
+
+# Predict probability
+sample = np.array([[0.5, 0.5]])
+prob = model.predict_proba(sample)
+print(f"Probability of Class 1: {prob[0][1]:.4f}")
+\`\`\`
+
+## 📊 Model Comparison Summary
+
+| 🏷️ Model | 🎯 Penalty Shape | ⚡ Key Effect | 🎪 Primary Use Case | 🛠️ Scikit-Learn Class |
+| :--- | :--- | :--- | :--- | :--- |
+| **Ridge (L2)** | 🔵 Circle (Smooth) | Shrinks all coefficients toward zero | Handling multicollinearity, all features relevant | *Ridge* |
+| **Lasso (L1)** | 🔶 Diamond (Sharp) | Sets some coefficients to exactly zero | Feature selection, sparse models | *Lasso* |
+| **ElasticNet** | 🟠 Rounded Diamond | Combines L1 & L2 benefits | Grouped feature selection with correlations | *ElasticNet* |
+| **Logistic** | 🟣 N/A (Sigmoid) | Outputs probability for binary classification | Binary classification problems | *LogisticRegression* |
+
+## Additional Resources
+
+- **Video:** [StatQuest: Ridge vs Lasso Regression](https://www.youtube.com/watch?v=NGf0voTMlcs) - Essential for understanding regularization differences.
+- **Video:** [StatQuest: Logistic Regression](https://www.youtube.com/watch?v=yIYKR4sgzI8) - Comprehensive introduction to classification.
+- **Article:** [Regularization in Machine Learning](https://towardsdatascience.com/regularization-in-machine-learning-76441ddcf99a) - Detailed explanations of regularization concepts.
+- **Documentation:** [Scikit-Learn Linear Models](https://scikit-learn.org/stable/modules/linear_model.html) - Your go-to for implementation details.
+- **Book:** "The Elements of Statistical Learning" - For deeper mathematical understanding of regularization.
+`,
     subModules: []
   }
 ];
