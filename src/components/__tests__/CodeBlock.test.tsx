@@ -18,7 +18,7 @@ describe('CodeBlock Component', () => {
   });
 
   it('displays the correct language label', () => {
-    render(<CodeBlock className="language-python">print("test")</CodeBlock>);
+    render(<CodeBlock className="language-python">{"print(\"test\")"}</CodeBlock>);
     expect(screen.getByText('python')).toBeInTheDocument();
   });
 

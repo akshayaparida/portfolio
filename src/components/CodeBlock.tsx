@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 
-interface CodeBlockProps {
+interface CodeBlockProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  node?: object; // react-markdown may pass additional properties like node
+  inline?: boolean; // react-markdown may pass inline prop
 }
 
 const CodeBlock: React.FunctionComponent<CodeBlockProps> = ({ className, children }) => {
