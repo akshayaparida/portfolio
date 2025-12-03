@@ -1036,6 +1036,8 @@ Solutions:
 **Advanced Topics:**
 - [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/) - Comprehensive blog post covering all major variants
 - [CS231n Convolutional Neural Networks - Optimization](http://cs231n.github.io/neural-networks-3/) - In-depth look at optimization techniques
+- [Mean Squared Error by Britannica](https://www.britannica.com/science/mean-squared-error) - Definition, formula, and statistical context
+- [Scikit-learn Mean Squared Error Documentation](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html) - Official implementation guide
 
 **GitHub Repositories:**
 - [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) - Andrej Karpathy&apos;s neural networks from scratch (backprop, optimizers)
