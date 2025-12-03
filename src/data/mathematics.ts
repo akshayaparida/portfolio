@@ -532,7 +532,7 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
 
 **Papers:**
 - [Deep Learning Book - Chapter 2](https://www.deeplearningbook.org/contents/linear_algebra.html) - Goodfellow et al.
-    `, 
+    `,
     subModules: []
   },
   {
@@ -753,18 +753,18 @@ import matplotlib.pyplot as plt
 def gradient_descent_1d():
     f = lambda x: x**2
     df = lambda x: 2*x  # Derivative
-    
+
     x = 10.0  # Starting point
     learning_rate = 0.1
     history = [x]
-    
+
     for i in range(50):
         gradient = df(x)
         x = x - learning_rate * gradient  # Update rule
         history.append(x)
         if abs(gradient) < 1e-6:  # Convergence check
             break
-    
+
     print(f"Converged to x = {x:.6f} (should be 0)")
     return history
 
@@ -774,32 +774,32 @@ def linear_regression_gd():
     np.random.seed(42)
     X = np.random.randn(100, 1)
     y = 3 * X + 2 + 0.5 * np.random.randn(100, 1)
-    
+
     # Initialize parameters
     w = np.random.randn(1, 1)  # weight
     b = np.random.randn(1)      # bias
-    
+
     learning_rate = 0.01
     epochs = 100
-    
+
     for epoch in range(epochs):
         # Forward pass
         y_pred = X @ w + b
-        
+
         # Compute loss (MSE)
         loss = np.mean((y_pred - y)**2)
-        
+
         # Compute gradients
         dw = (2/len(X)) * X.T @ (y_pred - y)
         db = (2/len(X)) * np.sum(y_pred - y)
-        
+
         # Update parameters
         w = w - learning_rate * dw
         b = b - learning_rate * db
-        
+
         if epoch % 20 == 0:
             print(f"Epoch {epoch}: Loss = {loss:.4f}, w = {w[0,0]:.2f}, b = {b[0]:.2f}")
-    
+
     print(f"Final: w = {w[0,0]:.2f} (true: 3), b = {b[0]:.2f} (true: 2)")
 
 linear_regression_gd()
@@ -854,11 +854,11 @@ class SGDMomentum:
         self.lr = learning_rate
         self.momentum = momentum
         self.velocity = None
-    
+
     def update(self, params, grads):
         if self.velocity is None:
             self.velocity = np.zeros_like(params)
-        
+
         self.velocity = self.momentum * self.velocity - self.lr * grads
         params += self.velocity
         return params
@@ -873,22 +873,22 @@ class Adam:
         self.m = None  # First moment
         self.v = None  # Second moment
         self.t = 0     # Time step
-    
+
     def update(self, params, grads):
         if self.m is None:
             self.m = np.zeros_like(params)
             self.v = np.zeros_like(params)
-        
+
         self.t += 1
-        
+
         # Update biased first and second moments
         self.m = self.beta1 * self.m + (1 - self.beta1) * grads
         self.v = self.beta2 * self.v + (1 - self.beta2) * (grads ** 2)
-        
+
         # Bias correction
         m_hat = self.m / (1 - self.beta1 ** self.t)
         v_hat = self.v / (1 - self.beta2 ** self.t)
-        
+
         # Update parameters
         params -= self.lr * m_hat / (np.sqrt(v_hat) + self.epsilon)
         return params
@@ -1013,16 +1013,29 @@ Solutions:
 
 **Video Courses:**
 - [3Blue1Brown - Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr) - Best visual intuition
+- [3Blue1Brown - Gradient Descent](https://www.youtube.com/watch?v=IHZwWFHWa-w) - Visual understanding of gradient descent
 - [Khan Academy - Calculus](https://www.khanacademy.org/math/calculus-1) - Step-by-step basics
+- [Khan Academy - Gradient](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/the-gradient) - Mathematical foundation
+- [Andrew Ng's ML Course - Gradient Descent](https://www.coursera.org/learn/machine-learning/lecture/9zJUs/gradient-descent) - Classic explanation
 - [Stanford CS231n](http://cs231n.stanford.edu/) - Backprop lecture
+- [Visualizing Gradient Descent](https://www.youtube.com/watch?v=NcL-NGd4p7o) - 3Blue1Brown's visual explanation of optimization
+- [Alec Radford's animations for optimization algorithms](https://www.youtube.com/watch?v=JXQT_vxq9SE) - Visual comparison of different optimizers
 
 **Books:**
-- "Deep Learning" by Goodfellow et al. - Chapter 4 (Numerical Computation)
-- "Pattern Recognition and Machine Learning" by Bishop - Appendix C
+- "Deep Learning" by Goodfellow et al. - Chapter 4 (Numerical Computation) and Chapter 8 (Optimization)
+- "Pattern Recognition and Machine Learning" by Bishop - Appendix C and Chapter 5 (Neural Networks)
+- "Machine Learning - A Probabilistic Perspective" by Murphy - Section 8.3 (Gradient Descent)
+- [Neural Networks and Deep Learning - Ch 1](http://neuralnetworksanddeeplearning.com/chap1.html#gradient_descent) - Michael Nielsen's interactive explanation
 
 **Interactive:**
 - [Distill.pub - Momentum](https://distill.pub/2017/momentum/) - Optimizer comparison
-- [TensorFlow Playground](https://playground.tensorflow.org/) - Neural network visualization
+- [TensorFlow Playground](https://playground.tensorflow.org/) - Neural network visualization with adjustable learning rate
+- [Gradient Descent Playground](https://ml4a.github.io/ml4a/gradient_descent/) - Interactive visualization of gradient descent
+- [Optimization Algorithms Visualization](https://github.com/lilipads/gradient_descent_viz) - Visual comparison of different optimization algorithms
+
+**Advanced Topics:**
+- [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/) - Comprehensive blog post covering all major variants
+- [CS231n Convolutional Neural Networks - Optimization](http://cs231n.github.io/neural-networks-3/) - In-depth look at optimization techniques
 
 **GitHub Repositories:**
 - [nn-zero-to-hero](https://github.com/karpathy/nn-zero-to-hero) - Andrej Karpathy&apos;s neural networks from scratch (backprop, optimizers)
@@ -1032,7 +1045,7 @@ Solutions:
 **Papers:**
 - [Adam Optimizer](https://arxiv.org/abs/1412.6980) - Kingma & Ba, 2014
 - [Batch Normalization](https://arxiv.org/abs/1502.03167) - Ioffe & Szegedy, 2015
-    `, 
+    `,
     subModules: []
   },
   {
@@ -1358,15 +1371,15 @@ def bayes_medical_test():
     p_disease = 0.01  # 1% have disease
     p_positive_given_disease = 0.95  # 95% sensitivity
     p_positive_given_no_disease = 0.05  # 5% false positive
-    
+
     # Compute P(+) using law of total probability
     p_no_disease = 1 - p_disease
     p_positive = (p_positive_given_disease * p_disease +
                   p_positive_given_no_disease * p_no_disease)
-    
+
     # Bayes theorem: P(D|+)
     p_disease_given_positive = (p_positive_given_disease * p_disease) / p_positive
-    
+
     print(f"P(disease) = {p_disease:.1%}")
     print(f"P(+|disease) = {p_positive_given_disease:.1%}")
     print(f"P(+|no disease) = {p_positive_given_no_disease:.1%}")
@@ -1382,22 +1395,22 @@ class NaiveBayesClassifier:
         self.classes = np.unique(y)
         self.class_priors = {}
         self.word_probs = {}
-        
+
         for c in self.classes:
             # Class prior
             self.class_priors[c] = np.mean(y == c)
-            
+
             # Word probabilities
             docs_c = [X[i] for i in range(len(X)) if y[i] == c]
             words_c = [word for doc in docs_c for word in doc]
             vocab = set([word for doc in X for word in doc])
-            
+
             self.word_probs[c] = {}
             for word in vocab:
                 # Laplace smoothing
                 count = words_c.count(word)
                 self.word_probs[c][word] = (count + 1) / (len(words_c) + len(vocab))
-    
+
     def predict(self, doc):
         """Predict class for a document"""
         scores = {}
@@ -1611,25 +1624,25 @@ def classify_batch():
         [1.0, 0.5, 2.0],
         [3.0, 0.1, 0.2]
     ])
-    
+
     # Apply softmax to each sample
     probs = np.array([softmax(logit) for logit in logits])
-    
+
     # Predicted classes (argmax)
     predictions = np.argmax(probs, axis=1)
-    
+
     # True labels
     y_true = np.array([0, 1, 2, 0])
-    
+
     # Compute accuracy
     accuracy = np.mean(predictions == y_true)
-    
+
     print(f"\nBatch classification:")
     print(f"Probabilities:\n{probs}")
     print(f"Predictions: {predictions}")
     print(f"True labels: {y_true}")
     print(f"Accuracy: {accuracy:.1%}")
-    
+
     # Compute average cross-entropy loss
     y_true_onehot = np.eye(3)[y_true]  # Convert to one-hot
     losses = [cross_entropy_loss(y_true_onehot[i], probs[i]) for i in range(len(y_true))]
@@ -1700,7 +1713,7 @@ Value functions are expectations over trajectories.
 **Papers:**
 - [Variational Autoencoders](https://arxiv.org/abs/1312.6114) - Kingma & Welling, 2013
 - [Dropout as Bayesian Approximation](https://arxiv.org/abs/1506.02142) - Gal & Ghahramani, 2016
-    `, 
+    `,
     subModules: []
   },
   {
@@ -1957,8 +1970,8 @@ export const calculateProgress = (modules: LearningModule[]) => {
   const completed = modules.filter(m => m.status === 'completed').length;
   const inProgress = modules.filter(m => m.status === 'in-progress').length;
   const total = modules.length;
-  
+
   const progress = ((completed * 100) + (inProgress * 50)) / total;
-  
+
   return Math.round(progress);
 };
