@@ -7,6 +7,8 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeSanitize from 'rehype-sanitize';
 import { mathematicsModules } from '@/data/mathematics';
 import CodeBlock from '@/components/CodeBlock';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import MathErrorFallback from '@/components/MathErrorFallback';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
 import MatrixMultiplication from '@/components/math-visualizations/MatrixMultiplication';
 import PCAVisualization from '@/components/math-visualizations/PCAVisualization';
@@ -219,14 +221,16 @@ export default function MathematicsComprehensive() {
                   <span className="theory-badge">Theory</span>
                 </div>
                 <div className="markdown-content">
-                  <ReactMarkdown
-                    rehypePlugins={[rehypeHighlight, rehypeSanitize]}
-                    components={{
-                      code: CodeBlock
-                    }}
-                  >
-                    {selectedModule.detailedContent}
-                  </ReactMarkdown>
+                  <ErrorBoundary fallback={MathErrorFallback}>
+                    <ReactMarkdown
+                      rehypePlugins={[rehypeHighlight, rehypeSanitize]}
+                      components={{
+                        code: CodeBlock
+                      }}
+                    >
+                      {selectedModule.detailedContent}
+                    </ReactMarkdown>
+                  </ErrorBoundary>
                 </div>
               </div>
 
@@ -244,7 +248,9 @@ export default function MathematicsComprehensive() {
                         <h3 className="demo-block-title">{subModule.title}</h3>
                         <p className="demo-block-description">{subModule.description}</p>
                         <div className="demo-block-content">
-                          <DemoComponent />
+                          <ErrorBoundary fallback={MathErrorFallback}>
+                            <DemoComponent />
+                          </ErrorBoundary>
                         </div>
                       </div>
                     ) : null;
