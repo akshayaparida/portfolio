@@ -18,6 +18,7 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   const skeletons = Array.from({ length: count }, (_, index) => (
     <div
       key={index}
+      data-testid="skeleton-loader"
       className={`skeleton-loader ${className}`}
       style={{
         height,

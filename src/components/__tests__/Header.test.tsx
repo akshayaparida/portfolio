@@ -1,6 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import Header from '../Header';
 
+// Mock the @lobehub/icons to properly handle HuggingFace import
+jest.mock('@lobehub/icons', () => ({
+  LobeHubIcon: () => <div>LobeHubIcon</div>,
+  HuggingFace: {
+    Color: () => <div>HuggingFaceIcon</div>
+  }
+}));
+
 describe('Header Component', () => {
   it('should render the header element', () => {
     render(<Header />);
@@ -32,14 +40,17 @@ describe('Header Component', () => {
   it('should have proper structure with home link and nav element as direct children', () => {
     const { container } = render(<Header />);
     const header = container.querySelector('header');
-    
+
     expect(header?.children.length).toBe(2);
-    
+
     const firstChild = header?.children[0];
     const secondChild = header?.children[1];
-    
+
     expect(firstChild?.tagName).toBe('A');
-    expect(secondChild?.tagName).toBe('NAV');
+    expect(secondChild?.tagName).toBe('DIV'); // The .header-right div
+    // The nav element is inside the second div
+    const navElement = secondChild?.querySelector('nav');
+    expect(navElement).toBeInTheDocument();
   });
 
   it('should have all social links opening in new tab', () => {
