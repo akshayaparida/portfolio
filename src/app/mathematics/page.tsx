@@ -80,6 +80,10 @@ export default function MathematicsComprehensive() {
         // Focus the modal when it opens
         if (modalRef.current) {
           modalRef.current.focus();
+          // Ensure the focused element is not obscured by header
+          if (typeof modalRef.current.scrollIntoView === 'function') {
+            modalRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          }
         }
       }, 300);
       return () => clearTimeout(timer);
@@ -315,7 +319,7 @@ export default function MathematicsComprehensive() {
                     return getIcon(selectedModule.id);
                   })()}
                 </div>
-                <h1 id="modal-title" className="section-main-title">{selectedModule.title}</h1>
+                <h1 id="modal-title" className="section-main-title" tabIndex={-1}>{selectedModule.title}</h1>
                 <p className="section-tagline">{selectedModule.description}</p>
               </header>
 
@@ -532,6 +536,7 @@ export default function MathematicsComprehensive() {
           background: #fafafa;
           display: flex;
           flex-direction: column;
+          scroll-padding-top: 100px;
         }
 
         .home-link-wrapper {
