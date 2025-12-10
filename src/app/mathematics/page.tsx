@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -9,6 +9,7 @@ import { mathematicsModules } from '@/data/mathematics';
 import CodeBlock from '@/components/CodeBlock';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import MathErrorFallback from '@/components/MathErrorFallback';
+import MathContentSkeleton from '@/components/MathContentSkeleton';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
 import MatrixMultiplication from '@/components/math-visualizations/MatrixMultiplication';
 import PCAVisualization from '@/components/math-visualizations/PCAVisualization';
@@ -30,8 +31,23 @@ const demoComponents: Record<string, React.ComponentType> = {
 
 export default function MathematicsComprehensive() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [moduleLoading, setModuleLoading] = useState<boolean>(false);
 
   const selectedModule = selectedSection ? mathematicsModules.find(m => m.id === selectedSection) : null;
+
+  // Track when a new module is selected to show loading state
+  useEffect(() => {
+    if (selectedSection) {
+      setModuleLoading(true);
+      // Simulate a small delay for loading indication
+      const timer = setTimeout(() => {
+        setModuleLoading(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      setModuleLoading(false);
+    }
+  }, [selectedSection]);
 
   return (
     <div className="math-comprehensive">
@@ -216,46 +232,52 @@ export default function MathematicsComprehensive() {
                 <p className="section-tagline">{selectedModule.description}</p>
               </div>
 
-              <div className="theory-section">
-                <div className="theory-header">
-                  <span className="theory-badge">Theory</span>
-                </div>
-                <div className="markdown-content">
-                  <ErrorBoundary fallback={MathErrorFallback}>
-                    <ReactMarkdown
-                      rehypePlugins={[rehypeHighlight, rehypeSanitize]}
-                      components={{
-                        code: CodeBlock
-                      }}
-                    >
-                      {selectedModule.detailedContent}
-                    </ReactMarkdown>
-                  </ErrorBoundary>
-                </div>
-              </div>
-
-              {selectedModule.subModules && selectedModule.subModules.length > 0 && (
-                <div className="interactive-section">
-                  <div className="interactive-header">
-                    <span className="interactive-badge">Interactive Demos</span>
-                    <p>Learn by doing</p>
+              {moduleLoading ? (
+                <MathContentSkeleton />
+              ) : (
+                <>
+                  <div className="theory-section">
+                    <div className="theory-header">
+                      <span className="theory-badge">Theory</span>
+                    </div>
+                    <div className="markdown-content">
+                      <ErrorBoundary fallback={MathErrorFallback}>
+                        <ReactMarkdown
+                          rehypePlugins={[rehypeHighlight, rehypeSanitize]}
+                          components={{
+                            code: CodeBlock
+                          }}
+                        >
+                          {selectedModule.detailedContent}
+                        </ReactMarkdown>
+                      </ErrorBoundary>
+                    </div>
                   </div>
 
-                  {selectedModule.subModules.map((subModule) => {
-                    const DemoComponent = demoComponents[subModule.id];
-                    return DemoComponent ? (
-                      <div key={subModule.id} className="demo-block">
-                        <h3 className="demo-block-title">{subModule.title}</h3>
-                        <p className="demo-block-description">{subModule.description}</p>
-                        <div className="demo-block-content">
-                          <ErrorBoundary fallback={MathErrorFallback}>
-                            <DemoComponent />
-                          </ErrorBoundary>
-                        </div>
+                  {selectedModule.subModules && selectedModule.subModules.length > 0 && (
+                    <div className="interactive-section">
+                      <div className="interactive-header">
+                        <span className="interactive-badge">Interactive Demos</span>
+                        <p>Learn by doing</p>
                       </div>
-                    ) : null;
-                  })}
-                </div>
+
+                      {selectedModule.subModules.map((subModule) => {
+                        const DemoComponent = demoComponents[subModule.id];
+                        return DemoComponent ? (
+                          <div key={subModule.id} className="demo-block">
+                            <h3 className="demo-block-title">{subModule.title}</h3>
+                            <p className="demo-block-description">{subModule.description}</p>
+                            <div className="demo-block-content">
+                              <ErrorBoundary fallback={MathErrorFallback}>
+                                <DemoComponent />
+                              </ErrorBoundary>
+                            </div>
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
