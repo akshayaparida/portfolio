@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, KeyboardEvent, useRef } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -32,25 +32,80 @@ const demoComponents: Record<string, React.ComponentType> = {
 export default function MathematicsComprehensive() {
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [moduleLoading, setModuleLoading] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>('');
+  const modalRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const moduleButtonRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const selectedModule = selectedSection ? mathematicsModules.find(m => m.id === selectedSection) : null;
 
-  // Track when a new module is selected to show loading state
+  // Handle keyboard events for accessibility
+  const handleKeyDown = (module: typeof mathematicsModules[0], event: KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      setSelectedSection(module.id);
+    }
+  };
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedSection) {
+        setSelectedSection(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleEsc);
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [selectedSection]);
+
+  // Track when a new module is selected to show loading state and manage focus
   useEffect(() => {
     if (selectedSection) {
       setModuleLoading(true);
+      // Store the element that triggered the modal
+      triggerRef.current = document.activeElement as HTMLElement;
+
+      // Announce modal opening to screen readers
+      const module = mathematicsModules.find(m => m.id === selectedSection);
+      if (module) {
+        setAlertMessage(`Opened ${module.title} module. Press Escape to close.`);
+      }
+
       // Simulate a small delay for loading indication
       const timer = setTimeout(() => {
         setModuleLoading(false);
+        // Focus the modal when it opens
+        if (modalRef.current) {
+          modalRef.current.focus();
+        }
       }, 300);
       return () => clearTimeout(timer);
     } else {
       setModuleLoading(false);
+      // Announce modal closing to screen readers
+      setAlertMessage('Closed module.');
+      // Return focus to the element that triggered the modal when it closes
+      if (triggerRef.current) {
+        triggerRef.current.focus();
+      }
     }
   }, [selectedSection]);
 
   return (
     <div className="math-comprehensive">
+      {/* ARIA live region for screen reader announcements */}
+      <div
+        id="alert-region"
+        role="alert"
+        aria-live="polite"
+        className="sr-only"
+      >
+        {alertMessage}
+      </div>
+
       <div className="home-link-wrapper">
         <Link href="/">
           <span className="home-link">Home</span>
@@ -66,7 +121,8 @@ export default function MathematicsComprehensive() {
             </p>
           </div>
 
-          <div className="sections-grid">
+          <section className="sections-grid">
+            <h2 className="visually-hidden">Mathematics Modules</h2>
             {mathematicsModules.map((module) => {
               const getIcon = (id: string) => {
                 switch(id) {
@@ -135,8 +191,23 @@ export default function MathematicsComprehensive() {
               return (
                 <button
                   key={module.id}
-                  onClick={() => setSelectedSection(module.id)}
+                  ref={(el) => {
+                    if (el) {
+                      moduleButtonRefs.current[module.id] = el;
+                    } else {
+                      delete moduleButtonRefs.current[module.id];
+                    }
+                  }}
+                  onClick={() => {
+                    // Store the element that triggered the modal
+                    triggerRef.current = moduleButtonRefs.current[module.id] || document.activeElement as HTMLElement;
+                    setSelectedSection(module.id);
+                  }}
+                  onKeyDown={(e) => handleKeyDown(module, e)}
                   className={`section-card ${selectedSection === module.id ? 'active' : ''}`}
+                  aria-label={`Explore ${module.title} module`}
+                  role="button"
+                  tabIndex={0}
                 >
                   <div className="section-icon">{getIcon(module.id)}</div>
                   <div className="section-content">
@@ -147,7 +218,7 @@ export default function MathematicsComprehensive() {
                 </button>
               );
             })}
-          </div>
+          </section>
         </div>
       </main>
 
@@ -165,14 +236,30 @@ export default function MathematicsComprehensive() {
       </footer>
 
       {selectedModule && (
-        <div className="modal-overlay" onClick={() => setSelectedSection(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setSelectedSection(null)} className="close-button">
+        <div className="modal-overlay" onClick={() => setSelectedSection(null)} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <div
+            ref={modalRef}
+            tabIndex={-1}
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedSection(null)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedSection(null);
+                }
+              }}
+              className="close-button"
+              aria-label="Close modal"
+              tabIndex={0}
+            >
               ×
             </button>
 
             <div className="modal-inner">
-              <div className="section-header">
+              <header className="section-header">
                 <div className="modal-icon">
                   {(() => {
                     const getIcon = (id: string) => {
@@ -228,18 +315,18 @@ export default function MathematicsComprehensive() {
                     return getIcon(selectedModule.id);
                   })()}
                 </div>
-                <h1 className="section-main-title">{selectedModule.title}</h1>
+                <h1 id="modal-title" className="section-main-title">{selectedModule.title}</h1>
                 <p className="section-tagline">{selectedModule.description}</p>
-              </div>
+              </header>
 
               {moduleLoading ? (
                 <MathContentSkeleton />
               ) : (
                 <>
-                  <div className="theory-section">
-                    <div className="theory-header">
+                  <section className="theory-section">
+                    <header className="theory-header">
                       <span className="theory-badge">Theory</span>
-                    </div>
+                    </header>
                     <div className="markdown-content">
                       <ErrorBoundary fallback={MathErrorFallback}>
                         <ReactMarkdown
@@ -252,19 +339,19 @@ export default function MathematicsComprehensive() {
                         </ReactMarkdown>
                       </ErrorBoundary>
                     </div>
-                  </div>
+                  </section>
 
                   {selectedModule.subModules && selectedModule.subModules.length > 0 && (
-                    <div className="interactive-section">
-                      <div className="interactive-header">
+                    <section className="interactive-section">
+                      <header className="interactive-header">
                         <span className="interactive-badge">Interactive Demos</span>
                         <p>Learn by doing</p>
-                      </div>
+                      </header>
 
                       {selectedModule.subModules.map((subModule) => {
                         const DemoComponent = demoComponents[subModule.id];
                         return DemoComponent ? (
-                          <div key={subModule.id} className="demo-block">
+                          <article key={subModule.id} className="demo-block">
                             <h3 className="demo-block-title">{subModule.title}</h3>
                             <p className="demo-block-description">{subModule.description}</p>
                             <div className="demo-block-content">
@@ -272,10 +359,10 @@ export default function MathematicsComprehensive() {
                                 <DemoComponent />
                               </ErrorBoundary>
                             </div>
-                          </div>
+                          </article>
                         ) : null;
                       })}
-                    </div>
+                    </section>
                   )}
                 </>
               )}
@@ -311,7 +398,7 @@ export default function MathematicsComprehensive() {
         .markdown-content p {
           font-size: 15px;
           line-height: 1.8;
-          color: #333;
+          color: #374151;
           margin: 12px 0;
         }
 
@@ -323,7 +410,7 @@ export default function MathematicsComprehensive() {
         .markdown-content li {
           font-size: 15px;
           line-height: 1.7;
-          color: #333;
+          color: #374151;
           margin: 8px 0;
           position: relative;
         }
@@ -495,7 +582,7 @@ export default function MathematicsComprehensive() {
 
         .page-subtitle {
           font-size: 15px;
-          color: #666;
+          color: #374151;
           line-height: 1.6;
           max-width: 700px;
           margin: 0 auto;
@@ -574,7 +661,7 @@ export default function MathematicsComprehensive() {
 
         .section-description {
           font-size: 14px;
-          color: #666;
+          color: #374151;
           line-height: 1.6;
           flex: 1;
         }
@@ -594,7 +681,7 @@ export default function MathematicsComprehensive() {
         }
 
         .footer p {
-          color: #666;
+          color: #374151;
           font-size: 0.9rem;
           margin: 0;
         }
@@ -692,7 +779,7 @@ export default function MathematicsComprehensive() {
 
         .section-tagline {
           font-size: 18px;
-          color: #666;
+          color: #374151;
           margin: 0;
         }
 
@@ -789,7 +876,7 @@ export default function MathematicsComprehensive() {
 
         .demo-block-description {
           font-size: 14px;
-          color: #666;
+          color: #374151;
           margin: 0 0 24px 0;
         }
 
@@ -811,6 +898,19 @@ export default function MathematicsComprehensive() {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+
+        /* Screen reader only - visually hidden but accessible to screen readers */
+        .sr-only, .visually-hidden {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
         }
 
         @media (max-width: 768px) {
