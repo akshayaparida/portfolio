@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeSanitize from 'rehype-sanitize';
 import { mathematicsModules } from '@/data/mathematics';
 import CodeBlock from '@/components/CodeBlock';
 import VectorSpace2D from '@/components/math-visualizations/VectorSpace2D';
@@ -218,8 +219,8 @@ export default function MathematicsComprehensive() {
                   <span className="theory-badge">Theory</span>
                 </div>
                 <div className="markdown-content">
-                  <ReactMarkdown 
-                    rehypePlugins={[rehypeHighlight]}
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeHighlight, rehypeSanitize]}
                     components={{
                       code: CodeBlock
                     }}
