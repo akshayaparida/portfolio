@@ -139,7 +139,7 @@ describe('MathematicsComprehensive Component', () => {
       expect(screen.getByRole('heading', { name: firstModule.title })).toBeInTheDocument();
     });
 
-    const closeButton = screen.getByRole('button', { name: /×/i });
+    const closeButton = screen.getByRole('button', { name: /Close modal/i });
     fireEvent.click(closeButton);
 
     // Should no longer show the modal content

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, KeyboardEvent, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -40,10 +40,10 @@ export default function MathematicsComprehensive() {
   const selectedModule = selectedSection ? mathematicsModules.find(m => m.id === selectedSection) : null;
 
   // Handle keyboard events for accessibility
-  const handleKeyDown = (module: typeof mathematicsModules[0], event: KeyboardEvent) => {
+  const handleKeyDown = (selectedModuleItem: typeof mathematicsModules[0], event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      setSelectedSection(module.id);
+      setSelectedSection(selectedModuleItem.id);
     }
   };
 
@@ -55,9 +55,9 @@ export default function MathematicsComprehensive() {
       }
     };
 
-    window.addEventListener('keydown', handleEsc);
+    window.addEventListener('keydown', handleEsc as EventListener);
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener('keydown', handleEsc as EventListener);
     };
   }, [selectedSection]);
 
@@ -69,9 +69,9 @@ export default function MathematicsComprehensive() {
       triggerRef.current = document.activeElement as HTMLElement;
 
       // Announce modal opening to screen readers
-      const module = mathematicsModules.find(m => m.id === selectedSection);
-      if (module) {
-        setAlertMessage(`Opened ${module.title} module. Press Escape to close.`);
+      const currentModule = mathematicsModules.find(m => m.id === selectedSection);
+      if (currentModule) {
+        setAlertMessage(`Opened ${currentModule.title} module. Press Escape to close.`);
       }
 
       // Simulate a small delay for loading indication
