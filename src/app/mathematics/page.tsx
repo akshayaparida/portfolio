@@ -18,6 +18,13 @@ import ActivationFunctions from '@/components/math-visualizations/ActivationFunc
 import ScalarMultiplication from '@/components/math-visualizations/ScalarMultiplication';
 import gitMetadata from '@/data/git-metadata.json';
 
+// Define the specific module IDs for strong typing
+type MathematicsModuleId =
+  | 'linear-algebra'
+  | 'calculus'
+  | 'probability-stats'
+  | 'linear-models';
+
 const demoComponents: Record<string, React.ComponentType> = {
   'vectors': VectorSpace2D,
   'matrices': MatrixMultiplication,
@@ -30,7 +37,7 @@ const demoComponents: Record<string, React.ComponentType> = {
 
 
 export default function MathematicsComprehensive() {
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [selectedSection, setSelectedSection] = useState<MathematicsModuleId | null>(null);
   const [moduleLoading, setModuleLoading] = useState<boolean>(false);
   const [alertMessage, setAlertMessage] = useState<string>('');
   const modalRef = useRef<HTMLDivElement>(null);
@@ -43,7 +50,7 @@ export default function MathematicsComprehensive() {
   const handleKeyDown = (selectedModuleItem: typeof mathematicsModules[0], event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      setSelectedSection(selectedModuleItem.id);
+      setSelectedSection(selectedModuleItem.id as MathematicsModuleId);
     }
   };
 
@@ -205,7 +212,7 @@ export default function MathematicsComprehensive() {
                   onClick={() => {
                     // Store the element that triggered the modal
                     triggerRef.current = moduleButtonRefs.current[module.id] || document.activeElement as HTMLElement;
-                    setSelectedSection(module.id);
+                    setSelectedSection(module.id as MathematicsModuleId);
                   }}
                   onKeyDown={(e) => handleKeyDown(module, e)}
                   className={`section-card ${selectedSection === module.id ? 'active' : ''}`}
