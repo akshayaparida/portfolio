@@ -1,4 +1,4 @@
-# Akshay Aparida - Portfolio
+# Akshaya Parida - Portfolio
 
 Welcome to my portfolio. This is a comprehensive showcase of my skills, projects, and expertise in AI Engineering, with a focus on the mathematical foundations that power modern AI systems.
 
@@ -68,9 +68,5 @@ This portfolio provides educational content that helps users understand:
 - **Deployment**: Vercel
 - **Package Manager**: pnpm
 - **CI/CD**: GitHub Actions
-
-## License
-
-This portfolio is a showcase of my work and learning journey. Feel free to explore the code to understand my development approach, but please respect the intellectual property of the content.
 
 Built using Next.js, TypeScript, and React.
