@@ -341,6 +341,81 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
           },
         ],
       },
+      {
+        id: "module-2-4",
+        title: "PyTorch: Deep Learning Framework",
+        description:
+          "Master PyTorch, the go-to deep learning framework for research and production. Learn tensors, neural networks, and GPU acceleration.",
+        status: "not-started",
+        detailedContent: `# PyTorch
+
+PyTorch is an open-source machine learning library developed by Meta AI. It provides tensor computation and deep neural networks with GPU acceleration. PyTorch is widely used in both research and production environments due to its flexibility and intuitive design.
+
+### Key Concepts in PyTorch:
+- **Tensors**: Multi-dimensional arrays that can be processed on CPU or GPU
+- **Autograd**: Automatic differentiation for gradient computation
+- **nn.Module**: Base class for neural network modules
+- **Optimizers**: Algorithms for updating model parameters during training
+- **DataLoader**: Efficient data loading and batching for training loops
+`,
+        resources: [
+          {
+            title: "PyTorch Official Tutorial",
+            url: "https://pytorch.org/tutorials/",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch Learn the Basics",
+            url: "https://pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "Deep Learning with PyTorch: A 60 Minute Blitz",
+            url: "https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch Tensors Documentation",
+            url: "https://pytorch.org/docs/stable/tensors.html",
+            type: "documentation",
+          },
+          {
+            title: "PyTorch Neural Networks Tutorial",
+            url: "https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "What is torch.nn really?",
+            url: "https://pytorch.org/tutorials/beginner/nn_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "Building Models with PyTorch",
+            url: "https://pytorch.org/tutorials/beginner/pytorch_with_examples.html",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch 101 Crash Course For Beginners",
+            url: "https://www.youtube.com/watch?v=LyJtbe__2i0",
+            type: "video",
+          },
+          {
+            title: "Transfer Learning with PyTorch",
+            url: "https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch Performance Profiling",
+            url: "https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "Deploying PyTorch Models",
+            url: "https://pytorch.org/tutorials/beginner/saving_loading_models.html",
+            type: "tutorial",
+          },
+        ],
+      },
     ],
   },
 ];
