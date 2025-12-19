@@ -400,6 +400,16 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
             type: "video",
           },
           {
+            title: "Automatic Differentiation (Dive into Deep Learning)",
+            url: "https://d2l.ai/chapter_preliminaries/autograd.html",
+            type: "tutorial",
+          },
+          {
+            title: "Automatic Differentiation with torch.autograd",
+            url: "https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html",
+            type: "tutorial",
+          },
+          {
             title: "Transfer Learning with PyTorch",
             url: "https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html",
             type: "tutorial",
