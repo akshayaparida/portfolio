@@ -390,6 +390,41 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
             type: "tutorial",
           },
           {
+            title: "Build the Neural Network - Official Tutorial",
+            url: "https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "torch.nn.Module - Official Documentation",
+            url: "https://pytorch.org/docs/stable/generated/torch.nn.Module.html",
+            type: "documentation",
+          },
+          {
+            title: "torch.nn.Linear - Official Documentation",
+            url: "https://pytorch.org/docs/stable/generated/torch.nn.Linear.html",
+            type: "documentation",
+          },
+          {
+            title: "Model Parameters and Automatic Tracking",
+            url: "https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html#model-parameters",
+            type: "tutorial",
+          },
+          {
+            title: "Moving Models Between CPU/GPU",
+            url: "https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.to",
+            type: "documentation",
+          },
+          {
+            title: "Train vs Eval Mode (Dropout & BatchNorm)",
+            url: "https://pytorch.org/docs/stable/generated/torch.nn.Module.html#torch.nn.Module.train",
+            type: "documentation",
+          },
+          {
+            title: "Saving and Loading Models (state_dict)",
+            url: "https://pytorch.org/tutorials/beginner/saving_loading_models.html",
+            type: "tutorial",
+          },
+          {
             title: "Building Models with PyTorch",
             url: "https://pytorch.org/tutorials/beginner/pytorch_with_examples.html",
             type: "tutorial",
@@ -417,11 +452,6 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
           {
             title: "PyTorch Performance Profiling",
             url: "https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html",
-            type: "tutorial",
-          },
-          {
-            title: "Deploying PyTorch Models",
-            url: "https://pytorch.org/tutorials/beginner/saving_loading_models.html",
             type: "tutorial",
           },
         ],
