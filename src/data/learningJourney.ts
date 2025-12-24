@@ -454,6 +454,32 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
             url: "https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html",
             type: "tutorial",
           },
+          {
+            title: "PyTorch Loss Functions: The Ultimate Guide",
+            url: "https://neptune.ai/blog/pytorch-loss-functions",
+            type: "article",
+          },
+          {
+            title: "CrossEntropyLoss vs BCEWithLogitsLoss - When to Use Each",
+            url: "https://discuss.pytorch.org/t/loss-function-crossentropyloss-vs-bcewithlogitsloss/16089",
+            type: "article",
+          },
+          {
+            title: "Understanding Cross-Entropy Loss in PyTorch",
+            url: "https://www.educative.io/answers/what-is-cross-entropy-loss-in-pytorch",
+            type: "article",
+          },
+          {
+            title:
+              "BCE, BCEWithLogits, CrossEntropy, and NLL Loss Functions Explained",
+            url: "https://www.youtube.com/watch?v=3c4haTXsOAs",
+            type: "video",
+          },
+          {
+            title: "PyTorch Loss Functions Documentation",
+            url: "https://pytorch.org/docs/stable/nn.html#loss-functions",
+            type: "documentation",
+          },
         ],
       },
     ],
