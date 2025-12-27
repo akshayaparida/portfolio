@@ -357,6 +357,66 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
 - **nn.Module**: Base class for neural network modules
 - **Optimizers**: Algorithms for updating model parameters during training
 - **DataLoader**: Efficient data loading and batching for training loops
+
+### PyTorch Optimizers: The Engine of Learning
+
+PyTorch optimizers automate the process of updating model weights to minimize the loss function. They take gradients computed by autograd and intelligently update parameters to improve model performance.
+
+#### Essential Optimizer Workflow
+
+The typical training loop follows this pattern:
+
+\`\`\`python
+# 1. Create optimizer with model parameters and learning rate
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+# 2. Training loop
+for batch in dataloader:
+    # Clear old gradients to prevent accumulation
+    optimizer.zero_grad()
+
+    # Forward pass
+    outputs = model(inputs)
+    loss = criterion(outputs, targets)
+
+    # Compute gradients using autograd
+    loss.backward()
+
+    # Update model parameters
+    optimizer.step()
+\`\`\`
+
+**Critical Rule**: Always call \`optimizer.zero_grad()\` before \`loss.backward()\` and \`optimizer.step()\`. Forgetting to call \`zero_grad()\` causes gradients to accumulate across batches, leading to incorrect updates - one of the most common bugs in PyTorch training loops.
+
+#### Common PyTorch Optimizers
+
+**SGD (Stochastic Gradient Descent)**:
+- Basic optimizer that updates parameters in the direction opposite to the gradient
+- Can include momentum for faster convergence
+- Simple but can be slow for complex problems
+
+**Adam (Adaptive Moment Estimation)**:
+- The recommended default choice for most applications
+- Adapts learning rates automatically for different parameter scales
+- Combines benefits of momentum and adaptive learning rates
+- Very effective and robust to hyperparameter choices
+
+**RMSprop (Root Mean Square Propagation)**:
+- Particularly effective for recurrent neural networks (RNNs) like LSTMs and GRUs
+- Adapts learning rates based on recent gradient magnitudes
+- Good for non-stationary objectives
+
+**AdamW**:
+- An improvement over Adam that decouples weight decay
+- Better for large models like BERT and GPT
+- Provides more stable regularization
+
+#### Optimizer Selection Guide
+
+- **Adam/AdamW**: Default choice for most deep learning tasks - robust and adaptive
+- **SGD with momentum**: When you need fine control over training dynamics
+- **RMSprop**: For RNNs and problems with non-stationary objectives
+- **AdamW**: For large transformer models and when using weight decay
 `,
         resources: [
           {
@@ -479,6 +539,31 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
             title: "PyTorch Loss Functions Documentation",
             url: "https://pytorch.org/docs/stable/nn.html#loss-functions",
             type: "documentation",
+          },
+          {
+            title: "PyTorch Optimizers Documentation",
+            url: "https://pytorch.org/docs/stable/optim.html",
+            type: "documentation",
+          },
+          {
+            title: "Understanding Adam Optimizer",
+            url: "https://towardsdatascience.com/understanding-optimizer-algorithms-adam-and-adamw-7fb948478709",
+            type: "article",
+          },
+          {
+            title: "PyTorch Optimization: A Complete Guide",
+            url: "https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "Why You Need to Zero Gradients in PyTorch",
+            url: "https://medium.com/@lazyprogrammerofficial/in-pytorch-why-do-we-need-to-call-optimizer-zero-grad-8e19fdc1ad2f",
+            type: "article",
+          },
+          {
+            title: "Gradient Descent Optimization Algorithms Explained",
+            url: "https://ruder.io/optimizing-gradient-descent/",
+            type: "article",
           },
         ],
       },
