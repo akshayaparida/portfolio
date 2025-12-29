@@ -358,6 +358,111 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
 - **Optimizers**: Algorithms for updating model parameters during training
 - **DataLoader**: Efficient data loading and batching for training loops
 
+### PyTorch Data Loading: Dataset and DataLoader Best Practices
+
+PyTorch provides two data primitives: torch.utils.data.Dataset and torch.utils.data.DataLoader that allow you to use pre-loaded datasets as well as your own data. Proper data loading is crucial for efficient training.
+
+#### Dataset: The Data Container
+
+A Dataset stores your samples and labels. PyTorch provides two main approaches:
+
+**1. Built-in Datasets** (e.g., FashionMNIST, CIFAR10)
+- Ready-to-use datasets for prototyping and benchmarking
+- Common parameters: root, train, download, transform
+
+**2. Custom Datasets** - Implement by inheriting from torch.utils.data.Dataset
+- Must implement three essential functions:
+  - \`__init__\`: Initialize directories, annotations file, and transforms
+  - \`__len__\`: Return number of samples in dataset
+  - \`__getitem__\`: Load and return sample at given index
+
+**3. TensorDataset** - For simple tensor data
+- Convenient method to wrap already loaded tensors into a Dataset
+- Useful when your data is already in tensor format
+- Example: \`TensorDataset(features_tensor, labels_tensor)\`
+
+#### DataLoader: The Data Iterator
+
+DataLoader wraps an iterable around the Dataset for easy access and handles batching, shuffling, and parallel loading automatically.
+
+**Key Parameters:**
+
+**batch_size**: Number of samples per batch
+- Enables efficient use of GPU parallelization
+- Typical values: 32, 64, 128, 256 (depending on GPU memory)
+
+**shuffle**: Randomize data order each epoch
+- Prevents model from memorizing data sequence
+- Eliminates sequential label problems (each batch gets a mix)
+- Crucial for training stability
+
+**num_workers**: Parallel data loading processes
+- Enables multi-process data loading to avoid computation blocking
+- Start with num_workers=0 for debugging, then scale up
+- Positive integers enable parallel loading (e.g., 4, 8)
+- Reduces bottlenecks and GPU idle time
+
+**persistent_workers**: Keep workers alive between epochs
+- When True, keeps worker processes alive between epochs
+- Avoids startup overhead each time
+- Beneficial for multi-epoch training
+- Reduces time spent initializing workers repeatedly
+
+#### Essential Data Loading Pattern
+
+\`\`\`python
+from torch.utils.data import Dataset, DataLoader, TensorDataset
+import torch
+
+# For simple tensor data
+features = torch.randn(1000, 784)  # 1000 samples, 784 features each
+labels = torch.randint(0, 10, (1000,))  # 1000 class labels
+dataset = TensorDataset(features, labels)
+
+# For custom data loading (inheriting from Dataset)
+class CustomDataset(Dataset):
+    def __init__(self, data_path, transform=None):
+        # Initialize your data here
+        self.data_path = data_path
+        self.transform = transform
+
+    def __len__(self):
+        # Return number of samples
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        # Load and return sample at index idx
+        sample = load_sample(self.data_path, idx)
+        if self.transform:
+            sample = self.transform(sample)
+        return sample
+
+# Create DataLoader with best practices
+dataloader = DataLoader(
+    dataset,
+    batch_size=64,              # Mini-batches for efficient training
+    shuffle=True,               # Randomize each epoch
+    num_workers=4,              # Parallel data loading
+    persistent_workers=True     # Keep workers alive between epochs
+)
+
+# Iterate through data during training
+for batch_features, batch_labels in dataloader:
+    # Your training code here
+    outputs = model(batch_features)
+    loss = criterion(outputs, batch_labels)
+    # ... backpropagation, optimizer steps, etc.
+\`\`\`
+
+#### Best Practices Summary:
+
+1. **Stop manual batching**: Let DataLoader handle batching automatically
+2. **Use TensorDataset** for simple tensor data; inherit from Dataset for custom needs
+3. **Always set shuffle=True** for training data to ensure randomization
+4. **Use appropriate batch_size** based on your GPU memory (start with 32-64)
+5. **Set num_workers** to positive values for faster data loading (start with 2-4)
+6. **Use persistent_workers=True** for multi-epoch training to reduce overhead
+
 ### PyTorch Optimizers: The Engine of Learning
 
 PyTorch optimizers automate the process of updating model weights to minimize the loss function. They take gradients computed by autograd and intelligently update parameters to improve model performance.
@@ -563,6 +668,31 @@ for batch in dataloader:
           {
             title: "Gradient Descent Optimization Algorithms Explained",
             url: "https://ruder.io/optimizing-gradient-descent/",
+            type: "article",
+          },
+          {
+            title: "PyTorch Datasets and DataLoaders Tutorial",
+            url: "https://pytorch.org/tutorials/beginner/basics/data_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch DataLoader Best Practices",
+            url: "https://www.codecademy.com/article/how-to-use-pytorch-dataloader-custom-datasets-transformations-and-efficient-techniques",
+            type: "tutorial",
+          },
+          {
+            title: "Writing Custom Datasets, DataLoaders and Transforms",
+            url: "https://pytorch.org/tutorials/beginner/data_loading_tutorial.html",
+            type: "tutorial",
+          },
+          {
+            title: "PyTorch Data Loading Performance Guide",
+            url: "https://pytorch.org/docs/stable/data.html",
+            type: "documentation",
+          },
+          {
+            title: "Understanding persistent_workers in PyTorch DataLoader",
+            url: "https://discuss.pytorch.org/t/dataloader-persistent-workers-usage/189329",
             type: "article",
           },
         ],
