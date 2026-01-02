@@ -358,6 +358,31 @@ PyTorch is an open-source machine learning library developed by Meta AI. It prov
 - **Optimizers**: Algorithms for updating model parameters during training
 - **DataLoader**: Efficient data loading and batching for training loops
 
+### Saving Models: The Modern Standard (Safetensors)
+
+While PyTorch's default \`torch.save\` uses Python's \`pickle\` module, the industry is moving towards \`safetensors\` for security and performance.
+
+**Why avoid default Pickle (\`.pt\`, \`.pth\`)?**
+- **Security Risk**: Pickle files can execute arbitrary code during loading. Never load untrusted \`.pt\` files.
+- **Performance**: Pickle can be slow and memory-intensive for large models.
+
+**Why use Safetensors?**
+- **Safe**: It's a pure data format that cannot execute code.
+- **Fast**: Uses Zero-Copy loading (memory mapping) for instant loading speeds.
+- **Lazy Loading**: Efficiently load only parts of a model (e.g., specific layers).
+
+**How to use:**
+\`\`\`python
+from safetensors.torch import save_file, load_file
+
+# Saving
+save_file(model.state_dict(), "model.safetensors")
+
+# Loading
+state_dict = load_file("model.safetensors")
+model.load_state_dict(state_dict)
+\`\`\`
+
 ### PyTorch Data Loading: Dataset and DataLoader Best Practices
 
 PyTorch provides two data primitives: torch.utils.data.Dataset and torch.utils.data.DataLoader that allow you to use pre-loaded datasets as well as your own data. Proper data loading is crucial for efficient training.
@@ -694,6 +719,11 @@ for batch in dataloader:
             title: "Understanding persistent_workers in PyTorch DataLoader",
             url: "https://discuss.pytorch.org/t/dataloader-persistent-workers-usage/189329",
             type: "article",
+          },
+          {
+            title: "Safetensors: Fast & Safe Model Serialization",
+            url: "https://github.com/huggingface/safetensors",
+            type: "documentation",
           },
         ],
       },
