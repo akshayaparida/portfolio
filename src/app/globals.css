@@ -84,9 +84,12 @@ a[href*="linkedin.com"] i {
   color: #0077b5; /* LinkedIn blue */
 }
 
-a[href*="x.com"] i,
 a[href*="twitter.com"] i {
-  color: #1DA1F2; /* Twitter/X blue */
+  color: #1DA1F2; /* Twitter blue */
+}
+
+a[href*="x.com"] i {
+  color: #000000; /* X black */
 }
 
 /* The Hugging Face logo will use its own colors via the .Color variant */

@@ -7,16 +7,32 @@ export default function Header() {
       <Link href="/">Akshaya Parida</Link>
       <div className="header-right">
         <nav>
-          <a target="_blank" href="https://github.com/akshayaparida" rel="noopener noreferrer">
+          <a
+            target="_blank"
+            href="https://github.com/akshayaparida"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-github"></i>
           </a>
-          <a target="_blank" href="https://www.linkedin.com/in/akshaya-parida-7036a426a" rel="noopener noreferrer">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/akshaya-parida-7036a426a"
+            rel="noopener noreferrer"
+          >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <a target="_blank" href="https://x.com/akshaya_parida_" rel="noopener noreferrer">
-            <i className="fa-brands fa-twitter"></i>
+          <a
+            target="_blank"
+            href="https://x.com/akshaya_parida_"
+            rel="noopener noreferrer"
+          >
+            <i className="fa-brands fa-x-twitter"></i>
           </a>
-          <a target="_blank" href="https://huggingface.co/akshayaparida" rel="noopener noreferrer">
+          <a
+            target="_blank"
+            href="https://huggingface.co/akshayaparida"
+            rel="noopener noreferrer"
+          >
             <HuggingFace.Color size={20} />
           </a>
         </nav>
