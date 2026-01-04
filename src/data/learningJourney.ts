@@ -725,6 +725,26 @@ for batch in dataloader:
             url: "https://github.com/huggingface/safetensors",
             type: "documentation",
           },
+          {
+            title: "PyTorch Reproducibility Guide",
+            url: "https://pytorch.org/docs/stable/notes/randomness.html",
+            type: "documentation",
+          },
+          {
+            title: "PyTorch CUDA Semantics (Device Management)",
+            url: "https://pytorch.org/docs/stable/notes/cuda.html",
+            type: "documentation",
+          },
+          {
+            title: "Adjusting Learning Rate (Schedulers)",
+            url: "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate",
+            type: "documentation",
+          },
+          {
+            title: "Autograd Mechanics (Understanding Detach)",
+            url: "https://pytorch.org/docs/stable/notes/autograd.html",
+            type: "documentation",
+          },
         ],
       },
     ],
