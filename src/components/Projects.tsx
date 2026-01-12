@@ -7,26 +7,24 @@ export default function Projects() {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in-visible");
-        }
-      });
-    }, observerOptions);
-
-    const currentCards = cardsRef.current;
-    currentCards.forEach((card) => {
+    cardsRef.current.forEach((card) => {
       if (card) observer.observe(card);
     });
 
     return () => {
-      currentCards.forEach((card) => {
+      cardsRef.current.forEach((card) => {
         if (card) observer.unobserve(card);
       });
     };
@@ -51,11 +49,11 @@ export default function Projects() {
       title: "GitHub Contribution Tracker",
       date: "Feb 14, 2025",
       description:
-        "This project allows you to track the open/closed issues and pull requests (PRs) for any GitHub user.",
+        "This project allows you to track the open/closed issues and pull requests (PRs) for any GitHub user. Visualize your open source impact with clean, interactive charts.",
       tech: ["Reactjs", "Nextjs", "TailwindCSS"],
       links: [
         {
-          label: "Live",
+          label: "Live Demo",
           url: "https://github-contribution-tracker.vercel.app",
         },
         {
@@ -68,54 +66,56 @@ export default function Projects() {
   ];
 
   return (
-    <section>
-      <h2>Latest Projects</h2>
-      <div className="cards-grid">
-        {projects.map((project, index) => (
-          <article
-            key={index}
-            className="project-card"
-            ref={(el: HTMLDivElement | null) => {
-              cardsRef.current[index] = el;
-            }}
-          >
-            <div>
-              <h3>{project.title}</h3>
-              <time dateTime={project.date}>{project.date}</time>
-              <div className="tech-list">
+    <section className="projects-section">
+      <h2 className="projects-title">Latest Projects</h2>
+      {projects.map((project, index) => (
+        <article
+          key={index}
+          className="project-card"
+          ref={(el: HTMLDivElement | null) => {
+            cardsRef.current[index] = el;
+          }}
+        >
+          <div className="project-content">
+            <div className="project-info">
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-date">{project.date}</p>
+              <div className="project-tech">
                 {project.tech.map((tech, techIndex) => (
-                  <div key={techIndex} className="card-button-secondary">
-                    <p>{tech}</p>
-                  </div>
+                  <span key={techIndex} className="skill-tag">
+                    {tech}
+                  </span>
                 ))}
               </div>
-              <p>{project.description}</p>
+              <p className="project-description">{project.description}</p>
               <div className="project-links">
                 {project.links.map((link, linkIndex) => (
                   <a
                     key={linkIndex}
-                    target="_blank"
                     href={link.url}
+                    target="_blank"
                     rel="noopener noreferrer"
+                    className={`project-btn ${linkIndex === 0 ? "primary" : "secondary"}`}
                   >
+                    {link.label === "GitHub" && (
+                      <i className="fa-brands fa-github"></i>
+                    )}
                     {link.label}
                   </a>
                 ))}
               </div>
             </div>
-            <div className="img-div">
+            <div className="project-image-wrapper">
               <Image
-                className="big-img"
                 src={project.image}
-                alt={`${project.title} project screenshot showing ${project.description.substring(0, 50)}...`}
-                width={300}
-                height={200}
+                alt={`${project.title} project screenshot`}
+                fill
                 loading="lazy"
               />
             </div>
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </section>
   );
 }

@@ -12,11 +12,6 @@ export const socialLinks: SocialLink[] = [
     icon: "fa-brands fa-linkedin",
   },
   {
-    platform: "x",
-    url: "https://x.com/akshaya_parida_",
-    icon: "fa-brands fa-x-twitter",
-  },
-  {
     platform: "huggingface",
     url: "https://huggingface.co/akshayaparida",
     icon: "",

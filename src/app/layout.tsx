@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eczar, Grenze } from "next/font/google";
+import { Eczar } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import { Analytics } from "@vercel/analytics/react";
@@ -9,12 +9,6 @@ const eczar = Eczar({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-eczar",
-});
-
-const grenze = Grenze({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-grenze",
 });
 
 export const metadata: Metadata = {
@@ -53,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Akshaya Parida Portfolio",
     images: [
       {
-        url: "/og-image.jpg", // You'll want to create this
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Akshaya Parida Portfolio",
@@ -65,7 +59,7 @@ export const metadata: Metadata = {
     title: "Akshaya Parida - AI Engineer Portfolio",
     description:
       "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
-    images: ["/og-image.jpg"], // You'll want to create this
+    images: ["/og-image.jpg"],
     creator: "@akshaya_parida_",
   },
   robots: {
@@ -80,8 +74,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code", // You'll want to add your actual verification code
-    yandex: "yandex-verification-code", // You'll want to add your actual verification code
+    google: "google-site-verification-code",
+    yandex: "yandex-verification-code",
   },
 };
 
@@ -92,7 +86,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${eczar.variable} ${grenze.variable}`}>
+      <body className={eczar.variable}>
         <StructuredData />
         {children}
         <Analytics />

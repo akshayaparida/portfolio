@@ -11,9 +11,9 @@ export default function StatusBadge({
 }: StatusBadgeProps) {
   return (
     <div
-      className={`status-item ${variant === "highlight" ? "status-badge" : ""}`}
+      className={`status-badge ${variant === "highlight" ? "highlight" : ""}`}
     >
-      <i className={`${icon} status-icon`}></i>
+      <i className={icon}></i>
       <span>{text}</span>
     </div>
   );

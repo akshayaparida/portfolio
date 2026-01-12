@@ -4,16 +4,20 @@ interface TechnicalSkillsProps {
   categories: SkillCategory[];
 }
 
+const iconColors = ["green", "blue", "purple", "orange"];
+
 export default function TechnicalSkills({ categories }: TechnicalSkillsProps) {
   return (
-    <section className="technical-skills">
-      <h3 className="skills-title">Skills</h3>
+    <section className="skills-section">
+      <h3 className="section-title">Technical Skills</h3>
       <div className="skills-grid">
-        {categories.map((category) => (
-          <div key={category.title} className="skill-category">
-            <div className="skill-category-header">
-              <i className={`${category.icon} skill-icon`}></i>
-              <span className="skill-category-title">{category.title}</span>
+        {categories.map((category, index) => (
+          <div key={category.title} className="skill-card">
+            <div className="skill-card-header">
+              <div className={`skill-icon ${iconColors[index % 4]}`}>
+                <i className={category.icon}></i>
+              </div>
+              <h4 className="skill-card-title">{category.title}</h4>
             </div>
             <div className="skill-tags">
               {category.skills.map((skill) => (

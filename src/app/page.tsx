@@ -2,25 +2,20 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CursorEffect from "@/components/CursorEffect";
-import NavigationSidebar from "@/components/NavigationSidebar";
-import ConnectCard from "@/components/ConnectCard";
-import { navigationLinks } from "@/data/navigationLinks";
+import Sidebar from "@/components/Sidebar";
 
 export default function Home() {
   return (
-    <>
-      <CursorEffect />
+    <div className="container">
       <Header />
-      <main>
-        <Hero />
-        <Projects />
-      </main>
+      <div className="main-grid">
+        <main>
+          <Hero />
+          <Projects />
+        </main>
+        <Sidebar />
+      </div>
       <Footer />
-
-      {/* Sticky Sidebar - Desktop Only */}
-      <NavigationSidebar links={navigationLinks} />
-      <ConnectCard />
-    </>
+    </div>
   );
 }

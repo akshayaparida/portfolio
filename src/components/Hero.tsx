@@ -41,18 +41,17 @@ export default function Hero() {
   }, []);
 
   return (
-    <section>
-      <div className="intro-header">
-        <h1>Hi, I&apos;m Akshaya Parida</h1>
-        <h3 className="intro-subtitle">AI Engineering</h3>
-      </div>
-      <p className="intro-description">
-        Currently hands-on learning in AI engineering, building robust systems
-        and exploring the frontiers of large language models.
-      </p>
+    <>
+      <section>
+        <h1 className="hero-title">Hi, I&apos;m Akshaya Parida</h1>
+        <p className="hero-subtitle">AI Engineering</p>
+        <p className="hero-description">
+          Currently hands-on learning in AI engineering, building robust systems
+          and exploring the frontiers of large language models.
+        </p>
+      </section>
 
-      {/* Status Badges */}
-      <div className="status-widget">
+      <div className="status-badges">
         <StatusBadge icon="fa-solid fa-location-dot" text="Bengaluru, India" />
         <StatusBadge icon="fa-regular fa-clock" text={currentTime} />
         <StatusBadge
@@ -62,41 +61,22 @@ export default function Hero() {
         />
       </div>
 
-      {/* Contact Links */}
-      <div className="links-container">
-        <i className="fa-solid link-arrow fa-arrow-right"></i>
-        <a href="mailto:akshayaparida2811@gmail.com">Email me</a>
-        <a
-          target="_blank"
-          href="https://github.com/akshayaparida"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-        <a
-          target="_blank"
-          href="https://www.linkedin.com/in/akshaya-parida-7036a426a/"
-          rel="noopener noreferrer"
-        >
-          LinkedIn
-        </a>
-      </div>
-
-      {/* Technical Skills */}
       <TechnicalSkills categories={skillCategories} />
 
-      {/* GitHub Contributions */}
       <div className="github-section">
-        <h3 className="github-title">GitHub Contributions {currentDate}</h3>
-        <div className="github-contribution-wrapper">
+        <div className="github-header">
+          <h3 className="section-title">GitHub Contributions</h3>
+          <span className="github-date">{currentDate}</span>
+        </div>
+        <div className="github-wrapper">
           <a
             href="https://github.com/akshayaparida"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
-              src="https://ghchart.rshah.org/39d353/akshayaparida"
-              alt={`GitHub contribution graph for Akshaya Parida showing activity on ${currentDate}`}
+              src="https://ghchart.rshah.org/10b981/akshayaparida"
+              alt={`GitHub contribution graph for Akshaya Parida`}
               className="github-chart"
               width={800}
               height={150}
@@ -106,6 +86,6 @@ export default function Hero() {
           </a>
         </div>
       </div>
-    </section>
+    </>
   );
 }
