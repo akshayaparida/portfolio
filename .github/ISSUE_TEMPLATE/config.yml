@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Portfolio Website
+    url: https://akshayaparida.github.io/portfolio
+    about: Check out the live portfolio website
+  - name: Ask a Question
+    url: https://github.com/akshayaparida/portfolio/discussions
+    about: Ask questions and discuss with the community

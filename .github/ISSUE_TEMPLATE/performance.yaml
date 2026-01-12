@@ -1,0 +1,90 @@
+name: Performance Issue
+about: Report a performance problem with the portfolio website
+title: '[Performance]: '
+labels: 'performance,triage'
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a performance issue. Please provide as much detail as possible to help us identify and resolve the problem.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the Performance Issue
+      description: What performance issue are you experiencing?
+      placeholder: Describe the performance problem you're encountering...
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: Which page or section of the website is experiencing the performance issue?
+      placeholder: ex. https://portfolio.example.com/projects, /about section
+    validations:
+      required: true
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of performance issue are you experiencing?
+      options:
+        - Slow loading time
+        - High memory usage
+        - High CPU usage
+        - Poor rendering performance
+        - Other (please specify)
+    validations:
+      required: true
+  - type: input
+    id: metrics
+    attributes:
+      label: Performance Metrics
+      description: If available, provide specific metrics (load time, memory usage, etc.)
+      placeholder: ex. Page takes 8 seconds to load, Memory usage 500MB+
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: What browser, OS, device, etc. are you using? Include version numbers.
+      placeholder: ex. Chrome 115, macOS 13.5, iPhone 14
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How do you reproduce the performance issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Observe performance degradation
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Performance
+      description: What performance did you expect?
+      placeholder: A clear description of the expected performance...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Performance Data
+      description: If applicable, add screenshots, performance profiler data, or other relevant information.
+      placeholder: Paste screenshots or performance data here
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the performance issue here.
+    validations:
+      required: false

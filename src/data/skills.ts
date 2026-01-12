@@ -2,43 +2,44 @@ import { SkillCategory } from "@/types/portfolio";
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Machine Learning",
-    icon: "fa-solid fa-brain",
-    skills: [
-      { name: "TensorFlow" },
-      { name: "Scikit-learn" },
-      { name: "OpenCV" },
-      { name: "Spark" },
-    ],
-  },
-  {
-    title: "GenAI & LLMs",
-    icon: "fa-solid fa-robot",
-    skills: [
-      { name: "LangChain" },
-      { name: "LlamaIndex" },
-      { name: "RAG" },
-      { name: "Transformers" },
-    ],
-  },
-  {
     title: "Languages",
     icon: "fa-solid fa-code",
     skills: [
-      { name: "Python" },
       { name: "TypeScript" },
-      { name: "C++" },
-      { name: "SQL" },
+      { name: "Python" },
+      { name: "Golang" },
+      { name: "JavaScript" },
     ],
   },
   {
-    title: "Tools & Deployment",
+    title: "ML & AI",
+    icon: "fa-solid fa-brain",
+    skills: [
+      { name: "PyTorch" },
+      { name: "Pandas" },
+      { name: "NumPy" },
+      { name: "LangChain" },
+      { name: "LangGraph" },
+      { name: "HuggingFace" },
+      { name: "MLflow" },
+      { name: "Ollama" },
+      { name: "Docling" },
+    ],
+  },
+  {
+    title: "Web & Database",
+    icon: "fa-solid fa-globe",
+    skills: [{ name: "React.js" }, { name: "MongoDB" }, { name: "PostgreSQL" }],
+  },
+  {
+    title: "Tools & DevOps",
     icon: "fa-solid fa-server",
     skills: [
-      { name: "AWS" },
       { name: "Docker" },
       { name: "Git" },
-      { name: "Linux" },
+      { name: "AWS" },
+      { name: "DVC" },
+      { name: "uv" },
     ],
   },
 ];

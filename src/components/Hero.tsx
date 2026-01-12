@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import StatusBadge from "./StatusBadge";
+import TechnicalSkills from "./TechnicalSkills";
+import { skillCategories } from "@/data/skills";
 
 export default function Hero() {
   const [currentTime, setCurrentTime] = useState("Loading...");
@@ -41,41 +44,56 @@ export default function Hero() {
     <section>
       <div className="intro-header">
         <h1>Hi, I&apos;m Akshaya Parida</h1>
-        <h3>AI Engineering</h3>
+        <h3 className="intro-subtitle">AI Engineering</h3>
       </div>
       <p className="intro-description">
-        Currently hands-on learning in AI engineering.
+        Currently hands-on learning in AI engineering, building robust systems
+        and exploring the frontiers of large language models.
       </p>
+
+      {/* Status Badges */}
       <div className="status-widget">
-        <div className="status-item">
-          <i className="fa-solid fa-location-dot status-icon"></i>
-          <span>Bengaluru, India</span>
-        </div>
-        <div className="status-item">
-          <i className="fa-regular fa-clock status-icon"></i>
-          <span id="live-time">{currentTime}</span>
-        </div>
-        <div className="status-item status-badge">
-          <i className="fa-solid fa-circle-check status-icon"></i>
-          <span>Open to AI Engineering roles</span>
-        </div>
+        <StatusBadge icon="fa-solid fa-location-dot" text="Bengaluru, India" />
+        <StatusBadge icon="fa-regular fa-clock" text={currentTime} />
+        <StatusBadge
+          icon="fa-solid fa-circle-check"
+          text="Open to AI Engineering roles"
+          variant="highlight"
+        />
       </div>
 
+      {/* Contact Links */}
       <div className="links-container">
         <i className="fa-solid link-arrow fa-arrow-right"></i>
         <a href="mailto:akshayaparida2811@gmail.com">Email me</a>
-        <a target="_blank" href="https://github.com/akshayaparida" rel="noopener noreferrer">
+        <a
+          target="_blank"
+          href="https://github.com/akshayaparida"
+          rel="noopener noreferrer"
+        >
           GitHub
         </a>
-        <a target="_blank" href="https://www.linkedin.com/in/akshaya-parida-7036a426a/" rel="noopener noreferrer">
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/akshaya-parida-7036a426a/"
+          rel="noopener noreferrer"
+        >
           LinkedIn
         </a>
       </div>
 
+      {/* Technical Skills */}
+      <TechnicalSkills categories={skillCategories} />
+
+      {/* GitHub Contributions */}
       <div className="github-section">
         <h3 className="github-title">GitHub Contributions {currentDate}</h3>
         <div className="github-contribution-wrapper">
-          <a href="https://github.com/akshayaparida" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/akshayaparida"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               src="https://ghchart.rshah.org/39d353/akshayaparida"
               alt={`GitHub contribution graph for Akshaya Parida showing activity on ${currentDate}`}
