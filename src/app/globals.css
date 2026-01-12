@@ -133,6 +133,24 @@ a[href*="x.com"] i {
   top: 1.5rem;
 }
 
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social-link {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-link:hover {
+  color: #666666;
+  transform: scale(1.1);
+}
+
 .header-learning-links {
   display: flex;
   flex-direction: column;
@@ -595,6 +613,17 @@ h2 {
   background: #333333;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-links a.live-demo,
+.project-links a:first-child:has([href*="vercel"]) {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.project-links a.live-demo:hover,
+.project-links a:first-child:has([href*="vercel"]):hover {
+  background: var(--color-primary-dark);
 }
 
 .img-div {

@@ -6,13 +6,13 @@ interface SocialLinksProps {
   size?: "sm" | "md" | "lg";
 }
 
-const sizeClasses = {
+const sizeClasses: Record<string, string> = {
   sm: "text-base",
   md: "text-xl",
   lg: "text-2xl",
 };
 
-const iconSizes = {
+const iconSizes: Record<string, number> = {
   sm: 16,
   md: 20,
   lg: 24,
@@ -20,14 +20,14 @@ const iconSizes = {
 
 export default function SocialLinks({ links, size = "md" }: SocialLinksProps) {
   return (
-    <nav className="flex items-center gap-4">
+    <nav className="social-links">
       {links.map((link) => (
         <a
           key={link.platform}
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:opacity-70 transition-opacity"
+          className="social-link"
           aria-label={`Visit ${link.platform}`}
         >
           {link.platform === "huggingface" ? (
