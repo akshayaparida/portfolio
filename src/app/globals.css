@@ -103,18 +103,72 @@ header > a {
 }
 
 /* Hero Section */
+.hero-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.5);
+  border: 3px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.hero-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hero-avatar-wrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.hero-avatar-wrapper .hero-avatar {
+  width: 100%;
+  height: 100%;
+  border: none;
+  transform: scale(1.4);
+  object-position: center 30%;
+}
+
+.hero-text {
+  flex: 1;
+}
 .hero-title {
   font-family: var(--font-eczar), Georgia, serif;
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   color: #111827;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.wave-hand {
+  display: inline-block;
+  animation: wave 2.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(-4deg); }
+  50%, 100% { transform: rotate(0deg); }
 }
 
 @media (min-width: 640px) {
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.625rem;
   }
 }
 
@@ -216,99 +270,41 @@ header > a {
   background: #d1d5db;
 }
 
-/* Skills Section */
-.skills-section {
-  margin-top: 2.5rem;
-}
-
-.section-title {
-  font-family: var(--font-space-grotesk), sans-serif;
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: #111827;
-  margin-bottom: 1.5rem;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.skill-card {
-  padding: 1.25rem;
-  border-radius: var(--radius-xl);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s;
-}
-
-.skill-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.skill-card-header {
+/* Skills Section Compact */
+.skills-section-compact {
+  margin-top: 1.5rem;
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.skill-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius);
-  margin-right: 0.75rem;
-  font-size: 1.25rem;
-}
-
-.skill-icon.green {
-  background: #ecfdf5;
-  color: #059669;
-}
-
-.skill-icon.blue {
-  background: #eff6ff;
-  color: #2563eb;
-}
-
-.skill-icon.purple {
-  background: #faf5ff;
-  color: #7c3aed;
-}
-
-.skill-icon.orange {
-  background: #fff7ed;
-  color: #ea580c;
-}
-
-.skill-card-title {
-  font-weight: 700;
-  color: #111827;
-}
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-.skill-tag {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
+.skill-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.skill-category-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  min-width: fit-content;
+  padding-top: 0.125rem;
+}
+
+.skills-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.skill-tag-compact {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
   font-weight: 500;
   border-radius: 0.25rem;
   background: #f3f4f6;
-  color: #4b5563;
+  color: #374151;
   border: 1px solid #e5e7eb;
 }
 
@@ -365,85 +361,106 @@ header > a {
 }
 
 .sidebar-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: #6b7280;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.375rem;
 }
 
 .sidebar-links {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.25rem;
 }
 
 .sidebar-link {
-  display: flex;
-  align-items: center;
-  color: #4b5563;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  color: #2563eb;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.125rem 0;
+  transition: color 0.2s ease;
 }
 
 .sidebar-link:hover {
-  color: var(--primary);
-}
-
-.sidebar-link i {
-  margin-right: 0.5rem;
-  color: #9ca3af;
-  font-size: 1.125rem;
-  transition: color 0.2s;
-}
-
-.sidebar-link:hover i {
-  color: var(--primary);
-}
-
-.sidebar-link .arrow {
-  margin-left: auto;
-  opacity: 0;
-  color: var(--primary);
-  transition: opacity 0.2s;
-}
-
-.sidebar-link:hover .arrow {
-  opacity: 1;
+  color: #1d4ed8;
 }
 
 /* Connect Card */
 .connect-card {
-  margin-top: 3rem;
-  padding: 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
   border-radius: var(--radius-xl);
   background: var(--surface);
   border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.connect-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #111827;
+  border-radius: 3px 0 0 3px;
 }
 
 .connect-title {
   font-weight: 700;
+  font-size: 0.875rem;
   color: #111827;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.connect-title::before {
+  content: '👋';
+  font-size: 0.875rem;
 }
 
 .connect-text {
-  font-size: 0.875rem;
-  color: #4b5563;
-  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 }
 
 .connect-link {
-  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.825rem;
   font-weight: 600;
-  color: var(--primary);
+  color: #374151;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
   text-decoration: none;
+  transition: all 0.25s ease;
 }
 
 .connect-link:hover {
-  text-decoration: underline;
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+}
+
+.connect-link i {
+  font-size: 0.75rem;
+  transition: transform 0.25s ease;
+}
+
+.connect-link:hover i {
+  transform: translateX(2px);
 }
 
 /* Projects Section */

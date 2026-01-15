@@ -12,7 +12,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "ML & AI",
+    title: "AI Eng",
     icon: "fa-solid fa-brain",
     skills: [
       { name: "PyTorch" },
@@ -32,7 +32,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [{ name: "React.js" }, { name: "MongoDB" }, { name: "PostgreSQL" }],
   },
   {
-    title: "Tools & DevOps",
+    title: "Tools & MLOps",
     icon: "fa-solid fa-server",
     skills: [
       { name: "Docker" },

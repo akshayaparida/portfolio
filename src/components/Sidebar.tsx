@@ -5,13 +5,11 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-inner">
-        <h4 className="sidebar-title">Explore</h4>
+        <h4 className="sidebar-title">Explore more stuff</h4>
         <nav className="sidebar-links">
           {navigationLinks.map((link) => (
             <Link key={link.href} href={link.href} className="sidebar-link">
-              <i className="fa-solid fa-arrow-trend-up"></i>
-              <span>{link.label}</span>
-              <span className="arrow">→</span>
+              {link.label}
             </Link>
           ))}
         </nav>
@@ -23,7 +21,8 @@ export default function Sidebar() {
             opportunities to be part of your visions.
           </p>
           <a href="mailto:akshayaparida2811@gmail.com" className="connect-link">
-            Get in touch →
+            <i className="fa-solid fa-paper-plane"></i>
+            Say hi!
           </a>
         </div>
       </div>

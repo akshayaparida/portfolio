@@ -42,24 +42,28 @@ export default function Hero() {
 
   return (
     <>
-      <section>
-        <h1 className="hero-title">Hi, I&apos;m Akshaya Parida</h1>
-        <p className="hero-subtitle">AI Engineering</p>
-        <p className="hero-description">
-          Currently hands-on learning in AI engineering, building robust systems
-          and exploring the frontiers of large language models.
-        </p>
+      <section className="hero-intro">
+        <div className="hero-avatar-wrapper">
+          <Image
+            src="/akparidadp.jpeg"
+            alt="Akshaya Parida"
+            width={90}
+            height={90}
+            className="hero-avatar"
+          />
+        </div>
+        <div className="hero-text">
+          <h1 className="hero-title">
+            <span className="wave-hand">👋</span> Hi, I&apos;m Akshaya Parida
+          </h1>
+          <p className="hero-description">
+            Diving deep into <strong>AI Engineering</strong>,{" "}
+            <strong>MLOps</strong>, <strong>Agentic AI</strong>, and{" "}
+            <strong>Open Source</strong>. Building things, breaking things, and
+            learning every day.
+          </p>
+        </div>
       </section>
-
-      <div className="status-badges">
-        <StatusBadge icon="fa-solid fa-location-dot" text="Bengaluru, India" />
-        <StatusBadge icon="fa-regular fa-clock" text={currentTime} />
-        <StatusBadge
-          icon="fa-solid fa-circle-check"
-          text="Open to AI Engineering roles"
-          variant="highlight"
-        />
-      </div>
 
       <TechnicalSkills categories={skillCategories} />
 
