@@ -42,27 +42,16 @@ export default function Hero() {
 
   return (
     <>
-      <section className="hero-intro">
-        <div className="hero-avatar-wrapper">
-          <Image
-            src="/akparidadp.jpeg"
-            alt="Akshaya Parida"
-            width={90}
-            height={90}
-            className="hero-avatar"
-          />
-        </div>
-        <div className="hero-text">
-          <h1 className="hero-title">
-            <span className="wave-hand">👋</span> Hi, I&apos;m Akshaya Parida
-          </h1>
-          <p className="hero-description">
-            Diving deep into <strong>AI Engineering</strong>,{" "}
-            <strong>MLOps</strong>, <strong>Agentic AI</strong>, and{" "}
-            <strong>Open Source</strong>. Building things, breaking things, and
-            learning every day.
-          </p>
-        </div>
+      <section>
+        <h1 className="hero-title">
+          <span className="wave-hand">👋</span> Hi, I&apos;m Akshaya Parida
+        </h1>
+        <p className="hero-description">
+          I&apos;m a <strong>high agency guy</strong> who learns by building.
+          Currently hands-on learning <strong>AI Engineering</strong>,{" "}
+          <strong>MLOps</strong>, <strong>Agentic AI</strong>, and contributing
+          to <strong>Open Source</strong>.
+        </p>
       </section>
 
       <TechnicalSkills categories={skillCategories} />
