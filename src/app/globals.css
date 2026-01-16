@@ -480,6 +480,8 @@ header > a {
 }
 
 .sidebar-link {
+  display: inline-block; /* Only take up text width */
+  width: fit-content; /* Don't stretch to full width */
   color: #2563eb;
   text-decoration: underline;
   font-weight: 700;
@@ -821,6 +823,8 @@ footer a:hover {
 }
 
 .mobile-explore .sidebar-link {
+  display: inline-block; /* Only take up text width */
+  width: fit-content; /* Don't stretch to full width */
   color: #2563eb;
   text-decoration: underline;
   font-weight: 700;
