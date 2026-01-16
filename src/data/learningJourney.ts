@@ -749,6 +749,41 @@ for batch in dataloader:
       },
     ],
   },
+  {
+    id: "module-3",
+    title: "MLOps & Production Systems",
+    description:
+      "Learn to deploy, monitor, and maintain AI systems in production environments",
+    status: "not-started",
+    detailedContent: `
+MLOps bridges the gap between machine learning experiments and production systems.
+
+This module covers:
+• Model deployment strategies
+• CI/CD pipelines for ML
+• Monitoring and observability
+• Infrastructure as Code
+• Scaling AI applications
+
+→ Visit the dedicated MLOps page for the full learning path and resources.
+    `,
+    subModules: [
+      {
+        id: "module-3-1",
+        title: "Full MLOps Learning Path",
+        description:
+          "Explore the complete MLOps curriculum with detailed resources and guides",
+        status: "not-started",
+        resources: [
+          {
+            title: "Go to MLOps Page →",
+            url: "/mlops",
+            type: "course",
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 // Calculate overall progress

@@ -1,881 +1,567 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { LearningModule, SubModule } from '@/types/learning';
-import { learningModules } from '@/data/learningJourney';
-import gitMetadata from '@/data/git-metadata.json';
+import Link from "next/link";
+import gitMetadata from "@/data/git-metadata.json";
 
-const STORAGE_KEY = 'learning-journey-user-progress';
-
-interface UserProgress {
-  [moduleId: string]: {
-    status?: 'not-started' | 'in-progress' | 'completed';
-    subModules?: {
-      [subModuleId: string]: {
-        status?: 'not-started' | 'in-progress' | 'completed';
-      };
-    };
-  };
+interface JourneyMilestone {
+  id: string;
+  phase: string;
+  title: string;
+  description: string;
+  icon: string;
+  highlights: string[];
+  color: string;
 }
 
-function mergeProgressWithContent(content: LearningModule[], progress: UserProgress): LearningModule[] {
-  return content.map(module => {
-    const userProgress = progress[module.id];
-    if (!userProgress) return module;
-
-    return {
-      ...module,
-      status: userProgress.status || module.status,
-      subModules: module.subModules?.map(sub => ({
-        ...sub,
-        status: userProgress.subModules?.[sub.id]?.status || sub.status
-      }))
-    };
-  });
-}
-
-function extractProgress(modules: LearningModule[]): UserProgress {
-  const progress: UserProgress = {};
-  modules.forEach(module => {
-    progress[module.id] = {
-      status: module.status,
-      subModules: {}
-    };
-    module.subModules?.forEach(sub => {
-      progress[module.id].subModules![sub.id] = {
-        status: sub.status
-      };
-    });
-  });
-  return progress;
-}
+const journeyMilestones: JourneyMilestone[] = [
+  {
+    id: "university",
+    phase: "The Beginning",
+    title: "University Days at DSVV, Haridwar",
+    description:
+      "Started my journey as an introverted student with limited skills and struggling with English communication. The traditional education system felt constraining.",
+    icon: "fa-solid fa-graduation-cap",
+    highlights: [
+      "Introverted and shy personality",
+      "Limited technical skills",
+      "Struggling with English",
+      "Traditional rote learning approach",
+    ],
+    color: "#6b7280",
+  },
+  {
+    id: "mindset-shift",
+    phase: "The Awakening",
+    title: "The Big Bang Theory Effect",
+    description:
+      "COVID lockdown became a turning point. Watching The Big Bang Theory sparked a realization - real learning is about understanding deeply, not cramming. Embraced the 'high agency' mindset.",
+    icon: "fa-solid fa-lightbulb",
+    highlights: [
+      "Discovered high agency learning",
+      "Understanding > Cramming",
+      "Mindset transformation",
+      "Self-directed learning began",
+    ],
+    color: "#6b7280",
+  },
+  {
+    id: "bangalore",
+    phase: "The Leap",
+    title: "Moving to Bangalore",
+    description:
+      "Made a bold decision to move to the tech capital of India. Couldn't pursue a master's degree due to family financial constraints, but chose action over waiting.",
+    icon: "fa-solid fa-plane",
+    highlights: [
+      "Left comfort zone",
+      "Financial constraints → Motivation",
+      "Chose real-world experience",
+      "The startup city calling",
+    ],
+    color: "#6b7280",
+  },
+  {
+    id: "ecommerce",
+    phase: "The Grind",
+    title: "The Communication Bootcamp",
+    description:
+      "Worked in e-commerce operations. This wasn't just a job - it was a transformation. Daily client interactions turned my hesitant English into confident fluency.",
+    icon: "fa-solid fa-briefcase",
+    highlights: [
+      "Professional experience gained",
+      "English fluency achieved",
+      "Client communication mastery",
+      "Business operations understanding",
+    ],
+    color: "#6b7280",
+  },
+  {
+    id: "ai-journey",
+    phase: "The Evolution",
+    title: "The AI Revolution & Upskilling",
+    description:
+      "As AI transformed the tech landscape, I made a decisive move to upskill. Now building with AI, contributing to open source, and matching the current tech industry demands.",
+    icon: "fa-solid fa-rocket",
+    highlights: [
+      "AI Engineering focus",
+      "Open source contributions",
+      "Building real projects",
+      "Continuous learning mindset",
+    ],
+    color: "#6b7280",
+  },
+  {
+    id: "present",
+    phase: "Now",
+    title: "Building in Public",
+    description:
+      "Today, I'm a high agency guy who learns by building. Hands-on with AI Engineering, MLOps, and Agentic AI. The journey from an introvert to a builder continues.",
+    icon: "fa-solid fa-bolt",
+    highlights: [
+      "AI Engineering",
+      "MLOps & Agentic AI",
+      "Open Source Contributor",
+      "Forever Learning",
+    ],
+    color: "#10b981",
+  },
+];
 
 export default function LearningJourneyPage() {
-  const [modules, setModules] = useState<LearningModule[]>(learningModules);
-  const [selectedModule, setSelectedModule] = useState<LearningModule | null>(null);
-  const [selectedSubModule, setSelectedSubModule] = useState<SubModule | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const savedProgressStr = localStorage.getItem(STORAGE_KEY);
-    if (savedProgressStr) {
-      try {
-        const savedProgress: UserProgress = JSON.parse(savedProgressStr);
-        const mergedModules = mergeProgressWithContent(learningModules, savedProgress);
-        setModules(mergedModules);
-      } catch (error) {
-        console.error('Failed to load progress:', error);
-        setModules(learningModules);
-      }
-    } else {
-      setModules(learningModules);
-    }
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const progress = extractProgress(modules);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    }
-  }, [modules, isLoading]);
-
-  if (isLoading) {
-    return (
-      <div className="loading-screen">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="journey-container">
-      {/* Home Link */}
-      <div className="home-link-wrapper">
-        <Link href="/">
-          <span className="home-link">Home</span>
+      {/* Header */}
+      <header className="journey-header">
+        <Link href="/" className="back-link" title="Home">
+          <i className="fa-solid fa-house"></i>
         </Link>
-      </div>
+      </header>
 
-      {/* Main Content */}
-      <main className="main-content">
-        <div className="content-wrapper">
-          <h1 className="page-title">
-            AI Engineering Learning Journey
-          </h1>
-          <p className="page-subtitle">
-            Scroll horizontally • Click modules for details
-          </p>
+      {/* Hero Section */}
+      <section className="journey-hero">
+        <h1 className="journey-title">
+          <span className="title-emoji">
+            <i className="fa-solid fa-seedling"></i>
+          </span>
+          My Journey
+        </h1>
+        <p className="journey-subtitle">
+          From an introverted student to a high agency builder — here&apos;s my
+          story.
+        </p>
+      </section>
 
-          {/* Horizontal Timeline */}
-          <div className="timeline-wrapper">
-            {/* Horizontal line */}
-            <div className="timeline-line" />
+      {/* Timeline */}
+      <section className="timeline-section">
+        <div className="timeline">
+          {journeyMilestones.map((milestone, index) => (
+            <div
+              key={milestone.id}
+              className={`timeline-item ${index % 2 === 0 ? "left" : "right"}`}
+            >
+              <div
+                className="timeline-marker"
+                style={{ background: milestone.color }}
+              >
+                <span className="marker-icon">
+                  <i className={milestone.icon}></i>
+                </span>
+              </div>
 
-            {/* Scrollable container */}
-            <div className="scroll-container">
-              <div className="modules-container">
-                {modules.map((module, index) => {
-                  const hasSubModules = module.subModules && module.subModules.length > 0;
+              <div className="timeline-content">
+                <div
+                  className="phase-badge"
+                  style={{
+                    background: `${milestone.color}20`,
+                    color: milestone.color,
+                  }}
+                >
+                  {milestone.phase}
+                </div>
+                <h3 className="milestone-title">{milestone.title}</h3>
+                <p className="milestone-description">{milestone.description}</p>
 
-                  return (
-                    <div key={module.id} className="module-wrapper">
-                      {/* Module box */}
-                      <button
-                        onClick={() => setSelectedModule(module)}
-                        className="module-box"
-                      >
-                        <div className="module-number">
-                          Module {index + 1}
-                        </div>
-                        <div className="module-title">
-                          {module.title}
-                        </div>
-                        <div className="module-description">
-                          {module.description}
-                        </div>
-                        {hasSubModules && (
-                          <div className="module-topics">
-                            {module.subModules?.map((sub) => (
-                              <div key={sub.id} className="topic-item">
-                                • {sub.title}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </button>
-
-                      {/* Connector line to timeline */}
-                      <div className="connector-line" />
-                    </div>
-                  );
-                })}</div>
+                <div className="highlights">
+                  {milestone.highlights.map((highlight, idx) => (
+                    <span key={idx} className="highlight-tag">
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Quote Section */}
+      <section className="quote-section">
+        <blockquote className="journey-quote">
+          &quot;The best time to plant a tree was 20 years ago. The second best
+          time is now.&quot;
+        </blockquote>
+      </section>
+
+      {/* AI Engineering Link */}
+      <section className="explore-section">
+        <Link href="/ai-engineering" className="explore-link">
+          <div className="explore-content">
+            <span className="explore-icon">
+              <i className="fa-solid fa-brain"></i>
+            </span>
+            <div className="explore-text">
+              <h3>AI Engineering Resources</h3>
+              <p>Explore my curated learning materials and resources</p>
+            </div>
+            <span className="explore-arrow">
+              <i className="fa-solid fa-chevron-right"></i>
+            </span>
+          </div>
+        </Link>
+      </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="journey-footer">
         <p>
-          Last updated: <a 
+          Last updated:{" "}
+          <a
             href={gitMetadata.commitUrl}
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'underline' }}
           >
             {gitMetadata.commitDate}
           </a>
         </p>
       </footer>
 
-      {/* Modal Popup */}
-      {selectedModule && (
-        <div className="modal-overlay" onClick={() => setSelectedModule(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            {/* Close button */}
-            <button onClick={() => setSelectedModule(null)} className="close-button">
-              ×
-            </button>
-
-            <div className="modal-inner">
-              <h2 className="modal-title">{selectedModule.title}</h2>
-              <p className="modal-description">{selectedModule.description}</p>
-
-              {/* Detailed Content */}
-              {selectedModule.detailedContent && (
-                <div className="modal-detailed-content">
-                  <div>{selectedModule.detailedContent}</div>
-                </div>
-              )}
-
-              {/* Sub-modules */}
-              {selectedModule.subModules && selectedModule.subModules.length > 0 && (
-                <div className="modal-submodules">
-                  <h3 className="submodules-title">Topics Covered</h3>
-                  <div className="submodules-list">
-                    {selectedModule.subModules.map((sub) => (
-                      <div key={sub.id} className="submodule-item">
-                        <div className="submodule-checkbox">
-                          {sub.status === 'completed' && <span>✓</span>}
-                        </div>
-                        <div className="submodule-content">
-                          <div 
-                            className="submodule-title"
-                            onClick={() => {
-                              if (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) {
-                                setSelectedSubModule(sub);
-                              }
-                            }}
-                            style={{ 
-                              cursor: (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) ? 'pointer' : 'default',
-                              textDecoration: (sub.detailedContent || (sub.subModules && sub.subModules.length > 0)) ? 'underline' : 'none'
-                            }}
-                          >
-                            {sub.title}
-                          </div>
-                          <div className="submodule-description">{sub.description}</div>
-
-                          {/* Resources */}
-                          {sub.resources && sub.resources.length > 0 && (
-                            <div className="submodule-resources">
-                              <div className="resources-title">Resources</div>
-                              <div className="resources-list">
-                                {sub.resources.map((resource, idx) => (
-                                  <a
-                                    key={idx}
-                                    href={resource.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="resource-link"
-                                  >
-                                    <span>→</span> {resource.title}
-                                    <span className="resource-type">({resource.type})</span>
-                                  </a>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* SubModule Detail Modal */}
-      {selectedSubModule && (
-        <div className="modal-overlay" onClick={() => setSelectedSubModule(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setSelectedSubModule(null)} className="close-button">
-              ×
-            </button>
-
-            <div className="modal-inner">
-              <h2 className="modal-title">{selectedSubModule.title}</h2>
-              <p className="modal-description">{selectedSubModule.description}</p>
-
-              {/* Detailed Content */}
-              {selectedSubModule.detailedContent && (
-                <div className="modal-detailed-content">
-                  <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit' }}>{selectedSubModule.detailedContent}</pre>
-                </div>
-              )}
-
-              {/* Nested SubModules if any */}
-              {selectedSubModule.subModules && selectedSubModule.subModules.length > 0 && (
-                <div className="modal-submodules">
-                  <h3 className="submodules-title">Sub-Topics</h3>
-                  <div className="submodules-list">
-                    {selectedSubModule.subModules.map((nestedSub: SubModule) => (
-                      <div key={nestedSub.id} className="submodule-item">
-                        <div className="submodule-checkbox">
-                          {nestedSub.status === 'completed' && <span>✓</span>}
-                        </div>
-                        <div className="submodule-content">
-                          <div className="submodule-title">{nestedSub.title}</div>
-                          <div className="submodule-description">{nestedSub.description}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Resources */}
-              {selectedSubModule.resources && selectedSubModule.resources.length > 0 && (
-                <div className="submodule-resources" style={{ marginTop: '20px' }}>
-                  <div className="resources-title">Resources</div>
-                  <div className="resources-list">
-                    {selectedSubModule.resources.map((resource, idx) => (
-                      <a
-                        key={idx}
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="resource-link"
-                      >
-                        <span>→</span> {resource.title}
-                        <span className="resource-type">({resource.type})</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
       <style jsx>{`
-        /* Base Styles */
-        .loading-screen {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #fafafa;
-          color: #666;
-        }
-
         .journey-container {
-          height: 100vh;
-          overflow: hidden;
+          min-height: 100vh;
           background: #fafafa;
-          display: flex;
-          flex-direction: column;
+          padding: 0;
         }
 
-        .home-link-wrapper {
-          padding: 20px 40px;
+        .journey-header {
+          padding: 1.5rem 2rem;
+          position: sticky;
+          top: 0;
+          background: rgba(250, 250, 250, 0.9);
+          backdrop-filter: blur(10px);
+          z-index: 100;
+          border-bottom: 1px solid #e5e7eb;
         }
 
-        .home-link {
-          display: inline-block;
-          padding: 10px 20px;
-          background: #fff;
-          border: 2px solid #1a1a1a;
-          border-radius: 8px;
-          color: #1a1a1a;
+        .back-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: #374151;
           text-decoration: none;
           font-weight: 600;
-          font-size: 14px;
-          transition: all 0.2s;
-          box-shadow: 3px 3px 0 #1a1a1a;
-          cursor: pointer;
-        }
-
-        .home-link:hover {
-          transform: translate(-2px, -2px);
-          box-shadow: 5px 5px 0 #1a1a1a;
-        }
-
-        .main-content {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          padding: 20px 40px;
-          overflow: hidden;
-          min-height: 0;
-        }
-
-        .content-wrapper {
-          max-width: 1400px;
-          margin: 0 auto;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          min-height: 0;
-        }
-
-        .page-title {
-          font-size: 26px;
-          font-weight: 700;
-          margin-bottom: 6px;
-          color: #1a1a1a;
-          text-align: center;
-        }
-
-        .page-subtitle {
-          font-size: 12px;
-          color: #666;
-          text-align: center;
-          margin-bottom: 20px;
-        }
-
-        .timeline-wrapper {
-          position: relative;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          min-height: 0;
-        }
-
-        .timeline-line {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 50%;
-          height: 3px;
-          background: #1a1a1a;
-          transform: translateY(-50%);
-        }
-
-        .scroll-container {
-          width: 100%;
-          overflow-x: auto;
-          overflow-y: hidden;
-          position: relative;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: thin;
-        }
-
-        .modules-container {
-          display: flex;
-          gap: 100px;
-          min-width: max-content;
-          padding: 0 40px;
-          position: relative;
-        }
-
-        .module-wrapper {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .module-box {
-          padding: 12px 14px;
-          background: #fff;
-          border: 3px solid #1a1a1a;
-          border-radius: 10px;
-          cursor: pointer;
-          position: relative;
-          z-index: 2;
-          transition: all 0.2s;
-          box-shadow: 4px 4px 0 #1a1a1a;
-          text-align: left;
-          min-width: 200px;
-          max-width: 240px;
-        }
-
-        .module-box:hover {
-          transform: translate(-2px, -2px);
-          box-shadow: 6px 6px 0 #1a1a1a;
-        }
-
-        .module-number {
-          font-size: 11px;
-          font-weight: 600;
-          color: #666;
-          margin-bottom: 5px;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .module-title {
-          font-size: 15px;
-          font-weight: 700;
-          color: #1a1a1a;
-          line-height: 1.3;
-          margin-bottom: 6px;
-        }
-
-        .module-description {
-          font-size: 11px;
-          color: #666;
-          line-height: 1.4;
-          margin-bottom: 6px;
-        }
-
-        .module-topics {
-          font-size: 9px;
-          color: #666;
-          margin-top: 4px;
-        }
-
-        .topic-item {
-          margin-bottom: 2px;
-        }
-
-        .connector-line {
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          width: 3px;
-          height: 30px;
-          background: #1a1a1a;
-          transform: translateX(-50%);
-        }
-
-        .footer {
-          padding: 1rem 2rem;
-          text-align: center;
-          background: #fff;
-          border-top: 1px solid #e0e0e0;
-        }
-
-        .footer p {
-          color: #666;
           font-size: 0.9rem;
-          margin: 0;
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1000;
-          padding: 20px;
-          animation: fadeIn 0.2s ease-out;
-        }
-
-        .modal-content {
-          background: #fff;
-          border: 3px solid #1a1a1a;
-          border-radius: 16px;
-          max-width: 700px;
-          width: 100%;
-          max-height: 80vh;
-          overflow: auto;
-          position: relative;
-          box-shadow: 8px 8px 0 #1a1a1a;
-          animation: slideUp 0.3s ease-out;
-        }
-
-        .close-button {
-          position: absolute;
-          top: 20px;
-          right: 20px;
-          width: 36px;
-          height: 36px;
-          border: 2px solid #1a1a1a;
-          border-radius: 50%;
-          background: #fff;
-          cursor: pointer;
-          font-size: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 700;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
           transition: all 0.2s;
+        }
+
+        .back-link:hover {
+          background: #f3f4f6;
+          color: #111827;
+        }
+
+        .journey-hero {
+          text-align: center;
+          padding: 4rem 2rem 3rem;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .journey-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: #111827;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.75rem;
+        }
+
+        .title-emoji {
+          font-size: 2.5rem;
+        }
+
+        .journey-subtitle {
+          font-size: 1.125rem;
+          color: #6b7280;
+          line-height: 1.7;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .timeline-section {
+          padding: 2rem;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .timeline {
+          position: relative;
+          padding: 2rem 0;
+        }
+
+        .timeline::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 3px;
+          height: 100%;
+          background: #e5e7eb;
+          border-radius: 4px;
+        }
+
+        .timeline-item {
+          position: relative;
+          width: 50%;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .timeline-item.left {
+          left: 0;
+          padding-right: 3rem;
+        }
+
+        .timeline-item.right {
+          left: 50%;
+          padding-left: 3rem;
+        }
+
+        .timeline-marker {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
           z-index: 10;
         }
 
-        .close-button:hover {
-          background: #1a1a1a;
+        .timeline-item.left .timeline-marker {
+          right: -25px;
+        }
+
+        .timeline-item.right .timeline-marker {
+          left: -25px;
+        }
+
+        .marker-icon {
+          font-size: 1.25rem;
           color: #fff;
         }
 
-        .modal-inner {
-          padding: 32px;
+        .timeline-content {
+          background: #ffffff;
+          border-radius: 16px;
+          padding: 1.5rem;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          border: 1px solid #e5e7eb;
+          transition: all 0.3s ease;
         }
 
-        .modal-title {
-          font-size: 24px;
+        .timeline-content:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .phase-badge {
+          display: inline-block;
+          padding: 0.35rem 0.75rem;
+          border-radius: 20px;
+          font-size: 0.75rem;
           font-weight: 700;
-          margin-bottom: 10px;
-          color: #1a1a1a;
-          padding-right: 40px;
-        }
-
-        .modal-description {
-          font-size: 14px;
-          color: #666;
-          margin-bottom: 24px;
-          line-height: 1.6;
-        }
-
-        .modal-detailed-content {
-          padding: 20px;
-          background: #fafafa;
-          border: 2px solid #e0e0e0;
-          border-radius: 8px;
-          margin-bottom: 32px;
-          font-size: 14px;
-          color: #1a1a1a;
-          line-height: 1.7;
-          white-space: pre-line;
-        }
-
-        .modal-submodules {
-          margin-top: 24px;
-        }
-
-        .submodules-title {
-          font-size: 16px;
-          font-weight: 700;
-          margin-bottom: 16px;
-          color: #1a1a1a;
           text-transform: uppercase;
           letter-spacing: 0.5px;
+          margin-bottom: 0.75rem;
         }
 
-        .submodules-list {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        .submodule-item {
-          padding: 16px;
-          background: #fafafa;
-          border: 2px solid #e0e0e0;
-          border-radius: 8px;
-          display: flex;
-          align-items: start;
-          gap: 12px;
-        }
-
-        .submodule-checkbox {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          border: 2px solid #1a1a1a;
-          background: transparent;
-          flex-shrink: 0;
-          margin-top: 2px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 12px;
+        .milestone-title {
+          font-size: 1.25rem;
           font-weight: 700;
-          color: #fff;
+          color: #111827;
+          margin-bottom: 0.75rem;
+          line-height: 1.3;
         }
 
-        .submodule-checkbox span {
-          background: #1a1a1a;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
+        .milestone-description {
+          font-size: 0.9rem;
+          color: #4b5563;
+          line-height: 1.7;
+          margin-bottom: 1rem;
+        }
+
+        .highlights {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .highlight-tag {
+          display: inline-block;
+          padding: 0.25rem 0.6rem;
+          background: #f3f4f6;
+          color: #374151;
+          border-radius: 6px;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+
+        .quote-section {
+          padding: 3rem 2rem;
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .journey-quote {
+          font-size: 1.25rem;
+          font-style: italic;
+          color: #6b7280;
+          line-height: 1.8;
+          border-left: 4px solid #10b981;
+          padding-left: 1.5rem;
+          margin: 0;
+          text-align: left;
+        }
+
+        .explore-section {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 0 2rem 2rem;
+        }
+
+        .explore-link {
+          display: block;
+          text-decoration: none;
+        }
+
+        .explore-content {
           display: flex;
           align-items: center;
-          justify-content: center;
+          gap: 1rem;
+          padding: 1.25rem 1.5rem;
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
+          transition: all 0.2s;
         }
 
-        .submodule-content {
+        .explore-content:hover {
+          border-color: #d1d5db;
+          background: #fafafa;
+        }
+
+        .explore-icon {
+          font-size: 1.5rem;
+        }
+
+        .explore-text {
           flex: 1;
         }
 
-        .submodule-title {
-          font-size: 15px;
+        .explore-text h3 {
+          font-size: 1rem;
           font-weight: 600;
-          color: #1a1a1a;
-          margin-bottom: 4px;
+          color: #111827;
+          margin: 0 0 0.25rem 0;
         }
 
-        .submodule-description {
-          font-size: 13px;
-          color: #666;
+        .explore-text p {
+          font-size: 0.85rem;
+          color: #6b7280;
+          margin: 0;
         }
 
-        .submodule-resources {
-          margin-top: 12px;
+        .explore-arrow {
+          font-size: 1.25rem;
+          color: #9ca3af;
+          transition: transform 0.2s;
         }
 
-        .resources-title {
-          font-size: 12px;
-          font-weight: 700;
-          color: #666;
-          margin-bottom: 8px;
-          text-transform: uppercase;
+        .explore-content:hover .explore-arrow {
+          transform: translateX(4px);
+          color: #6b7280;
         }
 
-        .resources-list {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
+        .journey-footer {
+          text-align: center;
+          padding: 2rem;
+          border-top: 1px solid #e5e7eb;
+          margin-top: 2rem;
         }
 
-        .resource-link {
-          font-size: 13px;
+        .journey-footer p {
+          color: #6b7280;
+          font-size: 0.875rem;
+        }
+
+        .journey-footer a {
           color: #3b82f6;
-          text-decoration: none;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
-
-        .resource-link:hover {
           text-decoration: underline;
         }
 
-        .resource-type {
-          font-size: 10px;
-          color: #999;
-          text-transform: uppercase;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        /* Tablet (768px and below) */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-          .home-link-wrapper {
-            padding: 15px 20px;
+          .journey-title {
+            font-size: 1.75rem;
           }
 
-          .main-content {
-            padding: 15px 20px;
+          .journey-subtitle {
+            font-size: 1rem;
           }
 
-          .page-title {
-            font-size: 20px;
+          .timeline::before {
+            left: 20px;
           }
 
-          .page-subtitle {
-            font-size: 11px;
+          .timeline-item {
+            width: 100%;
+            padding-left: 60px !important;
+            padding-right: 1rem !important;
+            left: 0 !important;
           }
 
-          .modules-container {
-            gap: 60px;
-            padding: 0 20px;
+          .timeline-marker {
+            left: -5px !important;
+            right: auto !important;
+            width: 40px;
+            height: 40px;
           }
 
-          .module-box {
-            min-width: 160px;
-            max-width: 180px;
-            padding: 10px 12px;
+          .marker-icon {
+            font-size: 1.2rem;
           }
 
-          .modal-overlay {
-            padding: 15px;
+          .milestone-title {
+            font-size: 1.1rem;
           }
 
-          .modal-content {
-            max-width: 95%;
-            max-height: 85vh;
-            border-radius: 12px;
+          .milestone-description {
+            font-size: 0.85rem;
           }
 
-          .modal-inner {
-            padding: 20px;
-          }
-
-          .modal-title {
-            font-size: 20px;
+          .highlight-tag {
+            font-size: 0.7rem;
           }
         }
 
-        /* Mobile (480px and below) */
         @media (max-width: 480px) {
-          .home-link-wrapper {
-            padding: 10px 15px;
+          .journey-hero {
+            padding: 2.5rem 1rem 2rem;
           }
 
-          .home-link {
-            padding: 8px 16px;
-            font-size: 13px;
+          .journey-title {
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
           }
 
-          .main-content {
-            padding: 10px 15px;
+          .title-emoji {
+            font-size: 2rem;
           }
 
-          .page-title {
-            font-size: 18px;
+          .timeline-section {
+            padding: 1rem;
           }
 
-          .page-subtitle {
-            font-size: 10px;
-            margin-bottom: 15px;
+          .timeline-content {
+            padding: 1rem;
           }
 
-          .modules-container {
-            gap: 40px;
-            padding: 0 15px;
-          }
-
-          .module-box {
-            min-width: 140px;
-            max-width: 160px;
-            padding: 8px 10px;
-          }
-
-          .module-number {
-            font-size: 10px;
-          }
-
-          .module-title {
-            font-size: 13px;
-          }
-
-          .module-description {
-            font-size: 10px;
-          }
-
-          .module-topics {
-            font-size: 8px;
-          }
-
-          .scroll-container {
-            touch-action: pan-x;
-          }
-
-          .modal-overlay {
-            padding: 10px;
-          }
-
-          .modal-content {
-            max-width: 98%;
-            max-height: 90vh;
-            border-radius: 10px;
-            box-shadow: 4px 4px 0 #1a1a1a;
-          }
-
-          .modal-inner {
-            padding: 16px;
-          }
-
-          .modal-title {
-            font-size: 18px;
-            padding-right: 35px;
-          }
-
-          .modal-description {
-            font-size: 13px;
-          }
-
-          .close-button {
-            width: 30px;
-            height: 30px;
-            top: 15px;
-            right: 15px;
-            font-size: 18px;
-          }
-
-          .modal-detailed-content {
-            padding: 15px;
-            font-size: 13px;
-          }
-
-          .submodule-item {
-            padding: 12px;
-          }
-
-          .submodule-title {
-            font-size: 14px;
-          }
-
-          .submodule-description {
-            font-size: 12px;
-          }
-        }
-
-        /* Extra small (360px and below) */
-        @media (max-width: 360px) {
-          .module-box {
-            min-width: 120px;
-            max-width: 140px;
-          }
-
-          .modules-container {
-            gap: 30px;
+          .journey-quote {
+            font-size: 1rem;
           }
         }
       `}</style>
