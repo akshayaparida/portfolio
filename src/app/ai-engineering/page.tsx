@@ -23,6 +23,23 @@ export default function AIEngineeringPage() {
       </header>
 
       <div className="main-layout">
+        {/* Sidebar Navigation - Left Side */}
+        <aside className="sidebar">
+          <h3 className="sidebar-title">Modules</h3>
+          <nav className="module-nav">
+            {learningModules.map((module, index) => (
+              <button
+                key={module.id}
+                onClick={() => setActiveModuleIndex(index)}
+                className={`nav-item ${index === activeModuleIndex ? "active" : ""}`}
+              >
+                <span className="nav-number">{index + 1}</span>
+                <span className="nav-text">{module.title}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
+
         {/* Content Area */}
         <main className="content-area">
           <article className="module-card">
@@ -80,23 +97,6 @@ export default function AIEngineeringPage() {
             )}
           </article>
         </main>
-
-        {/* Sidebar Navigation */}
-        <aside className="sidebar">
-          <h3 className="sidebar-title">Modules</h3>
-          <nav className="module-nav">
-            {learningModules.map((module, index) => (
-              <button
-                key={module.id}
-                onClick={() => setActiveModuleIndex(index)}
-                className={`nav-item ${index === activeModuleIndex ? "active" : ""}`}
-              >
-                <span className="nav-number">{index + 1}</span>
-                <span className="nav-text">{module.title}</span>
-              </button>
-            ))}
-          </nav>
-        </aside>
       </div>
 
       {/* Footer */}
@@ -119,6 +119,7 @@ export default function AIEngineeringPage() {
           background: #fafafa;
           display: flex;
           flex-direction: column;
+          overflow-y: scroll;
         }
 
         .ai-eng-header {
@@ -165,16 +166,21 @@ export default function AIEngineeringPage() {
 
         .main-layout {
           display: grid;
-          grid-template-columns: 1fr 280px;
+          grid-template-columns: 250px minmax(0, 1fr);
           gap: 2rem;
           max-width: 1200px;
           margin: 0 auto;
           padding: 2rem;
           flex: 1;
+          align-items: start;
+          width: 100%;
         }
 
         .content-area {
           min-width: 0;
+          min-height: 100vh;
+          width: 100%;
+          max-width: 100%;
         }
 
         .module-card {
@@ -182,6 +188,8 @@ export default function AIEngineeringPage() {
           border: 1px solid #e5e7eb;
           border-radius: 12px;
           padding: 2rem;
+          width: 100%;
+          box-sizing: border-box;
         }
 
         .module-header {
@@ -403,29 +411,34 @@ export default function AIEngineeringPage() {
         }
 
         .ai-eng-footer a {
-          color: #6b7280;
+          color: #2563eb;
           text-decoration: underline;
         }
 
         .ai-eng-footer a:hover {
-          color: #374151;
+          color: #1d4ed8;
         }
 
         /* Mobile */
         @media (max-width: 900px) {
           .main-layout {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             padding: 1rem;
           }
 
           .sidebar {
             position: static;
             order: -1;
+            display: block !important;
+            margin-bottom: 1rem;
           }
 
           .module-nav {
+            display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            gap: 0.5rem;
           }
 
           .nav-item {
@@ -436,6 +449,10 @@ export default function AIEngineeringPage() {
 
           .nav-text {
             font-size: 0.75rem;
+          }
+
+          .module-card {
+            min-height: auto;
           }
         }
 
@@ -450,6 +467,7 @@ export default function AIEngineeringPage() {
 
           .module-card {
             padding: 1.25rem;
+            min-height: auto;
           }
 
           .module-title {

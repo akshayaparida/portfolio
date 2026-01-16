@@ -776,7 +776,7 @@ This module covers:
         status: "not-started",
         resources: [
           {
-            title: "Go to MLOps Page →",
+            title: "Go to MLOps Page",
             url: "/mlops",
             type: "course",
           },
