@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Eczar } from "next/font/google";
 import "./globals.css";
 import StructuredData from "@/components/StructuredData";
@@ -10,6 +10,12 @@ const eczar = Eczar({
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-eczar",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#fafafa",
+};
 
 export const metadata: Metadata = {
   title: {

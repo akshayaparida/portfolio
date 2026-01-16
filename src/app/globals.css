@@ -35,14 +35,32 @@ body {
 
 /* Container */
 .container {
+  width: 100%;
   max-width: 64rem;
   margin: 0 auto;
   padding: 2rem 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Optimize container padding for mid-range mobile (460-570px) */
+@media (min-width: 460px) and (max-width: 570px) {
+  .container {
+    padding: 2rem 1.25rem;
+  }
 }
 
 @media (min-width: 640px) {
   .container {
     padding: 3rem 1.5rem;
+  }
+}
+
+/* More responsive container padding for very wide screens */
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
@@ -93,11 +111,47 @@ header > a {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
+  min-width: 0; /* Allow grid to shrink below content size */
 }
 
+.main-grid > main {
+  min-width: 0; /* Allow main to shrink below content size */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* On small to medium screens, keep single column for better readability */
+@media (min-width: 640px) {
+  .main-grid {
+    gap: 2.5rem;
+  }
+}
+
+/* On larger screens, use two-column layout */
 @media (min-width: 1024px) {
   .main-grid {
     grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Adjust gap for screens between 512px and 639px */
+@media (max-width: 639px) and (min-width: 512px) {
+  .main-grid {
+    gap: 2.5rem;
+  }
+}
+
+/* Adjust layout for screens below 511px */
+@media (max-width: 511px) {
+  .main-grid {
+    gap: 2.2rem;
+  }
+}
+
+/* Improve mobile layout for very narrow screens */
+@media (max-width: 479px) {
+  .main-grid {
     gap: 2rem;
   }
 }
@@ -150,6 +204,7 @@ header > a {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap; /* Allow title to wrap on small screens */
 }
 
 .wave-hand {
@@ -195,8 +250,10 @@ header > a {
 .hero-description {
   font-size: 0.9rem;
   color: #4b5563;
-  max-width: 42rem;
+  max-width: min(42rem, 100%);
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Status Badges */
@@ -244,6 +301,20 @@ header > a {
   align-items: center;
   gap: 1.5rem;
   margin-top: 1.5rem;
+}
+
+/* Reduce gap on smaller screens */
+@media (max-width: 768px) {
+  .contact-links {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .contact-links {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
 }
 
 .contact-link {
@@ -296,6 +367,7 @@ header > a {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
+  align-items: flex-start; /* Better alignment for wrapping */
 }
 
 .skill-tag-compact {
@@ -306,6 +378,9 @@ header > a {
   background: #f3f4f6;
   color: #374151;
   border: 1px solid #e5e7eb;
+  word-break: break-word; /* Allow breaking long skill names */
+  hyphens: auto; /* Enable hyphenation for better wrapping */
+  max-width: 100%; /* Ensure tags don't overflow */
 }
 
 /* GitHub Section */
@@ -341,13 +416,35 @@ header > a {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Scroll shadow indicator for mobile */
+.github-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 30px;
+  background: linear-gradient(to right, transparent, var(--surface) 80%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 1023px) {
+  .github-wrapper::after {
+    opacity: 1;
+  }
 }
 
 .github-chart {
   display: block;
   width: 100%;
   height: auto;
-  min-width: 600px;
+  min-width: 100%; /* Changed from 600px to allow proper mobile scaling */
 }
 
 /* Sidebar */
@@ -524,12 +621,15 @@ header > a {
   display: grid;
   grid-template-columns: 1fr 80px;
   gap: 1rem;
-  align-items: center;
+  align-items: start;
+  min-width: 0; /* Allow shrinking on mobile */
 }
 
-@media (min-width: 640px) {
+/* Make the project content more responsive on smaller screens */
+@media (max-width: 479px) {
   .project-content {
-    grid-template-columns: 1fr 100px;
+    grid-template-columns: 1fr 60px; /* Smaller image area on very small screens */
+    gap: 0.75rem;
   }
 }
 
@@ -541,6 +641,16 @@ header > a {
   overflow: hidden;
   background: transparent;
   order: 2;
+  min-width: 0; /* Allow flex item to shrink below content size */
+  width: 100%; /* Make it fully responsive */
+  max-width: 80px; /* Maximum width */
+}
+
+/* Responsive image wrapper for smaller screens */
+@media (max-width: 479px) {
+  .project-image-wrapper {
+    max-width: 60px;
+  }
 }
 
 .project-image-wrapper img {
@@ -548,6 +658,7 @@ header > a {
   height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
+  display: block; /* Prevents extra space below image */
 }
 
 .project-card:hover .project-image-wrapper img {
@@ -560,6 +671,7 @@ header > a {
   flex-direction: column;
   gap: 0.5rem;
   order: 1;
+  min-width: 0; /* Allow shrinking in grid */
 }
 
 .project-title {
@@ -734,20 +846,58 @@ footer a:hover {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
+    justify-content: space-between;
+    width: 100%;
   }
 
   header > a {
     font-size: 1.1rem;
+    flex-basis: auto;
+    min-width: fit-content;
   }
 
   .social-links {
-    gap: 1rem;
+    gap: 0.75rem;
+    flex-shrink: 0;
   }
 
   .social-link svg,
   .social-link img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+  }
+
+  /* On screens between 512px and 639px */
+  @media (max-width: 639px) and (min-width: 512px) {
+    .social-links {
+      gap: 0.7rem;
+    }
+
+    header > a {
+      font-size: 1.05rem;
+    }
+  }
+
+  /* On very small screens, reduce spacing even more */
+  @media (max-width: 511px) {
+    .social-links {
+      gap: 0.6rem;
+    }
+
+    header > a {
+      font-size: 1rem;
+    }
+  }
+
+  /* On ultra-small screens */
+  @media (max-width: 374px) {
+    .social-links {
+      gap: 0.5rem;
+    }
+
+    header > a {
+      font-size: 0.95rem;
+    }
   }
 }
 
@@ -767,6 +917,7 @@ footer a:hover {
   .hero-title {
     font-size: 1.35rem;
     flex-wrap: wrap;
+    word-break: break-word; /* Ensure long titles wrap */
   }
 
   .hero-subtitle {
@@ -776,6 +927,229 @@ footer a:hover {
   .hero-description {
     font-size: 0.875rem;
     line-height: 1.7;
+    word-break: break-word; /* Ensure long text wraps */
+  }
+}
+
+/* Between 511px and 639px - moderate mobile adjustments */
+@media (max-width: 639px) and (min-width: 512px) {
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-description {
+    font-size: 0.85rem;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 65px;
+  }
+
+  .project-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* Specific adjustments for 460-570px range */
+@media (min-width: 460px) and (max-width: 570px) {
+  .hero-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .hero-description {
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .skill-tag-compact {
+    padding: 0.22rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .skills-inline {
+    gap: 0.3rem;
+  }
+
+  .skill-category-label {
+    font-size: 0.82rem;
+  }
+
+  .github-chart {
+    min-width: 450px;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 62px;
+    gap: 0.7rem;
+  }
+
+  .project-title {
+    font-size: 0.96rem;
+  }
+
+  .project-description {
+    font-size: 0.79rem;
+  }
+}
+
+/* Below 511px - critical small screen adjustments */
+@media (max-width: 511px) and (min-width: 460px) {
+  .hero-title {
+    font-size: 1.25rem;
+    line-height: 1.28;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .hero-description {
+    font-size: 0.86rem;
+    line-height: 1.62;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+  }
+
+  .hero-subtitle {
+    font-size: 0.92rem;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 58px;
+    gap: 0.65rem;
+    min-width: 0;
+  }
+
+  .project-title {
+    font-size: 0.94rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  .project-description {
+    font-size: 0.8rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .status-badges {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .skills-section-compact {
+    margin-top: 1.1rem;
+    min-width: 0;
+  }
+
+  .github-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .github-wrapper {
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .github-chart {
+    min-width: 440px;
+    width: 100%;
+  }
+}
+
+/* Below 460px - very small screens */
+@media (max-width: 459px) {
+  .hero-title {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .hero-description {
+    font-size: 0.825rem;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-width: 0;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 55px;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .project-title {
+    font-size: 0.92rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+
+  .project-description {
+    font-size: 0.775rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .status-badges {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .skills-section-compact {
+    margin-top: 1rem;
+    min-width: 0;
+  }
+
+  .github-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .github-wrapper {
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .github-chart {
+    min-width: 400px;
+    width: 100%;
+  }
+}
+
+/* Extra small screens - enhance text wrapping */
+@media (max-width: 449px) {
+  .hero-title {
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+
+  .hero-description {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
   }
 }
 
@@ -838,9 +1212,21 @@ footer a:hover {
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Show scroll hint text on mobile */
+  .github-wrapper::before {
+    content: '← swipe →';
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+    z-index: 1;
+  }
+
   .github-chart {
-    min-width: 500px;
-    width: 500px;
+    min-width: 480px;
+    width: 100%;
   }
 }
 
@@ -867,6 +1253,7 @@ footer a:hover {
   .project-title {
     font-size: 1rem;
     line-height: 1.4;
+    word-break: break-word; /* Ensure long titles wrap */
   }
 
   .project-date {
@@ -881,16 +1268,20 @@ footer a:hover {
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    word-break: break-word; /* Ensure long descriptions wrap */
+    overflow-wrap: break-word;
   }
 
   .project-links {
     gap: 0.5rem;
     margin-top: 0.75rem;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
   }
 
   .project-btn {
     padding: 0.3rem 0.6rem;
     font-size: 0.7rem;
+    white-space: nowrap; /* Prevent button text from wrapping */
   }
 
   .project-btn i {
@@ -905,32 +1296,262 @@ footer a:hover {
   }
 }
 
-/* Very Small Mobile (320px) */
-@media (max-width: 374px) {
-  .container {
-    padding: 1.5rem 0.75rem;
-  }
-
-  .hero-title {
-    font-size: 1.2rem;
-  }
-
+/* Project cards adjustments for screens below 511px */
+@media (max-width: 511px) {
   .project-content {
-    grid-template-columns: 1fr 60px;
-  }
-
-  .project-image-wrapper {
-    width: 60px;
-    height: 60px;
+    grid-template-columns: 1fr 60px; /* Smaller image area */
+    gap: 0.6rem;
   }
 
   .project-title {
     font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .project-description {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .project-btn {
+    padding: 0.28rem 0.55rem;
+    font-size: 0.68rem;
+  }
+
+  .project-btn i {
+    font-size: 0.6rem;
+  }
+
+  .project-image-wrapper {
+    max-width: 60px; /* Smaller image */
+  }
+}
+
+/* Very Small Mobile (320px) */
+@media (max-width: 449px) {
+  .container {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .hero-title {
+    font-size: 1.15rem;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 50px; /* Even smaller image area */
+    gap: 0.5rem;
+  }
+
+  .project-image-wrapper {
+    max-width: 50px; /* Smaller image */
+  }
+
+  .project-title {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .project-date {
+    font-size: 0.65rem;
+  }
+
+  .project-description {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    -webkit-line-clamp: 2; /* Show fewer lines on very small screens */
+  }
+
+  .project-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+
+  .project-btn i {
+    font-size: 0.6rem;
+    margin-right: 0.2rem;
   }
 
   .skill-tag-compact {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.3rem;
+  }
+
+  .status-badge {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .contact-link {
+    font-size: 0.8rem;
+  }
+
+  .github-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .github-date {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ultra-small screens (below 400px) */
+@media (max-width: 399px) {
+  .container {
+    padding: 1rem 0.6rem;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 45px; /* Even smaller image area */
+    gap: 0.4rem;
+  }
+
+  .project-image-wrapper {
+    max-width: 45px; /* Even smaller image */
+  }
+
+  .project-title {
+    font-size: 0.88rem;
+  }
+
+  .project-description {
+    font-size: 0.72rem;
+  }
+
+  .project-btn {
+    padding: 0.25rem 0.45rem;
     font-size: 0.65rem;
+  }
+
+  .skill-tag-compact {
+    font-size: 0.6rem;
+    padding: 0.18rem 0.35rem;
+  }
+
+  .status-badge {
+    padding: 0.22rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .contact-link {
+    font-size: 0.72rem;
+  }
+
+  .section-title {
+    font-size: 1.05rem;
+  }
+}
+
+/* Ultra-ultra-small screens (below 350px) */
+@media (max-width: 349px) {
+  .container {
+    padding: 0.9rem 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .hero-description {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 40px; /* Minimal image area */
+    gap: 0.35rem;
+  }
+
+  .project-image-wrapper {
+    max-width: 40px; /* Minimal image */
+  }
+
+  .project-title {
+    font-size: 0.85rem;
+  }
+
+  .project-description {
+    font-size: 0.7rem;
+  }
+
+  .project-btn {
+    padding: 0.22rem 0.4rem;
+    font-size: 0.6rem;
+  }
+
+  .skill-tag-compact {
+    font-size: 0.58rem;
+    padding: 0.16rem 0.3rem;
+  }
+
+  .status-badge {
     padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+  }
+
+  .contact-link {
+    font-size: 0.7rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+}
+
+/* Ultra-small screens (below 320px) */
+@media (max-width: 319px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.05rem;
+  }
+
+  .hero-description {
+    font-size: 0.8rem;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr 40px; /* Minimal image area */
+  }
+
+  .project-image-wrapper {
+    max-width: 40px;
+  }
+
+  .project-title {
+    font-size: 0.85rem;
+  }
+
+  .project-description {
+    font-size: 0.7rem;
+    -webkit-line-clamp: 1; /* Only one line on ultra-small screens */
+  }
+
+  .project-btn {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 
@@ -990,7 +1611,7 @@ footer a:hover {
   }
   
   .container {
-    overflow-x: hidden;
     max-width: 100%;
+    overflow-x: hidden;
   }
 }
