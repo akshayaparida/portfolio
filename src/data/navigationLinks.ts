@@ -18,27 +18,27 @@ export const navigationLinks: NavigationLink[] = [
   },
   {
     label: "DSA",
-    href: "/cuet-pg/dsa",
+    href: "/dsa",
     icon: "fa-solid fa-code",
   },
   {
     label: "DBMS",
-    href: "/cuet-pg/dbms",
+    href: "/dbms",
     icon: "fa-solid fa-database",
   },
   {
     label: "Networks",
-    href: "/cuet-pg/networks",
+    href: "/networks",
     icon: "fa-solid fa-network-wired",
   },
   {
     label: "OS",
-    href: "/cuet-pg/os",
+    href: "/os",
     icon: "fa-solid fa-laptop",
   },
   {
     label: "Reasoning",
-    href: "/cuet-pg/reasoning",
+    href: "/reasoning",
     icon: "fa-solid fa-brain",
   },
 ];
