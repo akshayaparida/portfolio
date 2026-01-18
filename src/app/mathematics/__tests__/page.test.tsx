@@ -14,6 +14,7 @@ jest.mock("react-markdown", () => {
 
 jest.mock("rehype-highlight", () => ({}));
 jest.mock("rehype-sanitize", () => ({}));
+jest.mock("remark-gfm", () => ({}));
 
 // Mock the demo components
 jest.mock("@/components/math-visualizations/VectorSpace2D", () => {
