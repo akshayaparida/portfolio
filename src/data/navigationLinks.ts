@@ -16,9 +16,4 @@ export const navigationLinks: NavigationLink[] = [
     href: "/mlops",
     icon: "fa-solid fa-gears",
   },
-  {
-    label: "Blog Posts",
-    href: "/blog",
-    icon: "fa-solid fa-pen-nib",
-  },
 ];
