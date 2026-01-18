@@ -510,6 +510,51 @@ result2 = output + wrong_bias  # (32,10) + (32,1) broadcasts to (32,10)
 - Always check array shapes to catch bugs early
 - Use @ for matrix multiplication, * for element-wise operations
 
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Scalar** | Single number (5, 0.001, -3.14) |
+| **Vector** | Ordered list of numbers representing direction + magnitude |
+| **Matrix** | 2D array - used for data batches and neural network weights |
+| **Dot Product** | Measures alignment: positive=same direction, zero=perpendicular |
+| **Magnitude** | Vector length: \\|\\|v\\|\\| = √(v₁² + v₂² + ...) |
+| **Unit Vector** | Normalized to length 1: v̂ = v / \\|\\|v\\|\\| |
+| **Cosine Similarity** | Range -1 to +1, measures semantic similarity in embeddings |
+| **Matrix Multiply** | (m,n) @ (n,p) → (m,p) - core neural network operation |
+| **Transpose** | Flip rows/columns: A.T swaps (m,n) → (n,m) |
+| **Eigenvalue/vector** | Av = λv - used in PCA for dimensionality reduction |
+
+**Essential Commands:**
+
+\`\`\`python
+# Vector operations
+v = np.array([3, 4])
+np.linalg.norm(v)          # Magnitude: 5.0
+v / np.linalg.norm(v)      # Unit vector: [0.6, 0.8]
+a @ b                      # Dot product (scalar result)
+
+# Matrix operations
+A @ B                      # Matrix multiplication
+A.T                        # Transpose
+A.shape                    # Check dimensions (rows, cols)
+
+# Cosine similarity
+np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+\`\`\`
+
+**The Golden Rules:**
+1. Always check .shape when debugging
+2. Use @ for matrix mult, * for element-wise
+3. Columns of A must equal rows of B for A @ B
+4. Neural network layer = input @ weights + bias
+
+---
+
 ## Additional Resources
 
 **Video Courses:**

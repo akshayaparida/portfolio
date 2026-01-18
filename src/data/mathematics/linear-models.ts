@@ -880,6 +880,55 @@ plt.show()
 - Linear models offer excellent interpretability
 - Understanding linear models is essential for AI engineering
 
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Linear Regression** | y = Xβ + ε; predict continuous values |
+| **OLS Solution** | β̂ = (XᵀX)⁻¹Xᵀy - closed-form, minimizes squared error |
+| **Logistic Regression** | P(y=1) = σ(Xβ); classification via sigmoid function |
+| **Multicollinearity** | VIF > 5 = features are too correlated; drop one |
+| **Ridge (L2)** | Add λ\\|\\|β\\|\\|² penalty; shrinks coefficients toward 0 |
+| **Lasso (L1)** | Add λ\\|\\|β\\|\\|₁ penalty; can set coefficients exactly to 0 |
+| **Elastic Net** | L1 + L2 combined; best of both worlds |
+| **Overfitting** | Model too complex; use regularization or cross-validation |
+| **Cross-Validation** | k-fold CV to estimate generalization performance |
+| **Residuals** | y - ŷ; should be random with no pattern |
+
+**Essential Formulas:**
+
+| Formula | Use |
+|:--------|:----|
+| β̂ = (XᵀX)⁻¹Xᵀy | OLS solution |
+| β̂_ridge = (XᵀX + λI)⁻¹Xᵀy | Ridge regression |
+| σ(z) = 1/(1 + e⁻ᶻ) | Sigmoid function |
+| R² = 1 - RSS/TSS | Coefficient of determination |
+
+**Quick Code:**
+
+\`\`\`python path=null start=null
+# Linear regression (OLS)
+beta = np.linalg.inv(X.T @ X) @ X.T @ y
+
+# Ridge regression
+beta_ridge = np.linalg.inv(X.T @ X + lambda_reg * np.eye(p)) @ X.T @ y
+
+# Logistic sigmoid
+sigmoid = lambda z: 1 / (1 + np.exp(-z))
+
+# R-squared
+r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - y.mean())**2)
+\`\`\`
+
+**The Linear Models Mantra:**
+> "Start simple, add complexity only when needed."
+
+---
+
 ## Additional Resources
 
 **Textbooks:**

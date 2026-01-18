@@ -650,6 +650,57 @@ plt.show()
 - Statistical thinking is crucial for AI model evaluation
 - Avoid common pitfalls like p-hacking and confusing correlation with causation
 
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Probability** | P(A) = favorable outcomes / total outcomes |
+| **Conditional** | P(A\\|B) = probability of A given B occurred |
+| **Bayes' Theorem** | P(H\\|D) = P(D\\|H)×P(H) / P(D) - update beliefs with evidence |
+| **Normal Dist** | Bell curve, 68% within 1σ, 95% within 2σ |
+| **Expected Value** | Long-run average: E[X] = Σ x·P(X=x) |
+| **Variance** | Spread: Var(X) = E[(X-μ)²] |
+| **Covariance** | How variables move together (sign matters) |
+| **Correlation** | Normalized covariance: -1 to +1 |
+| **CLT** | Sample means → normal as n → ∞ |
+| **MLE** | Find θ that maximizes P(data\\|θ) |
+| **p-value** | Probability of data if null is true; < 0.05 = significant |
+| **CI** | 95% CI = we're 95% confident true value is in range |
+
+**Essential Formulas:**
+
+| Formula | Use |
+|:--------|:----|
+| P(A\\|B) = P(A∩B)/P(B) | Conditional probability |
+| Bayes: P(H\\|D) ∝ P(D\\|H)×P(H) | Update prior with data |
+| ρ = Cov(X,Y)/(σₓσᵧ) | Correlation coefficient |
+| CI: x̄ ± 1.96×(σ/√n) | 95% confidence interval |
+
+**Quick Code:**
+
+\`\`\`python path=null start=null
+# Probability basics
+from scipy import stats
+stats.binom.pmf(k, n, p)        # Binomial probability
+stats.norm.pdf(x, mu, sigma)    # Normal density
+
+# Statistical tests
+stats.ttest_ind(group1, group2)  # t-test
+np.corrcoef(x, y)[0,1]           # Correlation
+
+# Bayesian update
+posterior = (likelihood * prior) / marginal
+\`\`\`
+
+**The Statistics Mantra:**
+> "All models are wrong, but some are useful." - George Box
+
+---
+
 ## Additional Resources
 
 **Textbooks:**

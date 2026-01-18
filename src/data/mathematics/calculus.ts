@@ -526,6 +526,52 @@ def scale_gradients(gradients, target_norm=1.0):
 - Computational graphs enable automatic differentiation
 - Numerical stability is crucial for training
 
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Derivative** | Rate of change; slope of function at a point |
+| **Gradient** | Vector of all partial derivatives; points to steepest ascent |
+| **Chain Rule** | Multiply derivatives along path: (∂L/∂y)·(∂y/∂x) |
+| **Gradient Descent** | w = w - α·∇L(w); move opposite to gradient |
+| **Learning Rate (α)** | Step size; too big = overshoot, too small = slow |
+| **Backpropagation** | Chain rule applied backwards through network layers |
+| **SGD** | Use one sample at a time - noisy but fast |
+| **Mini-batch** | Use 32-256 samples - best balance (standard in practice) |
+| **Adam** | Adaptive learning rate + momentum - most popular optimizer |
+| **Vanishing Gradient** | Gradients → 0 in deep nets; use ReLU, BatchNorm |
+| **Exploding Gradient** | Gradients → ∞; use gradient clipping |
+
+**Essential Formulas:**
+
+| Formula | Use |
+|:--------|:----|
+| w = w - α·∇L | Gradient descent update |
+| ∂L/∂w = (∂L/∂y)·(∂y/∂w) | Chain rule for backprop |
+| Power rule: d/dx(xⁿ) = n·xⁿ⁻¹ | Basic derivative |
+
+**Quick Code:**
+
+\`\`\`python path=null start=null
+# Gradient descent step
+w = w - learning_rate * gradient
+
+# Numerical gradient (for checking)
+grad = (f(x + h) - f(x - h)) / (2 * h)
+
+# Clip gradients (prevent exploding)
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+\`\`\`
+
+**The Optimization Mantra:**
+> "Gradients tell you which way is up. Go down to minimize loss."
+
+---
+
 ## Additional Resources
 
 **Books:**

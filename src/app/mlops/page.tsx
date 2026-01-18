@@ -78,6 +78,13 @@ export default function MLOpsPage() {
   const [activeModuleIndex, setActiveModuleIndex] = useState(0);
   const activeModule = mlopsModules[activeModuleIndex];
 
+  // Handle module change and scroll to top
+  const handleModuleChange = (index: number) => {
+    setActiveModuleIndex(index);
+    // Scroll to top of page when switching modules
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="mlops-container">
       {/* Header */}
@@ -95,7 +102,7 @@ export default function MLOpsPage() {
             {mlopsModules.map((module, index) => (
               <button
                 key={module.id}
-                onClick={() => setActiveModuleIndex(index)}
+                onClick={() => handleModuleChange(index)}
                 className={`nav-item ${index === activeModuleIndex ? "active" : ""}`}
               >
                 <span className="nav-icon">
@@ -393,7 +400,6 @@ export default function MLOpsPage() {
           background: #fafafa;
           display: flex;
           flex-direction: column;
-          overflow-y: scroll;
         }
 
         .main-layout {
@@ -568,12 +574,15 @@ export default function MLOpsPage() {
         /* Sidebar */
         .sidebar {
           position: sticky;
-          top: 80px;
+          top: 100px;
           height: fit-content;
+          max-height: calc(100vh - 120px);
+          overflow-y: auto;
           background: #fff;
           border: 1px solid #e5e7eb;
           border-radius: 12px;
           padding: 1.25rem;
+          align-self: start;
         }
 
         .sidebar-title {

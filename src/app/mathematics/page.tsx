@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 import { mathematicsModules } from "@/data/mathematics";
 import CodeBlock from "@/components/CodeBlock";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -31,6 +32,13 @@ export default function MathematicsPage() {
   const [activeModuleIndex, setActiveModuleIndex] = useState(0);
   const activeModule = mathematicsModules[activeModuleIndex];
 
+  // Handle module change and scroll to top
+  const handleModuleChange = (index: number) => {
+    setActiveModuleIndex(index);
+    // Scroll to top of page when switching modules
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="math-container">
       {/* Header */}
@@ -48,7 +56,7 @@ export default function MathematicsPage() {
             {mathematicsModules.map((module, index) => (
               <button
                 key={module.id}
-                onClick={() => setActiveModuleIndex(index)}
+                onClick={() => handleModuleChange(index)}
                 className={`nav-item ${index === activeModuleIndex ? "active" : ""}`}
               >
                 <span className="nav-icon">
@@ -80,6 +88,7 @@ export default function MathematicsPage() {
                 <div className="markdown-content">
                   <ErrorBoundary fallback={MathErrorFallback}>
                     <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
                       rehypePlugins={[rehypeHighlight, rehypeSanitize]}
                       components={{
                         code: CodeBlock,
@@ -225,6 +234,44 @@ export default function MathematicsPage() {
           color: #1d4ed8;
         }
 
+        /* Table styling for TL;DR sections */
+        .markdown-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1rem 0;
+          font-size: 0.9rem;
+          background: #fff;
+          border-radius: 8px;
+          overflow: hidden;
+          border: 1px solid #e5e7eb;
+        }
+
+        .markdown-content thead {
+          background: #f3f4f6;
+        }
+
+        .markdown-content th {
+          padding: 0.75rem 1rem;
+          text-align: left;
+          font-weight: 700;
+          color: #111827;
+          border-bottom: 2px solid #e5e7eb;
+        }
+
+        .markdown-content td {
+          padding: 0.75rem 1rem;
+          color: #374151;
+          border-bottom: 1px solid #f3f4f6;
+        }
+
+        .markdown-content tbody tr:hover {
+          background: #f9fafb;
+        }
+
+        .markdown-content tbody tr:last-child td {
+          border-bottom: none;
+        }
+
         /* Syntax highlighting */
         .hljs-comment,
         .hljs-quote {
@@ -297,7 +344,6 @@ export default function MathematicsPage() {
           background: #fafafa;
           display: flex;
           flex-direction: column;
-          overflow-y: scroll;
         }
 
         .math-header {
@@ -479,12 +525,15 @@ export default function MathematicsPage() {
         /* Sidebar */
         .sidebar {
           position: sticky;
-          top: 80px;
+          top: 100px;
           height: fit-content;
+          max-height: calc(100vh - 120px);
+          overflow-y: auto;
           background: #fff;
           border: 1px solid #e5e7eb;
           border-radius: 12px;
           padding: 1.25rem;
+          align-self: start;
         }
 
         .sidebar-title {
