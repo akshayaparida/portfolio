@@ -9,6 +9,18 @@ export const probabilityStatsModule: LearningModule = {
 
 Probability and statistics form the foundation of machine learning. Every algorithm deals with uncertainty, noise, and inference from limited data. This module covers essential concepts for AI engineers.
 
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Basic Probability** | Calculate P(A), P(A∪B), P(A∩B) |
+| 2 | **Conditional Probability** | Apply Bayes' theorem |
+| 3 | **Random Variables** | Understand discrete and continuous RVs |
+| 4 | **Distributions** | Work with Normal, Binomial, Poisson |
+| 5 | **Expectation & Variance** | Calculate E[X] and Var(X) |
+| 6 | **Hypothesis Testing** | Perform significance tests |
+| 7 | **Correlation** | Measure linear relationships |
+
 ## Math Notation & Pronunciation Guide
 
 Before we dive in, let&apos;s decode the symbols you&apos;ll see:
@@ -828,4 +840,102 @@ posterior = (likelihood * prior) / marginal
 - [Cross Validated](https://stats.stackexchange.com/) - Statistics Q&A community
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "prob-q1",
+      question: "A fair coin is tossed 3 times. What is P(exactly 2 heads)?",
+      options: ["1/4", "3/8", "1/2", "1/8"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: P = C(n,k) × p^k × (1-p)^(n-k)\n\nStep-by-step:\n• n = 3 tosses, k = 2 heads, p = 0.5\n• C(3,2) = 3 ways to get 2 heads\n• P = 3 × (1/2)² × (1/2)¹ = 3/8\n\nThe 3 ways: HHT, HTH, THH",
+      difficulty: "medium",
+    },
+    {
+      id: "prob-q2",
+      question:
+        "If P(A) = 0.4 and P(B) = 0.5 with A and B independent, what is P(A ∩ B)?",
+      options: ["0.9", "0.2", "0.1", "0.45"],
+      correctAnswer: 1,
+      explanation:
+        "For independent events: P(A ∩ B) = P(A) × P(B)\n\nStep-by-step:\n• P(A ∩ B) = 0.4 × 0.5 = 0.2\n\nIndependence means knowing A happened doesn't change P(B).",
+      difficulty: "easy",
+    },
+    {
+      id: "prob-q3",
+      question: "The mean of a standard normal distribution is:",
+      options: ["-1", "0", "1", "undefined"],
+      correctAnswer: 1,
+      explanation:
+        "Standard Normal N(0, 1):\n\n• Mean (μ) = 0\n• Variance (σ²) = 1\n• Standard deviation (σ) = 1\n\nAny normal distribution can be standardized to N(0,1) using z = (x-μ)/σ",
+      difficulty: "easy",
+    },
+    {
+      id: "prob-q4",
+      question: "Bayes' Theorem states P(A|B) = ?",
+      options: [
+        "P(B|A) × P(A)",
+        "P(B|A) × P(A) / P(B)",
+        "P(A) × P(B)",
+        "P(A) / P(B)",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Bayes' Theorem: P(A|B) = P(B|A) × P(A) / P(B)\n\nIntuition:\n• P(B|A) = likelihood\n• P(A) = prior\n• P(B) = evidence\n• P(A|B) = posterior\n\nUpdates belief about A after observing B.",
+      difficulty: "medium",
+    },
+    {
+      id: "prob-q5",
+      question: "For random variable X, Var(2X + 3) = ?",
+      options: ["2×Var(X)", "4×Var(X)", "4×Var(X) + 3", "2×Var(X) + 3"],
+      correctAnswer: 1,
+      explanation:
+        "Rule: Var(aX + b) = a²×Var(X)\n\nStep-by-step:\n• Var(2X + 3) = 2² × Var(X) = 4×Var(X)\n• Adding constants doesn't change variance\n• Multiplying by 'a' squares the effect on variance\n\nMean shifts: E[2X+3] = 2E[X]+3, but variance ignores shifts.",
+      difficulty: "medium",
+    },
+    {
+      id: "prob-q6",
+      question: "If E[X] = 5, then E[3X + 2] = ?",
+      options: ["15", "17", "13", "10"],
+      correctAnswer: 1,
+      explanation:
+        "Linearity of Expectation: E[aX + b] = aE[X] + b\n\nStep-by-step:\n• E[3X + 2] = 3×E[X] + 2\n• = 3×5 + 2 = 17",
+      difficulty: "easy",
+    },
+    {
+      id: "prob-q7",
+      question: "In a Poisson distribution, mean equals:",
+      options: ["Variance", "Standard deviation", "Median", "Mode"],
+      correctAnswer: 0,
+      explanation:
+        "Poisson(λ) properties:\n\n• Mean = λ\n• Variance = λ\n• Mean = Variance!\n\nThis is a unique property of Poisson distribution.",
+      difficulty: "medium",
+    },
+    {
+      id: "prob-q8",
+      question: "P(A') means:",
+      options: ["P(A) = 0", "P(A) = 1", "1 - P(A)", "P(A)/2"],
+      correctAnswer: 2,
+      explanation:
+        "Complement rule: P(A') = 1 - P(A)\n\n• A' = 'not A' = everything except A\n• P(A) + P(A') = 1\n\nUseful when P(A') is easier to calculate than P(A).",
+      difficulty: "easy",
+    },
+    {
+      id: "prob-q9",
+      question: "The Central Limit Theorem applies when sample size is:",
+      options: ["Any size", "n ≥ 30 (rule of thumb)", "n = 1", "n < 10"],
+      correctAnswer: 1,
+      explanation:
+        "CLT: Sample means ~ Normal as n → ∞\n\nPractical guideline:\n• n ≥ 30 is usually sufficient\n• Works regardless of original distribution\n• Enables hypothesis testing and confidence intervals",
+      difficulty: "medium",
+    },
+    {
+      id: "prob-q10",
+      question: "Correlation coefficient r ranges from:",
+      options: ["0 to 1", "-∞ to +∞", "-1 to +1", "0 to +∞"],
+      correctAnswer: 2,
+      explanation:
+        "Correlation coefficient (Pearson's r):\n\n• -1 = Perfect negative correlation\n• 0 = No linear correlation\n• +1 = Perfect positive correlation\n\n|r| close to 1 means strong linear relationship.",
+      difficulty: "easy",
+    },
+  ],
 };

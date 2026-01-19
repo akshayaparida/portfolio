@@ -192,7 +192,8 @@ describe("MathematicsPage - Blog Style Layout", () => {
 
   it("includes error boundary in component hierarchy", () => {
     render(<MathematicsPage />);
-    expect(screen.getByTestId("error-boundary")).toBeInTheDocument();
+    const errorBoundaries = screen.getAllByTestId("error-boundary");
+    expect(errorBoundaries.length).toBeGreaterThan(0);
   });
 
   it("renders footer with last updated info", () => {

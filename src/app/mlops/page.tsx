@@ -10,6 +10,7 @@ import CodeBlock from "@/components/CodeBlock";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MathErrorFallback from "@/components/MathErrorFallback";
 import BlogPageHeader from "@/components/BlogPageHeader";
+import PracticeQuiz from "@/components/PracticeQuiz";
 import gitMetadata from "@/data/git-metadata.json";
 
 // Module icons for MLOps
@@ -82,7 +83,7 @@ export default function MLOpsPage() {
   const handleModuleChange = (index: number) => {
     setActiveModuleIndex(index);
     // Scroll to top of page when switching modules
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -195,6 +196,18 @@ export default function MLOpsPage() {
                 ))}
               </div>
             )}
+
+            {/* Practice Quiz */}
+            {activeModule.practiceQuiz &&
+              activeModule.practiceQuiz.length > 0 && (
+                <div className="interactive-section">
+                  <div className="section-header">
+                    <span className="practice-badge">Practice</span>
+                    <p className="section-subtitle">Test your understanding</p>
+                  </div>
+                  <PracticeQuiz questions={activeModule.practiceQuiz} />
+                </div>
+              )}
           </article>
         </main>
       </div>
@@ -503,6 +516,18 @@ export default function MLOpsPage() {
           display: inline-block;
           padding: 0.35rem 0.75rem;
           background: #2563eb;
+          color: #fff;
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          border-radius: 4px;
+        }
+
+        .practice-badge {
+          display: inline-block;
+          padding: 0.35rem 0.75rem;
+          background: #10b981;
           color: #fff;
           font-size: 0.7rem;
           font-weight: 700;

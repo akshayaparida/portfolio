@@ -10,6 +10,23 @@ export const setTheoryModule: LearningModule = {
 
 Set theory and combinatorics form the discrete mathematical foundation essential for computer science, data structures, algorithm analysis, and probability theory.
 
+## 🎯 What You'll Learn
+
+By the end of this module, you will be able to:
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Sets & Notation** | Read and write set notation (∈, ∪, ∩, ⊆) |
+| 2 | **Venn Diagrams** | Visualize Union, Intersection, Difference operations |
+| 3 | **Cardinality** | Calculate set sizes using Inclusion-Exclusion |
+| 4 | **Power Set** | Find all subsets of a set (2^n formula) |
+| 5 | **Permutations** | Count ordered arrangements (n!) |
+| 6 | **Combinations** | Count unordered selections C(n,r) |
+| 7 | **Relations** | Identify Reflexive, Symmetric, Transitive properties |
+| 8 | **Functions** | Count mappings between sets |
+| 9 | **De Morgan's Laws** | Simplify complement expressions |
+| 10 | **Problem Solving** | Apply these concepts to CUET PG style MCQs |
+
 ## Math Notation & Pronunciation Guide
 
 **Set Notation:**
@@ -441,4 +458,113 @@ len(A)  # Cardinality
 - [MIT OpenCourseWare - Mathematics for Computer Science](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/)
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "set-q1",
+      question:
+        "If Set A has 4 elements, how many subsets does the Power Set P(A) have?",
+      options: ["4", "8", "15", "16"],
+      correctAnswer: 3,
+      explanation:
+        "Formula: |P(A)| = 2^n where n = number of elements.\n\nStep-by-step:\n• Given: n = 4 elements\n• Apply formula: |P(A)| = 2^4\n• Calculate: 2 × 2 × 2 × 2 = 16\n\nWhy 2^n? Each element has 2 choices: include or exclude. For 4 elements, that's 2×2×2×2 = 16 possible subsets (including ∅ and A itself).",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q2",
+      question:
+        "In a group of 60 students, 25 play Cricket, 30 play Football, and 24 play neither. How many play BOTH?",
+      options: ["10", "15", "19", "20"],
+      correctAnswer: 2,
+      explanation:
+        "Formula: n(C ∪ F) = n(C) + n(F) - n(C ∩ F)\n\nStep-by-step:\n• Total students = 60, Neither = 24\n• Students playing at least one sport: n(C ∪ F) = 60 - 24 = 36\n• Apply Inclusion-Exclusion:\n  36 = 25 + 30 - n(C ∩ F)\n  36 = 55 - n(C ∩ F)\n  n(C ∩ F) = 55 - 36 = 19\n\nWhy subtract intersection? When adding C + F, we count the overlap twice. So we subtract it once to get the correct union count.",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q3",
+      question:
+        "Which of the following represents the symmetric difference (A △ B)?",
+      options: [
+        "(A - B) ∩ (B - A)",
+        "(A ∪ B) - (A ∩ B)",
+        "(A ∩ B) - (A ∪ B)",
+        "A' ∩ B'",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Formula: A △ B = (A ∪ B) - (A ∩ B) = (A - B) ∪ (B - A)\n\nStep-by-step:\n• Symmetric difference = elements in A OR B, but NOT both\n• Method 1: Take union (everything) minus intersection (overlap)\n• Method 2: Take only-A plus only-B (both crescents)\n\nOption A is wrong because it uses ∩ instead of ∪ for combining the differences.\nOption B is correct: Union minus Intersection.",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q4",
+      question:
+        "If A = {1, 2} and B = {a, b, c}, what is the cardinality of A × B?",
+      options: ["5", "6", "8", "9"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: |A × B| = |A| × |B|\n\nStep-by-step:\n• |A| = 2 elements: {1, 2}\n• |B| = 3 elements: {a, b, c}\n• |A × B| = 2 × 3 = 6\n\nCartesian Product creates all ordered pairs:\nA × B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}\nThat's 6 pairs total.",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q5",
+      question: "According to De Morgan's Laws, what is (A ∪ B)' equal to?",
+      options: ["A' ∪ B'", "A' ∩ B'", "A ∩ B", "A' ∪ B"],
+      correctAnswer: 1,
+      explanation:
+        "De Morgan's Laws:\n• (A ∪ B)' = A' ∩ B' (complement of union = intersection of complements)\n• (A ∩ B)' = A' ∪ B' (complement of intersection = union of complements)\n\nIntuition:\n• NOT (in A OR in B) = NOT in A AND NOT in B\n• If you're outside the union, you must be outside BOTH sets simultaneously.\n\nMemory trick: When you take complement, ∪ becomes ∩ and vice versa.",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q6",
+      question: "How many ways can 5 people be arranged in a line?",
+      options: ["25", "60", "120", "125"],
+      correctAnswer: 2,
+      explanation:
+        "Formula: n! (n factorial) for arranging n distinct objects in a line.\n\nStep-by-step:\n• n = 5 people\n• Arrangements = 5! = 5 × 4 × 3 × 2 × 1 = 120\n\nWhy factorial? First position has 5 choices, second has 4 remaining, third has 3, and so on.",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q7",
+      question:
+        "From 8 students, how many ways can we select a committee of 3?",
+      options: ["24", "56", "336", "512"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: C(n,r) = n! / [r!(n-r)!] (Combinations - order doesn't matter)\n\nStep-by-step:\n• n = 8, r = 3\n• C(8,3) = 8! / (3! × 5!)\n• = (8 × 7 × 6) / (3 × 2 × 1)\n• = 336 / 6 = 56\n\nWhy divide by r!? Because selecting {A,B,C} is same as {B,A,C}, we remove duplicate orderings.",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q8",
+      question: "A relation R on set A is called reflexive if:",
+      options: [
+        "(a,b) ∈ R implies (b,a) ∈ R",
+        "(a,a) ∈ R for all a ∈ A",
+        "(a,b) ∈ R and (b,c) ∈ R implies (a,c) ∈ R",
+        "R = R⁻¹",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Properties of Relations:\n• Reflexive: (a,a) ∈ R for ALL a ∈ A (every element relates to itself)\n• Symmetric: (a,b) ∈ R ⟹ (b,a) ∈ R (Option A)\n• Transitive: (a,b) ∈ R and (b,c) ∈ R ⟹ (a,c) ∈ R (Option C)\n\nExample: '≤' on integers is reflexive because a ≤ a for all a.",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q9",
+      question:
+        "If |A| = 3 and |B| = 4, how many functions f: A → B are possible?",
+      options: ["7", "12", "64", "81"],
+      correctAnswer: 2,
+      explanation:
+        "Formula: |B|^|A| = number of functions from A to B\n\nStep-by-step:\n• |A| = 3 (domain has 3 elements)\n• |B| = 4 (codomain has 4 elements)\n• Each element in A can map to ANY of 4 elements in B\n• Total functions = 4 × 4 × 4 = 4³ = 64\n\nWhy 4³? Each of the 3 elements in A independently chooses from 4 options.",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q10",
+      question:
+        "Using the multiplication principle: If there are 4 routes from A to B and 3 routes from B to C, how many routes are there from A to C via B?",
+      options: ["7", "12", "1", "24"],
+      correctAnswer: 1,
+      explanation:
+        "Multiplication Principle: If task 1 can be done in m ways AND task 2 can be done in n ways, then both tasks can be done in m × n ways.\n\nStep-by-step:\n• Routes A → B = 4 ways\n• Routes B → C = 3 ways\n• Routes A → C via B = 4 × 3 = 12 ways\n\nWhy multiply? For EACH of the 4 choices from A to B, there are 3 choices from B to C.",
+      difficulty: "easy",
+    },
+  ],
 };

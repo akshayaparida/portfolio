@@ -10,6 +10,19 @@ export const algebraModule: LearningModule = {
 
 Algebra provides the fundamental language for expressing mathematical relationships, solving equations, and analyzing patterns - essential skills for algorithms, data analysis, and machine learning.
 
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Indices & Powers** | Simplify expressions with exponents |
+| 2 | **Logarithms** | Convert between log and exponential form |
+| 3 | **Polynomials** | Factor and solve polynomial equations |
+| 4 | **Quadratic Equations** | Use quadratic formula and factoring |
+| 5 | **Arithmetic Progression** | Find nth term and sum of AP |
+| 6 | **Geometric Progression** | Calculate GP terms and infinite sums |
+| 7 | **Inequalities** | Solve linear and quadratic inequalities |
+| 8 | **Absolute Value** | Handle modulus in equations |
+
 ## Math Notation & Pronunciation Guide
 
 **Basic Operations:**
@@ -438,4 +451,101 @@ print(A @ A_inv)
 - [Professor Leonard - College Algebra](https://www.youtube.com/playlist?list=PLDesaqWTN6ESsmwELdrzhcGiRhk5DjwLP)
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "alg-q1",
+      question: "Simplify: 2³ × 2⁴",
+      options: ["2⁷", "2¹²", "4⁷", "8"],
+      correctAnswer: 0,
+      explanation:
+        "Rule: aᵐ × aⁿ = aᵐ⁺ⁿ\n\nStep-by-step:\n• Same base (2), so add exponents\n• 2³ × 2⁴ = 2³⁺⁴ = 2⁷\n\nWhy add? You're multiplying (2×2×2) × (2×2×2×2) = 2⁷",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q2",
+      question: "If log₁₀(x) = 3, what is x?",
+      options: ["30", "100", "1000", "10000"],
+      correctAnswer: 2,
+      explanation:
+        "Definition: logₐ(x) = n means aⁿ = x\n\nStep-by-step:\n• log₁₀(x) = 3\n• Convert to exponential: 10³ = x\n• x = 1000\n\nMemory trick: The log asks 'What power of 10 gives x?'",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q3",
+      question: "Find the 10th term of AP: 3, 7, 11, 15, ...",
+      options: ["39", "40", "43", "47"],
+      correctAnswer: 0,
+      explanation:
+        "Formula: aₙ = a + (n-1)d\n\nStep-by-step:\n• First term a = 3\n• Common difference d = 7 - 3 = 4\n• n = 10\n• a₁₀ = 3 + (10-1) × 4 = 3 + 36 = 39\n\nWhy (n-1)? Because we add d starting from the 2nd term.",
+      difficulty: "medium",
+    },
+    {
+      id: "alg-q4",
+      question: "Sum of infinite GP: 1 + 1/2 + 1/4 + 1/8 + ...",
+      options: ["1.5", "2", "3", "∞"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: S∞ = a / (1 - r) when |r| < 1\n\nStep-by-step:\n• First term a = 1\n• Common ratio r = 1/2\n• S∞ = 1 / (1 - 1/2) = 1 / (1/2) = 2\n\nWhy does this work? As terms get smaller, they approach but never exceed 2.",
+      difficulty: "medium",
+    },
+    {
+      id: "alg-q5",
+      question: "Solve: x² - 5x + 6 = 0",
+      options: ["x = 2, 3", "x = -2, -3", "x = 1, 6", "x = -1, 6"],
+      correctAnswer: 0,
+      explanation:
+        "Method: Factor the quadratic\n\nStep-by-step:\n• Find two numbers that multiply to 6 and add to -5\n• Numbers: -2 and -3\n• x² - 5x + 6 = (x - 2)(x - 3) = 0\n• x = 2 or x = 3\n\nVerify: 2² - 5(2) + 6 = 4 - 10 + 6 = 0 ✓",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q6",
+      question: "Simplify: (a²)³",
+      options: ["a⁵", "a⁶", "a⁸", "a⁹"],
+      correctAnswer: 1,
+      explanation:
+        "Rule: (aᵐ)ⁿ = aᵐˣⁿ\n\nStep-by-step:\n• (a²)³ = a²ˣ³ = a⁶\n\nWhy multiply? You're raising a² to power 3, so (a²)(a²)(a²) = a⁶",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q7",
+      question: "If log₂(8) = x, what is x?",
+      options: ["2", "3", "4", "8"],
+      correctAnswer: 1,
+      explanation:
+        "Definition: log₂(8) = x means 2ˣ = 8\n\nStep-by-step:\n• 2¹ = 2\n• 2² = 4\n• 2³ = 8 ✓\n\nSo x = 3",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q8",
+      question: "Sum of first 10 terms of AP: 2, 5, 8, 11, ...",
+      options: ["155", "145", "165", "135"],
+      correctAnswer: 0,
+      explanation:
+        "Formula: Sₙ = n/2 × [2a + (n-1)d]\n\nStep-by-step:\n• a = 2, d = 3, n = 10\n• S₁₀ = 10/2 × [2(2) + (10-1)(3)]\n• = 5 × [4 + 27] = 5 × 31 = 155",
+      difficulty: "medium",
+    },
+    {
+      id: "alg-q9",
+      question: "Find the 5th term of GP: 3, 6, 12, 24, ...",
+      options: ["36", "48", "96", "192"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: aₙ = a × rⁿ⁻¹\n\nStep-by-step:\n• a = 3, r = 6/3 = 2\n• a₅ = 3 × 2⁵⁻¹ = 3 × 2⁴ = 3 × 16 = 48",
+      difficulty: "easy",
+    },
+    {
+      id: "alg-q10",
+      question: "Solve: |x - 3| = 5",
+      options: [
+        "x = 8 only",
+        "x = -2 only",
+        "x = 8 or x = -2",
+        "x = 2 or x = 8",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Absolute value: |a| = b means a = b OR a = -b\n\nStep-by-step:\n• x - 3 = 5 → x = 8\n• x - 3 = -5 → x = -2\n\nBoth solutions are valid!",
+      difficulty: "easy",
+    },
+  ],
 };

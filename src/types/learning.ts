@@ -1,10 +1,10 @@
 // TypeScript types for Learning Journey
-export type ModuleStatus = 'not-started' | 'in-progress' | 'completed';
+export type ModuleStatus = "not-started" | "in-progress" | "completed";
 
 export interface ResourceLink {
   title: string;
   url: string;
-  type: 'tutorial' | 'documentation' | 'article' | 'video' | 'course';
+  type: "tutorial" | "documentation" | "article" | "video" | "course";
 }
 
 export interface SubModule {
@@ -15,6 +15,15 @@ export interface SubModule {
   detailedContent?: string;
   resources?: ResourceLink[];
   subModules?: SubModule[];
+}
+
+export interface PracticeQuestion {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number; // Index of the correct option (0-3)
+  explanation: string;
+  difficulty: "easy" | "medium" | "hard";
 }
 
 export interface LearningModule {
@@ -30,6 +39,7 @@ export interface LearningModule {
   detailedContent?: string;
   subModules?: SubModule[];
   resources?: ResourceLink[];
+  practiceQuiz?: PracticeQuestion[];
 }
 
 export interface LearningJourneyData {

@@ -9,6 +9,17 @@ export const calculusModule: LearningModule = {
 
 Calculus is the mathematics of change and optimization. Without calculus, neural networks couldn&apos;t learn - there would be no backpropagation, no gradient descent, no training.
 
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Limits** | Calculate limits and understand continuity |
+| 2 | **Derivatives** | Find derivatives using rules (chain, product, quotient) |
+| 3 | **Partial Derivatives** | Compute gradients for multivariable functions |
+| 4 | **Gradient Descent** | Understand how neural networks optimize |
+| 5 | **Integration** | Calculate areas and cumulative distributions |
+| 6 | **Applications** | Apply calculus to ML loss functions |
+
 ## Math Notation & Pronunciation Guide
 
 Before we dive in, let&apos;s decode the symbols you&apos;ll see:
@@ -878,4 +889,96 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 - [MIT 18.06 - Calculus of Several Variables](https://ocw.mit.edu/courses/mathematics/18-02sc-multivariable-calculus-fall-2010/)
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "calc-q1",
+      question: "What is the derivative of x³?",
+      options: ["x²", "3x²", "3x³", "x⁴/4"],
+      correctAnswer: 1,
+      explanation:
+        "Power Rule: d/dx[xⁿ] = n·xⁿ⁻¹\n\nStep-by-step:\n• d/dx[x³] = 3·x³⁻¹ = 3x²\n\nBring the power down, reduce it by 1.",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q2",
+      question: "∫ 2x dx = ?",
+      options: ["x²", "x² + C", "2x² + C", "x + C"],
+      correctAnswer: 1,
+      explanation:
+        "Integration reverses differentiation:\n\nStep-by-step:\n• ∫ 2x dx = 2 · (x²/2) + C = x² + C\n\nAlways add + C for indefinite integrals!",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q3",
+      question: "lim(x→0) sin(x)/x = ?",
+      options: ["0", "1", "∞", "undefined"],
+      correctAnswer: 1,
+      explanation:
+        "Famous limit in calculus!\n\nStep-by-step:\n• Direct substitution gives 0/0 (indeterminate)\n• Using L'Hôpital's Rule: lim = cos(x)/1 = cos(0) = 1\n• Or geometric proof shows it equals 1\n\nThis is the foundation of derivative of sin(x) = cos(x).",
+      difficulty: "medium",
+    },
+    {
+      id: "calc-q4",
+      question: "If f(x) = e^(2x), what is f'(x)?",
+      options: ["e^(2x)", "2e^(2x)", "e^x", "2e^x"],
+      correctAnswer: 1,
+      explanation:
+        "Chain Rule: d/dx[e^(u)] = e^(u) · u'\n\nStep-by-step:\n• u = 2x, so u' = 2\n• f'(x) = e^(2x) · 2 = 2e^(2x)\n\nDerivative of e^x is e^x, but chain rule adds the inner derivative.",
+      difficulty: "medium",
+    },
+    {
+      id: "calc-q5",
+      question: "At a local minimum, the first derivative is:",
+      options: ["Positive", "Negative", "Zero", "Undefined"],
+      correctAnswer: 2,
+      explanation:
+        "Critical points occur where f'(x) = 0\n\nAt minimum:\n• Before: f'(x) < 0 (decreasing)\n• At min: f'(x) = 0 (flat)\n• After: f'(x) > 0 (increasing)\n\nTo confirm it's a min, check f''(x) > 0.",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q6",
+      question: "d/dx[sin(x)] = ?",
+      options: ["cos(x)", "-cos(x)", "sin(x)", "-sin(x)"],
+      correctAnswer: 0,
+      explanation:
+        "Basic derivative:\n\n• d/dx[sin(x)] = cos(x)\n• d/dx[cos(x)] = -sin(x)\n\nRemember: sin → cos → -sin → -cos → sin",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q7",
+      question: "∫ cos(x) dx = ?",
+      options: ["sin(x) + C", "-sin(x) + C", "cos(x) + C", "tan(x) + C"],
+      correctAnswer: 0,
+      explanation:
+        "Integration is reverse of differentiation:\n\n• Since d/dx[sin(x)] = cos(x)\n• ∫ cos(x) dx = sin(x) + C\n\nAlways add + C for indefinite integrals!",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q8",
+      question: "The gradient of f(x,y) = x² + y² at (1, 1) is:",
+      options: ["(1, 1)", "(2, 2)", "(0, 0)", "(1, 2)"],
+      correctAnswer: 1,
+      explanation:
+        "Gradient: ∇f = (∂f/∂x, ∂f/∂y)\n\nStep-by-step:\n• ∂f/∂x = 2x → at (1,1): 2(1) = 2\n• ∂f/∂y = 2y → at (1,1): 2(1) = 2\n• ∇f = (2, 2)",
+      difficulty: "medium",
+    },
+    {
+      id: "calc-q9",
+      question: "If f''(x) > 0 at a critical point, the point is a:",
+      options: ["Maximum", "Minimum", "Inflection point", "Saddle point"],
+      correctAnswer: 1,
+      explanation:
+        "Second derivative test:\n\n• f''(x) > 0 → Concave up → Minimum\n• f''(x) < 0 → Concave down → Maximum\n• f''(x) = 0 → Need more tests",
+      difficulty: "easy",
+    },
+    {
+      id: "calc-q10",
+      question: "The product rule states d/dx[uv] = ?",
+      options: ["u'v'", "uv' + u'v", "u'v - uv'", "(u/v)'"],
+      correctAnswer: 1,
+      explanation:
+        "Product Rule: d/dx[uv] = u'v + uv'\n\n'First times derivative of second, plus second times derivative of first'\n\nExample: d/dx[x²·sin(x)] = 2x·sin(x) + x²·cos(x)",
+      difficulty: "easy",
+    },
+  ],
 };

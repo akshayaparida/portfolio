@@ -1,13 +1,27 @@
-import { LearningModule } from '@/types/learning';
+import { LearningModule } from "@/types/learning";
 
 export const linearAlgebraModule: LearningModule = {
-    id: 'linear-algebra',
-    title: 'Linear Algebra',
-    description: 'Vectors, matrices, and transformations - the language of neural networks',
-    status: 'in-progress',
-    detailedContent: `# Linear Algebra for AI Engineers
+  id: "linear-algebra",
+  title: "Linear Algebra",
+  description:
+    "Vectors, matrices, and transformations - the language of neural networks",
+  status: "in-progress",
+  detailedContent: `# Linear Algebra for AI Engineers
 
 Linear algebra is the mathematical foundation of all machine learning. Every neural network, every transformation, every data representation relies on vectors and matrices.
+
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Vectors** | Create, add, and scale vectors |
+| 2 | **Dot Product** | Compute similarity and projections |
+| 3 | **Matrices** | Multiply matrices and understand shapes |
+| 4 | **Transpose** | Flip rows and columns |
+| 5 | **Determinant** | Check if matrix is invertible |
+| 6 | **Inverse** | Solve linear systems Ax = b |
+| 7 | **Eigenvalues** | Understand PCA dimensionality reduction |
+| 8 | **NumPy** | Implement all operations in code |
 
 ## Math Notation & Pronunciation Guide
 
@@ -581,5 +595,98 @@ np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 **Papers:**
 - [Deep Learning Book - Chapter 2](https://www.deeplearningbook.org/contents/linear_algebra.html) - Goodfellow et al.
     `,
-    subModules: []
+  subModules: [],
+  practiceQuiz: [
+    {
+      id: "la-q1",
+      question: "What is the dot product of vectors [1, 2, 3] and [4, 5, 6]?",
+      options: ["15", "32", "21", "45"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: a · b = Σ(aᵢ × bᵢ)\n\nStep-by-step:\n• (1×4) + (2×5) + (3×6)\n• = 4 + 10 + 18 = 32\n\nDot product gives a scalar (single number), not a vector.",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q2",
+      question:
+        "If A is a 3×4 matrix and B is a 4×2 matrix, what is the shape of AB?",
+      options: ["3×2", "4×4", "3×4", "2×3"],
+      correctAnswer: 0,
+      explanation:
+        "Rule: (m×n) × (n×p) = (m×p)\n\nStep-by-step:\n• A: 3×4 (3 rows, 4 cols)\n• B: 4×2 (4 rows, 2 cols)\n• Inner dimensions (4) must match ✓\n• Result: 3×2 (outer dimensions)\n\nMemory: 'Rows of first, Cols of second'",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q3",
+      question: "The determinant of [[2, 3], [1, 4]] is:",
+      options: ["5", "8", "11", "-5"],
+      correctAnswer: 0,
+      explanation:
+        "Formula for 2×2: det = ad - bc for [[a,b],[c,d]]\n\nStep-by-step:\n• det = (2×4) - (3×1)\n• = 8 - 3 = 5\n\nDeterminant ≠ 0 means the matrix is invertible.",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q4",
+      question: "If Av = λv, then λ is called:",
+      options: ["Eigenvector", "Eigenvalue", "Determinant", "Trace"],
+      correctAnswer: 1,
+      explanation:
+        "Definition: Av = λv\n\n• v is the eigenvector (direction preserved)\n• λ is the eigenvalue (scaling factor)\n\nThe matrix A only stretches v by λ, doesn't change its direction.",
+      difficulty: "medium",
+    },
+    {
+      id: "la-q5",
+      question: "The transpose of a 2×3 matrix has shape:",
+      options: ["2×3", "3×2", "3×3", "2×2"],
+      correctAnswer: 1,
+      explanation:
+        "Rule: Transpose swaps rows and columns\n\n• Original: 2×3 (2 rows, 3 cols)\n• Transpose: 3×2 (3 rows, 2 cols)\n\nElement at (i,j) moves to (j,i).",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q6",
+      question: "The identity matrix I multiplied with any matrix A gives:",
+      options: ["0", "I", "A", "A²"],
+      correctAnswer: 2,
+      explanation:
+        "Identity matrix property: I × A = A × I = A\n\nIdentity matrix has 1s on diagonal, 0s elsewhere.\nIt's like multiplying by 1 for matrices.",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q7",
+      question: "The magnitude of vector [3, 4] is:",
+      options: ["5", "7", "12", "25"],
+      correctAnswer: 0,
+      explanation:
+        "Formula: ||v|| = √(x² + y²)\n\nStep-by-step:\n• ||v|| = √(3² + 4²)\n• = √(9 + 16) = √25 = 5\n\nAnother 3-4-5 triangle!",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q8",
+      question: "Two vectors are orthogonal if their dot product equals:",
+      options: ["1", "-1", "0", "undefined"],
+      correctAnswer: 2,
+      explanation:
+        "Orthogonal = Perpendicular\n\n• a · b = ||a|| × ||b|| × cos(θ)\n• If θ = 90°, cos(90°) = 0\n• So a · b = 0\n\nUsed heavily in PCA and neural networks.",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q9",
+      question: "The trace of matrix [[1,2],[3,4]] is:",
+      options: ["5", "10", "4", "6"],
+      correctAnswer: 0,
+      explanation:
+        "Trace = sum of diagonal elements\n\nStep-by-step:\n• Diagonal: 1 and 4\n• Trace = 1 + 4 = 5\n\nTrace equals sum of eigenvalues!",
+      difficulty: "easy",
+    },
+    {
+      id: "la-q10",
+      question: "A square matrix with determinant = 0 is called:",
+      options: ["Identity", "Singular", "Orthogonal", "Symmetric"],
+      correctAnswer: 1,
+      explanation:
+        "Singular matrix:\n\n• det(A) = 0\n• Not invertible (no A⁻¹)\n• Rows/columns are linearly dependent\n\nNon-singular matrices have det ≠ 0 and are invertible.",
+      difficulty: "medium",
+    },
+  ],
 };

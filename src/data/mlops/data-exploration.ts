@@ -10,6 +10,19 @@ export const dataExplorationModule: LearningModule = {
 
 Exploratory Data Analysis (EDA) is the critical first step in any ML project. Before writing preprocessing code or training models, you need to understand what you're working with.
 
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Data Inspection** | Use df.shape, df.info(), df.head() |
+| 2 | **Descriptive Stats** | Interpret mean, median, std |
+| 3 | **Missing Values** | Identify and handle NaN patterns |
+| 4 | **Outliers** | Detect using IQR and Z-score |
+| 5 | **Distributions** | Analyze skewness and transformations |
+| 6 | **Target Balance** | Check class imbalance |
+| 7 | **Correlations** | Find feature relationships |
+| 8 | **Memory Optimization** | Reduce dataframe memory usage |
+
 ## Key Terms & Definitions
 
 Before diving in, let's define the key terminology:
@@ -827,4 +840,112 @@ df['col'] = df['col'].astype('category')    # convert to category
 - [Sweetviz](https://github.com/fbdesignpro/sweetviz) - EDA visualization library
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "mlops-q1",
+      question: "Which pandas method shows data types and non-null counts?",
+      options: ["df.head()", "df.describe()", "df.info()", "df.shape"],
+      correctAnswer: 2,
+      explanation:
+        "df.info() displays:\n\n• Column names\n• Non-null counts\n• Data types (dtype)\n• Memory usage\n\ndf.describe() shows statistics, df.head() shows first rows.",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q2",
+      question: "IQR (Interquartile Range) is calculated as:",
+      options: ["Q3 - Q1", "Q2 - Q1", "Max - Min", "Mean - Median"],
+      correctAnswer: 0,
+      explanation:
+        "IQR = Q3 - Q1 (75th percentile - 25th percentile)\n\nUsed for outlier detection:\n• Lower bound: Q1 - 1.5×IQR\n• Upper bound: Q3 + 1.5×IQR\n\nValues outside these bounds are potential outliers.",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q3",
+      question:
+        "For a highly imbalanced dataset (95% class A, 5% class B), accuracy is:",
+      options: ["A good metric", "A poor metric", "Always 50%", "Undefined"],
+      correctAnswer: 1,
+      explanation:
+        "Accuracy is misleading for imbalanced data:\n\n• A model predicting 'A' always gets 95% accuracy\n• But it never detects class B!\n\nBetter metrics: Precision, Recall, F1-score, AUC-ROC",
+      difficulty: "medium",
+    },
+    {
+      id: "mlops-q4",
+      question: "Missing values in pandas are represented as:",
+      options: ["None", "0", "NaN", "'missing'"],
+      correctAnswer: 2,
+      explanation:
+        "NaN (Not a Number) represents missing values in pandas.\n\nDetection methods:\n• df.isna() or df.isnull()\n• df.isna().sum() for counts\n\nNone is converted to NaN when in a numeric column.",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q5",
+      question: "Positive skewness means the distribution has:",
+      options: ["Long left tail", "Long right tail", "Equal tails", "No tail"],
+      correctAnswer: 1,
+      explanation:
+        "Skewness indicates tail direction:\n\n• Positive skew: Long RIGHT tail (mean > median)\n• Negative skew: Long LEFT tail (mean < median)\n• Zero skew: Symmetric (normal distribution)\n\nLog transform can reduce positive skewness.",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q6",
+      question: "df.describe() shows statistics for:",
+      options: [
+        "All columns",
+        "Numeric columns only",
+        "Categorical columns only",
+        "First 5 rows",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "df.describe() by default:\n\n• Shows stats for numeric columns\n• Includes: count, mean, std, min, 25%, 50%, 75%, max\n\nFor all columns: df.describe(include='all')",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q7",
+      question: "To find correlation between all numeric features, use:",
+      options: ["df.info()", "df.corr()", "df.value_counts()", "df.unique()"],
+      correctAnswer: 1,
+      explanation:
+        "df.corr() computes:\n\n• Pairwise correlation matrix\n• Values from -1 to +1\n• Helps identify multicollinearity\n\nVisualize with: sns.heatmap(df.corr())",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q8",
+      question: "High cardinality in a categorical column means:",
+      options: [
+        "Few unique values",
+        "Many unique values",
+        "Many missing values",
+        "Column is numeric",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Cardinality = number of unique values\n\n• Low cardinality: Gender (2-3 values)\n• High cardinality: UserID (millions of values)\n\nHigh cardinality can cause issues with one-hot encoding.",
+      difficulty: "easy",
+    },
+    {
+      id: "mlops-q9",
+      question: "Z-score outlier detection flags values where |z| > :",
+      options: ["1", "2", "3", "5"],
+      correctAnswer: 2,
+      explanation:
+        "Z-score: z = (x - μ) / σ\n\nTypical threshold: |z| > 3\n• 99.7% of normal data falls within 3σ\n• Values beyond are potential outliers\n\nAlternative: IQR method (1.5 × IQR)",
+      difficulty: "medium",
+    },
+    {
+      id: "mlops-q10",
+      question: "SMOTE is used to handle:",
+      options: [
+        "Missing values",
+        "Outliers",
+        "Class imbalance",
+        "High cardinality",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "SMOTE = Synthetic Minority Over-sampling Technique\n\n• Creates synthetic samples of minority class\n• Interpolates between existing minority samples\n• Helps balance class distribution\n\nUse with imbalanced-learn library.",
+      difficulty: "medium",
+    },
+  ],
 };

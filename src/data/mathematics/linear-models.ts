@@ -1,13 +1,26 @@
-import { LearningModule } from '@/types/learning';
+import { LearningModule } from "@/types/learning";
 
 export const linearModelsModule: LearningModule = {
-    id: 'linear-models',
-    title: 'Linear Models',
-    description: 'From linear regression to neural networks - the building blocks',
-    status: 'in-progress',
-    detailedContent: `# Linear Models for AI Engineers
+  id: "linear-models",
+  title: "Linear Models",
+  description:
+    "From linear regression to neural networks - the building blocks",
+  status: "in-progress",
+  detailedContent: `# Linear Models for AI Engineers
 
 Linear models form the foundation of machine learning, from simple regression to the building blocks of neural networks. Understanding linear models is essential for mastering more complex algorithms.
+
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Linear Regression** | Fit y = wx + b to data |
+| 2 | **Logistic Regression** | Binary classification with sigmoid |
+| 3 | **Loss Functions** | MSE, Cross-Entropy |
+| 4 | **Gradient Descent** | Optimize model parameters |
+| 5 | **Regularization** | L1 (Lasso) and L2 (Ridge) |
+| 6 | **Cross-Validation** | Evaluate model generalization |
+| 7 | **Scikit-Learn** | Implement models in Python |
 
 ## Math Notation & Pronunciation Guide
 
@@ -956,5 +969,118 @@ r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - y.mean())**2)
 - [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/) - Datasets for practice
 - [Cross Validated](https://stats.stackexchange.com/) - Statistics Q&A
     `,
-    subModules: []
+  subModules: [],
+  practiceQuiz: [
+    {
+      id: "lm-q1",
+      question: "In linear regression y = wx + b, what does 'b' represent?",
+      options: ["Slope", "Weight", "Bias/Intercept", "Learning rate"],
+      correctAnswer: 2,
+      explanation:
+        "y = wx + b:\n\n• w = weight/slope (how much y changes per unit x)\n• b = bias/intercept (y value when x = 0)\n\nThe line crosses the y-axis at point (0, b).",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q2",
+      question: "Mean Squared Error (MSE) formula is:",
+      options: [
+        "Σ|yᵢ - ŷᵢ|/n",
+        "Σ(yᵢ - ŷᵢ)²/n",
+        "Σ(yᵢ - ŷᵢ)/n",
+        "max(yᵢ - ŷᵢ)",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "MSE = (1/n) × Σ(yᵢ - ŷᵢ)²\n\nWhy squared?\n• Removes negative signs\n• Penalizes large errors more\n• Mathematically differentiable (for gradient descent)\n\nRMSE = √MSE for same units as y.",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q3",
+      question: "Logistic regression outputs:",
+      options: [
+        "Any real number",
+        "Probability between 0 and 1",
+        "Only 0 or 1",
+        "Integer class label",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Logistic regression uses sigmoid: σ(z) = 1/(1 + e^(-z))\n\nOutput is probability P(y=1|x):\n• Always between 0 and 1\n• Threshold (usually 0.5) converts to class\n\nUnlike linear regression which outputs any real number.",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q4",
+      question: "L2 regularization adds what to the loss function?",
+      options: ["λ × Σ|wᵢ|", "λ × Σwᵢ²", "λ × Σwᵢ", "λ × max(wᵢ)"],
+      correctAnswer: 1,
+      explanation:
+        "L2 (Ridge) Regularization: Loss + λ × Σwᵢ²\n\n• Penalizes large weights\n• Prevents overfitting\n• λ controls regularization strength\n\nL1 (Lasso) uses Σ|wᵢ| instead, which can zero out weights.",
+      difficulty: "medium",
+    },
+    {
+      id: "lm-q5",
+      question: "Gradient descent updates weights using:",
+      options: ["w = w + α∇L", "w = w - α∇L", "w = w × α∇L", "w = w / α∇L"],
+      correctAnswer: 1,
+      explanation:
+        "Update rule: w = w - α × ∇L\n\n• α = learning rate (step size)\n• ∇L = gradient of loss (direction of steepest increase)\n• Subtract because we want to minimize loss\n\nMove opposite to gradient direction to decrease loss.",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q6",
+      question: "Cross-entropy loss is typically used for:",
+      options: [
+        "Regression",
+        "Classification",
+        "Clustering",
+        "Dimensionality reduction",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Loss functions by task:\n\n• Regression: MSE, MAE\n• Classification: Cross-Entropy (Log Loss)\n\nCross-entropy measures difference between predicted probabilities and true labels.",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q7",
+      question: "Overfitting occurs when:",
+      options: [
+        "Train error high, test error high",
+        "Train error low, test error low",
+        "Train error low, test error high",
+        "Train error high, test error low",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Overfitting symptoms:\n\n• Model memorizes training data\n• Low training error\n• High test/validation error\n\nSolution: More data, regularization, simpler model, dropout",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q8",
+      question: "Sigmoid function outputs values in range:",
+      options: ["(-∞, +∞)", "(-1, 1)", "(0, 1)", "[0, +∞)"],
+      correctAnswer: 2,
+      explanation:
+        "Sigmoid: σ(x) = 1 / (1 + e^(-x))\n\n• As x → -∞, σ(x) → 0\n• As x → +∞, σ(x) → 1\n• Always between 0 and 1\n\nPerfect for probabilities!",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q9",
+      question:
+        "In k-fold cross-validation with k=5, what fraction of data is used for testing in each fold?",
+      options: ["1/5 = 20%", "4/5 = 80%", "1/2 = 50%", "1/10 = 10%"],
+      correctAnswer: 0,
+      explanation:
+        "k-fold CV:\n\n• Data split into k equal parts\n• Each fold: 1 part for test, k-1 for train\n• k=5: Each fold uses 20% test, 80% train\n\nAll data gets tested exactly once.",
+      difficulty: "easy",
+    },
+    {
+      id: "lm-q10",
+      question: "Which regularization can zero out coefficients?",
+      options: ["L1 (Lasso)", "L2 (Ridge)", "Both equally", "Neither"],
+      correctAnswer: 0,
+      explanation:
+        "L1 vs L2:\n\n• L1 (Lasso): Can make weights exactly 0 (sparse)\n• L2 (Ridge): Shrinks weights but rarely zeros them\n\nL1 is used for feature selection because it removes irrelevant features.",
+      difficulty: "medium",
+    },
+  ],
 };

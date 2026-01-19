@@ -10,6 +10,19 @@ export const coordinateGeometryModule: LearningModule = {
 
 Coordinate geometry bridges algebra and geometry, enabling us to represent geometric shapes with equations - essential for computer graphics, data visualization, game development, and spatial algorithms.
 
+## 🎯 What You'll Learn
+
+| # | Topic | Skill |
+|:--|:------|:------|
+| 1 | **Distance Formula** | Calculate distance between two points |
+| 2 | **Midpoint** | Find center of line segment |
+| 3 | **Slope** | Calculate gradient of a line |
+| 4 | **Line Equations** | Convert between different forms |
+| 5 | **Circles** | Write and interpret circle equations |
+| 6 | **Parabola** | Find vertex and direction |
+| 7 | **Ellipse & Hyperbola** | Identify conic sections |
+| 8 | **Applications** | Apply to graphics and collision detection |
+
 ## Math Notation & Pronunciation Guide
 
 **Coordinates:**
@@ -541,4 +554,97 @@ def manhattan_distance(p1, p2):
 - [3Blue1Brown - Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
     `,
   subModules: [],
+  practiceQuiz: [
+    {
+      id: "cg-q1",
+      question: "Find the distance between points (1, 2) and (4, 6)",
+      options: ["3", "4", "5", "7"],
+      correctAnswer: 2,
+      explanation:
+        "Formula: d = √[(x₂-x₁)² + (y₂-y₁)²]\n\nStep-by-step:\n• d = √[(4-1)² + (6-2)²]\n• d = √[3² + 4²] = √[9 + 16]\n• d = √25 = 5\n\nThis is a 3-4-5 right triangle!",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q2",
+      question:
+        "What is the slope of the line passing through (2, 3) and (6, 11)?",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: m = (y₂ - y₁) / (x₂ - x₁)\n\nStep-by-step:\n• m = (11 - 3) / (6 - 2)\n• m = 8 / 4 = 2\n\nSlope = rise/run = how much y changes per unit x.",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q3",
+      question: "Find the center of the circle: x² + y² - 6x + 4y - 12 = 0",
+      options: ["(3, -2)", "(-3, 2)", "(6, -4)", "(-6, 4)"],
+      correctAnswer: 0,
+      explanation:
+        "General form: x² + y² + 2gx + 2fy + c = 0\nCenter: (-g, -f)\n\nStep-by-step:\n• 2g = -6 → g = -3\n• 2f = 4 → f = 2\n• Center = (-(-3), -2) = (3, -2)\n\nAlways negate the coefficients!",
+      difficulty: "medium",
+    },
+    {
+      id: "cg-q4",
+      question: "Two lines are perpendicular if their slopes multiply to:",
+      options: ["0", "1", "-1", "undefined"],
+      correctAnswer: 2,
+      explanation:
+        "Rule: Perpendicular lines have m₁ × m₂ = -1\n\nExample:\n• Line 1: slope = 2\n• Line 2: slope = -1/2\n• 2 × (-1/2) = -1 ✓\n\nThey're negative reciprocals of each other.",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q5",
+      question: "The eccentricity of a circle is:",
+      options: ["0", "1", "∞", "undefined"],
+      correctAnswer: 0,
+      explanation:
+        "Eccentricity (e) measures how 'stretched' a conic is:\n\n• Circle: e = 0 (perfectly round)\n• Ellipse: 0 < e < 1\n• Parabola: e = 1\n• Hyperbola: e > 1\n\nCircle has e = 0 because foci coincide with center.",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q6",
+      question: "Find the midpoint of (2, 4) and (8, 10)",
+      options: ["(5, 7)", "(6, 14)", "(10, 14)", "(4, 6)"],
+      correctAnswer: 0,
+      explanation:
+        "Formula: M = ((x₁+x₂)/2, (y₁+y₂)/2)\n\nStep-by-step:\n• x = (2+8)/2 = 5\n• y = (4+10)/2 = 7\n• Midpoint = (5, 7)",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q7",
+      question: "The equation y = 2x + 3 has y-intercept:",
+      options: ["2", "3", "-3", "-2"],
+      correctAnswer: 1,
+      explanation:
+        "y = mx + c format:\n\n• m = slope = 2\n• c = y-intercept = 3\n\nThe line crosses y-axis at (0, 3)",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q8",
+      question: "Distance of point (3, 4) from origin is:",
+      options: ["3", "4", "5", "7"],
+      correctAnswer: 2,
+      explanation:
+        "Origin is (0, 0).\n\nStep-by-step:\n• d = √[(3-0)² + (4-0)²]\n• d = √[9 + 16] = √25 = 5\n\nClassic 3-4-5 Pythagorean triple!",
+      difficulty: "easy",
+    },
+    {
+      id: "cg-q9",
+      question: "The parabola y = x² - 4x + 3 has vertex at:",
+      options: ["(2, -1)", "(2, 1)", "(-2, -1)", "(4, 3)"],
+      correctAnswer: 0,
+      explanation:
+        "Vertex formula: h = -b/(2a), k = f(h)\n\nStep-by-step:\n• a=1, b=-4, c=3\n• h = -(-4)/(2×1) = 2\n• k = (2)² - 4(2) + 3 = 4 - 8 + 3 = -1\n• Vertex = (2, -1)",
+      difficulty: "medium",
+    },
+    {
+      id: "cg-q10",
+      question: "Area of triangle with vertices (0,0), (4,0), (0,3) is:",
+      options: ["6", "7", "12", "24"],
+      correctAnswer: 0,
+      explanation:
+        "Formula: Area = ½ × base × height\n\nStep-by-step:\n• Base on x-axis = 4 units\n• Height on y-axis = 3 units\n• Area = ½ × 4 × 3 = 6 sq units",
+      difficulty: "easy",
+    },
+  ],
 };

@@ -17,6 +17,7 @@ import PCAVisualization from "@/components/math-visualizations/PCAVisualization"
 import GradientDescentPlayground from "@/components/math-visualizations/GradientDescentPlayground";
 import ActivationFunctions from "@/components/math-visualizations/ActivationFunctions";
 import ScalarMultiplication from "@/components/math-visualizations/ScalarMultiplication";
+import PracticeQuiz from "@/components/PracticeQuiz";
 import gitMetadata from "@/data/git-metadata.json";
 
 const demoComponents: Record<string, React.ComponentType> = {
@@ -130,6 +131,20 @@ export default function MathematicsPage() {
                 })}
               </div>
             )}
+
+            {/* Practice Quiz */}
+            {activeModule.practiceQuiz &&
+              activeModule.practiceQuiz.length > 0 && (
+                <div className="practice-section">
+                  <div className="section-header">
+                    <span className="practice-badge">Practice</span>
+                    <p className="section-subtitle">Test your understanding</p>
+                  </div>
+                  <ErrorBoundary fallback={MathErrorFallback}>
+                    <PracticeQuiz questions={activeModule.practiceQuiz} />
+                  </ErrorBoundary>
+                </div>
+              )}
           </article>
         </main>
       </div>
@@ -170,6 +185,17 @@ export default function MathematicsPage() {
           margin-bottom: 1rem;
           padding-bottom: 0.5rem;
           border-bottom: 1px solid #e5e7eb;
+        }
+
+        .markdown-content h2:first-of-type {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        /* Make book emoji grayscale */
+        .markdown-content h2:first-of-type::before {
+          content: "";
         }
 
         .markdown-content h3 {
@@ -516,49 +542,67 @@ export default function MathematicsPage() {
         }
 
         /* Interactive Section */
+        /* Interactive Section */
         .interactive-section {
           margin-top: 2rem;
           padding-top: 2rem;
           border-top: 1px solid #f3f4f6;
         }
 
-        .interactive-badge {
+        .section-header {
+          margin-bottom: 1.5rem;
+          border-bottom: 2px solid #f3f4f6;
+          padding-bottom: 1rem;
+        }
+
+        .theory-badge,
+        .interactive-badge,
+        .practice-badge {
           display: inline-block;
-          padding: 0.35rem 0.75rem;
-          background: #2563eb;
-          color: #fff;
-          font-size: 0.7rem;
+          font-size: 0.75rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-          border-radius: 4px;
+          letter-spacing: 0.05em;
+          padding: 0.35rem 0.75rem;
+          border-radius: 999px;
+          margin-bottom: 0.5rem;
+        }
+
+        .theory-badge {
+          background: #eff6ff;
+          color: #2563eb;
+        }
+
+        .interactive-badge {
+          background: #ecfdf5;
+          color: #059669;
+        }
+
+        .practice-badge {
+          background: #fffbeb;
+          color: #d97706;
+        }
+
+        .section-subtitle {
+          font-size: 0.95rem;
+          color: #6b7280;
+          margin: 0;
         }
 
         .demo-block {
-          margin-top: 1.5rem;
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 12px;
           padding: 1.5rem;
-          background: #eff6ff;
-          border: 1px solid #bfdbfe;
-          border-radius: 8px;
+          margin-bottom: 2rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
-        .demo-title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 0.5rem 0;
+        .practice-section {
+          margin-top: 3rem;
+          padding-top: 2rem;
+          border-top: 1px dashed #e5e7eb;
         }
-
-        .demo-description {
-          font-size: 0.85rem;
-          color: #6b7280;
-          margin: 0 0 1rem 0;
-        }
-
-        .demo-content {
-          margin-top: 1rem;
-        }
-
         /* Sidebar */
         .sidebar {
           position: sticky;
