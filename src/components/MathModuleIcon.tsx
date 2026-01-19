@@ -24,6 +24,31 @@ export default function MathModuleIcon({
   };
 
   switch (moduleId) {
+    case "set-theory":
+      return (
+        <svg {...iconProps}>
+          {/* Venn diagram */}
+          <circle cx="9" cy="12" r="6" strokeWidth="2" />
+          <circle cx="15" cy="12" r="6" strokeWidth="2" />
+        </svg>
+      );
+    case "algebra":
+      return (
+        <svg {...iconProps}>
+          {/* X variable symbol */}
+          <path d="M6 6l12 12M18 6L6 18" strokeWidth="2" />
+          <path d="M3 12h4M17 12h4" strokeWidth="1.5" />
+        </svg>
+      );
+    case "coordinate-geometry":
+      return (
+        <svg {...iconProps}>
+          {/* Coordinate axes with point */}
+          <path d="M3 21V3M3 21h18" strokeWidth="2" />
+          <circle cx="12" cy="10" r="2" fill="currentColor" />
+          <path d="M3 10h7M12 10v11" strokeWidth="1" strokeDasharray="2 2" />
+        </svg>
+      );
     case "linear-algebra":
       return (
         <svg {...iconProps}>

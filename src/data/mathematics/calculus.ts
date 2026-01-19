@@ -1,11 +1,11 @@
-import { LearningModule } from '@/types/learning';
+import { LearningModule } from "@/types/learning";
 
 export const calculusModule: LearningModule = {
-    id: 'calculus',
-    title: 'Calculus',
-    description: 'Derivatives and optimization - how neural networks learn',
-    status: 'in-progress',
-    detailedContent: `# Calculus for AI Engineers
+  id: "calculus",
+  title: "Calculus",
+  description: "Derivatives and optimization - how neural networks learn",
+  status: "in-progress",
+  detailedContent: `# Calculus for AI Engineers
 
 Calculus is the mathematics of change and optimization. Without calculus, neural networks couldn&apos;t learn - there would be no backpropagation, no gradient descent, no training.
 
@@ -59,14 +59,299 @@ Before we dive in, let&apos;s decode the symbols you&apos;ll see:
 
 ## Why Calculus Matters
 
-Neural networks learn by minimizing loss functions. Calculus tells us:
-- Which direction to move weights (gradient)
-- How fast to move (learning rate × gradient)
-- When we&apos;ve reached a minimum (gradient ≈ 0)
+Calculus is the mathematics of change and optimization. It forms the foundation for physics, engineering, and machine learning. Neural networks learn through calculus - backpropagation relies on derivatives and the chain rule.
 
 ## What You&apos;ll Master
 
-### 1. Derivatives - Measuring Change
+### 1. Limits - The Foundation
+
+**What is a Limit?**
+A limit describes what value a function approaches as the input approaches some value.
+
+lim(x→a) f(x) = L means "as x gets closer to a, f(x) gets closer to L"
+
+**Evaluating Limits:**
+
+\`\`\`python path=null start=null
+import numpy as np
+
+# Numerical limit evaluation
+def evaluate_limit(f, a, epsilon=1e-10):
+    """Evaluate limit of f(x) as x approaches a"""
+    left = f(a - epsilon)
+    right = f(a + epsilon)
+    if abs(left - right) < 1e-6:
+        return (left + right) / 2
+    return None  # Limit doesn't exist
+
+# Example: lim(x→2) (x² - 4)/(x - 2)
+f = lambda x: (x**2 - 4) / (x - 2) if x != 2 else np.nan
+limit = evaluate_limit(f, 2)
+print(f"lim(x→2) (x² - 4)/(x - 2) = {limit}")  # = 4
+
+# Algebraically: (x² - 4)/(x - 2) = (x+2)(x-2)/(x-2) = x+2
+# At x = 2: limit = 2 + 2 = 4
+\`\`\`
+
+**Important Limit Rules:**
+- lim(x→a)[f(x) + g(x)] = lim f(x) + lim g(x)
+- lim(x→a)[f(x) × g(x)] = lim f(x) × lim g(x)
+- lim(x→a)[f(x)/g(x)] = lim f(x) / lim g(x), if lim g(x) ≠ 0
+
+**Standard Limits:**
+- lim(x→0) (sin x)/x = 1
+- lim(x→0) (1 + x)^(1/x) = e ≈ 2.718
+- lim(x→∞) (1 + 1/n)^n = e
+
+### 2. Continuity
+
+**Definition:**
+A function f is continuous at point a if:
+1. f(a) is defined
+2. lim(x→a) f(x) exists
+3. lim(x→a) f(x) = f(a)
+
+**Types of Discontinuities:**
+- **Removable**: Limit exists but ≠ f(a) or f(a) undefined
+- **Jump**: Left and right limits both exist but differ
+- **Infinite**: Function approaches ±∞
+
+\`\`\`python path=null start=null
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Continuous function
+def continuous_f(x):
+    return x**2
+
+# Function with removable discontinuity
+def removable_discontinuity(x):
+    if x == 0:
+        return np.nan  # Undefined at 0
+    return np.sin(x) / x
+
+# Function with jump discontinuity
+def jump_discontinuity(x):
+    return np.where(x < 0, -1, 1)
+
+x = np.linspace(-3, 3, 500)
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+
+axes[0].plot(x, continuous_f(x))
+axes[0].set_title('Continuous: f(x) = x²')
+
+x_nz = x[x != 0]
+axes[1].plot(x_nz, np.sin(x_nz)/x_nz)
+axes[1].scatter([0], [1], color='red', zorder=5)
+axes[1].set_title('Removable: f(x) = sin(x)/x')
+
+axes[2].plot(x[x<0], [-1]*len(x[x<0]), 'b-')
+axes[2].plot(x[x>=0], [1]*len(x[x>=0]), 'b-')
+axes[2].scatter([0, 0], [-1, 1], color='red', zorder=5)
+axes[2].set_title('Jump: sign function')
+
+plt.tight_layout()
+plt.show()
+\`\`\`
+
+### 3. Derivatives - Measuring Change
+
+**What is a Derivative?**
+The derivative measures how a function changes when its input changes. It&apos;s the slope of the tangent line.
+
+Definition: f&apos;(x) = limit as h→0 of [f(x+h) - f(x)] / h
+
+**Common Derivative Rules:**
+
+- Power rule: d/dx(xⁿ) = n·xⁿ⁻¹
+  Example: d/dx(x³) = 3x²
+
+- Constant rule: d/dx(c) = 0
+
+- Sum rule: d/dx(f + g) = f&apos; + g&apos;
+
+- Product rule: d/dx(f·g) = f&apos;g + fg&apos;
+
+- Quotient rule: d/dx(f/g) = (f&apos;g - fg&apos;) / g²
+
+- Chain rule: d/dx(f(g(x))) = f&apos;(g(x)) · g&apos;(x)
+
+**Important Function Derivatives:**
+- d/dx(eˣ) = eˣ
+- d/dx(ln(x)) = 1/x
+- d/dx(sin(x)) = cos(x)
+- d/dx(cos(x)) = -sin(x)
+- d/dx(tan(x)) = sec²(x)
+- d/dx(1/(1+e⁻ˣ)) = sigmoid(x)·(1-sigmoid(x))
+
+### 4. Maxima and Minima
+
+**Finding Extrema:**
+1. Find f&apos;(x) = 0 (critical points)
+2. Use second derivative test:
+   - f&apos;&apos;(x) > 0 → Local minimum
+   - f&apos;&apos;(x) < 0 → Local maximum
+   - f&apos;&apos;(x) = 0 → Inconclusive (use other methods)
+
+\`\`\`python path=null start=null
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize_scalar
+
+# Example: f(x) = x³ - 6x² + 9x + 1
+def f(x):
+    return x**3 - 6*x**2 + 9*x + 1
+
+def f_prime(x):
+    return 3*x**2 - 12*x + 9
+
+def f_double_prime(x):
+    return 6*x - 12
+
+# Find critical points: f'(x) = 0
+# 3x² - 12x + 9 = 0 → x² - 4x + 3 = 0 → (x-1)(x-3) = 0
+critical_points = [1, 3]
+
+for cp in critical_points:
+    second_deriv = f_double_prime(cp)
+    if second_deriv > 0:
+        print(f"x = {cp}: Local MINIMUM, f({cp}) = {f(cp)}")
+    elif second_deriv < 0:
+        print(f"x = {cp}: Local MAXIMUM, f({cp}) = {f(cp)}")
+    else:
+        print(f"x = {cp}: Inconclusive")
+
+# Plot
+x = np.linspace(-1, 5, 200)
+plt.figure(figsize=(10, 6))
+plt.plot(x, f(x), 'b-', linewidth=2, label='f(x)')
+plt.scatter(critical_points, [f(cp) for cp in critical_points], 
+            color='red', s=100, zorder=5, label='Critical points')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.title('f(x) = x³ - 6x² + 9x + 1')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+\`\`\`
+
+**Applications:**
+- Machine Learning: Finding minimum of loss function
+- Economics: Maximizing profit, minimizing cost
+- Physics: Finding equilibrium points
+
+### 5. Integration
+
+**What is Integration?**
+Integration is the reverse of differentiation. It finds the area under a curve.
+
+∫f(x)dx = F(x) + C, where F&apos;(x) = f(x)
+
+**Basic Integration Rules:**
+
+| Function | Integral |
+|----------|----------|
+| xⁿ | xⁿ⁺¹/(n+1) + C |
+| 1/x | ln|x| + C |
+| eˣ | eˣ + C |
+| sin(x) | -cos(x) + C |
+| cos(x) | sin(x) + C |
+
+**Integration by Substitution:**
+For ∫f(g(x))·g&apos;(x)dx, let u = g(x), then:
+∫f(u)du
+
+\`\`\`python path=null start=null
+import numpy as np
+from scipy import integrate
+
+# Example: ∫2x·cos(x²)dx
+# Let u = x², du = 2x·dx
+# ∫cos(u)du = sin(u) + C = sin(x²) + C
+
+# Verify numerically
+f = lambda x: 2*x * np.cos(x**2)
+antiderivative = lambda x: np.sin(x**2)
+
+# Check: integral from 0 to 2
+numerical, _ = integrate.quad(f, 0, 2)
+analytical = antiderivative(2) - antiderivative(0)
+
+print(f"Numerical integral: {numerical:.6f}")
+print(f"Analytical result: {analytical:.6f}")
+\`\`\`
+
+**Integration by Parts:**
+∫u·dv = uv - ∫v·du
+
+Choose u and dv using LIATE rule:
+- **L**ogarithmic
+- **I**nverse trig
+- **A**lgebraic
+- **T**rigonometric
+- **E**xponential
+
+\`\`\`python path=null start=null
+# Example: ∫x·eˣdx
+# u = x, dv = eˣdx
+# du = dx, v = eˣ
+# ∫x·eˣdx = x·eˣ - ∫eˣdx = x·eˣ - eˣ + C = eˣ(x-1) + C
+
+import numpy as np
+from scipy import integrate
+
+f = lambda x: x * np.exp(x)
+antiderivative = lambda x: np.exp(x) * (x - 1)
+
+# Verify from 0 to 2
+numerical, _ = integrate.quad(f, 0, 2)
+analytical = antiderivative(2) - antiderivative(0)
+
+print(f"∫x·eˣdx from 0 to 2:")
+print(f"Numerical: {numerical:.6f}")
+print(f"Analytical: {analytical:.6f}")
+\`\`\`
+
+### 6. Definite Integrals and Area
+
+**Definite Integral:**
+∫[a to b] f(x)dx = F(b) - F(a)
+
+**Area Between Curves:**
+Area = ∫[a to b] |f(x) - g(x)|dx
+
+\`\`\`python path=null start=null
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+
+# Area between y = x² and y = x from 0 to 1
+f = lambda x: x
+g = lambda x: x**2
+
+# Area = ∫(x - x²)dx from 0 to 1
+area_func = lambda x: x - x**2
+area, _ = integrate.quad(area_func, 0, 1)
+
+print(f"Area between y=x and y=x² from 0 to 1: {area:.4f}")
+# Analytically: [x²/2 - x³/3] from 0 to 1 = 1/2 - 1/3 = 1/6 ≈ 0.1667
+
+# Visualize
+x = np.linspace(0, 1, 100)
+plt.figure(figsize=(8, 6))
+plt.plot(x, f(x), 'b-', label='y = x')
+plt.plot(x, g(x), 'r-', label='y = x²')
+plt.fill_between(x, f(x), g(x), alpha=0.3, color='green', label=f'Area = {area:.4f}')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Area Between Curves')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+\`\`\`
+
+### 7. Partial Derivatives and Gradients
 
 **What is a Derivative?**
 The derivative measures how a function changes when its input changes. It&apos;s the slope of the tangent line.
@@ -592,5 +877,5 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 - [Calculus for Machine Learning](https://www.khanacademy.org/math/differential-calculus) - Khan Academy
 - [MIT 18.06 - Calculus of Several Variables](https://ocw.mit.edu/courses/mathematics/18-02sc-multivariable-calculus-fall-2010/)
     `,
-    subModules: []
+  subModules: [],
 };

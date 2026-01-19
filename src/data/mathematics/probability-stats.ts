@@ -1,11 +1,11 @@
-import { LearningModule } from '@/types/learning';
+import { LearningModule } from "@/types/learning";
 
 export const probabilityStatsModule: LearningModule = {
-    id: 'probability-stats',
-    title: 'Probability & Statistics',
-    description: 'Uncertainty and inference - foundation of machine learning',
-    status: 'in-progress',
-    detailedContent: `# Probability & Statistics for AI Engineers
+  id: "probability-stats",
+  title: "Probability & Statistics",
+  description: "Uncertainty and inference - foundation of machine learning",
+  status: "in-progress",
+  detailedContent: `# Probability & Statistics for AI Engineers
 
 Probability and statistics form the foundation of machine learning. Every algorithm deals with uncertainty, noise, and inference from limited data. This module covers essential concepts for AI engineers.
 
@@ -76,7 +76,106 @@ In AI, we constantly deal with:
 
 ## What You&apos;ll Master
 
-### 1. Probability Fundamentals
+### 1. Frequency Distributions
+
+**What is a Frequency Distribution?**
+A frequency distribution organizes data by showing how many times each value (or range) occurs.
+
+\`\`\`python path=null start=null
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample data: exam scores
+scores = [45, 52, 58, 60, 62, 65, 68, 70, 72, 75, 78, 80, 82, 85, 88, 90, 92, 95]
+
+# Grouped frequency distribution
+bins = [40, 50, 60, 70, 80, 90, 100]
+hist, bin_edges = np.histogram(scores, bins=bins)
+
+print("Grouped Distribution:")
+for i in range(len(hist)):
+    print(f"  {bin_edges[i]}-{bin_edges[i+1]}: {hist[i]} students")
+
+# Histogram visualization
+plt.hist(scores, bins=bins, edgecolor='black')
+plt.xlabel('Score Range')
+plt.ylabel('Frequency')
+plt.title('Grouped Frequency Distribution')
+plt.show()
+\`\`\`
+
+### 2. Measures of Central Tendency
+
+Central tendency describes the "center" or "typical" value.
+
+**Mean (Average):** x̄ = (Σxᵢ) / n
+
+**Median:** Middle value (Q2)
+
+**Mode:** Most frequent value
+
+\`\`\`python path=null start=null
+import numpy as np
+from scipy import stats
+
+data = [10, 15, 15, 20, 25, 30, 35, 40]
+
+mean = np.mean(data)  # 23.75
+median = np.median(data)  # 22.5
+mode_result = stats.mode(data, keepdims=True)
+
+print(f"Mean: {mean}")
+print(f"Median: {median}")
+print(f"Mode: {mode_result.mode[0]} (appears {mode_result.count[0]} times)")
+
+# Weighted Mean
+grades = [85, 90, 78, 92]
+credits = [3, 4, 3, 2]
+weighted_mean = np.average(grades, weights=credits)
+print(f"Weighted Mean: {weighted_mean:.2f}")
+\`\`\`
+
+| Measure | Best For | Affected By Outliers |
+|---------|----------|---------------------|
+| Mean | Symmetric data | Yes |
+| Median | Skewed data | No |
+| Mode | Categorical data | No |
+
+### 3. Measures of Dispersion
+
+Dispersion measures how spread out the data is.
+
+**Range:** Max - Min
+
+**Variance (σ²):** Average squared deviation from mean
+- Population: σ² = Σ(xᵢ - μ)² / N
+- Sample: s² = Σ(xᵢ - x̄)² / (n-1)
+
+**Standard Deviation (σ):** √Variance
+
+\`\`\`python path=null start=null
+import numpy as np
+
+data = [10, 20, 30, 40, 50]
+
+range_val = np.max(data) - np.min(data)  # 40
+variance = np.var(data, ddof=1)  # Sample variance
+std_dev = np.std(data, ddof=1)
+
+print(f"Range: {range_val}")
+print(f"Variance: {variance}")
+print(f"Standard Deviation: {std_dev:.2f}")
+
+# Quartiles and IQR
+q1 = np.percentile(data, 25)
+q3 = np.percentile(data, 75)
+iqr = q3 - q1
+print(f"Q1: {q1}, Q3: {q3}, IQR: {iqr}")
+\`\`\`
+
+**Coefficient of Variation:** CV = (σ / μ) × 100%
+
+### 4. Probability Fundamentals
 
 **Sample Space (S)**: Set of all possible outcomes
 Example: For dice roll, S = {1, 2, 3, 4, 5, 6}
@@ -728,5 +827,5 @@ posterior = (likelihood * prior) / marginal
 - [OpenIntro Statistics](https://www.openintro.org/book/os/) - Free textbook with exercises
 - [Cross Validated](https://stats.stackexchange.com/) - Statistics Q&A community
     `,
-    subModules: []
+  subModules: [],
 };

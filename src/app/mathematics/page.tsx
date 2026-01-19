@@ -36,8 +36,10 @@ export default function MathematicsPage() {
   const handleModuleChange = (index: number) => {
     setActiveModuleIndex(index);
     // Scroll to top of page when switching modules
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const Pre = ({ children }: { children?: React.ReactNode }) => <>{children}</>;
 
   return (
     <div className="math-container">
@@ -92,6 +94,7 @@ export default function MathematicsPage() {
                       rehypePlugins={[rehypeHighlight, rehypeSanitize]}
                       components={{
                         code: CodeBlock,
+                        pre: Pre,
                       }}
                     >
                       {activeModule.detailedContent}
@@ -148,53 +151,55 @@ export default function MathematicsPage() {
       <style jsx global>{`
         .markdown-content h1 {
           font-size: 1.75rem;
-          font-weight: 700;
+          font-weight: 800;
           color: #111827;
-          margin: 2rem 0 1rem 0;
-          padding-bottom: 0.75rem;
-          border-bottom: 2px solid #e5e7eb;
+          margin-bottom: 1.5rem;
+          margin-top: 2rem;
+          line-height: 1.3;
+        }
+
+        .markdown-content h1:first-child {
+          margin-top: 0;
         }
 
         .markdown-content h2 {
-          font-size: 1.35rem;
+          font-size: 1.5rem;
           font-weight: 700;
-          color: #111827;
-          margin: 1.75rem 0 0.75rem 0;
+          color: #1f2937;
+          margin-top: 2.5rem;
+          margin-bottom: 1rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid #e5e7eb;
         }
 
         .markdown-content h3 {
-          font-size: 1.1rem;
-          font-weight: 700;
-          color: #2563eb;
-          margin: 1.25rem 0 0.5rem 0;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #374151;
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
         }
 
         .markdown-content p {
-          font-size: 0.95rem;
-          line-height: 1.8;
+          margin-bottom: 1.25rem;
+          line-height: 1.75;
           color: #374151;
-          margin: 0.75rem 0;
         }
 
-        .markdown-content ul {
-          margin: 1rem 0;
+        .markdown-content ul,
+        .markdown-content ol {
+          margin-bottom: 1.5rem;
           padding-left: 1.5rem;
         }
 
         .markdown-content li {
-          font-size: 0.95rem;
+          margin-bottom: 0.5rem;
           line-height: 1.7;
           color: #374151;
-          margin: 0.5rem 0;
-        }
-
-        .markdown-content li::marker {
-          color: #2563eb;
-          font-weight: 700;
         }
 
         .markdown-content strong {
-          font-weight: 700;
+          font-weight: 600;
           color: #111827;
         }
 
@@ -208,19 +213,28 @@ export default function MathematicsPage() {
           border: 1px solid #e5e7eb;
         }
 
-        .markdown-content pre {
-          background: #1f2937;
-          padding: 1rem;
-          border-radius: 8px;
-          overflow-x: auto;
-          margin: 1rem 0;
-        }
-
+        /* Override inline code style inside pre blocks */
         .markdown-content pre code {
           background: transparent;
-          border: none;
-          color: #f8f8f2;
           padding: 0;
+          border-radius: 0;
+          font-family: "Consolas", "Monaco", "Courier New", monospace;
+          font-size: 0.875rem;
+          color: #d4d4d4;
+          border: none;
+        }
+
+        /* Target the pre tag inside CodeBlock */
+        .markdown-content pre {
+          background: #1e1e1e !important;
+          padding: 1rem;
+          border-radius: 0 0 8px 8px; /* Rounded only at bottom because of header */
+          overflow-x: auto;
+          margin: 0 0 1.5rem 0;
+          border: 1px solid #333;
+          border-top: none; /* Merged with header */
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+          color: #d4d4d4;
         }
 
         .markdown-content a {
@@ -232,6 +246,15 @@ export default function MathematicsPage() {
 
         .markdown-content a:hover {
           color: #1d4ed8;
+        }
+
+        .markdown-content img {
+          max-width: 400px;
+          height: auto;
+          display: block;
+          margin: 1rem auto;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
         }
 
         /* Table styling for TL;DR sections */
@@ -272,69 +295,83 @@ export default function MathematicsPage() {
           border-bottom: none;
         }
 
-        /* Syntax highlighting */
+        /* VS Code Dark+ Theme Syntax Highlighting */
         .hljs-comment,
         .hljs-quote {
-          color: #8292a2;
+          color: #6a9955;
           font-style: italic;
         }
 
         .hljs-keyword,
-        .hljs-selector-tag,
+        .hljs-selector-tag {
+          color: #569cd6;
+        }
+
         .hljs-subst {
-          color: #f92672;
-          font-weight: bold;
+          color: #d4d4d4;
         }
 
         .hljs-number,
-        .hljs-literal,
+        .hljs-literal {
+          color: #b5cea8;
+        }
+
         .hljs-variable,
-        .hljs-template-variable,
-        .hljs-tag .hljs-attr {
-          color: #ae81ff;
+        .hljs-template-variable {
+          color: #9cdcfe;
         }
 
         .hljs-string,
         .hljs-doctag {
-          color: #e6db74;
+          color: #ce9178;
         }
 
         .hljs-title,
         .hljs-section,
         .hljs-selector-id {
-          color: #a6e22e;
-          font-weight: bold;
+          color: #dcdcaa;
         }
 
         .hljs-type,
         .hljs-class .hljs-title {
-          color: #a6e22e;
+          color: #4ec9b0;
         }
 
         .hljs-tag,
         .hljs-name,
         .hljs-attribute {
-          color: #f92672;
+          color: #569cd6;
         }
 
         .hljs-regexp,
         .hljs-link {
-          color: #fd971f;
+          color: #d16969;
         }
 
         .hljs-symbol,
         .hljs-bullet {
-          color: #ae81ff;
+          color: #b5cea8;
         }
 
         .hljs-built_in,
         .hljs-builtin-name {
-          color: #66d9ef;
+          color: #4ec9b0;
         }
 
         .hljs-meta {
-          color: #fd971f;
-          font-weight: bold;
+          color: #c586c0;
+        }
+
+        .hljs-params {
+          color: #9cdcfe;
+        }
+
+        .hljs-function {
+          color: #dcdcaa;
+        }
+
+        .hljs-attr {
+          color: #9cdcfe;
         }
       `}</style>
 
