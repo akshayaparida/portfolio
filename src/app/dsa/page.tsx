@@ -5,34 +5,63 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
-import { mathematicsModules } from "@/data/mathematics";
+import { dsaModules } from "@/data/dsa";
 import CodeBlock from "@/components/CodeBlock";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MathErrorFallback from "@/components/MathErrorFallback";
 import BlogPageHeader from "@/components/BlogPageHeader";
-import MathModuleIcon from "@/components/MathModuleIcon";
-import VectorSpace2D from "@/components/math-visualizations/VectorSpace2D";
-import MatrixMultiplication from "@/components/math-visualizations/MatrixMultiplication";
-import PCAVisualization from "@/components/math-visualizations/PCAVisualization";
-import GradientDescentPlayground from "@/components/math-visualizations/GradientDescentPlayground";
-import ActivationFunctions from "@/components/math-visualizations/ActivationFunctions";
-import ScalarMultiplication from "@/components/math-visualizations/ScalarMultiplication";
 import PracticeQuiz from "@/components/PracticeQuiz";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
 
-const demoComponents: Record<string, React.ComponentType> = {
-  vectors: VectorSpace2D,
-  matrices: MatrixMultiplication,
-  pca: PCAVisualization,
-  "gradient-descent": GradientDescentPlayground,
-  activations: ActivationFunctions,
-  "scalar-mult": ScalarMultiplication,
-};
+// Module icons for DSA
+function DSAModuleIcon({ moduleId }: { moduleId: string }) {
+  const iconProps = {
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.5,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
 
-export default function MathematicsPage() {
+  switch (moduleId) {
+    case "data-structures":
+      return (
+        <svg {...iconProps}>
+          <path d="M4 6h16M4 10h16M4 14h16M4 18h16" strokeWidth="2" />
+          <rect
+            x="7"
+            y="4"
+            width="2"
+            height="16"
+            fill="currentColor"
+            opacity="0.3"
+          />
+        </svg>
+      );
+    case "algorithms":
+      return (
+        <svg {...iconProps}>
+          <path
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
+            strokeWidth="2"
+          />
+          <polyline points="9,14 12,17 16,10" strokeWidth="2" />
+        </svg>
+      );
+    default:
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="12" r="8" />
+        </svg>
+      );
+  }
+}
+
+export default function DSAPage() {
   const [activeModuleIndex, setActiveModuleIndex] = useState(0);
-  const activeModule = mathematicsModules[activeModuleIndex];
+  const activeModule = dsaModules[activeModuleIndex];
 
   const handleModuleChange = (index: number) => {
     setActiveModuleIndex(index);
@@ -44,23 +73,23 @@ export default function MathematicsPage() {
   return (
     <div className="module-page-container">
       <BlogPageHeader
-        title="Mathematics for AI Engineers"
-        backLink="/learning-journey"
-        backTitle="My Journey"
+        title="Data Structures & Algorithms"
+        backLink="/dsa"
+        backTitle="DSA"
       />
 
       <div className="module-page-layout">
         <aside className="module-sidebar">
           <h3 className="sidebar-title">Modules</h3>
           <nav className="module-nav">
-            {mathematicsModules.map((module, index) => (
+            {dsaModules.map((module, index) => (
               <button
                 key={module.id}
                 onClick={() => handleModuleChange(index)}
                 className={`nav-item ${index === activeModuleIndex ? "active" : ""}`}
               >
                 <span className="nav-icon">
-                  <MathModuleIcon moduleId={module.id} />
+                  <DSAModuleIcon moduleId={module.id} />
                 </span>
                 <span className="nav-text">{module.title}</span>
               </button>
@@ -100,32 +129,6 @@ export default function MathematicsPage() {
               </div>
             )}
 
-            {activeModule.subModules && activeModule.subModules.length > 0 && (
-              <div className="interactive-section">
-                <div className="section-header">
-                  <span className="interactive-badge">Interactive Demos</span>
-                  <p className="section-subtitle">Learn by doing</p>
-                </div>
-
-                {activeModule.subModules.map((subModule) => {
-                  const DemoComponent = demoComponents[subModule.id];
-                  return DemoComponent ? (
-                    <div key={subModule.id} className="demo-block">
-                      <h3 className="demo-title">{subModule.title}</h3>
-                      <p className="demo-description">
-                        {subModule.description}
-                      </p>
-                      <div className="demo-content">
-                        <ErrorBoundary fallback={MathErrorFallback}>
-                          <DemoComponent />
-                        </ErrorBoundary>
-                      </div>
-                    </div>
-                  ) : null;
-                })}
-              </div>
-            )}
-
             {activeModule.practiceQuiz &&
               activeModule.practiceQuiz.length > 0 && (
                 <div className="practice-section">
@@ -154,25 +157,6 @@ export default function MathematicsPage() {
           </a>
         </p>
       </footer>
-
-      <style jsx>{`
-        .demo-title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 0.5rem 0;
-        }
-
-        .demo-description {
-          font-size: 0.9rem;
-          color: #6b7280;
-          margin: 0 0 1rem 0;
-        }
-
-        .demo-content {
-          margin-top: 1rem;
-        }
-      `}</style>
     </div>
   );
 }
