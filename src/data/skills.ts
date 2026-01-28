@@ -42,4 +42,16 @@ export const skillCategories: SkillCategory[] = [
       { name: "uv" },
     ],
   },
+  {
+    title: "AI Dev Tools",
+    icon: "fa-solid fa-wand-magic-sparkles",
+    skills: [
+      { name: "Antigravity" },
+      { name: "Zed" },
+      { name: "Warp" },
+      { name: "Gemini CLI" },
+      { name: "Qwen Code CLI" },
+      { name: "Google Stitch" },
+    ],
+  },
 ];
