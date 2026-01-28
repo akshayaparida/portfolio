@@ -54,7 +54,7 @@ export default function Hero() {
           <strong>future-ready politics</strong> and civic accountability.
         </p>
         <p className="hero-description" style={{ marginTop: "0.5rem" }}>
-          🚀 Currently building:{" "}
+          🚀 Building{" "}
           <a
             href="/docs/rip-social-vision.md"
             target="_blank"
@@ -63,8 +63,8 @@ export default function Hero() {
           >
             RIP Social
           </a>{" "}
-          — Open-source civic platform for real identity, real issues, real
-          solutions.
+          — AI-moderated civic platform that transforms public discourse into
+          actionable solutions for government.
         </p>
       </section>
 
