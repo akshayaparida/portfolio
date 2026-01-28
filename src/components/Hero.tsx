@@ -50,7 +50,21 @@ export default function Hero() {
           I&apos;m a <strong>high agency guy</strong> who learns by building.
           Currently hands-on learning <strong>AI Engineering</strong>,{" "}
           <strong>MLOps</strong>, <strong>Agentic AI</strong>, and contributing
-          to <strong>Open Source</strong>.
+          to <strong>Open Source</strong>. Exploring how tech can enable{" "}
+          <strong>future-ready politics</strong> and civic accountability.
+        </p>
+        <p className="hero-description" style={{ marginTop: "0.5rem" }}>
+          🚀 Currently building:{" "}
+          <a
+            href="/docs/rip-social-vision.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#10b981", fontWeight: 600 }}
+          >
+            RIP Social
+          </a>{" "}
+          — Open-source civic platform for real identity, real issues, real
+          solutions.
         </p>
       </section>
 
