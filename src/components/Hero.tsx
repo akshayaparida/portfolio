@@ -50,8 +50,7 @@ export default function Hero() {
           I&apos;m a <strong>high agency guy</strong> who learns by building.
           Currently hands-on learning <strong>AI Engineering</strong>,{" "}
           <strong>MLOps</strong>, <strong>Agentic AI</strong>, and contributing
-          to <strong>Open Source</strong>. Exploring how tech can enable{" "}
-          <strong>future-ready politics</strong> and civic accountability.
+          to <strong>Open Source</strong>.
         </p>
         <p className="hero-description" style={{ marginTop: "0.5rem" }}>
           🚀 Building{" "}
