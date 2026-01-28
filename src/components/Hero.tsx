@@ -58,10 +58,15 @@ export default function Hero() {
             href="/docs/rip-social-vision.md"
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              color: "#2563eb",
+              textDecoration: "underline",
+              fontWeight: "bold",
+            }}
           >
-            RIP Social
+            rip social
           </a>{" "}
-          — AI-moderated civic platform that transforms public discourse into
+          AI-moderated civic platform that transforms public discourse into
           actionable solutions for government.
         </p>
       </section>
