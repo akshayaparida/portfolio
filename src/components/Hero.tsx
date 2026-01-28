@@ -53,12 +53,11 @@ export default function Hero() {
           to <strong>Open Source</strong>.
         </p>
         <p className="hero-description" style={{ marginTop: "0.5rem" }}>
-          🚀 Building{" "}
+          <span style={{ filter: "grayscale(100%)" }}>🚀</span> Building{" "}
           <a
             href="/docs/rip-social-vision.md"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#10b981", fontWeight: 600 }}
           >
             RIP Social
           </a>{" "}
