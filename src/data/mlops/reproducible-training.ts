@@ -10,7 +10,7 @@ export const reproducibleTrainingModule: LearningModule = {
 
 Building a model is easy. Building the *same* model six months later, or comparing it rigorously against 50 experiments, is hard. This module tackles the core challenges of production ML training.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

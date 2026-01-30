@@ -9,7 +9,7 @@ export const algorithmsModule: LearningModule = {
 
 Algorithms are step-by-step procedures to solve problems. Understanding algorithmic paradigms helps you tackle any coding challenge.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -588,7 +588,7 @@ def solve_n_queens(n):
       ],
       correctAnswer: 2,
       explanation:
-        "Greedy works only for specific problems:\n\n✓ Works: Activity selection, Huffman, MST\n✗ Fails: 0/1 Knapsack, Coin change (some cases)\n\nNeed to prove 'greedy choice property' first.",
+        "Greedy works only for specific problems:\n\n Works: Activity selection, Huffman, MST\n Fails: 0/1 Knapsack, Coin change (some cases)\n\nNeed to prove 'greedy choice property' first.",
       difficulty: "medium",
     },
     {

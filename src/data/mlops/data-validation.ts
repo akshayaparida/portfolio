@@ -10,7 +10,7 @@ export const dataValidationModule: LearningModule = {
 
 Transitioning from a Jupyter notebook to a production system requires a fundamental shift in mindset. In a notebook, you can manually fix data errors. In production, your pipeline must handle them automatically.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

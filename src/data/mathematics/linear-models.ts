@@ -10,7 +10,7 @@ export const linearModelsModule: LearningModule = {
 
 Linear models form the foundation of machine learning, from simple regression to the building blocks of neural networks. Understanding linear models is essential for mastering more complex algorithms.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

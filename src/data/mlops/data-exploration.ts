@@ -10,7 +10,7 @@ export const dataExplorationModule: LearningModule = {
 
 Exploratory Data Analysis (EDA) is the critical first step in any ML project. Before writing preprocessing code or training models, you need to understand what you're working with.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

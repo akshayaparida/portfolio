@@ -10,7 +10,7 @@ export const coordinateGeometryModule: LearningModule = {
 
 Coordinate geometry bridges algebra and geometry, enabling us to represent geometric shapes with equations - essential for computer graphics, data visualization, game development, and spatial algorithms.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -589,7 +589,7 @@ def manhattan_distance(p1, p2):
       options: ["0", "1", "-1", "undefined"],
       correctAnswer: 2,
       explanation:
-        "Rule: Perpendicular lines have m₁ × m₂ = -1\n\nExample:\n• Line 1: slope = 2\n• Line 2: slope = -1/2\n• 2 × (-1/2) = -1 ✓\n\nThey're negative reciprocals of each other.",
+        "Rule: Perpendicular lines have m₁ × m₂ = -1\n\nExample:\n• Line 1: slope = 2\n• Line 2: slope = -1/2\n• 2 × (-1/2) = -1\n\nThey're negative reciprocals of each other.",
       difficulty: "easy",
     },
     {

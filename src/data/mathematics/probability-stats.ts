@@ -9,7 +9,7 @@ export const probabilityStatsModule: LearningModule = {
 
 Probability and statistics form the foundation of machine learning. Every algorithm deals with uncertainty, noise, and inference from limited data. This module covers essential concepts for AI engineers.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

@@ -10,7 +10,7 @@ export const dataStructuresModule: LearningModule = {
 
 Data structures are ways to organize and store data efficiently. Choosing the right data structure is crucial for writing efficient algorithms.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|

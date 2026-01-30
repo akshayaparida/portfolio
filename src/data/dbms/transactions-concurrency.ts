@@ -10,7 +10,7 @@ export const transactionsConcurrencyModule: LearningModule = {
 
 Transaction management ensures database consistency when multiple users access data simultaneously. This module covers ACID properties, concurrency control, and recovery mechanisms.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -184,8 +184,8 @@ Lock Types:
 Compatibility Matrix:
          | S-lock | X-lock |
 ---------|--------|--------|
-S-lock   |   ✓    |   ✗    |
-X-lock   |   ✗    |   ✗    |
+S-lock   |      |      |
+X-lock   |      |      |
 
 Rules:
 • Read: Acquire S or X lock
@@ -247,8 +247,8 @@ T1: Lock(A), Lock(B)
 T2: Lock(B), Lock(A)
 
 Timeline:
-T1: Lock(A) ✓
-T2: Lock(B) ✓
+T1: Lock(A)
+T2: Lock(B)
 T1: Lock(B) - WAIT (T2 holds B)
 T2: Lock(A) - WAIT (T1 holds A)
 
@@ -397,10 +397,10 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 
 | Level | Dirty Read | Non-repeatable Read | Phantom |
 |:------|:-----------|:--------------------|:--------|
-| Read Uncommitted | ✓ | ✓ | ✓ |
-| Read Committed | ✗ | ✓ | ✓ |
-| Repeatable Read | ✗ | ✗ | ✓ |
-| Serializable | ✗ | ✗ | ✗ |
+| Read Uncommitted | | | |
+| Read Committed | | | |
+| Repeatable Read | | | |
+| Serializable | | | |
 
 **Read Phenomena:**
 
@@ -437,7 +437,7 @@ T1 reads rows matching condition, T2 inserts new matching row
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [Transaction Processing Concepts](https://www.geeksforgeeks.org/transaction-in-dbms/)
 - [Concurrency Control Tutorial](https://www.tutorialspoint.com/dbms/dbms_concurrency_control.htm)
@@ -541,7 +541,7 @@ T1 reads rows matching condition, T2 inserts new matching row
       ],
       correctAnswer: 1,
       explanation:
-        "Isolation Levels (lowest → highest):\\n\\n• Read Uncommitted: Allows dirty read\\n• Read Committed: Prevents dirty read ✓\\n• Repeatable Read: Also prevents non-repeatable\\n• Serializable: Prevents all anomalies",
+        "Isolation Levels (lowest → highest):\\n\\n• Read Uncommitted: Allows dirty read\\n• Read Committed: Prevents dirty read\\n• Repeatable Read: Also prevents non-repeatable\\n• Serializable: Prevents all anomalies",
       difficulty: "medium",
     },
     {

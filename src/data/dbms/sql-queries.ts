@@ -10,7 +10,7 @@ export const sqlQueriesModule: LearningModule = {
 
 SQL (Structured Query Language) is the standard language for interacting with relational databases. Relational Algebra provides the theoretical foundation for query operations.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -412,7 +412,7 @@ R ⋉ S = Tuples in R that have matching tuples in S
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [W3Schools SQL Tutorial](https://www.w3schools.com/sql/) - Interactive practice
 - [Mode SQL Tutorial](https://mode.com/sql-tutorial/) - Advanced queries

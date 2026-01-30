@@ -10,7 +10,7 @@ export const normalizationModule: LearningModule = {
 
 Normalization is the process of organizing data to reduce redundancy and improve data integrity. Understanding functional dependencies is key to mastering normalization.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -260,13 +260,13 @@ StudentTeacher(student_id, teacher)
 # Candidate Keys: AB, AC
 
 # Check 3NF:
-# AB → C: AB is superkey ✓
-# C → B: C not superkey, but B is prime ✓
+# AB → C: AB is superkey
+# C → B: C not superkey, but B is prime
 # Result: In 3NF
 
 # Check BCNF:
-# AB → C: AB is superkey ✓
-# C → B: C is NOT superkey ✗
+# AB → C: AB is superkey
+# C → B: C is NOT superkey
 # Result: NOT in BCNF
 
 # BCNF Decomposition:
@@ -291,7 +291,7 @@ Example:
 R(A, B, C) with A → B
 Decompose to: R1(A, B), R2(A, C)
 Common: A
-A → B means A is key of R1 ✓
+A → B means A is key of R1
 Lossless!
 \`\`\`
 
@@ -373,7 +373,7 @@ Deals with Join Dependencies. Very rare in practice.
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [Normalization Tutorial - GeeksforGeeks](https://www.geeksforgeeks.org/normal-forms-in-dbms/)
 - [Database Normalization Explained](https://www.essentialsql.com/get-ready-to-learn-sql-database-normalization-explained-in-simple-english/)
@@ -415,7 +415,7 @@ Deals with Join Dependencies. Very rare in practice.
       options: ["{A, D}", "{A}", "{A, B}", "{B, D}"],
       correctAnswer: 0,
       explanation:
-        "Finding Candidate Key:\\n\\n• A→B, B→C (so A→B→C)\\n• A determines B, C but NOT D\\n• D appears nowhere on RHS\\n• Must include D\\n\\n{A, D}+ = {A, D, B, C} = All attributes ✓",
+        "Finding Candidate Key:\\n\\n• A→B, B→C (so A→B→C)\\n• A determines B, C but NOT D\\n• D appears nowhere on RHS\\n• Must include D\\n\\n{A, D}+ = {A, D, B, C} = All attributes",
       difficulty: "medium",
     },
     {

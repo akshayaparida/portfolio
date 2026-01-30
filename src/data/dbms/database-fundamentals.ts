@@ -10,7 +10,7 @@ export const databaseFundamentalsModule: LearningModule = {
 
 Databases are organized collections of data that allow efficient storage, retrieval, and management of information. This module covers foundational concepts essential for CUET PG and data engineering roles.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -333,7 +333,7 @@ CREATE TABLE Enrollment (
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [Database System Concepts - Silberschatz](https://www.db-book.com/) - Standard textbook
 - [ER Diagram Tutorial](https://www.lucidchart.com/pages/er-diagrams) - Visual guide

@@ -10,7 +10,7 @@ export const setTheoryModule: LearningModule = {
 
 Set theory and combinatorics form the discrete mathematical foundation essential for computer science, data structures, algorithm analysis, and probability theory.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 By the end of this module, you will be able to:
 

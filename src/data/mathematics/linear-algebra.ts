@@ -10,7 +10,7 @@ export const linearAlgebraModule: LearningModule = {
 
 Linear algebra is the mathematical foundation of all machine learning. Every neural network, every transformation, every data representation relies on vectors and matrices.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -230,7 +230,7 @@ PCA uses this to reduce 1000 dimensions to 2 for visualization!
 
 **Try It:**
 Matrix [[3, 1], [0, 2]] has eigenvector [1, 0] with eigenvalue 3
-- Apply: [[3, 1], [0, 2]] × [1, 0] = [3, 0] = 3 × [1, 0] ✓
+- Apply: [[3, 1], [0, 2]] × [1, 0] = [3, 0] = 3 × [1, 0]
 
 **Matrix Rank:**
 Number of linearly independent rows/columns.
@@ -454,7 +454,7 @@ except ValueError as e:
 print(f"A shape: {A.shape}, B shape: {B.shape}")
 # Fix: transpose B so (5,3) -> (3,5), then (3,4) @ (4,3) works
 B_correct = np.random.randn(4, 5)
-result = A @ B_correct  # (3,4) @ (4,5) = (3,5) ✓
+result = A @ B_correct  # (3,4) @ (4,5) = (3,5)
 \`\`\`
 
 **2. Element-wise vs Matrix Multiplication:**
@@ -487,7 +487,7 @@ X = np.random.randn(100, 5)  # 100 samples, 5 features
 # WRONG: X @ X gives (100,5) @ (100,5) - dimension error!
 # RIGHT: X.T @ X gives (5,100) @ (100,5) = (5,5) covariance matrix
 cov_matrix = X.T @ X / 100
-print(f"Covariance shape: {cov_matrix.shape}")  # (5, 5) ✓
+print(f"Covariance shape: {cov_matrix.shape}")  # (5, 5)
 \`\`\`
 
 **4. Broadcasting Surprises:**
@@ -498,7 +498,7 @@ output = np.random.randn(32, 10)  # 32 samples, 10 neurons
 bias = np.random.randn(10)        # 10 bias values
 
 # This works! NumPy broadcasts bias across all 32 samples
-result = output + bias  # (32,10) + (10,) = (32,10) ✓
+result = output + bias  # (32,10) + (10,) = (32,10)
 
 # But this might not do what you expect
 wrong_bias = np.random.randn(32, 1)
@@ -613,7 +613,7 @@ np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
       options: ["3×2", "4×4", "3×4", "2×3"],
       correctAnswer: 0,
       explanation:
-        "Rule: (m×n) × (n×p) = (m×p)\n\nStep-by-step:\n• A: 3×4 (3 rows, 4 cols)\n• B: 4×2 (4 rows, 2 cols)\n• Inner dimensions (4) must match ✓\n• Result: 3×2 (outer dimensions)\n\nMemory: 'Rows of first, Cols of second'",
+        "Rule: (m×n) × (n×p) = (m×p)\n\nStep-by-step:\n• A: 3×4 (3 rows, 4 cols)\n• B: 4×2 (4 rows, 2 cols)\n• Inner dimensions (4) must match\n• Result: 3×2 (outer dimensions)\n\nMemory: 'Rows of first, Cols of second'",
       difficulty: "easy",
     },
     {

@@ -10,7 +10,7 @@ export const algebraModule: LearningModule = {
 
 Algebra provides the fundamental language for expressing mathematical relationships, solving equations, and analyzing patterns - essential skills for algorithms, data analysis, and machine learning.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -494,7 +494,7 @@ print(A @ A_inv)
       options: ["x = 2, 3", "x = -2, -3", "x = 1, 6", "x = -1, 6"],
       correctAnswer: 0,
       explanation:
-        "Method: Factor the quadratic\n\nStep-by-step:\n• Find two numbers that multiply to 6 and add to -5\n• Numbers: -2 and -3\n• x² - 5x + 6 = (x - 2)(x - 3) = 0\n• x = 2 or x = 3\n\nVerify: 2² - 5(2) + 6 = 4 - 10 + 6 = 0 ✓",
+        "Method: Factor the quadratic\n\nStep-by-step:\n• Find two numbers that multiply to 6 and add to -5\n• Numbers: -2 and -3\n• x² - 5x + 6 = (x - 2)(x - 3) = 0\n• x = 2 or x = 3\n\nVerify: 2² - 5(2) + 6 = 4 - 10 + 6 = 0",
       difficulty: "easy",
     },
     {
@@ -512,7 +512,7 @@ print(A @ A_inv)
       options: ["2", "3", "4", "8"],
       correctAnswer: 1,
       explanation:
-        "Definition: log₂(8) = x means 2ˣ = 8\n\nStep-by-step:\n• 2¹ = 2\n• 2² = 4\n• 2³ = 8 ✓\n\nSo x = 3",
+        "Definition: log₂(8) = x means 2ˣ = 8\n\nStep-by-step:\n• 2¹ = 2\n• 2² = 4\n• 2³ = 8\n\nSo x = 3",
       difficulty: "easy",
     },
     {

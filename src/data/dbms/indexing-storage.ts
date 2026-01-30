@@ -10,7 +10,7 @@ export const indexingStorageModule: LearningModule = {
 
 Efficient data storage and retrieval are crucial for database performance. This module covers indexing techniques, file organization methods, and query optimization—essential skills for data engineering roles.
 
-## 🎯 What You'll Learn
+## What You'll Learn
 
 | # | Topic | Skill |
 |:--|:------|:------|
@@ -405,7 +405,7 @@ EXPLAIN ANALYZE SELECT * FROM Employee WHERE salary > 50000;
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [Use The Index, Luke!](https://use-the-index-luke.com/) - SQL Indexing tutorial
 - [B+ Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html) - Interactive
