@@ -14,17 +14,20 @@ This portfolio serves as both a professional showcase and an educational resourc
 ## What This Portfolio Provides
 
 ### Educational Content
+
 - **Mathematics for AI Engineers**: Comprehensive guide covering linear algebra, calculus, probability & statistics, and linear models
 - **Interactive Visualizations**: Real-time mathematical concepts visualization
 - **Theoretical Explanations**: Deep dives into how mathematical concepts apply to AI
 - **Practical Code Examples**: Real-world implementations with detailed explanations
 
 ### Technical Showcase
+
 - **Modern Web Technologies**: Built with Next.js 15, TypeScript, and React
 - **Performance Optimized**: Code splitting, dynamic imports, and optimized loading
 - **Responsive Design**: Works seamlessly across all device sizes
 
 ### Professional Insights
+
 - **Project Demonstrations**: Showcases of my work and technical capabilities
 - **Learning Journey**: Documented path of continuous learning and skill development
 - **Technical Blog**: Insights and articles on technology and development
@@ -32,6 +35,7 @@ This portfolio serves as both a professional showcase and an educational resourc
 ## Key Features
 
 ### Mathematics Learning Platform
+
 - Interactive visualization tools for mathematical concepts
 - Gradient descent playground
 - Vector space demonstrations
@@ -39,11 +43,13 @@ This portfolio serves as both a professional showcase and an educational resourc
 - PCA and other statistical method examples
 
 ### Performance Optimizations
+
 - Code splitting for fast initial loads
 - Dynamic imports for on-demand content loading
 - Automated testing in CI pipeline
 
 ### Modern Development Practices
+
 - TypeScript for type safety
 - Jest for testing
 - ESLint for code quality
@@ -58,6 +64,13 @@ This portfolio provides educational content that helps users understand:
 - **Calculus**: Derivatives and optimization - how neural networks learn
 - **Probability & Statistics**: Uncertainty and inference - foundation of machine learning
 - **Linear Models**: From linear regression to neural networks - the building blocks
+
+### MLOps Learning Platform
+
+- **Data Exploration**: EDA, visualization, and dataset understanding
+- **Data Validation**: Schema validation with Pandera, preprocessing pipelines
+- **Reproducible Training**: MLflow experiment tracking, DVC pipelines, LightGBM
+- **Model Deployment**: FastAPI serving, Pydantic validation, Docker containerization
 
 ## Technical Stack
 
