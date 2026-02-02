@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://akshayaparida.github.io/</loc>
+    <loc>https://akshayaparida.vercel.app/</loc>
     <priority>1.0</priority>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://akshayaparida.github.io/learning-journey</loc>
+    <loc>https://akshayaparida.vercel.app/learning-journey</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/mathematics</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://akshayaparida.github.io/mathematics</loc>
-    <priority>0.7</priority>
+    <loc>https://akshayaparida.vercel.app/mlops</loc>
+    <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://akshayaparida.github.io/blog</loc>
-    <priority>0.9</priority>
-    <changefreq>daily</changefreq>
+    <loc>https://akshayaparida.vercel.app/dbms</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/dsa</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/networks</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/os</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/reasoning</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/ai-engineering</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
   </url>
 </urlset>
