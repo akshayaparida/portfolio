@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Akshaya Parida",
   },
   description:
-    "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
+    "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
   keywords: [
     "AI Engineer",
     "Portfolio",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     url: "https://akshayaparida.vercel.app/",
     title: "Akshaya Parida - AI Engineer Portfolio",
     description:
-      "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
+      "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     siteName: "Akshaya Parida Portfolio",
     images: [
       {
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Akshaya Parida - AI Engineer Portfolio",
     description:
-      "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
+      "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     images: ["/og-image.jpg"],
     creator: "@akshaya_parida_",
   },

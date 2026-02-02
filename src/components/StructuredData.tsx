@@ -9,7 +9,7 @@ export default function StructuredData() {
     name: "Akshaya Parida",
     jobTitle: "AI Engineer",
     description:
-      "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
+      "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     url: "https://akshayaparida.vercel.app",
     sameAs: [
       "https://github.com/akshayaparida",
@@ -55,7 +55,7 @@ export default function StructuredData() {
     name: "Akshaya Parida Portfolio",
     url: "https://akshayaparida.vercel.app",
     description:
-      "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
+      "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     publisher: {
       "@type": "Person",
       name: "Akshaya Parida",
