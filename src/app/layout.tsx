@@ -18,6 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://akshayaparida.vercel.app"),
   title: {
     default: "Akshaya Parida - AI Engineer Portfolio",
     template: "%s | Akshaya Parida",
@@ -41,12 +42,12 @@ export const metadata: Metadata = {
   creator: "Akshaya Parida",
   publisher: "Akshaya Parida",
   alternates: {
-    canonical: "https://akshayaparida.github.io/",
+    canonical: "https://akshayaparida.vercel.app/",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://akshayaparida.github.io/",
+    url: "https://akshayaparida.vercel.app/",
     title: "Akshaya Parida - AI Engineer Portfolio",
     description:
       "AI Engineering Portfolio - Currently hands-on learning in AI engineering. Building innovative solutions with Next.js, TypeScript, and AI technologies.",
@@ -80,7 +81,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code",
+    google: "zuI8RIRSltBbPN6GylhQSxA4mTxjT05V-BQUnwYzIPQ",
     yandex: "yandex-verification-code",
   },
 };
