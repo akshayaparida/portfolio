@@ -90,8 +90,8 @@ An **IAM User** represents a person or application that interacts with AWS.
 1. Navigate to **IAM** → **Users** → **Create user**
 2. Enter username (e.g., \`john-developer\`)
 3. Select access type:
-   - ✅ **Console access** → For AWS Management Console
-   - ✅ **Programmatic access** → For CLI/SDK/API
+   - **Console access** → For AWS Management Console
+   - **Programmatic access** → For CLI/SDK/API
 4. Attach permissions (policies)
 5. Review and create
 
@@ -140,7 +140,7 @@ aws_access_key_id = AKIAIOSFODNN7EXAMPLE
 aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 \`\`\`
 
-> ⚠️ **Never commit access keys to Git!** Use environment variables or AWS Secrets Manager.
+> ⚠ **Never commit access keys to Git!** Use environment variables or AWS Secrets Manager.
 
 ---
 
@@ -166,9 +166,9 @@ An **IAM Group** is a collection of IAM users. Groups make it easier to manage p
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐  │
 │  │   Developers    │  │    Operators    │  │   Admins    │  │
 │  │                 │  │                 │  │             │  │
-│  │  👤 John        │  │  👤 Sarah       │  │  👤 Mike    │  │
-│  │  👤 Jane        │  │  👤 Tom         │  │             │  │
-│  │  👤 Bob         │  │                 │  │             │  │
+│  │  John           │  │  Sarah          │  │  Mike       │  │
+│  │  Jane           │  │  Tom            │  │             │  │
+│  │  Bob            │  │                 │  │             │  │
 │  │                 │  │                 │  │             │  │
 │  │ [EC2, S3, RDS]  │  │ [CloudWatch,    │  │ [Admin      │  │
 │  │                 │  │  EC2 Read]      │  │  Access]    │  │
@@ -196,10 +196,10 @@ aws iam list-groups-for-user --user-name john-developer
 
 ### Best Practices for Groups
 
-- ✅ Organize users by job function (Developers, Testers, Admins)
-- ✅ Attach policies to groups, not individual users
-- ✅ Use multiple groups for users with multiple roles
-- ❌ Don't create groups for each user
+- ✓ Organize users by job function (Developers, Testers, Admins)
+- ✓ Attach policies to groups, not individual users
+- ✓ Use multiple groups for users with multiple roles
+- ✗ Don't create groups for each user
 
 ---
 
@@ -918,43 +918,43 @@ aws iam update-account-password-policy \\
 
 ## 10. Common Mistakes to Avoid
 
-### ❌ Mistake 1: Using Root Account
+### ✗ Mistake 1: Using Root Account
 
 **Problem:** Root has unlimited access, can't be restricted.
 
 **Solution:** Create IAM users/roles for all operations.
 
-### ❌ Mistake 2: No MFA
+### ✗ Mistake 2: No MFA
 
 **Problem:** Passwords can be stolen via phishing.
 
 **Solution:** Enable MFA on all users, especially admins.
 
-### ❌ Mistake 3: Overly Permissive Policies
+### ✗ Mistake 3: Overly Permissive Policies
 
 **Problem:** \`"Action": "*", "Resource": "*"\` is too broad.
 
 **Solution:** Start with minimum permissions, add as needed.
 
-### ❌ Mistake 4: Hardcoded Access Keys
+### ✗ Mistake 4: Hardcoded Access Keys
 
 **Problem:** Keys in code get committed to Git, exposed.
 
 **Solution:** Use IAM roles, environment variables, or Secrets Manager.
 
-### ❌ Mistake 5: Sharing Credentials
+### ✗ Mistake 5: Sharing Credentials
 
 **Problem:** Can't track who did what.
 
 **Solution:** One user per person, use groups for permissions.
 
-### ❌ Mistake 6: Not Rotating Credentials
+### ✗ Mistake 6: Not Rotating Credentials
 
 **Problem:** Long-lived credentials are risky if leaked.
 
 **Solution:** Rotate passwords and access keys every 90 days.
 
-### ❌ Mistake 7: Ignoring IAM Reports
+### ✗ Mistake 7: Ignoring IAM Reports
 
 **Problem:** Unused users/keys accumulate risk.
 
