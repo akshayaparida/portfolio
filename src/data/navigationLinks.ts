@@ -17,6 +17,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-gears",
   },
   {
+    label: "AWS",
+    href: "/aws",
+    icon: "fa-solid fa-cloud",
+  },
+  {
     label: "DSA",
     href: "/dsa",
     icon: "fa-solid fa-code",

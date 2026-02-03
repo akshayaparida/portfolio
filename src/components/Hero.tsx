@@ -55,7 +55,7 @@ export default function Hero() {
         <p className="hero-description" style={{ marginTop: "0.5rem" }}>
           <span style={{ filter: "grayscale(100%)" }}>🚀</span> Building{" "}
           <a
-            href="/docs/rip-social-vision.md"
+            href="https://github.com/akshayaparida/rip_social"
             target="_blank"
             rel="noopener noreferrer"
             style={{
