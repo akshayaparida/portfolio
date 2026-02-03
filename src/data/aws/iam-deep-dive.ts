@@ -136,6 +136,37 @@ Choose one of three methods:
 | **Copy permissions** | Duplicate another user's access |
 | **Attach policies directly** | Quick setup, but harder to manage |
 
+**Recommended Policies by Role:**
+
+| User Role | AWS Managed Policies to Attach |
+|:----------|:-------------------------------|
+| **Admin (full access)** | \`AdministratorAccess\` |
+| **Developer** | \`PowerUserAccess\` (all services except IAM) |
+| **Read-only viewer** | \`ReadOnlyAccess\` or \`ViewOnlyAccess\` |
+| **S3 only** | \`AmazonS3FullAccess\` or \`AmazonS3ReadOnlyAccess\` |
+| **EC2 only** | \`AmazonEC2FullAccess\` or \`AmazonEC2ReadOnlyAccess\` |
+| **IAM management** | \`IAMFullAccess\` or \`IAMReadOnlyAccess\` |
+
+**To attach a policy:**
+
+1. Click **Attach policies directly**
+2. Search for the policy name (e.g., \`AdministratorAccess\`)
+3. Check the box next to the policy
+4. Click **Next**
+
+> ⚠ **What happens if you skip this step?** You will get **Access Denied** errors when trying to use AWS services!
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Example Error (if no policies attached):                   │
+│                                                              │
+│  "Access denied to iam:ListAccountAliases"                  │
+│  "You don't have permission to iam:ListUsers"               │
+│                                                              │
+│  Fix: Attach IAMReadOnlyAccess or appropriate policy        │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
 > ⚠ **Best Practice**: Always use groups! Create groups like \`Developers\`, \`Admins\`, \`ReadOnlyUsers\` and add users to them.
 
 **Step 6: Add Tags (Optional)**
