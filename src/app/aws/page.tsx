@@ -284,6 +284,21 @@ export default function AWSPage() {
           background: #fff8e6;
           font-weight: 600;
         }
+        .markdown-content blockquote {
+          margin: 1rem 0;
+          padding: 0.75rem 1rem;
+          border-left: 4px solid #ef4444;
+          background: #fef2f2;
+          border-radius: 0 8px 8px 0;
+        }
+        .markdown-content blockquote p {
+          margin: 0;
+          color: #991b1b;
+          font-weight: 500;
+        }
+        .markdown-content blockquote strong {
+          color: #7f1d1d;
+        }
       `}</style>
 
       <style jsx>{`
