@@ -215,6 +215,62 @@ aws iam list-groups-for-user --user-name john-developer
 | **Customer Managed** | Created by you, reusable | MyCompanyS3Policy |
 | **Inline** | Embedded directly in user/group/role | One-off permissions |
 
+### Identity-based vs Resource-based Policies
+
+This is a critical distinction in AWS IAM:
+
+| Aspect | Identity-based | Resource-based |
+|:-------|:---------------|:---------------|
+| **Attached to** | Users, Groups, Roles | Resources (S3, SQS, Lambda, etc.) |
+| **Specifies** | What the identity CAN do | Who CAN access the resource |
+| **Principal** | Not required (implied) | Required (specifies who) |
+| **Cross-account** | Needs role assumption | Direct access possible |
+
+**Identity-based Policy Example** (attached to a user/role):
+
+\`\`\`json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::my-bucket/*"
+        }
+    ]
+}
+\`\`\`
+
+**Resource-based Policy Example** (S3 Bucket Policy):
+
+\`\`\`json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::111122223333:root"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::my-bucket/*"
+        }
+    ]
+}
+\`\`\`
+
+> ⚠ **Key Difference**: Resource-based policies have a \`Principal\` element that specifies WHO can access. Identity-based policies don't need this because they're already attached to an identity.
+
+### Cross-Account Access Comparison
+
+\`\`\`
+Identity-based (needs role):
+Account A User → Assume Role in Account B → Access Resource
+
+Resource-based (direct):
+Account A User → Directly access Account B's S3 (if bucket policy allows)
+\`\`\`
+
 ### Policy Structure
 
 \`\`\`json
