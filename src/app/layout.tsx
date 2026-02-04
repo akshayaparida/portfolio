@@ -4,6 +4,7 @@ import "./globals.css";
 import StructuredData from "@/components/StructuredData";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const eczar = Eczar({
   subsets: ["latin"],
@@ -92,10 +93,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={eczar.variable}>
-        <StructuredData />
-        {children}
+        <ThemeProvider>
+          <StructuredData />
+          {children}
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

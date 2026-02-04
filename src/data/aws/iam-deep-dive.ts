@@ -20,10 +20,11 @@ export const iamDeepDiveModule: LearningModule = {
 | 4 | IAM Policies (JSON Deep Dive) |
 | 5 | IAM Roles |
 | 6 | Identity Federation |
-| 7 | IAM Security Tools |
-| 8 | Best Practices |
-| 9 | Real-World Scenarios |
-| 10 | Common Mistakes to Avoid |
+| 7 | Advanced IAM Concepts |
+| 8 | IAM Security Tools |
+| 9 | Best Practices |
+| 10 | Real-World Scenarios |
+| 11 | Common Mistakes to Avoid |
 
 ---
 
@@ -840,7 +841,231 @@ Features:
 
 ---
 
-## 7. IAM Security Tools
+## 7. Advanced IAM Concepts
+
+### IAM Roles Anywhere
+
+**IAM Roles Anywhere** allows workloads running **outside of AWS** (on-premises servers, other clouds) to use IAM roles for temporary credentials.
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Traditional Approach (Problematic):                         │
+│                                                              │
+│  On-premises server → Long-lived access keys → AWS          │
+│  (Keys can be stolen, hard to rotate)                        │
+│                                                              │
+│  With IAM Roles Anywhere:                                    │
+│                                                              │
+│  On-premises server → X.509 Certificate → Trust Anchor      │
+│                              ↓                               │
+│                       IAM Roles Anywhere                     │
+│                              ↓                               │
+│                    Temporary credentials → AWS               │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+**Components:**
+
+| Component | Description |
+|:----------|:------------|
+| **Trust Anchor** | CA certificate that IAM Roles Anywhere trusts |
+| **Profile** | Maps certificate attributes to IAM role |
+| **X.509 Certificate** | Installed on external workload |
+
+**Use Cases:**
+- On-premises backup servers accessing S3
+- Multi-cloud workloads needing AWS access
+- CI/CD pipelines running outside AWS
+
+\`\`\`bash
+# Get temporary credentials with Roles Anywhere
+aws_signing_helper credential-process \\
+    --certificate /path/to/cert.pem \\
+    --private-key /path/to/key.pem \\
+    --trust-anchor-arn arn:aws:rolesanywhere:region:account:trust-anchor/id \\
+    --profile-arn arn:aws:rolesanywhere:region:account:profile/id \\
+    --role-arn arn:aws:iam::account:role/MyRole
+\`\`\`
+
+### Permissions Boundaries
+
+**Permissions Boundaries** set the **maximum permissions** an IAM entity can have. Even if a policy grants permissions, the boundary restricts what's actually allowed.
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│                   Permissions Boundary                       │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │                                                        │  │
+│  │     Effective permissions = Intersection of:          │  │
+│  │                                                        │  │
+│  │     ┌─────────────┐     ┌─────────────────────┐       │  │
+│  │     │  Identity   │  ∩  │   Permissions       │       │  │
+│  │     │  Policies   │     │   Boundary          │       │  │
+│  │     └─────────────┘     └─────────────────────┘       │  │
+│  │                                                        │  │
+│  └───────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+**Example Scenario:**
+
+Developer has AdministratorAccess policy, but boundary limits to S3 and EC2:
+
+\`\`\`json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*",
+                "ec2:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+\`\`\`
+
+**Result:** Developer can only use S3 and EC2, even with AdministratorAccess!
+
+**Use Cases:**
+- Delegating user creation to teams (they can't escalate beyond boundary)
+- Limiting permissions for service accounts
+- Enforcing security guardrails
+
+\`\`\`bash
+# Attach permissions boundary to user
+aws iam put-user-permissions-boundary \\
+    --user-name developer-john \\
+    --permissions-boundary arn:aws:iam::123456789012:policy/DeveloperBoundary
+
+# Attach permissions boundary to role
+aws iam put-role-permissions-boundary \\
+    --role-name DevRole \\
+    --permissions-boundary arn:aws:iam::123456789012:policy/DeveloperBoundary
+\`\`\`
+
+### Service Control Policies (SCPs)
+
+**SCPs** are part of **AWS Organizations** and set permission guardrails across **entire accounts or organizational units (OUs)**.
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│                    AWS Organization                          │
+│                                                              │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │  Root                                                │    │
+│  │  SCP: Allow all (default)                            │    │
+│  │                                                      │    │
+│  │  ┌───────────────┐    ┌───────────────┐             │    │
+│  │  │ OU: Production│    │ OU: Dev       │             │    │
+│  │  │ SCP: Restrict │    │ SCP: Allow    │             │    │
+│  │  │ regions       │    │ most actions  │             │    │
+│  │  │               │    │               │             │    │
+│  │  │ [Account A]   │    │ [Account C]   │             │    │
+│  │  │ [Account B]   │    │ [Account D]   │             │    │
+│  │  └───────────────┘    └───────────────┘             │    │
+│  └─────────────────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+**Key Points:**
+
+| Aspect | Description |
+|:-------|:------------|
+| **Scope** | Applies to entire AWS accounts |
+| **Inheritance** | SCPs are inherited down the hierarchy |
+| **Effect** | Sets maximum available permissions |
+| **Root account** | SCPs do NOT affect the management account |
+
+**Example: Deny Region Access**
+
+\`\`\`json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyNonApprovedRegions",
+            "Effect": "Deny",
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:RequestedRegion": [
+                        "ap-south-1",
+                        "us-east-1"
+                    ]
+                }
+            }
+        }
+    ]
+}
+\`\`\`
+
+**Example: Prevent Leaving Organization**
+
+\`\`\`json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Action": "organizations:LeaveOrganization",
+            "Resource": "*"
+        }
+    ]
+}
+\`\`\`
+
+### Session Policies
+
+**Session Policies** are policies passed **when assuming a role** to further restrict permissions for that specific session.
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Role has: S3 Full Access + EC2 Full Access                 │
+│                                                              │
+│  Session Policy: Only S3:GetObject                          │
+│                                                              │
+│  Effective session permissions: Only S3:GetObject           │
+│  (Intersection of role permissions and session policy)      │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+**Use Cases:**
+- Giving contractors limited access through shared role
+- Restricting permissions based on context (time, IP, etc.)
+- Fine-grained access control per session
+
+\`\`\`bash
+# Assume role with session policy
+aws sts assume-role \\
+    --role-arn arn:aws:iam::123456789012:role/DataAccessRole \\
+    --role-session-name read-only-session \\
+    --policy '{
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::data-bucket/reports/*"
+            }
+        ]
+    }'
+\`\`\`
+
+**Session Policy vs Permissions Boundary:**
+
+| Aspect | Session Policy | Permissions Boundary |
+|:-------|:---------------|:---------------------|
+| **Applied when** | Assuming a role | Creating user/role |
+| **Duration** | Single session | Permanent until changed |
+| **Use case** | Temporary restrictions | Delegated administration |
+
+---
+
+## 8. IAM Security Tools
 
 AWS provides several tools to audit and improve IAM security.
 
@@ -911,7 +1136,7 @@ aws iam simulate-principal-policy \\
 
 ---
 
-## 8. Best Practices
+## 9. Best Practices
 
 ### Security Best Practices
 
@@ -958,7 +1183,7 @@ aws iam update-account-password-policy \\
 
 ---
 
-## 9. Real-World Scenarios
+## 10. Real-World Scenarios
 
 ### Scenario 1: Developer Access
 
@@ -1085,7 +1310,7 @@ aws iam update-account-password-policy \\
 
 ---
 
-## 10. Common Mistakes to Avoid
+## 11. Common Mistakes to Avoid
 
 ### ✗ Mistake 1: Using Root Account
 

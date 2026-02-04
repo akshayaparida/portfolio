@@ -16,11 +16,11 @@ export default function SocialLinks({ links, size = "md" }: SocialLinksProps) {
   const getIconColor = (platform: string) => {
     switch (platform) {
       case "github":
-        return "#181717";
+        return "currentColor"; // Inherits from CSS for dark mode support
       case "linkedin":
         return "#0A66C2";
       default:
-        return "#6b7280";
+        return "currentColor";
     }
   };
 
