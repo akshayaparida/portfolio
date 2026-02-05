@@ -2022,36 +2022,44 @@ html.dark .markdown-content a {
 }
 
 html.dark .markdown-content table {
-  background: #0a0a0a;
-  border-color: #262626;
+  background: #141414;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 html.dark .markdown-content thead {
-  background: #171717;
+  background: #1f1f1f;
 }
 
 html.dark .markdown-content th {
-  color: #ffffff;
-  border-bottom-color: #262626;
+  color: #d4d4d4;
+  border: 1px solid #333333;
+  background: #1f1f1f;
 }
 
 html.dark .markdown-content td {
-  color: #d4d4d4;
-  border-bottom-color: #262626;
+  color: #b8b8b8;
+  border: 1px solid #2a2a2a;
+  background: #141414;
 }
 
 html.dark .markdown-content tbody tr:hover {
-  background: #171717;
+  background: #1a1a1a;
+}
+
+html.dark .markdown-content tbody tr:hover td {
+  background: #1a1a1a;
 }
 
 html.dark .markdown-content hr {
-  border-top-color: #262626;
+  border-top-color: #333333;
 }
 
 html.dark .markdown-content blockquote {
-  background: #171717;
+  background: #1a1a1a;
   border-left-color: #22c55e;
-  color: #d4d4d4;
+  color: #b8b8b8;
 }
 
 /* ========================================
