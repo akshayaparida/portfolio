@@ -211,6 +211,47 @@ Key: Environment   Value: Production
 
 ### Creating an IAM User - CLI
 
+> 📋 **Prerequisites:** Before running any AWS CLI commands, you must configure your credentials first!
+
+**Step 1: Install AWS CLI** (if not already installed)
+
+Download from: https://aws.amazon.com/cli/
+
+Verify installation:
+\`\`\`bash
+aws --version
+# Should show: aws-cli/2.x.x Python/3.x.x ...
+\`\`\`
+
+**Step 2: Configure AWS Credentials**
+
+\`\`\`bash
+aws configure
+\`\`\`
+
+You'll be prompted for:
+
+| Prompt | What to Enter |
+|:-------|:--------------|
+| **AWS Access Key ID** | Your access key (from IAM user) |
+| **AWS Secret Access Key** | Your secret key (shown only once when created) |
+| **Default region name** | e.g., \`ap-south-1\` (Mumbai), \`us-east-1\` (N. Virginia) |
+| **Default output format** | \`json\` (recommended) |
+
+> 💡 **To get access keys:** Go to AWS Console → IAM → Users → Your User → Security credentials → Create access key
+
+**Verify configuration:**
+\`\`\`bash
+aws sts get-caller-identity
+# Should show your account ID and user ARN
+\`\`\`
+
+> ⚠ **Never commit access keys to Git!** Use environment variables or AWS Secrets Manager.
+
+---
+
+**Step 3: Now You Can Run IAM CLI Commands**
+
 \`\`\`bash
 # Create a user
 aws iam create-user --user-name john-developer

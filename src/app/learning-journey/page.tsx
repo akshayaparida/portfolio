@@ -210,6 +210,14 @@ export default function LearningJourneyPage() {
           >
             {gitMetadata.commitDate}
           </a>
+          {" · "}
+          <a
+            href="https://github.com/akshayaparida/portfolio/issues/new?title=Learning%20Journey%20Error&labels=bug&body=%23%23%20Error%20Description%0A%0A%3C!--%20Describe%20the%20error%20you%20found%20--%3E%0A%0A%23%23%20Location%0A%0A-%20**Page%3A**%20Learning%20Journey%0A-%20**Section%3A**%20%0A%0A%23%23%20Expected%20Behavior%0A%0A%3C!--%20What%20should%20happen%3F%20--%3E%0A%0A%23%23%20Actual%20Behavior%0A%0A%3C!--%20What%20actually%20happens%3F%20--%3E%0A%0A%23%23%20Screenshot%20%28optional%29%0A%0A"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Report an error
+          </a>
         </p>
       </footer>
 
