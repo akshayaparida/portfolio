@@ -31,6 +31,7 @@ export interface LearningModule {
   title: string;
   description: string;
   status: ModuleStatus;
+  tags?: string[];
   startDate?: string;
   completedDate?: string;
   estimatedHours?: number;

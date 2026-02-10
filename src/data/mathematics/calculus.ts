@@ -196,7 +196,23 @@ Definition: f&apos;(x) = limit as h→0 of [f(x+h) - f(x)] / h
 - d/dx(tan(x)) = sec²(x)
 - d/dx(1/(1+e⁻ˣ)) = sigmoid(x)·(1-sigmoid(x))
 
-### 4. Maxima and Minima
+- d/dx(1/(1+e⁻ˣ)) = sigmoid(x)·(1-sigmoid(x))
+199: 
+200: ### 4. Tangents and Normals
+201: 
+202: **Slope of Tangent:**
+203: The derivative m = f'(x₁) gives the slope of the tangent at (x₁, y₁).
+204: 
+205: **Equation of Tangent:**
+206: y - y₁ = f'(x₁)(x - x₁)
+207: 
+208: **Slope of Normal:**
+209: The normal is perpendicular to the tangent, so its slope is -1/f'(x₁).
+210: 
+211: **Equation of Normal:**
+212: y - y₁ = -[1/f'(x₁)] (x - x₁)
+213: 
+214: ### 5. Maxima and Minima
 
 **Finding Extrema:**
 1. Find f&apos;(x) = 0 (critical points)
@@ -252,7 +268,12 @@ plt.show()
 - Economics: Maximizing profit, minimizing cost
 - Physics: Finding equilibrium points
 
-### 5. Integration
+250: **Applications:**
+251: - Machine Learning: Finding minimum of loss function
+252: - Economics: Maximizing profit, minimizing cost
+253: - Physics: Finding equilibrium points
+254: 
+255: ### 6. Integration
 
 **What is Integration?**
 Integration is the reverse of differentiation. It finds the area under a curve.
@@ -293,6 +314,12 @@ print(f"Numerical integral: {numerical:.6f}")
 print(f"Analytical result: {analytical:.6f}")
 \`\`\`
 
+**Integration by Partial Fractions:**
+Used for rational functions. Split complex fractions into simpler ones.
+- Example: 1/(x²-1) = 1/((x-1)(x+1)) = A/(x-1) + B/(x+1)
+- Solving gives A = 1/2, B = -1/2
+- ∫1/(x²-1)dx = (1/2)ln|x-1| - (1/2)ln|x+1| + C
+
 **Integration by Parts:**
 ∫u·dv = uv - ∫v·du
 
@@ -324,7 +351,7 @@ print(f"Numerical: {numerical:.6f}")
 print(f"Analytical: {analytical:.6f}")
 \`\`\`
 
-### 6. Definite Integrals and Area
+### 7. Definite Integrals and Area
 
 **Definite Integral:**
 ∫[a to b] f(x)dx = F(b) - F(a)
@@ -362,7 +389,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 \`\`\`
 
-### 7. Partial Derivatives and Gradients
+### 8. Partial Derivatives and Gradients
 
 **What is a Derivative?**
 The derivative measures how a function changes when its input changes. It&apos;s the slope of the tangent line.
@@ -443,7 +470,11 @@ grad = gradient(f_multi, point)
 print(f"Gradient at [{point[0]}, {point[1]}]: {grad}")  # [2*2 + 3*3, 3*2 + 2*3] = [13, 12]
 \`\`\`
 
-### 2. Chain Rule - Heart of Backpropagation
+---
+
+## Part II: Optimization & Neural Networks
+
+### 9. Chain Rule - Heart of Backpropagation
 
 **Single Variable Chain Rule:**
 If y = f(g(x)), then: dy/dx = (df/dg) · (dg/dx)
@@ -469,7 +500,7 @@ To update weights in Layer1, we need:
 
 This is the chain rule! Gradients flow backward multiplying partial derivatives.
 
-### 3. Gradient Descent Algorithm
+### 10. Gradient Descent Algorithm
 
 **Core Update Rule:**
 w_new = w_old - α · ∇L(w)
@@ -543,7 +574,7 @@ plt.grid(True)
 plt.show()
 \`\`\`
 
-### 4. Backpropagation - Neural Network Learning
+### 11. Backpropagation - Neural Network Learning
 
 **What is Backpropagation?**
 Backpropagation computes gradients of the loss function with respect to each weight in the network using the chain rule. It&apos;s the algorithm that makes neural networks learn.
@@ -655,7 +686,7 @@ for i in range(len(X)):
     print(f"Input: {X[i]}, Target: {y[i][0]}, Prediction: {predictions[i][0]:.4f}")
 \`\`\`
 
-### 5. Common Optimizers
+### 12. Common Optimizers
 
 **SGD (Stochastic Gradient Descent):**
 Basic algorithm: w = w - α · ∇L(w)
@@ -719,7 +750,7 @@ optimizer = AdamOptimizer(learning_rate=0.001)
 # optimizer.update(network_params, gradients)
 \`\`\`
 
-### 6. Vanishing & Exploding Gradients
+### 13. Vanishing & Exploding Gradients
 
 **Vanishing Gradients:**
 Problem: Gradients become extremely small in early layers.
@@ -756,7 +787,7 @@ if total_gradient_norm > threshold:
     gradients = clip_gradients(gradients)
 \`\`\`
 
-### 7. Computational Graphs
+### 14. Computational Graphs
 
 **What is a Computational Graph?**
 A graph representation of operations in a neural network.
@@ -772,7 +803,7 @@ A graph representation of operations in a neural network.
 Input x → [Linear: Wx+b] → [ReLU] → Output y
 Gradients: ∂L/∂x ← [∂/∂x] ← [∂/∂z] ← ∂L/∂y
 
-### 8. Higher-Order Derivatives
+### 15. Higher-Order Derivatives
 
 **Second Derivatives:**
 Used in second-order optimization methods like Newton&apos;s method.
