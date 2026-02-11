@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { PracticeQuestion } from "@/types/learning";
+
+const TIMER_SECONDS = 90;
+const TIMER_RADIUS = 18;
+const TIMER_CIRCUMFERENCE = 2 * Math.PI * TIMER_RADIUS;
 
 interface PracticeQuizProps {
   questions: PracticeQuestion[];
@@ -14,8 +18,40 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [answers, setAnswers] = useState<Record<string, boolean>>({}); // track correct/incorrect for each question
+  const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
+  const [timerActive, setTimerActive] = useState(true);
+  const [timedOut, setTimedOut] = useState(false);
+  const [timeoutCount, setTimeoutCount] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const currentQuestion = questions[currentQuestionIndex];
+
+  // Timer countdown effect
+  useEffect(() => {
+    if (timerActive && timeLeft > 0) {
+      timerRef.current = setTimeout(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [timerActive, timeLeft]);
+
+  // Auto-submit on timeout
+  const handleTimeout = useCallback(() => {
+    setTimerActive(false);
+    setTimedOut(true);
+    setTimeoutCount((prev) => prev + 1);
+    setAnswers((prev) => ({ ...prev, [currentQuestion.id]: false }));
+    setShowExplanation(true);
+  }, [currentQuestion.id]);
+
+  useEffect(() => {
+    if (timeLeft === 0 && timerActive) {
+      handleTimeout();
+    }
+  }, [timeLeft, timerActive, handleTimeout]);
 
   const handleOptionSelect = (optionIndex: number) => {
     if (showExplanation) return; // Prevent changing answer after reveal
@@ -25,6 +61,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const handleCheckAnswer = () => {
     if (selectedOption === null) return;
 
+    setTimerActive(false);
     const isCorrect = selectedOption === currentQuestion.correctAnswer;
     setAnswers({ ...answers, [currentQuestion.id]: isCorrect });
 
@@ -40,6 +77,9 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setSelectedOption(null);
       setShowExplanation(false);
+      setTimeLeft(TIMER_SECONDS);
+      setTimerActive(true);
+      setTimedOut(false);
     } else {
       setQuizCompleted(true);
     }
@@ -52,7 +92,17 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     setScore(0);
     setQuizCompleted(false);
     setAnswers({});
+    setTimeLeft(TIMER_SECONDS);
+    setTimerActive(true);
+    setTimedOut(false);
+    setTimeoutCount(0);
   };
+
+  // Timer helper
+  const timerProgress = timeLeft / TIMER_SECONDS;
+  const strokeDashoffset = TIMER_CIRCUMFERENCE * (1 - timerProgress);
+  const timerColor =
+    timeLeft > 30 ? "#10b981" : timeLeft > 10 ? "#f59e0b" : "#ef4444";
 
   if (!questions || questions.length === 0) {
     return null;
@@ -74,6 +124,11 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
               style={{ width: `${(score / questions.length) * 100}%` }}
             ></div>
           </div>
+          {timeoutCount > 0 && (
+            <p className="timeout-summary">
+              ⏱ {timeoutCount} question{timeoutCount > 1 ? "s" : ""} timed out
+            </p>
+          )}
           <p className="completion-message">
             {score === questions.length
               ? "Perfect score! You've mastered this topic."
@@ -128,6 +183,12 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
             background: #10b981;
             transition: width 1s ease-out;
           }
+          .timeout-summary {
+            font-size: 0.95rem;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 1rem;
+          }
           .retry-btn {
             background: #111827;
             color: white;
@@ -153,10 +214,50 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         <span className="question-counter">
           Question {currentQuestionIndex + 1} of {questions.length}
         </span>
-        <span className={`difficulty-badge ${currentQuestion.difficulty}`}>
-          {currentQuestion.difficulty}
-        </span>
+        <div className="header-right">
+          <div
+            className={`timer-container${timeLeft <= 10 && timerActive ? " pulse" : ""}${timedOut ? " timed-out" : ""}`}
+          >
+            <svg width="44" height="44" viewBox="0 0 44 44">
+              <circle
+                cx="22"
+                cy="22"
+                r={TIMER_RADIUS}
+                fill="none"
+                stroke="#e5e7eb"
+                strokeWidth="3"
+              />
+              <circle
+                cx="22"
+                cy="22"
+                r={TIMER_RADIUS}
+                fill="none"
+                stroke={timerColor}
+                strokeWidth="3"
+                strokeDasharray={TIMER_CIRCUMFERENCE}
+                strokeDashoffset={strokeDashoffset}
+                strokeLinecap="round"
+                transform="rotate(-90 22 22)"
+                style={{
+                  transition: "stroke-dashoffset 1s linear, stroke 0.5s ease",
+                }}
+              />
+            </svg>
+            <span className="timer-text" style={{ color: timerColor }}>
+              {timeLeft}
+            </span>
+          </div>
+          <span className={`difficulty-badge ${currentQuestion.difficulty}`}>
+            {currentQuestion.difficulty}
+          </span>
+        </div>
       </div>
+
+      {timedOut && (
+        <div className="timeout-banner">
+          ⏱ Time&apos;s up! Moving to explanation.
+        </div>
+      )}
 
       <h3 className="question-text">{currentQuestion.question}</h3>
 
@@ -202,14 +303,18 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
       {showExplanation && (
         <div
-          className={`explanation-box ${selectedOption === currentQuestion.correctAnswer ? "success" : "info"}`}
+          className={`explanation-box ${timedOut ? "timeout" : selectedOption === currentQuestion.correctAnswer ? "success" : "info"}`}
         >
           <h4>
-            {selectedOption === currentQuestion.correctAnswer
-              ? "Correct! 🎉"
-              : "Not quite. The correct answer is " +
+            {timedOut
+              ? "⏱ Time's up! The correct answer is " +
                 String.fromCharCode(65 + currentQuestion.correctAnswer) +
-                "."}
+                "."
+              : selectedOption === currentQuestion.correctAnswer
+                ? "Correct! 🎉"
+                : "Not quite. The correct answer is " +
+                  String.fromCharCode(65 + currentQuestion.correctAnswer) +
+                  "."}
           </h4>
           <p>{currentQuestion.explanation}</p>
         </div>
@@ -249,6 +354,59 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           justify-content: space-between;
           align-items: center;
           margin-bottom: 1rem;
+        }
+
+        .header-right {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .timer-container {
+          position: relative;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .timer-text {
+          position: absolute;
+          font-size: 0.75rem;
+          font-weight: 700;
+          font-variant-numeric: tabular-nums;
+        }
+
+        .timer-container.pulse {
+          animation: timerPulse 1s ease-in-out infinite;
+        }
+
+        .timer-container.timed-out .timer-text {
+          color: #ef4444 !important;
+        }
+
+        @keyframes timerPulse {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+        }
+
+        .timeout-banner {
+          background: #fef2f2;
+          border: 1px solid #fecaca;
+          color: #dc2626;
+          padding: 0.625rem 1rem;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-align: center;
+          margin-bottom: 1rem;
+          animation: fadeIn 0.3s ease;
         }
 
         .question-counter {
@@ -400,6 +558,11 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         .explanation-box.info {
           background: #f0f9ff;
           border: 1px solid #bae6fd;
+        }
+
+        .explanation-box.timeout {
+          background: #fef2f2;
+          border: 1px solid #fecaca;
         }
 
         .explanation-box h4 {
