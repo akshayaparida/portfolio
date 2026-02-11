@@ -808,12 +808,22 @@ print(f"P({k_heads} heads in {n_flips} flips) = {favorable}/{total} = {probabili
 | **Union (∪)** | A ∪ B = elements in A OR B |
 | **Intersection (∩)** | A ∩ B = elements in A AND B |
 | **Difference (-)** | A - B = elements in A but not B |
-| **Cardinality** | |A| = number of elements |
-| **Inclusion-Exclusion** | |A ∪ B| = |A| + |B| - |A ∩ B| |
-| **Power Set** | |P(A)| = 2^|A| |
+| **Symmetric Diff (△)** | A △ B = (A ∪ B) - (A ∩ B) |
+| **Complement** | A' = U - A |
+| **De Morgan's 1** | (A ∪ B)' = A' ∩ B' |
+| **De Morgan's 2** | (A ∩ B)' = A' ∪ B' |
+| **Cardinality** | n(A) = number of elements in A |
+| **Inclusion-Exclusion** | n(A ∪ B) = n(A) + n(B) - n(A ∩ B) |
+| **Power Set** | Size of P(A) = 2^n |
 | **Factorial** | n! = n × (n-1) × ... × 1 |
-| **Permutation** | P(n,r) = n!/(n-r)! (order matters) |
-| **Combination** | C(n,r) = n!/(r!(n-r)!) (order doesn't matter) |
+| **Permutation** | P(n,r) = n!/(n-r)! — order matters |
+| **Combination** | C(n,r) = n!/(r!(n-r)!) — order doesn't matter |
+| **P vs C** | P(n,r) = C(n,r) × r! |
+| **Cartesian Product** | n(A × B) = n(A) × n(B) |
+| **Functions A→B** | Total = n(B)^n(A) |
+| **Reflexive** | (a,a) ∈ R for all a ∈ A |
+| **Symmetric** | (a,b) ∈ R → (b,a) ∈ R |
+| **Transitive** | (a,b),(b,c) ∈ R → (a,c) ∈ R |
 
 **Python Set Operations:**
 \`\`\`python
