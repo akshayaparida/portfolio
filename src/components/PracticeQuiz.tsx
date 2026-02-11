@@ -19,7 +19,8 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [answers, setAnswers] = useState<Record<string, boolean>>({}); // track correct/incorrect for each question
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
-  const [timerActive, setTimerActive] = useState(true);
+  const [timerActive, setTimerActive] = useState(false);
+  const [quizStarted, setQuizStarted] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
   const [timeoutCount, setTimeoutCount] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -91,11 +92,17 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     setShowExplanation(false);
     setScore(0);
     setQuizCompleted(false);
+    setQuizStarted(false);
     setAnswers({});
     setTimeLeft(TIMER_SECONDS);
-    setTimerActive(true);
+    setTimerActive(false);
     setTimedOut(false);
     setTimeoutCount(0);
+  };
+
+  const startQuiz = () => {
+    setQuizStarted(true);
+    setTimerActive(true);
   };
 
   // Timer helper
@@ -106,6 +113,79 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
   if (!questions || questions.length === 0) {
     return null;
+  }
+
+  if (!quizStarted) {
+    return (
+      <div className="quiz-container">
+        <div className="start-screen">
+          <div className="start-icon">📝</div>
+          <h3>Practice Quiz</h3>
+          <p className="start-info">
+            {questions.length} question{questions.length > 1 ? "s" : ""} ·{" "}
+            {TIMER_SECONDS}s per question
+          </p>
+          <p className="start-desc">
+            Each question has a {TIMER_SECONDS}-second time limit. Unanswered
+            questions will be auto-submitted when time runs out.
+          </p>
+          <button className="start-btn" onClick={startQuiz}>
+            Start Quiz ▶
+          </button>
+        </div>
+        <style jsx>{`
+          .quiz-container {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            text-align: center;
+          }
+          .start-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+          }
+          .start-screen h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+          }
+          .start-info {
+            font-size: 1rem;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          }
+          .start-desc {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+          }
+          .start-btn {
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+          .start-btn:hover {
+            background: #374151;
+            transform: translateY(-1px);
+          }
+        `}</style>
+      </div>
+    );
   }
 
   if (quizCompleted) {
