@@ -21,7 +21,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://akshayaparida.vercel.app"),
   title: {
-    default: "Akshaya Parida - AI Engineer Portfolio",
+    default: "Akshaya Parida",
     template: "%s | Akshaya Parida",
   },
   description:
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://akshayaparida.vercel.app/",
-    title: "Akshaya Parida - AI Engineer Portfolio",
+    title: "Akshaya Parida",
     description:
       "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     siteName: "Akshaya Parida Portfolio",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akshaya Parida - AI Engineer Portfolio",
+    title: "Akshaya Parida",
     description:
       "AI Engineer focused on building intelligent systems and open-source tools. Bridging machine learning, software engineering, and real-world problem solving.",
     images: ["/og-image.jpg"],
