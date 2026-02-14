@@ -69,6 +69,15 @@ AWS offers different instance types optimized for different use cases. They are 
 | **Storage Optimized** | High IOPS for local storage. NoSQL DBs (Cassandra, MongoDB), Data warehousing. | **i**3, **d**2, **h**1 | **I**OPS, **D**isc |
 | **Accelerated Computing** | Hardware accelerators (GPUs, FPGAs). Machine learning, graphics processing. | **p**3, **g**4, **f**1 | **G**raphics |
 
+### Burstable Instances & CPU Credits (T-Series)
+- **T2, T3, T4g** instances are "Burstable Performance" instances.
+- **Baseline Performance**: They provide a guaranteed level of CPU performance.
+- **CPU Credits**: 
+  - You earn credits when idle.
+  - You spend credits when you burst above the baseline.
+  - If credits run out, performance drops to baseline.
+- **Unlimited Mode**: Can sustain high CPU usage by incurring extra charges.
+
 > 💡 **Tip**: Start with **General Purpose (t2.micro)** for learning, as it's Free Tier eligible.
 
 ---
