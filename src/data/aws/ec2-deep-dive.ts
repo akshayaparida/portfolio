@@ -4,388 +4,720 @@ export const ec2DeepDiveModule: LearningModule = {
   id: "ec2-deep-dive",
   title: "Module 4: EC2 Deep Dive",
   description:
-    "Master Amazon EC2: Instances, AMIs, Storage, Security Groups, and Pricing Models",
+    "Master Amazon EC2: Instances, AMIs, Pricing, Storage, Security, and ML Workloads",
   status: "in-progress",
   detailedContent: `# EC2 Deep Dive
 
-**Amazon Elastic Compute Cloud (Amazon EC2)** is a web service that provides resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.
+**Amazon Elastic Compute Cloud (EC2)** — virtual servers in the cloud. You rent compute capacity by the second, scale up/down on demand, and pay only for what you use.
 
 ## What You'll Learn
 
 | # | Topic |
 |:--|:------|
-| 1 | What is EC2? |
-| 2 | Instance Types & Families |
-| 3 | Amazon Machine Images (AMIs) |
-| 4 | EC2 Storage (EBS vs Instance Store) |
-| 5 | Security Groups & Key Pairs |
-| 6 | Elastic IPs |
-| 7 | Launching an Instance (Hands-on) |
-| 8 | User Data & Metadata |
-| 9 | Pricing Models |
-| 10 | Best Practices |
+| 1 | Instance Lifecycle |
+| 2 | AMI (Amazon Machine Image) |
+| 3 | Instance Types |
+| 4 | Pricing Models |
+| 5 | Security Groups |
+| 6 | Key Pairs & Connecting to Instances |
+| 7 | User Data (Bootstrap Scripts) |
+| 8 | EBS (Elastic Block Store) |
+| 9 | Elastic IP |
+| 10 | IAM Roles for EC2 |
+| 11 | Placement Groups |
+| 12 | EC2 for ML/AI Workloads |
+| 13 | Hibernation |
+| 14 | Networking Essentials |
 
 ---
 
-## 1. What is EC2?
+## 1. Instance Lifecycle
 
-**EC2 (Elastic Compute Cloud)** provides virtual servers in the cloud. These virtual servers are called **Instances**.
-
-### Key Features
-- **Elastic**: Scale capacity up and down within minutes.
-- **Control**: You have complete control over your instances (root access).
-- **Flexible**: Choose from multiple OS types (Linux, Windows, macOS).
-- **Integrated**: Works with S3, RDS, VPC, and other AWS services.
-- **Reliable**: 99.99% availability SLA for each region.
-
-### Use Cases
-- Web hosting
-- Application servers
-- High-performance computing (HPC)
-- Batch processing
-- Gaming servers
-
----
-
-## 2. Instance Types & Families
-
-AWS offers different instance types optimized for different use cases. They are named using a standard convention:
+Every EC2 instance goes through these states:
 
 \`\`\`
-   m5.2xlarge
-   │ │   │
-   │ │   └── size (nano, micro, small, medium, large, xlarge, 2xlarge...)
-   │ └────── generation (5th generation)
-   └──────── family (m = general purpose)
+Launch → pending → running → (stopping → stopped) → (shutting-down → terminated)
 \`\`\`
 
-### Instance Families (Mnemonic: "FIGHT DR MC. PXZ")
+### Instance States
 
-| Family Category | Use Cases | Examples | Mnemonic |
-|:----------------|:----------|:---------|:---------|
-| **General Purpose** | Balanced compute, memory, and networking. Web servers, code repositories. | **t**2, **t**3, **m**5 | **M**ac, **T**wo |
-| **Compute Optimized** | High performance processors. Batch processing, media transcoding, gaming, ML inference. | **c**5, **c**6g | **C**ompute |
-| **Memory Optimized** | Fast performance for workloads that process large data sets in memory. Databases, caching (Redis/Memcached). | **r**5, **x**1, **z**1d | **R**AM |
-| **Storage Optimized** | High IOPS for local storage. NoSQL DBs (Cassandra, MongoDB), Data warehousing. | **i**3, **d**2, **h**1 | **I**OPS, **D**isc |
-| **Accelerated Computing** | Hardware accelerators (GPUs, FPGAs). Machine learning, graphics processing. | **p**3, **g**4, **f**1 | **G**raphics |
+| State | Billing? | What's Happening |
+|:------|:---------|:-----------------|
+| **pending** | No | Instance is being provisioned |
+| **running** | Yes | Instance is live and usable |
+| **stopping** | No | Shutting down (EBS-backed only) |
+| **stopped** | No (compute) | No compute charges; EBS still billed |
+| **terminated** | No | Instance deleted, EBS deleted (unless "Delete on Termination" is off) |
 
-### Burstable Instances & CPU Credits (T-Series)
-- **T2, T3, T4g** instances are "Burstable Performance" instances.
-- **Baseline Performance**: They provide a guaranteed level of CPU performance.
-- **CPU Credits**: 
-  - You earn credits when idle.
-  - You spend credits when you burst above the baseline.
-  - If credits run out, performance drops to baseline.
-- **Unlimited Mode**: Can sustain high CPU usage by incurring extra charges.
+### Key Points
 
-> 💡 **Tip**: Start with **General Purpose (t2.micro)** for learning, as it's Free Tier eligible.
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Stop    → Pause compute, keep EBS data.                    │
+│             Public IP changes on restart.                    │
+│             Use Elastic IP to keep it.                       │
+│                                                              │
+│  Terminate → Destroy everything.                             │
+│              Data on instance store is ALWAYS lost.          │
+│                                                              │
+│  Reboot  → Restart without changing public IP               │
+│             or losing instance store data.                   │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
 
 ---
 
-## 3. Amazon Machine Images (AMIs)
+## 2. AMI (Amazon Machine Image)
 
-An **AMI** is a template that contains the software configuration (OS, application server, applications) required to launch your instance.
+An AMI is a **template** to launch instances — contains OS, pre-installed software, and configurations.
 
 ### Types of AMIs
-1. **AWS Provided**: Public AMIs (Amazon Linux 2, Ubuntu, Windows Server).
-2. **AWS Marketplace**: AMIs sold by third parties (e.g., CIS hardened images, Wordpress stacks).
-3. **Community AMIs**: Created by others, use at your own risk.
-4. **My AMIs (Custom)**: You configure an instance, install software, and save it as your own AMI.
 
-### Lifecycle
+| Type | Description | Examples |
+|:-----|:------------|:---------|
+| **AWS-provided** | Maintained by AWS | Amazon Linux 2023, Ubuntu 22.04, Windows Server |
+| **Marketplace** | Pre-configured for specific use cases | Deep Learning AMI, NVIDIA GPU Cloud |
+| **Custom AMI** | Your own golden image | Your app + dependencies baked in |
+
+### Why Custom AMIs Matter (SDE & MLOps)
+
+- **Reproducible environments** — Same dependencies every time, no "works on my machine"
+- **Faster boot** — Pre-bake your app/ML dependencies instead of installing via User Data every launch
+- **Golden image pipeline** — Build AMI → test → deploy to Auto Scaling Group
+
+### Creating a Custom AMI
+
 \`\`\`
-Launch Instance → Install Software → Create Image (AMI) → Launch New Instances from AMI
+┌─────────────────────────────────────────────────────────────┐
+│  1. Launch instance, install everything you need            │
+│  2. Actions → Image and Templates → Create Image            │
+│  3. AMI is stored in S3 (you pay for storage)               │
+│  4. AMIs are REGION-SPECIFIC — copy to other regions        │
+│     if needed                                                │
+└─────────────────────────────────────────────────────────────┘
 \`\`\`
 
-> ⚠ **Region Scope**: AMIs are **Region-specific**. To use an AMI in another region, you must **copy** it.
+> ⚠ **Important**: AMIs are region-specific. If you create an AMI in \`ap-south-1\`, you must copy it to \`us-east-1\` before launching instances there.
 
 ---
 
-## 4. EC2 Storage Options
+## 3. Instance Types
 
-EC2 instances need storage for the OS and data. The two main types are **EBS** and **Instance Store**.
+Format: \`<family><generation>.<size>\` → e.g., \`t3.medium\`, \`g5.xlarge\`
 
-### A. Elastic Block Store (EBS)
-- **Persistent** block storage volumes.
-- Network drive (not physically attached to the server).
-- **Independent lifecycle**: Data persists even if the instance terminates (if configured).
-- Can be detached and attached to other instances in the **same Availability Zone**.
+### Families You Must Know
 
-**EBS Volume Types:**
-| Type | Name | Use Case |
-|:-----|:-----|:---------|
-| **General Purpose SSD** | gp2, gp3 | Boot volumes, dev/test, low-latency apps. (Most common) |
-| **Provisioned IOPS SSD** | io1, io2 | Critical business apps needing sustained IOPS (Databases). |
-| **Throughput Optimized HDD**| st1 | Big data, data warehouses, log processing. |
-| **Cold HDD** | sc1 | Infrequently accessed data (file servers). |
+| Family | Optimized For | Use Case |
+|:-------|:-------------|:---------|
+| **t3/t4g** | Burstable general purpose | Dev/staging, small APIs, microservices |
+| **m5/m6i/m7i** | General purpose (balanced) | Web apps, backend services, CI/CD runners |
+| **c5/c6i/c7i** | Compute optimized | Data processing, batch jobs, scientific computing |
+| **r5/r6i/r7i** | Memory optimized | In-memory DBs (Redis), data analytics, caching |
+| **g4dn/g5** | GPU (NVIDIA) | ML training, inference, video encoding |
+| **p3/p4d/p5** | High-end GPU | Large-scale ML training, distributed deep learning |
+| **inf2** | AWS Inferentia | Cost-effective ML inference |
+| **i3/i4i** | Storage optimized | High I/O databases, data warehousing |
 
-### B. Instance Store (Ephemeral Storage)
-- Physically attached to the host computer.
-- **Temporary**: Data is **LOST** if the instance stops or terminates.
-- Very high I/O performance (good for buffers, caches, scratch data).
-- **Cannot** be resized or detached.
+### Burstable Instances (t3/t4g) — How Credits Work
 
-| Feature | EBS | Instance Store |
-|:--------|:----|:---------------|
-| **Persistence** | Durable (persists after stop) | Ephemeral (lost on stop) |
-| **Speed** | Network speed | Very fast (local disk) |
-| **Backups** | Snapshots | None built-in |
-| **Portability** | Detach/Attach | Fixed to instance |
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  CPU Credits:                                                │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │ Earn credits when idle → Spend when bursting       │     │
+│  └────────────────────────────────────────────────────┘     │
+│                                                              │
+│  Unlimited mode (default):                                   │
+│    Burst beyond credits but pay extra — watch your bill      │
+│                                                              │
+│  Standard mode:                                              │
+│    Throttled when credits run out — safer for cost control   │
+│                                                              │
+│  Monitor: CloudWatch → CPUCreditBalance metric              │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+> 💡 **Rule of thumb**: \`t3.medium\` for dev, \`m5.large\` or higher for production workloads.
 
 ---
 
-## 5. Security Groups & Key Pairs
+## 4. Pricing Models (Critical for Cost Optimization)
 
-### Security Groups (Virtual Firewall)
-- Controls **inbound** and **outbound** traffic.
-- **Stateful**: If you allow an inbound request, the outbound response is automatically allowed.
-- By default:
-  - **Inbound**: Deny all (you must add rules).
-  - **Outbound**: Allow all.
+### Pricing Comparison
 
-**Common Rules:**
-- **SSH (Port 22)**: For Linux admin access (restrict to Your IP).
-- **RDP (Port 3389)**: For Windows admin access.
-- **HTTP (Port 80)**: Web traffic.
-- **HTTPS (Port 443)**: Secure web traffic.
+| Model | Savings | Commitment | Best For |
+|:------|:--------|:-----------|:---------|
+| **On-Demand** | 0% (baseline) | None | Dev/test, unpredictable workloads |
+| **Reserved Instances** | Up to 72% | 1 or 3 year | Steady-state production servers |
+| **Savings Plans** | Up to 72% | 1 or 3 year ($/hr commitment) | Flexible across instance types |
+| **Spot Instances** | Up to 90% | None (can be interrupted) | ML training, batch jobs, CI/CD |
+| **Dedicated Hosts** | Varies | Per-host billing | Compliance, licensing requirements |
 
-### Key Pairs (Login Credentials)
-- EC2 uses public-key cryptography to encrypt and decrypt login information.
-- **Public Key**: Stored by AWS on the instance.
-- **Private Key**: You store it (\`.pem\` file). **Do not lose this!**
-- You need the private key to SSH into the instance.
+### Spot Instances — Deep Dive (Essential for ML)
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  How Spot Works:                                             │
+│                                                              │
+│  1. You request a Spot instance                              │
+│  2. AWS gives you unused capacity at 60-90% discount        │
+│  3. AWS can reclaim with 2-MINUTE WARNING                   │
+│  4. Your workload must handle interruptions                 │
+│                                                              │
+│  Use for:                                                    │
+│  ✓ ML training (checkpoint every epoch)                     │
+│  ✓ Batch processing                                         │
+│  ✓ CI/CD pipelines                                          │
+│  ✓ Data analysis                                            │
+│                                                              │
+│  Don't use for:                                              │
+│  ✗ Production web servers                                   │
+│  ✗ Databases                                                │
+│  ✗ Anything that CANNOT be interrupted                      │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### Reserved vs Savings Plans
+
+| Aspect | Reserved Instances | Savings Plans |
+|:-------|:-------------------|:--------------|
+| **Lock-in** | Specific instance type + region | Commit to $/hr spend |
+| **Flexibility** | Low | High — works across instance families |
+| **Recommendation** | When you know exact needs | Most cases — more flexible |
+
+> 💡 **MLOps tip**: Use **Spot** for training (save 60-90%), **On-Demand/Reserved** for inference endpoints.
+
+---
+
+## 5. Security Groups (Stateful Firewall)
+
+Security Groups control inbound/outbound traffic at the **instance level**.
+
+### Key Concepts
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Security Group Rules:                                       │
+│                                                              │
+│  • STATEFUL — Allow inbound? Response outbound is auto      │
+│  • Default: All inbound BLOCKED, all outbound ALLOWED       │
+│  • An instance can have MULTIPLE security groups             │
+│  • NO deny rules — you can only ALLOW (default is deny)     │
+│  • Changes take effect IMMEDIATELY                          │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### Common Rules
+
+| Purpose | Protocol | Port | Source |
+|:--------|:---------|:-----|:-------|
+| SSH | TCP | 22 | Your IP only (**never** 0.0.0.0/0 in prod) |
+| HTTP | TCP | 80 | 0.0.0.0/0 |
+| HTTPS | TCP | 443 | 0.0.0.0/0 |
+| Custom app | TCP | 8080/3000/5000 | 0.0.0.0/0 or specific CIDR |
+| PostgreSQL | TCP | 5432 | App server SG only |
+| MySQL | TCP | 3306 | App server SG only |
+| Redis | TCP | 6379 | App server SG only |
+
+### SG Referencing (Important Pattern)
+
+Instead of hardcoding IPs, reference another security group:
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│                                                              │
+│  ┌───────────────┐         ┌──────────────┐                 │
+│  │  Web Server   │         │   Database   │                 │
+│  │  SG: web-sg   │────────→│  SG: db-sg   │                 │
+│  │               │         │              │                 │
+│  │  Inbound:     │         │  Inbound:    │                 │
+│  │  80 from      │         │  5432 from   │                 │
+│  │  0.0.0.0/0    │         │  web-sg ONLY │                 │
+│  └───────────────┘         └──────────────┘                 │
+│                                                              │
+│  Result: Only web servers can talk to the database          │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+---
+
+## 6. Key Pairs & Connecting to Instances
+
+### Method 1: SSH with Key Pair
 
 \`\`\`bash
-# SSH into EC2 instance
-chmod 400 my-key.pem  # Set permissions (mandatory)
-ssh -i my-key.pem ec2-user@<public-ip-address>
+# Set permissions (required — SSH rejects open keys)
+chmod 400 my-key.pem
+
+# Connect (Ubuntu)
+ssh -i my-key.pem ubuntu@<public-ip>
+
+# Connect (Amazon Linux)
+ssh -i my-key.pem ec2-user@<public-ip>
+\`\`\`
+
+### Method 2: EC2 Instance Connect
+
+- Browser-based SSH — no key pair needed
+- Works on Amazon Linux 2 and Ubuntu 20.04+
+- Requires port 22 open to AWS IP ranges
+
+### Method 3: Systems Manager Session Manager (Recommended for Production)
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Session Manager Advantages:                                 │
+│                                                              │
+│  ✓ No SSH port needed (port 22 can be CLOSED)               │
+│  ✓ No key pairs to manage                                   │
+│  ✓ All sessions logged in CloudTrail for audit              │
+│  ✓ Works through browser or CLI                             │
+│                                                              │
+│  Setup:                                                      │
+│  1. Attach IAM role with AmazonSSMManagedInstanceCore       │
+│  2. SSM agent pre-installed on Amazon Linux, Ubuntu         │
+│  3. Connect: aws ssm start-session --target i-xxxxx        │
+└─────────────────────────────────────────────────────────────┘
 \`\`\`
 
 ---
 
-## 6. Elastic IP (EIP)
+## 7. User Data (Bootstrap Scripts)
 
-- A **Static IPv4 address** designed for dynamic cloud computing.
-- Helps mask instance failures by rapidly remaping the address to another instance.
-- **Cost**:
-  - **Free** if attached to a running instance.
-  - **Charged** if unattached or attached to a stopped instance (AWS discourages hoarding IPs).
+Scripts that run **once** at first boot. Used to automate instance setup.
 
-> 💡 **Best Practice**: Use a DNS name (Route 53) or Load Balancer instead of hardcoding IPs.
+### Example: Setting Up an ML API Server
 
----
-
-## 7. Launching an EC2 Instance (Step-by-Step)
-
-1. **Choose AMI**: Select OS (e.g., Amazon Linux 2023).
-2. **Choose Instance Type**: Select hardware (e.g., t2.micro).
-3. **Configure Instance Details**: Network (VPC), Subnet, IAM Role, User Data.
-4. **Add Storage**: Size and type of EBS volume.
-5. **Add Tags**: Name your instance (e.g., \`Name: WebServer\`).
-6. **Configure Security Group**: Open Port 22 (SSH) and 80 (HTTP).
-7. **Review and Launch**: Select existing key pair or create new one.
-
----
-
-## 8. User Data & Instance Metadata
-
-### User Data
-- Scripts run only **once** during the **first boot** of the instance.
-- Used to automate common tasks: update OS, install software (Apache, Docker), download files.
-- Passed as shell scripts (Linux) or PowerShell (Windows).
-
-**Example User Data Script:**
 \`\`\`bash
 #!/bin/bash
-yum update -y
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
-echo "<h1>Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
+# Runs as root at first boot
+
+apt-get update -y
+apt-get install -y python3-pip python3-venv nginx
+
+# Create app directory
+mkdir -p /opt/ml-api
+cd /opt/ml-api
+
+# Setup virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install fastapi uvicorn boto3 scikit-learn
+
+# Download model from S3 (using IAM role — no credentials needed)
+aws s3 cp s3://my-bucket/model.pkl /opt/ml-api/model.pkl
+
+# Start the API
+uvicorn app:app --host 0.0.0.0 --port 8000 &
 \`\`\`
 
-### Instance Metadata
-- Data *about* your instance (IP, ID, AMI ID, type, credentials).
-- Accessible from **within** the instance via a special URL:
-  \`http://169.254.169.254/latest/meta-data/\`
+### Key Points
 
-\`\`\`bash
-# Get public IP from inside the instance
-curl http://169.254.169.254/latest/meta-data/public-ipv4
+| Property | Detail |
+|:---------|:-------|
+| **Runs as** | root user |
+| **Runs** | Once at first boot only |
+| **Logs** | \`/var/log/cloud-init-output.log\` — check here for debugging |
+| **Max size** | 16 KB (use S3 for larger scripts) |
+| **Best practice** | For complex setups, bake into a **custom AMI** instead |
+
+---
+
+## 8. EBS (Elastic Block Store)
+
+Persistent block storage that attaches to EC2 instances — like a virtual hard drive.
+
+### Volume Types
+
+| Type | IOPS | Throughput | Use Case |
+|:-----|:-----|:-----------|:---------|
+| **gp3** (default) | 3,000 baseline (up to 16,000) | 125 MB/s (up to 1,000) | Boot volumes, apps, dev DBs |
+| **io2 Block Express** | Up to 256,000 | 4,000 MB/s | Production DBs needing sub-ms latency |
+| **st1** | 500 | 500 MB/s | Big data, log processing (sequential reads) |
+| **sc1** | 250 | 250 MB/s | Infrequent access, cold storage |
+
+### Key Concepts
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  EBS Rules:                                                  │
+│                                                              │
+│  • AZ-locked: Volume in us-east-1a can ONLY attach to      │
+│    instances in us-east-1a                                   │
+│                                                              │
+│  • Multi-attach (io2 only): Attach same volume to multiple  │
+│    instances in same AZ                                      │
+│                                                              │
+│  • Encryption: Enable by default — uses AWS KMS,            │
+│    no performance impact                                     │
+│                                                              │
+│  • Delete on Termination:                                    │
+│    Root volume = ON by default                               │
+│    Additional volumes = OFF by default                       │
+└─────────────────────────────────────────────────────────────┘
 \`\`\`
 
----
+### Snapshots
 
-## 9. Pricing Models
+- Point-in-time backup stored in S3
+- **Incremental** — Only changed blocks are saved after the first snapshot
+- Can create AMIs from snapshots
+- Cross-region copy for disaster recovery
+- Automate with **Data Lifecycle Manager (DLM)**
 
-AWS offers 5 ways to pay for EC2 instances:
+### Instance Store vs EBS
 
-| Model | Description | Best For | Discount |
-|:------|:------------|:---------|:---------|
-| **On-Demand** | Pay by the second/hour. No commitment. | Short-term, spiky workloads, dev/test. | None |
-| **Reserved Instances (RI)** | Commit to 1 or 3 years. | Steady-state usage (database). | Up to 72% |
-| **Savings Plans** | Commit to $ amount/hour for 1 or 3 years. Flexible across families. | Flexible workloads, Lambda/Fargate usage. | Up to 72% |
-| **Spot Instances** | Bid on unused capacity. Can be interrupted with 2 min notice. | Stateless, fault-tolerant, batch jobs. | Up to 90% |
-| **Dedicated Hosts/Instances** | Physical server dedicated to you. | Compliance (BYOL), sensitive workloads. | Low |
-
----
-
-## 10. Summary & Best Practices
-
-| Concept | Key Takeaway |
-|:--------|:-------------|
-| **Instance Type** | Choose right family (Compute, Memory, General). |
-| **Security** | open ports only to needed IPs (0.0.0.0/0 is risky for SSH/RDP). |
-| **Role** | Use IAM Roles instead of storing credentials on EC2. |
-| **Termination** | Enable "Termination Protection" for critical instances. |
-| **Storage** | Use EBS for persistent data, Instance Store for cache. |
-| **Design** | Design for failure (Multi-AZ, Auto Scaling). |
+| | Instance Store | EBS |
+|:--|:--------------|:----|
+| **Persistence** | Lost on stop/terminate | Persists independently |
+| **Performance** | Very high (physically attached NVMe) | Good (network-attached) |
+| **Use for** | Temp cache, scratch data, shuffle space for Spark/ML | OS, databases, app data, ML models |
+| **Backup** | You manage | Snapshots |
 
 ---
+
+## 9. Elastic IP
+
+A **static public IPv4 address** that you own until you release it.
+
+| Property | Detail |
+|:---------|:-------|
+| **Cost when attached** | Free (to a running instance) |
+| **Cost when idle** | $0.005/hr ≈ $3.60/month |
+| **Limit** | 5 per region (can request increase) |
+| **Better alternative** | Use DNS (Route 53) + ALB instead |
+
+> ⚠ **Warning**: Unused Elastic IPs cost money! Always release IPs you're not using.
+
+---
+
+## 10. IAM Roles for EC2 (Security — Critical!)
+
+### The Golden Rule
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│                                                              │
+│  NEVER hardcode AWS credentials (access keys) in code       │
+│  or on EC2 instances.                                        │
+│                                                              │
+│  NEVER store access keys as environment variables           │
+│  on instances.                                               │
+│                                                              │
+│  ALWAYS use IAM Roles instead.                              │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### How It Works
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  EC2 Instance                                                │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │  Instance Profile (container)                          │  │
+│  │  ┌───────────────────────────────────────────────┐    │  │
+│  │  │  IAM Role                                      │    │  │
+│  │  │  - Trust: ec2.amazonaws.com                    │    │  │
+│  │  │  - Permissions: S3 Read, CloudWatch Logs       │    │  │
+│  │  └───────────────────────────────────────────────┘    │  │
+│  └───────────────────────────────────────────────────────┘  │
+│                                                              │
+│  AWS SDK auto-picks temporary credentials from metadata     │
+│  Credentials rotate automatically — zero management         │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### Example: EC2 Accessing S3
+
+\`\`\`python
+import boto3
+
+# No credentials needed — IAM role handles it
+s3 = boto3.client('s3')
+s3.download_file('my-ml-bucket', 'model.pkl', '/tmp/model.pkl')
+\`\`\`
+
+### Common Role Policies
+
+| Use Case | Policy |
+|:---------|:-------|
+| Read S3 | \`AmazonS3ReadOnlyAccess\` |
+| Read/Write S3 | \`AmazonS3FullAccess\` |
+| Session Manager | \`AmazonSSMManagedInstanceCore\` |
+| CloudWatch Logs | \`CloudWatchAgentServerPolicy\` |
+| ECR (pull Docker images) | \`AmazonEC2ContainerRegistryReadOnly\` |
+| SQS access | \`AmazonSQSFullAccess\` |
+
+> ⚠ **Best Practice**: Create **custom policies** with least privilege instead of using \`*FullAccess\` managed policies.
+
+---
+
+## 11. Placement Groups
+
+Control **how instances are physically placed** on AWS hardware.
+
+### Placement Strategies
+
+| Strategy | Behavior | Use Case |
+|:---------|:---------|:---------|
+| **Cluster** | All instances on same rack | HPC, distributed ML training (low latency, high throughput) |
+| **Spread** | Each instance on different hardware | HA — max 7 instances per AZ |
+| **Partition** | Instances grouped into partitions on separate racks | Large distributed systems (Hadoop, Cassandra, Kafka) |
+
+### Visual
+
+\`\`\`
+Cluster (low latency):           Spread (high availability):
+┌──────────────────────┐         ┌────────┐  ┌────────┐  ┌────────┐
+│  Same Rack           │         │ Rack 1 │  │ Rack 2 │  │ Rack 3 │
+│  [i1] [i2] [i3] [i4]│         │  [i1]  │  │  [i2]  │  │  [i3]  │
+│                      │         └────────┘  └────────┘  └────────┘
+│  ↔ Ultra-low latency │         Each on separate hardware
+└──────────────────────┘
+\`\`\`
+
+> 💡 **ML tip**: Use **Cluster** placement for distributed training with multiple GPU instances to minimize network latency between nodes.
+
+---
+
+## 12. EC2 for ML/AI Workloads
+
+### GPU Instance Selection Guide
+
+| Instance | GPU | GPU Memory | Best For |
+|:---------|:----|:-----------|:---------|
+| **g4dn.xlarge** | 1x T4 | 16 GB | Inference, small model training |
+| **g5.xlarge** | 1x A10G | 24 GB | Medium training, fine-tuning |
+| **p3.2xlarge** | 1x V100 | 16 GB | Training, NLP |
+| **p4d.24xlarge** | 8x A100 | 320 GB total | Large-scale training, LLMs |
+| **inf2.xlarge** | AWS Inferentia2 | — | Cost-effective inference |
+
+### ML Workflow on EC2
+
+\`\`\`
+┌─────────────────────────────────────────────────────────────┐
+│  Recommended ML Setup on EC2:                                │
+│                                                              │
+│  1. Use Deep Learning AMI                                    │
+│     → Comes with PyTorch, TensorFlow, CUDA pre-installed    │
+│                                                              │
+│  2. Spot Instances for training                              │
+│     → Checkpoint every epoch, use Spot Fleet                │
+│                                                              │
+│  3. IAM Role for S3 access                                   │
+│     → Datasets in, model artifacts out                      │
+│                                                              │
+│  4. User Data to auto-setup environment on launch           │
+│                                                              │
+│  5. EBS gp3 for datasets                                     │
+│     → Instance store for shuffle/temp data                  │
+└─────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### EC2 vs SageMaker — When to Use What
+
+| Aspect | EC2 | SageMaker |
+|:-------|:----|:----------|
+| **Control** | Full control over environment | Managed, less control |
+| **Setup** | Manual (or via AMI/User Data) | Built-in training jobs |
+| **Cost** | Pay for instance uptime | Pay for training job time + markup |
+| **Best for** | Custom environments, research, full flexibility | Production ML pipelines, built-in HPO |
+
+---
+
+## 13. Hibernation
+
+**Saves the contents of RAM to EBS**, then restores on start — like closing a laptop lid.
+
+| Property | Detail |
+|:---------|:-------|
+| **Use case** | Long-running ML experiments, dev environments you want to resume |
+| **Requirements** | EBS root volume must be encrypted, volume must be large enough for RAM |
+| **Supported on** | On-Demand and Reserved instances only (not Spot) |
+| **Max hibernation** | 60 days |
+
+---
+
+## 14. Networking Essentials
+
+### ENI (Elastic Network Interface)
+
+- Virtual network card attached to an instance
+- Has: private IP, (optional) public IP, MAC address, security groups
+- Can attach **multiple ENIs** to one instance (e.g., management network + data network)
+- ENIs persist independently — detach from one instance, attach to another
+
+### Enhanced Networking (ENA)
+
+| Property | Detail |
+|:---------|:-------|
+| **Technology** | SR-IOV for higher bandwidth and lower latency |
+| **Support** | Most modern instance types |
+| **Matters for** | ML training (inter-node communication), high-throughput apps |
+| **Max bandwidth** | Up to 100 Gbps on supported instances |
+
+---
+
+## TL;DR - Quick Recall
+
+| Topic | Must Know |
+|:------|:----------|
+| **Instance Lifecycle** | pending → running → stopped → terminated; public IP changes on stop |
+| **AMI** | Template to launch instances; custom AMI for reproducibility |
+| **Instance Types** | t3 (burstable), m5 (general), c5 (compute), r5 (memory), g4dn/p3 (GPU) |
+| **Pricing** | On-Demand vs Reserved vs Spot — Spot saves 90% for ML training |
+| **Security Groups** | Stateful, no deny rules, SG referencing |
+| **Connecting** | SSH (dev), Session Manager (prod — no port 22 needed) |
+| **User Data** | Bootstrap scripts, runs once at first boot as root |
+| **EBS** | gp3 default, AZ-locked, snapshots, instance store is ephemeral |
+| **IAM Roles** | Never hardcode creds, instance profile, auto credential rotation |
+| **Placement Groups** | Cluster for ML training, Spread for HA |
+| **Spot Instances** | 2-min warning, checkpoint frequently, use for training |
 `,
   practiceQuiz: [
     {
       id: "ec2-1",
       question:
-        "Which EC2 pricing model offers the highest discount (up to 90%) but comes with the risk of interruption?",
+        "What happens to the public IP address when you stop and restart an EC2 instance?",
       options: [
-        "On-Demand",
+        "It stays the same",
+        "It changes to a new public IP",
+        "The instance loses public IP permanently",
+        "AWS sends you the new IP via email",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "When you stop and restart an EC2 instance, it gets a new public IP. To keep a fixed IP, use an Elastic IP.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "ec2-2",
+      question:
+        "Which pricing model offers up to 90% discount but can be interrupted by AWS with a 2-minute warning?",
+      options: [
         "Reserved Instances",
+        "On-Demand Instances",
         "Spot Instances",
         "Savings Plans",
       ],
       correctAnswer: 2,
       explanation:
-        "Spot Instances let you take advantage of unused EC2 capacity in the AWS cloud and offer up to a 90% discount compared to On-Demand prices. However, AWS can reclaim the instance with a 2-minute warning.",
-      difficulty: "easy",
-    },
-    {
-      id: "ec2-2",
-      question:
-        "You need a storage volume for your database that requires very high, low-latency I/O performance. Which EBS volume type should you choose?",
-      options: [
-        "General Purpose SSD (gp3)",
-        "Cold HDD (sc1)",
-        "Provisioned IOPS SSD (io2)",
-        "Throughput Optimized HDD (st1)",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "Provisioned IOPS SSD (io1/io2) volumes are designed for critical, I/O-intensive workloads like databases that require sustained low latency and high throughput.",
-      difficulty: "medium",
+        "Spot Instances offer up to 90% discount but AWS can reclaim them with a 2-minute interruption notice. Ideal for fault-tolerant workloads like ML training with checkpointing.",
+      difficulty: "easy" as const,
     },
     {
       id: "ec2-3",
-      question:
-        "What happens to the data on an Instance Store volume when the EC2 instance is stopped?",
+      question: "Security Groups are stateful. What does this mean?",
       options: [
-        "The data is preserved until the instance is terminated.",
-        "The data is automatically backed up to S3.",
-        "The data is lost.",
-        "The data is moved to an EBS volume.",
+        "Rules are saved to a database",
+        "If you allow inbound traffic, the return outbound traffic is automatically allowed",
+        "Security groups track the number of connections",
+        "Rules persist across instance reboots",
       ],
-      correctAnswer: 2,
+      correctAnswer: 1,
       explanation:
-        "Instance Store (ephemeral storage) is physically attached to the host. If the instance is stopped or terminated, the data on the instance store is lost. Use EBS for persistent storage.",
-      difficulty: "medium",
+        "Stateful means if an inbound rule allows traffic in, the response traffic is automatically allowed out — you don't need a separate outbound rule for it.",
+      difficulty: "medium" as const,
     },
     {
       id: "ec2-4",
       question:
-        "Which component acts as a virtual firewall for your EC2 instance, controlling inbound and outbound traffic?",
-      options: ["Network ACL", "Security Group", "Route Table", "VPC Peering"],
-      correctAnswer: 1,
+        "Your Python app on EC2 needs to download ML models from S3. What is the correct and secure way?",
+      options: [
+        "Hardcode AWS access keys in the Python code",
+        "Store access keys as environment variables on the instance",
+        "Attach an IAM Role with S3 permissions to the EC2 instance",
+        "Make the S3 bucket public",
+      ],
+      correctAnswer: 2,
       explanation:
-        "Security Groups act as a virtual firewall for your instance to control inbound and outbound traffic. They operate at the instance level.",
-      difficulty: "easy",
+        "Attach an IAM Role to the EC2 instance. The AWS SDK (boto3) automatically retrieves temporary credentials from the instance metadata. Never hardcode or store access keys.",
+      difficulty: "easy" as const,
     },
     {
       id: "ec2-5",
       question:
-        "You want to retrieve the public IP address of your EC2 instance from inside the instance using a script. Which URL should you query?",
-      options: [
-        "http://169.254.169.254/latest/user-data/",
-        "http://169.254.169.254/latest/meta-data/",
-        "http://localhost/meta-data/",
-        "http://aws.amazon.com/meta-data/",
-      ],
+        "Which EBS volume type should you use as the default for most workloads?",
+      options: ["gp2", "gp3", "io2", "st1"],
       correctAnswer: 1,
       explanation:
-        "Instance metadata is available at http://169.254.169.254/latest/meta-data/. User data is available at .../user-data/.",
-      difficulty: "medium",
+        "gp3 is the recommended default. It provides 3,000 IOPS baseline with the ability to scale IOPS independently of storage size, and is cheaper than gp2.",
+      difficulty: "easy" as const,
     },
     {
       id: "ec2-6",
-      question: "Which statement about Security Groups is True?",
+      question:
+        "What is the key difference between Instance Store and EBS storage?",
       options: [
-        "They are stateless (you must define both inbound and outbound rules).",
-        "They block all outbound traffic by default.",
-        "They are stateful (return traffic is automatically allowed).",
-        "They operate at the subnet level.",
+        "Instance Store is slower than EBS",
+        "Instance Store data persists after instance termination",
+        "Instance Store data is lost when the instance is stopped or terminated",
+        "EBS cannot be encrypted",
       ],
       correctAnswer: 2,
       explanation:
-        "Security Groups are stateful. If you add an inbound rule for port 80, the response traffic is automatically allowed out, regardless of outbound rules.",
-      difficulty: "medium",
+        "Instance Store provides high-performance ephemeral storage physically attached to the host. Data is lost on stop/terminate. Use EBS for persistent data.",
+      difficulty: "medium" as const,
     },
     {
       id: "ec2-7",
       question:
-        "Which instance family is best suited for high-performance machine learning and graphics rendering workloads?",
+        "Which placement group strategy should you use for distributed ML training across multiple GPU instances?",
       options: [
-        "M5 (General Purpose)",
-        "R5 (Memory Optimized)",
-        "C5 (Compute Optimized)",
-        "P3 (Accelerated Computing)",
-      ],
-      correctAnswer: 3,
-      explanation:
-        "The Accelerated Computing family (P3, G4, Inf1) uses hardware accelerators like GPUs and FPGAs, making them ideal for machine learning and graphics intensity workloads.",
-      difficulty: "easy",
-    },
-    {
-      id: "ec2-8",
-      question:
-        "You have an application that requires a steady state of usage for 3 years. Which pricing model offers the best cost savings?",
-      options: [
-        "On-Demand",
-        "Spot Instances",
-        "Reserved Instances (Standard)",
-        "Dedicated Hosts",
+        "Spread — for maximum fault tolerance",
+        "Partition — for large distributed systems",
+        "Cluster — for low latency, high throughput between instances",
+        "No placement group needed",
       ],
       correctAnswer: 2,
       explanation:
-        "For steady-state workloads with a known commitment period (1 or 3 years), Reserved Instances or Savings Plans offer significant discounts (up to 72%) compared to On-Demand pricing.",
-      difficulty: "easy",
+        "Cluster placement group places instances on the same rack, providing low-latency and high-throughput networking — crucial for distributed ML training where GPUs need to communicate frequently.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "ec2-8",
+      question: "What does EC2 User Data allow you to do?",
+      options: [
+        "Store user profile information",
+        "Run bootstrap scripts automatically at first instance launch",
+        "Configure IAM permissions for the instance",
+        "Set up billing alerts",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "User Data scripts run once at first boot as root. They are used to automate instance setup — installing packages, downloading code, starting services.",
+      difficulty: "easy" as const,
     },
     {
       id: "ec2-9",
       question:
-        "Can you attach an EBS volume in 'us-east-1a' to an EC2 instance in 'us-east-1b'?",
+        "You need to run ML training that takes 12 hours. Which is the most cost-effective approach?",
       options: [
-        "Yes, EBS volumes are regional resources.",
-        "No, EBS volumes are locked to a specific Availability Zone.",
-        "Yes, but only if they are in the same VPC.",
-        "Yes, if you use a transit gateway.",
+        "Use an On-Demand p3.2xlarge for the full run",
+        "Use a Spot p3.2xlarge with frequent checkpointing to S3",
+        "Use a Reserved p3.2xlarge with 1-year commitment",
+        "Use a t3.medium with GPU sharing",
       ],
       correctAnswer: 1,
       explanation:
-        "EBS volumes are locked to a specific Availability Zone (AZ). To move data to another AZ, you must create a snapshot and restore it in the new AZ.",
-      difficulty: "hard",
+        "Spot Instances offer up to 90% savings. For ML training, checkpoint your model to S3 every epoch. If the instance is reclaimed, resume from the last checkpoint on a new Spot instance.",
+      difficulty: "hard" as const,
     },
     {
       id: "ec2-10",
-      question: "What is the function of 'User Data' in EC2?",
+      question:
+        "Why would you create a Custom AMI instead of using User Data scripts to set up an instance?",
       options: [
-        "To store user credentials for login.",
-        "To define the IAM role for the instance.",
-        "To run bootstrap scripts/commands during the first boot.",
-        "To backup user files to S3.",
+        "Custom AMIs are free while User Data costs money",
+        "Custom AMIs boot faster since dependencies are pre-installed",
+        "User Data scripts cannot install packages",
+        "Custom AMIs work in all regions automatically",
       ],
-      correctAnswer: 2,
+      correctAnswer: 1,
       explanation:
-        "User Data is used to pass shell scripts or cloud-init directives to the instance, which run only once during the initial boot process to bootstrap the instance (e.g., install software, updates).",
-      difficulty: "medium",
+        "Custom AMIs have all dependencies pre-baked, so instances launch faster. User Data scripts run at boot time and can take minutes to install packages. AMIs are region-specific — you need to copy them to other regions.",
+      difficulty: "medium" as const,
     },
   ],
 };
