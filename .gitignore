@@ -1,3 +1,7 @@
 node_modules
 .next
 out/
+
+# PWA - generated service worker (build artifact)
+public/sw.js
+public/sw.js.map

@@ -70,6 +70,15 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
     creator: "@akshaya_parida_",
   },
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Akshaya Parida",
+  },
+  icons: {
+    apple: "/icon-192x192.png",
+  },
   robots: {
     index: true,
     follow: true,
