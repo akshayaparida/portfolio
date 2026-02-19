@@ -349,6 +349,26 @@ For uncountable outcomes (real numbers).
 - E[X] = 1/λ, Var(X) = 1/λ²
 
 **Normal Distribution Code:**
+
+\`\`\`
+Normal Distribution — The Bell Curve:
+
+                    ┌───┐
+                   /│   │\\
+                  / │   │ \\
+                /  │   │  \\
+              /   │   │   \\
+            /    │   │    \\
+          /     │   │     \\      68-95-99.7 Rule:
+        /      │   │      \\     ├─ 68% within ±1σ
+      /       │   │       \\    ├─ 95% within ±2σ
+────/─────────┼───┼─────────\\──── └─ 99.7% within ±3σ
+   -3σ  -2σ  -1σ  μ  +1σ  +2σ  +3σ
+
+   │←── 68% ──→│
+   │←──── 95% ────→│
+   │←────── 99.7% ──────→│
+\`\`\`
 \`\`\`python path=null start=null
 import numpy as np
 import matplotlib.pyplot as plt

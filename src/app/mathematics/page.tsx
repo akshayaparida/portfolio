@@ -30,12 +30,27 @@ const demoComponents: Record<string, React.ComponentType> = {
   "scalar-mult": ScalarMultiplication,
 };
 
+function getInitialModuleIndex(): number {
+  if (typeof window === "undefined") return 0;
+  const hash = window.location.hash;
+  if (!hash) return 0;
+  const match = hash.match(/^#module-(\d+)$/);
+  if (match) {
+    const idx = parseInt(match[1], 10) - 1;
+    if (idx >= 0 && idx < mathematicsModules.length) return idx;
+  }
+  return 0;
+}
+
 export default function MathematicsPage() {
-  const [activeModuleIndex, setActiveModuleIndex] = useState(0);
+  const [activeModuleIndex, setActiveModuleIndex] = useState(
+    getInitialModuleIndex,
+  );
   const activeModule = mathematicsModules[activeModuleIndex];
 
   const handleModuleChange = (index: number) => {
     setActiveModuleIndex(index);
+    window.location.hash = `module-${index + 1}`;
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -162,25 +177,6 @@ export default function MathematicsPage() {
           </a>
         </p>
       </footer>
-
-      <style jsx>{`
-        .demo-title {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 0.5rem 0;
-        }
-
-        .demo-description {
-          font-size: 0.9rem;
-          color: #6b7280;
-          margin: 0 0 1rem 0;
-        }
-
-        .demo-content {
-          margin-top: 1rem;
-        }
-      `}</style>
     </div>
   );
 }

@@ -133,6 +133,22 @@ In matrix form:
 
 ### 2. Ordinary Least Squares (OLS) - The Solution
 
+\`\`\`
+Linear Regression — Fitting a Line:
+
+  y │        ×
+    │      ×    ×
+    │    ×  ──────── Best fit line: ŷ = wx + b
+    │  ×  /   ×
+    │ × /  ×        ↕ residual = yᵢ - ŷᵢ
+    │ /×
+    │/ ×
+    └──────────────── x
+
+  Goal: Minimize Σ(residuals²)
+  Solution: β̂ = (XᵀX)⁻¹Xᵀy
+\`\`\`
+
 **Goal**: Minimize sum of squared residuals
 minimize: RSS = Σᵢ (yᵢ - ŷᵢ)² = ||y - Xβ||²
 

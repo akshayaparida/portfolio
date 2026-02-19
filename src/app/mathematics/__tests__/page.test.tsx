@@ -105,6 +105,10 @@ jest.mock("@/components/CodeBlock", () => {
 });
 
 describe("MathematicsPage - Blog Style Layout", () => {
+  afterEach(() => {
+    window.location.hash = "";
+  });
+
   it("renders the header with title", () => {
     render(<MathematicsPage />);
     expect(

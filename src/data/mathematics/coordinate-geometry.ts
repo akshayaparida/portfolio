@@ -180,6 +180,29 @@ print(analyze_pair_of_lines(1, -2.5, 6))
 
 ### 4. Equations of Lines
 
+\`\`\`
+The Cartesian Plane:
+
+        y
+        │
+    4   │           ● (4,3)
+        │         /
+    3   │       /  slope = rise/run
+        │     / ↑ rise = 2
+    2   │   /  │
+        │ ● ──┘ run = 3
+    1   │ (1,1)
+        │
+   ─────┼───────────────── x
+   -1   │  1   2   3   4
+        │
+   -2   │
+        │
+
+  Distance = √[(x₂-x₁)² + (y₂-y₁)²]
+  Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2)
+\`\`\`
+
 **Slope (Gradient):**
 
 m = (y₂ - y₁) / (x₂ - x₁) = Δy / Δx = rise / run

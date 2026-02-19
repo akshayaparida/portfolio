@@ -510,6 +510,28 @@ Where:
 - α = learning rate (typically 0.001 to 0.1)
 - ∇L(w) = gradient of loss with respect to weights
 
+\`\`\`
+Gradient Descent on Loss Curve:
+
+  Loss
+   │
+   │ ●  Start (high loss)
+   │  \\
+   │   \\  Step 1 (large gradient)
+   │    \\
+   │     ●
+   │      \\  Step 2
+   │       \\
+   │        ●
+   │         \\  Step 3 (smaller gradient)
+   │          \\_____●  Minimum (gradient ≈ 0)
+   │
+   └──────────────────── weights (w)
+
+   w_new = w_old - α · ∇L(w)
+   Move OPPOSITE to gradient direction
+\`\`\`
+
 **Types of Gradient Descent:**
 
 **Batch Gradient Descent:**
