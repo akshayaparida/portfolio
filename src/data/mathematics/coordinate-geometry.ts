@@ -134,53 +134,51 @@ mid = midpoint(p1, p2)
 print(f"Midpoint of {p1} and {p2} = {mid}")  # (5.0, 7.0)
 \`\`\`
 
+### 3. Pair of Straight Lines
+
+**Homogeneous Equation (Lines passing through origin):**
+ax² + 2hxy + by² = 0
+
+Represents two lines y = m₁x and y = m₂x where:
+- m₁ + m₂ = -2h/b
+- m₁m₂ = a/b
+
+**Angle between lines (θ):**
+tan θ = |(2√(h² - ab)) / (a + b)|
+- Parallel/Coincident if h² = ab
+- Perpendicular if a + b = 0
+
+**General Equation (Lines not necessarily through origin):**
+ax² + 2hxy + by² + 2gx + 2fy + c = 0
+Represents a pair of straight lines if determinant Δ = 0:
+Δ = abc + 2fgh - af² - bg² - ch² = 0
+
+\`\`\`python path=null start=null
+import numpy as np
+
+def analyze_pair_of_lines(a, h, b):
+    """Analyze ax² + 2hxy + by² = 0"""
+    # Slopes m = (-h ± √(h²-ab))/b
+    discriminant = h**2 - a*b
+    
+    if discriminant < 0:
+        return "Imaginary lines (Point at origin)"
+    elif discriminant == 0:
+        return "Coincident lines"
+    
+    term = np.sqrt(discriminant)
+    tan_theta = (2 * term) / abs(a + b) if (a + b) != 0 else float('inf')
+    angle_deg = np.degrees(np.arctan(tan_theta))
+    
+    return f"Real lines, Angle: {angle_deg:.2f}°"
+
+# Example: x² - 5xy + 6y² = 0
+# Compare to ax² + 2hxy + by² = 0
+# a=1, 2h=-5 -> h=-2.5, b=6
+print(analyze_pair_of_lines(1, -2.5, 6))
 \`\`\`
-136: 
-137: ### 3. Pair of Straight Lines
-138: 
-139: **Homogeneous Equation (Lines passing through origin):**
-140: ax² + 2hxy + by² = 0
-141: 
-142: Represents two lines y = m₁x and y = m₂x where:
-143: - m₁ + m₂ = -2h/b
-144: - m₁m₂ = a/b
-145: 
-146: **Angle between lines (θ):**
-147: tan θ = |(2√(h² - ab)) / (a + b)|
-148: - Parallel/Coincident if h² = ab
-149: - Perpendicular if a + b = 0
-150: 
-151: **General Equation (Lines not necessarily through origin):**
-152: ax² + 2hxy + by² + 2gx + 2fy + c = 0
-153: Represents a pair of straight lines if determinant Δ = 0:
-154: Δ = abc + 2fgh - af² - bg² - ch² = 0
-155: 
-156: \`\`\`python path=null start=null
-157: import numpy as np
-158: 
-159: def analyze_pair_of_lines(a, h, b):
-160:     """Analyze ax² + 2hxy + by² = 0"""
-161:     # Slopes m = (-h ± √(h²-ab))/b
-162:     discriminant = h**2 - a*b
-163:     
-164:     if discriminant < 0:
-165:         return "Imaginary lines (Point at origin)"
-166:     elif discriminant == 0:
-167:         return "Coincident lines"
-168:     
-169:     term = np.sqrt(discriminant)
-170:     tan_theta = (2 * term) / abs(a + b) if (a + b) != 0 else float('inf')
-171:     angle_deg = np.degrees(np.arctan(tan_theta))
-172:     
-173:     return f"Real lines, Angle: {angle_deg:.2f}°"
-174: 
-175: # Example: x² - 5xy + 6y² = 0
-176: # Compare to ax² + 2hxy + by² = 0
-177: # a=1, 2h=-5 -> h=-2.5, b=6
-178: print(analyze_pair_of_lines(1, -2.5, 6))
-179: \`\`\`
-180: 
-181: ### 4. Equations of Lines
+
+### 4. Equations of Lines
 
 **Slope (Gradient):**
 
