@@ -1,207 +1,180 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import MathematicsPage from "@/app/mathematics/page";
+import { render, screen } from "@testing-library/react";
+import ModulePage from "@/app/mathematics/[moduleId]/page";
+import ModuleSidebar from "@/components/ModuleSidebar";
 import { mathematicsModules } from "@/data/mathematics";
+import * as navigation from "next/navigation";
 
-// Mock the external dependencies
+// Mock next/navigation
+jest.mock("next/navigation", () => ({
+  useParams: jest.fn(),
+  usePathname: jest.fn(),
+  notFound: jest.fn(),
+}));
+
+// Mock React Markdown and other heavy components
 jest.mock("react-markdown", () => {
-  const Component = ({ children }: { children: React.ReactNode }) => (
+  const MockReactMarkdown = ({ children }: { children: React.ReactNode }) => (
     <div data-testid="react-markdown">{children}</div>
   );
-  Component.displayName = "MockReactMarkdown";
-  return Component;
+  MockReactMarkdown.displayName = "MockReactMarkdown";
+  return MockReactMarkdown;
 });
 
 jest.mock("rehype-highlight", () => ({}));
 jest.mock("rehype-sanitize", () => ({}));
 jest.mock("remark-gfm", () => ({}));
 
-// Mock the demo components
+// Mock math visualizations
 jest.mock("@/components/math-visualizations/VectorSpace2D", () => {
-  const Component = () => (
-    <div data-testid="vector-space-2d">Vector Space 2D Visualization</div>
-  );
-  Component.displayName = "MockVectorSpace2D";
-  return Component;
+  const MockVectorSpace2D = () => <div data-testid="vector-space" />;
+  MockVectorSpace2D.displayName = "MockVectorSpace2D";
+  return MockVectorSpace2D;
 });
-
 jest.mock("@/components/math-visualizations/MatrixMultiplication", () => {
-  const Component = () => (
-    <div data-testid="matrix-multiplication">
-      Matrix Multiplication Visualization
-    </div>
-  );
-  Component.displayName = "MockMatrixMultiplication";
-  return Component;
+  const MockMatrixMultiplication = () => <div data-testid="matrix-mult" />;
+  MockMatrixMultiplication.displayName = "MockMatrixMultiplication";
+  return MockMatrixMultiplication;
 });
-
 jest.mock("@/components/math-visualizations/PCAVisualization", () => {
-  const Component = () => (
-    <div data-testid="pca-visualization">PCA Visualization</div>
-  );
-  Component.displayName = "MockPCAVisualization";
-  return Component;
+  const MockPCAVisualization = () => <div data-testid="pca" />;
+  MockPCAVisualization.displayName = "MockPCAVisualization";
+  return MockPCAVisualization;
 });
-
 jest.mock("@/components/math-visualizations/GradientDescentPlayground", () => {
-  const Component = () => (
-    <div data-testid="gradient-descent">Gradient Descent Playground</div>
-  );
-  Component.displayName = "MockGradientDescentPlayground";
-  return Component;
+  const MockGradientDescentPlayground = () => <div data-testid="gradient" />;
+  MockGradientDescentPlayground.displayName = "MockGradientDescentPlayground";
+  return MockGradientDescentPlayground;
 });
-
 jest.mock("@/components/math-visualizations/ActivationFunctions", () => {
-  const Component = () => (
-    <div data-testid="activation-functions">
-      Activation Functions Visualization
-    </div>
-  );
-  Component.displayName = "MockActivationFunctions";
-  return Component;
+  const MockActivationFunctions = () => <div data-testid="activation" />;
+  MockActivationFunctions.displayName = "MockActivationFunctions";
+  return MockActivationFunctions;
 });
-
 jest.mock("@/components/math-visualizations/ScalarMultiplication", () => {
-  const Component = () => (
-    <div data-testid="scalar-multiplication">
-      Scalar Multiplication Visualization
-    </div>
-  );
-  Component.displayName = "MockScalarMultiplication";
-  return Component;
+  const MockScalarMultiplication = () => <div data-testid="scalar" />;
+  MockScalarMultiplication.displayName = "MockScalarMultiplication";
+  return MockScalarMultiplication;
 });
 
-// Mock ErrorBoundary and fallbacks
+// Mock other components
 jest.mock("@/components/ErrorBoundary", () => {
-  const Component = ({ children }: { children: React.ReactNode }) => (
+  const MockErrorBoundary = ({ children }: { children: React.ReactNode }) => (
     <div data-testid="error-boundary">{children}</div>
   );
-  Component.displayName = "MockErrorBoundary";
-  return Component;
+  MockErrorBoundary.displayName = "MockErrorBoundary";
+  return MockErrorBoundary;
 });
 
 jest.mock("@/components/MathErrorFallback", () => {
-  const Component = () => (
-    <div data-testid="math-error-fallback">Error occurred</div>
-  );
-  Component.displayName = "MockMathErrorFallback";
-  return Component;
+  const MockMathErrorFallback = () => <div>Error</div>;
+  MockMathErrorFallback.displayName = "MockMathErrorFallback";
+  return MockMathErrorFallback;
 });
 
-// Mock git metadata
-jest.mock("@/data/git-metadata.json", () => ({
-  commitHash: "abc123",
-  commitDate: "January 1, 2023",
-  commitUrl: "https://github.com/test/test/commit/abc123",
-}));
+jest.mock("@/components/PracticeQuiz", () => {
+  const MockPracticeQuiz = () => <div data-testid="practice-quiz">Quiz</div>;
+  MockPracticeQuiz.displayName = "MockPracticeQuiz";
+  return MockPracticeQuiz;
+});
 
-// Mock CodeBlock
 jest.mock("@/components/CodeBlock", () => {
-  const Component = ({ children }: { children: React.ReactNode }) => (
-    <code data-testid="code-block">{children}</code>
+  const MockCodeBlock = ({ children }: { children: React.ReactNode }) => (
+    <pre>{children}</pre>
   );
-  Component.displayName = "MockCodeBlock";
-  return Component;
+  MockCodeBlock.displayName = "MockCodeBlock";
+  return MockCodeBlock;
 });
 
-describe("MathematicsPage - Blog Style Layout", () => {
-  afterEach(() => {
-    window.location.hash = "";
+jest.mock("@/components/MathModuleIcon", () => {
+  const MockMathModuleIcon = () => <svg data-testid="module-icon" />;
+  MockMathModuleIcon.displayName = "MockMathModuleIcon";
+  return MockMathModuleIcon;
+});
+
+describe("Mathematics Dynamic Routes", () => {
+  const mockUseParams = navigation.useParams as jest.Mock;
+  const mockUsePathname = navigation.usePathname as jest.Mock;
+  const mockNotFound = navigation.notFound as jest.Mock;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  it("renders the header with title", () => {
-    render(<MathematicsPage />);
-    expect(
-      screen.getByRole("heading", { name: /Mathematics for AI Engineers/i }),
-    ).toBeInTheDocument();
-  });
+  describe("ModuleSidebar", () => {
+    it("renders all module links", () => {
+      mockUsePathname.mockReturnValue("/mathematics/set-theory");
+      render(<ModuleSidebar />);
 
-  it("renders navigation links in header", () => {
-    render(<MathematicsPage />);
-    expect(screen.getByRole("link", { name: /home/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /my journey/i }),
-    ).toBeInTheDocument();
-  });
+      mathematicsModules.forEach((mathModule) => {
+        expect(screen.getByText(mathModule.title)).toBeInTheDocument();
+      });
+    });
 
-  it("renders sidebar with all module titles", () => {
-    render(<MathematicsPage />);
-    mathematicsModules.forEach((module) => {
-      // Use getAllByText since module title appears in both sidebar and content area for active module
-      const elements = screen.getAllByText(module.title);
-      expect(elements.length).toBeGreaterThan(0);
+    it("highlights the active module based on pathname", () => {
+      const activeId = mathematicsModules[1].id; // algebra
+      mockUsePathname.mockReturnValue(`/mathematics/${activeId}`);
+
+      render(<ModuleSidebar />);
+
+      const activeLink = screen
+        .getByText(mathematicsModules[1].title)
+        .closest("a");
+      expect(activeLink).toHaveClass("active");
+
+      const inactiveLink = screen
+        .getByText(mathematicsModules[0].title)
+        .closest("a");
+      expect(inactiveLink).not.toHaveClass("active");
     });
   });
 
-  it("shows first module content by default", () => {
-    render(<MathematicsPage />);
-    const firstModule = mathematicsModules[0];
-    expect(screen.getByText(`Module 1`)).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: firstModule.title }),
-    ).toBeInTheDocument();
-  });
+  describe("ModulePage", () => {
+    it("renders content for a valid module ID", () => {
+      const mathModule = mathematicsModules[0]; // set-theory
+      mockUseParams.mockReturnValue({ moduleId: mathModule.id });
 
-  it("switches module content when sidebar button is clicked", async () => {
-    render(<MathematicsPage />);
-    const secondModule = mathematicsModules[1];
+      render(<ModulePage />);
 
-    // Find and click the second module button
-    const moduleButtons = screen.getAllByRole("button");
-    const secondModuleButton = moduleButtons.find((button) =>
-      button.textContent?.includes(secondModule.title),
-    );
+      expect(screen.getByText(mathModule.title)).toBeInTheDocument();
+      expect(screen.getByText(mathModule.description)).toBeInTheDocument();
+      expect(screen.getByText("Module 1")).toBeInTheDocument();
 
-    expect(secondModuleButton).toBeInTheDocument();
-    fireEvent.click(secondModuleButton!);
-
-    await waitFor(() => {
-      expect(screen.getByText("Module 2")).toBeInTheDocument();
-      expect(
-        screen.getByRole("heading", { name: secondModule.title }),
-      ).toBeInTheDocument();
+      if (mathModule.detailedContent) {
+        expect(screen.getByTestId("react-markdown")).toBeInTheDocument();
+      }
     });
-  });
 
-  it("displays theory section for modules with content", () => {
-    render(<MathematicsPage />);
-    const moduleWithContent = mathematicsModules.find(
-      (m) => m.detailedContent && m.detailedContent.length > 0,
-    );
+    it("calls notFound for invalid module ID", () => {
+      mockUseParams.mockReturnValue({ moduleId: "invalid-id" });
 
-    if (moduleWithContent) {
-      expect(screen.getByText("Theory")).toBeInTheDocument();
-      expect(screen.getByTestId("react-markdown")).toBeInTheDocument();
-    }
-  });
+      render(<ModulePage />);
 
-  it("displays interactive demos section when submodules exist", () => {
-    render(<MathematicsPage />);
-    const moduleWithSubModules = mathematicsModules.find(
-      (m) => m.subModules && m.subModules.length > 0,
-    );
+      expect(mockNotFound).toHaveBeenCalled();
+    });
 
-    if (moduleWithSubModules) {
-      expect(screen.getByText("Interactive Demos")).toBeInTheDocument();
-    }
-  });
+    it("renders interactive demos if present", () => {
+      // Find a module with submodules (e.g. algebra has demos?)
+      const moduleWithDemos = mathematicsModules.find(
+        (m) => m.subModules && m.subModules.length > 0,
+      );
+      if (moduleWithDemos) {
+        mockUseParams.mockReturnValue({ moduleId: moduleWithDemos.id });
+        render(<ModulePage />);
+        expect(screen.getByText("Interactive Demos")).toBeInTheDocument();
+      }
+    });
 
-  it("marks active module in sidebar", () => {
-    render(<MathematicsPage />);
-    const moduleButtons = screen.getAllByRole("button");
-    const firstButton = moduleButtons[0];
-
-    expect(firstButton).toHaveClass("active");
-  });
-
-  it("includes error boundary in component hierarchy", () => {
-    render(<MathematicsPage />);
-    const errorBoundaries = screen.getAllByTestId("error-boundary");
-    expect(errorBoundaries.length).toBeGreaterThan(0);
-  });
-
-  it("renders footer with last updated info", () => {
-    render(<MathematicsPage />);
-    expect(screen.getByText(/last updated/i)).toBeInTheDocument();
+    it("renders practice quiz if present", () => {
+      // Find a module with quiz
+      const moduleWithQuiz = mathematicsModules.find(
+        (m) => m.practiceQuiz && m.practiceQuiz.length > 0,
+      );
+      if (moduleWithQuiz) {
+        mockUseParams.mockReturnValue({ moduleId: moduleWithQuiz.id });
+        render(<ModulePage />);
+        expect(screen.getByTestId("practice-quiz")).toBeInTheDocument();
+      }
+    });
   });
 });
