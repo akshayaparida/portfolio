@@ -649,7 +649,7 @@ np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
       options: ["0", "I", "A", "A²"],
       correctAnswer: 2,
       explanation:
-        "Identity matrix property: I × A = A × I = A\n\nIdentity matrix has 1s on diagonal, 0s elsewhere.\nIt's like multiplying by 1 for matrices.",
+        "Identity matrix property: I × A = A × I = A\n\nIdentity matrix has 1s on diagonal, 0s elsewhere.\nIt's like multiplying by 1 for matrices.\n\nIn neural networks, multiplying by I is essentially a skip connection — the input passes through unchanged.",
       difficulty: "easy",
     },
     {
@@ -676,7 +676,7 @@ np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
       options: ["5", "10", "4", "6"],
       correctAnswer: 0,
       explanation:
-        "Trace = sum of diagonal elements\n\nStep-by-step:\n• Diagonal: 1 and 4\n• Trace = 1 + 4 = 5\n\nTrace equals sum of eigenvalues!",
+        "Trace = sum of diagonal elements\n\nStep-by-step:\n• Diagonal: 1 and 4\n• Trace = 1 + 4 = 5\n\nTrace equals sum of eigenvalues!\n\nExam tip: trace = sum of eigenvalues, determinant = product of eigenvalues. These two facts solve many problems.",
       difficulty: "easy",
     },
     {

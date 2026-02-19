@@ -653,7 +653,7 @@ def manhattan_distance(p1, p2):
       options: ["(5, 7)", "(6, 14)", "(10, 14)", "(4, 6)"],
       correctAnswer: 0,
       explanation:
-        "Formula: M = ((x₁+x₂)/2, (y₁+y₂)/2)\n\nStep-by-step:\n• x = (2+8)/2 = 5\n• y = (4+10)/2 = 7\n• Midpoint = (5, 7)",
+        "Formula: M = ((x₁+x₂)/2, (y₁+y₂)/2)\n\nStep-by-step:\n• x = (2+8)/2 = 5\n• y = (4+10)/2 = 7\n• Midpoint = (5, 7)\n\nIntuition: the midpoint is just the average of the coordinates — you're finding the exact center between two points.",
       difficulty: "easy",
     },
     {
@@ -662,7 +662,7 @@ def manhattan_distance(p1, p2):
       options: ["2", "3", "-3", "-2"],
       correctAnswer: 1,
       explanation:
-        "y = mx + c format:\n\n• m = slope = 2\n• c = y-intercept = 3\n\nThe line crosses y-axis at (0, 3)",
+        "y = mx + c format:\n\n• m = slope = 2\n• c = y-intercept = 3\n\nThe line crosses y-axis at (0, 3).\n\nWhy? When x = 0, y = 2(0) + 3 = 3. The y-intercept is where the line starts on the y-axis.",
       difficulty: "easy",
     },
     {
@@ -671,7 +671,7 @@ def manhattan_distance(p1, p2):
       options: ["3", "4", "5", "7"],
       correctAnswer: 2,
       explanation:
-        "Origin is (0, 0).\n\nStep-by-step:\n• d = √[(3-0)² + (4-0)²]\n• d = √[9 + 16] = √25 = 5\n\nClassic 3-4-5 Pythagorean triple!",
+        "Origin is (0, 0).\n\nStep-by-step:\n• d = √[(3-0)² + (4-0)²]\n• d = √[9 + 16] = √25 = 5\n\nClassic 3-4-5 Pythagorean triple!\n\nExam tip: for distance from origin, the formula simplifies to d = √(x² + y²) since (x₁,y₁) = (0,0).",
       difficulty: "easy",
     },
     {
@@ -680,7 +680,7 @@ def manhattan_distance(p1, p2):
       options: ["(2, -1)", "(2, 1)", "(-2, -1)", "(4, 3)"],
       correctAnswer: 0,
       explanation:
-        "Vertex formula: h = -b/(2a), k = f(h)\n\nStep-by-step:\n• a=1, b=-4, c=3\n• h = -(-4)/(2×1) = 2\n• k = (2)² - 4(2) + 3 = 4 - 8 + 3 = -1\n• Vertex = (2, -1)",
+        "Vertex formula: h = -b/(2a), k = f(h)\n\nStep-by-step:\n• a=1, b=-4, c=3\n• h = -(-4)/(2×1) = 2\n• k = (2)² - 4(2) + 3 = 4 - 8 + 3 = -1\n• Vertex = (2, -1)\n\nWhy -b/2a? It gives the axis of symmetry — the x-value exactly halfway between the two roots of the parabola.",
       difficulty: "medium",
     },
     {
@@ -689,7 +689,7 @@ def manhattan_distance(p1, p2):
       options: ["6", "7", "12", "24"],
       correctAnswer: 0,
       explanation:
-        "Formula: Area = ½ × base × height\n\nStep-by-step:\n• Base on x-axis = 4 units\n• Height on y-axis = 3 units\n• Area = ½ × 4 × 3 = 6 sq units",
+        "Formula: Area = ½ × base × height\n\nStep-by-step:\n• Base on x-axis = 4 units\n• Height on y-axis = 3 units\n• Area = ½ × 4 × 3 = 6 sq units\n\nGeneral method: Area = ½|x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)| works for ANY triangle, not just right-angled ones.",
       difficulty: "easy",
     },
   ],

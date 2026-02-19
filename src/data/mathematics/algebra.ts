@@ -20,8 +20,10 @@ Algebra provides the fundamental language for expressing mathematical relationsh
 | 4 | **Quadratic Equations** | Use quadratic formula and factoring |
 | 5 | **Arithmetic Progression** | Find nth term and sum of AP |
 | 6 | **Geometric Progression** | Calculate GP terms and infinite sums |
-| 7 | **Inequalities** | Solve linear and quadratic inequalities |
-| 8 | **Absolute Value** | Handle modulus in equations |
+| 7 | **Harmonic Progression** | Reciprocals of AP terms |
+| 8 | **Inequalities** | Solve linear and quadratic inequalities |
+| 9 | **Absolute Value** | Handle modulus in equations |
+| 10 | **Determinants & Matrices** | Matrix operations & determinants |
 
 ## Math Notation & Pronunciation Guide
 
@@ -345,7 +347,45 @@ infinite_sum = a / (1 - r)
 print(f"1 + 0.5 + 0.25 + ... = {infinite_sum}")  # 2
 \`\`\`
 
-### 8. Determinants & Matrices
+### 8. Harmonic Progression (HP)
+
+**Definition:**
+A sequence is in Harmonic Progression (HP) if the reciprocals of its terms form an Arithmetic Progression (AP).
+
+- HP Terms: 1/a, 1/(a+d), 1/(a+2d), ...
+- General term: nth term of HP = 1 / (nth term of corresponding AP)
+- $H_n = \frac{1}{a + (n-1)d}$
+- Harmonic Mean (HM) between a and b: $HM = \frac{2ab}{a+b}$
+- Relationship: $AM \geq GM \geq HM$
+
+\`\`\`python path=null start=null
+def harmonic_progression(a, d, n):
+    """Generate HP terms (reciprocals of AP)"""
+    # AP: a, a+d, a+2d...
+    ap_terms = [a + i*d for i in range(n)]
+    
+    # Check for zero division
+    if 0 in ap_terms:
+        return "Undefined (term is 1/0)"
+        
+    hp_terms = [1/x for x in ap_terms]
+    return hp_terms
+
+# HP corresponding to AP: 2, 5, 8... (a=2, d=3)
+hp = harmonic_progression(2, 3, 5)
+print(f"HP Terms: {[round(x, 3) for x in hp]}")
+# [0.5, 0.2, 0.125, 0.091, 0.077]
+
+# Verify AM >= GM >= HM for 4, 16
+a, b = 4, 16
+AM = (a + b) / 2      # 10.0
+GM = (a * b) ** 0.5   # 8.0
+HM = 2 * a * b / (a + b) # 6.4
+
+print(f"AM={AM}, GM={GM}, HM={HM}")
+\`\`\`
+
+### 9. Determinants & Matrices
 
 **2×2 Determinant:**
 
@@ -431,6 +471,8 @@ print(A @ A_inv)
 | **AP Sum** | Sₙ = n/2 × (first + last) |
 | **GP nth term** | aₙ = a × r^(n-1) |
 | **GP Sum** | Sₙ = a(rⁿ-1)/(r-1) |
+| **HP nth term** | 1 / [a + (n-1)d] |
+| **HM (a, b)** | 2ab / (a + b) |
 | **2×2 Determinant** | ad - bc |
 
 **Key Identities:**
@@ -499,12 +541,12 @@ print(A @ A_inv)
     },
     {
       id: "alg-q6",
-      question: "Simplify: (a²)³",
-      options: ["a⁵", "a⁶", "a⁸", "a⁹"],
-      correctAnswer: 1,
+      question: "Find the 4th term of the HP: 1/2, 1/5, 1/8, ...",
+      options: ["1/11", "1/10", "1/12", "1/9"],
+      correctAnswer: 0,
       explanation:
-        "Rule: (aᵐ)ⁿ = aᵐˣⁿ\n\nStep-by-step:\n• (a²)³ = a²ˣ³ = a⁶\n\nWhy multiply? You're raising a² to power 3, so (a²)(a²)(a²) = a⁶",
-      difficulty: "easy",
+        "Method: Convert HP to AP\n\nStep-by-step:\n• Reciprocals: 2, 5, 8... form an AP\n• a=2, d=3\n• 4th term of AP = a + 3d = 2 + 3(3) = 11\n• 4th term of HP = 1/11\n\nWhy convert? HP has no direct formula — work in AP (which does), then take the reciprocal back.",
+      difficulty: "medium",
     },
     {
       id: "alg-q7",
@@ -512,7 +554,7 @@ print(A @ A_inv)
       options: ["2", "3", "4", "8"],
       correctAnswer: 1,
       explanation:
-        "Definition: log₂(8) = x means 2ˣ = 8\n\nStep-by-step:\n• 2¹ = 2\n• 2² = 4\n• 2³ = 8\n\nSo x = 3",
+        "Definition: log₂(8) = x means 2ˣ = 8\n\nStep-by-step:\n• 2¹ = 2\n• 2² = 4\n• 2³ = 8\n\nSo x = 3\n\nMemory trick: log asks 'how many times do I multiply the base to get this number?'",
       difficulty: "easy",
     },
     {
@@ -521,7 +563,7 @@ print(A @ A_inv)
       options: ["155", "145", "165", "135"],
       correctAnswer: 0,
       explanation:
-        "Formula: Sₙ = n/2 × [2a + (n-1)d]\n\nStep-by-step:\n• a = 2, d = 3, n = 10\n• S₁₀ = 10/2 × [2(2) + (10-1)(3)]\n• = 5 × [4 + 27] = 5 × 31 = 155",
+        "Formula: Sₙ = n/2 × [2a + (n-1)d]\n\nStep-by-step:\n• a = 2, d = 3, n = 10\n• S₁₀ = 10/2 × [2(2) + (10-1)(3)]\n• = 5 × [4 + 27] = 5 × 31 = 155\n\nWhy this works: Pair first+last terms — each pair sums to the same value. There are n/2 such pairs.",
       difficulty: "medium",
     },
     {
@@ -530,7 +572,7 @@ print(A @ A_inv)
       options: ["36", "48", "96", "192"],
       correctAnswer: 1,
       explanation:
-        "Formula: aₙ = a × rⁿ⁻¹\n\nStep-by-step:\n• a = 3, r = 6/3 = 2\n• a₅ = 3 × 2⁵⁻¹ = 3 × 2⁴ = 3 × 16 = 48",
+        "Formula: aₙ = a × rⁿ⁻¹\n\nStep-by-step:\n• a = 3, r = 6/3 = 2\n• a₅ = 3 × 2⁵⁻¹ = 3 × 2⁴ = 3 × 16 = 48\n\nWhy (n-1)? The 1st term is multiplied by r zero times. Each subsequent term multiplies by r once more.",
       difficulty: "easy",
     },
     {
@@ -544,7 +586,7 @@ print(A @ A_inv)
       ],
       correctAnswer: 2,
       explanation:
-        "Absolute value: |a| = b means a = b OR a = -b\n\nStep-by-step:\n• x - 3 = 5 → x = 8\n• x - 3 = -5 → x = -2\n\nBoth solutions are valid!",
+        "Absolute value: |a| = b means a = b OR a = -b\n\nStep-by-step:\n• x - 3 = 5 → x = 8\n• x - 3 = -5 → x = -2\n\nBoth solutions are valid!\n\nWhy two solutions? |x-3| measures distance from 3 on the number line. Two points are exactly 5 away: 8 (right) and -2 (left).",
       difficulty: "easy",
     },
   ],

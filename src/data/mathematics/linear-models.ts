@@ -977,7 +977,7 @@ r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - y.mean())**2)
       options: ["Slope", "Weight", "Bias/Intercept", "Learning rate"],
       correctAnswer: 2,
       explanation:
-        "y = wx + b:\n\n• w = weight/slope (how much y changes per unit x)\n• b = bias/intercept (y value when x = 0)\n\nThe line crosses the y-axis at point (0, b).",
+        "y = wx + b:\n\n• w = weight/slope (how much y changes per unit x)\n• b = bias/intercept (y value when x = 0)\n\nThe line crosses the y-axis at point (0, b).\n\nExample: predicting house price — b is the base price when all features (size, rooms, etc.) are zero.",
       difficulty: "easy",
     },
     {
@@ -1037,7 +1037,7 @@ r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - y.mean())**2)
       ],
       correctAnswer: 1,
       explanation:
-        "Loss functions by task:\n\n• Regression: MSE, MAE\n• Classification: Cross-Entropy (Log Loss)\n\nCross-entropy measures difference between predicted probabilities and true labels.",
+        "Loss functions by task:\n\n• Regression: MSE, MAE\n• Classification: Cross-Entropy (Log Loss)\n\nFormula: CE = -Σ[yᵢ log(ŷᵢ) + (1-yᵢ) log(1-ŷᵢ)]\n\nCross-entropy measures the difference between predicted probabilities and true labels. It punishes confident wrong predictions very harshly.",
       difficulty: "easy",
     },
     {
@@ -1051,7 +1051,7 @@ r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - y.mean())**2)
       ],
       correctAnswer: 2,
       explanation:
-        "Overfitting symptoms:\n\n• Model memorizes training data\n• Low training error\n• High test/validation error\n\nSolution: More data, regularization, simpler model, dropout",
+        "Overfitting symptoms:\n\n• Model memorizes training data\n• Low training error\n• High test/validation error\n\nSolution: More data, regularization, simpler model, dropout\n\nThink of it as memorizing exam answers vs understanding concepts — memorization fails when questions change.",
       difficulty: "easy",
     },
     {

@@ -898,7 +898,7 @@ posterior = (likelihood * prior) / marginal
       options: ["15", "17", "13", "10"],
       correctAnswer: 1,
       explanation:
-        "Linearity of Expectation: E[aX + b] = aE[X] + b\n\nStep-by-step:\n• E[3X + 2] = 3×E[X] + 2\n• = 3×5 + 2 = 17",
+        "Linearity of Expectation: E[aX + b] = aE[X] + b\n\nStep-by-step:\n• E[3X + 2] = 3×E[X] + 2\n• = 3×5 + 2 = 17\n\nWhy linear? E[sum] = sum of E[each], and this works even for dependent random variables — one of the most powerful properties in probability.",
       difficulty: "easy",
     },
     {
@@ -907,7 +907,7 @@ posterior = (likelihood * prior) / marginal
       options: ["Variance", "Standard deviation", "Median", "Mode"],
       correctAnswer: 0,
       explanation:
-        "Poisson(λ) properties:\n\n• Mean = λ\n• Variance = λ\n• Mean = Variance!\n\nThis is a unique property of Poisson distribution.",
+        "Poisson(λ) properties:\n\n• Mean = λ\n• Variance = λ\n• Mean = Variance!\n\nThis is a unique property of Poisson distribution.\n\nExam tip: if a problem states Mean = Variance, think Poisson immediately. No other common distribution has this property.",
       difficulty: "medium",
     },
     {
@@ -934,7 +934,7 @@ posterior = (likelihood * prior) / marginal
       options: ["0 to 1", "-∞ to +∞", "-1 to +1", "0 to +∞"],
       correctAnswer: 2,
       explanation:
-        "Correlation coefficient (Pearson's r):\n\n• -1 = Perfect negative correlation\n• 0 = No linear correlation\n• +1 = Perfect positive correlation\n\n|r| close to 1 means strong linear relationship.",
+        "Correlation coefficient (Pearson's r):\n\n• -1 = Perfect negative correlation\n• 0 = No linear correlation\n• +1 = Perfect positive correlation\n\n|r| close to 1 means strong linear relationship.\n\nWhy bounded at [-1, +1]? Correlation is normalized covariance — dividing Cov(X,Y) by σₓσᵧ removes the scale, leaving only the strength and direction.",
       difficulty: "easy",
     },
   ],

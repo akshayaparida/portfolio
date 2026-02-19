@@ -927,7 +927,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["x²", "3x²", "3x³", "x⁴/4"],
       correctAnswer: 1,
       explanation:
-        "Power Rule: d/dx[xⁿ] = n·xⁿ⁻¹\n\nStep-by-step:\n• d/dx[x³] = 3·x³⁻¹ = 3x²\n\nBring the power down, reduce it by 1.",
+        "Power Rule: d/dx[xⁿ] = n·xⁿ⁻¹\n\nStep-by-step:\n• d/dx[x³] = 3·x³⁻¹ = 3x²\n\nBring the power down, reduce it by 1.\n\nGeometrically: the slope of the x³ curve at any point x is exactly 3x².",
       difficulty: "easy",
     },
     {
@@ -936,7 +936,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["x²", "x² + C", "2x² + C", "x + C"],
       correctAnswer: 1,
       explanation:
-        "Integration reverses differentiation:\n\nStep-by-step:\n• ∫ 2x dx = 2 · (x²/2) + C = x² + C\n\nAlways add + C for indefinite integrals!",
+        "Integration reverses differentiation:\n\nStep-by-step:\n• ∫ 2x dx = 2 · (x²/2) + C = x² + C\n\nAlways add + C for indefinite integrals!\n\nWhy +C? Many functions share the same derivative (e.g. x²+1, x²+5 both have derivative 2x). The constant C accounts for all of them.",
       difficulty: "easy",
     },
     {
@@ -972,7 +972,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["cos(x)", "-cos(x)", "sin(x)", "-sin(x)"],
       correctAnswer: 0,
       explanation:
-        "Basic derivative:\n\n• d/dx[sin(x)] = cos(x)\n• d/dx[cos(x)] = -sin(x)\n\nRemember: sin → cos → -sin → -cos → sin",
+        "Basic derivative:\n\n• d/dx[sin(x)] = cos(x)\n• d/dx[cos(x)] = -sin(x)\n\nRemember the cycle: sin → cos → -sin → -cos → sin\n\nWhy? Sine measures the vertical component of a point on the unit circle — its rate of change at any angle equals the cosine of that angle.",
       difficulty: "easy",
     },
     {
@@ -981,7 +981,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["sin(x) + C", "-sin(x) + C", "cos(x) + C", "tan(x) + C"],
       correctAnswer: 0,
       explanation:
-        "Integration is reverse of differentiation:\n\n• Since d/dx[sin(x)] = cos(x)\n• ∫ cos(x) dx = sin(x) + C\n\nAlways add + C for indefinite integrals!",
+        "Integration is reverse of differentiation:\n\n• Since d/dx[sin(x)] = cos(x)\n• ∫ cos(x) dx = sin(x) + C\n\nAlways add + C for indefinite integrals!\n\nVerify: d/dx[sin(x) + C] = cos(x) ✓ — differentiation confirms the integral.",
       difficulty: "easy",
     },
     {
@@ -990,7 +990,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["(1, 1)", "(2, 2)", "(0, 0)", "(1, 2)"],
       correctAnswer: 1,
       explanation:
-        "Gradient: ∇f = (∂f/∂x, ∂f/∂y)\n\nStep-by-step:\n• ∂f/∂x = 2x → at (1,1): 2(1) = 2\n• ∂f/∂y = 2y → at (1,1): 2(1) = 2\n• ∇f = (2, 2)",
+        "Gradient: ∇f = (∂f/∂x, ∂f/∂y)\n\nStep-by-step:\n• ∂f/∂x = 2x → at (1,1): 2(1) = 2\n• ∂f/∂y = 2y → at (1,1): 2(1) = 2\n• ∇f = (2, 2)\n\nThe gradient points toward steepest ascent — gradient descent moves in the opposite direction (-2, -2) to minimize the function.",
       difficulty: "medium",
     },
     {
@@ -999,7 +999,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["Maximum", "Minimum", "Inflection point", "Saddle point"],
       correctAnswer: 1,
       explanation:
-        "Second derivative test:\n\n• f''(x) > 0 → Concave up → Minimum\n• f''(x) < 0 → Concave down → Maximum\n• f''(x) = 0 → Need more tests",
+        "Second derivative test:\n\n• f''(x) > 0 → Concave up → Minimum\n• f''(x) < 0 → Concave down → Maximum\n• f''(x) = 0 → Need more tests\n\nIntuition: f'' > 0 means the slope is increasing — the function curves upward like a bowl, so the critical point sits at the bottom.",
       difficulty: "easy",
     },
     {
@@ -1008,7 +1008,7 @@ torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
       options: ["u'v'", "uv' + u'v", "u'v - uv'", "(u/v)'"],
       correctAnswer: 1,
       explanation:
-        "Product Rule: d/dx[uv] = u'v + uv'\n\n'First times derivative of second, plus second times derivative of first'\n\nExample: d/dx[x²·sin(x)] = 2x·sin(x) + x²·cos(x)",
+        "Product Rule: d/dx[uv] = u'v + uv'\n\n'First times derivative of second, plus second times derivative of first'\n\nExample: d/dx[x²·sin(x)] = 2x·sin(x) + x²·cos(x)\n\nExam tip: differentiate one factor at a time while keeping the other unchanged, then add the results.",
       difficulty: "easy",
     },
   ],
