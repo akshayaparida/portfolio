@@ -184,18 +184,6 @@ x = (-b ± √(b² - 4ac)) / 2a
 - Δ = 0: One real repeated root
 - Δ < 0: Two complex conjugate roots
 
-\`\`\`
-Discriminant Cases (Δ = b² - 4ac):
-
-  Δ > 0: Two roots        Δ = 0: One root        Δ < 0: No real roots
-       y                        y                       y
-       │    /                    │    /                   │
-       │   / \\                   │   / \\                  │    /  \\
-       │  /   \\                  │  /   \\                 │   /    \\
-  ─────┼──●────●──── x      ─────┼───●──── x        ─────┼──────── x
-       │ x₁   x₂                │  x₁=x₂                │  /      \\
-       │                         │                        │ (above x-axis)
-\`\`\`
 
 \`\`\`python path=null start=null
 import numpy as np
