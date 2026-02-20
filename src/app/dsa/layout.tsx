@@ -2,29 +2,25 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
+import DSAModuleIcon from "@/components/DSAModuleIcon";
+import { dsaModules } from "@/data/dsa";
 import gitMetadata from "@/data/git-metadata.json";
-import { mathematicsModules } from "@/data/mathematics";
-import MathModuleIcon from "@/components/MathModuleIcon";
 import "@/styles/module-page.css";
 
-export default function MathematicsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DSALayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="module-page-container">
       <BlogPageHeader
-        title="Mathematics for AI Engineers"
+        title="Data Structures & Algorithms"
         backLink="/learning-journey"
         backTitle="My Journey"
       />
 
       <div className="module-page-layout">
         <ModuleSidebar
-          modules={mathematicsModules}
-          basePath="/mathematics"
-          renderIcon={(moduleId) => <MathModuleIcon moduleId={moduleId} />}
+          modules={dsaModules}
+          basePath="/dsa"
+          renderIcon={(moduleId) => <DSAModuleIcon moduleId={moduleId} />}
         />
         <main className="module-content-area">{children}</main>
       </div>
@@ -41,7 +37,7 @@ export default function MathematicsLayout({
           </a>
           {" · "}
           <a
-            href="https://github.com/akshayaparida/portfolio/issues/new?title=Mathematics%20Module%20Error&labels=bug,mathematics&body=%23%23%20Error%20Description%0A%0A%3C!--%20Describe%20the%20error%20you%20found%20--%3E%0A%0A%23%23%20Location%0A%0A-%20**Module%3A**%20Mathematics%0A-%20**Section%3A**%20%0A%0A%23%23%20Expected%20Behavior%0A%0A%3C!--%20What%20should%20happen%3F%20--%3E%0A%0A%23%23%20Actual%20Behavior%0A%0A%3C!--%20What%20actually%20happens%3F%20--%3E%0A%0A%23%23%20Steps%20to%20Reproduce%0A%0A1.%20%0A2.%20%0A3.%20%0A%0A%23%23%20Screenshot%20%28optional%29%0A%0A"
+            href="https://github.com/akshayaparida/portfolio/issues/new?title=DSA%20Module%20Error&labels=bug,dsa&body=%23%23%20Error%20Description%0A%0A%3C!--%20Describe%20the%20error%20you%20found%20--%3E%0A%0A%23%23%20Location%0A%0A-%20**Module%3A**%20DSA%0A-%20**Section%3A**%20%0A%0A%23%23%20Expected%20Behavior%0A%0A%3C!--%20What%20should%20happen%3F%20--%3E%0A%0A%23%23%20Actual%20Behavior%0A%0A%3C!--%20What%20actually%20happens%3F%20--%3E%0A%0A%23%23%20Steps%20to%20Reproduce%0A%0A1.%20%0A2.%20%0A3.%20%0A%0A%23%23%20Screenshot%20%28optional%29%0A%0A"
             target="_blank"
             rel="noopener noreferrer"
           >

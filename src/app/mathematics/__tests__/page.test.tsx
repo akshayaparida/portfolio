@@ -104,7 +104,13 @@ describe("Mathematics Dynamic Routes", () => {
   describe("ModuleSidebar", () => {
     it("renders all module links", () => {
       mockUsePathname.mockReturnValue("/mathematics/set-theory");
-      render(<ModuleSidebar />);
+      render(
+        <ModuleSidebar
+          modules={mathematicsModules}
+          basePath="/mathematics"
+          renderIcon={() => <div />}
+        />,
+      );
 
       mathematicsModules.forEach((mathModule) => {
         expect(screen.getByText(mathModule.title)).toBeInTheDocument();
@@ -115,7 +121,13 @@ describe("Mathematics Dynamic Routes", () => {
       const activeId = mathematicsModules[1].id; // algebra
       mockUsePathname.mockReturnValue(`/mathematics/${activeId}`);
 
-      render(<ModuleSidebar />);
+      render(
+        <ModuleSidebar
+          modules={mathematicsModules}
+          basePath="/mathematics"
+          renderIcon={() => <div />}
+        />,
+      );
 
       const activeLink = screen
         .getByText(mathematicsModules[1].title)
