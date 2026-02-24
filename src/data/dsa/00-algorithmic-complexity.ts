@@ -26,7 +26,7 @@ export const algorithmicComplexityModule: LearningModule = {
 
 An **algorithm** is a step-by-step procedure to solve a problem.
 
-\\\`\\\`\\\`text
+\`\`\`text
 Problem: Find the largest number in a list
 
 Algorithm:
@@ -36,7 +36,7 @@ Algorithm:
 4. After checking all, return largest
 
 This is O(n) — we look at each element once
-\\\`\\\`\\\`
+\`\`\`
 
 **Two key questions about any algorithm:**
 1. **How FAST is it?** → Time Complexity
@@ -52,7 +52,7 @@ This is O(n) — we look at each element once
 | **Depends on** | Input size (n) | Input size (n) |
 | **Trade-off** | Often can trade space for time | Caching, memoization |
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 # Example: Two approaches to find duplicates
 
 # Approach 1: Brute Force — O(n²) time, O(1) space
@@ -73,7 +73,7 @@ def has_duplicate_v2(arr):
     return False
 
 # V2 is FASTER but uses MORE MEMORY — classic trade-off!
-\\\`\\\`\\\`
+\`\`\`
 
 ---
 
@@ -87,7 +87,7 @@ We describe algorithm performance using three notations:
 | **Big-Ω (Ω)** | Lower bound (best case) | "At LEAST this fast" |
 | **Big-Θ (Θ)** | Tight bound (exact) | "EXACTLY this fast" |
 
-\\\`\\\`\\\`text
+\`\`\`text
 Example: Linear Search
 
 Best case:  Ω(1)      — Found at index 0
@@ -96,7 +96,7 @@ Average:    Θ(n/2) = Θ(n)  — Found somewhere in the middle
 
 When we say "Linear Search is O(n)" we mean:
 → In the WORST case, it checks all n elements
-\\\`\\\`\\\`
+\`\`\`
 
 > **Interview Tip:** When someone asks "What is the complexity?", they almost always mean **Big-O (worst case)**.
 
@@ -104,14 +104,14 @@ When we say "Linear Search is O(n)" we mean:
 
 ## 4. Common Complexity Classes
 
-\\\`\\\`\\\`text
+\`\`\`text
 FAST ────────────────────────────────────── SLOW
 
 O(1)  O(log n)  O(n)  O(n log n)  O(n²)  O(2^n)  O(n!)
  │       │       │       │          │       │       │
  ▼       ▼       ▼       ▼          ▼       ▼       ▼
 Const  Logarith Linear Linearith Quadra  Expon  Factor
-\\\`\\\`\\\`
+\`\`\`
 
 | Complexity | Name | n=10 | n=100 | n=1000 | Example |
 |:-----------|:-----|:-----|:------|:-------|:--------|
@@ -129,7 +129,7 @@ Const  Logarith Linear Linearith Quadra  Expon  Factor
 
 ### Rule 1: Drop Constants
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 # This is O(n), NOT O(3n)
 for i in range(n):     # n operations
     print(i)
@@ -138,11 +138,11 @@ for i in range(n):     # + n operations
 for i in range(n):     # + n operations
     print(i)
 # Total: 3n → O(n)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Rule 2: Drop Lower-Order Terms
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 # This is O(n²), NOT O(n² + n)
 for i in range(n):           # O(n²)
     for j in range(n):
@@ -152,21 +152,21 @@ for k in range(n):           # + O(n)
     print(k)
 
 # Total: n² + n → O(n²)  (n² dominates)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Rule 3: Nested Loops Multiply
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 for i in range(n):       # n ×
     for j in range(n):   # n ×
         for k in range(n): # n
             print(i, j, k)
 # Total: n × n × n = O(n³)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Rule 4: Sequential Code Adds
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 def example(n):
     # Block 1: O(n)
     for i in range(n):
@@ -178,11 +178,11 @@ def example(n):
             print(i, j)
     
     # Total: O(n) + O(n²) = O(n²)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Rule 5: Log n — Halving
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 # Each step halves the input → O(log n)
 i = n
 while i > 1:
@@ -190,13 +190,13 @@ while i > 1:
     print(i)
 
 # For n = 1000: only ~10 steps (log₂ 1000 ≈ 10)
-\\\`\\\`\\\`
+\`\`\`
 
 ---
 
 ## 6. Space Complexity
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 # O(1) space — uses fixed variables
 def sum_array(arr):
     total = 0
@@ -216,7 +216,7 @@ def factorial(n):
     if n <= 1:
         return 1
     return n * factorial(n - 1)  # n stack frames!
-\\\`\\\`\\\`
+\`\`\`
 
 **Key insight:** Recursion uses **O(depth)** space on the call stack!
 
@@ -230,9 +230,9 @@ Some operations are slow occasionally but fast on average.
 
 | Operation | Amortized | Worst Case |
 |:----------|:----------|:-----------|
-| \\\`append()\\\` | **O(1)** | O(n) when resizing |
-| \\\`pop()\\\` | O(1) | O(1) |
-| \\\`insert(0, x)\\\` | O(n) | O(n) |
+| \`append()\` | **O(1)** | O(n) when resizing |
+| \`pop()\` | O(1) | O(1) |
+| \`insert(0, x)\` | O(n) | O(n) |
 
 When the array is full, Python doubles its size (O(n) copy), but this happens rarely. Over many appends, it averages out to **O(1)** per append.
 
@@ -270,7 +270,7 @@ When the array is full, Python doubles its size (O(n) copy), but this happens ra
 
 **Essential Code Snippets:**
 
-\\\`\\\`\\\`python
+\`\`\`python
 # O(1) — Constant
 x = arr[5]
 
@@ -283,7 +283,7 @@ for x in arr: print(x)
 # O(n²) — Nested loop
 for i in arr:
     for j in arr: print(i, j)
-\\\`\\\`\\\`
+\`\`\`
 
 **The Golden Rules:**
 1. Always think about the **WORST CASE** unless asked otherwise.

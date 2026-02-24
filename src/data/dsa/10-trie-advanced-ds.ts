@@ -25,7 +25,7 @@ export const trieAdvancedDSModule: LearningModule = {
 
 A **Trie** is a tree-like data structure for storing strings. Each node represents a **character** in a word.
 
-\\\`\\\`\\\`text
+\`\`\`text
        root
       / | \\
      a  b  c
@@ -37,7 +37,7 @@ A **Trie** is a tree-like data structure for storing strings. Each node represen
    l    
    |
    e  ← "apple" ends here
-\\\`\\\`\\\`
+\`\`\`
 
 ### Why Trie?
 
@@ -53,7 +53,7 @@ Where n = number of words, m = word length, k = results count
 
 ### Trie Implementation
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 class TrieNode:
     def __init__(self):
         self.children = {}  # char → TrieNode
@@ -99,7 +99,7 @@ trie.insert("bat")
 print(trie.search("app"))       # True
 print(trie.search("ap"))        # False (not a complete word)
 print(trie.starts_with("ap"))   # True (prefix exists)
-\\\`\\\`\\\`
+\`\`\`
 
 ### When to Use Trie
 
@@ -122,7 +122,7 @@ Two operations:
 - **Find(x)**: Which group does x belong to?
 - **Union(x, y)**: Merge the groups of x and y
 
-\\\`\\\`\\\`text
+\`\`\`text
 Initially: {0} {1} {2} {3} {4}  (each element is its own group)
 
 Union(0, 1): {0, 1} {2} {3} {4}
@@ -131,11 +131,11 @@ Union(1, 3): {0, 1, 2, 3} {4}
 
 Find(0) == Find(3)?  → Yes! (same group)
 Find(0) == Find(4)?  → No!  (different groups)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Union-Find Implementation
 
-\\\`\\\`\\\`python path=null start=null
+\`\`\`python path=null start=null
 class UnionFind:
     def __init__(self, n):
         self.parent = list(range(n))  # Each element is its own parent
@@ -177,13 +177,13 @@ uf.union(1, 3)
 
 print(uf.connected(0, 3))  # True (same group)
 print(uf.connected(0, 4))  # False (different groups)
-\\\`\\\`\\\`
+\`\`\`
 
 ### Optimizations
 
 | Technique | What it Does | Effect |
 |:----------|:-------------|:-------|
-| **Path Compression** | In \\\`find()\\\`, make every node point directly to root | Nearly O(1) per operation |
+| **Path Compression** | In \`find()\`, make every node point directly to root | Nearly O(1) per operation |
 | **Union by Rank** | Attach shorter tree under taller tree | Keeps tree balanced |
 
 With both optimizations: **O(α(n))** per operation, where α is the inverse Ackermann function (practically constant).
@@ -231,12 +231,12 @@ Where m = word length, n = number of elements
 |:--------|:-------------|
 | **Trie** | A tree where each node is a character. Best for prefix searching and autocomplete. |
 | **Union-Find** | Track which elements belong to the same group. Near O(1) with optimizations. |
-| **Path Compression** | In \\\`find()\\\`, point every node directly to root. Makes future lookups faster. |
+| **Path Compression** | In \`find()\`, point every node directly to root. Makes future lookups faster. |
 | **Union by Rank** | Always attach the shorter tree under the taller one. Keeps operations fast. |
 
 **Essential Code Snippets:**
 
-\\\`\\\`\\\`python
+\`\`\`python
 # Trie — Insert and Search
 class TrieNode:
     def __init__(self):
@@ -248,7 +248,7 @@ def find(parent, x):
     if parent[x] != x:
         parent[x] = find(parent, parent[x])  # Path compression
     return parent[x]
-\\\`\\\`\\\`
+\`\`\`
 
 **The Golden Rules:**
 1. If the problem involves **prefixes or autocomplete**, think **Trie**.
