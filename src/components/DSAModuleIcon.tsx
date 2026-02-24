@@ -61,7 +61,7 @@ export default function DSAModuleIcon({
           />
         </svg>
       );
-    case "04-trees":
+    case "05-trees":
       return (
         <svg {...iconProps}>
           <circle cx="12" cy="5" r="3" />
@@ -70,14 +70,14 @@ export default function DSAModuleIcon({
           <path d="M10.5 7.5l-3 5M13.5 7.5l3 5" />
         </svg>
       );
-    case "05-heaps":
+    case "06-heaps":
       return (
         <svg {...iconProps}>
           <path d="M12 3v18M6 9l6-6 6 6" strokeWidth="2" />
           <path d="M5 21h14" strokeWidth="2" />
         </svg>
       );
-    case "06-graphs":
+    case "07-graphs":
       return (
         <svg {...iconProps}>
           <circle cx="12" cy="7" r="3" />
@@ -86,7 +86,7 @@ export default function DSAModuleIcon({
           <path d="M10.5 9.5l-2 5M13.5 9.5l2 5M9.5 17h5" />
         </svg>
       );
-    case "07-hashing":
+    case "04-hashing":
       return (
         <svg {...iconProps}>
           <rect x="4" y="4" width="16" height="16" rx="2" />
