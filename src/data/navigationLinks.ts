@@ -42,6 +42,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-laptop",
   },
   {
+    label: "Digital Fundamentals",
+    href: "/digital-fundamentals",
+    icon: "fa-solid fa-microchip",
+  },
+  {
     label: "Reasoning",
     href: "/reasoning",
     icon: "fa-solid fa-brain",
