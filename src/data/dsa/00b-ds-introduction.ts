@@ -222,6 +222,23 @@ ADT: Stack
 1. **No single DS is best for everything** — choose based on your most frequent operation.
 2. **Time-space trade-off** — Hash tables are fast but use more memory.
 3. **Know the ADT** — understand the interface before worrying about implementation.
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Data Structures for Beginners](https://youtu.be/CBYHwZcbD-s) - Full overview in one video
+- [Abdul Bari - Data Structures](https://youtu.be/2V1FtfBDsLU) - University-level deep dive
+
+**Articles & Visualizations:**
+- [VisuAlgo](https://visualgo.net/) - Watch every data structure in action
+- [Big-O Cheat Sheet](https://www.bigocheatsheet.com/) - Time complexity of all DS operations
+
+**Practice Problems:**
+- LeetCode 1: Two Sum (Hash Map)
+- LeetCode 20: Valid Parentheses (Stack)
+- LeetCode 206: Reverse Linked List (Linked List)
   `,
   subModules: [],
   practiceQuiz: [
