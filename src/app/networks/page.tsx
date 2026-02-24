@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function NetworksPage() {
-  redirect("/networks/01-network-basics");
+  redirect("/networks/network-basics");
 }
