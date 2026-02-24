@@ -1,4 +1,5 @@
 import { algorithmicComplexityModule } from "./00-algorithmic-complexity";
+import { dsIntroductionModule } from "./00b-ds-introduction";
 import { arraysStringsModule } from "./01-arrays-strings";
 import { linkedListsModule } from "./02-linked-lists";
 import { stacksQueuesModule } from "./03-stacks-queues";
@@ -12,6 +13,7 @@ import { trieAdvancedDSModule } from "./10-trie-advanced-ds";
 
 export const dsaModules = [
   algorithmicComplexityModule,
+  dsIntroductionModule,
   arraysStringsModule,
   linkedListsModule,
   stacksQueuesModule,

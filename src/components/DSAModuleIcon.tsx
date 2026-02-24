@@ -140,6 +140,16 @@ export default function DSAModuleIcon({
           </text>
         </svg>
       );
+    case "00b-ds-introduction":
+      return (
+        <svg {...iconProps}>
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+          <path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" strokeWidth="1.5" />
+        </svg>
+      );
     default:
       return (
         <svg {...iconProps}>
