@@ -387,6 +387,67 @@ def kruskal(n, edges):
 - Greedy = Fast but doesn't always work
 - Backtracking = Exhaustive but systematic
 - Dijkstra = Greedy shortest path (non-negative weights)
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Recursion** | Function calls itself. MUST have a base case to stop. |
+| **Dynamic Programming (DP)** | Recursion + Caching (Memoization). Trades memory for massive speedups (\`O(2^n) → O(n)\`). |
+| **Greedy** | Make the locally optimal choice at each step. Fast, but doesn't always find the global optimum. |
+| **Backtracking** | Try a path; if it fails, undo and try another (e.g., Maze, Sudoku). |
+| **Dijkstra's** | Shortest path algorithm for **Weighted** graphs. Uses a Min-Heap. |
+| **MST (Prim/Kruskal)**| Connect all nodes with the minimum total edge weight. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Dynamic Programming (Top-Down Memoization)
+memo = {}
+def fib(n):
+    if n <= 1: return n
+    if n not in memo:
+        memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]
+
+# Backtracking Pattern
+def backtrack(path, options):
+    if is_complete(path):
+        result.append(path[:])
+        return
+        
+    for option in options:
+        if is_valid(option):
+            path.append(option)      # Choose
+            backtrack(path, options) # Explore
+            path.pop()               # Un-choose
+\`\`\`
+
+**The Golden Rules:**
+1. If a problem asks for the **"Maximum/Minimum/Total ways"** and current decisions affect future ones, it's usually **Dynamic Programming**.
+2. If a problem asks to **"Generate all permutations/combinations/subsets"**, it is **Backtracking**.
+3. Dijkstra's Algorithm is just **BFS** that uses a **Priority Queue (Min-Heap)** instead of a regular Queue!
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Dynamic Programming](https://youtu.be/Hdr64lKQ3e4) - Making DP easy to understand
+- [Abdul Bari - Greedy vs DP](https://youtu.be/m1p5bKhdAUM) - Excellent comparative theory
+
+**Articles & Visualizations:**
+- [VisuAlgo - DFS/BFS/Dijkstra](https://visualgo.net/en/sssp) - Watch Dijkstra's find the shortest path
+- [Red Blob Games](https://www.redblobgames.com/pathfinding/a-star/introduction.html) - Incredible interactive pathfinding tutorial
+
+**Practice Problems:**
+- LeetCode 70: Climbing Stairs (Intro to DP)
+- LeetCode 322: Coin Change (Classic DP)
+- LeetCode 46: Permutations (Intro to Backtracking)
   `,
   subModules: [],
   practiceQuiz: [

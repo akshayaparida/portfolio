@@ -1,8 +1,8 @@
 import { LearningModule } from "@/types/learning";
 
 export const graphsModule: LearningModule = {
-  id: "06-graphs",
-  title: "6. Graphs",
+  id: "07-graphs",
+  title: "7. Graphs",
   description: "Network representations - Adjacency List, BFS, DFS",
   status: "in-progress",
   tags: ["Data Structure"],
@@ -208,6 +208,77 @@ dfs(graph, 'A')  # A B D E F C (goes deep first)
 - DFS = Stack = Go deep = Explore all paths
 - Adjacency List = Good for sparse graphs
 - Adjacency Matrix = Good for dense graphs
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Graph** | Nodes (Vertices) connected by Edges. Can be Directed/Undirected, Weighted/Unweighted. |
+| **Adjacency List** | Array of lists. Best for MOST graphs (sparse). \`O(V + E)\` space. |
+| **Adjacency Matrix** | 2D Array. Best for dense graphs or \`O(1)\` edge checking. \`O(V²)\` space. |
+| **BFS** | Breadth-First Search. Uses a **Queue**. Finds **Shortest Path** on unweighted graphs! |
+| **DFS** | Depth-First Search. Uses a **Stack** (Recursion). Best for maze solving or cycle detection. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Adjacency List Representation
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D'],
+    'C': ['A', 'D'],
+    'D': ['B', 'C']
+}
+
+# DFS Pattern (Recursive)
+def dfs(node, visited=None):
+    if visited is None: visited = set()
+    if node in visited: return
+    visited.add(node)
+    
+    for neighbor in graph[node]:
+        dfs(neighbor, visited)
+
+# BFS Pattern (Queue)
+from collections import deque
+def bfs(start):
+    visited = set([start])
+    queue = deque([start])
+    
+    while queue:
+        node = queue.popleft()
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+\`\`\`
+
+**The Golden Rules:**
+1. A Tree is just a connected Graph without cycles.
+2. If a Graph problem asks for the "shortest path", use **BFS** immediately.
+3. If a Graph problem asks you to check if a path exists, or find ALL paths, use **DFS**.
+4. In Graph problems, **ALWAYS** track \`visited\` nodes to prevent infinite loops (cycles)!
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Graphs Introduction](https://youtu.be/cWNEl4HE2OE) - Essential foundation
+- [Abdul Bari - Graph Traversals](https://youtu.be/pcKY4hjDrxk) - Detailed university-style explanation
+
+**Articles & Visualizations:**
+- [VisuAlgo - Graph Traversal](https://visualgo.net/en/graphds) - Interactive DFS/BFS visualizer
+- [Red Blob Games](https://www.redblobgames.com/pathfinding/a-star/introduction.html) - Incredible interactive pathfinding tutorial
+
+**Practice Problems:**
+- LeetCode 200: Number of Islands
+- LeetCode 133: Clone Graph
+- LeetCode 994: Rotting Oranges
   `,
   subModules: [],
   practiceQuiz: [

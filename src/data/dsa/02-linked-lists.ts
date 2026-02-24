@@ -207,8 +207,60 @@ class DoublyLinkedList:
 
 **When to use Linked List:**
 - Frequent insertions/deletions at start
-- Don't know size in advance
-- Don't need random access
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Singly Linked** | Nodes point to **next**; \`O(1)\` insert at head, but \`O(n)\` access/search. |
+| **Doubly Linked** | Nodes point to **next** AND **prev**; allows backward traversal. |
+| **Circular Linked** | Last node points back to the head; useful for round-robin scheduling. |
+| **Head Pointer** | The gateway to the list; lose this, and you lose the whole list! |
+| **Tail Pointer** | Optional pointer to the last node; makes appending to the end \`O(1)\`. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Reversing a Singly Linked List (Classic Question)
+def reverse_list(head):
+    prev, curr = None, head
+    while curr:
+        nxt = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nxt
+    return prev
+
+# Finding Middle of a Linked List (Slow/Fast Pointer)
+def find_middle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow
+\`\`\`
+
+**The Golden Rules:**
+1. Always check for edge cases: Empty list (\`head is None\`), Single node list.
+2. In interviews, two pointers (Slow & Fast / Tortoise & Hare) is the #1 linked list pattern.
+3. Be careful not to lose nodes when modifying pointers! Always save \`curr.next\` before changing it.
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Linked Lists](https://youtu.be/G0_I-ZF0S38) - Essential patterns and solutions
+- [Abdul Bari - Linked List Algorithms](https://youtu.be/NobHlGUjV3g) - Comprehensive breakdown
+
+**Articles & Visualizations:**
+- [VisuAlgo - Linked List](https://visualgo.net/en/list) - See exactly how pointers change!
+
+**Practice Problems:**
+- LeetCode 206: Reverse Linked List
+- LeetCode 141: Linked List Cycle
+- LeetCode 21: Merge Two Sorted Lists
   `,
   subModules: [],
   practiceQuiz: [

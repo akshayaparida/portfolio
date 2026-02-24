@@ -1,8 +1,8 @@
 import { LearningModule } from "@/types/learning";
 
 export const treesModule: LearningModule = {
-  id: "04-trees",
-  title: "4. Trees",
+  id: "05-trees",
+  title: "5. Trees",
   description: "Hierarchical data structures - Binary Trees, BST, AVL, B-Trees",
   status: "in-progress",
   tags: ["Data Structure"],
@@ -14,10 +14,10 @@ export const treesModule: LearningModule = {
 
 ## What You'll Learn
 
-1. Understand tree terminology (root, leaf, height, depth)
-2. Implement Binary Trees and Binary Search Trees
+1. Understand tree terminology and Forests
+2. Implement Binary Trees, BSTs, and Threaded Binary Trees
 3. Master all 4 tree traversal methods
-4. Know when to use balanced trees (AVL)
+4. Know when to use balanced trees (AVL) and database indexing (B-Trees, B+ Trees)
 
 ---
 
@@ -237,6 +237,69 @@ All operations stay O(log n) guaranteed!
 - **In**order: L-**N**-R (Node in middle)
 - **Pre**order: **N**-L-R (Node first, like PRE-fix)
 - **Post**order: L-R-**N** (Node last, like POST-script)
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Tree** | Hierarchical data structure; root at top, leaves at bottom. |
+| **Traversal** | **Inorder** (sorted output for BST), **Preorder** (copying), **Postorder** (deleting). |
+| **BST** | binary search tree; left < root < right. \`O(log n)\` search *if balanced*. |
+| **AVL / Red-Black** | Self-balancing trees; guarantee \`O(log n)\` operations. |
+| **B-Trees** | Fat nodes (multiple keys/children); optimized for disk access (databases). |
+| **Trie** | Prefix tree; extremely fast for string matching/auto-complete. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Typical Tree Node
+class TreeNode:
+    def __init__(self, val=0):
+        self.val = val
+        self.left = None
+        self.right = None
+
+# DFS: Inorder Traversal
+def inorder(root):
+    if not root: return []
+    return inorder(root.left) + [root.val] + inorder(root.right)
+
+# BFS: Level Order Traversal (using Queue)
+from collections import deque
+def bfs(root):
+    if not root: return
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        print(node.val)
+        if node.left: queue.append(node.left)
+        if node.right: queue.append(node.right)
+\`\`\`
+
+**The Golden Rules:**
+1. A Tree is just a specialized Graph without cycles. Recursive solutions (DFS) are usually the cleanest.
+2. If the problem asks for level-by-level processing, use BFS with a Queue.
+3. If the problem asks for searching/sorting properties, it's likely a BST problem (Inorder traversal yields sorted elements).
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Trees](https://youtu.be/OnSn2XEQ4MY) - Best LeetCode problem breakdowns
+- [Abdul Bari - Binary Trees](https://youtu.be/YigoE8A7r6w) - Deep dive into theory
+
+**Articles & Visualizations:**
+- [VisuAlgo - BST](https://visualgo.net/en/bst) - See rotations in action!
+
+**Practice Problems:**
+- LeetCode 104: Maximum Depth of Binary Tree
+- LeetCode 226: Invert Binary Tree
+- LeetCode 102: Binary Tree Level Order Traversal
   `,
   subModules: [],
   practiceQuiz: [
@@ -344,6 +407,35 @@ All operations stay O(log n) guaranteed!
       explanation:
         "AVL maintains balance factor (height difference) ≤ 1 for all nodes. Rotations (LL, RR, LR, RL) restore balance after insert/delete.",
       difficulty: "medium",
+    },
+    {
+      id: "tree-q11",
+      question:
+        "Which tree data structure is most heavily used for database indexing?",
+      options: [
+        "Binary Search Tree",
+        "AVL Tree",
+        "B+ Tree",
+        "Threaded Binary Tree",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "B+ Trees are ideal for databases because they store all data at the leaf level and link leaves together, making disk reads and range queries extremely fast.",
+      difficulty: "medium",
+    },
+    {
+      id: "tree-q12",
+      question: "What is the primary purpose of a Threaded Binary Tree?",
+      options: [
+        "To balance the tree automatically",
+        "To allow faster insertion of new nodes",
+        "To make inorder traversal faster without recursion or stack",
+        "To store more data per node",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Threaded binary trees utilize wasted null pointers to point to inorder predecessors or successors, allowing for fast, stackless inorder traversal.",
+      difficulty: "easy",
     },
   ],
 };

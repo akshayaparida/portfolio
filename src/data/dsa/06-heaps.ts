@@ -1,8 +1,8 @@
 import { LearningModule } from "@/types/learning";
 
 export const heapsModule: LearningModule = {
-  id: "05-heaps",
-  title: "5. Heaps",
+  id: "06-heaps",
+  title: "6. Heaps",
   description: "Priority-based operations - Min Heap, Max Heap, Heapify",
   status: "in-progress",
   tags: ["Data Structure"],
@@ -191,6 +191,61 @@ print(k_smallest([3, 1, 5, 12, 2, 11], 3))  # [1, 2, 3]
 - Max heap = Largest on top (use negation in Python)
 - Root is guaranteed min/max
 - Rest is NOT fully sorted!
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Heap Property** | Parent is always smaller (Min-Heap) or larger (Max-Heap) than children. |
+| **Shape Property** | Heaps are complete binary trees, meaning they are filled level by level. |
+| **Array Representation** | Left Child: \`2i+1\`. Right Child: \`2i+2\`. Parent: \`(i-1)//2\`. |
+| **Time Complexity** | \`O(1)\` peek, \`O(log n)\` push/pop, \`O(n)\` heapify array. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+import heapq
+
+# Min Heap (Default in Python)
+min_heap = []
+heapq.heappush(min_heap, 5)  # O(log n)
+smallest = min_heap[0]       # O(1) peek
+heapq.heappop(min_heap)      # O(log n)
+
+# Max Heap (Trick: Negate values)
+max_heap = []
+heapq.heappush(max_heap, -5)
+largest = -heapq.heappop(max_heap)
+
+# Heapify (Convert array to heap)
+arr = [3, 1, 4, 1, 5]
+heapq.heapify(arr)           # O(n) Time!
+\`\`\`
+
+**The Golden Rules:**
+1. Python's \`heapq\` module only implements Min-Heaps. For a Max-Heap, multiply your values by \`-1\`.
+2. Heaps are the perfect data structure anytime a problem asks for the **Top K**, **Kth Largest**, or **Moving Median**.
+3. While push and pop are logarithmic, building a heap from an unsorted array (\`heapify\`) is **O(n)** linear time!
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Priority Queue / Heap](https://youtu.be/HqPJF2L5h9U) - Great visual explanations
+- [Abdul Bari - Heap Sort](https://youtu.be/HqPJF2L5h9U) - Detailed algorithm breakdown
+
+**Articles & Visualizations:**
+- [VisuAlgo - Binary Heap](https://visualgo.net/en/heap) - Watch the tree re-balance during push/pop
+
+**Practice Problems:**
+- LeetCode 215: Kth Largest Element in an Array
+- LeetCode 1046: Last Stone Weight
+- LeetCode 703: Kth Largest Element in a Stream
   `,
   subModules: [],
   practiceQuiz: [

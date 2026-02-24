@@ -200,9 +200,14 @@ dq.popleft()       # Remove 1 from left
 
 ---
 
-## 4. Priority Queue (Bonus)
+## 4. Priority Queue
 
-Items have priorities. Highest priority served first!
+Items have priorities. Highest priority served first, regardless of when they entered the queue!
+
+**Key Concepts:**
+- Typically implemented using **Heaps** (which we will cover in a later module).
+- Can be a **Min-Priority Queue** (smallest value first) or **Max-Priority Queue** (largest value first).
+- **Applications:** CPU scheduling, Dijkstra's Shortest Path Algorithm, A* Search.
 
 \`\`\`python path=null start=null
 import heapq
@@ -233,6 +238,62 @@ print(heapq.heappop(pq))  # 30
 - **Stack** = Pile of dishes (top only)
 - **Queue** = Line at store (back in, front out)
 - **Deque** = VIP line (either end)
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Stack** | LIFO (Last In, First Out); \`push\` and \`pop\` in \`O(1)\`. |
+| **Queue** | FIFO (First In, First Out); \`enqueue\` (back) and \`dequeue\` (front) in \`O(1)\`. |
+| **Deque** | Double-ended queue; add/remove from both ends in \`O(1)\`. |
+| **Priority Queue**| Items served by priority (via Heaps), not insertion order; \`O(log n)\` operations. |
+| **Applications** | **Stacks**: Undo/Redo, Valid Parentheses, DFS. **Queues**: Print Jobs, BFS. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Stack (using list)
+stack = []
+stack.append(1)  # Push (O(1))
+stack.pop()      # Pop (O(1))
+
+# Queue (using deque - NEVER use list for queues)
+from collections import deque
+q = deque()
+q.append(1)    # Enqueue (O(1))
+q.popleft()    # Dequeue (O(1))
+
+# Priority Queue / Min-Heap
+import heapq
+pq = []
+heapq.heappush(pq, 5) # O(log n)
+lowest = heapq.heappop(pq) # O(log n)
+\`\`\`
+
+**The Golden Rules:**
+1. **Never** use a standard Python \`list\` as a Queue (using \`list.pop(0)\` is \`O(n)\`). Always import \`collections.deque\`.
+2. Stack is the foundation of **Depth-First Search (DFS)** & Recursion.
+3. Queue is the foundation of **Breadth-First Search (BFS)**.
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Stacks](https://youtu.be/I5IimMgE_Jo) - Excellent LeetCode preparations
+- [Abdul Bari - Stacks and Queues](https://youtu.be/sFVxsglODoo) - Deep dive for university exams
+
+**Articles & Visualizations:**
+- [VisuAlgo - Stack/Queue](https://visualgo.net/en/list) - Interactive array operations
+
+**Practice Problems:**
+- LeetCode 20: Valid Parentheses
+- LeetCode 155: Min Stack
+- LeetCode 225: Implement Stack using Queues
   `,
   subModules: [],
   practiceQuiz: [

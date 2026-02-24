@@ -1,8 +1,8 @@
 import { LearningModule } from "@/types/learning";
 
 export const hashingModule: LearningModule = {
-  id: "07-hashing",
-  title: "7. Hashing",
+  id: "04-hashing",
+  title: "4. Hashing",
   description: "O(1) average lookup - Hash Tables, Collision Handling",
   status: "in-progress",
   tags: ["Data Structure"],
@@ -207,6 +207,59 @@ print(two_sum([2, 7, 11, 15], 9))  # [0, 1] (2 + 7 = 9)
 - Set = Unique values only (like attendance list)
 - Both use O(1) average for most operations
 - Worst case O(n) when all keys collide
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Hash Function** | Converts a key into an array index. Must be deterministic. |
+| **Collision** | When two keys map to the same index. Handled by Chaining (Linked Lists) or Open Addressing (finding next empty slot). |
+| **Hash Set** | Collection of unique items; backed by a hash table. \`O(1)\` lookups. |
+| **Hash Map / Dict** | Key-Value pairs; keys must be immutable/hashable. \`O(1)\` inserts and lookups. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Hash Set (Unique Values)
+my_set = set([1, 2, 2, 3])  # {1, 2, 3}
+my_set.add(4)
+has_two = 2 in my_set       # O(1)
+
+# Hash Map / Dictionary (Key-Value)
+my_dict = {"alice": 25, "bob": 30}
+my_dict["charlie"] = 35     # O(1) insert
+age = my_dict["alice"]      # O(1) lookup
+
+# Using Counter (Frequency Map)
+from collections import Counter
+freq = Counter("mississippi")
+print(freq['s'])            # 4
+\`\`\`
+
+**The Golden Rules:**
+1. Whenever the problem asks to check for **duplicates** or **frequencies**, immediately think of Sets or Maps.
+2. The "Two Sum" pattern (using a map to store the complement \`target - num\`) is the foundation for hundreds of interview questions.
+3. Keep track of the **Load Factor** (items/size). When it gets too high, the table is resized and rehashed (usually doubling the size).
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Hashing Basics](https://youtu.be/KLlXCFG5TnA) - Python-specific hashing tricks
+- [Abdul Bari - Hashing Data Structure](https://youtu.be/Ke_tLlMEje4) - Deep dive into collision theory
+
+**Articles & Visualizations:**
+- [VisuAlgo - Hash Table](https://visualgo.net/en/hashtable) - Interactive collision animations
+
+**Practice Problems:**
+- LeetCode 1: Two Sum
+- LeetCode 217: Contains Duplicate
+- LeetCode 49: Group Anagrams
   `,
   subModules: [],
   practiceQuiz: [

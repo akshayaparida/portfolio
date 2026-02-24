@@ -194,12 +194,56 @@ text.endswith("world")    # True
 
 ---
 
-## Common Interview Patterns
+## TL;DR - Quick Recall
 
-1. **Two Pointers** - Use left and right pointers
-2. **Sliding Window** - Move a window through array
-3. **Frequency Count** - Count occurrences using dict
-4. **Reverse** - Swap from both ends
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Array** | Contiguous memory for O(1) index access, but O(n) insertion/deletion. |
+| **Sparse Matrix** | Mostly zeros; saved memory by storing as (Row, Column, Value) triplets. |
+| **String** | An array of characters; **immutable** in languages like Python/Java. |
+| **Matrices** | 2D Arrays (rows and columns); used for maps, boards, and mathematical representations. |
+| **Memory** | Arrays have a fixed size natively; Dynamic Arrays resize automatically under the hood (amortized O(1) append). |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Finding in an array
+has_five = 5 in my_array  # O(n) search
+
+# Sparse Matrix (Triplet)
+sparse = [
+    (0, 2, 15),  # Row 0, Col 2 = 15
+    (1, 1, 22)   # Row 1, Col 1 = 22
+]
+
+# String tricks
+reversed_str = my_str[::-1]
+words = my_str.split(" ")
+\`\`\`
+
+**The Golden Rules:**
+1. Remember that Array insertion at the beginning is **O(n)** because every element shifts!
+2. Two pointers and Sliding Window are the most common array patterns.
+3. Because Strings are immutable (Python/Java), string concatenation inside a loop is often **O(n²)** unless using \`.join()\`.
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Arrays & Hashing](https://youtu.be/3OamzN90kPg) - Excellent LeetCode preparations
+- [Abdul Bari - Arrays and Strings](https://youtu.be/zGv3hOORIR0) - Deep dive for university exams
+
+**Articles & Visualizations:**
+- [VisuAlgo - Array](https://visualgo.net/en/array) - Interactive array operations
+- [GeeksforGeeks - Sparse Matrix](https://www.geeksforgeeks.org/sparse-matrix-and-its-representations/) - Great for exam theory
+
+**Practice Problems:**
+- LeetCode 1: Two Sum
+- LeetCode 217: Contains Duplicate
+- LeetCode 242: Valid Anagram
   `,
   subModules: [],
   practiceQuiz: [

@@ -159,6 +159,23 @@ def selection_sort(arr):
     return arr
 \`\`\`
 
+### Insertion Sort - O(n²)
+
+**Build sorted array one element at a time**, shifting larger elements right. Best for small or nearly-sorted arrays (O(n) best case)!
+
+\`\`\`python path=null start=null
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        # Shift elements greater than key to the right
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+\`\`\`
+
 ### Merge Sort - O(n log n) ⭐
 
 **Divide, sort halves, merge** - Most reliable!
@@ -220,6 +237,7 @@ def quick_sort(arr):
 |:----------|:-----|:--------|:------|:--------|:------|
 | Bubble | O(n) | O(n²) | O(n²) | ✅ | O(1) |
 | Selection | O(n²) | O(n²) | O(n²) | ❌ | O(1) |
+| Insertion | O(n) | O(n²) | O(n²) | ✅ | O(1) |
 | Merge | O(n log n) | O(n log n) | O(n log n) | ✅ | O(n) |
 | Quick | O(n log n) | O(n log n) | O(n²) | ❌ | O(log n) |
 
@@ -242,6 +260,62 @@ def quick_sort(arr):
 - Binary search = **sorted array only**
 - Merge sort = **guaranteed O(n log n)**
 - Quick sort = **fast average, O(n²) worst**
+
+---
+
+## TL;DR - Quick Recall
+
+**One-liner for each concept:**
+
+| Concept | Key Takeaway |
+|:--------|:-------------|
+| **Linear Search** | Look at every element. \`O(n)\`. Works on unsorted data. |
+| **Binary Search** | **Requires Sorted Data**. Halves the search space every step. \`O(log n)\`. |
+| **Bubble Sort** | Largest element "bubbles" to the end. \`O(n²)\`. |
+| **Insertion Sort**| Build sorted array one by one. Amazing for nearly-sorted data (\`O(n)\`). |
+| **Merge Sort** | Divide & Conquer. **Always \`O(n log n)\`**, but requires \`O(n)\` extra space. Stable. |
+| **Quick Sort** | Pick a pivot, partition around it. Avg \`O(n log n)\`, Worst \`O(n²)\`. \`O(log n)\` space. Unstable. |
+
+**Essential Code Snippets:**
+
+\`\`\`python
+# Binary Search - The most important snippet to memorize!
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return -1
+\`\`\`
+
+**The Golden Rules:**
+1. If an array is **Sorted** and you are searching for something, you MUST use Binary Search.
+2. Binary Search isn't just for arrays. You can Binary Search on the *answer* (e.g., finding the minimum capacity a ship needs to carry cargo).
+3. If an interview asks for a sorting algorithm with strictly \`O(1)\` space and \`O(n log n)\` time, they usually want **Heap Sort**, as Merge Sort takes \`O(n)\` space and Quick Sort takes \`O(log n)\` stack space.
+
+---
+
+## Additional Resources
+
+**Video Courses:**
+- [NeetCode - Binary Search](https://youtu.be/s4DPM8ct1pI) - Essential algorithm walkthrough
+- [Abdul Bari - Sorting Algorithms](https://youtu.be/pkkFqlG0Hds) - Deep dive into all sorting methods
+
+**Articles & Visualizations:**
+- [VisuAlgo - Sorting](https://visualgo.net/en/sorting) - Watch the algorithms race!
+
+**Practice Problems:**
+- LeetCode 704: Binary Search
+- LeetCode 33: Search in Rotated Sorted Array
+- LeetCode 75: Sort Colors (Dutch National Flag problem)
   `,
   subModules: [],
   practiceQuiz: [
