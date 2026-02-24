@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function DSAPage() {
-  redirect("/dsa/01-arrays-strings");
+  redirect("/dsa/00-algorithmic-complexity");
 }

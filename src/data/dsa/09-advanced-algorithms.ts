@@ -371,6 +371,46 @@ def kruskal(n, edges):
 
 ---
 
+## 6. Bellman-Ford Algorithm (Shortest Path with Negative Weights)
+
+Dijkstra fails with negative edge weights. Bellman-Ford handles them!
+
+\`\`\`python path=null start=null
+def bellman_ford(n, edges, start):
+    """
+    n = number of vertices
+    edges = [(u, v, weight), ...]
+    Handles negative weights!
+    """
+    dist = [float('inf')] * n
+    dist[start] = 0
+    
+    # Relax ALL edges (n-1) times
+    for _ in range(n - 1):
+        for u, v, w in edges:
+            if dist[u] != float('inf') and dist[u] + w < dist[v]:
+                dist[v] = dist[u] + w
+    
+    # Check for negative weight cycles
+    for u, v, w in edges:
+        if dist[u] != float('inf') and dist[u] + w < dist[v]:
+            print("Negative weight cycle detected!")
+            return None
+    
+    return dist
+\`\`\`
+
+**Time: O(V × E)** — slower than Dijkstra but handles negative weights
+
+| Feature | Dijkstra | Bellman-Ford |
+|:--------|:---------|:-------------|
+| Negative weights | ❌ Fails | ✅ Works |
+| Negative cycles | ❌ No detection | ✅ Detects |
+| Time complexity | O((V+E) log V) | O(V × E) |
+| Use when | All weights ≥ 0 | Negative weights exist |
+
+---
+
 ## Key Takeaways
 
 | Technique | When to Use | Example |
@@ -379,7 +419,8 @@ def kruskal(n, edges):
 | DP | Same subproblems repeat | Fibonacci, Knapsack |
 | Greedy | Local best = Global best | Scheduling, Huffman |
 | Backtracking | Try all possibilities | Sudoku, N-Queens |
-| Dijkstra | Shortest path (weighted) | GPS navigation |
+| Dijkstra | Shortest path (non-negative) | GPS navigation |
+| Bellman-Ford | Shortest path (negative OK) | Currency arbitrage |
 | Prim/Kruskal | Minimum Spanning Tree | Network design |
 
 **Remember:**
@@ -387,6 +428,7 @@ def kruskal(n, edges):
 - Greedy = Fast but doesn't always work
 - Backtracking = Exhaustive but systematic
 - Dijkstra = Greedy shortest path (non-negative weights)
+- Bellman-Ford = Handles negative weights, detects negative cycles
 
 ---
 

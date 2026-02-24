@@ -113,6 +113,33 @@ export default function DSAModuleIcon({
           <polyline points="9,14 12,17 16,10" strokeWidth="2" />
         </svg>
       );
+    case "10-trie-advanced-ds":
+      return (
+        <svg {...iconProps}>
+          <circle cx="12" cy="4" r="2" />
+          <circle cx="7" cy="11" r="2" />
+          <circle cx="17" cy="11" r="2" />
+          <circle cx="4" cy="18" r="2" />
+          <circle cx="10" cy="18" r="2" />
+          <path d="M12 6v3M9 11l-3 5M9 11l-1 7M15 11l3 5" strokeWidth="1.5" />
+        </svg>
+      );
+    case "00-algorithmic-complexity":
+      return (
+        <svg {...iconProps}>
+          <path d="M4 20L8 12L12 16L16 8L20 4" strokeWidth="2" />
+          <text
+            x="5"
+            y="8"
+            fontSize="8"
+            fill="currentColor"
+            fontWeight="bold"
+            stroke="none"
+          >
+            O
+          </text>
+        </svg>
+      );
     default:
       return (
         <svg {...iconProps}>

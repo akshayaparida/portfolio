@@ -231,6 +231,42 @@ def quick_sort(arr):
 
 ---
 
+### Heap Sort - O(n log n)
+
+**Build a max heap, repeatedly extract the max**. In-place and guaranteed O(n log n)!
+
+\`\`\`python path=null start=null
+def heapify(arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+    
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+    
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+    
+    # Build max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+    
+    # Extract elements one by one
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]  # Move max to end
+        heapify(arr, i, 0)
+    
+    return arr
+\`\`\`
+
+---
+
 ## 4. Sorting Comparison
 
 | Algorithm | Best | Average | Worst | Stable? | Space |
@@ -240,6 +276,7 @@ def quick_sort(arr):
 | Insertion | O(n) | O(n²) | O(n²) | ✅ | O(1) |
 | Merge | O(n log n) | O(n log n) | O(n log n) | ✅ | O(n) |
 | Quick | O(n log n) | O(n log n) | O(n²) | ❌ | O(log n) |
+| Heap | O(n log n) | O(n log n) | O(n log n) | ❌ | O(1) |
 
 **Stable** = equal elements keep original order
 **Python's built-in sort** = Timsort (Merge + Insertion hybrid)
