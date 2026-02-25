@@ -28,7 +28,7 @@ jobs:
       run: pnpm install
 
     - name: Run tests
-      run: pnpm test -- --coverage
+      run: pnpm exec jest --coverage
 
     - name: Run build
       run: pnpm build

@@ -22,7 +22,11 @@ jest.mock("react-markdown", () => {
 });
 
 jest.mock("rehype-highlight", () => ({}));
-jest.mock("rehype-sanitize", () => ({}));
+jest.mock("rehype-sanitize", () => ({
+  __esModule: true,
+  default: jest.fn(),
+  defaultSchema: { attributes: { a: ["href"] } },
+}));
 jest.mock("remark-gfm", () => ({}));
 
 // Mock math visualizations
