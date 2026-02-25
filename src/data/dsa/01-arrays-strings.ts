@@ -86,14 +86,106 @@ Step 3: [5, 10, 20, 30, 40]  ← Insert 5
 | Operation | Time | Why? |
 |:----------|:-----|:-----|
 | Access by index | O(1) | Direct jump to location |
-| Search for value | O(n) | Must check each element |
+| Search (unsorted) | O(n) | Must check each element (Linear Search) |
+| Search (sorted) | O(log n) | Binary Search halves search space each step |
 | Add at end | O(1) | Just add after last item |
 | Add at beginning | O(n) | Shift all elements right |
 | Delete | O(n) | Shift all elements left |
 
+### Array Properties
+
+1. **Homogeneous Elements** — All elements must be of the same data type
+2. **Zero-based Indexing** — First element is at index 0 (in most languages)
+3. **Contiguous Memory** — Elements are stored adjacent to each other in memory
+4. **Fixed Size** — Classic arrays have a fixed size declared at creation (dynamic arrays resize automatically)
+
+### Applications of Arrays
+
+- Implementing **sorting algorithms** (Bubble Sort, Quick Sort, Merge Sort, etc.)
+- Building other data structures: **Stacks, Queues, Heaps, Hash Tables**
+- **CPU scheduling** algorithms
+- Storing **image pixels** (2D arrays)
+- **Lookup tables** for constant-time data retrieval
+
 ---
 
-## 2. 2D Arrays (Matrices)
+## 2. Memory Representation of Arrays
+
+### 1D Array — Address Calculation
+
+If an array starts at a base address, we can compute the memory location of any element:
+
+\`\`\`
+Formula: LOC(A[k]) = Base + (k − LowerBound) × W
+
+Where:
+  Base  = base address of the array
+  k     = index of the element
+  W     = width (size in bytes) of each element
+\`\`\`
+
+**Example:**
+
+\`\`\`
+Base Address = 2000, Width = 4 bytes, Lower Bound = 0
+
+LOC(A[3]) = 2000 + (3 − 0) × 4
+          = 2000 + 12
+          = 2012
+\`\`\`
+
+**Length of Array:**
+
+\`\`\`
+Length = Upper Bound − Lower Bound + 1
+\`\`\`
+
+### 2D Array — Row Major vs Column Major
+
+Two ways to store a 2D array in linear memory:
+
+**Row Major Order** (row by row — C, C++, Python, Java):
+
+\`\`\`
+LOC(A[R,C]) = Base + W × ((R − RLB) × (CUB − CLB + 1) + (C − CLB))
+
+Where:
+  RLB = Row Lower Bound    CLB = Column Lower Bound
+  CUB = Column Upper Bound  W = Width of each element
+\`\`\`
+
+**Column Major Order** (column by column — Fortran, MATLAB):
+
+\`\`\`
+LOC(A[R,C]) = Base + W × ((C − CLB) × (RUB − RLB + 1) + (R − RLB))
+\`\`\`
+
+> These formulas are frequently asked in CUET PG and GATE exams!
+
+---
+
+## 3. Array Declaration (C Language)
+
+\`\`\`c path=null start=null
+// Declaration
+int a[100];        // Array of 100 integers
+
+// Memory = sizeof(data_type) × length
+// For int a[100]: Memory = 4 × 100 = 400 bytes
+
+// Initialization at declaration
+int a[4] = {34, 60, 93, 2};
+int b[] = {2, 3, 4, 5};      // Size is optional if initialized
+float c[] = {-4, 6.8, 60};
+
+// Important:
+// 1. If initialized at declaration, dimension is optional
+// 2. If not initialized, elements contain garbage values
+\`\`\`
+
+---
+
+## 4. 2D Arrays (Matrices)
 
 A 2D array is like a **table with rows and columns** - think of Excel spreadsheet!
 
@@ -128,7 +220,7 @@ for row in range(3):
 
 ---
 
-## 3. Strings - Array of Characters
+## 5. Strings - Array of Characters
 
 A string is essentially an **array of characters**!
 
