@@ -251,7 +251,7 @@ print(freq['s'])            # 4
 
 **Video Courses:**
 - [NeetCode - Hashing Basics](https://youtu.be/KLlXCFG5TnA) - Python-specific hashing tricks
-- [Abdul Bari - Hashing Data Structure](https://youtu.be/Ke_tLlMEje4) - Deep dive into collision theory
+- [Abdul Bari - Hashing Technique Simplified](https://youtu.be/mFY0J5W8Udk) - Deep dive into collision theory
 
 **Articles & Visualizations:**
 - [VisuAlgo - Hash Table](https://visualgo.net/en/hashtable) - Interactive collision animations

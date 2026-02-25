@@ -295,7 +295,7 @@ for i in arr:
 ## Additional Resources
 
 **Video Courses:**
-- [NeetCode - Big-O Notation](https://youtu.be/BgLTDT03QU0) - Best visual explanation
+- [CS Dojo - Big-O Notation](https://youtu.be/Z0bH0cMY0E8) - Best visual explanation
 - [Abdul Bari - Time Complexity](https://youtu.be/9TlHvipP5yA) - Deep dive for university exams
 
 **Articles & Visualizations:**

@@ -284,7 +284,7 @@ lowest = heapq.heappop(pq) # O(log n)
 ## Additional Resources
 
 **Video Courses:**
-- [NeetCode - Stacks](https://youtu.be/I5IimMgE_Jo) - Excellent LeetCode preparations
+- [NeetCode - Valid Parentheses](https://youtu.be/WTzjTskDFMg) - Classic stack problem walkthrough
 - [Abdul Bari - Stacks and Queues](https://youtu.be/sFVxsglODoo) - Deep dive for university exams
 
 **Articles & Visualizations:**

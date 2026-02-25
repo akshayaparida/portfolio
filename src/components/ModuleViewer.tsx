@@ -3,7 +3,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import CodeBlock from "@/components/CodeBlock";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -18,6 +18,24 @@ interface ModuleViewerProps {
 }
 
 const Pre = ({ children }: { children?: React.ReactNode }) => <>{children}</>;
+
+const sanitizeSchema = {
+  ...defaultSchema,
+  attributes: {
+    ...defaultSchema.attributes,
+    a: [...(defaultSchema.attributes?.a || []), "target", "rel"],
+  },
+};
+
+const ExternalLink = ({
+  href,
+  children,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+    {children}
+  </a>
+);
 
 export default function ModuleViewer({
   module,
@@ -41,10 +59,11 @@ export default function ModuleViewer({
             <ErrorBoundary fallback={MathErrorFallback}>
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeHighlight, rehypeSanitize]}
+                rehypePlugins={[rehypeHighlight, [rehypeSanitize, sanitizeSchema]]}
                 components={{
                   code: CodeBlock,
                   pre: Pre,
+                  a: ExternalLink,
                 }}
               >
                 {module.detailedContent}

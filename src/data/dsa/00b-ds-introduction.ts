@@ -229,7 +229,7 @@ ADT: Stack
 
 **Video Courses:**
 - [NeetCode - Data Structures for Beginners](https://youtu.be/CBYHwZcbD-s) - Full overview in one video
-- [Abdul Bari - Data Structures](https://youtu.be/2V1FtfBDsLU) - University-level deep dive
+- [Abdul Bari - Introduction to Algorithms](https://youtu.be/0IAPZzGSbME) - University-level deep dive
 
 **Articles & Visualizations:**
 - [VisuAlgo](https://visualgo.net/) - Watch every data structure in action

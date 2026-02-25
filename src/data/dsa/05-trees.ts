@@ -291,7 +291,7 @@ def bfs(root):
 
 **Video Courses:**
 - [NeetCode - Trees](https://youtu.be/OnSn2XEQ4MY) - Best LeetCode problem breakdowns
-- [Abdul Bari - Binary Trees](https://youtu.be/YigoE8A7r6w) - Deep dive into theory
+- [HackerRank - Data Structures: Trees](https://youtu.be/oSWTXtMglKE) - Deep dive into theory
 
 **Articles & Visualizations:**
 - [VisuAlgo - BST](https://visualgo.net/en/bst) - See rotations in action!

@@ -234,11 +234,11 @@ words = my_str.split(" ")
 
 **Video Courses:**
 - [NeetCode - Arrays & Hashing](https://youtu.be/3OamzN90kPg) - Excellent LeetCode preparations
-- [Abdul Bari - Arrays and Strings](https://youtu.be/zGv3hOORIR0) - Deep dive for university exams
+- [Introduction to Data Structures & Algorithms](https://youtu.be/5_5oE5lgrhw) - Deep dive for university exams
 
 **Articles & Visualizations:**
 - [VisuAlgo - Array](https://visualgo.net/en/array) - Interactive array operations
-- [GeeksforGeeks - Sparse Matrix](https://www.geeksforgeeks.org/sparse-matrix-and-its-representations/) - Great for exam theory
+- [GeeksforGeeks - Sparse Matrix](https://www.geeksforgeeks.org/sparse-matrix-representation/) - Great for exam theory
 
 **Practice Problems:**
 - LeetCode 1: Two Sum

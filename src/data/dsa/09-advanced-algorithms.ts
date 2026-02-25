@@ -480,7 +480,7 @@ def backtrack(path, options):
 
 **Video Courses:**
 - [NeetCode - Dynamic Programming](https://youtu.be/Hdr64lKQ3e4) - Making DP easy to understand
-- [Abdul Bari - Greedy vs DP](https://youtu.be/m1p5bKhdAUM) - Excellent comparative theory
+- [NeetCode - Greedy Algorithms](https://youtu.be/lJwbPZGo05A) - Excellent comparative theory
 
 **Articles & Visualizations:**
 - [VisuAlgo - DFS/BFS/Dijkstra](https://visualgo.net/en/sssp) - Watch Dijkstra's find the shortest path
