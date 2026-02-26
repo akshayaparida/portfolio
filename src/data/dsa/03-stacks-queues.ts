@@ -375,6 +375,50 @@ Front                   Front
 - **BFS algorithm** - Explore nodes in order
 - **Task scheduling** - Process tasks in order received
 
+### Array Representation of Queue
+
+When using a **linear array**, maintain two pointers:
+
+\`\`\`text
+FRONT → points to first element
+REAR  → points to last element
+
+If FRONT = NULL (or -1), queue is EMPTY.
+
+  Index:  [0] [1] [2] [3] [4]
+  Values: [10][20][30][ ][ ]
+           ↑         ↑
+         FRONT     REAR
+\`\`\`
+
+### Enqueue Algorithm (Insertion)
+
+\`\`\`text
+ENQUEUE(queue, item):
+  Step 1: if REAR == MAX_SIZE - 1
+            Print "Queue Overflow"
+            Return
+  Step 2: if FRONT == -1       // Queue was empty
+            FRONT = 0
+  Step 3: REAR = REAR + 1
+  Step 4: queue[REAR] = item
+\`\`\`
+
+### Dequeue Algorithm (Deletion)
+
+\`\`\`text
+DEQUEUE(queue):
+  Step 1: if FRONT == -1
+            Print "Queue Underflow"
+            Return
+  Step 2: item = queue[FRONT]
+  Step 3: if FRONT == REAR     // Only one element was left
+            FRONT = REAR = -1  // Queue becomes empty
+          else
+            FRONT = FRONT + 1
+  Step 4: Return item
+\`\`\`
+
 ### Queue Implementation
 
 \`\`\`python path=null start=null
@@ -417,9 +461,110 @@ print(queue.front())    # Charlie (now first)
 
 ---
 
-## 3. Deque - Double-Ended Queue
+## 10. Circular Queue (Ring Buffer)
+
+In a linear queue, once REAR reaches the end, we can't insert even if there's space at the front (after dequeues). **Circular queue solves this!**
+
+\`\`\`text
+Linear Queue Problem:
+  [ ][ ][30][40][50]    FRONT=2, REAR=4
+   ↑  ↑                 Wasted space!
+  empty cells
+
+Circular Queue Solution:
+  QUEUE[1] comes after QUEUE[N]
+
+         [1]
+       /     \\
+    [5]       [2]
+      |       |
+    [4]       [3]
+       \\     /
+         ---
+  REAR wraps around to fill gaps!
+\`\`\`
+
+### Circular Queue Rules
+
+\`\`\`text
+Insertion:
+  if REAR == N and there's space:
+    Set REAR = 1 (instead of N + 1)    // Wrap around!
+  Formula: REAR = (REAR + 1) % MAX_SIZE
+
+Deletion:
+  if FRONT == N:
+    Set FRONT = 1 (instead of N + 1)   // Wrap around!
+  Formula: FRONT = (FRONT + 1) % MAX_SIZE
+
+All operations: O(1)
+\`\`\`
+
+### C Implementation
+
+\`\`\`c path=null start=null
+#define MAX 5
+int queue[MAX];
+int front = -1, rear = -1;
+
+void enqueue(int item) {
+    if ((rear + 1) % MAX == front) {
+        printf("Queue Overflow!\\n");
+        return;
+    }
+    if (front == -1) front = 0;  // First element
+    rear = (rear + 1) % MAX;    // Wrap around
+    queue[rear] = item;
+}
+
+int dequeue() {
+    if (front == -1) {
+        printf("Queue Underflow!\\n");
+        return -1;
+    }
+    int item = queue[front];
+    if (front == rear)           // Last element
+        front = rear = -1;
+    else
+        front = (front + 1) % MAX; // Wrap around
+    return item;
+}
+\`\`\`
+
+> **Circular Queue** is also called a **Ring Buffer**. Used in OS scheduling, network packet buffering, and audio streaming.
+
+---
+
+## 11. Deque - Double-Ended Queue
 
 Can add/remove from BOTH ends! Best of both worlds.
+
+### Two Variations
+
+| Variant | Insertion | Deletion |
+|:--------|:----------|:---------|
+| **Input Restricted Deque** | One end only | Both ends |
+| **Output Restricted Deque** | Both ends | One end only |
+| **General Deque** | Both ends | Both ends |
+
+\`\`\`text
+General Deque:
+  ← Insert/Delete    Insert/Delete →
+       FRONT  [1] [2] [3]  REAR
+  ← Insert/Delete    Insert/Delete →
+
+Input Restricted:
+  × No insert         Insert →
+       FRONT  [1] [2] [3]  REAR
+  ← Delete            Delete →
+
+Output Restricted:
+  ← Insert            Insert →
+       FRONT  [1] [2] [3]  REAR
+  ← Delete            × No delete
+\`\`\`
+
+> A General Deque can behave as **both a Stack and a Queue**. Rotation operations are O(1).
 
 \`\`\`python path=null start=null
 from collections import deque
@@ -439,12 +584,17 @@ dq.popleft()       # Remove 1 from left
 
 ---
 
-## 4. Priority Queue
+## 12. Priority Queue
 
 Items have priorities. Highest priority served first, regardless of when they entered the queue!
 
+**Rules:**
+1. **Higher priority** element is processed **first**
+2. If priorities are **same**, process according to **insertion order** (FIFO among equals)
+
 **Key Concepts:**
 - Typically implemented using **Heaps** (which we will cover in a later module).
+- Can also be implemented using **one-way linked list** or **sorted/unsorted array**.
 - Can be a **Min-Priority Queue** (smallest value first) or **Max-Priority Queue** (largest value first).
 - **Applications:** CPU scheduling, Dijkstra's Shortest Path Algorithm, A* Search.
 
@@ -769,6 +919,78 @@ lowest = heapq.heappop(pq) # O(log n)
       explanation:
         "Innermost first: E^F, then D/(E^F), then C*(D/E^F), then B-C*(D/E^F), finally A+result. Postfix: A B C D E F ^ / * - +",
       difficulty: "hard" as const,
+    },
+    {
+      id: "sq-q21",
+      question:
+        "In a circular queue, the formula to move REAR to the next position is:",
+      options: [
+        "REAR = REAR + 1",
+        "REAR = (REAR + 1) % MAX_SIZE",
+        "REAR = REAR - 1",
+        "REAR = MAX_SIZE - REAR",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The modulo operation (REAR + 1) % MAX_SIZE wraps REAR around to 0 when it reaches MAX_SIZE, making the queue circular.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q22",
+      question: "An Input Restricted Deque allows:",
+      options: [
+        "Insertion and deletion from both ends",
+        "Insertion from one end, deletion from both ends",
+        "Insertion from both ends, deletion from one end",
+        "Neither insertion nor deletion",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Input Restricted Deque restricts insertion to one end only, but allows deletion from both ends. Output Restricted is the opposite.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q23",
+      question: "A circular queue is also known as:",
+      options: [
+        "Stack Buffer",
+        "Ring Buffer",
+        "Double Buffer",
+        "Linear Buffer",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Circular Queue is also called Ring Buffer because the last position wraps around to the first, forming a ring-like structure.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q24",
+      question: "In an array-based queue, after dequeue the FRONT pointer:",
+      options: [
+        "Stays the same",
+        "Moves to the next position",
+        "Resets to 0",
+        "Moves to REAR",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "After dequeue, FRONT moves to the next position (FRONT = FRONT + 1). Unless it was the last element, in which case FRONT = REAR = -1 (empty).",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q25",
+      question:
+        "In a priority queue, if two elements have the same priority, they are processed:",
+      options: [
+        "In reverse order",
+        "Randomly",
+        "According to insertion order (FIFO)",
+        "Alphabetically",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "When priorities are equal, elements follow FIFO order — the one inserted first is processed first. This ensures stability.",
+      difficulty: "easy" as const,
     },
   ],
 };

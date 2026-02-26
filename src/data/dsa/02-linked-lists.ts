@@ -4,7 +4,7 @@ export const linkedListsModule: LearningModule = {
   id: "02-linked-lists",
   title: "2. Linked Lists",
   description: "Pointer-based dynamic storage - Singly, Doubly, Circular",
-  status: "in-progress",
+  status: "completed",
   tags: ["Data Structure"],
   detailedContent: `# Linked Lists
 
@@ -185,7 +185,101 @@ class DoublyLinkedList:
 
 ---
 
-## 4. Time Complexity Comparison
+## 4. Circular Linked List
+
+In a circular linked list, the **last node points back to the first node** instead of NULL.
+
+\`\`\`text
+Singly Linked List:
+  HEAD → [10] → [20] → [30] → NULL
+
+Circular Linked List:
+  HEAD → [10] → [20] → [30] ┐
+           └─────────────────┘
+  Last node points back to HEAD!
+\`\`\`
+
+**Key Properties:**
+- **No NULL** at the end
+- Can traverse the list **continuously** (infinite loop if not careful!)
+- Useful for: **round-robin scheduling**, circular buffers, multiplayer game turns
+
+\`\`\`python path=null start=null
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            new_node.next = self.head  # Points to itself!
+            return
+        
+        # Traverse to last node
+        current = self.head
+        while current.next != self.head:
+            current = current.next
+        current.next = new_node
+        new_node.next = self.head  # Complete the circle
+    
+    def display(self):
+        if not self.head:
+            return
+        current = self.head
+        while True:
+            print(current.data, end=" → ")
+            current = current.next
+            if current == self.head:  # Back to start
+                break
+        print("(back to head)")
+
+cll = CircularLinkedList()
+cll.append(10)
+cll.append(20)
+cll.append(30)
+cll.display()  # 10 → 20 → 30 → (back to head)
+\`\`\`
+
+---
+
+## 5. Circular Doubly Linked List
+
+Combines **doubly linked list** (prev + next pointers) with **circular** structure.
+
+\`\`\`text
+  ┌───────────────────────────────┐
+  │                               │
+  └─ [←|10|→] ↔ [←|20|→] ↔ [←|30|→] ┘
+
+  • Last node's NEXT → First node
+  • First node's PREV → Last node
+  • Traversal in BOTH directions, continuously
+\`\`\`
+
+**Properties:**
+- Each node has **two links** (prev and next)
+- Connected in a **circular manner**
+- All nodes are reachable from any node in **both directions**
+- Used in: navigation systems, music playlist (next/prev + loop), browser tabs
+
+### All Linked List Types at a Glance
+
+| Type | Pointers per Node | NULL at End? | Traversal |
+|:-----|:-----------------|:-------------|:----------|
+| **Singly** | 1 (next) | Yes | Forward only |
+| **Doubly** | 2 (prev + next) | Yes | Both directions |
+| **Circular Singly** | 1 (next) | No | Forward, looping |
+| **Circular Doubly** | 2 (prev + next) | No | Both, looping |
+
+---
+
+## 6. Time Complexity Comparison
 
 | Operation | Array | Singly Linked | Doubly Linked |
 |:----------|:------|:--------------|:--------------|
@@ -204,6 +298,8 @@ class DoublyLinkedList:
 2. **O(1) insert at head** - Just update pointers
 3. **Dynamic size** - No need to pre-allocate
 4. **Extra memory** - Each node stores pointer(s)
+5. **Circular variants** - No NULL, continuous traversal
+6. **Nodes are NOT in contiguous memory** - Unlike arrays
 
 **When to use Linked List:**
 - Frequent insertions/deletions at start
@@ -271,7 +367,7 @@ def find_middle(head):
       correctAnswer: 0,
       explanation:
         "Insert at head is O(1). Just create new node, point it to current head, update head pointer. Only 3 operations regardless of list size.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q2",
@@ -286,7 +382,7 @@ def find_middle(head):
       correctAnswer: 2,
       explanation:
         "Doubly linked lists allow backward traversal using the prev pointer. Useful for browser history, undo/redo operations.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q3",
@@ -300,7 +396,7 @@ def find_middle(head):
       correctAnswer: 1,
       explanation:
         "Must traverse from head. Unlike arrays, linked lists don't have indexes. Follow next pointer 4 times from head to reach 5th element.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q4",
@@ -310,7 +406,7 @@ def find_middle(head):
       correctAnswer: 1,
       explanation:
         "O(n) for singly linked list. You need to find the PREVIOUS node first, which requires traversal. In doubly linked list, it's O(1).",
-      difficulty: "medium",
+      difficulty: "medium" as const,
     },
     {
       id: "ll-q5",
@@ -325,7 +421,7 @@ def find_middle(head):
       correctAnswer: 1,
       explanation:
         "Each node in doubly linked list has one extra pointer (prev). So for n nodes, extra memory = n pointers.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q6",
@@ -340,7 +436,7 @@ def find_middle(head):
       correctAnswer: 2,
       explanation:
         "Insert at head is O(1) - just update pointers. Insert/delete at tail requires traversing to the end = O(n).",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q7",
@@ -354,7 +450,7 @@ def find_middle(head):
       correctAnswer: 1,
       explanation:
         "In circular linked list, the last node's next pointer points back to the head, forming a loop. Useful for round-robin scheduling.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q8",
@@ -363,7 +459,7 @@ def find_middle(head):
       correctAnswer: 2,
       explanation:
         "O(n) space. Each of the n nodes stores data plus pointer(s). Total space grows linearly with number of nodes.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "ll-q9",
@@ -372,7 +468,7 @@ def find_middle(head):
       correctAnswer: 2,
       explanation:
         "O(n) time. Must visit each node once to reverse the pointers. Can be done iteratively with O(1) extra space.",
-      difficulty: "medium",
+      difficulty: "medium" as const,
     },
     {
       id: "ll-q10",
@@ -386,7 +482,70 @@ def find_middle(head):
       correctAnswer: 2,
       explanation:
         "Doubly Linked List + HashMap gives O(1) access and O(1) removal. DLL allows quick removal from middle, HashMap gives quick lookup.",
-      difficulty: "medium",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "ll-q11",
+      question:
+        "In a circular linked list, the last node's next pointer points to:",
+      options: ["NULL", "The head node", "The previous node", "Itself"],
+      correctAnswer: 1,
+      explanation:
+        "In a circular linked list, the last node points back to the head, forming a loop. There is no NULL pointer.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "ll-q12",
+      question:
+        "How many pointers does each node in a circular doubly linked list have?",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: 1,
+      explanation:
+        "Each node has 2 pointers: prev (to previous node) and next (to next node). Same as a regular doubly linked list, but connected circularly.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "ll-q13",
+      question: "Linked list nodes are stored in:",
+      options: [
+        "Contiguous memory locations",
+        "Non-contiguous memory locations",
+        "Stack memory only",
+        "Register memory",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Unlike arrays, linked list nodes can be scattered anywhere in memory. They are connected through pointers, not physical adjacency.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "ll-q14",
+      question:
+        "Which linked list type allows traversal in both directions AND continuous looping?",
+      options: [
+        "Singly Linked List",
+        "Doubly Linked List",
+        "Circular Singly Linked List",
+        "Circular Doubly Linked List",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Circular Doubly Linked List has prev + next pointers (both directions) and circular connection (continuous looping). It combines all features.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "ll-q15",
+      question: "Each node in a linked list contains:",
+      options: [
+        "Only data",
+        "Data and index",
+        "Data and pointer/reference to next node",
+        "Only pointer",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "A linked list node has two parts: the data it stores and a pointer (reference) to the next node in the list.",
+      difficulty: "easy" as const,
     },
   ],
 };
