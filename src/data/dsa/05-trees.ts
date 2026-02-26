@@ -4,7 +4,7 @@ export const treesModule: LearningModule = {
   id: "05-trees",
   title: "5. Trees",
   description: "Hierarchical data structures - Binary Trees, BST, AVL, B-Trees",
-  status: "in-progress",
+  status: "completed",
   tags: ["Data Structure"],
   detailedContent: `# Trees
 
@@ -47,7 +47,9 @@ Think of a **family tree** or **file folder structure**:
 
 ## 2. Binary Tree
 
-**Rule:** Each node has AT MOST 2 children (left and right)
+A Binary Tree is a **hierarchical (non-linear)** data structure where each node has **at most 2 children** — Left Child and Right Child.
+
+> **Key Shift:** All previous structures (Array, Stack, Queue, Linked List) were **linear** (one path). Binary Tree is **non-linear** — branching paths! This is a fundamental upgrade in structural thinking.
 
 \`\`\`python path=null start=null
 class TreeNode:
@@ -69,6 +71,122 @@ root.right = TreeNode(3)
 root.left.left = TreeNode(4)
 root.left.right = TreeNode(5)
 \`\`\`
+
+### Types of Binary Trees
+
+#### 1. Full Binary Tree (Proper Binary Tree)
+
+Every node has **either 0 or 2 children**. No node has just 1 child.
+
+\`\`\`text
+  Full Binary Tree:        NOT Full:
+       [1]                   [1]
+      /   \\                 /   \\
+    [2]   [3]             [2]   [3]
+   /   \\                 /
+  [4]  [5]             [4]
+
+  Every internal node     Node 2 has only
+  has exactly 2 children  1 child → NOT full
+\`\`\`
+
+#### 2. Complete Binary Tree
+
+All levels are **completely filled except possibly the last level**, and the last level is filled **from left to right**.
+
+\`\`\`text
+  Complete:             NOT Complete:
+       [1]                  [1]
+      /   \\                /   \\
+    [2]   [3]            [2]   [3]
+   /   \\                       \\
+  [4]  [5]                     [5]
+
+  Last level fills      Last level has gap
+  from LEFT to RIGHT    on the left → NOT complete
+\`\`\`
+
+> A complete binary tree does **NOT** have to be a full binary tree.
+
+#### 3. Perfect Binary Tree
+
+All internal nodes have **exactly 2 children** AND all leaf nodes are at the **same level**.
+
+\`\`\`text
+  Perfect Binary Tree:
+          [1]           Level 0: 1 node
+         /   \\
+       [2]   [3]        Level 1: 2 nodes
+      /  \\  /  \\
+    [4] [5][6] [7]      Level 2: 4 nodes
+
+  Every level is completely filled!
+  A Perfect Binary Tree is BOTH Full AND Complete.
+\`\`\`
+
+### Important Binary Tree Formulas
+
+| Formula | Description |
+|:--------|:------------|
+| Min nodes = **h + 1** | Minimum nodes in a binary tree of height h |
+| Max nodes = **2^(h+1) − 1** | Maximum nodes in a binary tree of height h |
+| Max nodes at level L = **2^L** | Maximum nodes at any given level |
+| Leaf nodes = **n₂ + 1** | Leaf nodes = (nodes with degree 2) + 1 |
+| Height of complete tree = **⌊log₂n⌋** | Height grows logarithmically |
+
+\`\`\`text
+Example: Height h = 3
+
+  Min nodes = 3 + 1 = 4       (one node per level)
+  Max nodes = 2^(3+1) − 1 = 15 (perfect binary tree)
+
+  Level 0: max 2^0 = 1 node
+  Level 1: max 2^1 = 2 nodes
+  Level 2: max 2^2 = 4 nodes
+  Level 3: max 2^3 = 8 nodes
+\`\`\`
+
+### Number of Distinct Binary Trees (Catalan Number)
+
+The number of **structurally different** binary trees that can be formed with **n** nodes:
+
+\`\`\`text
+  Formula: (2n C n) / (n + 1)
+
+  This is called the CATALAN NUMBER.
+
+  Example 1: n = 3
+    = (6 C 3) / (3 + 1)
+    = 20 / 4
+    = 5 distinct binary trees
+
+  Example 2: n = 6
+    = (12 C 6) / (6 + 1)
+    = 924 / 7
+    = 132 distinct binary trees
+
+  The 5 distinct binary trees for n = 3:
+
+    [R]    [R]    [R]      [R]      [R]
+    /      /        \\      / \\        \\
+   /      /          \\    /   \\        \\
+  /      [A]       [A]  [A]  [B]     [A]
+  |        \\      /                  /
+  [A]     [B]   [B]                [B]
+   \\
+   [B]
+\`\`\`
+
+### Perfect Binary Tree Properties
+
+| Property | Formula |
+|:---------|:--------|
+| Leaf nodes (L) | L = Internal nodes (I) + 1 |
+| Total nodes | 2^(h+1) − 1 |
+| Internal nodes | 2^h − 1 |
+| Leaf nodes | 2^h |
+
+> **Height convention:** Height = number of **edges** in longest path from root to leaf. Root alone has height 0.
 
 ---
 
@@ -436,6 +554,96 @@ def bfs(root):
       explanation:
         "Threaded binary trees utilize wasted null pointers to point to inorder predecessors or successors, allowing for fast, stackless inorder traversal.",
       difficulty: "easy",
+    },
+    {
+      id: "tree-q13",
+      question: "A Full Binary Tree is one in which every node has:",
+      options: [
+        "Exactly 2 children",
+        "0 or 2 children",
+        "At most 1 child",
+        "At least 1 child",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "In a Full (Proper) Binary Tree, every node has either 0 children (leaf) or exactly 2 children. No node has just 1 child.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q14",
+      question: "The minimum number of nodes in a binary tree of height 4 is:",
+      options: ["4", "5", "15", "31"],
+      correctAnswer: 1,
+      explanation:
+        "Min nodes = h + 1 = 4 + 1 = 5. This is a skewed tree with one node per level (like a linked list).",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q15",
+      question: "The maximum number of nodes in a binary tree of height 3 is:",
+      options: ["7", "8", "15", "16"],
+      correctAnswer: 2,
+      explanation:
+        "Max nodes = 2^(h+1) − 1 = 2^4 − 1 = 15. This is a perfect binary tree where every level is completely filled.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q16",
+      question:
+        "The number of distinct binary trees that can be formed with 3 nodes is:",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: 2,
+      explanation:
+        "Using Catalan Number: (2×3 C 3) / (3+1) = (6C3)/4 = 20/4 = 5 distinct binary trees.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q17",
+      question:
+        "In a binary tree, if there are 5 nodes with degree 2, the number of leaf nodes is:",
+      options: ["4", "5", "6", "10"],
+      correctAnswer: 2,
+      explanation:
+        "Leaf nodes = (nodes with degree 2) + 1 = 5 + 1 = 6. This is a fundamental property of binary trees.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q18",
+      question: "A Complete Binary Tree requires:",
+      options: [
+        "All nodes have 2 children",
+        "All levels filled, last level left-to-right",
+        "All leaves at same level",
+        "Maximum nodes at every level",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Complete binary tree: all levels completely filled except possibly the last, which fills from left to right. It need NOT be a full binary tree.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q19",
+      question:
+        "In a perfect binary tree of height 3, number of leaf nodes is:",
+      options: ["4", "7", "8", "15"],
+      correctAnswer: 2,
+      explanation:
+        "In a perfect binary tree, leaf nodes = 2^h = 2^3 = 8. All leaves are at the same level (level 3).",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q20",
+      question: "Which statement about a Perfect Binary Tree is TRUE?",
+      options: [
+        "It is Full but not Complete",
+        "It is Complete but not Full",
+        "It is both Full and Complete",
+        "It is neither Full nor Complete",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "A Perfect Binary Tree is BOTH Full (every node has 0 or 2 children) AND Complete (all levels filled). It's the most constrained binary tree type.",
+      difficulty: "easy" as const,
     },
   ],
 };
