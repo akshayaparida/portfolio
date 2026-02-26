@@ -4,7 +4,7 @@ export const stacksQueuesModule: LearningModule = {
   id: "03-stacks-queues",
   title: "3. Stacks & Queues",
   description: "LIFO and FIFO operations - fundamental for algorithms",
-  status: "in-progress",
+  status: "completed",
   tags: ["Data Structure"],
   detailedContent: `# Stacks & Queues
 
@@ -113,7 +113,246 @@ print(is_balanced("())"))      # False - unmatched )
 
 ---
 
-## 2. Queues - First In, First Out (FIFO)
+## 2. Stack Overflow & Underflow
+
+When implementing a stack using a **fixed-size array**, two critical conditions arise:
+
+\`\`\`text
+Overflow  → Trying to PUSH when stack is FULL
+Underflow → Trying to POP when stack is EMPTY
+\`\`\`
+
+### Push Algorithm (with Overflow check)
+
+\`\`\`text
+PUSH(stack, item):
+  Step 1: if TOP == MAX_SIZE - 1
+            Print "Stack Overflow"
+            Return
+  Step 2: TOP = TOP + 1
+  Step 3: stack[TOP] = item
+\`\`\`
+
+### Pop Algorithm (with Underflow check)
+
+\`\`\`text
+POP(stack):
+  Step 1: if TOP == -1
+            Print "Stack Underflow"
+            Return
+  Step 2: item = stack[TOP]
+  Step 3: TOP = TOP - 1
+  Step 4: Return item
+\`\`\`
+
+---
+
+## 3. Array-Based Stack Implementation
+
+A stack can be implemented using a **fixed-size array** with a **TOP variable** tracking the topmost element.
+
+\`\`\`text
+  Array Implementation:
+
+  Index:  [0] [1] [2] [3] [4]    MAX_SIZE = 5
+  Values: [10][20][30][ ][ ]
+                    ↑
+                   TOP = 2
+
+  Push 40:  [10][20][30][40][ ]   TOP = 3
+  Pop:      [10][20][30][ ][ ]   TOP = 2, returns 40
+\`\`\`
+
+**C Implementation:**
+
+\`\`\`c path=null start=null
+#define MAX_SIZE 100
+int stack[MAX_SIZE];
+int top = -1;  // Empty stack
+
+void push(int item) {
+    if (top == MAX_SIZE - 1) {
+        printf("Stack Overflow!\\n");
+        return;
+    }
+    stack[++top] = item;
+}
+
+int pop() {
+    if (top == -1) {
+        printf("Stack Underflow!\\n");
+        return -1;
+    }
+    return stack[top--];
+}
+
+int peek() {
+    if (top == -1) return -1;
+    return stack[top];
+}
+\`\`\`
+
+**Trade-off:**
+
+| Feature | Array-based Stack | Linked List-based Stack |
+|:--------|:-----------------|:-----------------------|
+| Size | Fixed (must declare beforehand) | Dynamic (grows as needed) |
+| Overflow | Possible | Not possible (until memory exhausted) |
+| Memory | No extra pointer overhead | Extra pointer per node |
+| Cache | Better (contiguous memory) | Worse (scattered nodes) |
+
+---
+
+## 4. Arithmetic Expression Types
+
+Arithmetic expressions can be written in three **notations**:
+
+| Notation | Operator Position | Example | Invented By |
+|:---------|:-----------------|:--------|:------------|
+| **Infix** | Between operands | A + B | Standard math |
+| **Prefix** (Polish) | Before operands | + A B | Jan Łukasiewicz |
+| **Postfix** (RPN) | After operands | A B + | Reverse Polish |
+
+### More Examples
+
+| Infix | Prefix | Postfix |
+|:------|:-------|:--------|
+| A + B | + A B | A B + |
+| A + B * C | + A * B C | A B C * + |
+| (A + B) * C | * + A B C | A B + C * |
+| A + B - C | - + A B C | A B + C - |
+| A * (B + C) | * A + B C | A B C + * |
+
+---
+
+## 5. Operator Precedence
+
+| Priority | Operator | Associativity |
+|:---------|:---------|:--------------|
+| Highest | ( ) Parentheses | — |
+| 2nd | ^ Exponentiation | Right to Left |
+| 3rd | \`*\` \`/\` Multiply, Divide | Left to Right |
+| Lowest | \`+\` \`-\` Add, Subtract | Left to Right |
+
+> **Note:** Exponentiation is **right-associative**: \`2^3^2 = 2^(3^2) = 512\`, NOT \`(2^3)^2 = 64\`.
+
+---
+
+## 6. Postfix Evaluation (Using Stack)
+
+### Algorithm
+
+\`\`\`text
+EVALUATE_POSTFIX(expression):
+  Step 1: Scan expression LEFT to RIGHT
+  Step 2: If OPERAND → Push to stack
+  Step 3: If OPERATOR →
+            Pop two operands (B = pop, A = pop)
+            Compute result = A operator B
+            Push result back to stack
+  Step 4: Final value in stack = ANSWER
+\`\`\`
+
+### Worked Example
+
+**Infix:** \`1 + 2 - 3 * (4 / 2)\`
+**Postfix:** \`1 2 + 3 4 2 / * -\`
+
+\`\`\`text
+Step-by-step evaluation of: 1 2 + 3 4 2 / * -
+
+Token  | Action              | Stack
+-------|---------------------|----------
+  1    | Push 1              | [1]
+  2    | Push 2              | [1, 2]
+  +    | Pop 2,1 → 1+2=3     | [3]
+  3    | Push 3              | [3, 3]
+  4    | Push 4              | [3, 3, 4]
+  2    | Push 2              | [3, 3, 4, 2]
+  /    | Pop 2,4 → 4/2=2     | [3, 3, 2]
+  *    | Pop 2,3 → 3*2=6     | [3, 6]
+  -    | Pop 6,3 → 3-6=-3    | [-3]
+
+Result = -3  ✓
+\`\`\`
+
+---
+
+## 7. Infix to Postfix Conversion (Using Stack)
+
+### Algorithm
+
+\`\`\`text
+INFIX_TO_POSTFIX(expression):
+  Create empty stack (for operators)
+  Create empty output string
+
+  Scan expression LEFT to RIGHT:
+    If OPERAND → Add to output
+    If '(' → Push to stack
+    If ')' → Pop and add to output until '(' found
+    If OPERATOR →
+      While stack top has HIGHER or EQUAL precedence:
+        Pop and add to output
+      Push current operator to stack
+
+  Pop remaining operators from stack → Add to output
+\`\`\`
+
+### Worked Example
+
+**Infix:** \`A + (B - C * (D / E ^ F))\`
+
+\`\`\`text
+Step-by-step conversion:
+
+Token  | Action                          | Stack      | Output
+-------|---------------------------------|------------|-------------------
+  A    | Operand → output                |            | A
+  +    | Push operator                   | [+]        | A
+  (    | Push (                          | [+, (]     | A
+  B    | Operand → output                | [+, (]     | A B
+  -    | Push operator                   | [+, (, -]  | A B
+  C    | Operand → output                | [+, (, -]  | A B C
+  *    | * > - → Push                    | [+,(,-,*]  | A B C
+  (    | Push (                          | [+,(,-,*,(]| A B C
+  D    | Operand → output                | [+,(,-,*,(]| A B C D
+  /    | Push operator                   | [+,(,-,*,(,/]| A B C D
+  E    | Operand → output                | [+,(,-,*,(,/]| A B C D E
+  ^    | ^ > / → Push                   | [+,(,-,*,(,/,^]| A B C D E
+  F    | Operand → output                | [+,(,-,*,(,/,^]| A B C D E F
+  )    | Pop until ( → ^, /              | [+,(,-,*]  | A B C D E F ^ /
+  )    | Pop until ( → *, -              | [+]        | A B C D E F ^ / * -
+  END  | Pop remaining → +               |            | A B C D E F ^ / * - +
+
+Postfix: A B C D E F ^ / * - +  ✓
+\`\`\`
+
+---
+
+## 8. Properties of Polish Notation
+
+**Key Property:** Prefix and Postfix notations **do NOT need parentheses**.
+
+The order of operations is determined entirely by the **position of operators**.
+
+\`\`\`text
+Infix (needs parentheses):    (A + B) * C   vs   A + (B * C)
+Prefix (no parentheses):      * + A B C     vs   + A * B C
+Postfix (no parentheses):     A B + C *     vs   A B C * +
+
+Each expression is UNAMBIGUOUS without parentheses!
+\`\`\`
+
+**Why this matters:**
+- Computers evaluate postfix/prefix expressions **much more efficiently**
+- No need to handle operator precedence during evaluation
+- Stack-based evaluation is simple and fast
+- Compilers convert infix → postfix before generating machine code
+
+---
+
+## 9. Queues - First In, First Out (FIFO)
 
 ### Simple Explanation
 
@@ -304,7 +543,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 1,
       explanation:
         "Stack = LIFO (Last In, First Out). Like a stack of plates - last plate placed on top is first to be removed.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q2",
@@ -313,7 +552,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 2,
       explanation:
         "Deque = Double-Ended Queue. Can add/remove from both front and rear. All operations are O(1).",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q3",
@@ -323,7 +562,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 1,
       explanation:
         "Stack is perfect for browser history. Push visited pages, pop to go back. LIFO order matches navigation.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q4",
@@ -333,7 +572,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 1,
       explanation:
         "Queue: Add at Rear (enqueue), Remove from Front (dequeue). Like a line at ticket counter - join at back, served from front.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q5",
@@ -343,7 +582,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 2,
       explanation:
         "Both push and pop are O(1). Stack only operates on top element - no traversal needed.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q6",
@@ -357,7 +596,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 1,
       explanation:
         "Balanced parentheses uses stack. Push opening brackets, pop for closing. If stack empty at end and no mismatch = balanced.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q7",
@@ -366,7 +605,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 2,
       explanation:
         "BFS (Breadth-First Search) uses queue. Process nodes level by level - FIFO order ensures level-wise traversal.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q8",
@@ -380,7 +619,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 2,
       explanation:
         "Queue can use both. Array-based queue may need resizing. Linked list provides O(1) operations but more memory per element.",
-      difficulty: "easy",
+      difficulty: "easy" as const,
     },
     {
       id: "sq-q9",
@@ -394,7 +633,7 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 3,
       explanation:
         "Depends on implementation. May throw exception (stack underflow), return null, or return special value. Good code checks isEmpty() first.",
-      difficulty: "medium",
+      difficulty: "medium" as const,
     },
     {
       id: "sq-q10",
@@ -404,7 +643,132 @@ lowest = heapq.heappop(pq) # O(log n)
       correctAnswer: 3,
       explanation:
         "Cannot determine with just front=rear. Could be empty (initial state) or full (after n insertions). Need additional flag or counter.",
-      difficulty: "medium",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q11",
+      question:
+        "What is the postfix expression for the infix expression A + B * C?",
+      options: ["A B + C *", "A B C * +", "+ A * B C", "A B C + *"],
+      correctAnswer: 1,
+      explanation:
+        "Multiplication has higher precedence than addition. B*C is evaluated first → postfix: A B C * +.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q12",
+      question: "Evaluate the postfix expression: 5 3 + 8 2 - *",
+      options: ["48", "16", "40", "24"],
+      correctAnswer: 0,
+      explanation:
+        "5+3=8, 8-2=6, 8*6=48. Steps: push 5,3; pop and add=8; push 8,2; pop and subtract=6; pop 8,6 and multiply=48.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q13",
+      question:
+        "Which notation does NOT require parentheses to define order of operations?",
+      options: [
+        "Infix",
+        "Prefix (Polish)",
+        "Both Prefix and Postfix",
+        "None of the above",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Both Prefix and Postfix notations are unambiguous without parentheses. Only Infix needs parentheses to override precedence.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q14",
+      question:
+        "In infix to postfix conversion, what happens when ')' is encountered?",
+      options: [
+        "Push ')' to stack",
+        "Pop and output until '(' is found",
+        "Ignore it",
+        "Push all operators to output",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "When ')' is encountered, pop operators from stack and add to output until matching '(' is found. The '(' is discarded.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q15",
+      question: "What is the prefix notation for (A + B) * (C - D)?",
+      options: [
+        "* + A B - C D",
+        "+ A B * - C D",
+        "* A + B C - D",
+        "+ * A B - C D",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Prefix places operator before operands. (A+B) → +AB, (C-D) → -CD, then multiply → *+AB-CD.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "sq-q16",
+      question: "Trying to push an element onto a full stack causes:",
+      options: ["Underflow", "Overflow", "Segmentation fault", "No error"],
+      correctAnswer: 1,
+      explanation:
+        "Stack Overflow occurs when pushing to a full stack (TOP == MAX_SIZE - 1). Underflow occurs when popping from an empty stack.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q17",
+      question:
+        "In a stack implemented using an array, the initial value of TOP is:",
+      options: ["0", "1", "-1", "MAX_SIZE"],
+      correctAnswer: 2,
+      explanation:
+        "TOP = -1 indicates an empty stack. After the first push, TOP becomes 0 (first index of the array).",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q18",
+      question: "Which of the following is NOT an application of stacks?",
+      options: [
+        "Expression evaluation",
+        "Recursion implementation",
+        "BFS traversal",
+        "Backtracking",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "BFS uses a Queue, not a Stack. Stacks are used for DFS, recursion, expression evaluation, undo operations, and backtracking.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q19",
+      question:
+        "The operator with the highest precedence in arithmetic expressions is:",
+      options: [
+        "+ (Addition)",
+        "* (Multiplication)",
+        "^ (Exponentiation)",
+        "/ (Division)",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Precedence order: Parentheses > Exponentiation (^) > Multiplication/Division (*,/) > Addition/Subtraction (+,-). Among the options, ^ is highest.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "sq-q20",
+      question: "The postfix form of A + (B - C * (D / E ^ F)) is:",
+      options: [
+        "A B C D E F ^ / * - +",
+        "A B C D E ^ F / * - +",
+        "+ A - B * C / D ^ E F",
+        "A B - C D * E F ^ / +",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Innermost first: E^F, then D/(E^F), then C*(D/E^F), then B-C*(D/E^F), finally A+result. Postfix: A B C D E F ^ / * - +",
+      difficulty: "hard" as const,
     },
   ],
 };
