@@ -253,17 +253,21 @@ def level_order(root):
 
 # Output: 1 2 3 4 5 (level by level!)
 \`\`\`
-
 ---
 
 ## 4. Binary Search Tree (BST)
 
+A Binary Search Tree is a node-based binary tree with the following properties:
+
+1. The **left subtree** of a node contains only nodes with keys **less than** the node's key.
+2. The **right subtree** of a node contains only nodes with keys **greater than** the node's key.
+3. Both left and right subtrees must **themselves be BSTs**.
+
 **The Golden Rule:** Left < Root < Right
 
-Every node in left subtree is SMALLER than root.
-Every node in right subtree is LARGER than root.
+This ordering allows efficient **searching**, **insertion**, and **deletion**.
 
-\`\`\`
+\`\`\`text
         50
        /  \\
      30    70
@@ -275,7 +279,25 @@ Every node in right subtree is LARGER than root.
    - This makes searching FAST!
 \`\`\`
 
-### BST Implementation
+| Operation | Average Case | Worst Case (Skewed) |
+|:----------|:-------------|:--------------------|
+| Search    | O(log n)     | O(n)                |
+| Insert    | O(log n)     | O(n)                |
+| Delete    | O(log n)     | O(n)                |
+
+> All operations depend on **height h** of the tree → O(h). Balanced = O(log n), Skewed = O(n).
+
+### BST Insertion
+
+**Algorithm Steps:**
+1. Start from root.
+2. Compare value X with current node.
+   - If X < node → move to **left** subtree.
+   - If X > node → move to **right** subtree.
+3. Continue until reaching a **NULL** (leaf position).
+4. Insert the new node there.
+
+> **Key insight:** New keys are **always inserted at a leaf position** while maintaining BST property.
 
 \`\`\`python path=null start=null
 class BST:
@@ -286,14 +308,14 @@ class BST:
         self.root = self._insert(self.root, val)
     
     def _insert(self, node, val):
-        # Base case: empty spot found!
+        # Base case: empty spot found! Insert here.
         if not node:
             return TreeNode(val)
         
         # Decide: go left or right?
         if val < node.val:
             node.left = self._insert(node.left, val)
-        else:
+        elif val > node.val:
             node.right = self._insert(node.right, val)
         
         return node
@@ -302,13 +324,11 @@ class BST:
         return self._search(self.root, val)
     
     def _search(self, node, val):
-        # Base cases
         if not node:
             return False  # Not found
         if node.val == val:
             return True   # Found!
         
-        # Decide: go left or right?
         if val < node.val:
             return self._search(node.left, val)
         else:
@@ -323,6 +343,136 @@ print(bst.search(40))  # True
 print(bst.search(45))  # False
 \`\`\`
 
+### BST Deletion (3 Cases)
+
+Deletion is the trickiest BST operation. There are **3 cases**:
+
+#### Case 1: Deleting a Leaf Node
+Simply **remove** the node. No children to worry about.
+
+\`\`\`text
+  Delete 20:
+      30              30
+     /  \\            /  \\
+   20    40   →    [X]   40
+
+  Node 20 is a leaf → just remove it!
+\`\`\`
+
+#### Case 2: Deleting a Node with One Child
+**Replace** the node with its child.
+
+\`\`\`text
+  Delete 20 (has one child 10):
+      30              30
+     /  \\            /  \\
+   20    40   →    10    40
+   /
+  10
+
+  Node 20 replaced by its only child 10.
+\`\`\`
+
+#### Case 3: Deleting a Node with Two Children
+1. Find the **inorder successor** (minimum value in right subtree).
+2. **Copy** its value into the node to be deleted.
+3. **Delete** the inorder successor node (which is now a duplicate).
+
+\`\`\`text
+  Delete 30 (has two children):
+      30                 35
+     /  \\               /  \\
+   20    40    →      20    40
+        /  \\              /  \\
+      35    50           37    50
+        \\
+        37
+
+  Step 1: Inorder successor of 30 = 35 (min in right subtree)
+  Step 2: Copy 35 into node 30's position
+  Step 3: Delete original 35 (Case 2: has one child 37)
+\`\`\`
+
+> **Note:** Inorder **predecessor** (maximum in left subtree) can also be used instead of inorder successor.
+
+### Inorder Successor
+
+The **inorder successor** of a node is the node with the **smallest value greater** than the given node. It is found by going to the **right subtree** and then going **left as far as possible**.
+
+\`\`\`python path=null start=null
+def find_min(node):
+    """Find minimum value node (leftmost node)"""
+    current = node
+    while current.left:
+        current = current.left
+    return current
+
+# Inorder successor of node X = find_min(X.right)
+\`\`\`
+
+### BST Deletion Implementation
+
+\`\`\`python path=null start=null
+def delete(self, val):
+    self.root = self._delete(self.root, val)
+
+def _delete(self, node, val):
+    if not node:
+        return node
+    
+    # Step 1: Find the node
+    if val < node.val:
+        node.left = self._delete(node.left, val)
+    elif val > node.val:
+        node.right = self._delete(node.right, val)
+    else:
+        # Found the node to delete!
+
+        # Case 1 & 2: No child or one child
+        if not node.left:
+            return node.right
+        elif not node.right:
+            return node.left
+        
+        # Case 3: Two children
+        # Find inorder successor (min in right subtree)
+        successor = find_min(node.right)
+        node.val = successor.val
+        # Delete the inorder successor
+        node.right = self._delete(node.right, successor.val)
+    
+    return node
+\`\`\`
+
+### BST Construction Example
+
+Insert: **30, 20, 10, 15, 25, 23, 39, 35, 42**
+
+\`\`\`text
+  Step-by-step:
+  Insert 30 → root
+  Insert 20 → left of 30
+  Insert 10 → left of 20
+  Insert 15 → right of 10
+  Insert 25 → right of 20
+  Insert 23 → left of 25
+  Insert 39 → right of 30
+  Insert 35 → left of 39
+  Insert 42 → right of 39
+
+  Final BST:
+              30
+            /    \\
+          20      39
+         /  \\   /   \\
+       10   25  35   42
+         \\  /
+         15 23
+\`\`\`
+
+> **IMPORTANT FACT:** Inorder traversal of this BST gives **sorted order**:
+> 10, 15, 20, 23, 25, 30, 35, 39, 42
+
 ### Why BST is Fast
 
 Each comparison **eliminates half** the remaining nodes!
@@ -330,6 +480,23 @@ Each comparison **eliminates half** the remaining nodes!
 - O(log n) average case
 
 **BUT** if you insert sorted data (1,2,3,4,5), it becomes a "linked list" and O(n)!
+
+\`\`\`text
+  Balanced BST:        Skewed BST (sorted insert):
+       30                  1
+      /  \\                  \\
+    20    40                 2
+   /  \\                      \\
+  10   25                     3
+                               \\
+  Height = 2                    4
+  Search = O(log n)              \\
+                                  5
+                             Height = 4
+                             Search = O(n) ← disaster!
+\`\`\`
+
+> **Next intellectual jump:** AVL Trees (self-balancing BST) solve this skewing problem. That's where trees stop misbehaving!
 
 ---
 
@@ -644,6 +811,114 @@ def bfs(root):
       explanation:
         "A Perfect Binary Tree is BOTH Full (every node has 0 or 2 children) AND Complete (all levels filled). It's the most constrained binary tree type.",
       difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q21",
+      question:
+        "When deleting a node with TWO children from a BST, we replace it with its:",
+      options: [
+        "Left child",
+        "Right child",
+        "Inorder successor or predecessor",
+        "Parent node",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "For a node with two children, we find its inorder successor (min in right subtree) or inorder predecessor (max in left subtree), copy the value, then delete the successor/predecessor.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q22",
+      question: "The inorder successor of a node in a BST is:",
+      options: [
+        "The parent of the node",
+        "The maximum value in the left subtree",
+        "The minimum value in the right subtree",
+        "The root of the tree",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Inorder successor = smallest value greater than the node = minimum value in the right subtree. Found by going right once, then left as far as possible.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q23",
+      question:
+        "If we insert keys 30, 20, 10 into an empty BST, the resulting tree is:",
+      options: [
+        "Balanced with 30 as root",
+        "Right-skewed",
+        "Left-skewed",
+        "A perfect binary tree",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Inserting in decreasing order (30, 20, 10) creates a left-skewed tree: 30 → 20 → 10. Each new key is smaller, so it always goes left.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q24",
+      question: "Deleting a leaf node from a BST requires:",
+      options: [
+        "Finding the inorder successor",
+        "Replacing it with its child",
+        "Simply removing the node",
+        "Rebalancing the entire tree",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "A leaf node has no children. Deletion is simplest — just remove it (set parent's pointer to NULL). No restructuring needed.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q25",
+      question:
+        "The inorder traversal of a BST with nodes {50, 30, 70, 20, 40} gives:",
+      options: [
+        "50 30 70 20 40",
+        "20 30 40 50 70",
+        "70 50 40 30 20",
+        "30 20 50 40 70",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Inorder traversal of a BST ALWAYS produces sorted (ascending) output. So the answer is: 20, 30, 40, 50, 70.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q26",
+      question:
+        "If a BST becomes completely right-skewed, searching for the largest element takes:",
+      options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+      correctAnswer: 2,
+      explanation:
+        "In a right-skewed BST (like a linked list), the largest element is at the bottom. You must traverse all n nodes sequentially, making it O(n).",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q27",
+      question:
+        "When deleting a node with ONE child from a BST, the correct approach is:",
+      options: [
+        "Replace the node with its inorder successor",
+        "Replace the node with its child",
+        "Delete the child first, then the node",
+        "Rotate the subtree",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "For a node with one child, simply replace the node with its only child. The child takes over the node's position, maintaining BST property.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q28",
+      question:
+        "After inserting 30, 20, 10, 15, 25, 23, 39, 35, 42 into an empty BST, what is the right child of 20?",
+      options: ["10", "23", "25", "30"],
+      correctAnswer: 2,
+      explanation:
+        "Building the BST: 30 is root, 20 goes left of 30. Then 10 goes left of 20, 15 right of 10, 25 right of 20. So the right child of 20 is 25.",
+      difficulty: "medium" as const,
     },
   ],
 };
