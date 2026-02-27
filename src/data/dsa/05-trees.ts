@@ -646,6 +646,140 @@ When imbalance occurs, **rotations** are performed at the nearest ancestor whose
 
 ---
 
+## 6. B-Tree (m-way Search Tree)
+
+B-Trees are extended Binary Search Trees specialized in **m-way searching**. Instead of 2 children (binary), each node can have up to **m children** and store multiple keys.
+
+> **The deeper insight:** AVL optimized height in **RAM**. B-Tree optimizes height for **disk**. When datasets are huge and RAM is small compared to disk, B-Trees become kings.
+
+### Properties of B-Tree (Order = m)
+
+1. Every node can have at most **m children** and **(m − 1) keys**.
+2. Every node (except root and leaf) must have at least **⌈m/2⌉ children**.
+3. Root must have at least **2 children** (if not a leaf).
+4. **All leaves** must be at the **same level**.
+5. Data is always stored in **sorted order**.
+
+### Key Formulas
+
+\`\`\`text
+For a B-Tree of order m:
+
+  Maximum keys per node   = m − 1
+  Minimum keys per node   = ⌈m/2⌉ − 1
+  Maximum children        = m
+  Minimum children        = ⌈m/2⌉
+
+  Example: Order m = 4
+  ┌──────────────────┬───────┐
+  │ Property         │ Value │
+  ├──────────────────┼───────┤
+  │ Max keys         │ 3     │
+  │ Min keys         │ 1     │
+  │ Max children     │ 4     │
+  │ Min children     │ 2     │
+  └──────────────────┴───────┘
+\`\`\`
+
+\`\`\`text
+  B-Tree of order 3 (2-3 Tree):
+
+       [20 | 40]            ← root has 2 keys, 3 children
+      /    |    \\
+  [10]  [25|30]  [50|60]    ← leaves at same level
+
+  Each internal node: 1 to 2 keys, 2 to 3 children
+  All leaves at level 1
+  Keys sorted within each node
+\`\`\`
+
+### Why B-Tree? (Disk Access)
+
+\`\`\`text
+  Problem: Disk access is SLOW compared to RAM
+
+  Binary tree (height ~20 for 1M nodes) = 20 disk reads
+  B-Tree (order 100, same 1M nodes)     = ~3 disk reads!
+
+  Fewer levels = fewer disk accesses = MUCH faster!
+\`\`\`
+
+### Operations
+
+| Operation | Time Complexity |
+|:----------|:---------------|
+| Search    | O(log n)       |
+| Insert    | O(log n)       |
+| Delete    | O(log n)       |
+
+---
+
+## 7. B+ Tree
+
+B+ Trees are extensions of B-Trees designed for even more efficient **sequential access**.
+
+### Key Difference: B-Tree vs B+ Tree
+
+\`\`\`text
+  B-Tree:                    B+ Tree:
+  ┌────────┐                 ┌────────┐
+  │ 20|40  │ ← has data     │ 20|40  │ ← keys ONLY (no data)
+  ├────────┤                 ├────────┤
+  │ 10|30  │ ← has data     │ 10|30  │ ← keys ONLY
+  └────────┘                 └────────┘
+                                  ↓
+                             ┌────────────────────┐
+                             │ Leaf nodes have ALL │
+                             │ data + linked list  │
+                             └────────────────────┘
+
+  B-Tree:  Data in internal + leaf nodes
+  B+ Tree: Data ONLY in leaf nodes
+           Leaves connected as LINKED LIST
+\`\`\`
+
+### Properties of B+ Tree
+
+1. Every node (except root): max **m children** and **(m − 1) keys**, min **⌈m/2⌉ children**.
+2. Root has at least **2 children** and at least **1 search key**.
+3. All leaves at the **same level**.
+4. **Sorted order** maintained.
+5. **Leaf nodes linked** to next leaf node (linked list).
+
+### Why B+ Tree?
+
+\`\`\`text
+  When main memory is limited:
+  • Internal nodes → stored in main memory (small, keys only)
+  • Leaf nodes     → stored in secondary storage (large, has data)
+
+  Benefits:
+  1. Internal nodes are SMALLER (no data) → more keys fit in RAM
+  2. Linked leaves → efficient RANGE QUERIES (scan left to right)
+  3. All searches end at leaf level → uniform access time
+\`\`\`
+
+### B-Tree vs B+ Tree Summary
+
+| Feature | B-Tree | B+ Tree |
+|:--------|:-------|:--------|
+| Data storage | Internal + Leaf nodes | **Leaf nodes only** |
+| Leaf linking | No | **Yes (linked list)** |
+| Range queries | Slower | **Faster** |
+| Search path | May end at any level | **Always ends at leaf** |
+| Internal node size | Larger (has data) | **Smaller (keys only)** |
+| Used in | File systems | **Databases (MySQL, PostgreSQL)** |
+
+| Operation | Time Complexity |
+|:----------|:---------------|
+| Search    | O(log n)       |
+| Insert    | O(log n)       |
+| Delete    | O(log n)       |
+
+> **The evolution:** BST → AVL (balanced in RAM) → B-Tree (balanced for disk) → B+ Tree (optimized sequential disk access + databases)
+
+---
+
 ## Key Takeaways
 
 | Operation | BST Average | BST Worst | AVL |
@@ -1131,6 +1265,82 @@ def bfs(root):
       correctAnswer: 2,
       explanation:
         "30 is root, 10 goes left, 20 goes right of 10. Node 30 gets BF = +2. Path from 30 to new node: Left (to 10) → Right (to 20) = LR case. Fix: Left rotate at 10, then Right rotate at 30. Result: 20 is root.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q35",
+      question:
+        "In a B-Tree of order 5, the maximum number of keys a node can have is:",
+      options: ["4", "5", "6", "3"],
+      correctAnswer: 0,
+      explanation:
+        "Maximum keys = m − 1 = 5 − 1 = 4. A B-Tree of order m can store at most (m − 1) keys per node.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q36",
+      question:
+        "In a B-Tree of order 6, the minimum number of children a non-root internal node must have is:",
+      options: ["2", "3", "4", "6"],
+      correctAnswer: 1,
+      explanation:
+        "Minimum children = ⌈m/2⌉ = ⌈6/2⌉ = 3. Non-root, non-leaf nodes must have at least ⌈m/2⌉ children.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q37",
+      question: "The primary reason B-Trees are used in databases is:",
+      options: [
+        "They use less memory than BST",
+        "They minimize disk accesses due to low height",
+        "They are easier to implement than AVL",
+        "They support only integer keys",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "B-Trees have very low height because each node stores multiple keys and has many children. Low height = fewer disk reads, which is critical for database performance.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q38",
+      question: "In a B+ Tree, data records are stored in:",
+      options: [
+        "Root node only",
+        "Internal nodes only",
+        "Leaf nodes only",
+        "All nodes",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "In B+ Trees, internal nodes store only keys (for searching). All actual data records are stored in leaf nodes, which are connected as a linked list.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q39",
+      question: "What makes B+ Tree better than B-Tree for range queries?",
+      options: [
+        "B+ Tree has fewer nodes",
+        "B+ Tree leaf nodes are connected as a linked list",
+        "B+ Tree has smaller height",
+        "B+ Tree stores data in root",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "B+ Tree leaf nodes are linked together. For range queries (e.g., 'find all values between 10 and 50'), you just find the start leaf and scan sequentially through the linked list.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q40",
+      question: "Which property is TRUE for B-Trees but NOT for B+ Trees?",
+      options: [
+        "All leaves are at the same level",
+        "Data can be found in internal nodes",
+        "Keys are stored in sorted order",
+        "All operations are O(log n)",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "In B-Trees, data is stored in BOTH internal and leaf nodes. In B+ Trees, data is stored ONLY in leaf nodes. Internal nodes in B+ Trees contain only keys for navigation.",
       difficulty: "medium" as const,
     },
   ],
