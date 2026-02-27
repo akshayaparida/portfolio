@@ -500,13 +500,149 @@ Each comparison **eliminates half** the remaining nodes!
 
 ---
 
-## 5. Balanced Trees (AVL, Red-Black)
+## 5. AVL Tree (Self-Balancing BST)
 
-Automatically rebalance to prevent worst-case O(n).
+AVL Tree = **Self-Balanced BST** (named after inventors Adelson-Velsky and Landis)
 
-**AVL Rule:** Height difference between left and right subtrees ≤ 1
+> BST adds **order**. AVL adds **discipline**. BST says "keep values sorted." AVL says "also keep the tree **short**." Short trees = fast searches.
 
-All operations stay O(log n) guaranteed!
+A binary tree is an AVL tree if:
+1. Left and right subtrees are **themselves AVL trees**.
+2. **| hL − hR | ≤ 1** for every node (height difference at most 1).
+
+### Balance Factor
+
+\`\`\`text
+Balance Factor = Height of Left Subtree − Height of Right Subtree
+
+Allowed values: -1, 0, +1
+
+  +1 → Left heavy (left subtree is taller)
+   0 → Perfectly balanced
+  -1 → Right heavy (right subtree is taller)
+
+If any node has BF outside {-1, 0, +1} → TREE IS UNBALANCED!
+\`\`\`
+
+\`\`\`text
+  AVL Tree (balanced):        NOT AVL (unbalanced):
+       [30] BF=0                  [30] BF=+2  ← violation!
+      /    \\                     /
+   [20]    [40]              [20] BF=+1
+   BF=0    BF=0             /
+                          [10] BF=0
+
+  All BFs are -1, 0, +1      Node 30 has BF = 2 → needs rotation!
+\`\`\`
+
+### Rotations (To Rebalance)
+
+When imbalance occurs, **rotations** are performed at the nearest ancestor whose balance factor becomes **±2**. There are **4 types**:
+
+#### 1. LL Rotation (Left-Left Case)
+
+**When:** New node inserted in **left subtree of left child**.
+**Fix:** Single **Right Rotation** (clockwise).
+
+\`\`\`text
+  Before (LL case):        After (Right Rotation):
+       [30] BF=+2              [20] BF=0
+      /                       /    \\
+   [20] BF=+1              [10]   [30]
+   /                        BF=0   BF=0
+  [10] BF=0
+
+  Node 20 becomes the new root of this subtree.
+\`\`\`
+
+#### 2. RR Rotation (Right-Right Case)
+
+**When:** New node inserted in **right subtree of right child**.
+**Fix:** Single **Left Rotation** (anticlockwise).
+
+\`\`\`text
+  Before (RR case):        After (Left Rotation):
+  [10] BF=-2                   [20] BF=0
+     \\                        /    \\
+    [20] BF=-1              [10]   [30]
+       \\                    BF=0   BF=0
+      [30] BF=0
+
+  Node 20 becomes the new root of this subtree.
+\`\`\`
+
+#### 3. LR Rotation (Left-Right Case)
+
+**When:** New node inserted in **right subtree of left child**.
+**Fix:** Two rotations:
+1. **Left rotation** on the left child
+2. **Right rotation** on the unbalanced node
+
+\`\`\`text
+  Before (LR case):       After Step 1:          After Step 2:
+       [30] BF=+2           [30] BF=+2             [20] BF=0
+      /                    /                       /    \\
+   [10] BF=-1           [20] BF=+1              [10]   [30]
+      \\                 /                        BF=0   BF=0
+     [20] BF=0        [10] BF=0
+
+  Step 1: Left rotate at 10    Step 2: Right rotate at 30
+\`\`\`
+
+#### 4. RL Rotation (Right-Left Case)
+
+**When:** New node inserted in **left subtree of right child**.
+**Fix:** Two rotations:
+1. **Right rotation** on the right child
+2. **Left rotation** on the unbalanced node
+
+\`\`\`text
+  Before (RL case):       After Step 1:          After Step 2:
+  [10] BF=-2              [10] BF=-2               [20] BF=0
+     \\                       \\                     /    \\
+    [30] BF=+1              [20] BF=-1           [10]   [30]
+    /                          \\                  BF=0   BF=0
+  [20] BF=0                  [30] BF=0
+
+  Step 1: Right rotate at 30   Step 2: Left rotate at 10
+\`\`\`
+
+### Quick Rotation Detection (for MCQs!)
+
+\`\`\`text
+  How to detect which rotation is needed:
+
+  1. Find the first unbalanced ancestor (BF = ±2)
+  2. Check the PATH from that ancestor to the new node:
+
+     Path goes Left  → Left  = LL → Single Right Rotation
+     Path goes Right → Right = RR → Single Left Rotation
+     Path goes Left  → Right = LR → Left then Right Rotation
+     Path goes Right → Left  = RL → Right then Left Rotation
+\`\`\`
+
+### Insertion in AVL Tree
+
+\`\`\`text
+  Steps:
+  1. Insert node as in normal BST (at leaf position)
+  2. Walk back up to root, updating heights of ancestors
+  3. Compute balance factor at each ancestor
+  4. If any node has BF = ±2 → perform the appropriate rotation
+  5. Done! Tree is balanced again.
+\`\`\`
+
+### Time Complexity
+
+| Operation | BST (worst) | AVL (always) |
+|:----------|:------------|:-------------|
+| Search    | O(n)        | **O(log n)** |
+| Insert    | O(n)        | **O(log n)** |
+| Delete    | O(n)        | **O(log n)** |
+
+> **The guarantee:** BST can degrade to O(n) with skewed input. AVL **guarantees** O(log n) for ALL operations. That guarantee is the entire reason AVL exists.
+
+> **Next upgrade:** Red-Black Trees — same self-balancing idea, different balancing philosophy (less strict, fewer rotations).
 
 ---
 
@@ -918,6 +1054,83 @@ def bfs(root):
       correctAnswer: 2,
       explanation:
         "Building the BST: 30 is root, 20 goes left of 30. Then 10 goes left of 20, 15 right of 10, 25 right of 20. So the right child of 20 is 25.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q29",
+      question: "The balance factor of an AVL tree node is defined as:",
+      options: [
+        "Height of right subtree − Height of left subtree",
+        "Height of left subtree − Height of right subtree",
+        "Number of nodes in left − Number of nodes in right",
+        "Depth of left subtree + Depth of right subtree",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Balance Factor = Height of Left Subtree − Height of Right Subtree. Allowed values are -1, 0, +1. Any other value means the tree needs rebalancing.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q30",
+      question:
+        "If nodes 10, 20, 30 are inserted into an empty AVL tree, which rotation is needed?",
+      options: [
+        "LL Rotation",
+        "RR Rotation",
+        "LR Rotation",
+        "No rotation needed",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Inserting 10, 20, 30 in order creates a right-skewed path (Right→Right). Node 10 gets BF = -2. Path is Right-Right → RR case → Single Left Rotation. Result: 20 becomes root with 10 left, 30 right.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q31",
+      question: "An LR rotation in AVL tree is a combination of:",
+      options: [
+        "Two right rotations",
+        "Two left rotations",
+        "Left rotation on left child, then right rotation on root",
+        "Right rotation on right child, then left rotation on root",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "LR (Left-Right) case: the new node is in the right subtree of the left child. Fix: first Left rotate the left child (to convert to LL), then Right rotate the unbalanced node.",
+      difficulty: "medium" as const,
+    },
+    {
+      id: "tree-q32",
+      question: "The main advantage of AVL tree over BST is:",
+      options: [
+        "AVL uses less memory",
+        "AVL guarantees O(log n) for all operations",
+        "AVL supports more data types",
+        "AVL does not need comparisons",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "BST can degrade to O(n) with skewed input. AVL guarantees O(log n) for search, insert, and delete by maintaining balance factor ≤ 1 at every node through rotations.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q33",
+      question:
+        "Which of the following balance factor values indicates an unbalanced AVL node?",
+      options: ["-1", "0", "+1", "+2"],
+      correctAnswer: 3,
+      explanation:
+        "AVL allows only -1, 0, +1 as balance factors. A value of +2 (or -2) means the node is unbalanced and a rotation is required to restore balance.",
+      difficulty: "easy" as const,
+    },
+    {
+      id: "tree-q34",
+      question:
+        "Inserting keys 30, 10, 20 into an empty AVL tree requires which rotation?",
+      options: ["LL Rotation", "RR Rotation", "LR Rotation", "RL Rotation"],
+      correctAnswer: 2,
+      explanation:
+        "30 is root, 10 goes left, 20 goes right of 10. Node 30 gets BF = +2. Path from 30 to new node: Left (to 10) → Right (to 20) = LR case. Fix: Left rotate at 10, then Right rotate at 30. Result: 20 is root.",
       difficulty: "medium" as const,
     },
   ],
