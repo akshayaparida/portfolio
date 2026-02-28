@@ -10,6 +10,7 @@ import { graphsModule } from "./07-graphs";
 import { searchingSortingModule } from "./08-searching-sorting";
 import { advancedAlgorithmsModule } from "./09-advanced-algorithms";
 import { trieAdvancedDSModule } from "./10-trie-advanced-ds";
+import { pyqRevisionModule } from "./11-pyq-revision";
 
 export const dsaModules = [
   algorithmicComplexityModule,
@@ -24,4 +25,5 @@ export const dsaModules = [
   searchingSortingModule,
   advancedAlgorithmsModule,
   trieAdvancedDSModule,
+  pyqRevisionModule,
 ];
