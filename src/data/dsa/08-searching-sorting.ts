@@ -4,12 +4,12 @@ export const searchingSortingModule: LearningModule = {
   id: "08-searching-sorting",
   title: "8. Searching & Sorting",
   description:
-    "Core Algorithms - Bubble, Selection, Insertion, Shell, Merge, Quick, Heap Sort",
+    "Comparison & Non-Comparison Algorithms, Lower Bounds, Stability, Complexities",
   status: "completed",
   tags: ["Algorithm"],
   detailedContent: `# Searching & Sorting Algorithms
 
-> **Algorithm Module (CUET PG Lecture 11)** — Where time complexity becomes power
+> **Algorithm Module (CUET PG Lectures 11 & 12)** — Beating the comparison barrier
 
 ---
 
@@ -22,13 +22,13 @@ export const searchingSortingModule: LearningModule = {
 | 3 | O(n²) sorts | Bubble, Selection, Insertion, Shell |
 | 4 | O(n log n) sorts | Merge, Quick, Heap |
 | 5 | Stability & lower bounds | What comparison sorts can and cannot do |
-| 6 | Recurrence relations | Master Theorem for divide & conquer |
+| 6 | Breaking the Barrier | Non-comparison sorts: Counting, Radix, Bucket |
 
 ---
 
 ## 1. The Two Complexity Classes
 
-\`\`\`text
+~~~text
   ┌─────────────────────────────────────────────────────────┐
   │  O(n²)        →  Bubble, Selection, Insertion, Shell    │
   │  O(n log n)   →  Merge, Quick, Heap                    │
@@ -40,9 +40,7 @@ export const searchingSortingModule: LearningModule = {
 
   That's the difference between "runs instantly"
   and "why is my laptop crying?"
-\`\`\`
-
-> **First mental separation:** If someone says "O(n²) sort" — it's educational. If they say "O(n log n)" — it's production-ready.
+~~~
 
 ---
 
@@ -50,682 +48,368 @@ export const searchingSortingModule: LearningModule = {
 
 ### Linear Search — O(n)
 
-Check every item one by one. Works on **any** list (sorted or unsorted).
+Check every item one by one. Works on **any** list.
 
-\`\`\`python path=null start=null
+~~~python
 def linear_search(arr, target):
     for i, val in enumerate(arr):
         if val == target:
-            return i      # Found at index i
-    return -1             # Not found
-
-nums = [5, 2, 8, 1, 9]
-print(linear_search(nums, 8))   # 2
-print(linear_search(nums, 7))   # -1
-\`\`\`
+            return i      # Found
+    return -1
+~~~
 
 ### Binary Search — O(log n)
 
-Divide search space in half each step. **Requires sorted array!**
+Divide search space in half. **Requires sorted array!**
+Each comparison removes half the search space (exponential reduction).
 
-\`\`\`python path=null start=null
+~~~python
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
-
     while left <= right:
         mid = (left + right) // 2
-
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
-            left = mid + 1       # Target in right half
+            left = mid + 1
         else:
-            right = mid - 1      # Target in left half
-
+            right = mid - 1
     return -1
-
-nums = [1, 2, 5, 8, 9, 12, 15]
-print(binary_search(nums, 8))    # 3
-print(binary_search(nums, 10))   # -1
-\`\`\`
-
-\`\`\`text
-  Why O(log n)?
-
-  Start: [1, 2, 5, 8, 9, 12, 15]   7 elements
-  Step 1: search [9, 12, 15]        3 elements
-  Step 2: search [9]                1 element
-
-  7 → 3 → 1 = only 3 steps!
-  For 1,000 items: ~10 steps
-  For 1,000,000 items: ~20 steps
-\`\`\`
-
-| Search | Time | Requires Sorted | Space |
-|:-------|:-----|:----------------|:------|
-| Linear | O(n) | No | O(1) |
-| Binary | **O(log n)** | **Yes** | O(1) |
+~~~
 
 ---
 
-## 3. Bubble Sort — O(n²)
+## 3. Comparison Sorts: O(n²)
 
-**Idea:** Repeatedly compare adjacent elements and swap if out of order. Largest element "bubbles" to the end each pass.
+### Bubble Sort
 
-\`\`\`python path=null start=null
-def bubble_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        swapped = False
-        for j in range(n - 1 - i):        # Last i elements already sorted
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                swapped = True
-        if not swapped:                    # Optimization: already sorted
-            break
-    return arr
-\`\`\`
+Repeatedly compare adjacent elements. Largest bubbles to the end.
 
-\`\`\`text
-  Pass-by-pass trace: [5, 3, 8, 1]
+- **Comparisons:** $n(n - 1) / 2$
+- **Worst Case:** $O(n^2)$
+- **Best Case:** $O(n)$ (already sorted)
+- **Stable:** Yes
 
-  Pass 1: [3,5,8,1] → [3,5,8,1] → [3,5,1,8]   ← 8 bubbled to end
-  Pass 2: [3,5,1,8] → [3,1,5,8]                 ← 5 in place
-  Pass 3: [1,3,5,8]                              ← Done!
+### Selection Sort
 
-  ┌──────────────────────────────────────────────┐
-  │  Number of comparisons = n(n − 1) / 2       │
-  │                                              │
-  │  n = 5: comparisons = 5(4)/2 = 10           │
-  │  n = 100: comparisons = 100(99)/2 = 4950    │
-  │                                              │
-  │  Worst case: O(n²)                           │
-  │  Best case (already sorted): O(n)            │
-  │  Stable: YES                                 │
-  │  Space: O(1)                                 │
-  └──────────────────────────────────────────────┘
-\`\`\`
+Find smallest element, swap with first position. Repeat.
+
+- **Exam Trap:** It ALWAYS performs $n(n - 1) / 2$ comparisons, regardless of whether input is sorted or reverse sorted.
+- **Worst/Best:** $O(n^2)$ always!
+- **Swaps:** At most $n$.
+- **Stable:** No.
+
+### Insertion Sort
+
+Build sorted left portion. Highly underrated.
+
+- **Worst Case:** $O(n^2)$
+- **Best Case:** $O(n)$
+- **Stable:** Yes
+- **Usage:** Real systems (Java, Python) switch to insertion sort for tiny arrays (e.g., $n < 47$) inside Quick/Merge sort because low overhead makes it very fast in practice.
+
+### Shell Sort
+
+Insertion sort but jumping using gaps that shrink over time.
+- **Time:** $O(n \\log^2 n)$ to $O(n^{1.5})$. Unstable.
 
 ---
 
-## 4. Selection Sort — O(n²)
+## 4. Comparison Sorts: O(n log n)
 
-**Idea:** Find the smallest element, swap with first position. Repeat for remaining.
+### Merge Sort ⭐
 
-\`\`\`python path=null start=null
-def selection_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        min_idx = i
-        for j in range(i + 1, n):
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-    return arr
-\`\`\`
+Divide into halves, recursively sort, and merge back.
 
-\`\`\`text
-  Trace: [29, 10, 14, 37, 13]
+~~~text
+  Recurrence: T(n) = 2T(n/2) + Θ(n)
+  By Master Theorem → T(n) = Θ(n log n)
+~~~
 
-  Pass 1: min=10 at idx 1 → swap with idx 0 → [10, 29, 14, 37, 13]
-  Pass 2: min=13 at idx 4 → swap with idx 1 → [10, 13, 14, 37, 29]
-  Pass 3: min=14 at idx 2 → no swap needed   → [10, 13, 14, 37, 29]
-  Pass 4: min=29 at idx 4 → swap with idx 3 → [10, 13, 14, 29, 37]
+- **Time:** $O(n \\log n)$ Always guaranteed.
+- **Space:** $O(n)$ (Needs extra array!)
+- **Stable:** Yes.
 
-  ┌──────────────────────────────────────────────────┐
-  │  Key property:                                   │
-  │  Number of SWAPS = at most n (very few swaps!)   │
-  │  Number of COMPARISONS = n(n−1)/2 (same always!) │
-  │                                                  │
-  │  EXAM TRAP: Selection sort ALWAYS performs the    │
-  │  same number of comparisons regardless of input. │
-  │                                                  │
-  │  Best/Avg/Worst: ALL O(n²)                       │
-  │  Stable: NO (generally)                          │
-  │  Space: O(1)                                     │
-  └──────────────────────────────────────────────────┘
-\`\`\`
+### Quick Sort ⭐
+
+Pick a pivot, position elements less than pivot left, greater right. Recursively sort halves.
+
+- **Average Time:** $O(n \\log n)$
+- **Worst Case:** $O(n^2)$ — Happens when array is sorted AND you pick extreme pivots. (Pivot strategy is critical).
+- **Space:** $O(\\log n)$ stack space.
+- **Stable:** No.
+- **Why use it?** Good cache behavior makes it the fastest in actual hardware practice.
+
+### Heap Sort
+
+Build max-heap ($O(n)$). Continually pop root and heapify ($O(\\log n)$).
+
+- **Time:** $O(n \\log n)$ Guaranteed.
+- **Space:** $O(1)$ — Entirely in-place!
+- **Stable:** No.
+- **Usage:** Reliable, no worst-case $O(n^2)$ trap like Quick Sort, no $O(n)$ space requirement like Merge Sort.
 
 ---
 
-## 5. Insertion Sort — O(n²)
+## 5. The Comparison Limit
 
-**Idea:** Take next element, insert into the already-sorted left portion.
+**Stable vs Unstable Sorting:**
+- Stable: Equal elements keep their original relative order. (Important for multi-key database sorts).
+- Stable: Insertion, Merge, Bubble.
+- Unstable: Quick, Heap, Selection.
 
-\`\`\`python path=null start=null
-def insertion_sort(arr):
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i - 1
-        while j >= 0 and key < arr[j]:    # Shift larger elements right
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key                  # Insert key at correct position
-    return arr
-\`\`\`
+**The Comparison Bound Theorem:**
+~~~text
+  No comparison-based sort can beat Ω(n log n) in the worst case.
+~~~
+Every algorithm above compares $A < B$. The mathematics of decision trees proves they can never be faster than $\\Omega(n \\log n)$.
 
-\`\`\`text
-  Trace: [5, 3, 4, 1, 2]
-
-  i=1: key=3, shift 5 right → [3, 5, 4, 1, 2]
-  i=2: key=4, shift 5 right → [3, 4, 5, 1, 2]
-  i=3: key=1, shift 5,4,3   → [1, 3, 4, 5, 2]
-  i=4: key=2, shift 5,4,3   → [1, 2, 3, 4, 5]
-
-  ┌──────────────────────────────────────────────────┐
-  │  Worst case: O(n²)  — reverse sorted array      │
-  │  Best case:  O(n)   — already sorted array!      │
-  │  Stable: YES                                     │
-  │  Space: O(1)                                     │
-  │                                                  │
-  │  VERY efficient for:                             │
-  │  • Small arrays (n < 20)                         │
-  │  • Nearly sorted arrays                          │
-  │                                                  │
-  │  Real systems (Java, Python) switch to insertion │
-  │  sort for small partitions inside merge/quick.   │
-  │  Professional code uses it more than textbooks   │
-  │  admit.                                          │
-  └──────────────────────────────────────────────────┘
-\`\`\`
+So, how do we go faster? We stop comparing!
 
 ---
 
-## 6. Shell Sort
+## 6. Breaking the Barrier: Non-Comparison Sorts
 
-**Generalization of insertion sort.** Instead of shifting one position at a time, it uses **gaps** that shrink over time.
+Non-comparison algorithms beat $n \\log n$ time by making strict assumptions about the data.
 
-\`\`\`python path=null start=null
-def shell_sort(arr):
-    n = len(arr)
-    gap = n // 2                        # Start with large gap
+### Counting Sort
 
-    while gap > 0:
-        for i in range(gap, n):         # Insertion sort with gap
-            temp = arr[i]
-            j = i
-            while j >= gap and arr[j - gap] > temp:
-                arr[j] = arr[j - gap]
-                j -= gap
-            arr[j] = temp
-        gap //= 2                       # Reduce gap
+**Assumption:** Elements are integers in a small range $[0 \\dots k]$.
 
-    return arr
-\`\`\`
+**Idea:**
+1. Count occurrences of each value in a \`count[]\` array.
+2. Convert counts to prefix sums (to determine exact final array indices).
+3. Place elements directly in correct positions (working backwards to maintain stability).
 
-\`\`\`text
-  Example: [35, 33, 42, 10, 14, 19, 27, 44]
-
-  Gap = 4: compare elements 4 apart
-           [14, 19, 27, 10, 35, 33, 42, 44]
-
-  Gap = 2: compare elements 2 apart
-           [14, 10, 27, 19, 35, 33, 42, 44]
-
-  Gap = 1: regular insertion sort (on nearly-sorted data!)
-           [10, 14, 19, 27, 33, 35, 42, 44]
-
-  ┌──────────────────────────────────────────────────┐
-  │  Complexity: O(n log² n) to O(n^1.5)            │
-  │  (depends on gap sequence)                       │
-  │                                                  │
-  │  Stable: NO                                      │
-  │  Space: O(1)                                     │
-  │                                                  │
-  │  Not heavily tested in theory exams, but         │
-  │  appears in competitive and practical contexts.  │
-  └──────────────────────────────────────────────────┘
-\`\`\`
-
----
-
-## 7. Merge Sort — O(n log n) ⭐
-
-**Divide and conquer masterpiece.**
-
-Steps:
-1. **Divide** → split into two halves
-2. **Conquer** → recursively sort each half
-3. **Combine** → merge the two sorted halves
-
-\`\`\`python path=null start=null
-def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-
-    mid = len(arr) // 2
-    left = merge_sort(arr[:mid])         # Sort left half
-    right = merge_sort(arr[mid:])        # Sort right half
-
-    return merge(left, right)            # Merge sorted halves
-
-def merge(left, right):
-    result = []
-    i = j = 0
-
-    while i < len(left) and j < len(right):
-        if left[i] <= right[j]:          # <= makes it STABLE
-            result.append(left[i])
-            i += 1
-        else:
-            result.append(right[j])
-            j += 1
-
-    result.extend(left[i:])
-    result.extend(right[j:])
-    return result
-\`\`\`
-
-\`\`\`text
-  Visual trace: [38, 27, 43, 3, 9, 82, 10]
-
-                  [38, 27, 43, 3, 9, 82, 10]
-                 /                           \\
-          [38, 27, 43, 3]            [9, 82, 10]
-           /          \\               /        \\
-      [38, 27]    [43, 3]        [9, 82]    [10]
-       /    \\      /    \\         /    \\       |
-     [38]  [27] [43]   [3]     [9]   [82]   [10]
-       \\    /      \\    /         \\    /       |
-      [27, 38]    [3, 43]        [9, 82]    [10]
-           \\          /               \\        /
-       [3, 27, 38, 43]           [9, 10, 82]
-                 \\                     /
-           [3, 9, 10, 27, 38, 43, 82]
-\`\`\`
-
-### Recurrence Relation & Master Theorem
-
-\`\`\`text
-  ┌───────────────────────────────────────────────────────┐
-  │  Recurrence: T(n) = 2T(n/2) + Θ(n)                  │
-  │                                                       │
-  │  • 2T(n/2) → sort two halves                         │
-  │  • Θ(n)    → merge step (linear scan)                │
-  │                                                       │
-  │  Using Master Theorem:                                │
-  │  a = 2, b = 2, f(n) = n                             │
-  │  log_b(a) = log₂(2) = 1                             │
-  │  f(n) = Θ(n^1) = Θ(n^(log_b(a)))                    │
-  │  → Case 2: T(n) = Θ(n log n)                        │
-  │                                                       │
-  │  This recurrence appears EVERYWHERE:                  │
-  │  merge sort, binary divide problems, tree algorithms  │
-  │  Master this, and half of algorithm questions         │
-  │  become predictable.                                  │
-  └───────────────────────────────────────────────────────┘
-
+~~~text
+  Time: O(n + k)
+  Space: O(n + k)
   Stable: YES
-  Space: O(n) — needs extra arrays for merging
-  Time: O(n log n) in ALL cases (best, average, worst)
-\`\`\`
+~~~
+
+> **Exam Trick:** If $k = O(n)$, then Counting Sort is strictly $O(n)$.
+>
+> **Drawback:** It is terrible if the range is huge. Sorting 5 phone numbers requires an array size of 9,999,999,999! Great for exam marks (0-100), bad for large ranges.
+
+### Radix Sort
+
+Sort digit by digit, from Least Significant Digit (LSD) up to the Most Significant Digit.
+Each digit pass MUST use a **stable** sort (like counting sort under the hood).
+
+**Idea:** Why sort whole numbers when you can sort by the 1s place, then the 10s place, then 100s?
+
+~~~text
+  Time: O(d(n + k))   Where 'd' is the number of digits.
+  Space: O(n + k)
+  Stable: YES
+~~~
+
+> **Real-world Example:** Sorting standard dates. Day $\\rightarrow$ Month $\\rightarrow$ Year. By sorting year last, the stability keeps the months/days ordered! Radix is clever engineering layered on Counting Sort.
+
+### Bucket Sort
+
+**Assumption:** Input data is uniformly distributed randomly over a range (like $[0, 1)$).
+
+**Idea:**
+1. Create $n$ empty buckets.
+2. Scatter elements into buckets based on value.
+3. Sort each bucket individually (often using insertion sort).
+4. Concatenate the buckets.
+
+~~~text
+  Average Time: O(n)
+  Worst Case Time: O(n log n)  OR  O(n²)
+~~~
+
+> **The Trap:** If the data isn't uniformly distributed, all elements might fall into a single bucket. Then Bucket Sort degrades to whatever algorithm was used to sort the individual bucket!
 
 ---
 
-## 8. Quick Sort — O(n log n) average ⭐
+## 7. The Master Summary Table
 
-**Also divide and conquer.** Choose pivot, partition array, recursively sort both sides.
-
-\`\`\`python path=null start=null
-def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr
-
-    pivot = arr[len(arr) // 2]                     # Pick middle as pivot
-    left = [x for x in arr if x < pivot]           # Elements < pivot
-    middle = [x for x in arr if x == pivot]         # Elements = pivot
-    right = [x for x in arr if x > pivot]          # Elements > pivot
-
-    return quick_sort(left) + middle + quick_sort(right)
-\`\`\`
-
-\`\`\`text
-  Trace: [10, 80, 30, 90, 40, 50, 70]
-
-  Pivot = 90 (middle element)
-  Left:  [10, 80, 30, 40, 50, 70]
-  Equal: [90]
-  Right: []
-
-  Recurse on left → eventually sorted!
-
-  ┌──────────────────────────────────────────────────────┐
-  │  Average case: O(n log n) — most of the time        │
-  │  Worst case:   O(n²) — pathological!                │
-  │                                                      │
-  │  Worst case happens when:                            │
-  │  • Array is already sorted AND                       │
-  │  • You always pick extreme element as pivot          │
-  │  (first or last element = bad pivot strategy)        │
-  │                                                      │
-  │  That's why PIVOT STRATEGY matters:                  │
-  │  • Pick middle element                               │
-  │  • Pick random element                               │
-  │  • Median-of-three (first, middle, last)            │
-  │                                                      │
-  │  Stable: NO                                          │
-  │  Space: O(log n) — recursion stack                   │
-  │                                                      │
-  │  KEY REALITY:                                        │
-  │  Quick sort is usually FASTEST in practice           │
-  │  (good cache behaviour, low constant factors)        │
-  └──────────────────────────────────────────────────────┘
-\`\`\`
+| Algorithm | Best | Average | Worst | Stable? | Space | Idea / Limits |
+|:----------|:-----|:--------|:------|:--------|:------|:--------------|
+| **Bubble** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | ✅ | $O(1)$ | $n(n-1)/2$ comps |
+| **Selection**| $O(n^2)$ | $O(n^2)$ | $O(n^2)$ | ❌ | $O(1)$ | Consistently slow |
+| **Insertion**| **$O(n)$** | $O(n^2)$ | $O(n^2)$ | ✅ | $O(1)$ | Great for small $n$ |
+| **Merge** | $O(n \\log n)$| $O(n \\log n)$| $O(n \\log n)$| ✅ | **$O(n)$** | Reliable D&C |
+| **Quick** | $O(n \\log n)$| $O(n \\log n)$| **$O(n^2)$** | ❌ | $O(\\log n)$| Fastest hardware avg |
+| **Heap** | $O(n \\log n)$| $O(n \\log n)$| $O(n \\log n)$| ❌ | **$O(1)$** | In-place tree order |
+| **Counting** | $O(n+k)$ | $O(n+k)$ | $O(n+k)$ | ✅ | $O(n+k)$ | Range bounded data |
+| **Radix** | $O(dn)$ | $O(dn)$ | $O(dn)$ | ✅ | $O(n+k)$ | Digit-by-digit |
+| **Bucket** | $O(n)$ | **$O(n)$** | $O(n^2)$ | ✅ | $O(n)$ | Uniform distribution |
 
 ---
 
-## 9. Heap Sort — O(n log n)
+## TL;DR - Formula Sheet
 
-Uses **max-heap** structure: parent ≥ children.
+**Recurrences & Complexity:**
+- **Merge Sort Recurrence:** $T(n) = 2T(n/2) + n$
+- **Comparison Lower Bound:** $\\Omega(n \\log n)$
+- **Counting Sort Time:** $O(n + k)$
+- **Radix Sort Time:** $O(d(n + k))$
 
-\`\`\`python path=null start=null
-def heapify(arr, n, i):
-    largest = i
-    left = 2 * i + 1
-    right = 2 * i + 2
-
-    if left < n and arr[left] > arr[largest]:
-        largest = left
-    if right < n and arr[right] > arr[largest]:
-        largest = right
-
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
-
-def heap_sort(arr):
-    n = len(arr)
-
-    # Build max heap: O(n)
-    for i in range(n // 2 - 1, -1, -1):
-        heapify(arr, n, i)
-
-    # Extract elements one by one: O(n log n)
-    for i in range(n - 1, 0, -1):
-        arr[0], arr[i] = arr[i], arr[0]    # Move max to end
-        heapify(arr, i, 0)                  # Heapify reduced heap
-
-    return arr
-\`\`\`
-
-\`\`\`text
-  ┌──────────────────────────────────────────────────────┐
-  │  Time: O(n log n) — GUARANTEED (no worst case trap)  │
-  │  Space: O(1) — in-place!                             │
-  │  Stable: NO                                          │
-  │                                                      │
-  │  Strength: No pathological worst case like quick     │
-  │  sort. Very reliable. O(1) space unlike merge sort.  │
-  │                                                      │
-  │  Weakness: Poor cache performance (jumps around      │
-  │  array), larger constant factors than quick sort.    │
-  └──────────────────────────────────────────────────────┘
-\`\`\`
-
----
-
-## 10. Sorting Comparison — The Master Table
-
-| Algorithm | Best | Average | Worst | Stable? | Space | Comparisons |
-|:----------|:-----|:--------|:------|:--------|:------|:------------|
-| **Bubble** | O(n) | O(n²) | O(n²) | ✅ | O(1) | n(n−1)/2 |
-| **Selection** | O(n²) | O(n²) | O(n²) | ❌ | O(1) | n(n−1)/2 always |
-| **Insertion** | **O(n)** | O(n²) | O(n²) | ✅ | O(1) | Best for small/sorted |
-| **Shell** | O(n log n) | O(n^1.5) | O(n²) | ❌ | O(1) | Depends on gaps |
-| **Merge** | O(n log n) | O(n log n) | O(n log n) | ✅ | **O(n)** | Always consistent |
-| **Quick** | O(n log n) | O(n log n) | **O(n²)** | ❌ | O(log n) | Fastest in practice |
-| **Heap** | O(n log n) | O(n log n) | O(n log n) | ❌ | **O(1)** | Guaranteed, no worst trap |
-
-### Stable vs Unstable
-
-\`\`\`text
-  STABLE: Equal elements keep their original relative order.
-
-  Example: Sort by grade
-  Input:  [(Alice, B), (Bob, A), (Carol, B), (Dave, A)]
-
-  Stable sort by grade:
-  [(Bob, A), (Dave, A), (Alice, B), (Carol, B)]
-   ↑ Bob before Dave ✓   ↑ Alice before Carol ✓ (original order preserved)
-
-  Unstable sort might give:
-  [(Dave, A), (Bob, A), (Carol, B), (Alice, B)]
-   ↑ original order NOT preserved
-
-  ┌────────────────────────────────────────┐
-  │  Stable:   Insertion, Merge, Bubble    │
-  │  Unstable: Quick, Heap, Selection      │
-  └────────────────────────────────────────┘
-
-  In databases, stability matters for multi-key sorting.
-\`\`\`
-
----
-
-## 11. Comparison-Based Lower Bound
-
-\`\`\`text
-  ┌──────────────────────────────────────────────────────┐
-  │  THEOREM: No comparison-based sort can beat          │
-  │           Ω(n log n) in the worst case.              │
-  │                                                      │
-  │  This is a PROVEN LOWER BOUND.                       │
-  │  Bubble, selection, insertion → O(n²) ≥ Ω(n log n)  │
-  │  Merge, quick, heap → O(n log n) = optimal!         │
-  │                                                      │
-  │  Proof idea: Decision tree has n! leaves             │
-  │  Height ≥ log₂(n!) ≈ n log n                        │
-  └──────────────────────────────────────────────────────┘
-
-  Non-comparison sorts CAN beat this:
-  • Counting Sort  → O(n + k)
-  • Radix Sort     → O(d × (n + k))
-  • Bucket Sort    → O(n) average
-
-  But they only work for RESTRICTED data types
-  (integers in small range, fixed-length strings, etc.)
-
-  There's always a tradeoff.
-\`\`\`
-
----
-
-## 12. Practical System Reality
-
-\`\`\`text
-  Real-world sorting is HYBRID:
-
-  Python:  Timsort (Merge Sort + Insertion Sort)
-  Java:    Dual-pivot Quick Sort (switches to Insertion for n < 47)
-  C++:     Introsort (Quick Sort + Heap Sort + Insertion Sort)
-
-  Why hybrid?
-  • Insertion Sort is fastest for tiny arrays (low overhead)
-  • Quick Sort is fastest for medium-large arrays (cache-friendly)
-  • Merge/Heap Sort provides worst-case guarantees
-
-  Big-O is the map.
-  Hardware behaviour (cache, branch prediction) is the terrain.
-\`\`\`
-
----
-
-## Key Takeaways
-
-| Need | Use |
-|:-----|:----|
-| Search unsorted data | Linear Search O(n) |
-| Search sorted data | **Binary Search O(log n)** |
-| Sort small/nearly-sorted array | **Insertion Sort** |
-| Guaranteed O(n log n) + stable | **Merge Sort** |
-| Fastest in practice | **Quick Sort** (avg O(n log n)) |
-| O(n log n) + O(1) space | **Heap Sort** |
-
----
-
-## TL;DR - Quick Recall
-
-**One-liner for each concept:**
-
-| Concept | Key Takeaway |
-|:--------|:-------------|
-| **Binary Search** | Requires sorted array. Halves search space. O(log n). |
-| **Bubble Sort** | Adjacent swaps, largest bubbles up. n(n−1)/2 comparisons. O(n²). Stable. |
-| **Selection Sort** | Find min, swap to front. ALWAYS same comparisons regardless of input. O(n²). |
-| **Insertion Sort** | Build sorted left portion. O(n) best case! Best for small/nearly-sorted. Stable. |
-| **Shell Sort** | Insertion sort with shrinking gaps. O(n^1.5). Not stable. |
-| **Merge Sort** | Divide & conquer. T(n)=2T(n/2)+n → O(n log n) always. Stable. O(n) space. |
-| **Quick Sort** | Pivot & partition. O(n log n) avg, O(n²) worst (bad pivot). Fastest in practice. |
-| **Heap Sort** | Max-heap extraction. O(n log n) guaranteed. O(1) space. No worst-case trap. |
-| **Lower Bound** | No comparison sort beats Ω(n log n). Non-comparison sorts (counting, radix) can be O(n). |
-
-**Formula Sheet:**
-
-\`\`\`text
-  Bubble Sort comparisons:  n(n − 1) / 2
-  Merge Sort recurrence:    T(n) = 2T(n/2) + Θ(n) → Θ(n log n)
-  Quick Sort worst case:    Already sorted + extreme pivot → O(n²)
-  Insertion Sort best case: Already sorted → O(n)
-  Lower bound:              Ω(n log n) for comparison-based sorts
-\`\`\`
-
-**The Golden Rules:**
-1. If the array is **sorted** and you're searching → **Binary Search**.
-2. If you need **stable** O(n log n) → **Merge Sort**.
-3. If you need O(n log n) with **O(1) space** → **Heap Sort**.
-4. If you want **fastest in practice** → **Quick Sort** (with good pivot strategy).
-5. Selection Sort always does same comparisons — **input doesn't matter**.
+**Golden Rules:**
+1. **Quick Sort Worst Case** occurs when array is already sorted and pivot is extreme.
+2. **Selection Sort** makes $n(n-1)/2$ comparisons no matter what the input is.
+3. **Counting Sort** requires memory proportional to the maximum value ($k$), making it fail for huge data ranges.
+4. **Radix Sort** MUST use a stable sorting sub-routine (like Counting Sort) to work.
 
 ---
 
 ## Additional Resources
 
 **Video Courses:**
-- [Abdul Bari - Sorting Algorithms](https://youtu.be/pkkFqlG0Hds) - Deep dive into all sorting methods
-- [NeetCode - Binary Search](https://youtu.be/s4DPM8ct1pI) - Essential algorithm walkthrough
-
-**Articles & Visualizations:**
-- [VisuAlgo - Sorting](https://visualgo.net/en/sorting) - Watch the algorithms race!
+- [Abdul Bari - Sorting Algorithms](https://youtu.be/pkkFqlG0Hds)
+- [MIT 6.006 - Linear Sorting (Counting/Radix)](https://youtu.be/Nz1KZXbghj8)
 
 **Practice Problems:**
-- LeetCode 704: Binary Search
-- LeetCode 33: Search in Rotated Sorted Array
-- LeetCode 75: Sort Colors (Dutch National Flag problem)
+- LeetCode 912: Sort an Array
+- LeetCode 75: Sort Colors (Dutch National Flag)
+- LeetCode 164: Maximum Gap (Radix Sort / Bucket Sort Application)
   `,
   subModules: [],
   practiceQuiz: [
     {
       id: "ss-q1",
-      question:
-        "How many comparisons does Bubble Sort make on an array of 10 elements (worst case)?",
-      options: ["10", "20", "45", "100"],
-      correctAnswer: 2,
+      question: "Which of the following is NOT true about Counting Sort?",
+      options: [
+        "It operates in O(n + k) time.",
+        "It uses comparison between elements to sort.",
+        "It is a stable sorting algorithm.",
+        "It is highly inefficient if the range k is significantly larger than n.",
+      ],
+      correctAnswer: 1,
       explanation:
-        "Bubble Sort comparisons = n(n−1)/2 = 10(9)/2 = 45. This formula counts all adjacent pair comparisons across all passes.",
+        "Counting Sort is a NON-comparison sort. It does not compare items against each other (A < B); instead, it counts occurrences of elements and maps them directly to positions.",
       difficulty: "easy" as const,
     },
     {
       id: "ss-q2",
       question:
-        "Which sorting algorithm performs the SAME number of comparisons regardless of input order?",
+        "In Radix Sort, a fundamental requirement for the sub-sorting algorithm (applied to each digit) is that it must be:",
       options: [
-        "Bubble Sort",
-        "Insertion Sort",
-        "Selection Sort",
-        "Merge Sort",
+        "In-place",
+        "An O(n log n) comparison sort",
+        "Stable",
+        "Recursive",
       ],
       correctAnswer: 2,
       explanation:
-        "Selection Sort always makes n(n−1)/2 comparisons to find the minimum in each pass, whether the array is sorted, reversed, or random. Input doesn't change its comparison count.",
+        "Radix sort processes from the Least Significant Digit upwards. It relies entirely on the sub-sort being STABLE so that sorting by a more significant digit preserves the ordering established by the previous, lesser significant digits.",
       difficulty: "medium" as const,
     },
     {
       id: "ss-q3",
-      question:
-        "The recurrence T(n) = 2T(n/2) + Θ(n) represents which sorting algorithm?",
-      options: ["Quick Sort", "Merge Sort", "Heap Sort", "Insertion Sort"],
+      question: "What happens to Bucket Sort in the worst case, and why?",
+      options: [
+        "It becomes O(n) because buckets naturally balance.",
+        "It degrades to O(n log n) or O(n²) because all elements might fall into the exact same bucket.",
+        "It becomes O(n log n) because it is bounded by the comparison limit.",
+        "It throws an out-of-memory error.",
+      ],
       correctAnswer: 1,
       explanation:
-        "Merge Sort: 2T(n/2) for sorting two halves + Θ(n) for merging. By Master Theorem (Case 2): T(n) = Θ(n log n).",
+        "Bucket Sort assumes a uniform distribution of elements. If the items are severely clustered, they could all drop into a single bucket. In that worst-case scenario, the performance drops to the speed of the underlying sorting algorithm used for that one bucket (usually Insertion Sort O(n²) or Merge/Quick O(n log n)).",
       difficulty: "medium" as const,
     },
     {
       id: "ss-q4",
-      question: "What is the best-case time complexity of Insertion Sort?",
-      options: ["O(n²)", "O(n log n)", "O(n)", "O(1)"],
+      question:
+        "Why can non-comparison sorts (like Radix and Counting) beat the Ω(n log n) theoretical barrier for sorting?",
+      options: [
+        "They use binary trees internally.",
+        "They use extra memory which makes hardware run faster.",
+        "They do not rely on a binary decision tree of comparisons, but instead use mathematical mapping and memory indexing.",
+        "The Ω(n log n) barrier is a myth.",
+      ],
       correctAnswer: 2,
       explanation:
-        "When the array is already sorted, Insertion Sort only compares each element with its predecessor once (no shifts needed). Total: n−1 comparisons = O(n).",
-      difficulty: "easy" as const,
+        "The Ω(n log n) lower bound mathematically applies specifically to comparison-based models (where you only know if A < B). By utilizing properties of the values themselves as array indices (mathematical mapping), non-comparison algorithms bypass that specific theoretical limit.",
+      difficulty: "hard" as const,
     },
     {
       id: "ss-q5",
-      question: "Quick Sort's worst case O(n²) occurs when:",
+      question:
+        "The recurrence T(n) = 2T(n/2) + Θ(n) heavily defines which algorithm, and evaluates to what complexity?",
       options: [
-        "Array has duplicates",
-        "Array is already sorted and pivot is always the extreme element",
-        "Array has negative numbers",
-        "Array size is prime",
+        "Binary Search / Θ(O log n)",
+        "Quick Sort / Θ(n²)",
+        "Merge Sort / Θ(n log n)",
+        "Heap Sort / Θ(n log n)",
       ],
-      correctAnswer: 1,
+      correctAnswer: 2,
       explanation:
-        "If the pivot is always the smallest or largest element (e.g., first element of a sorted array), one partition has n−1 elements and the other has 0. This gives T(n) = T(n−1) + n → O(n²).",
-      difficulty: "medium" as const,
+        "This is the famous Merge Sort recurrence: Two recursive calls on half the array size (2T(n/2)), plus a linear scan to merge the results (Θ(n)). Following the Master Theorem, this solves to Θ(n log n).",
+      difficulty: "easy" as const,
     },
     {
       id: "ss-q6",
-      question:
-        "Which sorting algorithm is both O(n log n) worst-case AND O(1) extra space?",
-      options: ["Merge Sort", "Quick Sort", "Heap Sort", "Insertion Sort"],
+      question: "Selection Sort is often an exam trap because:",
+      options: [
+        "It is faster than Quick Sort.",
+        "It uses O(n log n) memory.",
+        "It performs exactly the same number of comparisons n(n-1)/2 regardless of the initial ordering of the array.",
+        "It is the only stable O(n²) algorithm.",
+      ],
       correctAnswer: 2,
       explanation:
-        "Heap Sort: O(n log n) guaranteed (no worst-case trap), O(1) space (in-place). Merge Sort needs O(n) space. Quick Sort has O(n²) worst case.",
+        "Selection sort mindlessly scans the entire remaining unsorted section to find the minimum value in every pass. There is no break condition, meaning best, average, and worst cases all take exactly O(n²) comparisons.",
       difficulty: "medium" as const,
     },
     {
       id: "ss-q7",
-      question: "Which of these sorting algorithms is STABLE?",
-      options: ["Heap Sort", "Quick Sort", "Merge Sort", "Selection Sort"],
+      question:
+        "Which hybrid approach is famously used by both Python's sorted() and Java's Collections.sort() for maximum practical efficiency?",
+      options: [
+        "Utilizing Counting Sort internally",
+        "Falling back to basic Bubble Sort to save memory",
+        "Switching to Insertion Sort for very small partitions / sub-arrays",
+        "Avoiding recursion entirely to stick to O(1) space",
+      ],
       correctAnswer: 2,
       explanation:
-        "Merge Sort is stable — equal elements maintain their original relative order because the merge step uses ≤ (not <). Stable sorts: Insertion, Merge, Bubble. Unstable: Quick, Heap, Selection.",
-      difficulty: "easy" as const,
-    },
-    {
-      id: "ss-q8",
-      question: "The lower bound for comparison-based sorting is:",
-      options: ["O(n)", "O(n log n)", "Ω(n log n)", "Ω(n²)"],
-      correctAnswer: 2,
-      explanation:
-        "No comparison-based sort can do better than Ω(n log n) in the worst case. Proved via decision tree argument: n! possible orderings → tree height ≥ log₂(n!) ≈ n log n.",
+        "Both Timsort (Python) and Java's implementations switch to Insertion Sort for sorting tiny arrays (often sizes < 32 or 47). Though mathematically O(n²), Insertion Sort has so little overhead that the constant factors beat O(n log n) algorithms on microscopic scales.",
       difficulty: "hard" as const,
     },
     {
+      id: "ss-q8",
+      question:
+        "Assume you need to sort elements with guaranteed O(n log n) time complexity, and you are strictly limited to O(1) extra space. Which algorithm MUST you choose?",
+      options: ["Merge Sort", "Heap Sort", "Quick Sort", "Radix Sort"],
+      correctAnswer: 1,
+      explanation:
+        "Heap Sort operates entirely in-place (O(1) space) and possesses a strict mathematical upper bound of O(n log n) in all worst-case scenarios. Merge Sort needs O(n) space, and Quick Sort needs O(log n) stack space and risks an O(n²) worst-case runtime.",
+      difficulty: "medium" as const,
+    },
+    {
       id: "ss-q9",
-      question: "Python's built-in sort (Timsort) is a hybrid of:",
+      question:
+        "If sorting a database table of student records first by Name, then by Grades, using an 'unstable' sorting algorithm for the Grades will result in:",
       options: [
-        "Quick Sort + Heap Sort",
-        "Merge Sort + Insertion Sort",
-        "Bubble Sort + Selection Sort",
-        "Radix Sort + Counting Sort",
+        "An immediate O(n²) degradation",
+        "The Names losing their originally sorted alphabetical positioning amongst students with identical Grades",
+        "A stack overflow",
+        "Flawless results",
       ],
       correctAnswer: 1,
       explanation:
-        "Timsort combines Merge Sort (for large arrays) with Insertion Sort (for small runs). It exploits naturally occurring sorted subsequences in real-world data.",
+        "Stability means equal keys maintain their initial relative order. If the algorithm is unstable, sorting the secondary key (Grade) jumbles up the primary key (Name) for rows where the Grades are exactly the same.",
       difficulty: "medium" as const,
     },
     {
       id: "ss-q10",
-      question: "Shell Sort is a generalization of which sorting algorithm?",
+      question:
+        "We have numbers ranging from 1 to 999,999,999, but we only have 50 total elements in our array. Why shouldn't we use Counting Sort?",
       options: [
-        "Bubble Sort",
-        "Selection Sort",
-        "Insertion Sort",
-        "Merge Sort",
+        "Because it is comparison-based.",
+        "Because the time and space complexity O(n + k) would require an astronomical amount of memory (size k = 1 billion) just to sort 50 elements.",
+        "Counting sort only works on floating point values.",
+        "Because the average case diverges from the worst case.",
       ],
-      correctAnswer: 2,
+      correctAnswer: 1,
       explanation:
-        "Shell Sort generalizes Insertion Sort by comparing elements at a gap distance instead of adjacent elements. As the gap decreases to 1, it becomes regular Insertion Sort on a nearly-sorted array.",
+        "Counting Sort demands initializing an array covering the full range of values. Allocating an array spanning index 0 to index 999,999,999 requires entirely disproportionate memory overhead, making it catastrophically bad for high-variance, sparsely populated data sets.",
       difficulty: "easy" as const,
     },
   ],
