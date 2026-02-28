@@ -9,7 +9,7 @@ export const graphsModule: LearningModule = {
   tags: ["Data Structure"],
   detailedContent: `# Graph Theory
 
-> **Data Structure Module (CUET PG Lecture 10)** — The mathematics of relationships
+> **Data Structure Module** — The mathematics of relationships
 
 ---
 

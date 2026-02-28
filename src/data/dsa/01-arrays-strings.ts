@@ -160,7 +160,7 @@ Where:
 LOC(A[R,C]) = Base + W × ((C − CLB) × (RUB − RLB + 1) + (R − RLB))
 \`\`\`
 
-> These formulas are frequently asked in CUET PG and GATE exams!
+> These formulas are frequently asked in technical exams!
 
 ---
 

@@ -9,7 +9,7 @@ export const hashingModule: LearningModule = {
   tags: ["Data Structure"],
   detailedContent: `# Hashing
 
-> **Data Structure Module (CUET PG Lecture 9)** — Master the art of O(1) searching
+> **Data Structure Module** — Master the art of O(1) searching
 
 ---
 
@@ -76,7 +76,7 @@ A Hash Table is simply an **array** where we use a **hash function** to map keys
 | **Mid-Square Method** | Square the key, extract middle digits | 25² = 625 → extract 2 → index 2 |
 | **Folding Method** | Split key into parts, add them | 123456 → 12+34+56 = 102 → index 2 |
 
-> **For CUET PG:** Division method (mod) is the most commonly tested. Master \`k mod m\` thoroughly.
+> **Exam Focus:** Division method (mod) is the most commonly tested. Master \`k mod m\` thoroughly.
 
 ### The Real Problem: Collisions
 

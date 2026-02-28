@@ -9,7 +9,7 @@ export const searchingSortingModule: LearningModule = {
   tags: ["Algorithm"],
   detailedContent: `# Searching & Sorting Algorithms
 
-> **Algorithm Module (CUET PG Lectures 11 & 12)** — Beating the comparison barrier
+> **Algorithm Module** — Beating the comparison barrier
 
 ---
 

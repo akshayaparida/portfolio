@@ -3,12 +3,12 @@ import { LearningModule } from "@/types/learning";
 export const pyqRevisionModule: LearningModule = {
   id: "11-pyq-revision",
   title: "11. PYQs & Rapid-Fire Revision",
-  description: "CUET PG Traps, Recurrence Matching, MSTs, and Rapid-Fire MCQs",
+  description: "Exam Traps, Recurrence Matching, MSTs, and Rapid-Fire MCQs",
   status: "completed",
   tags: ["Data Structure", "Algorithm", "Revision"],
   detailedContent: `# PYQs & Rapid-Fire Revision
 
-> **CUET PG Lecture 13** — Let’s see if you *actually* understand everything.
+> **Revision Module** — Let’s see if you *actually* understand everything.
 
 This module is not about learning new concepts. It is about **pattern recognition, exam traps, and response speed.** If you can spot the trap, you save minutes on the exam.
 

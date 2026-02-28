@@ -9,7 +9,7 @@ export const heapsModule: LearningModule = {
   tags: ["Data Structure"],
   detailedContent: `# Heaps
 
-> **Data Structure Module (CUET PG Lecture 12)** — Maintaining order dynamically
+> **Data Structure Module** — Maintaining order dynamically
 
 ---
 
