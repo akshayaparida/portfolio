@@ -28,7 +28,7 @@ Think of a **family tree** or **file folder structure**:
 - Each item can have children below it
 - No loops - you can't go back up and circle around
 
-\`\`\`
+\`\`\`text
          [ROOT]
          /    \\
       [A]      [B]
