@@ -1,0 +1,33 @@
+
+> akshayaparida@0.1.0 prebuild /home/akshayaparida/portfolio
+> node scripts/update-git-metadata.js
+
+Git metadata updated: {
+  commitHash: '709909d',
+  commitDate: 'February 28, 2026 at 04:03 PM',
+  commitUrl: 'https://github.com/akshayaparida/portfolio/commit/709909d4520d3ef9cc410603bf240ff38c71b4b5'
+}
+
+> akshayaparida@0.1.0 build /home/akshayaparida/portfolio
+> next build --webpack
+
+▲ Next.js 16.1.1 (webpack)
+
+  Creating an optimized production build ...
+✓ (serwist) Bundling the service worker script with the URL '/sw.js' and the scope '/'...
+✓ Compiled successfully in 29.1s
+  Running TypeScript ...
+Failed to compile.
+
+./src/data/dsa/06-heaps.ts:9:3
+Type error: Type 'number' is not assignable to type 'string'.
+
+[0m [90m  7 |[39m   status[33m:[39m [32m"completed"[39m[33m,[39m
+ [90m  8 |[39m   tags[33m:[39m [[32m"Data Structure"[39m][33m,[39m
+[31m[1m>[22m[39m[90m  9 |[39m   detailedContent[33m:[39m [32m`# Heaps[39m
+ [90m    |[39m   [31m[1m^[22m[39m
+ [90m 10 |[39m [32m[39m
+ [90m 11 |[39m [32m> **Data Structure Module (CUET PG Lecture 12)** — Maintaining order dynamically[39m
+ [90m 12 |[39m [32m[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+ ELIFECYCLE  Command failed with exit code 1.

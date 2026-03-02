@@ -1,4 +1,4 @@
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from "jest-axe";
 
 // Extend Jest with the axe matcher
 expect.extend(toHaveNoViolations);
@@ -9,12 +9,15 @@ expect.extend(toHaveNoViolations);
  * @param options - Optional axe configuration options
  * @returns Promise resolving to axe results
  */
+
 export const runAccessibilityTest = async (
-  element: React.ReactElement,
-  options?: axe.AxeOptions
+  element: HTMLElement | React.ReactElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options?: any,
 ): Promise<void> => {
   // Default axe configuration to ignore certain rules that might be overly strict
-  const defaultOptions: axe.AxeOptions = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const defaultOptions: any = {
     // Ignore contrast issues initially to focus on more critical issues
     rules: {
       // You can disable certain rules temporarily if needed
@@ -29,8 +32,8 @@ export const runAccessibilityTest = async (
   };
 
   // Render the component and run axe accessibility tests
-  const results = await axe(element, configOptions);
-  
+  const results = await axe(element as Element, configOptions);
+
   // Check for violations and throw error if any are found
   expect(results).toHaveNoViolations();
 };
@@ -39,17 +42,19 @@ export const runAccessibilityTest = async (
  * Specific helper to test for common accessibility issues
  * @param element - The React element to test
  */
-export const testCommonAccessibility = async (element: React.ReactElement): Promise<void> => {
+export const testCommonAccessibility = async (
+  element: HTMLElement | React.ReactElement,
+): Promise<void> => {
   await runAccessibilityTest(element, {
     rules: {
       // Ensure all images have alt attributes
-      'image-alt': { enabled: true },
+      "image-alt": { enabled: true },
       // Ensure form elements have associated labels
-      'label': { enabled: true },
+      label: { enabled: true },
       // Ensure links have discernible names
-      'link-name': { enabled: true },
+      "link-name": { enabled: true },
       // Ensure color contrast meets minimum ratios
-      'color-contrast': { enabled: true },
+      "color-contrast": { enabled: true },
     },
   });
 };

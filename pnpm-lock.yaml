@@ -52,7 +52,7 @@ importers:
         version: 4.0.1
       serwist:
         specifier: ^9.5.6
-        version: 9.5.6(browserslist@4.26.3)(typescript@5.9.3)
+        version: 9.5.6(browserslist@4.28.1)(typescript@5.9.3)
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.2.0
@@ -78,6 +78,9 @@ importers:
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
+      '@types/jest-axe':
+        specifier: ^3.5.9
+        version: 3.5.9
       '@types/mapbox__rehype-prism':
         specifier: ^0.8.3
         version: 0.8.3
@@ -1722,6 +1725,9 @@ packages:
   '@types/istanbul-reports@3.0.4':
     resolution: {integrity: sha512-pk2B1NWalF9toCRu6gjBzR69syFjP4Od8WRAX+0mmf9lAjCRicLOWc+ZrxZHx/0XRjotgkF9t6iaMJ+aXcOdZQ==}
 
+  '@types/jest-axe@3.5.9':
+    resolution: {integrity: sha512-z98CzR0yVDalCEuhGXXO4/zN4HHuSebAukXDjTLJyjEAgoUf1H1i+sr7SUB/mz8CRS/03/XChsx0dcLjHkndoQ==}
+
   '@types/jest@30.0.0':
     resolution: {integrity: sha512-XTYugzhuwqWjws0CVz8QpM36+T+Dz5mTEBKhNs/esGLnCIlGdRy+Dq78NRjd7ls7r8BC8ZRMOrKlkO1hU0JOwA==}
 
@@ -2145,6 +2151,10 @@ packages:
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
+
+  axe-core@3.5.6:
+    resolution: {integrity: sha512-LEUDjgmdJoA3LqklSTwKYqkjcZ4HKc4ddIYGSAiSkr46NTjzg2L9RNB+lekO9P7Dlpa87+hBtzc2Fzn/+GUWMQ==}
+    engines: {node: '>=4'}
 
   axe-core@4.10.2:
     resolution: {integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==}
@@ -7471,10 +7481,6 @@ snapshots:
     transitivePeerDependencies:
       - webpack
 
-  '@serwist/utils@9.5.6(browserslist@4.26.3)':
-    optionalDependencies:
-      browserslist: 4.26.3
-
   '@serwist/utils@9.5.6(browserslist@4.28.1)':
     optionalDependencies:
       browserslist: 4.28.1
@@ -7846,6 +7852,11 @@ snapshots:
   '@types/istanbul-reports@3.0.4':
     dependencies:
       '@types/istanbul-lib-report': 3.0.3
+
+  '@types/jest-axe@3.5.9':
+    dependencies:
+      '@types/jest': 30.0.0
+      axe-core: 3.5.6
 
   '@types/jest@30.0.0':
     dependencies:
@@ -8316,6 +8327,8 @@ snapshots:
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.1.0
+
+  axe-core@3.5.6: {}
 
   axe-core@4.10.2: {}
 
@@ -12357,15 +12370,6 @@ snapshots:
   semver@6.3.1: {}
 
   semver@7.7.3: {}
-
-  serwist@9.5.6(browserslist@4.26.3)(typescript@5.9.3):
-    dependencies:
-      '@serwist/utils': 9.5.6(browserslist@4.26.3)
-      idb: 8.0.3
-    optionalDependencies:
-      typescript: 5.9.3
-    transitivePeerDependencies:
-      - browserslist
 
   serwist@9.5.6(browserslist@4.28.1)(typescript@5.9.3):
     dependencies:

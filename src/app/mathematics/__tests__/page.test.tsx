@@ -99,7 +99,7 @@ jest.mock("@/components/MathModuleIcon", () => {
 describe("Mathematics Dynamic Routes", () => {
   const mockUseParams = navigation.useParams as jest.Mock;
   const mockUsePathname = navigation.usePathname as jest.Mock;
-  const mockNotFound = navigation.notFound as jest.Mock;
+  const mockNotFound = navigation.notFound as unknown as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
