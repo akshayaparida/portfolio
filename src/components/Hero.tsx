@@ -2,28 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import StatusBadge from "./StatusBadge";
 import TechnicalSkills from "./TechnicalSkills";
 import { skillCategories } from "@/data/skills";
 
 export default function Hero() {
-  const [currentTime, setCurrentTime] = useState("Loading...");
   const [currentDate, setCurrentDate] = useState("");
 
   useEffect(() => {
-    function updateTime() {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      };
-      const timeString = now.toLocaleTimeString("en-IN", options);
-      setCurrentTime(timeString);
-    }
-
     function updateDate() {
       const now = new Date();
       const day = String(now.getDate()).padStart(2, "0");
@@ -33,11 +18,7 @@ export default function Hero() {
       setCurrentDate(dateString);
     }
 
-    updateTime();
     updateDate();
-    const interval = setInterval(updateTime, 1000);
-
-    return () => clearInterval(interval);
   }, []);
 
   return (

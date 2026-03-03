@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1772036288257" clover="3.2.0">
-  <project timestamp="1772036288257" name="All files">
-    <metrics statements="992" coveredstatements="183" conditionals="323" coveredconditionals="62" methods="271" coveredmethods="49" elements="1586" coveredelements="294" complexity="0" loc="992" ncloc="992" packages="38" files="146" classes="146"/>
+<coverage generated="1772551568718" clover="3.2.0">
+  <project timestamp="1772551568718" name="All files">
+    <metrics statements="986" coveredstatements="183" conditionals="323" coveredconditionals="62" methods="269" coveredmethods="49" elements="1578" coveredelements="294" complexity="0" loc="986" ncloc="986" packages="38" files="147" classes="147"/>
     <package name="__tests__.utils">
       <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="accessibilityHelper.ts" path="/home/akshayaparida/portfolio/src/__tests__/utils/accessibilityHelper.ts">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="17" count="6" type="stmt"/>
-        <line num="26" count="6" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="29" count="6" type="stmt"/>
         <line num="35" count="6" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
+        <line num="38" count="6" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="48" count="2" type="stmt"/>
       </file>
     </package>
     <package name="app">
@@ -513,7 +513,7 @@
       </file>
     </package>
     <package name="components">
-      <metrics statements="353" coveredstatements="110" conditionals="172" coveredconditionals="45" methods="98" coveredmethods="36"/>
+      <metrics statements="345" coveredstatements="110" conditionals="172" coveredconditionals="45" methods="96" coveredmethods="36"/>
       <file name="AWSModuleIcon.tsx" path="/home/akshayaparida/portfolio/src/components/AWSModuleIcon.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -659,29 +659,21 @@
         <line num="8" count="6" type="stmt"/>
       </file>
       <file name="Hero.tsx" path="/home/akshayaparida/portfolio/src/components/Hero.tsx">
-        <metrics statements="22" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
       </file>
       <file name="MLOpsModuleIcon.tsx" path="/home/akshayaparida/portfolio/src/components/MLOpsModuleIcon.tsx">
         <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -1276,7 +1268,7 @@
       </file>
     </package>
     <package name="data.dsa">
-      <metrics statements="25" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="27" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="00-algorithmic-complexity.ts" path="/home/akshayaparida/portfolio/src/data/dsa/00-algorithmic-complexity.ts">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
@@ -1325,8 +1317,12 @@
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
       </file>
+      <file name="11-pyq-revision.ts" path="/home/akshayaparida/portfolio/src/data/dsa/11-pyq-revision.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
       <file name="index.ts" path="/home/akshayaparida/portfolio/src/data/dsa/index.ts">
-        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <metrics statements="14" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -1339,7 +1335,8 @@
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
       </file>
     </package>
     <package name="data.mathematics">
