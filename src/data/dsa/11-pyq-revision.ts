@@ -58,10 +58,10 @@ You must recognize recurrence relations instantly without applying the full Mast
 
 | Algorithm | Recurrence | Complexity | Why? |
 |:----------|:-----------|:-----------|:-----|
-| **Binary Search** | \`T(n) = T(n/2) + c\` | **$O(\\log n)$** | Divide search space in half (1 branch). |
-| **Merge Sort** | \`T(n) = 2T(n/2) + \\Theta(n)\` | **$O(n \\log n)$** | Divide in half (2 branches) + linear scan to merge. |
-| **Quick Sort (Worst)** | \`T(n) = T(n-1) + \\Theta(n)\` | **$O(n^2)$** | Pivot is extreme, dividing array into sizes 0 and n-1. |
-| **Linear Search** | \`T(n) = T(n-1) + c\` | **$O(n)$** | Check one item, recursively check the rest. |
+| **Binary Search** | \`T(n) = T(n/2) + c\` | **O(log n)** | Divide search space in half (1 branch). |
+| **Merge Sort** | \`T(n) = 2T(n/2) + O(n)\` | **O(n log n)** | Divide in half (2 branches) + linear scan to merge. |
+| **Quick Sort (Worst)** | \`T(n) = T(n-1) + O(n)\` | **O(n²)** | Pivot is extreme, dividing array into sizes 0 and n-1. |
+| **Linear Search** | \`T(n) = T(n-1) + c\` | **O(n)** | Check one item, recursively check the rest. |
 
 ---
 
@@ -69,7 +69,7 @@ You must recognize recurrence relations instantly without applying the full Mast
 
 If a question asks for the **"Shortest path in an UNWEIGHTED graph"**:
 - **BFS (Breadth-First Search):** ✔️ YES! It guarantees the shortest path because it explores radially, layer by layer.
-- **DFS (Depth-First Search):** ❌ NO! It plunges deep immediately and might find a ridiculously long, winding path first.
+- **DFS (Depth-First Search):** NO! It plunges deep immediately and might find a ridiculously long, winding path first.
 
 > **Mindset:** "Minimum distance" + "Unweighted graph" = **Brain screams BFS**.
 
@@ -81,16 +81,16 @@ A BST's efficiency is entirely controlled by its **height (h)**.
 
 | Operation | Time Complexity | Reason |
 |:----------|:----------------|:-------|
-| Successor | **$O(h)$** | May need to walk down the tree. |
-| Minimum | **$O(h)$** | Walk as far left as possible. |
-| Maximum | **$O(h)$** | Walk as far right as possible. |
-| Insert / Delete | **$O(h)$** | Walk down to the correct insertion spot. |
-| **Inorder Traversal**| **$O(n)$** | **Must visit every single node!** |
+| Successor | **O(h)** | May need to walk down the tree. |
+| Minimum | **O(h)** | Walk as far left as possible. |
+| Maximum | **O(h)** | Walk as far right as possible. |
+| Insert / Delete | **O(h)** | Walk down to the correct insertion spot. |
+| **Inorder Traversal**| **O(n)** | **Must visit every single node!** |
 
 **Worst Case Trap:**
 What if the tree is completely skewed (e.g. elements inserted in sorted order)?
-- Height $h$ becomes equal to $n$.
-- Insert, Delete, and Search drop from $O(\\log n)$ to **$O(n)$**.
+- Height h becomes equal to n.
+- Insert, Delete, and Search drop from O(log n) to **O(n)**.
 
 ---
 
@@ -101,16 +101,16 @@ You must know the order of complexities instantly from fastest to slowest:
 \`O(1) < O(log n) < O(n) < O(n log n) < O(n²)\`
 
 **Hashing vs Search:**
-- **Hashing Avg Case:** **$O(1)$** (Search time is completely independent of \`n\`). *Assumes a good hash function and low collisions!*
-- **Hashing Worst Case:** **$O(n)$** (All items collide into one linked list chain).
-- **Binary Search:** **$O(\\log n)$** (Requires sorted data).
-- **Linear Search:** **$O(n)$** (Works on anything).
+- **Hashing Avg Case:** **O(1)** (Search time is completely independent of \`n\`). *Assumes a good hash function and low collisions!*
+- **Hashing Worst Case:** **O(n)** (All items collide into one linked list chain).
+- **Binary Search:** **O(log n)** (Requires sorted data).
+- **Linear Search:** **O(n)** (Works on anything).
 
 **Quick Sort vs Randomized Quick Sort:**
 - What's the exact difference? **Pivot selection.**
 - Standard Quick Sort: Deterministic (first, last, or middle).
 - Randomized Quick Sort: Picks pivot completely randomly.
-- **Why?** It heavily reduces the absolute mathematical probability of hitting the catastrophic $O(n^2)$ worst-case. The output is exactly the same, but the expected time is safely $O(n \\log n)$.
+- **Why?** It heavily reduces the absolute mathematical probability of hitting the catastrophic O(n²) worst-case. The output is exactly the same, but the expected time is safely O(n log n).
 
 ---
 
@@ -135,7 +135,7 @@ Normal trees have a lot of wasted \`NULL\` pointers at the leaves.
 
 - **Single Threaded:** Points in one direction (usually towards the successor).
 - **Double Threaded:** Points in both directions.
-- **Massive Advantage:** Allows for **$O(n)$ Inorder Traversal WITHOUT a recursion stack!** This saves memory and prevents stack overflow deeper down.
+- **Massive Advantage:** Allows for **O(n) Inorder Traversal WITHOUT a recursion stack!** This saves memory and prevents stack overflow deeper down.
 
 ---
 
@@ -145,7 +145,7 @@ Data structures are not isolated islands. They form a deeply connected ecosystem
 - A Priority Queue is literally just a Heap.
 - Dijkstra's Algorithm is literally just BFS using a Min-Heap.
 - A Stack implies DFS; A Queue implies BFS.
-- Trees and Logs ($O(\\log n)$) go hand in hand because cutting things in half builds trees.
+- Trees and Logs (O(log n)) go hand in hand because cutting things in half builds trees.
 
 *Proceed to the Practice Quiz to test your response speed against actual exam traps.*
   `,

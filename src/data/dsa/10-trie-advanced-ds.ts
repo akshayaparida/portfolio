@@ -44,8 +44,8 @@ A **Trie** is a tree-like data structure for storing strings. Each node represen
 | Operation | Array/List | Hash Set | Trie |
 |:----------|:-----------|:---------|:-----|
 | Search word | O(n × m) | O(m) | O(m) |
-| Prefix search | O(n × m) | O(n × m) | **O(m)** ✅ |
-| Autocomplete | O(n × m) | O(n × m) | **O(m + k)** ✅ |
+| Prefix search | O(n × m) | O(n × m) | **O(m)** (Best) |
+| Autocomplete | O(n × m) | O(n × m) | **O(m + k)** (Best) |
 
 Where n = number of words, m = word length, k = results count
 

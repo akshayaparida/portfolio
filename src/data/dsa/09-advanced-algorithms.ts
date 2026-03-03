@@ -404,8 +404,8 @@ def bellman_ford(n, edges, start):
 
 | Feature | Dijkstra | Bellman-Ford |
 |:--------|:---------|:-------------|
-| Negative weights | ❌ Fails | ✅ Works |
-| Negative cycles | ❌ No detection | ✅ Detects |
+| Negative weights | No (Fails) | Yes (Works) |
+| Negative cycles | No detection | Yes (Detects) |
 | Time complexity | O((V+E) log V) | O(V × E) |
 | Use when | All weights ≥ 0 | Negative weights exist |
 

@@ -50,7 +50,7 @@ This means the tree is filled **level by level, from left to right**. The last l
   Parent ≥ Children            Parent ≤ Children
 ~~~
 
-> **Crucial insight:** A heap is partially ordered, not fully sorted! Siblings have NO guaranteed relationship. You only know the parent is $\\ge$ or $\\le$ the children.
+> **Crucial insight:** A heap is partially ordered, not fully sorted! Siblings have NO guaranteed relationship. You only know the parent is ≥ or ≤ the children.
 
 ---
 
@@ -66,7 +66,7 @@ Because a heap is a *complete binary tree*, it is always perfectly balanced.
 - 1,000 nodes → Height ≈ 10
 - 1,000,000 nodes → Height ≈ 20
 
-**Any operation that travels from the root to a leaf takes $O(\\log n)$ time.**
+**Any operation that travels from the root to a leaf takes O(log n) time.**
 The structure naturally bounds the worst-case performance!
 
 ---
@@ -105,12 +105,12 @@ Imagine a max-heap where the root is suddenly replaced by a very small number. T
 ### Complexity of Heapify:
 
 - **Worst case:** Element floats down the entire height of the tree.
-- **Height:** $\\approx \\log n$
-- **Time Complexity:** $O(\\log n)$
+- **Height:** ≈ log n
+- **Time Complexity:** O(log n)
 
-Because heapify is $O(\\log n)$:
-- **Insert in heap** (append to end, bubble up) = $O(\\log n)$
-- **Delete in heap** (swap root with last, remove last, heapify root down) = $O(\\log n)$
+Because heapify is O(log n):
+- **Insert in heap** (append to end, bubble up) = O(log n)
+- **Delete in heap** (swap root with last, remove last, heapify root down) = O(log n)
 
 ---
 
@@ -121,7 +121,7 @@ We call \`heapify()\` on all non-leaf nodes, starting from the last non-leaf nod
 
 ### The Exam Trap: Complexity of Build Heap
 
-If \`heapify\` takes $O(\\log n)$, and we call it $n/2$ times, the complexity must be $O(n \\log n)$, right?
+If \`heapify\` takes O(log n), and we call it n/2 times, the complexity must be O(n log n), right?
 **WRONG.**
 
 ~~~text
@@ -132,11 +132,11 @@ If \`heapify\` takes $O(\\log n)$, and we call it $n/2$ times, the complexity mu
 Most of the nodes in a complete binary tree are at the bottom (leaves).
 - Leaves don't need to be heapified (they have no children).
 - Nodes one level above leaves only travel 1 step.
-- Only the single root node travels the full $\\log n$ steps.
+- Only the single root node travels the full log n steps.
 
-When you sum the mathematical series: $\\sum (h \\times \\text{nodes at height } h)$, it tightly converges to $O(n)$.
+When you sum the mathematical series: sum(h × nodes at height h), it tightly converges to O(n).
 
-> **Exam Gold:** Never say building a heap is $O(n \\log n)$. It is strictly $O(n)$.
+> **Exam Gold:** Never say building a heap is O(n log n). It is strictly O(n).
 
 ---
 
@@ -145,11 +145,11 @@ When you sum the mathematical series: $\\sum (h \\times \\text{nodes at height }
 Heap Sort leverages the max-heap to sort an array in place.
 
 ### The Algorithm:
-1. **Build Max Heap** from the unsorted array ($O(n)$).
+1. **Build Max Heap** from the unsorted array (O(n)).
 2. The largest element is now at the root.
 3. **Swap** the root with the last element in the heap.
 4. **Reduce** the heap size by 1 (the last element is now sorted at the end of the array!).
-5. **Heapify** the new root down to restore the max-heap property ($O(\\log n)$).
+5. **Heapify** the new root down to restore the max-heap property (O(log n)).
 6. Repeat steps 3-5 until the heap is empty.
 
 ~~~text
@@ -167,11 +167,11 @@ Heap Sort leverages the max-heap to sort an array in place.
 ### Complexity Profile:
 | Metric | Value | Reason |
 |:-------|:------|:-------|
-| Time Complexity | **O(n log n)** | $O(n)$ to build + $n \\times O(\\log n)$ extractions |
+| Time Complexity | **O(n log n)** | O(n) to build + n × O(log n) extractions |
 | Space Complexity | **O(1)** | Sorts entirely in-place! |
 | Stable? | **No** | Equal elements can jump around during heapify. |
 
-> Heap sort is disciplined and reliable. It **never** degrades to $O(n^2)$ like Quick Sort can. However, it is often slower than Quick Sort in practice due to poor cache locality (jumping around array indices).
+> Heap sort is disciplined and reliable. It **never** degrades to O(n²) like Quick Sort can. However, it is often slower than Quick Sort in practice due to poor cache locality (jumping around array indices).
 
 ---
 
@@ -179,10 +179,10 @@ Heap Sort leverages the max-heap to sort an array in place.
 
 Heaps are beautifully mapped to arrays without needing node objects or pointers.
 
-For any element at index $i$ (using 0-based indexing):
-- **Left Child:** $2i + 1$
-- **Right Child:** $2i + 2$
-- **Parent:** $\\lfloor(i - 1) / 2\\rfloor$
+For any element at index i (using 0-based indexing):
+- **Left Child:** 2i + 1
+- **Right Child:** 2i + 2
+- **Parent:** ⌊(i - 1) / 2⌋
 
 ~~~python
 # Python uses heapq (Min-Heap by default)
@@ -208,10 +208,10 @@ smallest = heapq.heappop(arr)
 
 | Metric / Concept | Details |
 |:-----------------|:--------|
-| **Height** | $\\lfloor\\log_2 n\\rfloor$ |
-| **Heapify** | $O(\\log n)$ |
+| **Height** | ⌊log₂ n⌋ |
+| **Heapify** | O(log n) |
 | **Build Heap** | **O(n)** (Exam favourite!) |
-| **Heap Sort** | $O(n \\log n)$, $O(1)$ space, NOT stable |
+| **Heap Sort** | O(n log n), O(1) space, NOT stable |
 | **Min-Heap Root** | Always the smallest element |
 | **Max-Heap Root** | Always the largest element |
 
@@ -224,17 +224,17 @@ smallest = heapq.heappop(arr)
 | Concept | Key Takeaway |
 |:--------|:-------------|
 | **Heap Structure** | Complete binary tree. Filled left to right, level by level. |
-| **Heap Property** | Max-heap = Parent $\\ge$ Children. Min-heap = Parent $\\le$ Children. |
-| **Height** | $\\log n$. This keeps all traversal bounds tight to $O(\\log n)$. |
-| **Build Heap** | Converts unsorted array to heap. Takes **$O(n)$** time. |
-| **Heapify** | Bubbles a node down to restore property. Takes **$O(\\log n)$** time. |
-| **Heap Sort** | In-place! $O(n \\log n)$ time, $O(1)$ space. Unstable. |
-| **Array Maths** | Parent: $(i-1)/2$, Left: $2i+1$, Right: $2i+2$. |
+| **Heap Property** | Max-heap = Parent ≥ Children. Min-heap = Parent ≤ Children. |
+| **Height** | log n. This keeps all traversal bounds tight to O(log n). |
+| **Build Heap** | Converts unsorted array to heap. Takes **O(n)** time. |
+| **Heapify** | Bubbles a node down to restore property. Takes **O(log n)** time. |
+| **Heap Sort** | In-place! O(n log n) time, O(1) space. Unstable. |
+| **Array Maths** | Parent: (i-1)/2, Left: 2i+1, Right: 2i+2. |
 
 **The Golden Rules:**
 1. A Heap is NOT a full sorted structure; it only guarantees the root is the extreme value.
 2. Python only implements Min-Heaps. To use a Max-Heap naturally, multiply all numbers by \`-1\` before pushing, and multiply by \`-1\` when popping.
-3. If an exam asks for sorting with $O(1)$ space and guaranteed $O(n \\log n)$ time, the answer is always **Heap Sort**.
+3. If an exam asks for sorting with O(1) space and guaranteed O(n log n) time, the answer is always **Heap Sort**.
 
 ---
 

@@ -41,10 +41,10 @@ Linked:    [10|→] → [20|→] → [30|→] → [40|X]
 
 | Situation | Winner |
 |:----------|:-------|
-| Need random access (arr[5]) | Array ✅ |
-| Frequent insertions at start | Linked List ✅ |
-| Known size, rarely changes | Array ✅ |
-| Size changes frequently | Linked List ✅ |
+| Need random access (arr[5]) | Array (Best) |
+| Frequent insertions at start | Linked List (Best) |
+| Known size, rarely changes | Array (Best) |
+| Size changes frequently | Linked List (Best) |
 
 ---
 
@@ -283,10 +283,10 @@ Combines **doubly linked list** (prev + next pointers) with **circular** structu
 
 | Operation | Array | Singly Linked | Doubly Linked |
 |:----------|:------|:--------------|:--------------|
-| Access by index | O(1) ✅ | O(n) | O(n) |
-| Insert at head | O(n) | O(1) ✅ | O(1) ✅ |
-| Insert at tail | O(1) | O(n) | O(1) ✅ |
-| Delete (known node) | O(n) | O(n)* | O(1) ✅ |
+| Access by index | O(1) (Best) | O(n) | O(n) |
+| Insert at head | O(n) | O(1) (Best) | O(1) (Best) |
+| Insert at tail | O(1) | O(n) | O(1) (Best) |
+| Delete (known node) | O(n) | O(n)* | O(1) (Best) |
 
 *Need to find previous node first
 
