@@ -85,69 +85,69 @@ def binary_search(arr, target):
 
 Repeatedly compare adjacent elements. Largest bubbles to the end.
 
-- **Comparisons:** $n(n - 1) / 2$
-- **Worst Case:** $O(n^2)$
-- **Best Case:** $O(n)$ (already sorted)
+- **Comparisons:** n(n - 1) / 2
+- **Worst Case:** O(n²)
+- **Best Case:** O(n) (already sorted)
 - **Stable:** Yes
 
 ### Selection Sort
 
 Find smallest element, swap with first position. Repeat.
 
-- **Exam Trap:** It ALWAYS performs $n(n - 1) / 2$ comparisons, regardless of whether input is sorted or reverse sorted.
-- **Worst/Best:** $O(n^2)$ always!
-- **Swaps:** At most $n$.
+- **Exam Trap:** It ALWAYS performs n(n - 1) / 2 comparisons, regardless of whether input is sorted or reverse sorted.
+- **Worst/Best:** O(n²) always!
+- **Swaps:** At most n.
 - **Stable:** No.
 
 ### Insertion Sort
 
 Build sorted left portion. Highly underrated.
 
-- **Worst Case:** $O(n^2)$
-- **Best Case:** $O(n)$
+- **Worst Case:** O(n²)
+- **Best Case:** O(n)
 - **Stable:** Yes
-- **Usage:** Real systems (Java, Python) switch to insertion sort for tiny arrays (e.g., $n < 47$) inside Quick/Merge sort because low overhead makes it very fast in practice.
+- **Usage:** Real systems (Java, Python) switch to insertion sort for tiny arrays (e.g., n < 47) inside Quick/Merge sort because low overhead makes it very fast in practice.
 
 ### Shell Sort
 
 Insertion sort but jumping using gaps that shrink over time.
-- **Time:** $O(n \\log^2 n)$ to $O(n^{1.5})$. Unstable.
+- **Time:** O(n log² n) to O(n^1.5). Unstable.
 
 ---
 
 ## 4. Comparison Sorts: O(n log n)
 
-### Merge Sort ⭐
+### Merge Sort
 
 Divide into halves, recursively sort, and merge back.
 
 ~~~text
-  Recurrence: T(n) = 2T(n/2) + Θ(n)
-  By Master Theorem → T(n) = Θ(n log n)
+  Recurrence: T(n) = 2T(n/2) + O(n)
+  By Master Theorem → T(n) = O(n log n)
 ~~~
 
-- **Time:** $O(n \\log n)$ Always guaranteed.
-- **Space:** $O(n)$ (Needs extra array!)
+- **Time:** O(n log n) Always guaranteed.
+- **Space:** O(n) (Needs extra array!)
 - **Stable:** Yes.
 
-### Quick Sort ⭐
+### Quick Sort
 
 Pick a pivot, position elements less than pivot left, greater right. Recursively sort halves.
 
-- **Average Time:** $O(n \\log n)$
-- **Worst Case:** $O(n^2)$ — Happens when array is sorted AND you pick extreme pivots. (Pivot strategy is critical).
-- **Space:** $O(\\log n)$ stack space.
+- **Average Time:** O(n log n)
+- **Worst Case:** O(n²) — Happens when array is sorted AND you pick extreme pivots. (Pivot strategy is critical).
+- **Space:** O(log n) stack space.
 - **Stable:** No.
 - **Why use it?** Good cache behavior makes it the fastest in actual hardware practice.
 
 ### Heap Sort
 
-Build max-heap ($O(n)$). Continually pop root and heapify ($O(\\log n)$).
+Build max-heap (O(n)). Continually pop root and heapify (O(log n)).
 
-- **Time:** $O(n \\log n)$ Guaranteed.
-- **Space:** $O(1)$ — Entirely in-place!
+- **Time:** O(n log n) Guaranteed.
+- **Space:** O(1) — Entirely in-place!
 - **Stable:** No.
-- **Usage:** Reliable, no worst-case $O(n^2)$ trap like Quick Sort, no $O(n)$ space requirement like Merge Sort.
+- **Usage:** Reliable, no worst-case O(n²) trap like Quick Sort, no O(n) space requirement like Merge Sort.
 
 ---
 
@@ -160,9 +160,9 @@ Build max-heap ($O(n)$). Continually pop root and heapify ($O(\\log n)$).
 
 **The Comparison Bound Theorem:**
 ~~~text
-  No comparison-based sort can beat Ω(n log n) in the worst case.
+  No comparison-based sort can beat O(n log n) in the worst case.
 ~~~
-Every algorithm above compares $A < B$. The mathematics of decision trees proves they can never be faster than $\\Omega(n \\log n)$.
+Every algorithm above compares A < B. The mathematics of decision trees proves they can never be faster than O(n log n).
 
 So, how do we go faster? We stop comparing!
 
@@ -170,11 +170,11 @@ So, how do we go faster? We stop comparing!
 
 ## 6. Breaking the Barrier: Non-Comparison Sorts
 
-Non-comparison algorithms beat $n \\log n$ time by making strict assumptions about the data.
+Non-comparison algorithms beat n log n time by making strict assumptions about the data.
 
 ### Counting Sort
 
-**Assumption:** Elements are integers in a small range $[0 \\dots k]$.
+**Assumption:** Elements are integers in a small range [0 ... k].
 
 **Idea:**
 1. Count occurrences of each value in a \`count[]\` array.
@@ -187,7 +187,7 @@ Non-comparison algorithms beat $n \\log n$ time by making strict assumptions abo
   Stable: YES
 ~~~
 
-> **Exam Trick:** If $k = O(n)$, then Counting Sort is strictly $O(n)$.
+> **Exam Trick:** If k = O(n), then Counting Sort is strictly O(n).
 >
 > **Drawback:** It is terrible if the range is huge. Sorting 5 phone numbers requires an array size of 9,999,999,999! Great for exam marks (0-100), bad for large ranges.
 
@@ -204,14 +204,14 @@ Each digit pass MUST use a **stable** sort (like counting sort under the hood).
   Stable: YES
 ~~~
 
-> **Real-world Example:** Sorting standard dates. Day $\\rightarrow$ Month $\\rightarrow$ Year. By sorting year last, the stability keeps the months/days ordered! Radix is clever engineering layered on Counting Sort.
+> **Real-world Example:** Sorting standard dates. Day → Month → Year. By sorting year last, the stability keeps the months/days ordered! Radix is clever engineering layered on Counting Sort.
 
 ### Bucket Sort
 
-**Assumption:** Input data is uniformly distributed randomly over a range (like $[0, 1)$).
+**Assumption:** Input data is uniformly distributed randomly over a range (like [0, 1)).
 
 **Idea:**
-1. Create $n$ empty buckets.
+1. Create n empty buckets.
 2. Scatter elements into buckets based on value.
 3. Sort each bucket individually (often using insertion sort).
 4. Concatenate the buckets.
@@ -229,30 +229,30 @@ Each digit pass MUST use a **stable** sort (like counting sort under the hood).
 
 | Algorithm | Best | Average | Worst | Stable? | Space | Idea / Limits |
 |:----------|:-----|:--------|:------|:--------|:------|:--------------|
-| **Bubble** | $O(n)$ | $O(n^2)$ | $O(n^2)$ | ✅ | $O(1)$ | $n(n-1)/2$ comps |
-| **Selection**| $O(n^2)$ | $O(n^2)$ | $O(n^2)$ | ❌ | $O(1)$ | Consistently slow |
-| **Insertion**| **$O(n)$** | $O(n^2)$ | $O(n^2)$ | ✅ | $O(1)$ | Great for small $n$ |
-| **Merge** | $O(n \\log n)$| $O(n \\log n)$| $O(n \\log n)$| ✅ | **$O(n)$** | Reliable D&C |
-| **Quick** | $O(n \\log n)$| $O(n \\log n)$| **$O(n^2)$** | ❌ | $O(\\log n)$| Fastest hardware avg |
-| **Heap** | $O(n \\log n)$| $O(n \\log n)$| $O(n \\log n)$| ❌ | **$O(1)$** | In-place tree order |
-| **Counting** | $O(n+k)$ | $O(n+k)$ | $O(n+k)$ | ✅ | $O(n+k)$ | Range bounded data |
-| **Radix** | $O(dn)$ | $O(dn)$ | $O(dn)$ | ✅ | $O(n+k)$ | Digit-by-digit |
-| **Bucket** | $O(n)$ | **$O(n)$** | $O(n^2)$ | ✅ | $O(n)$ | Uniform distribution |
+| **Bubble** | O(n) | O(n²) | O(n²) | Yes | O(1) | n(n-1)/2 comps |
+| **Selection**| O(n²) | O(n²) | O(n²) | No | O(1) | Consistently slow |
+| **Insertion**| **O(n)** | O(n²) | O(n²) | Yes | O(1) | Great for small n |
+| **Merge** | O(n log n) | O(n log n) | O(n log n) | Yes | **O(n)** | Reliable D&C |
+| **Quick** | O(n log n) | O(n log n) | **O(n²)** | No | O(log n) | Fastest hardware avg |
+| **Heap** | O(n log n) | O(n log n) | O(n log n) | No | **O(1)** | In-place tree order |
+| **Counting** | O(n+k) | O(n+k) | O(n+k) | Yes | O(n+k) | Range bounded data |
+| **Radix** | O(dn) | O(dn) | O(dn) | Yes | O(n+k) | Digit-by-digit |
+| **Bucket** | O(n) | **O(n)** | O(n²) | Yes | O(n) | Uniform distribution |
 
 ---
 
 ## TL;DR - Formula Sheet
 
 **Recurrences & Complexity:**
-- **Merge Sort Recurrence:** $T(n) = 2T(n/2) + n$
-- **Comparison Lower Bound:** $\\Omega(n \\log n)$
-- **Counting Sort Time:** $O(n + k)$
-- **Radix Sort Time:** $O(d(n + k))$
+- **Merge Sort Recurrence:** T(n) = 2T(n/2) + n
+- **Comparison Lower Bound:** O(n log n)
+- **Counting Sort Time:** O(n + k)
+- **Radix Sort Time:** O(d(n + k))
 
 **Golden Rules:**
 1. **Quick Sort Worst Case** occurs when array is already sorted and pivot is extreme.
-2. **Selection Sort** makes $n(n-1)/2$ comparisons no matter what the input is.
-3. **Counting Sort** requires memory proportional to the maximum value ($k$), making it fail for huge data ranges.
+2. **Selection Sort** makes n(n-1)/2 comparisons no matter what the input is.
+3. **Counting Sort** requires memory proportional to the maximum value (k), making it fail for huge data ranges.
 4. **Radix Sort** MUST use a stable sorting sub-routine (like Counting Sort) to work.
 
 ---
