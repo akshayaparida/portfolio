@@ -26,18 +26,16 @@ Master the foundational concepts that underpin every branch of mathematics — f
 
 ### 1. Number Systems
 
-Every number you use fits into a hierarchy of number sets:
+Every number you use fits into a hierarchy of number sets: **ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ**
 
-\`\`\`
-  ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ
-
-  Natural (ℕ): 1, 2, 3, 4, ...           (counting numbers)
-  Whole (W):   0, 1, 2, 3, ...           (ℕ + zero)
-  Integers (ℤ): ..., -2, -1, 0, 1, 2, ... (whole + negatives)
-  Rational (ℚ): p/q where q ≠ 0          (fractions, terminating/repeating decimals)
-  Irrational:   √2, π, e                 (non-terminating, non-repeating decimals)
-  Real (ℝ):     Rational ∪ Irrational    (entire number line)
-\`\`\`
+| Set | Symbol | Examples | Description |
+|:----|:-------|:---------|:------------|
+| **Natural** | ℕ | 1, 2, 3, 4, ... | Counting numbers |
+| **Whole** | W | 0, 1, 2, 3, ... | ℕ + zero |
+| **Integers** | ℤ | ..., -2, -1, 0, 1, 2, ... | Whole + negatives |
+| **Rational** | ℚ | 1/2, 0.75, 0.333... | p/q where q ≠ 0 |
+| **Irrational** | — | √2, π, e | Non-terminating, non-repeating decimals |
+| **Real** | ℝ | All of the above | Rational ∪ Irrational (entire number line) |
 
 **Prime & Composite Numbers:**
 
