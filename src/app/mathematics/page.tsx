@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function MathematicsPage() {
-  redirect("/mathematics/set-theory");
+  redirect("/mathematics/basic-math");
 }

@@ -3,6 +3,11 @@ import { render } from "@testing-library/react";
 import MathModuleIcon from "@/components/MathModuleIcon";
 
 describe("MathModuleIcon", () => {
+  it("renders basic-math icon", () => {
+    const { container } = render(<MathModuleIcon moduleId="basic-math" />);
+    expect(container.querySelector("svg")).toBeInTheDocument();
+  });
+
   it("renders linear algebra icon", () => {
     const { container } = render(<MathModuleIcon moduleId="linear-algebra" />);
     expect(container.querySelector("svg")).toBeInTheDocument();

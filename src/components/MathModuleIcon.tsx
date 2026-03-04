@@ -24,6 +24,24 @@ export default function MathModuleIcon({
   };
 
   switch (moduleId) {
+    case "basic-math":
+      return (
+        <svg {...iconProps}>
+          {/* Calculator / 123 icon */}
+          <text
+            x="4"
+            y="16"
+            fontSize="14"
+            fontWeight="bold"
+            fill="currentColor"
+            stroke="none"
+            fontFamily="monospace"
+          >
+            123
+          </text>
+          <path d="M3 20h18" strokeWidth="2" />
+        </svg>
+      );
     case "set-theory":
       return (
         <svg {...iconProps}>

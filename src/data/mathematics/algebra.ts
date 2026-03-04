@@ -14,16 +14,15 @@ Algebra provides the fundamental language for expressing mathematical relationsh
 
 | # | Topic | Skill |
 |:--|:------|:------|
-| 1 | **Indices & Powers** | Simplify expressions with exponents |
-| 2 | **Logarithms** | Convert between log and exponential form |
-| 3 | **Polynomials** | Factor and solve polynomial equations |
-| 4 | **Quadratic Equations** | Use quadratic formula and factoring |
-| 5 | **Arithmetic Progression** | Find nth term and sum of AP |
-| 6 | **Geometric Progression** | Calculate GP terms and infinite sums |
-| 7 | **Harmonic Progression** | Reciprocals of AP terms |
-| 8 | **Inequalities** | Solve linear and quadratic inequalities |
-| 9 | **Absolute Value** | Handle modulus in equations |
-| 10 | **Determinants & Matrices** | Matrix operations & determinants |
+| 1 | **Expansions & Factorization** | Expand and factor polynomial expressions |
+| 2 | **Linear Equations** | Solve single and system of linear equations |
+| 3 | **Quadratic Equations** | Use quadratic formula and factoring |
+| 4 | **Indices (Exponents)** | Simplify expressions with exponents |
+| 5 | **Logarithms** | Convert between log and exponential form |
+| 6 | **Arithmetic Progression** | Find nth term and sum of AP |
+| 7 | **Geometric Progression** | Calculate GP terms and infinite sums |
+| 8 | **Harmonic Progression** | Reciprocals of AP terms |
+| 9 | **Determinants & Matrices** | Matrix operations & determinants |
 
 ## Math Notation & Pronunciation Guide
 
@@ -51,35 +50,7 @@ Algebra provides the fundamental language for expressing mathematical relationsh
 
 ## Key Concepts
 
-### 1. Fundamental Operations & Properties
-
-**Order of Operations (PEMDAS/BODMAS):**
-1. Parentheses/Brackets
-2. Exponents/Orders
-3. Multiplication & Division (left to right)
-4. Addition & Subtraction (left to right)
-
-\`\`\`python path=null start=null
-# Python follows order of operations
-result = 2 + 3 * 4 ** 2  # = 2 + 3 * 16 = 2 + 48 = 50
-print(f"2 + 3 * 4² = {result}")
-
-# Use parentheses to change order
-result_with_parens = (2 + 3) * 4 ** 2  # = 5 * 16 = 80
-print(f"(2 + 3) * 4² = {result_with_parens}")
-\`\`\`
-
-**Algebraic Properties:**
-
-| Property | Addition | Multiplication |
-|:---------|:---------|:---------------|
-| Commutative | a + b = b + a | a × b = b × a |
-| Associative | (a + b) + c = a + (b + c) | (a × b) × c = a × (b × c) |
-| Identity | a + 0 = a | a × 1 = a |
-| Inverse | a + (-a) = 0 | a × (1/a) = 1 |
-| Distributive | a(b + c) = ab + ac | |
-
-### 2. Expansions & Factorization
+### 1. Expansions & Factorization
 
 **Common Algebraic Identities:**
 
@@ -129,7 +100,7 @@ expr4 = x**2 + 6*x + 9
 print(f"{expr4} = {sp.factor(expr4)}")  # (x + 3)²
 \`\`\`
 
-### 3. Linear Equations
+### 2. Linear Equations
 
 **Standard Form:** ax + b = 0
 
@@ -172,7 +143,7 @@ print(f"2({x}) + 3({y}) = {2*x + 3*y}")  # 8
 print(f"({x}) - ({y}) = {x - y}")  # 1
 \`\`\`
 
-### 4. Quadratic Equations
+### 3. Quadratic Equations
 
 **Standard Form:** ax² + bx + c = 0
 
@@ -221,7 +192,7 @@ print(f"x² + x + 1 = 0: x = {x1}, {x2} ({nature})")  # Complex
 - Vertex at (h, k)
 - h = -b/(2a), k = c - b²/(4a)
 
-### 5. Indices (Exponents)
+### 4. Indices (Exponents)
 
 **Laws of Indices:**
 
@@ -249,7 +220,7 @@ avogadro = 6.022e23  # 6.022 × 10²³
 print(f"Avogadro's number: {avogadro:.3e}")
 \`\`\`
 
-### 6. Logarithms
+### 5. Logarithms
 
 **Definition:** If aˣ = b, then logₐ(b) = x
 
@@ -293,7 +264,7 @@ print(f"log₅(125) = {log_base(125, 5)}")  # 3
 - Information theory: bits = log₂(possibilities)
 - Decibels: dB = 10·log₁₀(power ratio)
 
-### 7. Progressions (Sequences)
+### 6. Progressions (Sequences)
 
 **Arithmetic Progression (AP):**
 Each term differs by constant d.
@@ -348,7 +319,7 @@ infinite_sum = a / (1 - r)
 print(f"1 + 0.5 + 0.25 + ... = {infinite_sum}")  # 2
 \`\`\`
 
-### 8. Harmonic Progression (HP)
+### 7. Harmonic Progression (HP)
 
 **Definition:**
 A sequence is in Harmonic Progression (HP) if the reciprocals of its terms form an Arithmetic Progression (AP).
@@ -386,7 +357,7 @@ HM = 2 * a * b / (a + b) # 6.4
 print(f"AM={AM}, GM={GM}, HM={HM}")
 \`\`\`
 
-### 9. Determinants & Matrices
+### 8. Determinants & Matrices
 
 **2×2 Determinant:**
 

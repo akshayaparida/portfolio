@@ -3072,13 +3072,13 @@
       "11": 1,
       "12": 3,
       "13": 3,
-      "14": 9,
+      "14": 10,
       "15": 3,
       "16": 1,
       "17": 2,
       "18": 2
     },
-    "f": { "0": 3, "1": 9, "2": 2 },
+    "f": { "0": 3, "1": 10, "2": 2 },
     "b": { "0": [1, 2] }
   },
   "/home/akshayaparida/portfolio/src/app/mlops/layout.tsx": {
@@ -5712,11 +5712,11 @@
       },
       "3": {
         "start": { "line": 26, "column": 2 },
-        "end": { "line": 92, "column": null }
+        "end": { "line": 110, "column": null }
       },
       "4": {
-        "start": { "line": 91, "column": 6 },
-        "end": { "line": 91, "column": null }
+        "start": { "line": 109, "column": 6 },
+        "end": { "line": 109, "column": null }
       }
     },
     "fnMap": {
@@ -5728,7 +5728,7 @@
         },
         "loc": {
           "start": { "line": 15, "column": 22 },
-          "end": { "line": 93, "column": null }
+          "end": { "line": 111, "column": null }
         }
       }
     },
@@ -5736,19 +5736,19 @@
       "0": {
         "loc": {
           "start": { "line": 26, "column": 2 },
-          "end": { "line": 92, "column": null }
+          "end": { "line": 110, "column": null }
         },
         "type": "switch",
         "locations": [
           {
-            "start": { "line": 90, "column": 4 },
-            "end": { "line": 91, "column": null }
+            "start": { "line": 108, "column": 4 },
+            "end": { "line": 109, "column": null }
           }
         ]
       }
     },
-    "s": { "0": 6, "1": 1, "2": 6, "3": 6, "4": 1 },
-    "f": { "0": 6 },
+    "s": { "0": 7, "1": 1, "2": 7, "3": 7, "4": 1 },
+    "f": { "0": 7 },
     "b": { "0": [1] }
   },
   "/home/akshayaparida/portfolio/src/components/MobileExplore.tsx": {
@@ -5879,9 +5879,9 @@
         ]
       }
     },
-    "s": { "0": 2, "1": 1, "2": 1, "3": 1, "4": 2, "5": 14, "6": 14, "7": 14 },
-    "f": { "0": 2, "1": 14 },
-    "b": { "0": [2, 12] }
+    "s": { "0": 2, "1": 1, "2": 1, "3": 1, "4": 2, "5": 16, "6": 16, "7": 16 },
+    "f": { "0": 2, "1": 16 },
+    "b": { "0": [2, 14] }
   },
   "/home/akshayaparida/portfolio/src/components/ModuleViewer.tsx": {
     "path": "/home/akshayaparida/portfolio/src/components/ModuleViewer.tsx",
@@ -11194,40 +11194,44 @@
     "path": "/home/akshayaparida/portfolio/src/data/mathematics.ts",
     "statementMap": {
       "0": {
-        "start": { "line": 10, "column": 13 },
-        "end": { "line": 10, "column": 52 }
+        "start": { "line": 11, "column": 13 },
+        "end": { "line": 11, "column": 52 }
       },
       "1": {
         "start": { "line": 2, "column": 32 },
         "end": { "line": 2, "column": null }
       },
       "2": {
-        "start": { "line": 3, "column": 30 },
+        "start": { "line": 3, "column": 32 },
         "end": { "line": 3, "column": null }
       },
       "3": {
-        "start": { "line": 4, "column": 41 },
+        "start": { "line": 4, "column": 30 },
         "end": { "line": 4, "column": null }
       },
       "4": {
-        "start": { "line": 5, "column": 36 },
+        "start": { "line": 5, "column": 41 },
         "end": { "line": 5, "column": null }
       },
       "5": {
-        "start": { "line": 6, "column": 31 },
+        "start": { "line": 6, "column": 36 },
         "end": { "line": 6, "column": null }
       },
       "6": {
-        "start": { "line": 7, "column": 39 },
+        "start": { "line": 7, "column": 31 },
         "end": { "line": 7, "column": null }
       },
       "7": {
-        "start": { "line": 8, "column": 35 },
+        "start": { "line": 8, "column": 39 },
         "end": { "line": 8, "column": null }
       },
       "8": {
-        "start": { "line": 10, "column": 52 },
-        "end": { "line": 18, "column": null }
+        "start": { "line": 9, "column": 35 },
+        "end": { "line": 9, "column": null }
+      },
+      "9": {
+        "start": { "line": 11, "column": 52 },
+        "end": { "line": 20, "column": null }
       }
     },
     "fnMap": {},
@@ -11241,7 +11245,8 @@
       "5": 1,
       "6": 1,
       "7": 1,
-      "8": 1
+      "8": 1,
+      "9": 1
     },
     "f": {},
     "b": {}
@@ -11943,7 +11948,25 @@
       },
       "1": {
         "start": { "line": 3, "column": 45 },
-        "end": { "line": 594, "column": null }
+        "end": { "line": 565, "column": null }
+      }
+    },
+    "fnMap": {},
+    "branchMap": {},
+    "s": { "0": 1, "1": 1 },
+    "f": {},
+    "b": {}
+  },
+  "/home/akshayaparida/portfolio/src/data/mathematics/basic-math.ts": {
+    "path": "/home/akshayaparida/portfolio/src/data/mathematics/basic-math.ts",
+    "statementMap": {
+      "0": {
+        "start": { "line": 3, "column": 13 },
+        "end": { "line": 3, "column": 47 }
+      },
+      "1": {
+        "start": { "line": 3, "column": 47 },
+        "end": { "line": 497, "column": null }
       }
     },
     "fnMap": {},
