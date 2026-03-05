@@ -21,6 +21,7 @@ Master the foundational concepts that underpin every branch of mathematics — f
 | 5 | **HCF & LCM** | Find HCF/LCM using prime factorization |
 | 6 | **Divisibility Rules** | Quickly check divisibility by 2–11 |
 | 7 | **Basic Geometry & Mensuration** | Calculate area, perimeter, and apply Pythagoras |
+| 8 | **Inequalities** | Solve linear, quadratic, rational, and absolute value inequalities |
 
 ## Key Concepts
 
@@ -361,6 +362,311 @@ for a, b, c in triplets:
     print(f"({a},{b},{c}): {a}²+{b}²={a**2+b**2}, {c}²={c**2} → {'✓' if valid else '✗'}")
 \`\`\`
 
+### 8. Inequalities
+
+Inequalities compare expressions using relational operators. This section covers solving techniques for various inequality types.
+
+**Inequality Symbols:**
+
+| Symbol | Meaning | Example |
+|:-------|:--------|:--------|
+| < | Less than | x < 5 (x is less than 5) |
+| > | Greater than | x > 3 (x is greater than 3) |
+| ≤ | Less than or equal to | x ≤ 7 (x is at most 7) |
+| ≥ | Greater than or equal to | x ≥ 2 (x is at least 2) |
+
+**Key Properties:**
+- Adding/subtracting the same number to both sides preserves the inequality
+- Multiplying/dividing by a **positive** number preserves the inequality
+- Multiplying/dividing by a **negative** number **reverses** the inequality
+
+\`\`\`python path=null start=null
+# Solving linear inequality: 3x - 7 < 8
+# Step 1: Add 7 to both sides
+# 3x < 15
+# Step 2: Divide by 3
+# x < 5
+
+def solve_linear_inequality(a, b, c, inequality_type='<'):
+    """
+    Solve ax + b < c (or >, <=, >=)
+    Returns solution boundary and direction
+    """
+    boundary = (c - b) / a
+    
+    if a > 0:
+        direction = '<' if inequality_type in ['<', '<='] else '>'
+    else:
+        direction = '>' if inequality_type in ['<', '<='] else '<'
+    
+    return f"x {direction} {boundary}"
+
+print(f"3x - 7 < 8 → {solve_linear_inequality(3, -7, 8, '<')}")  # x < 5.0
+print(f"-2x + 4 ≥ 10 → {solve_linear_inequality(-2, 4, 10, '>=')}")  # x <= -3.0
+\`\`\`
+
+#### 8.1 Interval Notation
+
+Solutions to inequalities are often expressed using interval notation:
+
+| Inequality | Interval | Number Line |
+|:-----------|:---------|:------------|
+| a < x < b | (a, b) | Open circles at both ends |
+| a ≤ x ≤ b | [a, b] | Closed circles at both ends |
+| a < x ≤ b | (a, b] | Open at a, closed at b |
+| a ≤ x < b | [a, b) | Closed at a, open at b |
+| x > a | (a, ∞) | Arrow to right |
+| x < a | (-∞, a) | Arrow to left |
+| x ≥ a | [a, ∞) | Closed circle, arrow right |
+| x ≤ a | (-∞, a] | Closed circle, arrow left |
+
+**Union of Intervals:** Use ∪ to combine disjoint intervals
+- Example: x < -2 or x > 3 → (-∞, -2) ∪ (3, ∞)
+
+\`\`\`python path=null start=null
+def interval_to_set(interval_str):
+    """Parse interval notation (simplified)"""
+    examples = {
+        "(2, 5)": "2 < x < 5",
+        "[2, 5]": "2 ≤ x ≤ 5",
+        "(2, 5]": "2 < x ≤ 5",
+        "[2, 5)": "2 ≤ x < 5",
+        "(-∞, 3)": "x < 3",
+        "[3, ∞)": "x ≥ 3",
+        "(-∞, -2) ∪ (3, ∞)": "x < -2 or x > 3"
+    }
+    return examples.get(interval_str, "Unknown format")
+
+for interval in ["(2, 5)", "[-1, 4)", "(-∞, 0)"]:
+    print(f"{interval} means: {interval_to_set(interval)}")
+\`\`\`
+
+#### 8.2 Quadratic Inequalities
+
+To solve quadratic inequalities like ax² + bx + c > 0:
+
+**Steps:**
+1. Factor the quadratic (or use quadratic formula to find roots)
+2. Find critical points (where expression = 0)
+3. Use sign analysis (wavy curve method) on intervals
+4. Select intervals based on inequality sign
+
+\`\`\`python path=null start=null
+import numpy as np
+
+def solve_quadratic_inequality(a, b, c, inequality_type='>'):
+    """
+    Solve ax² + bx + c > 0 (or <, >=, <=)
+    Returns intervals where inequality holds
+    """
+    # Find roots using quadratic formula
+    discriminant = b**2 - 4*a*c
+    
+    if discriminant < 0:
+        # No real roots - parabola doesn't cross x-axis
+        if a > 0:
+            return "All real numbers" if inequality_type in ['>', '>='] else "No solution"
+        else:
+            return "No solution" if inequality_type in ['>', '>='] else "All real numbers"
+    
+    sqrt_d = np.sqrt(discriminant)
+    x1 = (-b - sqrt_d) / (2*a)
+    x2 = (-b + sqrt_d) / (2*a)
+    
+    critical_points = sorted([x1, x2])
+    return f"Critical points: x = {critical_points[0]}, {critical_points[1]}"
+
+# Example: x² - 5x + 6 > 0
+# Factors: (x - 2)(x - 3) > 0
+print(f"x² - 5x + 6 > 0")
+print(solve_quadratic_inequality(1, -5, 6, '>'))
+print("Solution: x < 2 or x > 3, i.e., (-∞, 2) ∪ (3, ∞)")
+
+# Example: x² - 4x + 4 ≤ 0
+# Factors: (x - 2)² ≤ 0
+print(f"\\nx² - 4x + 4 ≤ 0")
+print("Solution: x = 2 only (single point)")
+\`\`\`
+
+**Sign Analysis:**
+For (x - 2)(x - 3) > 0:
+
+| Interval | (x - 2) | (x - 3) | Product | Satisfies > 0? |
+|:---------|:--------|:--------|:--------|:---------------|
+| x < 2 | Negative | Negative | Positive | ✓ |
+| 2 < x < 3 | Positive | Negative | Negative | ✗ |
+| x > 3 | Positive | Positive | Positive | ✓ |
+
+**Solution:** x ∈ (-∞, 2) ∪ (3, ∞)
+
+#### 8.3 Rational Inequalities (Wavy Curve Method)
+
+Rational inequalities have the form P(x)/Q(x) < 0, > 0, ≤ 0, or ≥ 0.
+
+**Critical Points:**
+- **Numerator zeros:** Where P(x) = 0 (included in solution for ≤ or ≥)
+- **Denominator zeros:** Where Q(x) = 0 (always excluded - undefined)
+
+**Wavy Curve Method (Sign Chart Method):**
+
+1. Factor numerator and denominator completely
+2. Find all critical points
+3. Mark critical points on number line
+   - Open circle (○) for denominator zeros and strict inequalities
+   - Closed circle (●) for numerator zeros with inclusive inequalities
+4. Determine sign in rightmost interval (usually positive)
+5. Alternate signs moving left (unless factor is squared - sign doesn't change)
+6. Select intervals based on inequality
+
+\`\`\`python path=null start=null
+def analyze_rational_inequality():
+    """
+    Solve: (x - 1)(x + 2) / ((x - 3)(x + 1)) > 0
+    
+    Critical points:
+    - Numerator zeros: x = 1, x = -2 (open circles since >)
+    - Denominator zeros: x = 3, x = -1 (always open - undefined)
+    
+    Sign chart (right to left):
+    Interval          | Sign | Satisfies > 0?
+    x > 3             |  +   | ✓
+    1 < x < 3         |  -   | ✗
+    -1 < x < 1        |  +   | ✓
+    -2 < x < -1       |  -   | ✗
+    x < -2            |  +   | ✓
+    """
+    
+    print("Solve: (x - 1)(x + 2) / ((x - 3)(x + 1)) > 0")
+    print()
+    print("Critical Points:")
+    print("  Numerator zeros: x = -2, 1 (open circles)")
+    print("  Denominator zeros: x = -1, 3 (undefined)")
+    print()
+    print("Sign Chart (right to left):")
+    print("  x > 3:           +  ✓")
+    print("  1 < x < 3:       -  ✗")
+    print("  -1 < x < 1:      +  ✓")
+    print("  -2 < x < -1:     -  ✗")
+    print("  x < -2:          +  ✓")
+    print()
+    print("Solution: (-∞, -2) ∪ (-1, 1) ∪ (3, ∞)")
+
+analyze_rational_inequality()
+\`\`\`
+
+**Example Problem:**
+
+Solve: (x² - 4) / (x - 1) ≥ 0
+
+**Solution:**
+1. Factor: (x - 2)(x + 2) / (x - 1) ≥ 0
+2. Critical points: x = -2, 1, 2
+3. Sign analysis:
+   - x > 2: (+) ✓
+   - 1 < x < 2: (-) ✗
+   - -2 < x < 1: (+) ✓
+   - x < -2: (-) ✗
+4. Include x = -2 and x = 2 (numerator zeros with ≥)
+5. Exclude x = 1 (denominator zero)
+
+**Solution:** [-2, 1) ∪ [2, ∞)
+
+#### 8.4 Absolute Value Inequalities
+
+**Type 1: |x| < a (or |x| ≤ a)**
+- Solution: -a < x < a (or -a ≤ x ≤ a)
+- Interpretation: x is within distance a from 0
+
+**Type 2: |x| > a (or |x| ≥ a)**
+- Solution: x < -a or x > a (or x ≤ -a or x ≥ a)
+- Interpretation: x is more than distance a from 0
+
+**General Form: |f(x)| < a**
+- Rewrite as: -a < f(x) < a
+- Solve the compound inequality
+
+\`\`\`python path=null start=null
+import numpy as np
+
+def solve_abs_inequality(a, inequality_type='<'):
+    """
+    Solve |x| < a or |x| > a
+    """
+    if a <= 0:
+        if inequality_type in ['<', '<=']:
+            return "No solution" if a < 0 else "x = 0"
+        else:
+            return "All real numbers except 0" if a == 0 else "All real numbers"
+    
+    if inequality_type == '<':
+        return f"-{a} < x < {a}, i.e., (-{a}, {a})"
+    elif inequality_type == '<=':
+        return f"-{a} ≤ x ≤ {a}, i.e., [-{a}, {a}]"
+    elif inequality_type == '>':
+        return f"x < -{a} or x > {a}, i.e., (-∞, -{a}) ∪ ({a}, ∞)"
+    else:  # >=
+        return f"x ≤ -{a} or x ≥ {a}, i.e., (-∞, -{a}] ∪ [{a}, ∞)"
+
+print(f"|x| < 5 → {solve_abs_inequality(5, '<')}")
+print(f"|x| ≥ 3 → {solve_abs_inequality(3, '>=')}")
+
+# More complex: |x - 3| < 7
+print(f"\\n|x - 3| < 7")
+print("Rewrite: -7 < x - 3 < 7")
+print("Add 3: -4 < x < 10")
+print("Solution: (-4, 10)")
+\`\`\`
+
+**Special Cases:**
+
+| Inequality | Solution | Reason |
+|:-----------|:---------|:-------|
+| \|x\| ≥ 0 | All real numbers | Absolute value is always non-negative |
+| \|x\| < 0 | No solution | Absolute value cannot be negative |
+| \|x\| > -5 | All real numbers | Absolute value is always ≥ 0 > -5 |
+
+#### 8.5 Finding Integral Values
+
+When asked to find integer solutions in an interval:
+
+**Steps:**
+1. Solve the inequality to find the solution interval
+2. List all integers within that interval
+3. Count or sum as required
+
+\`\`\`python path=null start=null
+def find_integral_solutions(inequality_solution, interval_type='open'):
+    """
+    Find integer solutions in a given interval
+    """
+    # Example: Find integers in (-2, 5]
+    if interval_type == '(-2, 5]':
+        integers = [-1, 0, 1, 2, 3, 4, 5]
+    elif interval_type == '[-3, 4)':
+        integers = [-3, -2, -1, 0, 1, 2, 3]
+    elif interval_type == '(-∞, 3)':
+        integers = "All integers < 3"
+    else:
+        integers = []
+    
+    return integers
+
+print(f"Integers in (-2, 5]: {find_integral_solutions('ineq', '(-2, 5]')}")
+print(f"Count: {len(find_integral_solutions('ineq', '(-2, 5]'))}")
+print(f"Sum: {sum(find_integral_solutions('ineq', '(-2, 5]'))}")
+
+# Example: Largest integer in (-∞, 7)
+print(f"\\nLargest integer in (-∞, 7): 6")
+print(f"Smallest integer in (2, ∞): 3")
+\`\`\`
+
+**Example:**
+Find the sum of all integral values of x satisfying: -3 ≤ x < 5
+
+**Solution:**
+Integers: -3, -2, -1, 0, 1, 2, 3, 4
+Sum = -3 + (-2) + (-1) + 0 + 1 + 2 + 3 + 4 = **4**
+
 ---
 
 ## TL;DR — Quick Recall
@@ -379,6 +685,12 @@ for a, b, c in triplets:
 | **Pythagoras** | a² + b² = c² |
 | **Circle area** | πr² |
 | **Rectangle area** | length × width |
+| **Inequality reversal** | Multiply/divide by negative reverses sign |
+| **Interval (a,b)** | a < x < b (open interval) |
+| **Interval [a,b]** | a ≤ x ≤ b (closed interval) |
+| **\|x\| < a** | -a < x < a |
+| **\|x\| > a** | x < -a or x > a |
+| **Wavy Curve** | Factor → Critical points → Sign chart → Select intervals |
 
 ---
 
@@ -489,6 +801,103 @@ for a, b, c in triplets:
       correctAnswer: 0,
       explanation:
         "Total parts = 3 + 5 = 8\nEach part = 240 / 8 = 30\n\nSmaller part = 3 × 30 = 90\nLarger part = 5 × 30 = 150\n\nVerify: 90 + 150 = 240 ✓",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q11",
+      question: "Solve: 3x - 7 < 8",
+      options: ["x < 5", "x > 5", "x < 15", "x > 1/3"],
+      correctAnswer: 0,
+      explanation:
+        "Step 1: Add 7 to both sides → 3x < 15\nStep 2: Divide by 3 → x < 5\n\nSolution: x < 5, or in interval notation: (-∞, 5)",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q12",
+      question: "Solve: x² - 5x + 6 > 0",
+      options: ["(2, 3)", "(-∞, 2) ∪ (3, ∞)", "[2, 3]", "(-∞, 2] ∪ [3, ∞)"],
+      correctAnswer: 1,
+      explanation:
+        "Step 1: Factor → (x - 2)(x - 3) > 0\nStep 2: Critical points → x = 2, 3\nStep 3: Sign analysis:\n  • x < 2: (+) ✓\n  • 2 < x < 3: (-) ✗\n  • x > 3: (+) ✓\n\nSolution: (-∞, 2) ∪ (3, ∞)",
+      difficulty: "medium",
+    },
+    {
+      id: "bm-q13",
+      question: "Solve: |x - 3| < 7",
+      options: ["(-4, 10)", "(-10, 4)", "(-∞, -4) ∪ (10, ∞)", "[-4, 10]"],
+      correctAnswer: 0,
+      explanation:
+        "|x - 3| < 7 means:\n-7 < x - 3 < 7\n\nAdd 3 to all parts:\n-7 + 3 < x < 7 + 3\n-4 < x < 10\n\nSolution: (-4, 10)",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q14",
+      question: "Solve: (x - 2)/(x + 1) > 0",
+      options: ["(-∞, -1) ∪ (2, ∞)", "(-1, 2)", "[-1, 2]", "(-∞, -1] ∪ [2, ∞)"],
+      correctAnswer: 0,
+      explanation:
+        "Critical points:\n• Numerator zero: x = 2 (open circle, strict inequality)\n• Denominator zero: x = -1 (always open - undefined)\n\nSign chart (right to left):\n  • x > 2: (+) ✓\n  • -1 < x < 2: (-) ✗\n  • x < -1: (+) ✓\n\nSolution: (-∞, -1) ∪ (2, ∞)",
+      difficulty: "medium",
+    },
+    {
+      id: "bm-q15",
+      question:
+        "Find the number of integral values of x satisfying: -3 ≤ x < 5",
+      options: ["7", "8", "9", "10"],
+      correctAnswer: 1,
+      explanation:
+        "Integers in [-3, 5):\n-3, -2, -1, 0, 1, 2, 3, 4\n\nCount: 8 integers\n\nNote: -3 is included (≤), but 5 is excluded (<)",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q16",
+      question:
+        "What is the sum of all integral values of x satisfying: -2 < x ≤ 4?",
+      options: ["6", "7", "8", "9"],
+      correctAnswer: 3,
+      explanation:
+        "Integers in (-2, 4]:\n-1, 0, 1, 2, 3, 4\n\nSum = (-1) + 0 + 1 + 2 + 3 + 4 = 9\n\nAnswer: 9",
+      difficulty: "medium",
+    },
+    {
+      id: "bm-q17",
+      question: "Solve: |x| ≥ 0",
+      options: ["x = 0 only", "All real numbers", "No solution", "x > 0 only"],
+      correctAnswer: 1,
+      explanation:
+        "Absolute value |x| is always non-negative for any real number x.\n\n|x| ≥ 0 is true for ALL real numbers.\n\nSolution: ℝ (all real numbers)",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q18",
+      question: "Which interval represents: x < -2 or x > 3?",
+      options: ["(-∞, -2) ∪ (3, ∞)", "(-2, 3)", "[-2, 3]", "(-∞, -2] ∪ [3, ∞)"],
+      correctAnswer: 0,
+      explanation:
+        "x < -2 → (-∞, -2) (open interval, strict inequality)\nx > 3 → (3, ∞) (open interval, strict inequality)\n\nUnion: (-∞, -2) ∪ (3, ∞)",
+      difficulty: "easy",
+    },
+    {
+      id: "bm-q19",
+      question: "Solve: (x² - 4)/(x - 1) ≥ 0",
+      options: [
+        "[-2, 1) ∪ [2, ∞)",
+        "(-2, 1) ∪ (2, ∞)",
+        "[-2, 1] ∪ [2, ∞)",
+        "(-∞, -2] ∪ (1, 2]",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Step 1: Factor → (x-2)(x+2)/(x-1) ≥ 0\n\nCritical points:\n• Numerator zeros: x = -2, 2 (closed circles, ≥)\n• Denominator zero: x = 1 (always open)\n\nSign chart:\n  • x > 2: (+) ✓\n  • 1 < x < 2: (-) ✗\n  • -2 < x < 1: (+) ✓\n  • x < -2: (-) ✗\n\nSolution: [-2, 1) ∪ [2, ∞)",
+      difficulty: "hard",
+    },
+    {
+      id: "bm-q20",
+      question: "Find the largest integral value of x satisfying: x < 7",
+      options: ["7", "8", "6", "5"],
+      correctAnswer: 2,
+      explanation:
+        "x < 7 means x can be any number less than 7, but NOT 7 itself.\n\nThe largest integer less than 7 is 6.\n\nAnswer: 6",
       difficulty: "easy",
     },
   ],
