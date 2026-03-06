@@ -621,9 +621,9 @@ print("Solution: (-4, 10)")
 
 | Inequality | Solution | Reason |
 |:-----------|:---------|:-------|
-| \|x\| ≥ 0 | All real numbers | Absolute value is always non-negative |
-| \|x\| < 0 | No solution | Absolute value cannot be negative |
-| \|x\| > -5 | All real numbers | Absolute value is always ≥ 0 > -5 |
+| &#124;x&#124; ≥ 0 | All real numbers | Absolute value is always non-negative |
+| &#124;x&#124; < 0 | No solution | Absolute value cannot be negative |
+| &#124;x&#124; > -5 | All real numbers | Absolute value is always ≥ 0 > -5 |
 
 #### 8.5 Finding Integral Values
 
@@ -688,8 +688,10 @@ Sum = -3 + (-2) + (-1) + 0 + 1 + 2 + 3 + 4 = **4**
 | **Inequality reversal** | Multiply/divide by negative reverses sign |
 | **Interval (a,b)** | a < x < b (open interval) |
 | **Interval [a,b]** | a ≤ x ≤ b (closed interval) |
-| **\|x\| < a** | -a < x < a |
-| **\|x\| > a** | x < -a or x > a |
+| **Interval (a,b]** | a < x ≤ b (half-open, open on left) |
+| **Interval [a,b)** | a ≤ x < b (half-open, closed on left) |
+| **&#124;x&#124; < a** | -a < x < a |
+| **&#124;x&#124; > a** | x < -a or x > a |
 | **Wavy Curve** | Factor → Critical points → Sign chart → Select intervals |
 
 ---
