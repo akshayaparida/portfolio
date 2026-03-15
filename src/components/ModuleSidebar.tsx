@@ -8,13 +8,11 @@ import { LearningModule } from "@/types/learning";
 interface ModuleSidebarProps {
   modules: LearningModule[];
   basePath: string;
-  renderIcon: (moduleId: string) => React.ReactNode;
 }
 
 export default function ModuleSidebar({
   modules,
   basePath,
-  renderIcon,
 }: ModuleSidebarProps) {
   const pathname = usePathname();
 
@@ -32,7 +30,6 @@ export default function ModuleSidebar({
               href={href}
               className={`nav-item ${isActive ? "active" : ""}`}
             >
-              <span className="nav-icon">{renderIcon(module.id)}</span>
               <span className="nav-text">{module.title}</span>
             </Link>
           );

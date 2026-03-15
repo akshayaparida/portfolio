@@ -90,12 +90,6 @@ jest.mock("@/components/CodeBlock", () => {
   return MockCodeBlock;
 });
 
-jest.mock("@/components/MathModuleIcon", () => {
-  const MockMathModuleIcon = () => <svg data-testid="module-icon" />;
-  MockMathModuleIcon.displayName = "MockMathModuleIcon";
-  return MockMathModuleIcon;
-});
-
 describe("Mathematics Dynamic Routes", () => {
   const mockUseParams = navigation.useParams as jest.Mock;
   const mockUsePathname = navigation.usePathname as jest.Mock;
@@ -109,11 +103,7 @@ describe("Mathematics Dynamic Routes", () => {
     it("renders all module links", () => {
       mockUsePathname.mockReturnValue("/mathematics/set-theory");
       render(
-        <ModuleSidebar
-          modules={mathematicsModules}
-          basePath="/mathematics"
-          renderIcon={() => <div />}
-        />,
+        <ModuleSidebar modules={mathematicsModules} basePath="/mathematics" />,
       );
 
       mathematicsModules.forEach((mathModule) => {
@@ -126,11 +116,7 @@ describe("Mathematics Dynamic Routes", () => {
       mockUsePathname.mockReturnValue(`/mathematics/${activeId}`);
 
       render(
-        <ModuleSidebar
-          modules={mathematicsModules}
-          basePath="/mathematics"
-          renderIcon={() => <div />}
-        />,
+        <ModuleSidebar modules={mathematicsModules} basePath="/mathematics" />,
       );
 
       const activeLink = screen

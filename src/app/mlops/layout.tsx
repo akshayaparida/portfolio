@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import MLOpsModuleIcon from "@/components/MLOpsModuleIcon";
 import { mlopsModules } from "@/data/mlops";
 import gitMetadata from "@/data/git-metadata.json";
 
@@ -25,13 +24,7 @@ export default function MLOpsLayout({
         style={{ display: "flex", flexDirection: "column" }}
       >
         <div className="module-page-layout">
-          <ModuleSidebar
-            modules={mlopsModules}
-            basePath="/mlops"
-            renderIcon={(moduleId: string) => (
-              <MLOpsModuleIcon moduleId={moduleId} />
-            )}
-          />
+          <ModuleSidebar modules={mlopsModules} basePath="/mlops" />
           <main className="module-content-area">{children}</main>
         </div>
       </div>

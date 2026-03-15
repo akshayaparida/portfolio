@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import DigitalFundamentalsModuleIcon from "@/components/DigitalFundamentalsModuleIcon";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
@@ -24,9 +23,6 @@ export default function DigitalFundamentalsLayout({
         <ModuleSidebar
           modules={digitalFundamentalsModules}
           basePath="/digital-fundamentals"
-          renderIcon={(moduleId: string) => (
-            <DigitalFundamentalsModuleIcon moduleId={moduleId} />
-          )}
         />
         <main className="module-content-area">{children}</main>
       </div>

@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import ReasoningModuleIcon from "@/components/ReasoningModuleIcon";
 import { reasoningModules } from "@/data/reasoning";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
@@ -21,13 +20,7 @@ export default function ReasoningLayout({
       />
 
       <div className="module-page-layout">
-        <ModuleSidebar
-          modules={reasoningModules}
-          basePath="/reasoning"
-          renderIcon={(moduleId: string) => (
-            <ReasoningModuleIcon moduleId={moduleId} />
-          )}
-        />
+        <ModuleSidebar modules={reasoningModules} basePath="/reasoning" />
         <main className="module-content-area">{children}</main>
       </div>
 

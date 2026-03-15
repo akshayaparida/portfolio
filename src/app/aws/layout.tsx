@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import AWSModuleIcon from "@/components/AWSModuleIcon";
 import { awsModules } from "@/data/aws";
 import gitMetadata from "@/data/git-metadata.json";
 
@@ -20,13 +19,7 @@ export default function AWSLayout({ children }: { children: React.ReactNode }) {
         style={{ display: "flex", flexDirection: "column" }}
       >
         <div className="module-page-layout">
-          <ModuleSidebar
-            modules={awsModules}
-            basePath="/aws"
-            renderIcon={(moduleId: string) => (
-              <AWSModuleIcon moduleId={moduleId} />
-            )}
-          />
+          <ModuleSidebar modules={awsModules} basePath="/aws" />
           <main className="module-content-area">{children}</main>
         </div>
       </div>

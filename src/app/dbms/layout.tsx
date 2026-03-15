@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import DBMSModuleIcon from "@/components/DBMSModuleIcon";
 import { dbmsModules } from "@/data/dbms";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
@@ -21,11 +20,7 @@ export default function DBMSLayout({
       />
 
       <div className="module-page-layout">
-        <ModuleSidebar
-          modules={dbmsModules}
-          basePath="/dbms"
-          renderIcon={(moduleId) => <DBMSModuleIcon moduleId={moduleId} />}
-        />
+        <ModuleSidebar modules={dbmsModules} basePath="/dbms" />
         <main className="module-content-area">{children}</main>
       </div>
 

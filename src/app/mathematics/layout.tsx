@@ -4,7 +4,6 @@ import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
 import gitMetadata from "@/data/git-metadata.json";
 import { mathematicsModules } from "@/data/mathematics";
-import MathModuleIcon from "@/components/MathModuleIcon";
 import "@/styles/module-page.css";
 
 export default function MathematicsLayout({
@@ -21,11 +20,7 @@ export default function MathematicsLayout({
       />
 
       <div className="module-page-layout">
-        <ModuleSidebar
-          modules={mathematicsModules}
-          basePath="/mathematics"
-          renderIcon={(moduleId) => <MathModuleIcon moduleId={moduleId} />}
-        />
+        <ModuleSidebar modules={mathematicsModules} basePath="/mathematics" />
         <main className="module-content-area">{children}</main>
       </div>
 

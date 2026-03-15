@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import DSAModuleIcon from "@/components/DSAModuleIcon";
 import { dsaModules } from "@/data/dsa";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
@@ -17,11 +16,7 @@ export default function DSALayout({ children }: { children: React.ReactNode }) {
       />
 
       <div className="module-page-layout">
-        <ModuleSidebar
-          modules={dsaModules}
-          basePath="/dsa"
-          renderIcon={(moduleId) => <DSAModuleIcon moduleId={moduleId} />}
-        />
+        <ModuleSidebar modules={dsaModules} basePath="/dsa" />
         <main className="module-content-area">{children}</main>
       </div>
 

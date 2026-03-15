@@ -2,7 +2,6 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
-import NetworksModuleIcon from "@/components/NetworksModuleIcon";
 import { networksModules } from "@/data/networks";
 import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
@@ -21,11 +20,7 @@ export default function NetworksLayout({
       />
 
       <div className="module-page-layout">
-        <ModuleSidebar
-          modules={networksModules}
-          basePath="/networks"
-          renderIcon={(moduleId) => <NetworksModuleIcon moduleId={moduleId} />}
-        />
+        <ModuleSidebar modules={networksModules} basePath="/networks" />
         <main className="module-content-area">{children}</main>
       </div>
 
