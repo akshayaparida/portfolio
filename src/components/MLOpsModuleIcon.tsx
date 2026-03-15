@@ -11,6 +11,8 @@ export default function MLOpsModuleIcon({
 }: MLOpsModuleIconProps) {
   const iconProps = {
     viewBox: "0 0 24 24",
+    width: 24,
+    height: 24,
     fill: "none",
     stroke: "currentColor",
     strokeLinecap: "round" as const,
