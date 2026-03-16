@@ -4,6 +4,7 @@ import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
 import { awsModules } from "@/data/aws";
 import gitMetadata from "@/data/git-metadata.json";
+import "@/styles/module-page.css";
 
 export default function AWSLayout({ children }: { children: React.ReactNode }) {
   return (

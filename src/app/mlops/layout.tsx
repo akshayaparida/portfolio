@@ -4,6 +4,7 @@ import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
 import { mlopsModules } from "@/data/mlops";
 import gitMetadata from "@/data/git-metadata.json";
+import "@/styles/module-page.css";
 
 export default function MLOpsLayout({
   children,
