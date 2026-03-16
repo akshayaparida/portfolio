@@ -52,6 +52,15 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Prevent FOUC (Flash of Unstyled Content) during initial render */
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
   display: flex;

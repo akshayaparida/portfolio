@@ -119,13 +119,26 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={eczar.variable}>
+      <body className={`${eczar.variable} preload`}>
         <ThemeProvider>
           <StructuredData />
           {children}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
+        {/* Remove preload class after hydration to re-enable transitions */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('load', function() {
+                setTimeout(function() {
+                  document.documentElement.classList.remove('preload');
+                  document.body.classList.remove('preload');
+                }, 0);
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
