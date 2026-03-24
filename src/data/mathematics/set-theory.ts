@@ -76,6 +76,29 @@ empty = set()  # or ∅ in math notation
 - **Real Numbers (ℝ)**: All numbers on the number line
 - **Universal Set (U)**: Contains all elements under consideration
 
+**Types of Sets:**
+
+| Type | Definition | Example |
+|:-----|:-----------|:--------|
+| **Finite Set** | Contains a countable number of elements | A = {1, 2, 3} → \|A\| = 3 |
+| **Infinite Set** | Contains uncountably many elements | ℕ = {1, 2, 3, ...}, ℤ, ℚ, ℝ |
+| **Empty/Null/Void Set** | Contains no elements, denoted ∅ or {} | A = {} → \|A\| = 0 |
+| **Singleton Set** | Contains exactly one element | A = {5} → \|A\| = 1 |
+| **Equal Sets** | Same elements (A = B) | {1,2,3} = {3,1,2} (order doesn't matter) |
+| **Equivalent Sets** | Same cardinality but not necessarily same elements | {1,2,3} and {a,b,c} (both have 3 elements) |
+| **Disjoint Sets** | No common elements (A ∩ B = ∅) | {1,2} and {3,4} are disjoint |
+
+> NOTE: **MCQ Trap:** Equal sets are always equivalent, but equivalent sets are NOT always equal!
+> {1,2,3} and {a,b,c} are equivalent (both size 3) but NOT equal (different elements).
+
+> TIP: **Subset Relationships:**
+> - A ⊆ B means every element of A is in B (A is a **subset** of B)
+> - A ⊂ B means A ⊆ B but A ≠ B (A is a **proper subset** of B)
+> - ∅ is a subset of every set: ∅ ⊆ A for all A
+> - Every set is a subset of itself: A ⊆ A
+> - A ⊆ B **if and only if** A ∩ B = A **if and only if** A ∪ B = B
+
+
 ### 2. Venn Diagrams - Visual Representation
 
 **What is a Venn Diagram?**
@@ -374,6 +397,22 @@ print(f"Method 2 (A-B)∪(B-A) = {method2}")  # {1, 2, 5, 6}
 print(f"All methods equal? {symmetric == method1 == method2}")  # True
 \`\`\`
 
+---
+
+**Key Set Identities (Exam-Critical):**
+
+| Identity | Formula | Intuition |
+|:---------|:--------|:----------|
+| **Difference via Complement** | A ∩ B' = A - B | Elements in A that are outside B |
+| **Cardinality of Difference** | n(A - B) = n(A) - n(A ∩ B) | Remove the overlap from A |
+| **Complement of Complement** | (A')' = A | Double negation cancels out |
+| **Union with Complement** | A ∪ A' = U | A set and its complement cover everything |
+| **Intersection with Complement** | A ∩ A' = ∅ | A set and its complement share nothing |
+| **Absorption Law** | A ∪ (A ∩ B) = A | Union with a subset adds nothing |
+| **Absorption Law** | A ∩ (A ∪ B) = A | Intersection with a superset keeps everything |
+
+> TIP: **A ∩ B' = A - B** is a very common MCQ identity. If a question asks "what is A ∩ B'?", the answer is "only A" — the part of A that doesn't overlap with B. Visualize it on a Venn diagram: shade A, then remove everything inside B.
+
 ### 3. Cardinality
 
 **Cardinality** = how many elements are in the set. Written as |A|.
@@ -418,6 +457,14 @@ This is the MOST IMPORTANT formula for MCQs. It tells us how many elements are i
 > - Adding all three counts elements in multiple sets MORE THAN ONCE
 > - Subtracting pairwise intersections corrects the over-counting
 > - But elements in ALL THREE sets get subtracted too many times, so add them back
+
+**For 4 sets (generalized formula):**
+n(A ∪ B ∪ C ∪ D) = n(A) + n(B) + n(C) + n(D)
+  − n(A∩B) − n(A∩C) − n(A∩D) − n(B∩C) − n(B∩D) − n(C∩D)
+  + n(A∩B∩C) + n(A∩B∩D) + n(A∩C∩D) + n(B∩C∩D)
+  − n(A∩B∩C∩D)
+
+> TIP: **Pattern:** Add singles, subtract pairs, add triples, subtract quadruples. The sign alternates with each level — this is the Inclusion-Exclusion principle generalized to any number of sets.
 
 **Worked Example:** In a survey of 100 students:
 - 40 like Math, 35 like Science, 30 like English
@@ -959,6 +1006,16 @@ len(A)  # Cardinality
       explanation:
         "Multiplication Principle: If task 1 can be done in m ways AND task 2 can be done in n ways, then both tasks can be done in m × n ways.\n\nStep-by-step:\n• Routes A → B = 4 ways\n• Routes B → C = 3 ways\n• Routes A → C via B = 4 × 3 = 12 ways\n\nWhy multiply? For EACH of the 4 choices from A to B, there are 3 choices from B to C.",
       difficulty: "easy",
+    },
+    {
+      id: "set-q11",
+      question:
+        "In a survey of 600 students, 150 take tea and 225 take coffee. If 100 take both, how many take neither?",
+      options: ["275", "325", "375", "425"],
+      correctAnswer: 1,
+      explanation:
+        "Inclusion-Exclusion + Complement approach:\n\nStep-by-step:\n• n(T) = 150, n(C) = 225, n(T ∩ C) = 100\n• n(T ∪ C) = n(T) + n(C) − n(T ∩ C) = 150 + 225 − 100 = 275\n• Neither = n(U) − n(T ∪ C) = 600 − 275 = 325\n\nThis uses: n(A' ∩ B') = n((A ∪ B)') = n(U) − n(A ∪ B) — De Morgan's Law applied to cardinality.",
+      difficulty: "medium",
     },
   ],
 };
