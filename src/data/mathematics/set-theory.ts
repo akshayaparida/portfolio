@@ -631,18 +631,20 @@ Step 3: Combinations = 60 / 6 = **10 unique teams**
 
 **The 10 teams are:**
 
-| # | Team | Note |
-|:--|:-----|:-----|
-| 1 | {Alice, Bob, Charlie} | ABC = BAC = CAB (all same team) |
-| 2 | {Alice, Bob, Dave} | |
-| 3 | {Alice, Bob, Eve} | |
-| 4 | {Alice, Charlie, Dave} | |
-| 5 | {Alice, Charlie, Eve} | |
-| 6 | {Alice, Dave, Eve} | |
-| 7 | {Bob, Charlie, Dave} | |
-| 8 | {Bob, Charlie, Eve} | |
-| 9 | {Bob, Dave, Eve} | |
-| 10 | {Charlie, Dave, Eve} | |
+| # | Team |
+|:--|:-----|
+| 1 | {Alice, Bob, Charlie} |
+| 2 | {Alice, Bob, Dave} |
+| 3 | {Alice, Bob, Eve} |
+| 4 | {Alice, Charlie, Dave} |
+| 5 | {Alice, Charlie, Eve} |
+| 6 | {Alice, Dave, Eve} |
+| 7 | {Bob, Charlie, Dave} |
+| 8 | {Bob, Charlie, Eve} |
+| 9 | {Bob, Dave, Eve} |
+| 10 | {Charlie, Dave, Eve} |
+
+> NOTE: Notice that **ABC = BAC = CAB**. In combinations, these are all the SAME team!
 
 **Common MCQ patterns:**
 - "How many ways to SELECT / CHOOSE" → Combination
