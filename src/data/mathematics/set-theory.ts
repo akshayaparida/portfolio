@@ -419,14 +419,14 @@ print(f"All methods equal? {symmetric == method1 == method2}")  # True
 
 **Basic Examples:**
 
-| Set | Elements | |Set| (Cardinality) |
+| Set | Elements | \\|Set\\| (Cardinality) |
 |:----|:---------|:--------------------|
-| A = {1, 2, 3, 4, 5} | 1, 2, 3, 4, 5 | **|A| = 5** |
-| B = {a, b} | a, b | **|B| = 2** |
-| ∅ (empty set) | (nothing) | **|∅| = 0** |
-| {∅} | ∅ itself | **|{∅}| = 1** (the empty set IS an element!) |
+| A = {1, 2, 3, 4, 5} | 1, 2, 3, 4, 5 | **\\|A\\| = 5** |
+| B = {a, b} | a, b | **\\|B\\| = 2** |
+| ∅ (empty set) | (nothing) | **\\|∅\\| = 0** |
+| {∅} | ∅ itself | **\\|{∅}\\| = 1** (the empty set IS an element!) |
 
-> NOTE: **MCQ Trap:** |{∅}| = 1, NOT 0! The set contains one element (which happens to be the empty set).
+> NOTE: **MCQ Trap:** \\|{∅}\\| = 1, NOT 0! The set contains one element (which happens to be the empty set).
 
 \`\`\`python path=null start=null
 A = {1, 2, 3, 4, 5}
