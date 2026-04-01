@@ -613,6 +613,234 @@ print(f"4 people in a line: P(4,4) = 4! = {P(people, people)}")  # 24
 > **Exam Shortcut:** For "arrange r from n", just multiply: n × (n-1) × ... down to r numbers.
 > P(5,3) = 5 × 4 × 3 = 60. No need to compute full factorials!
 
+---
+
+#### 5.1 Fundamental Theorem of Counting
+
+The fundamental theorem helps find the total number of ways to perform a task consisting of multiple independent steps.
+
+> TIP: **Rule:** If a task has k steps, where step 1 can be done in n₁ ways, step 2 in n₂ ways, ..., step k in nₖ ways, then total ways = n₁ × n₂ × ... × nₖ
+
+**Example:** Place 3 letters (a, b, c) into 3 distinct slots without repetition:
+- Slot 1: 3 options → Slot 2: 2 options → Slot 3: 1 option
+- Total = 3 × 2 × 1 = **6 ways**
+
+**Example:** A hall has 3 entry gates and 2 exit gates. A person enters and then exits:
+- Ways to enter: 3 → Ways to exit: 2
+- Total = 3 × 2 = **6 ways**
+
+---
+
+#### 5.2 Factorial Properties & Expansions
+
+**Key Properties:**
+
+| Property | Value |
+|:---------|:------|
+| 0! | 1 (by convention) |
+| 1! | 1 |
+| n! | n × (n-1)! |
+| n! | n × (n-1) × (n-2)! |
+
+**General Expansion Patterns:**
+- (n+3)! = (n+3)(n+2)(n+1) × n!
+- (2n)! = 2n × (2n-1) × (2n-2) × ...
+- (3n)! = 3n × (3n-1) × (3n-2) × ...
+
+**Solved Examples:**
+
+| Problem | Simplification | Answer |
+|:--------|:---------------|:-------|
+| 11!/8! | 11 × 10 × 9 × 8!/8! | **990** |
+| 6!/(4! × 2!) | (6 × 5 × 4!)/(4! × 2) | **15** |
+| (n+3)!/n! | (n+3)(n+2)(n+1) × n!/n! | **(n+3)(n+2)(n+1)** |
+| 15!/(12! × 3!) | (15 × 14 × 13)/(3 × 2 × 1) | **455** |
+
+**Factorial Equation:** Find x if 1/9! + 1/10! = x/11!
+
+Multiply entire equation by 11!:
+- 11!/9! + 11!/10! = x
+- (11 × 10) + 11 = x
+- x = **121**
+
+**Telescoping Sum:** Evaluate Σ(r=1 to 10) r·r!
+
+Trick: r·r! = (r+1-1)·r! = (r+1)! - r!
+
+So the sum telescopes: (2!-1!) + (3!-2!) + ... + (11!-10!) = 11! - 1
+
+**Answer:** 11! - 1
+
+**Important Proof:**
+
+(n-1)!/(n-r-1)! + r × (n-1)!/(n-r)! = n!/(n-r)!
+
+Derivation: Factor out (n-1)!/(n-r-1)!, simplify the bracket using (n-r+r)/(n-r) = n/(n-r), and multiply back to get n!/(n-r)!.
+
+---
+
+#### 5.3 Permutations with Repetition
+
+When repetition IS allowed, each position has n choices independently.
+
+| Condition | Formula | Example |
+|:----------|:--------|:--------|
+| No repetition | P(n,r) = n!/(n-r)! | 3-letter codes from 5 letters = 60 |
+| Repetition allowed | nʳ | 3-letter codes from 5 letters = 5³ = 125 |
+| All items arranged | n! | 5 people in a line = 120 |
+
+**Example:** 4 parcels distributed across 5 post offices:
+- Each parcel → 5 choices (independently)
+- Total = 5⁴ = **625 ways**
+
+**Example:** 5-digit numbers from {1,2,3,4,5}:
+- With repetition: 5⁵ = **3125**
+- Without repetition: 5! = **120**
+
+---
+
+#### 5.4 Permutations with Identical/Repeated Elements
+
+If n objects include p identical of one kind, q of another, r of another:
+
+**Formula:** Total arrangements = n! / (p! × q! × r! × ...)
+
+| Word | Repeated Letters | Calculation | Answer |
+|:-----|:----------------|:------------|:-------|
+| APPLE | P×2 | 5!/2! | **60** |
+| BANANA | A×3, N×2 | 6!/(3!×2!) | **60** |
+| COMMITTEE | M×2, T×2, E×2 | 9!/(2!)³ | **45360** |
+| MISSISSIPPI | I×4, S×4, P×2 | 11!/(4!×4!×2!) | **34650** |
+| EQUATION | All distinct (8) | 8! | **40320** |
+
+> TIP: **Mnemonic:** "Divide by the factorials of repeats." Each group of identical items would be over-counted n! ways if treated as distinct — dividing by p! removes those duplicates.
+
+---
+
+#### 5.5 Grouping Method — Objects Always Together
+
+**Strategy:** Treat the "must-together" objects as a single block, then arrange.
+
+**Step-by-step Template:**
+1. Group the constrained items into ONE block
+2. Count total entities = remaining items + 1 block
+3. Arrange entities: (total entities)!
+4. Multiply by internal arrangements of the block
+
+**Example 1:** Arrange {A, B, C, D} where A and B must be together:
+1. Block [AB], C, D → 3 entities
+2. Arrange 3 entities: 3! = 6
+3. Internal arrangement of A,B: 2! = 2 (AB or BA)
+4. **Total = 3! × 2! = 12**
+
+**Example 2 (PENCIL):** N must be next to E:
+1. Block [NE], P, C, I, L → 5 entities
+2. Arrange: 5! = 120
+3. Internal: 2! = 2
+4. **Total = 5! × 2! = 240**
+
+**Example 3 (DAUGHTER):** Vowels (A,U,E) always together:
+1. Block [AUE], D, G, H, T, R → 6 entities
+2. Arrange: 6! = 720
+3. Internal vowel arrangement: 3! = 6
+4. **Total = 6! × 3! = 4320**
+
+**Example 4 (Books):** 5 Math, 4 Physics, 2 Chemistry — same subject together:
+1. Groups: 3 subject blocks → 3! arrangements
+2. Internal: Math 5! × Physics 4! × Chemistry 2!
+3. **Total = 3! × 5! × 4! × 2!**
+
+---
+
+#### 5.6 Complementary Approach — Never Together
+
+**Formula:** Never Together = Total (unrestricted) − Always Together
+
+> TIP: **When to use:** Whenever a problem says "never together" or "no two X are adjacent", calculate Total − Together. It's almost always easier than direct counting.
+
+**DAUGHTER — Vowels Never Together:**
+= 8! − (6! × 3!) = 40320 − 4320 = **36000**
+
+**MISSISSIPPI — Four I's NOT Together:**
+- Total = 11!/(4!×4!×2!) = 34650
+- I's together: treat [IIII] as a block → 8 entities with S×4, P×2
+- Together = 8!/(4!×2!) = 840
+- **Not together = 34650 − 840 = 33810**
+
+---
+
+#### 5.7 Circular Permutations
+
+In circular arrangements, one position is fixed to avoid counting rotations.
+
+**Formula:** (n − 1)!
+
+**Example:** 8 friends around a circular table:
+= (8−1)! = 7! = **5040**
+
+> NOTE: **Why (n-1)!?** In a line, ABCD and BCDA are different arrangements. In a circle, they represent the same seating. Fixing one person removes rotational symmetry, leaving (n-1)! distinct arrangements.
+
+---
+
+#### 5.8 Dictionary Rank of a Word
+
+To find the rank of a word when all permutations are arranged alphabetically, count how many words come before it.
+
+**Example:** Rank of SACHIN
+
+Alphabetical order of letters: A, C, H, I, N, S
+
+| Starting Letter | Count | Running Total |
+|:---------------|:------|:--------------|
+| A_ _ _ _ _ | 5! = 120 | 120 |
+| C_ _ _ _ _ | 5! = 120 | 240 |
+| H_ _ _ _ _ | 5! = 120 | 360 |
+| I_ _ _ _ _ | 5! = 120 | 480 |
+| N_ _ _ _ _ | 5! = 120 | 600 |
+| S-A-C-H-I-N | This IS the word! | 601 |
+
+**Rank of SACHIN = 601**
+
+---
+
+#### 5.9 More Solved Permutation Problems
+
+**Q: Vowels in Even Places (ARTICLE)**
+
+Word: ARTICLE (7 letters). Vowels: A, I, E (3). Consonants: R, T, C, L (4).
+- Even positions (2, 4, 6): 3 places for 3 vowels → 3! = 6
+- Odd positions (1, 3, 5, 7): 4 places for 4 consonants → 4! = 24
+- **Total = 3! × 4! = 144**
+
+**Q: Numbers > 100, Divisible by 5, from {3,4,5,6}**
+
+Unit digit must be 5 (for divisibility). No repetition.
+- 3-digit numbers: _ _ 5 → 3 × 2 × 1 = 6
+- 4-digit numbers: _ _ _ 5 → 3 × 2 × 1 × 1 = 6
+- **Total = 12**
+
+**Q: Total 9-digit numbers with all different digits**
+
+Digits: {0,1,2,...,9}. First digit cannot be 0.
+- First digit: 9 choices (1-9)
+- Remaining 8 digits from 9 left: ⁹P₈ = 9!
+- **Total = 9 × 9!**
+
+**Q: 3-digit numbers from {0,2,3,4,5} (no repetition)**
+
+- Hundred's place: 4 choices (cannot be 0)
+- Ten's place: 4 choices (remaining digits including 0)
+- Unit's place: 3 choices
+- **Total = 4 × 4 × 3 = 48**
+
+**Q: Permutation Equation**
+
+If a = ⁽ˣ⁺²⁾P₍ₓ₊₂₎ = (x+2)!, b = ˣP₁₁, c = ⁽ˣ⁻¹¹⁾P₍ₓ₋₁₁₎ = (x-11)!, and a = 182bc:
+- (x+2)! = 182 × x!
+- (x+2)(x+1) = 182
+- x² + 3x − 180 = 0 → (x+15)(x-12) = 0
+- **x = 12**
+
 ### 6. Combinations
 
 **Combination** = an UNORDERED selection. The KEY word is **order doesn't matter**.
@@ -698,6 +926,115 @@ r_fact = math.factorial(r)  # 3! = 6
 print(f"P({n},{r}) = C({n},{r}) × {r}!")
 print(f"{P_nr} = {C_nr} × {r_fact} = {C_nr * r_fact}")  # 60 = 10 × 6 (verified)
 \`\`\`
+
+---
+
+#### 6.1 Additional Combination Properties
+
+**Property:** If ⁿCₓ = ⁿCᵧ, then either x = y OR x + y = n
+
+| Problem | Solution |
+|:--------|:---------|
+| ⁿC₇ = ⁿC₄, find n | 7 + 4 = **n = 11** |
+| ⁴³C₍ᵣ₋₆₎ = ⁴³C₍₃ᵣ₊₁₎, find r | (r-6) + (3r+1) = 43 → 4r = 48 → **r = 12** |
+| ²⁰C₂ = ²⁰C₁₈ | Verification: 2 + 18 = 20 ✓ |
+
+**Summation Property:** Σ(k=0 to n) ⁿCₖ = 2ⁿ
+
+So Σ(k=1 to 5) ⁵Cₖ = 2⁵ − ⁵C₀ = 32 − 1 = **31**
+
+---
+
+#### 6.2 Gap Method — No Two Objects Together
+
+**Strategy:** Arrange the unrestricted objects first, then place constrained objects in the gaps between them.
+
+**Example:** 4 White balls and 6 Yellow balls in a row, no two White balls together:
+
+1. Place 6 Yellow balls first: Y Y Y Y Y Y
+2. This creates 7 gaps: _ Y _ Y _ Y _ Y _ Y _ Y _
+3. Choose 4 gaps for White balls: ⁷C₄ = ⁷C₃ = (7×6×5)/(3×2×1) = **35 ways**
+
+> TIP: **General Rule:** n objects in a row create (n+1) gaps. Place the restricted objects in these gaps to guarantee they are never adjacent.
+
+---
+
+#### 6.3 Diagonals of a Polygon
+
+**Formula:** Diagonals = ⁿC₂ − n = n(n−3)/2
+
+**Example:** Octagon (n = 8):
+- Total lines joining any 2 vertices: ⁸C₂ = (8×7)/2 = 28
+- Subtract the 8 sides: 28 − 8 = **20 diagonals**
+
+> TIP: **ⁿC₂ counts ALL possible line segments** (sides + diagonals). Subtracting n sides gives only diagonals.
+
+---
+
+#### 6.4 Constrained Selection Problems
+
+**Committee Selection:**
+
+| Problem | Method | Answer |
+|:--------|:-------|:-------|
+| 3 men from 6, 2 women from 5 | ⁶C₃ × ⁵C₂ = 20 × 10 | **200** |
+| 3 men from 7, 2 women from 5 | ⁷C₃ × ⁵C₂ = 35 × 10 | **350** |
+
+**Cricket Team with Constraints:**
+
+| Constraint | Calculation | Answer |
+|:-----------|:------------|:-------|
+| No restriction: 11 from 15 | ¹⁵C₁₁ = ¹⁵C₄ | **1365** |
+| Player X always chosen | 10 more from 14: ¹⁴C₁₀ | **1001** |
+| Player X never chosen | 11 from 14: ¹⁴C₁₁ = ¹⁴C₃ | **364** |
+| Exactly 2 bowlers from 5 (17 total) | ⁵C₂ × ¹²C₉ = 10 × 220 | **2200** |
+
+**Question Paper with Minimum Constraints:**
+
+Choose 10 questions: at least 4 from Part A (6 qs), at least 4 from Part B (7 qs):
+
+| Distribution (A, B) | Calculation | Ways |
+|:--------------------|:------------|:-----|
+| (4, 6) | ⁶C₄ × ⁷C₆ = 15 × 7 | 105 |
+| (5, 5) | ⁶C₅ × ⁷C₅ = 6 × 21 | 126 |
+| (6, 4) | ⁶C₆ × ⁷C₄ = 1 × 35 | 35 |
+| **Total** | | **266** |
+
+**Finding (n, r) from ⁿPᵣ and ⁿCᵣ:**
+
+If ⁿPᵣ = 1320 and ⁿCᵣ = 220:
+- r! = ⁿPᵣ / ⁿCᵣ = 1320/220 = 6 → **r = 3**
+- n(n-1)(n-2) = 1320 = 12 × 11 × 10 → **n = 12**
+- Answer: **(n, r) = (12, 3)**
+
+**Similarly:** If ⁿPᵣ = 840, ⁿCᵣ = 35:
+- r! = 840/35 = 24 → **r = 4**
+
+---
+
+#### 6.5 Word Formation (Select then Arrange)
+
+**Template:** Total = (selections) × (arrangements of selected items)
+
+**INVOLUTE:** Form 5-letter words using 3 vowels + 2 consonants
+
+Vowels: I, O, U, E (4). Consonants: N, V, L, T (4).
+- Select 3 vowels: ⁴C₃ = 4
+- Select 2 consonants: ⁴C₂ = 6
+- Arrange 5 letters: 5! = 120
+- **Total = 4 × 6 × 120 = 2880**
+
+**Captain & Vice-Captain:**
+
+Choose 8 players from 12, then assign captain + vice-captain:
+- Select team: ¹²C₈ = ¹²C₄ = 495
+- Assign captain and vice-captain (order matters): ⁸P₂ = 56
+- **Total = 495 × 56 = 27720**
+
+**n-digit Numbers from {2, 5, 7}:**
+
+3 choices per digit, n digits: Total = 3ⁿ
+Smallest n where 3ⁿ > 900: 3⁶ = 729 (not enough), 3⁷ = 2187 ✓ → **n = 7**
 
 ### 7. Pascal's Triangle & Properties
 
@@ -1018,6 +1355,74 @@ len(A)  # Cardinality
       explanation:
         "Inclusion-Exclusion + Complement approach:\n\nStep-by-step:\n• n(T) = 150, n(C) = 225, n(T ∩ C) = 100\n• n(T ∪ C) = n(T) + n(C) − n(T ∩ C) = 150 + 225 − 100 = 275\n• Neither = n(U) − n(T ∪ C) = 600 − 275 = 325\n\nThis uses: n(A' ∩ B') = n((A ∪ B)') = n(U) − n(A ∪ B) — De Morgan's Law applied to cardinality.",
       difficulty: "medium",
+    },
+    {
+      id: "set-q12",
+      question:
+        "How many distinct permutations can be made from the letters of the word MISSISSIPPI?",
+      options: ["11!", "34650", "39916800", "7920"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: n!/(p!×q!×r!) for repeated elements.\n\nMISSISSIPPI has 11 letters:\n• M=1, I=4, S=4, P=2\n• Total = 11!/(4!×4!×2!)\n• = 39916800/(24×24×2)\n• = 39916800/1152 = 34650",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q13",
+      question:
+        "In how many ways can 6 people be seated around a circular table?",
+      options: ["720", "120", "360", "60"],
+      correctAnswer: 1,
+      explanation:
+        "Circular permutation formula: (n-1)!\n\n• n = 6 people\n• Arrangements = (6-1)! = 5! = 120\n\nWhy (n-1)!? In a circle, rotations of the same arrangement are identical. Fixing one person's position removes rotational symmetry.",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q14",
+      question: "How many diagonals does a decagon (10-sided polygon) have?",
+      options: ["20", "35", "45", "25"],
+      correctAnswer: 1,
+      explanation:
+        "Formula: Diagonals = ⁿC₂ − n = n(n−3)/2\n\n• n = 10\n• Total lines = ¹⁰C₂ = 45\n• Subtract sides: 45 − 10 = 35\n• Or directly: 10(10−3)/2 = 10×7/2 = 35",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q15",
+      question: "If ⁿC₇ = ⁿC₄, what is the value of n?",
+      options: ["3", "7", "11", "28"],
+      correctAnswer: 2,
+      explanation:
+        "Property: If ⁿCₓ = ⁿCᵧ, then x = y OR x + y = n.\n\nSince 7 ≠ 4, we use x + y = n:\n7 + 4 = n → n = 11",
+      difficulty: "easy",
+    },
+    {
+      id: "set-q16",
+      question:
+        "In how many ways can a cricket team of 11 be chosen from 17 players with exactly 2 bowlers out of 5 available bowlers?",
+      options: ["1320", "2200", "4400", "3300"],
+      correctAnswer: 1,
+      explanation:
+        "Select bowlers and non-bowlers separately:\n\n• Choose 2 bowlers from 5: ⁵C₂ = 10\n• Choose remaining 9 from 12 non-bowlers: ¹²C₉ = ¹²C₃ = 220\n• Total = 10 × 220 = 2200",
+      difficulty: "medium",
+    },
+    {
+      id: "set-q17",
+      question:
+        "How many words (with or without meaning) of 3 vowels and 2 consonants can be formed from INVOLUTE?",
+      options: ["120", "2880", "720", "1440"],
+      correctAnswer: 1,
+      explanation:
+        "INVOLUTE: Vowels = {I,O,U,E} (4), Consonants = {N,V,L,T} (4).\n\n• Select 3 vowels from 4: ⁴C₃ = 4\n• Select 2 consonants from 4: ⁴C₂ = 6\n• Arrange 5 selected letters: 5! = 120\n• Total = 4 × 6 × 120 = 2880",
+      difficulty: "hard",
+    },
+    {
+      id: "set-q18",
+      question:
+        "The word SACHIN is arranged alphabetically. What is its rank/serial number?",
+      options: ["600", "601", "602", "720"],
+      correctAnswer: 1,
+      explanation:
+        "Letters in order: A, C, H, I, N, S\n\n• Words before S: each of A,C,H,I,N starts 5! = 120 words\n• Total before S: 5 × 120 = 600\n• First word starting with S in alphabetical order: S-A-C-H-I-N = SACHIN\n• Rank = 600 + 1 = 601",
+      difficulty: "hard",
     },
   ],
 };
