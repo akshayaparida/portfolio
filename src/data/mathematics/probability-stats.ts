@@ -189,11 +189,32 @@ print(f"Q1: {q1}, Q3: {q3}, IQR: {iqr}")
 
 ### 4. Probability Fundamentals
 
+**Random Experiment**: An experiment for which all possible outcomes are known, but the exact outcome of a particular trial is not known in advance.
+
 **Sample Space (S)**: Set of all possible outcomes
 Example: For dice roll, S = {1, 2, 3, 4, 5, 6}
 
+**Sample Point**: A single possible outcome in the sample space.
+
 **Events**: Subsets of sample space
 Example: Even number event E = {2, 4, 6}
+
+**Types of Events:**
+- **Impossible Event**: P(E) = 0 (can never occur)
+- **Sure Event**: P(E) = 1 (will occur definitely)
+- **Simple Event**: Event having exactly one sample point
+- **Compound Event**: Event having more than one sample point
+- **Exhaustive Events**: A set of events that cover all possible outcomes of the sample space
+- **Mutually Exclusive (Disjoint) Events**: Occurrence of one rules out the occurrence of the other (A ∩ B = φ)
+- **Independent Events**: Occurrence of one does not affect the probability of the other
+
+**Playing Cards (Standard Deck of 52):**
+- 26 Red (13 Diamonds, 13 Hearts)
+- 26 Black (13 Spades, 13 Clubs)
+- Face Cards: King, Queen, Jack (12 total)
+
+**Classical Probability:**
+P(E) = (No. of favourable outcomes) / (Total no. of possible outcomes)
 
 **Probability Axioms:**
 1. 0 ≤ P(A) ≤ 1 for any event A
@@ -220,12 +241,20 @@ print(f"Empirical probability: {empirical_prob:.3f}")
 print(f"Theoretical probability: 0.500")
 \`\`\`
 
-### 2. Conditional Probability & Bayes' Theorem
+### 5. Conditional Probability & Bayes' Theorem
 
 **Conditional Probability:**
 P(A|B) = P(A ∩ B) / P(B)
 
 Read as "probability of A given B equals probability of both A and B divided by probability of B"
+
+**Properties of Conditional Probability:**
+- P(S|F) = P(F|F) = 1
+- P(A ∪ B | F) = P(A|F) + P(B|F) - P(A ∩ B | F)
+- P(E'|F) = 1 - P(E|F)
+
+**Multiplication Theorem:**
+P(A ∩ B) = P(A|B) × P(B) = P(B|A) × P(A)
 
 **Example:** Medical testing
 - Disease D affects 1% of population: P(D) = 0.01
@@ -234,10 +263,18 @@ Read as "probability of A given B equals probability of both A and B divided by 
 
 What's probability you have disease if test is positive?
 
-**Bayes' Theorem:**
+**Law of Total Probability:**
+If E₁, E₂, ..., Eₙ are mutually exclusive and exhaustive events, the probability of an event A that occurs with one of the Eᵢ is:
+P(A) = P(E₁)P(A|E₁) + P(E₂)P(A|E₂) + ... + P(Eₙ)P(A|Eₙ)
+
+**Bayes' Theorem (General Form):**
+P(Eᵢ|A) = [P(Eᵢ) × P(A|Eᵢ)] / [Σ P(Eⱼ) × P(A|Eⱼ)]
+
+**Bayes' Theorem (Applied Example):**
 P(D|T+) = P(T+|D) × P(D) / P(T+)
 
-Where P(T+) = P(T+|D)×P(D) + P(T+|¬D)×P(¬D)
+Where P(T+) is calculated using the Law of Total Probability:
+P(T+) = P(T+|D)×P(D) + P(T+|¬D)×P(¬D)
 P(T+) = 0.95×0.01 + 0.10×0.99 = 0.0095 + 0.099 = 0.1085
 
 So: P(D|T+) = (0.95 × 0.01) / 0.1085 = 0.0876
@@ -273,7 +310,7 @@ P(A, B, C) = P(A|B,C) × P(B|C) × P(C)
 
 Useful for breaking down complex joint probabilities.
 
-### 3. Probability Distributions
+### 6. Probability Distributions
 
 **Discrete Distributions:**
 For countable outcomes (integers).
@@ -381,7 +418,7 @@ print(f"Theoretical mean: {μ}, Empirical mean: {normal_samples.mean():.2f}")
 print(f"Theoretical variance: {σ**2}, Empirical variance: {normal_samples.var():.2f}")
 \`\`\`
 
-### 4. Joint, Marginal, and Conditional Distributions
+### 7. Joint, Marginal, and Conditional Distributions
 
 **Joint Distribution:** P(X, Y) - probability of both X and Y occurring
 **Marginal Distribution:** P(X) = Σ_y P(X, y) - probability of X regardless of Y
@@ -437,7 +474,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 \`\`\`
 
-### 5. Bayes' Theorem Applications
+### 8. Bayes' Theorem Applications
 
 **Bayesian Inference:**
 P(Parameter | Data) = P(Data | Parameter) × P(Parameter) / P(Data)
@@ -491,7 +528,7 @@ print(f"Posterior mean: {a_posterior / (a_posterior + b_posterior):.3f}")
 print(f"Data proportion: {heads / (heads + tails):.3f}")
 \`\`\`
 
-### 6. Central Limit Theorem (CLT)
+### 9. Central Limit Theorem (CLT)
 
 **Theorem Statement:**
 For independent and identically distributed random variables X₁, X₂, ..., Xₙ with mean μ and variance σ²:
@@ -551,7 +588,7 @@ plt.tight_layout()
 plt.show()
 \`\`\`
 
-### 7. Statistical Inference
+### 10. Statistical Inference
 
 **Point Estimation:** Single value estimate of parameter
 - Sample mean x̄ estimates population mean μ
@@ -610,7 +647,7 @@ else:
     print("Result is not statistically significant (fail to reject H₀)")
 \`\`\`
 
-### 8. Maximum Likelihood Estimation (MLE)
+### 11. Maximum Likelihood Estimation (MLE)
 
 **Core Idea:** Choose parameters that make observed data most probable
 
@@ -658,7 +695,7 @@ print(f"True variance: {true_var}, MLE variance: {mle_var:.3f}")
 print(f"Sample mean: {np.mean(data):.3f}, Sample var: {np.var(data):.3f}")
 \`\`\`
 
-### 9. Statistical Modeling for Machine Learning
+### 12. Statistical Modeling for Machine Learning
 
 **Linear Regression:** Model relationship between variables
 Y = β₀ + β₁X + ε, where ε ~ N(0, σ²)
@@ -722,7 +759,7 @@ plt.grid(True, alpha=0.3)
 plt.show()
 \`\`\`
 
-### 10. Common Statistical Pitfalls
+### 13. Common Statistical Pitfalls
 
 **P-hacking:** Trying multiple analyses until finding significant result
 - Solution: Pre-specify hypotheses and analysis plan
@@ -751,7 +788,7 @@ plt.show()
 - Each coin flip is independent (if fair)
 - Past results don't affect future outcomes
 
-### 11. Key Takeaways
+### 14. Key Takeaways
 
 - Probability quantifies uncertainty in data and models
 - Bayes' theorem updates beliefs based on evidence
