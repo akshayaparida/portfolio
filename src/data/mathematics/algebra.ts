@@ -429,6 +429,43 @@ print("A × A⁻¹ =")
 print(A @ A_inv)
 \`\`\`
 
+**Extended Matrices & Determinants Theory:**
+
+**Types of Matrices:**
+- **Square Matrix**: Number of rows equals columns ($n \times n$).
+  - **Diagonal Matrix**: All non-diagonal elements are 0.
+  - **Scalar Matrix**: Diagonal matrix with all identical non-zero diagonal entries.
+  - **Identity Matrix**: Scalar matrix with 1s on diagonal.
+  - **Triangular Matrix**: Upper (elements below diagonal are 0) or Lower (elements above are 0).
+  - **Idempotent Matrix**: $A^2 = A$.
+  - **Symmetric Matrix**: $A^T = A$.
+  - **Skew-Symmetric Matrix**: $A^T = -A$ (diagonal elements must be 0).
+
+**Operations & Properties:**
+- **Trace ($tr(A)$)**: Sum of principal diagonal elements. $tr(A+B) = tr(A)+tr(B)$.
+- **Multiplication**: $AB \neq BA$ generally.
+
+**Determinant Applications:**
+- $|A| = |A^T|$
+- $|kA| = k^n|A|$
+- If two rows/cols are identical, $|A| = 0$.
+- Area of triangle formed by $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ is:
+  $\frac{1}{2} \begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix}$
+- Points are collinear if Area = 0.
+
+**Minors, Cofactors & Adjoint:**
+- **Minor ($M_{ij}$)**: Determinant of submatrix after removing $i^{th}$ row and $j^{th}$ column.
+- **Cofactor ($C_{ij}$)**: $(-1)^{i+j} M_{ij}$.
+- **Adjoint ($adj A$)**: Transpose of the cofactor matrix.
+  - $A(adj A) = |A|I_n$
+  - $|adj A| = |A|^{n-1}$
+  - $A^{-1} = \frac{1}{|A|} adj(A)$
+
+**Consistency of Linear Equations ($AX=B$):**
+- $|A| \neq 0$: Unique solution (Consistent)
+- $|A| = 0$ and $(adj A)B = 0$: Infinitely many solutions (Consistent)
+- $|A| = 0$ and $(adj A)B \neq 0$: No solution (Inconsistent)
+
 ---
 
 ## TL;DR - Quick Recall

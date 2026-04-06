@@ -166,7 +166,21 @@ plt.tight_layout()
 plt.show()
 \`\`\`
 
-### 3. Derivatives - Measuring Change
+### 3. Differentiability
+
+**Definition:**
+A function f(x) is differentiable at x = a if the derivative f'(a) exists. This happens when the Left-Hand Derivative (LHD) equals the Right-Hand Derivative (RHD).
+
+**LHD (Left-Hand Derivative):**
+LHD = lim(h→0⁻) [f(a+h) - f(a)] / h
+
+**RHD (Right-Hand Derivative):**
+RHD = lim(h→0⁺) [f(a+h) - f(a)] / h
+
+**Key Theorem:**
+If a function is differentiable at a point, it **must** be continuous at that point. However, the converse is not always true (e.g., f(x) = |x| is continuous at 0 but not differentiable).
+
+### 4. Derivatives - Measuring Change
 
 **What is a Derivative?**
 The derivative measures how a function changes when its input changes. It&apos;s the slope of the tangent line.
