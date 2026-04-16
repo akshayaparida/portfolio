@@ -51,19 +51,11 @@ Launch → pending → running → (stopping → stopped) → (shutting-down →
 
 ### Key Points
 
-\`\`\`
-┌─────────────────────────────────────────────────────────────┐
-│  Stop    → Pause compute, keep EBS data.                    │
-│             Public IP changes on restart.                    │
-│             Use Elastic IP to keep it.                       │
-│                                                              │
-│  Terminate → Destroy everything.                             │
-│              Data on instance store is ALWAYS lost.          │
-│                                                              │
-│  Reboot  → Restart without changing public IP               │
-│             or losing instance store data.                   │
-└─────────────────────────────────────────────────────────────┘
-\`\`\`
+| Action | What Happens |
+|:-------|:-------------|
+| **Stop** | Pause compute, keep EBS data. Public IP changes on restart. Use Elastic IP to keep it. |
+| **Terminate** | Destroy everything. Data on instance store is **ALWAYS** lost. |
+| **Reboot** | Restart without changing public IP or losing instance store data. |
 
 ---
 
@@ -87,15 +79,12 @@ An AMI is a **template** to launch instances — contains OS, pre-installed soft
 
 ### Creating a Custom AMI
 
-\`\`\`
-┌─────────────────────────────────────────────────────────────┐
-│  1. Launch instance, install everything you need            │
-│  2. Actions → Image and Templates → Create Image            │
-│  3. AMI is stored in S3 (you pay for storage)               │
-│  4. AMIs are REGION-SPECIFIC — copy to other regions        │
-│     if needed                                                │
-└─────────────────────────────────────────────────────────────┘
-\`\`\`
+| Step | Action |
+|:-----|:-------|
+| 1 | Launch instance, install everything you need |
+| 2 | **Actions → Image and Templates → Create Image** |
+| 3 | AMI is stored in S3 (you pay for storage) |
+| 4 | AMIs are **REGION-SPECIFIC** — copy to other regions if needed |
 
 > ⚠ **Important**: AMIs are region-specific. If you create an AMI in \`ap-south-1\`, you must copy it to \`us-east-1\` before launching instances there.
 
@@ -155,27 +144,19 @@ Format: \`<family><generation>.<size>\` → e.g., \`t3.medium\`, \`g5.xlarge\`
 
 ### Spot Instances — Deep Dive (Essential for ML)
 
-\`\`\`
-┌─────────────────────────────────────────────────────────────┐
-│  How Spot Works:                                             │
-│                                                              │
-│  1. You request a Spot instance                              │
-│  2. AWS gives you unused capacity at 60-90% discount        │
-│  3. AWS can reclaim with 2-MINUTE WARNING                   │
-│  4. Your workload must handle interruptions                 │
-│                                                              │
-│  Use for:                                                    │
-│  ✓ ML training (checkpoint every epoch)                     │
-│  ✓ Batch processing                                         │
-│  ✓ CI/CD pipelines                                          │
-│  ✓ Data analysis                                            │
-│                                                              │
-│  Don't use for:                                              │
-│  ✗ Production web servers                                   │
-│  ✗ Databases                                                │
-│  ✗ Anything that CANNOT be interrupted                      │
-└─────────────────────────────────────────────────────────────┘
-\`\`\`
+**How Spot Works:**
+
+1. You request a Spot instance
+2. AWS gives you unused capacity at **60-90% discount**
+3. AWS can reclaim with **2-MINUTE WARNING**
+4. Your workload must handle interruptions
+
+| ✅ Use for | ❌ Don't use for |
+|:----------|:----------------|
+| ML training (checkpoint every epoch) | Production web servers |
+| Batch processing | Databases |
+| CI/CD pipelines | Anything that **CANNOT** be interrupted |
+| Data analysis | |
 
 ### Reserved vs Savings Plans
 
