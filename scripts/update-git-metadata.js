@@ -3,8 +3,27 @@ const fs = require('fs');
 const path = require('path');
 
 try {
-  const commitHash = execSync('git log -1 --format="%H"', { encoding: 'utf-8' }).trim();
-  const commitDate = execSync('git log -1 --format="%cd" --date=format:"%B %d, %Y at %I:%M %p"', { encoding: 'utf-8' }).trim();
+  let commitHash = 'unknown';
+  let commitDate = new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    day: '2-digit',
+    year: 'numeric',
+  });
+
+  try {
+    commitHash = execSync('git rev-parse HEAD', { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+    const rawDate = execSync('git log -1 --format="%cd" --date=iso', { encoding: 'utf-8', stdio: ['pipe', 'pipe', 'ignore'] }).trim();
+    if (rawDate) {
+      const d = new Date(rawDate);
+      if (!isNaN(d.getTime())) {
+        commitDate = d.toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }) +
+          ' at ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      }
+    }
+  } catch (gitErr) {
+    console.warn('Warning: Could not fetch git details:', gitErr.message);
+  }
+
   const commitUrl = `https://github.com/akshayaparida/portfolio/commit/${commitHash}`;
   
   const metadata = {
@@ -19,5 +38,5 @@ try {
   console.log('Git metadata updated:', metadata);
 } catch (error) {
   console.error('Failed to update git metadata:', error.message);
-  process.exit(1);
 }
+

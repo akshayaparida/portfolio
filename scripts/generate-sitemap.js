@@ -17,6 +17,9 @@ async function generateSitemap() {
     { path: "/os", priority: "0.8", changeFreq: "weekly" },
     { path: "/reasoning", priority: "0.8", changeFreq: "weekly" },
     { path: "/ai-engineering", priority: "0.8", changeFreq: "weekly" },
+    { path: "/curaj-msc-cs", priority: "0.8", changeFreq: "weekly" },
+    { path: "/ugc-net-jrf", priority: "0.8", changeFreq: "weekly" },
+    { path: "/gate-cs", priority: "0.8", changeFreq: "weekly" },
   ];
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
