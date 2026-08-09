@@ -25,8 +25,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 1: Teaching Aptitude",
       topics: "Concepts, Objectives, Levels of Teaching (Memory, Understanding, Reflective), Learner Characteristics, Factors Affecting Teaching, Support Systems, Evaluation Systems.",
       description: "Teaching methods, offline vs online methods (SWAYAM, SWAYAMPRABHA, MOOCs), Choice Based Credit System (CBCS), and Computer Based Testing (CBT).",
-      nptelTitle: "NPTEL: Effective Engineering Teaching in Practice (IIT Madras)",
-      nptelUrl: "https://nptel.ac.in/courses/109106096",
+      nptelTitle: "NPTEL: Effective Teaching & Pedagogy (IIT Madras)",
+      nptelUrl: "https://nptel.ac.in/courses/127106001",
     },
     {
       id: 2,
@@ -70,8 +70,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 6: Logical Reasoning",
       topics: "Structure of Arguments, Deductive & Inductive Reasoning, Venn Diagrams, Indian Logic (Pramanas: Pratyaksha, Anumana, Upamana, Shabda, Arthapatti, Anupalabdhi), Hetvabhasa.",
       description: "Categorical propositions, formal and informal fallacies, classical square of opposition, and Indian Epistemology.",
-      nptelTitle: "NPTEL: Symbolic Logic and Critical Thinking (IIT Bombay)",
-      nptelUrl: "https://nptel.ac.in/courses/109106064",
+      nptelTitle: "NPTEL: Symbolic Logic & Mathematical Logic (IIT Kharagpur)",
+      nptelUrl: "https://nptel.ac.in/courses/109105121",
     },
     {
       id: 7,
