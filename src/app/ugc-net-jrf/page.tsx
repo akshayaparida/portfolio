@@ -25,8 +25,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 1: Teaching Aptitude",
       topics: "Concepts, Objectives, Levels of Teaching (Memory, Understanding, Reflective), Learner Characteristics, Factors Affecting Teaching, Support Systems, Evaluation Systems.",
       description: "Teaching methods, offline vs online methods (SWAYAM, SWAYAMPRABHA, MOOCs), Choice Based Credit System (CBCS), and Computer Based Testing (CBT).",
-      nptelTitle: "NPTEL: Effective Teaching & Pedagogy (IIT Madras)",
-      nptelUrl: "https://nptel.ac.in/courses/127106001",
+      nptelTitle: "Kumar Bharat: Teaching Aptitude — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 2,
@@ -43,8 +43,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 3: Comprehension",
       topics: "Reading Comprehension Passages, Analytical Questions, Contextual Vocabulary, Critical Passage Inference.",
       description: "Techniques for rapid reading, extracting central arguments, answering fact-based and inference-based comprehension questions.",
-      nptelTitle: "NPTEL: Technical English & Communication Skills (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/109104031",
+      nptelTitle: "Kumar Bharat: Reading Comprehension — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 4,
@@ -52,8 +52,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 4: Communication",
       topics: "Meaning, Types & Characteristics of Communication, Verbal & Non-verbal, Classroom Communication, Barriers to Communication, Mass-Media & Society.",
       description: "Effective interpersonal and intercultural communication, overcoming psychological/physical barriers, and media impact.",
-      nptelTitle: "NPTEL: Communication Skills (IIT Roorkee)",
-      nptelUrl: "https://nptel.ac.in/courses/109107155",
+      nptelTitle: "Kumar Bharat: Communication — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 5,
@@ -61,8 +61,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 5: Mathematical Reasoning & Aptitude",
       topics: "Types of Reasoning, Number Series, Code-Decoding, Relationships, Fractions, Time & Distance, Ratio, Percentage, Profit & Loss, Simple/Compound Interest, Averages.",
       description: "Shortcuts for speed math, quantitative problem solving, seating arrangement, blood relations, and distance-speed problems.",
-      nptelTitle: "NPTEL: Quantitative Aptitude & Reasoning (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/109104031",
+      nptelTitle: "Kumar Bharat: Maths, Reasoning & DI — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 6,
@@ -79,8 +79,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 7: Data Interpretation (DI)",
       topics: "Sources & Classification of Data, Bar-Charts, Histograms, Pie-Charts, Table-Charts, Line-Charts, Data & Governance.",
       description: "Calculations based on data sets, percentage growth, ratio comparisons, data visualization analysis, and tabular interpretation.",
-      nptelTitle: "NPTEL: Data Interpretation and Analysis (IIT Roorkee)",
-      nptelUrl: "https://nptel.ac.in/courses/110107114",
+      nptelTitle: "Kumar Bharat: Data Interpretation — Complete Lecture",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 8,
@@ -88,8 +88,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 8: Information & Communication Technology (ICT)",
       topics: "ICT Terminology & Abbreviations, Basics of Internet/Intranet, E-mail, Audio/Video Conferencing, Digital Initiatives in Higher Education, ICT & Governance.",
       description: "Computer memory (RAM/ROM), IP/MAC addresses, malware/phishing threats, digital initiatives (SWAYAM, e-PG Pathshala, National Digital Library), and e-governance.",
-      nptelTitle: "NPTEL: Information & Communication Technology (IIT Bombay)",
-      nptelUrl: "https://nptel.ac.in/courses/106101007",
+      nptelTitle: "Kumar Bharat: ICT — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
     {
       id: 9,
@@ -106,8 +106,8 @@ export default function UgcNetJrfPage() {
       unit: "Paper I - Unit 10: Higher Education System",
       topics: "Institutions of Higher Learning in Ancient India (Takshashila, Nalanda), Post-Independence Evolution, Value & Environmental Education, Policies, Governance & Administration.",
       description: "UGC, AICTE, NAAC accreditation, NIRF rankings, National Education Policy (NEP 2020), and higher education governance framework.",
-      nptelTitle: "NPTEL: Higher Education System in India (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/109104115",
+      nptelTitle: "Kumar Bharat: Higher Education — Foundation Course",
+      nptelUrl: "https://www.youtube.com/@KumarBharat/playlists",
     },
 
     // --- PAPER 2: Computer Science & Applications ---
@@ -234,7 +234,7 @@ export default function UgcNetJrfPage() {
           <div className="intro-content">
             <h2>Complete UGC NET JRF Preparation Hub (Paper 1 + Paper 2)</h2>
             <p>
-              Comprehensive syllabus coverage for both <strong>Paper I (General Teaching & Research Aptitude)</strong> and <strong>Paper II (Computer Science & Applications)</strong>. Each unit is paired with direct <strong>NPTEL / SWAYAM video courses</strong> from top IITs.
+              Comprehensive syllabus coverage for both <strong>Paper I (General Teaching & Research Aptitude)</strong> and <strong>Paper II (Computer Science & Applications)</strong>. Paper I units link to <strong>Kumar Bharat&apos;s YouTube Foundation Courses</strong> (best free resource for Paper 1). Paper II units link to <strong>NPTEL / SWAYAM video courses</strong> from top IITs.
             </p>
           </div>
         </section>
@@ -290,7 +290,7 @@ export default function UgcNetJrfPage() {
                 <p className="topics-text">{u.topics}</p>
               </div>
 
-              {/* NPTEL Link Button */}
+              {/* Study Resource Link Button */}
               <div className="card-action">
                 <a
                   href={u.nptelUrl}
@@ -298,7 +298,7 @@ export default function UgcNetJrfPage() {
                   rel="noopener noreferrer"
                   className={`nptel-btn ${u.paper === "Paper 1" ? "p1-btn" : "p2-btn"}`}
                 >
-                  <i className="fa-solid fa-graduation-cap"></i>
+                  <i className={u.nptelUrl.includes("youtube.com") ? "fa-brands fa-youtube" : "fa-solid fa-graduation-cap"}></i>
                   <span>Study {u.nptelTitle}</span>
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
