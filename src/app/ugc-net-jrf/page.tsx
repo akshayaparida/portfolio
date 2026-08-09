@@ -306,6 +306,37 @@ export default function UgcNetJrfPage() {
             </div>
           ))}
         </section>
+
+        {/* PYQ & Mock Test Resources */}
+        <section className="resources-section">
+          <h2 className="resources-title">
+            <i className="fa-solid fa-clipboard-question"></i> PYQ & Mock Tests
+          </h2>
+          <p className="resources-subtitle">
+            Practice with previous year papers and free mock tests to boost your exam readiness.
+          </p>
+          <div className="resources-grid">
+            {[
+              { name: "Kumar Bharat — PYQs with Explanation", desc: "Video solutions for Paper 1 & Paper 2 previous year questions.", url: "https://www.youtube.com/@KumarBharat/playlists", icon: "fa-brands fa-youtube", color: "#dc2626" },
+              { name: "GeeksforGeeks — UGC NET CS", desc: "Topic-wise MCQs and quizzes for Computer Science Paper 2.", url: "https://www.geeksforgeeks.org/ugc-net-cs/", icon: "fa-solid fa-code", color: "#16a34a" },
+              { name: "Testbook — Mock Tests", desc: "Free full-length CBT mock tests with performance analysis.", url: "https://testbook.com/ugc-net", icon: "fa-solid fa-file-circle-check", color: "#2563eb" },
+              { name: "NTA Official — Previous Year Papers", desc: "Download official NTA question papers and answer keys.", url: "https://ugcnet.nta.ac.in/", icon: "fa-solid fa-landmark", color: "#7c3aed" },
+              { name: "Adda247 — Free Mock Series", desc: "Memory-based and unit-wise practice sets with analytics.", url: "https://www.adda247.com/teaching-jobs-exam/ugc-net/", icon: "fa-solid fa-chart-line", color: "#ea580c" },
+              { name: "PracticePaper — UGC NET CS", desc: "Free topic-wise PYQs, notes, and subject-wise test series.", url: "https://practicepaper.in/ugc-net-cs", icon: "fa-solid fa-pen-to-square", color: "#0891b2" },
+            ].map((r, idx) => (
+              <a key={idx} href={r.url} target="_blank" rel="noopener noreferrer" className="resource-card">
+                <div className="resource-icon" style={{ background: r.color }}>
+                  <i className={r.icon}></i>
+                </div>
+                <div className="resource-info">
+                  <h4 className="resource-name">{r.name}</h4>
+                  <p className="resource-desc-text">{r.desc}</p>
+                </div>
+                <i className="fa-solid fa-arrow-up-right-from-square resource-arrow"></i>
+              </a>
+            ))}
+          </div>
+        </section>
       </main>
 
       <style jsx>{`
@@ -597,6 +628,78 @@ export default function UgcNetJrfPage() {
         .nptel-btn span {
           flex: 1;
           margin-left: 0.6rem;
+        }
+
+        .resources-section {
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          padding: 2rem;
+        }
+        .resources-title {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: #111827;
+          margin: 0 0 0.35rem 0;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        .resources-subtitle {
+          color: #6b7280;
+          font-size: 0.9rem;
+          margin: 0 0 1.25rem 0;
+        }
+        .resources-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 1rem;
+        }
+        .resource-card {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem 1.15rem;
+          background: #fafafa;
+          border: 1px solid #f3f4f6;
+          border-radius: 10px;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+        .resource-card:hover {
+          background: #f3f4f6;
+          border-color: #d1d5db;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .resource-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: 1rem;
+          flex-shrink: 0;
+        }
+        .resource-info { flex: 1; min-width: 0; }
+        .resource-name {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: #111827;
+          margin: 0 0 0.2rem 0;
+        }
+        .resource-desc-text {
+          font-size: 0.78rem;
+          color: #6b7280;
+          margin: 0;
+          line-height: 1.4;
+        }
+        .resource-arrow {
+          color: #9ca3af;
+          font-size: 0.75rem;
+          flex-shrink: 0;
         }
 
         @media (max-width: 640px) {
