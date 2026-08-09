@@ -7,6 +7,21 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-book-open",
   },
   {
+    label: "CURAJ MSc CS",
+    href: "/curaj-msc-cs",
+    icon: "fa-solid fa-graduation-cap",
+  },
+  {
+    label: "UGC NET JRF",
+    href: "/ugc-net-jrf",
+    icon: "fa-solid fa-award",
+  },
+  {
+    label: "GATE CS",
+    href: "/gate-cs",
+    icon: "fa-solid fa-book-bookmark",
+  },
+  {
     label: "Mathematics",
     href: "/mathematics",
     icon: "fa-solid fa-calculator",
