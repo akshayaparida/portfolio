@@ -5,6 +5,7 @@ import Link from "next/link";
 
 interface Unit {
   id: number;
+  paper: "Paper 1" | "Paper 2";
   unit: string;
   topics: string;
   description: string;
@@ -13,84 +14,188 @@ interface Unit {
 }
 
 export default function UgcNetJrfPage() {
+  const [selectedPaper, setSelectedPaper] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const units: Unit[] = [
+    // --- PAPER 1: General Paper on Teaching & Research Aptitude ---
     {
       id: 1,
-      unit: "Unit 1: Discrete Structures & Optimization",
+      paper: "Paper 1",
+      unit: "Paper I - Unit 1: Teaching Aptitude",
+      topics: "Concepts, Objectives, Levels of Teaching (Memory, Understanding, Reflective), Learner Characteristics, Factors Affecting Teaching, Support Systems, Evaluation Systems.",
+      description: "Teaching methods, offline vs online methods (SWAYAM, SWAYAMPRABHA, MOOCs), Choice Based Credit System (CBCS), and Computer Based Testing (CBT).",
+      nptelTitle: "NPTEL: Effective Engineering Teaching in Practice (IIT Madras)",
+      nptelUrl: "https://nptel.ac.in/courses/109106096",
+    },
+    {
+      id: 2,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 2: Research Aptitude",
+      topics: "Meaning, Types & Characteristics of Research, Positivism & Post-positivistic approach, Experimental/Descriptive/Qualitative Methods, Thesis Writing, ICT in Research, Ethics.",
+      description: "Formulating research problems, hypotheses, sampling techniques, APA/MLA referencing, plagiarism, and application of ICT tools in data collection.",
+      nptelTitle: "NPTEL: Research Methodology (IIT Madras / IIT Kanpur)",
+      nptelUrl: "https://nptel.ac.in/courses/121106007",
+    },
+    {
+      id: 3,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 3: Comprehension",
+      topics: "Reading Comprehension Passages, Analytical Questions, Contextual Vocabulary, Critical Passage Inference.",
+      description: "Techniques for rapid reading, extracting central arguments, answering fact-based and inference-based comprehension questions.",
+      nptelTitle: "NPTEL: Technical English & Communication Skills (IIT Kanpur)",
+      nptelUrl: "https://nptel.ac.in/courses/109104031",
+    },
+    {
+      id: 4,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 4: Communication",
+      topics: "Meaning, Types & Characteristics of Communication, Verbal & Non-verbal, Classroom Communication, Barriers to Communication, Mass-Media & Society.",
+      description: "Effective interpersonal and intercultural communication, overcoming psychological/physical barriers, and media impact.",
+      nptelTitle: "NPTEL: Communication Skills (IIT Roorkee)",
+      nptelUrl: "https://nptel.ac.in/courses/109107155",
+    },
+    {
+      id: 5,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 5: Mathematical Reasoning & Aptitude",
+      topics: "Types of Reasoning, Number Series, Code-Decoding, Relationships, Fractions, Time & Distance, Ratio, Percentage, Profit & Loss, Simple/Compound Interest, Averages.",
+      description: "Shortcuts for speed math, quantitative problem solving, seating arrangement, blood relations, and distance-speed problems.",
+      nptelTitle: "NPTEL: Quantitative Aptitude & Reasoning (IIT Kanpur)",
+      nptelUrl: "https://nptel.ac.in/courses/109104031",
+    },
+    {
+      id: 6,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 6: Logical Reasoning",
+      topics: "Structure of Arguments, Deductive & Inductive Reasoning, Venn Diagrams, Indian Logic (Pramanas: Pratyaksha, Anumana, Upamana, Shabda, Arthapatti, Anupalabdhi), Hetvabhasa.",
+      description: "Categorical propositions, formal and informal fallacies, classical square of opposition, and Indian Epistemology.",
+      nptelTitle: "NPTEL: Symbolic Logic and Critical Thinking (IIT Bombay)",
+      nptelUrl: "https://nptel.ac.in/courses/109106064",
+    },
+    {
+      id: 7,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 7: Data Interpretation (DI)",
+      topics: "Sources & Classification of Data, Bar-Charts, Histograms, Pie-Charts, Table-Charts, Line-Charts, Data & Governance.",
+      description: "Calculations based on data sets, percentage growth, ratio comparisons, data visualization analysis, and tabular interpretation.",
+      nptelTitle: "NPTEL: Data Interpretation and Analysis (IIT Roorkee)",
+      nptelUrl: "https://nptel.ac.in/courses/110107114",
+    },
+    {
+      id: 8,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 8: Information & Communication Technology (ICT)",
+      topics: "ICT Terminology & Abbreviations, Basics of Internet/Intranet, E-mail, Audio/Video Conferencing, Digital Initiatives in Higher Education, ICT & Governance.",
+      description: "Computer memory (RAM/ROM), IP/MAC addresses, malware/phishing threats, digital initiatives (SWAYAM, e-PG Pathshala, National Digital Library), and e-governance.",
+      nptelTitle: "NPTEL: Information & Communication Technology (IIT Bombay)",
+      nptelUrl: "https://nptel.ac.in/courses/106101007",
+    },
+    {
+      id: 9,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 9: People, Development & Environment",
+      topics: "Millennium & Sustainable Development Goals (MDGs & SDGs), Human-Environment Interaction, Environmental Pollution, Climate Change, Natural Disasters, Environmental Protection Act.",
+      description: "Air, water, noise pollution, renewable energy sources (Solar, Wind, Hydro), Paris Agreement, Montreal Protocol, and Rio Summit.",
+      nptelTitle: "NPTEL: Ecology and Environment (IIT Madras)",
+      nptelUrl: "https://nptel.ac.in/courses/109106137",
+    },
+    {
+      id: 10,
+      paper: "Paper 1",
+      unit: "Paper I - Unit 10: Higher Education System",
+      topics: "Institutions of Higher Learning in Ancient India (Takshashila, Nalanda), Post-Independence Evolution, Value & Environmental Education, Policies, Governance & Administration.",
+      description: "UGC, AICTE, NAAC accreditation, NIRF rankings, National Education Policy (NEP 2020), and higher education governance framework.",
+      nptelTitle: "NPTEL: Higher Education System in India (IIT Kharagpur)",
+      nptelUrl: "https://nptel.ac.in/courses/109104115",
+    },
+
+    // --- PAPER 2: Computer Science & Applications ---
+    {
+      id: 11,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 1: Discrete Structures & Optimization",
       topics: "Mathematical Logic, Sets, Relations, Functions, Group Theory, Graph Theory, Optimization & Linear Programming.",
       description: "Foundational logic, counting principles, posets, lattices, Boolean algebra, graph coloring, and simplex method optimization.",
       nptelTitle: "NPTEL: Discrete Mathematics (IIT Ropar)",
       nptelUrl: "https://nptel.ac.in/courses/106106183",
     },
     {
-      id: 2,
-      unit: "Unit 2: Computer System Architecture",
+      id: 12,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 2: Computer System Architecture",
       topics: "Digital Logic Circuits, Data Representation, Register Transfer, Microoperations, Pipeline & Vector Processing.",
       description: "K-map minimization, instruction cycle, memory hierarchy, cache mapping, hazard handling, and multiprocessors.",
       nptelTitle: "NPTEL: Computer Architecture (IIT Delhi)",
       nptelUrl: "https://nptel.ac.in/courses/106102062",
     },
     {
-      id: 3,
-      unit: "Unit 3: Programming Languages & Computer Graphics",
+      id: 13,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 3: Programming Languages & Computer Graphics",
       topics: "Language Design, OOP (C++, Java), Web Programming, 2D/3D Transformations, Rendering & Clipping.",
       description: "Grammars, storage management, parameter passing, graphics pipelines, Bresenham's algorithms, and 3D projections.",
       nptelTitle: "NPTEL: Computer Graphics (IIT Madras)",
       nptelUrl: "https://nptel.ac.in/courses/106106090",
     },
     {
-      id: 4,
-      unit: "Unit 4: Database Management Systems",
+      id: 14,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 4: Database Management Systems",
       topics: "ER Model, Relational Algebra, SQL, Normalization, Transaction & Concurrency Control, NoSQL Databases.",
       description: "Functional dependencies, 1NF to 5NF, B/B+ trees, serializability, 2PL, deadlock handling, and NoSQL concepts.",
       nptelTitle: "NPTEL: Database Management System (IIT Kharagpur)",
       nptelUrl: "https://nptel.ac.in/courses/106105175",
     },
     {
-      id: 5,
-      unit: "Unit 5: System Software & Operating Systems",
+      id: 15,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 5: System Software & Operating Systems",
       topics: "Process Management, Deadlocks, Memory Management, File Systems, Unix/Linux Commands & Virtualization.",
       description: "Process synchronization, semaphores, Banker's algorithm, paging/segmentation, page replacement, and shell scripts.",
       nptelTitle: "NPTEL: Operating Systems (IIT Kharagpur)",
       nptelUrl: "https://nptel.ac.in/courses/106105214",
     },
     {
-      id: 6,
-      unit: "Unit 6: Software Engineering",
+      id: 16,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 6: Software Engineering",
       topics: "Software Process Models, Requirements Engineering, Software Design, Testing & Quality Assurance, Agile & DevOps.",
       description: "Waterfall, Spiral, Agile Scrum, SRS, COCOMO model, Cyclomatic complexity, black/white box testing, and DevOps CI/CD.",
       nptelTitle: "NPTEL: Software Engineering (IIT Kharagpur)",
       nptelUrl: "https://nptel.ac.in/courses/106105182",
     },
     {
-      id: 7,
-      unit: "Unit 7: Data Structures & Algorithms",
+      id: 17,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 7: Data Structures & Algorithms",
       topics: "Arrays, Trees, Graphs, Sorting & Searching, Asymptotic Notation, Greedy, Dynamic Programming, NP-Completeness.",
       description: "Time/space complexity analysis, BSTs, AVL, Heaps, Dijkstra, Floyd-Warshall, Kruskal, Prim, and NP-hard reductions.",
       nptelTitle: "NPTEL: Programming, Data Structures & Algorithms (CMI)",
       nptelUrl: "https://nptel.ac.in/courses/106106145",
     },
     {
-      id: 8,
-      unit: "Unit 8: Theory of Computation & Compilers",
+      id: 18,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 8: Theory of Computation & Compilers",
       topics: "Regular Expressions, Finite Automata, Context-Free Grammars, Turing Machines, Lexical Analysis, Parsing & Code Generation.",
       description: "DFA/NFA, Pumping Lemma, PDA, Turing Machine halting problem, LL(1), LR parsing, syntax-directed translation, and DAG.",
       nptelTitle: "NPTEL: Theory of Computation (IIT Kanpur)",
       nptelUrl: "https://nptel.ac.in/courses/106104148",
     },
     {
-      id: 9,
-      unit: "Unit 9: Data Communication & Networks",
+      id: 19,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 9: Data Communication & Networks",
       topics: "OSI & TCP/IP Reference Models, Routing Algorithms, IP Addressing (IPv4/IPv6), Network Security & Cryptography.",
       description: "Framing, error control, distance vector/link state routing, subnetting, CIDR, TCP congestion control, RSA, and firewalls.",
       nptelTitle: "NPTEL: Computer Networks and Internet Protocol (IIT Kharagpur)",
       nptelUrl: "https://nptel.ac.in/courses/106105183",
     },
     {
-      id: 10,
-      unit: "Unit 10: Artificial Intelligence (AI)",
+      id: 20,
+      paper: "Paper 2",
+      unit: "Paper II - Unit 10: Artificial Intelligence (AI)",
       topics: "Search Strategies, Knowledge Representation, Fuzzy Logic, Artificial Neural Networks, Natural Language Processing.",
       description: "A* search, alpha-beta pruning, propositional/predicate logic, membership functions, perceptrons, backpropagation, and NLP POS tagging.",
       nptelTitle: "NPTEL: An Introduction to Artificial Intelligence (IIT Madras)",
@@ -98,12 +203,14 @@ export default function UgcNetJrfPage() {
     },
   ];
 
-  const filteredUnits = units.filter(
-    (u) =>
+  const filteredUnits = units.filter((u) => {
+    const matchesPaper = selectedPaper === "All" || u.paper === selectedPaper;
+    const matchesSearch =
       u.unit.toLowerCase().includes(searchQuery.toLowerCase()) ||
       u.topics.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      u.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+      u.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesPaper && matchesSearch;
+  });
 
   return (
     <div className="page-container">
@@ -115,9 +222,9 @@ export default function UgcNetJrfPage() {
         <div className="header-titles">
           <div className="badge-row">
             <span className="badge">National Eligibility Test</span>
-            <span className="badge badge-accent">Paper II: Computer Science</span>
+            <span className="badge badge-accent">Paper I & Paper II</span>
           </div>
-          <h1 className="main-title">UGC NET JRF — Syllabus & NPTEL Study Guide</h1>
+          <h1 className="main-title">UGC NET JRF — Complete Syllabus & NPTEL Study Guide</h1>
         </div>
       </header>
 
@@ -125,20 +232,36 @@ export default function UgcNetJrfPage() {
         {/* Intro Card */}
         <section className="intro-card">
           <div className="intro-content">
-            <h2>Complete 10-Unit Preparation Roadmap</h2>
+            <h2>Complete UGC NET JRF Preparation Hub (Paper 1 + Paper 2)</h2>
             <p>
-              UGC NET JRF tests deep conceptual clarity across 10 official units. Every unit below is linked to top <strong>NPTEL / SWAYAM video lectures and course materials</strong> from IITs for structured self-study.
+              Comprehensive syllabus coverage for both <strong>Paper I (General Teaching & Research Aptitude)</strong> and <strong>Paper II (Computer Science & Applications)</strong>. Each unit is paired with direct <strong>NPTEL / SWAYAM video courses</strong> from top IITs.
             </p>
           </div>
         </section>
 
-        {/* Search Bar */}
+        {/* Paper Tabs & Search */}
         <section className="controls-bar">
+          <div className="tabs">
+            {["All", "Paper 1", "Paper 2"].map((p) => (
+              <button
+                key={p}
+                onClick={() => setSelectedPaper(p)}
+                className={`tab-btn ${selectedPaper === p ? "active" : ""}`}
+              >
+                {p === "All"
+                  ? "All Units (20 Units)"
+                  : p === "Paper 1"
+                  ? "Paper I: General Aptitude (10 Units)"
+                  : "Paper II: Computer Science (10 Units)"}
+              </button>
+            ))}
+          </div>
+
           <div className="search-box">
             <i className="fa-solid fa-magnifying-glass search-icon"></i>
             <input
               type="text"
-              placeholder="Search units, topics, or keywords..."
+              placeholder="Search Paper I or Paper II topics..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="search-input"
@@ -151,8 +274,10 @@ export default function UgcNetJrfPage() {
           {filteredUnits.map((u) => (
             <div key={u.id} className="unit-card">
               <div className="card-top">
-                <span className="unit-number">Unit {u.id}</span>
-                <span className="exam-badge">UGC NET JRF</span>
+                <span className={`paper-badge ${u.paper === "Paper 1" ? "p1-badge" : "p2-badge"}`}>
+                  {u.paper}
+                </span>
+                <span className="exam-tag">UGC NET JRF</span>
               </div>
 
               <h3 className="unit-title">{u.unit}</h3>
@@ -171,7 +296,7 @@ export default function UgcNetJrfPage() {
                   href={u.nptelUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="nptel-btn"
+                  className={`nptel-btn ${u.paper === "Paper 1" ? "p1-btn" : "p2-btn"}`}
                 >
                   <i className="fa-solid fa-graduation-cap"></i>
                   <span>Study {u.nptelTitle}</span>
@@ -278,13 +403,43 @@ export default function UgcNetJrfPage() {
         .controls-bar {
           display: flex;
           align-items: center;
-          justify-content: flex-end;
+          justify-content: space-between;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
+        .tabs {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .tab-btn {
+          padding: 0.55rem 1rem;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          background: #fff;
+          color: #4b5563;
+          font-weight: 600;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+          background: #f3f4f6;
+          color: #111827;
+        }
+
+        .tab-btn.active {
+          background: #059669;
+          color: #fff;
+          border-color: #059669;
         }
 
         .search-box {
           position: relative;
-          width: 100%;
-          max-width: 360px;
+          min-width: 280px;
         }
 
         .search-icon {
@@ -337,18 +492,26 @@ export default function UgcNetJrfPage() {
           margin-bottom: 0.75rem;
         }
 
-        .unit-number {
+        .paper-badge {
           font-size: 0.75rem;
           font-weight: 800;
-          color: #059669;
-          background: #ecfdf5;
-          padding: 0.2rem 0.55rem;
+          padding: 0.2rem 0.6rem;
           border-radius: 5px;
           letter-spacing: 0.5px;
           text-transform: uppercase;
         }
 
-        .exam-badge {
+        .p1-badge {
+          color: #d97706;
+          background: #fffbeb;
+        }
+
+        .p2-badge {
+          color: #059669;
+          background: #ecfdf5;
+        }
+
+        .exam-tag {
           font-size: 0.7rem;
           font-weight: 700;
           color: #6b7280;
@@ -358,7 +521,7 @@ export default function UgcNetJrfPage() {
         }
 
         .unit-title {
-          font-size: 1.15rem;
+          font-size: 1.12rem;
           font-weight: 700;
           color: #111827;
           margin: 0 0 0.5rem 0;
@@ -409,7 +572,6 @@ export default function UgcNetJrfPage() {
           align-items: center;
           justify-content: space-between;
           padding: 0.65rem 1rem;
-          background: #065f46;
           color: #fff;
           border-radius: 8px;
           text-decoration: none;
@@ -418,7 +580,17 @@ export default function UgcNetJrfPage() {
           transition: background 0.2s;
         }
 
-        .nptel-btn:hover {
+        .p1-btn {
+          background: #b45309;
+        }
+        .p1-btn:hover {
+          background: #92400e;
+        }
+
+        .p2-btn {
+          background: #065f46;
+        }
+        .p2-btn:hover {
           background: #047857;
         }
 
@@ -433,6 +605,13 @@ export default function UgcNetJrfPage() {
           }
           .units-grid {
             grid-template-columns: 1fr;
+          }
+          .controls-bar {
+            flex-direction: column;
+            align-items: stretch;
+          }
+          .search-box {
+            min-width: 100%;
           }
         }
       `}</style>
