@@ -5,3 +5,7 @@ out/
 # PWA - generated service worker (build artifact)
 public/sw.js
 public/sw.js.map
+
+# Test coverage output
+coverage/
+.serwist/
