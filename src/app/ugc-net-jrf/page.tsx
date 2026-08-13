@@ -321,7 +321,6 @@ export default function UgcNetJrfPage() {
               { name: "Testbook — Mock Tests", desc: "Free full-length CBT mock tests with performance analysis.", url: "https://testbook.com/ugc-net", icon: "fa-solid fa-file-circle-check", color: "#2563eb" },
               { name: "NTA Official — Previous Year Papers", desc: "Download official NTA question papers and answer keys.", url: "https://ugcnet.nta.ac.in/", icon: "fa-solid fa-landmark", color: "#7c3aed" },
               { name: "Adda247 — Free Mock Series", desc: "Memory-based and unit-wise practice sets with analytics.", url: "https://www.adda247.com/teaching-jobs-exam/ugc-net/", icon: "fa-solid fa-chart-line", color: "#ea580c" },
-              { name: "BYJU'S Exam Prep — UGC NET CS", desc: "Unit-wise practice sets, mock tests, and previous year papers.", url: "https://byjusexamprep.com/ugc-net-exam/computer-science", icon: "fa-solid fa-graduation-cap", color: "#0891b2" },
             ].map((r, idx) => (
               <a key={idx} href={r.url} target="_blank" rel="noopener noreferrer" className="resource-card">
                 <div className="resource-icon" style={{ background: r.color }}>
