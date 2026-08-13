@@ -191,7 +191,6 @@ export default function GateCsPage() {
           </p>
           <div className="resources-grid">
             {[
-              { name: "GeeksforGeeks — GATE CS PYQs", desc: "Year-wise and subject-wise GATE CS papers with solutions & quizzes.", url: "https://www.geeksforgeeks.org/gate-cs-notes-gq/", icon: "fa-solid fa-code", color: "#16a34a" },
               { name: "NPTEL GATE Portal — Mock Tests", desc: "Official NPTEL GATE mock tests in exam-like environment.", url: "https://gate.nptel.ac.in/", icon: "fa-solid fa-graduation-cap", color: "#2563eb" },
               { name: "MargDarshan — GATE PYQs", desc: "Curated PYQs with no login required. Practice online or PDF.", url: "https://margdarshanprep.com/", icon: "fa-solid fa-file-circle-check", color: "#7c3aed" },
               { name: "PracticePaper — GATE CS", desc: "Free topic-wise PYQs, mock tests, and handwritten notes.", url: "https://practicepaper.in/gate-cse", icon: "fa-solid fa-pen-to-square", color: "#0891b2" },
