@@ -440,7 +440,7 @@ export default function CurajMscCsPage() {
           </div>
           <div className="pdf-action">
             <a
-              href="file:///home/akshayaparida/Desktop/CURAJ%20MSC%20CS/M.Sc.%20(2%20Year)%20Computer%20Science.pdf"
+              href="https://drive.google.com/file/d/1B7TmMHPivoDZptiCfI21Ho3tOt9vFfHu/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="pdf-btn"
