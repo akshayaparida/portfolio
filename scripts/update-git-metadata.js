@@ -16,8 +16,9 @@ try {
     if (rawDate) {
       const d = new Date(rawDate);
       if (!isNaN(d.getTime())) {
-        commitDate = d.toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }) +
-          ' at ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        const tzOptions = { timeZone: 'Asia/Kolkata' };
+        commitDate = d.toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric', ...tzOptions }) +
+          ' at ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', ...tzOptions });
       }
     }
   } catch (gitErr) {
