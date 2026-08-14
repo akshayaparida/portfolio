@@ -19,6 +19,12 @@ export default function SocialLinks({ links, size = "md" }: SocialLinksProps) {
         return "currentColor"; // Inherits from CSS for dark mode support
       case "linkedin":
         return "#0A66C2";
+      case "youtube":
+        return "#FF0000";
+      case "discord":
+        return "#5865F2";
+      case "email":
+        return "#EA4335";
       default:
         return "currentColor";
     }

@@ -81,7 +81,7 @@ describe("Sidebar", () => {
     const emailLink = screen.getByText("Say hi!").closest("a");
     expect(emailLink).toHaveAttribute(
       "href",
-      "mailto:akshayaparida2811@gmail.com",
+      "mailto:enquiries.akshayaparida@gmail.com",
     );
   });
 

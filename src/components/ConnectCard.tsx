@@ -3,7 +3,7 @@ interface ConnectCardProps {
 }
 
 export default function ConnectCard({
-  email = "akshayaparida2811@gmail.com",
+  email = "enquiries.akshayaparida@gmail.com",
 }: ConnectCardProps) {
   return (
     <aside className="connect-card">
