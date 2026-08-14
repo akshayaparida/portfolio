@@ -632,7 +632,7 @@ export default function UgcNetJrfPage() {
           background: #fff;
           border: 1px solid #e5e7eb;
           border-radius: 14px;
-          padding: 2rem;
+          padding: 1.75rem;
         }
         .resources-title {
           font-size: 1.35rem;
@@ -647,10 +647,11 @@ export default function UgcNetJrfPage() {
           color: #6b7280;
           font-size: 0.9rem;
           margin: 0 0 1.25rem 0;
+          line-height: 1.5;
         }
         .resources-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 1rem;
         }
         .resource-card {
@@ -663,12 +664,17 @@ export default function UgcNetJrfPage() {
           border-radius: 10px;
           text-decoration: none;
           transition: all 0.2s;
+          min-width: 0;
         }
         .resource-card:hover {
           background: #f3f4f6;
           border-color: #d1d5db;
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .resource-card:hover .resource-arrow {
+          color: #2563eb;
+          transform: translate(2px, -2px);
         }
         .resource-icon {
           width: 40px;
@@ -681,12 +687,18 @@ export default function UgcNetJrfPage() {
           font-size: 1rem;
           flex-shrink: 0;
         }
-        .resource-info { flex: 1; min-width: 0; }
+        .resource-info {
+          flex: 1;
+          min-width: 0;
+          overflow-wrap: break-word;
+          word-break: break-word;
+        }
         .resource-name {
           font-size: 0.88rem;
           font-weight: 700;
           color: #111827;
           margin: 0 0 0.2rem 0;
+          line-height: 1.35;
         }
         .resource-desc-text {
           font-size: 0.78rem;
@@ -698,6 +710,7 @@ export default function UgcNetJrfPage() {
           color: #9ca3af;
           font-size: 0.75rem;
           flex-shrink: 0;
+          transition: transform 0.2s, color 0.2s;
         }
 
         @media (max-width: 640px) {
@@ -713,6 +726,37 @@ export default function UgcNetJrfPage() {
           }
           .search-box {
             min-width: 100%;
+          }
+          .resources-section {
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+          }
+          .resources-title {
+            font-size: 1.15rem;
+          }
+          .resources-subtitle {
+            font-size: 0.825rem;
+            margin-bottom: 1rem;
+          }
+          .resources-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+          }
+          .resource-card {
+            padding: 0.85rem 0.95rem;
+            gap: 0.75rem;
+          }
+          .resource-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+          }
+          .resource-name {
+            font-size: 0.84rem;
+          }
+          .resource-desc-text {
+            font-size: 0.75rem;
           }
         }
       `}</style>
