@@ -22,11 +22,6 @@ export const socialLinks: SocialLink[] = [
     icon: "fa-brands fa-discord",
   },
   {
-    platform: "email",
-    url: "mailto:enquiries.akshayaparida@gmail.com",
-    icon: "fa-solid fa-envelope",
-  },
-  {
     platform: "huggingface",
     url: "https://huggingface.co/akshayaparida",
     icon: "",
