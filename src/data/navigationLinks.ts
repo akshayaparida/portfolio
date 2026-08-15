@@ -7,7 +7,7 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-book-open",
   },
   {
-    label: "CURAJ MSc CS",
+    label: "CURAJ MSc CS (AI & ML)",
     href: "/curaj-msc-cs",
     icon: "fa-solid fa-graduation-cap",
   },
@@ -65,5 +65,10 @@ export const navigationLinks: NavigationLink[] = [
     label: "Reasoning",
     href: "/reasoning",
     icon: "fa-solid fa-brain",
+  },
+  {
+    label: "Professional Communication",
+    href: "/professional-communication",
+    icon: "fa-solid fa-comments",
   },
 ];

@@ -20,7 +20,7 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",
       "prettier --write",
-      "pnpm test-staged"
+      "npm run test-staged"
     ],
     "*.{json,md}": [
       "prettier --write"
