@@ -23,33 +23,92 @@ export default function Hero() {
 
   return (
     <>
-      <section>
-        <h1 className="hero-title">
-          <span className="wave-hand">👋</span> Hi, I&apos;m Akshaya Parida
-        </h1>
-        <p className="hero-description">
-          I&apos;m a <strong>high agency guy</strong> who learns by building.
-          Currently hands-on learning <strong>AI Engineering</strong>,{" "}
-          <strong>MLOps</strong>, <strong>Agentic AI</strong>, and contributing
-          to <strong>Open Source</strong>.
-        </p>
-        <p className="hero-description" style={{ marginTop: "0.5rem" }}>
-          <span style={{ filter: "grayscale(100%)" }}>🚀</span> Building{" "}
-          <a
-            href="https://github.com/akshayaparida/rip_social"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: "#2563eb",
-              textDecoration: "underline",
-              fontWeight: "bold",
-            }}
+      <section className="hero-section">
+        <div className="hero-bio-flow">
+          <div className="hero-photo-wrapper float-left">
+            <Image
+              src="/akshaya-photo.jpg"
+              alt="Akshaya Parida"
+              width={360}
+              height={360}
+              className="hero-photo"
+              quality={100}
+              unoptimized
+              priority
+            />
+          </div>
+
+          <h1
+            className="hero-title"
+            style={{ marginTop: 0, marginBottom: "0.5rem" }}
           >
-            rip social
-          </a>{" "}
-          AI-moderated civic platform that transforms public discourse into
-          actionable solutions for government.
-        </p>
+            <span className="wave-hand">👋</span> Hi, I&apos;m Akshaya Parida
+          </h1>
+
+          <p className="hero-description">
+            I&apos;m a philomath pursuing advanced postgraduate CS studies,
+            propelled by an innate high-agency mindset and an aggressive pace of
+            learning. My work bridges AI engineering with systemic policy
+            analysis. Fueled by relentless curiosity and a deep interest in
+            computer vision.
+          </p>
+
+          <p className="hero-description" style={{ marginTop: "0.75rem" }}>
+            Beyond code, my academic interest extends to Indian law, digital
+            governance, and civic infrastructure. I believe robust legal
+            frameworks are the engine to transform India into a truly developed
+            nation. Driven by the philosophy that truth and absolute reality
+            always survive systemic friction, my trajectory combines CS with
+            legal analysis to optimize public structures.
+          </p>
+
+          <p className="hero-description" style={{ marginTop: "0.75rem" }}>
+            Currently building{" "}
+            <a
+              href="https://github.com/akshayaparida/rip_social"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#2563eb",
+                textDecoration: "underline",
+                fontWeight: "600",
+              }}
+            >
+              rip_social
+            </a>
+            , an open-source web software for civic engagement where verified
+            citizens discuss real issues, moderated by AI, with direct routes to
+            government action. Learn how I&apos;m building rip_social open
+            source, contribute, and be part of the revolution! It is currently
+            in the planning phase. Feel free to{" "}
+            <a
+              href="https://discord.gg/yuFE2Rwzep"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#2563eb",
+                textDecoration: "underline",
+                fontWeight: "600",
+              }}
+            >
+              join my Discord
+            </a>{" "}
+            to take part in the architecture &amp; discussions, and watch my{" "}
+            <a
+              href="https://www.youtube.com/@akshaya.parida"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#2563eb",
+                textDecoration: "underline",
+                fontWeight: "600",
+              }}
+            >
+              YouTube videos
+            </a>{" "}
+            for upcoming sessions on building open source rip_social!
+          </p>
+        </div>
       </section>
 
       <TechnicalSkills categories={skillCategories} />
