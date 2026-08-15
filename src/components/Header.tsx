@@ -7,7 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
-    <header>
+    <header className="site-header">
       <Link href="/">Akshaya Parida</Link>
       <div className="header-right">
         <SocialLinks links={socialLinks} size="md" />

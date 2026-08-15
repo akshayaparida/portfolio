@@ -117,8 +117,8 @@ html.dark .theme-toggle {
   }
 }
 
-/* Header */
-header {
+/* Site Header */
+.site-header {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -134,14 +134,14 @@ header {
 }
 
 @media (min-width: 640px) {
-  header {
+  .site-header {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     margin-bottom: 3rem;
   }
 }
 
-header > a {
+.site-header > a {
   font-family: var(--font-space-grotesk), sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
@@ -3140,5 +3140,93 @@ html.dark .yt-scroll-card:hover {
 
 html.dark .yt-scroll-card:hover .yt-watch-btn {
   color: #f3f4f6;
+}
+
+/* Subpages & Syllabus Dark Mode Theme Fixes */
+html.dark .page-container {
+  background: var(--bg-light) !important;
+  color: var(--text-primary) !important;
+}
+
+html.dark .page-header {
+  border-bottom-color: var(--border) !important;
+  background: transparent !important;
+}
+
+html.dark .back-btn {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--heading-color) !important;
+}
+
+html.dark .back-btn:hover {
+  background: #262626 !important;
+  color: #ffffff !important;
+}
+
+html.dark .main-title {
+  color: var(--heading-color) !important;
+}
+
+html.dark .intro-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+html.dark .intro-content h2 {
+  color: var(--heading-color) !important;
+}
+
+html.dark .intro-content p {
+  color: var(--text-secondary) !important;
+}
+
+html.dark .course-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+html.dark .course-title {
+  color: var(--heading-color) !important;
+}
+
+html.dark .course-desc {
+  color: var(--text-secondary) !important;
+}
+
+html.dark .units-box {
+  background: #1c1c1c !important;
+  border-color: var(--border) !important;
+}
+
+html.dark .units-box-title {
+  color: var(--heading-color) !important;
+}
+
+html.dark .units-list li {
+  color: var(--text-primary) !important;
+}
+
+html.dark .search-input {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--heading-color) !important;
+}
+
+html.dark .filter-btn {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-secondary) !important;
+}
+
+html.dark .filter-btn:hover {
+  background: #262626 !important;
+  color: var(--heading-color) !important;
+}
+
+html.dark .filter-btn.active {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border-color: var(--primary) !important;
 }
 
