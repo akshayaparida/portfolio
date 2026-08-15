@@ -2860,7 +2860,7 @@ html.dark .ai-eng-footer a {
   color: #60a5fa !important;
 }
 
-/* YouTube Live Feed */
+/* YouTube Live Feed - Gray & Black Theme */
 .yt-feed-section {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -2879,16 +2879,56 @@ html.dark .ai-eng-footer a {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.yt-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.25rem;
+  border-radius: 10px;
+}
+
+.yt-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.yt-tab-btn:hover {
+  color: var(--heading-color);
+}
+
+.yt-tab-btn.active {
+  color: #ffffff;
+  background: #111827;
+}
+
+html.dark .yt-tab-btn.active {
+  color: #111827;
+  background: #f3f4f6;
 }
 
 .yt-live-tag {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  color: #374151;
+  background: #f3f4f6;
   padding: 0.2rem 0.6rem;
   border-radius: 9999px;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  border: 1px solid #e5e7eb;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -2900,7 +2940,7 @@ html.dark .ai-eng-footer a {
   font-size: 0.85rem;
   font-weight: 600;
   color: #ffffff;
-  background-color: #ef4444;
+  background-color: #111827;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   text-decoration: none;
@@ -2908,7 +2948,7 @@ html.dark .ai-eng-footer a {
 }
 
 .yt-subscribe-btn:hover {
-  background-color: #dc2626;
+  background-color: #1f2937;
   transform: translateY(-1px);
 }
 
@@ -2928,8 +2968,8 @@ html.dark .ai-eng-footer a {
 .yt-spinner {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(239, 68, 68, 0.2);
-  border-top-color: #ef4444;
+  border: 3px solid rgba(107, 114, 128, 0.2);
+  border-top-color: #111827;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -2940,72 +2980,63 @@ html.dark .ai-eng-footer a {
   gap: 1.5rem;
 }
 
-.yt-player-wrapper {
-  position: relative;
+.yt-scroll-container {
   width: 100%;
-  padding-bottom: 56.25%;
-  height: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border);
-  background: #000000;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
-.yt-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.yt-scroll-container::-webkit-scrollbar {
+  height: 6px;
 }
 
-.yt-recent-list {
-  margin-top: 0.5rem;
+.yt-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
 }
 
-.yt-recent-heading {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--heading-color);
-  margin-bottom: 1rem;
-}
-
-.yt-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+.yt-scroll-track {
+  display: flex;
   gap: 1rem;
+  align-items: stretch;
 }
 
-.yt-card {
+.yt-scroll-card {
   display: flex;
   flex-direction: column;
+  flex: 0 0 260px;
+  width: 260px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
+  text-decoration: none;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.yt-card:hover {
-  transform: translateY(-2px);
-  border-color: #ef4444;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+.yt-scroll-card.short-card {
+  flex: 0 0 170px;
+  width: 170px;
 }
 
-.yt-card.active {
-  border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.02);
+.yt-scroll-card:hover {
+  transform: translateY(-2px);
+  border-color: #111827;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .yt-card-thumb {
   position: relative;
   width: 100%;
-  height: 135px;
+  height: 145px;
   overflow: hidden;
-  background: #1e293b;
+  background: var(--surface);
+}
+
+.yt-scroll-card.short-card .yt-card-thumb {
+  height: 220px;
 }
 
 .yt-thumb-img {
@@ -3015,7 +3046,7 @@ html.dark .ai-eng-footer a {
   transition: transform 0.3s ease;
 }
 
-.yt-card:hover .yt-thumb-img {
+.yt-scroll-card:hover .yt-thumb-img {
   transform: scale(1.04);
 }
 
@@ -3026,7 +3057,7 @@ html.dark .ai-eng-footer a {
   transform: translate(-50%, -50%);
   width: 40px;
   height: 40px;
-  background: rgba(239, 68, 68, 0.9);
+  background: rgba(17, 24, 39, 0.85);
   color: #ffffff;
   border-radius: 50%;
   display: flex;
@@ -3037,7 +3068,7 @@ html.dark .ai-eng-footer a {
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.yt-card:hover .yt-play-badge {
+.yt-scroll-card:hover .yt-play-badge {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.1);
 }
@@ -3052,7 +3083,7 @@ html.dark .ai-eng-footer a {
 .yt-card-date {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #ef4444;
+  color: #6b7280;
 }
 
 .yt-card-title {
@@ -3067,28 +3098,47 @@ html.dark .ai-eng-footer a {
   overflow: hidden;
 }
 
-.yt-watch-external {
-  font-size: 0.75rem;
+.yt-watch-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  text-decoration: none;
-  margin-top: 0.25rem;
+  margin-top: 0.4rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
   transition: color 0.2s ease;
 }
 
-.yt-card:hover .yt-watch-external {
-  color: #ef4444;
+.yt-scroll-card:hover .yt-watch-btn {
+  color: #111827;
 }
 
-html.dark .yt-card {
-  background: #121212;
-  border-color: #262626;
+html.dark .yt-live-tag {
+  color: #d1d5db;
+  background: #262626;
+  border-color: #404040;
 }
 
-html.dark .yt-card.active {
-  border-color: #ef4444;
-  background: rgba(239, 68, 68, 0.05);
+html.dark .yt-subscribe-btn {
+  background-color: #262626;
+  color: #f3f4f6;
+  border: 1px solid #404040;
+}
+
+html.dark .yt-subscribe-btn:hover {
+  background-color: #333333;
+}
+
+html.dark .yt-scroll-card {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html.dark .yt-scroll-card:hover {
+  border-color: #737373;
+}
+
+html.dark .yt-scroll-card:hover .yt-watch-btn {
+  color: #f3f4f6;
 }
 

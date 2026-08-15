@@ -32,7 +32,6 @@ export default function Hero() {
               width={360}
               height={360}
               className="hero-photo"
-              quality={100}
               unoptimized
               priority
             />
@@ -69,7 +68,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#2563eb",
+                color: "var(--heading-color)",
                 textDecoration: "underline",
                 fontWeight: "600",
               }}
@@ -86,7 +85,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#2563eb",
+                color: "var(--heading-color)",
                 textDecoration: "underline",
                 fontWeight: "600",
               }}
@@ -99,7 +98,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#2563eb",
+                color: "var(--heading-color)",
                 textDecoration: "underline",
                 fontWeight: "600",
               }}

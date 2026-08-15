@@ -5,8 +5,8 @@ import Image from "next/image";
 import { YouTubeVideo } from "@/app/api/youtube/route";
 
 export default function YouTubeFeed() {
-  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const [allVideos, setAllVideos] = useState<YouTubeVideo[]>([]);
+  const [activeTab, setActiveTab] = useState<"videos" | "shorts">("videos");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -17,8 +17,13 @@ export default function YouTubeFeed() {
         if (!res.ok) throw new Error("Failed to load");
         const data = await res.json();
         if (data.videos && data.videos.length > 0) {
-          setVideos(data.videos);
-          setActiveVideoId(data.videos[0].id);
+          const vids: YouTubeVideo[] = data.videos;
+          setAllVideos(vids);
+          const regularVids = vids.filter((v) => !v.isShort);
+          const shortsVids = vids.filter((v) => v.isShort);
+          if (regularVids.length === 0 && shortsVids.length > 0) {
+            setActiveTab("shorts");
+          }
         }
       } catch (err) {
         console.error("Failed to load YouTube feed", err);
@@ -31,8 +36,12 @@ export default function YouTubeFeed() {
     fetchVideos();
   }, []);
 
-  if (error || (!loading && videos.length === 0)) {
-    return null; // Gracefully hide if no videos or network error
+  const regularVideos = allVideos.filter((v) => !v.isShort);
+  const shortsVideos = allVideos.filter((v) => v.isShort);
+  const currentList = activeTab === "videos" ? regularVideos : shortsVideos;
+
+  if (error || (!loading && allVideos.length === 0)) {
+    return null;
   }
 
   return (
@@ -42,12 +51,29 @@ export default function YouTubeFeed() {
           <h3 className="section-title">
             <i
               className="fa-brands fa-youtube"
-              style={{ color: "#ef4444", marginRight: "0.5rem" }}
+              style={{ color: "var(--heading-color)", marginRight: "0.5rem" }}
             ></i>
-            Latest YouTube Videos
+            YouTube Channel Feed
           </h3>
-          <span className="yt-live-tag">Auto-Synced</span>
+
+          <div className="yt-tabs">
+            <button
+              className={`yt-tab-btn ${activeTab === "videos" ? "active" : ""}`}
+              onClick={() => setActiveTab("videos")}
+            >
+              <i className="fa-solid fa-video"></i> Videos (
+              {regularVideos.length})
+            </button>
+            <button
+              className={`yt-tab-btn ${activeTab === "shorts" ? "active" : ""}`}
+              onClick={() => setActiveTab("shorts")}
+            >
+              <i className="fa-solid fa-bolt"></i> Shorts ({shortsVideos.length}
+              )
+            </button>
+          </div>
         </div>
+
         <a
           href="https://www.youtube.com/@akshaya.parida?sub_confirmation=1"
           target="_blank"
@@ -59,66 +85,55 @@ export default function YouTubeFeed() {
       </div>
 
       {loading ? (
-        <div className="yt-skeleton-player">
+        <div className="yt-skeleton-player" style={{ height: "140px" }}>
           <div className="yt-spinner"></div>
-          <span>Loading latest YouTube upload...</span>
+          <span>Loading YouTube feed...</span>
         </div>
       ) : (
-        <div className="yt-content-grid">
-          {/* Main Embedded Player */}
-          {activeVideoId && (
-            <div className="yt-player-wrapper">
-              <iframe
-                src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=0`}
-                title="Latest YouTube Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="yt-iframe"
-              ></iframe>
-            </div>
-          )}
-
-          {/* Recent Video Grid */}
-          {videos.length > 1 && (
-            <div className="yt-recent-list">
-              <h4 className="yt-recent-heading">Recent Uploads</h4>
-              <div className="yt-cards-grid">
-                {videos.map((vid) => (
-                  <div
-                    key={vid.id}
-                    className={`yt-card ${vid.id === activeVideoId ? "active" : ""}`}
-                    onClick={() => setActiveVideoId(vid.id)}
-                  >
-                    <div className="yt-card-thumb">
-                      <Image
-                        src={vid.thumbnail}
-                        alt={vid.title}
-                        width={240}
-                        height={135}
-                        className="yt-thumb-img"
-                        unoptimized
-                      />
-                      <span className="yt-play-badge">
-                        <i className="fa-solid fa-play"></i>
-                      </span>
-                    </div>
-                    <div className="yt-card-info">
-                      <span className="yt-card-date">{vid.published}</span>
-                      <h5 className="yt-card-title">{vid.title}</h5>
-                      <a
-                        href={vid.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="yt-watch-external"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Watch on YouTube{" "}
-                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                      </a>
-                    </div>
+        <div className="yt-scroll-container">
+          {currentList.length > 0 ? (
+            <div
+              className={`yt-scroll-track ${activeTab === "shorts" ? "shorts-track" : ""}`}
+            >
+              {currentList.map((vid) => (
+                <a
+                  key={vid.id}
+                  href={vid.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`yt-scroll-card ${vid.isShort ? "short-card" : ""}`}
+                >
+                  <div className="yt-card-thumb">
+                    <Image
+                      src={vid.thumbnail}
+                      alt={vid.title}
+                      width={280}
+                      height={vid.isShort ? 320 : 155}
+                      className="yt-thumb-img"
+                      unoptimized
+                    />
+                    <span className="yt-play-badge">
+                      <i
+                        className={
+                          vid.isShort ? "fa-solid fa-bolt" : "fa-solid fa-play"
+                        }
+                      ></i>
+                    </span>
                   </div>
-                ))}
-              </div>
+                  <div className="yt-card-info">
+                    <span className="yt-card-date">{vid.published}</span>
+                    <h5 className="yt-card-title">{vid.title}</h5>
+                    <span className="yt-watch-btn">
+                      Watch Full {vid.isShort ? "Short" : "Video"}{" "}
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="yt-skeleton-player" style={{ height: "120px" }}>
+              <span>No {activeTab} available yet on YouTube.</span>
             </div>
           )}
         </div>
