@@ -51,12 +51,10 @@ function getNodeText(children: React.ReactNode): string {
   if (Array.isArray(children)) {
     return children.map(getNodeText).join("");
   }
-  if (
-    React.isValidElement(children) &&
-    children.props &&
-    children.props.children
-  ) {
-    return getNodeText(children.props.children);
+  if (React.isValidElement<{ children?: React.ReactNode }>(children)) {
+    if (children.props?.children) {
+      return getNodeText(children.props.children);
+    }
   }
   return "";
 }
@@ -292,7 +290,7 @@ export default function ModuleViewer({
         )}
 
         {/* Practice Quiz */}
-        {hasQuiz && (
+        {module.practiceQuiz && module.practiceQuiz.length > 0 && (
           <section id="practice-quiz" className="practice-section">
             <div className="section-header">
               <h3 className="section-title">
