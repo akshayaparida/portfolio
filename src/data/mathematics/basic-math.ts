@@ -2,9 +2,9 @@ import { LearningModule } from "@/types/learning";
 
 export const basicMathModule: LearningModule = {
   id: "basic-math",
-  title: "Basic Mathematics & Discrete Foundations (Week 1)",
+  title: "Basic Mathematics & Discrete Foundations",
   description:
-    "Number systems, arithmetic fundamentals, inequalities, and IIT Ropar Discrete Mathematics (Week 1) counting principles, factorial explosion, Catalan numbers, and the Pigeonhole Principle.",
+    "Number systems, arithmetic fundamentals, inequalities, discrete counting principles, factorial explosion, Catalan numbers, and the Pigeonhole Principle.",
   status: "in-progress",
   detailedContent: `# Basic Mathematics
 
@@ -709,11 +709,11 @@ Sum = -3 + (-2) + (-1) + 0 + 1 + 2 + 3 + 4 = **4**
 
 ---
 
-# Part II: Discrete Mathematics & Foundations of Counting (Week 1 — IIT Ropar)
+# Part II: Discrete Mathematics & Foundations of Counting
 
 Counting is the foundational heartbeat of **Discrete Mathematics** and **Computer Science**. From determining the computational complexity of an algorithm and analyzing state spaces in artificial intelligence to ensuring cryptographic security through massive key spaces, mastering rigorous counting principles is indispensable.
 
-This section covers **Week 1 of Discrete Mathematics (IIT Ropar — Prof. Sudarshan Iyengar)** on NPTEL, exploring fundamental counting laws, exponential growth, combinatorial explosion, Catalan numbers, and the Pigeonhole Principle.
+This section covers foundational **Discrete Mathematics (IIT Ropar — Prof. Sudarshan Iyengar)**, exploring fundamental counting laws, exponential growth, combinatorial explosion, Catalan numbers, and the Pigeonhole Principle.
 
 ## 9. Motivation for Counting in Computer Science
 

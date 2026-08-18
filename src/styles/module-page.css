@@ -178,9 +178,9 @@
    ========================================================================== */
 .module-sidebar {
   position: sticky;
-  top: 86px;
+  top: 80px;
   height: fit-content;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 96px);
   overflow-y: auto;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -188,6 +188,8 @@
   padding: 1rem;
   align-self: start;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 .sidebar-header {
@@ -311,9 +313,9 @@ html.dark .nav-item.active .nav-index {
    ========================================================================== */
 .module-toc-column {
   position: sticky;
-  top: 86px;
+  top: 80px;
   height: fit-content;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 96px);
   align-self: start;
 }
 
@@ -330,6 +332,7 @@ html.dark .nav-item.active .nav-index {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  max-height: calc(100vh - 96px);
 }
 
 .toc-header {
@@ -381,9 +384,11 @@ html.dark .nav-item.active .nav-index {
 }
 
 .toc-list-wrapper {
-  max-height: calc(100vh - 340px);
+  max-height: calc(100vh - 210px);
   overflow-y: auto;
-  padding-right: 0.25rem;
+  padding-right: 0.35rem;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
 }
 
 .toc-list-wrapper::-webkit-scrollbar,

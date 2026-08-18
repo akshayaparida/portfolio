@@ -145,6 +145,19 @@ export default function TableOfContents({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [headings]);
 
+  // Keep the active TOC item smoothly scrolled into view within the sidebar list as the user scrolls
+  useEffect(() => {
+    if (!activeId) return;
+    const activeItem = document.querySelector(".toc-item.toc-active");
+    if (activeItem && typeof activeItem.scrollIntoView === "function") {
+      activeItem.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+        behavior: "smooth",
+      });
+    }
+  }, [activeId]);
+
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
