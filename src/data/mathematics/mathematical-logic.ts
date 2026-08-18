@@ -20,36 +20,36 @@ By the end of this module, you will be able to:
 
 | # | Topic | Skill |
 |:--|:------|:------|
-| 1 | **Propositions & Truth Values** | Distinguish valid propositions from non-propositions ($T$ vs. $F$) |
-| 2 | **Logical Connectives** | Master NOT ($\\neg$), AND ($\\land$), OR ($\\lor$), XOR ($\\oplus$), Implication ($\\implies$), and Biconditional ($\\iff$) |
-| 3 | **Conditionals & Equivalences** | Construct Converse ($q \\implies p$), Inverse ($\\neg p \\implies \\neg q$), and Contrapositive ($\\neg q \\implies \\neg p$) |
+| 1 | **Propositions & Truth Values** | Distinguish valid propositions from non-propositions (T vs. F) |
+| 2 | **Logical Connectives** | Master NOT (¬), AND (∧), OR (∨), XOR (⊕), Implication (⟹), and Biconditional (⟺) |
+| 3 | **Conditionals & Equivalences** | Construct Converse (q ⟹ p), Inverse (¬p ⟹ ¬q), and Contrapositive (¬q ⟹ ¬p) |
 | 4 | **Truth Tables & Classification** | Classify compound statements as **Tautologies**, **Contradictions**, or **Contingencies** |
 | 5 | **Laws of Logical Equivalence** | Simplify complex boolean formulas using De Morgan's, Distributive, and Absorption laws |
-| 6 | **Predicates & Quantifiers** | Translate natural language into First-Order Logic using $\\forall x$ (Universal) and $\\exists x$ (Existential) |
+| 6 | **Predicates & Quantifiers** | Translate natural language into First-Order Logic using ∀x (Universal) and ∃x (Existential) |
 | 7 | **Negating Quantified Statements** | Correctly negate complex assertions using generalized De Morgan's laws for quantifiers |
 | 8 | **Proof Techniques** | Construct Direct Proofs, Proof by Contraposition, Proof by Contradiction, and Counterexamples |
 | 9 | **Digital Logic & Circuit Gates** | Map boolean formulas to hardware logic gates (AND, OR, NOT, NAND, NOR, XOR, XNOR) |
-| 10 | **Boolean Satisfiability (SAT)** | Understand CNF/DNF normal forms and the foundational role of SAT in $P$ vs. $NP$ complexity |
+| 10 | **Boolean Satisfiability (SAT)** | Understand CNF/DNF normal forms and the foundational role of SAT in P vs. NP complexity |
 
 ---
 
 ## Math Notation & Pronunciation Guide
 
 **Propositional Connectives:**
-- $\\neg$ or $\\sim$ — pronounced "not" or "negation" — inverts truth value ($\\neg p$)
-- $\\land$ — pronounced "and" or "conjunction" — true only when both are true ($p \\land q$)
-- $\\lor$ — pronounced "or" or "disjunction" — true when at least one is true ($p \\lor q$)
-- $\\oplus$ — pronounced "xor" or "exclusive or" — true when exactly one is true ($p \\oplus q$)
-- $\\implies$ or $\\rightarrow$ — pronounced "implies" or "if-then" — conditional statement ($p \\implies q$)
-- $\\iff$ or $\\leftrightarrow$ — pronounced "if and only if" (iff) — biconditional statement ($p \\iff q$)
-- $\\equiv$ or $\\Leftrightarrow$ — pronounced "is logically equivalent to" — identical truth table columns ($p \\equiv q$)
-- $\\top$ (or $\\mathbf{T}$) — pronounced "tautology" or "true"
-- $\\bot$ (or $\\mathbf{F}$) — pronounced "contradiction" or "false"
+- **¬** or **~** — pronounced "not" or "negation" — inverts truth value (¬p)
+- **∧** — pronounced "and" or "conjunction" — true only when both are true (p ∧ q)
+- **∨** — pronounced "or" or "disjunction" — true when at least one is true (p ∨ q)
+- **⊕** — pronounced "xor" or "exclusive or" — true when exactly one is true (p ⊕ q)
+- **⟹** or **→** — pronounced "implies" or "if-then" — conditional statement (p ⟹ q)
+- **⟺** or **↔** — pronounced "if and only if" (iff) — biconditional statement (p ⟺ q)
+- **≡** — pronounced "is logically equivalent to" — identical truth table columns (p ≡ q)
+- **⊤** (or **T**) — pronounced "tautology" or "true"
+- **⊥** (or **F**) — pronounced "contradiction" or "false"
 
 **First-Order Logic Quantifiers:**
-- $\\forall$ — pronounced "for all" or "for every" — Universal Quantifier ($\\forall x P(x)$)
-- $\\exists$ — pronounced "there exists" or "for some" — Existential Quantifier ($\\exists x P(x)$)
-- $\\exists!$ — pronounced "there exists uniquely" or "there is exactly one"
+- **∀** — pronounced "for all" or "for every" — Universal Quantifier (∀x P(x))
+- **∃** — pronounced "there exists" or "for some" — Existential Quantifier (∃x P(x))
+- **∃!** — pronounced "there exists uniquely" or "there is exactly one" (∃!x P(x))
 
 ---
 
@@ -58,7 +58,7 @@ By the end of this module, you will be able to:
 ### 1. Propositions & Truth Values
 
 **What is a Proposition?**
-A **proposition** (or statement) is a declarative sentence that is either **strictly True ($T$)** or **strictly False ($F$)**, but **not both simultaneously**.
+A **proposition** (or statement) is a declarative sentence that is either **strictly True (T)** or **strictly False (F)**, but **not both simultaneously**.
 
 \`\`\`text
 Sentence                                      | Proposition? | Truth Value
@@ -73,7 +73,7 @@ Sentence                                      | Proposition? | Truth Value
 \`\`\`
 
 > [!NOTE]
-> **Open Sentences vs. Propositions:** The equation $x + 5 = 12$ is an **open sentence (predicate)**. It becomes a proposition only when a specific value is assigned to variable $x$ or when bound by a quantifier ($\\exists x (x + 5 = 12)$).
+> **Open Sentences vs. Propositions:** The equation *x + 5 = 12* is an **open sentence (predicate)**. It becomes a proposition only when a specific value is assigned to variable *x* or when bound by a quantifier (∃x (x + 5 = 12)).
 
 ---
 
@@ -94,10 +94,10 @@ Compound propositions are formed by combining atomic propositions using **logica
 +-------+-------+----------+---------------+--------------+----------------+
 \`\`\`
 
-1. **Negation ($\\neg p$)**: Flips $T \\leftrightarrow F$.
-2. **Conjunction ($p \\land q$)**: True if and only if **BOTH** $p$ and $q$ are true. (Analogous to Set Intersection $\\cap$).
-3. **Disjunction ($p \\lor q$)**: True if **AT LEAST ONE** of $p$ or $q$ is true. (Analogous to Set Union $\\cup$).
-4. **Exclusive OR ($p \\oplus q$)**: True if **EXACTLY ONE** is true, but false if both are true. (Analogous to Symmetric Difference $\\Delta$).
+1. **Negation (¬p)**: Flips T ↔ F.
+2. **Conjunction (p ∧ q)**: True if and only if **BOTH** p and q are true. (Analogous to Set Intersection ∩).
+3. **Disjunction (p ∨ q)**: True if **AT LEAST ONE** of p or q is true. (Analogous to Set Union ∪).
+4. **Exclusive OR (p ⊕ q)**: True if **EXACTLY ONE** is true, but false if both are true. (Analogous to Symmetric Difference △).
 
 \`\`\`python
 # Boolean logic in Python
@@ -112,17 +112,17 @@ print("p XOR q (p ⊕ q):", p ^ q)     # True
 
 ---
 
-### 3. Conditional ($p \\implies q$) & Biconditional ($p \\iff q$)
+### 3. Conditional (p ⟹ q) & Biconditional (p ⟺ q)
 
-#### 3.1 The Conditional (Implication: $p \\implies q$)
-In the implication $p \\implies q$:
-- $p$ is called the **Hypothesis / Antecedent / Premise**.
-- $q$ is called the **Conclusion / Consequent**.
+#### 3.1 The Conditional (Implication: p ⟹ q)
+In the implication **p ⟹ q**:
+- **p** is called the **Hypothesis / Antecedent / Premise**.
+- **q** is called the **Conclusion / Consequent**.
 
 > [!IMPORTANT]
 > **The Golden Rule of Implication:**
-> $p \\implies q$ is **FALSE in ONLY ONE CASE**: When the hypothesis $p$ is **True** and the conclusion $q$ is **False** ($T \\implies F$).
-> In all other cases, $p \\implies q$ is **True** (even when $p$ is False — known as **Vacuous Truth**).
+> **p ⟹ q** is **FALSE in ONLY ONE CASE**: When the hypothesis **p is True** and the conclusion **q is False** (T ⟹ F).
+> In all other cases, **p ⟹ q is True** (even when p is False — known as **Vacuous Truth**).
 
 \`\`\`text
        Truth Table for Conditional and Biconditional
@@ -136,34 +136,36 @@ In the implication $p \\implies q$:
 +-------+-------+-------------------------+-------------------------+
 \`\`\`
 
-**Common Natural Language Phrasings for $p \\implies q$:**
-- "If $p$, then $q$"
-- "$q$ if $p$"
-- "$p$ is sufficient for $q$"
-- "$q$ is necessary for $p$"
-- "$p$ only if $q$"
-- "$q$ whenever $p$"
+**Common Natural Language Phrasings for p ⟹ q:**
+- *"If p, then q"*
+- *"q if p"*
+- *"p is sufficient for q"*
+- *"q is necessary for p"*
+- *"p only if q"*
+- *"q whenever p"*
 
 **Fundamental Equivalence of Implication:**
 $$p \\implies q \\equiv \\neg p \\lor q$$
+> **In Plain Text:** \`p ⟹ q  ≡  ¬p ∨ q\`
 
-#### 3.2 The Biconditional ($p \\iff q$)
-$p \\iff q$ states "$p$ if and only if $q$" (often written **iff**).
-It is True whenever $p$ and $q$ share the **exact same truth value** ($T \\iff T$ and $F \\iff F$).
+#### 3.2 The Biconditional (p ⟺ q)
+**p ⟺ q** states *"p if and only if q"* (often written **iff**).
+It is True whenever p and q share the **exact same truth value** (T ⟺ T and F ⟺ F).
 $$p \\iff q \\equiv (p \\implies q) \\land (q \\implies p)$$
+> **In Plain Text:** \`p ⟺ q  ≡  (p ⟹ q) ∧ (q ⟹ p)\`
 
 ---
 
 ### 4. Converse, Inverse, and Contrapositive
 
-Given any conditional statement $p \\implies q$, three related conditional statements can be formed:
+Given any conditional statement **p ⟹ q**, three related conditional statements can be formed:
 
 | Form | Symbolic Expression | Relationship to Original |
 |:-----|:--------------------|:-------------------------|
-| **Original Implication** | $p \\implies q$ | Baseline statement |
-| **Converse** | $q \\implies p$ | Reverse direction (NOT equivalent to original) |
-| **Inverse** | $\\neg p \\implies \\neg q$ | Negate both terms (NOT equivalent to original) |
-| **Contrapositive** | $\\neg q \\implies \\neg p$ | Reverse and negate (**LOGICALLY EQUIVALENT** to original) |
+| **Original Implication** | \`p ⟹ q\` | Baseline statement |
+| **Converse** | \`q ⟹ p\` | Reverse direction (NOT equivalent to original) |
+| **Inverse** | \`¬p ⟹ ¬q\` | Negate both terms (NOT equivalent to original) |
+| **Contrapositive** | \`¬q ⟹ ¬p\` | Reverse and negate (**LOGICALLY EQUIVALENT** to original) |
 
 \`\`\`text
         Comparison of Truth Tables for Related Conditionals
@@ -179,8 +181,8 @@ Given any conditional statement $p \\implies q$, three related conditional state
 
 > [!TIP]
 > **Key Insights:**
-> 1. $\\mathbf{(p \\implies q) \\equiv (\\neg q \\implies \\neg p)}$ (An implication and its contrapositive **always** have identical truth values).
-> 2. $\\mathbf{(q \\implies p) \\equiv (\\neg p \\implies \\neg q)}$ (The converse is logically equivalent to the inverse).
+> 1. **(p ⟹ q) ≡ (¬q ⟹ ¬p)** — An implication and its contrapositive **always** have identical truth values.
+> 2. **(q ⟹ p) ≡ (¬p ⟹ ¬q)** — The converse is logically equivalent to the inverse.
 
 ---
 
@@ -188,8 +190,8 @@ Given any conditional statement $p \\implies q$, three related conditional state
 
 Compound propositions are classified based on the truth values in their final column:
 
-1. **Tautology ($\\top$)**: A compound proposition that is **True for every possible truth assignment** of its propositional variables (e.g. $p \\lor \\neg p$, $p \\implies p$).
-2. **Contradiction ($\\bot$)**: A compound proposition that is **False for every possible truth assignment** (e.g. $p \\land \\neg p$).
+1. **Tautology (⊤ or T)**: A compound proposition that is **True for every possible truth assignment** of its variables (e.g., \`p ∨ ¬p\`, \`p ⟹ p\`).
+2. **Contradiction (⊥ or F)**: A compound proposition that is **False for every possible truth assignment** (e.g., \`p ∧ ¬p\`).
 3. **Contingency**: A compound proposition that is neither a tautology nor a contradiction (it is True for some assignments and False for others).
 
 \`\`\`python
@@ -200,7 +202,6 @@ def truth_table_3var():
     for p in [True, False]:
         for q in [True, False]:
             for r in [True, False]:
-                # p → q is equivalent to (not p or q)
                 lhs = (not (p and q)) or r
                 rhs = ((not p) or r) or ((not q) or r)
                 print(f" {int(p)} | {int(q)} | {int(r)} |      {int(lhs)}      |        {int(rhs)}       | Equivalent: {lhs == rhs}")
@@ -212,36 +213,36 @@ truth_table_3var()
 
 ### 6. Laws of Logical Equivalence
 
-Two propositions $P$ and $Q$ are **logically equivalent** ($P \\equiv Q$) if and only if $P \\iff Q$ is a tautology.
+Two propositions P and Q are **logically equivalent** (P ≡ Q) if and only if P ⟺ Q is a tautology.
 
 | Law Name | Equivalence 1 | Equivalence 2 |
 |:---------|:--------------|:--------------|
-| **Identity Laws** | $p \\land \\top \\equiv p$ | $p \\lor \\bot \\equiv p$ |
-| **Domination Laws** | $p \\lor \\top \\equiv \\top$ | $p \\land \\bot \\equiv \\bot$ |
-| **Idempotent Laws** | $p \\lor p \\equiv p$ | $p \\land p \\equiv p$ |
-| **Double Negation** | $\\neg(\\neg p) \\equiv p$ | — |
-| **Commutative Laws** | $p \\lor q \\equiv q \\lor p$ | $p \\land q \\equiv q \\land p$ |
-| **Associative Laws** | $(p \\lor q) \\lor r \\equiv p \\lor (q \\lor r)$ | $(p \\land q) \\land r \\equiv p \\land (q \\land r)$ |
-| **Distributive Laws** | $p \\lor (q \\land r) \\equiv (p \\lor q) \\land (p \\lor r)$ | $p \\land (q \\lor r) \\equiv (p \\land q) \\lor (p \\land r)$ |
-| **De Morgan's Laws** | $\\neg(p \\land q) \\equiv \\neg p \\lor \\neg q$ | $\\neg(p \\lor q) \\equiv \\neg p \\land \\neg q$ |
-| **Absorption Laws** | $p \\lor (p \\land q) \\equiv p$ | $p \\land (p \\lor q) \\equiv p$ |
-| **Negation (Complement)** | $p \\lor \\neg p \\equiv \\top$ | $p \\land \\neg p \\equiv \\bot$ |
+| **Identity Laws** | \`p ∧ T ≡ p\` | \`p ∨ F ≡ p\` |
+| **Domination Laws** | \`p ∨ T ≡ T\` | \`p ∧ F ≡ F\` |
+| **Idempotent Laws** | \`p ∨ p ≡ p\` | \`p ∧ p ≡ p\` |
+| **Double Negation** | \`¬(¬p) ≡ p\` | — |
+| **Commutative Laws** | \`p ∨ q ≡ q ∨ p\` | \`p ∧ q ≡ q ∧ p\` |
+| **Associative Laws** | \`(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)\` | \`(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)\` |
+| **Distributive Laws** | \`p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)\` | \`p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)\` |
+| **De Morgan's Laws** | \`¬(p ∧ q) ≡ ¬p ∨ ¬q\` | \`¬(p ∨ q) ≡ ¬p ∧ ¬q\` |
+| **Absorption Laws** | \`p ∨ (p ∧ q) ≡ p\` | \`p ∧ (p ∨ q) ≡ p\` |
+| **Negation (Complement)** | \`p ∨ ¬p ≡ T\` | \`p ∧ ¬p ≡ F\` |
 
 ---
 
 ### 7. Predicates & Quantifiers (First-Order Logic)
 
-A **predicate** $P(x)$ is a statement containing variables $x$. Once a domain of discourse $D$ is specified, quantifiers turn predicates into complete propositions.
+A **predicate** P(x) is a statement containing variable x. Once a domain of discourse D is specified, quantifiers turn predicates into complete propositions.
 
-#### 7.1 Universal Quantifier ($\\forall x P(x)$)
-- **Meaning**: "$P(x)$ is true for **ALL** $x$ in domain $D$."
-- **Condition for True**: $P(x)$ is true for every element in $D$.
-- **Condition for False**: Finding a **single counterexample** $c \\in D$ where $P(c)$ is false.
+#### 7.1 Universal Quantifier (∀x P(x))
+- **Meaning**: *"P(x) is true for ALL x in domain D."*
+- **Condition for True**: P(x) is true for every element in D.
+- **Condition for False**: Finding a **single counterexample** c in D where P(c) is false.
 
-#### 7.2 Existential Quantifier ($\\exists x P(x)$)
-- **Meaning**: "There **EXISTS at least one** $x$ in domain $D$ such that $P(x)$ is true."
-- **Condition for True**: Finding at least one witness $c \\in D$ where $P(c)$ is true.
-- **Condition for False**: $P(x)$ is false for every element in $D$.
+#### 7.2 Existential Quantifier (∃x P(x))
+- **Meaning**: *"There EXISTS at least one x in domain D such that P(x) is true."*
+- **Condition for True**: Finding at least one witness c in D where P(c) is true.
+- **Condition for False**: P(x) is false for every element in D.
 
 \`\`\`text
 Statement                         | Symbolic Logic (Domain: All Animals)
@@ -258,8 +259,8 @@ Statement                         | Symbolic Logic (Domain: All Animals)
 
 To negate quantified statements, we use **De Morgan's Laws for Quantifiers**:
 
-$$\\neg (\\forall x P(x)) \\equiv \\exists x \\neg P(x)$$
-$$\\neg (\\exists x P(x)) \\equiv \\forall x \\neg P(x)$$
+- **¬(∀x P(x))  ≡  ∃x ¬P(x)**
+- **¬(∃x P(x))  ≡  ∀x ¬P(x)**
 
 \`\`\`text
 Original Statement                | Symbolic Form    | Negated Form      | English Negation
@@ -275,23 +276,23 @@ Original Statement                | Symbolic Form    | Negated Form      | Engli
 
 Proof techniques form the foundation for proving algorithm termination, time complexity lower bounds, and software correctness.
 
-#### 9.1 Direct Proof ($p \\implies q$)
-Assume hypothesis $p$ is true, apply mathematical definitions and algebraic deductions, and show that conclusion $q$ must be true.
-- *Example:* Prove that if $n$ is odd, then $n^2$ is odd.
-  - *Proof:* $n = 2k + 1 \\implies n^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, which is odd. $\\blacksquare$
+#### 9.1 Direct Proof (p ⟹ q)
+Assume hypothesis p is true, apply definitions and algebraic steps, and show that conclusion q must be true.
+- *Example:* Prove that if n is odd, then n² is odd.
+  - *Proof:* \`n = 2k + 1  ⟹  n² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1\`, which is odd. ∎
 
-#### 9.2 Proof by Contraposition ($\\neg q \\implies \\neg p$)
-Instead of proving $p \\implies q$, prove the logically equivalent contrapositive $\\neg q \\implies \\neg p$.
-- *Example:* Prove that if $3n + 2$ is odd, then $n$ is odd.
-  - *Contrapositive:* If $n$ is even ($n = 2k$), then $3n + 2 = 3(2k) + 2 = 6k + 2 = 2(3k + 1)$ is even. Thus $\\neg q \\implies \\neg p$ is proven. $\\blacksquare$
+#### 9.2 Proof by Contraposition (¬q ⟹ ¬p)
+Instead of proving p ⟹ q, prove the logically equivalent contrapositive ¬q ⟹ ¬p.
+- *Example:* Prove that if 3n + 2 is odd, then n is odd.
+  - *Contrapositive:* If n is even (n = 2k), then \`3n + 2 = 3(2k) + 2 = 6k + 2 = 2(3k + 1)\` is even. Thus ¬q ⟹ ¬p is proven. ∎
 
 #### 9.3 Proof by Contradiction (Reductio ad Absurdum)
-To prove proposition $p$, assume $\\neg p$ is true. Derive a logical impossibility or contradiction ($\\bot$, such as $1 = 0$ or $k \\text{ is both even and odd}$). Hence, $\\neg p$ must be false, so $p$ is true.
-- *Example:* Proof that $\\sqrt{2}$ is irrational, or Euclid's proof of the infinitude of primes.
+To prove proposition p, assume ¬p is true. Derive a logical impossibility or contradiction (such as 1 = 0 or k is both even and odd). Hence, ¬p must be false, so p is true.
+- *Example:* Proof that √2 is irrational, or Euclid's proof of the infinitude of primes.
 
 #### 9.4 Proof by Counterexample
-To disprove a universal statement $\\forall x P(x)$, it suffices to construct **one concrete instance $c$** where $P(c)$ is false.
-- *Example:* "All prime numbers are odd." Counterexample: $n = 2$ is prime and even.
+To disprove a universal statement ∀x P(x), it suffices to construct **one concrete instance c** where P(c) is false.
+- *Example:* *"All prime numbers are odd."* Counterexample: n = 2 is prime and even.
 
 ---
 
@@ -299,16 +300,16 @@ To disprove a universal statement $\\forall x P(x)$, it suffices to construct **
 
 #### 10.1 Logic Gates in Hardware Architecture
 Digital computers implement propositional logic directly using transistors:
-- **AND Gate** ($\\land$): Output 1 only if all inputs are 1.
-- **OR Gate** ($\\lor$): Output 1 if any input is 1.
-- **NOT Gate (Inverter)** ($\\neg$): Inverts input.
+- **AND Gate (∧)**: Output 1 only if all inputs are 1.
+- **OR Gate (∨)**: Output 1 if any input is 1.
+- **NOT Gate / Inverter (¬)**: Inverts input (0 ↔ 1).
 - **NAND / NOR Gates**: Universal gates that can implement any boolean function.
 
 #### 10.2 Conjunctive Normal Form (CNF) & SAT
-- **Literal**: A variable $x$ or its negation $\\neg x$.
-- **Clause**: A disjunction (OR) of literals: $(x_1 \\lor \\neg x_2 \\lor x_3)$.
+- **Literal**: A variable x or its negation ¬x.
+- **Clause**: A disjunction (OR) of literals: \`(x₁ ∨ ¬x₂ ∨ x₃)\`.
 - **CNF (Conjunctive Normal Form)**: An AND of OR clauses:
-  $$(x_1 \\lor x_2) \\land (\\neg x_1 \\lor x_3) \\land (\\neg x_2 \\lor \\neg x_3)$$
+  \`(x₁ ∨ x₂) ∧ (¬x₁ ∨ x₃) ∧ (¬x₂ ∨ ¬x₃)\`
 
 > [!IMPORTANT]
 > **Cook-Levin Theorem (1971):**
@@ -320,18 +321,18 @@ Digital computers implement propositional logic directly using transistors:
 
 | Concept | Symbolic Expression | Essential Rule |
 |:--------|:--------------------|:---------------|
-| **Negation** | $\\neg p$ | Flips $T \\leftrightarrow F$ |
-| **Conjunction** | $p \\land q$ | True only when BOTH are True |
-| **Disjunction** | $p \\lor q$ | True when AT LEAST ONE is True |
-| **Implication** | $p \\implies q \\equiv \\neg p \\lor q$ | False ONLY when $T \\implies F$ |
-| **Contrapositive** | $\\neg q \\implies \\neg p$ | Equivalent to original implication $p \\implies q$ |
-| **Converse** | $q \\implies p$ | NOT equivalent to $p \\implies q$ |
-| **Tautology** | $\\top$ | Always True under all assignments |
-| **Contradiction** | $\\bot$ | Always False under all assignments |
-| **De Morgan's (Logic)** | $\\neg(p \\land q) \\equiv \\neg p \\lor \\neg q$ | $\\neg(p \\lor q) \\equiv \\neg p \\land \\neg q$ |
-| **Universal Quantifier** | $\\forall x P(x)$ | True if holds for all elements |
-| **Existential Quantifier**| $\\exists x P(x)$ | True if holds for at least one element |
-| **Quantifier Negation** | $\\neg(\\forall x P(x)) \\equiv \\exists x \\neg P(x)$ | $\\neg(\\exists x P(x)) \\equiv \\forall x \\neg P(x)$ |
+| **Negation** | \`¬p\` | Flips T ↔ F |
+| **Conjunction** | \`p ∧ q\` | True only when BOTH are True |
+| **Disjunction** | \`p ∨ q\` | True when AT LEAST ONE is True |
+| **Implication** | \`p ⟹ q ≡ ¬p ∨ q\` | False ONLY when T ⟹ F |
+| **Contrapositive** | \`¬q ⟹ ¬p\` | Equivalent to original implication p ⟹ q |
+| **Converse** | \`q ⟹ p\` | NOT equivalent to p ⟹ q |
+| **Tautology** | \`⊤\` or \`T\` | Always True under all assignments |
+| **Contradiction** | \`⊥\` or \`F\` | Always False under all assignments |
+| **De Morgan's (Logic)** | \`¬(p ∧ q) ≡ ¬p ∨ ¬q\` | \`¬(p ∨ q) ≡ ¬p ∧ ¬q\` |
+| **Universal Quantifier** | \`∀x P(x)\` | True if holds for all elements |
+| **Existential Quantifier**| \`∃x P(x)\` | True if holds for at least one element |
+| **Quantifier Negation** | \`¬(∀x P(x)) ≡ ∃x ¬P(x)\` | \`¬(∃x P(x)) ≡ ∀x ¬P(x)\` |
 
 ---
 
@@ -523,8 +524,8 @@ Digital computers implement propositional logic directly using transistors:
       question: "What is the absorption law in propositional logic?",
       options: [
         "p \u2228 (p \u2227 q) \u2261 p",
-        "p \u2228 \u00acp \u2261 \u22a4",
-        "p \u2227 \u22a4 \u2261 p",
+        "p \u2228 \u00acp \u2261 T",
+        "p \u2227 T \u2261 p",
         "\u00ac(p \u2227 q) \u2261 \u00acp \u2228 \u00acq",
       ],
       correctAnswer: 0,
@@ -549,16 +550,16 @@ Digital computers implement propositional logic directly using transistors:
     {
       id: "logic-q15",
       question:
-        "What is the negation of the proposition: 'If x > 0, then x^2 > 0'?",
+        "What is the negation of the proposition: 'If x > 0, then x² > 0'?",
       options: [
-        "If x \u2264 0, then x^2 \u2264 0.",
-        "x > 0 and x^2 \u2264 0.",
-        "If x^2 \u2264 0, then x \u2264 0.",
-        "x \u2264 0 or x^2 > 0.",
+        "If x \u2264 0, then x\u00b2 \u2264 0.",
+        "x > 0 and x\u00b2 \u2264 0.",
+        "If x\u00b2 \u2264 0, then x \u2264 0.",
+        "x \u2264 0 or x\u00b2 > 0.",
       ],
       correctAnswer: 1,
       explanation:
-        "Since ¬(p ⟹ q) ≡ ¬(¬p ∨ q) ≡ p ∧ ¬q, the negation is: 'x > 0 AND x^2 ≤ 0'.",
+        "Since ¬(p ⟹ q) ≡ ¬(¬p ∨ q) ≡ p ∧ ¬q, the negation is: 'x > 0 AND x² ≤ 0'.",
       difficulty: "medium",
     },
     {

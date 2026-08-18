@@ -721,29 +721,29 @@ Why do computer scientists care about counting?
 In continuous mathematics (calculus), we measure smooth quantities like time, velocity, and area. In **computer science**, everything is digital, discrete, and finite.
 
 Computers operate on discrete states:
-- **Algorithm Analysis**: How many operations does an algorithm execute for an input of size $n$? (e.g., $O(n^2)$, $O(2^n)$, $O(n!)$).
+- **Algorithm Analysis**: How many operations does an algorithm execute for an input of size n? (e.g., O(n²), O(2ⁿ), O(n!)).
 - **Search Space Feasibility**: Can a computer brute-force search all possible solutions in polynomial time, or is the search space astronomically large?
 - **Cryptography & Security**: How many attempts must an attacker make to guess an encryption key or crack a password?
-- **Network Topologies & Memory**: How many distinct connections exist among $n$ distributed servers? ($C(n, 2) = \frac{n(n-1)}{2}$).
+- **Network Topologies & Memory**: How many distinct connections exist among n distributed servers? (C(n, 2) = n(n-1)/2).
 
 > [!TIP]
 > **Core Insight:** If you can count the number of states in a problem, you can immediately determine whether an exact solution can be computed in milliseconds, years, or millennia.
 
-## 10. The Paper Folding Problem: Power of $2^n$
+## 10. The Paper Folding Problem: Power of 2ⁿ
 
-Consider a standard sheet of paper of thickness $0.1\text{ mm}$ ($10^{-4}\text{ m}$).
+Consider a standard sheet of paper of thickness 0.1 mm (10⁻⁴ m).
 Every time you fold the paper in half, the thickness doubles.
 
-| Number of Folds ($n$) | Number of Layers ($2^n$) | Total Thickness | Real-World Comparison |
+| Number of Folds (n) | Number of Layers (2ⁿ) | Total Thickness | Real-World Comparison |
 | :--- | :--- | :--- | :--- |
-| **0** | $2^0 = 1$ | $0.1\text{ mm}$ | Single sheet of paper |
-| **1** | $2^1 = 2$ | $0.2\text{ mm}$ | Cardstock |
-| **7** | $2^7 = 128$ | $1.28\text{ cm}$ | Small notebook |
-| **14** | $2^{14} = 16,384$ | $1.64\text{ meters}$ | Height of an adult |
-| **20** | $2^{20} = 1,048,576$ | $104.85\text{ meters}$ | Height of Big Ben / 30-story building |
-| **30** | $2^{30} \approx 1.07 \times 10^9$ | $107.37\text{ km}$ | Crosses the Kármán Line into outer space |
-| **42** | $2^{42} \approx 4.40 \times 10^{12}$ | $439,804\text{ km}$ | **Reaches the Moon** (Moon distance: $\approx 384,400\text{ km}$) |
-| **51** | $2^{51} \approx 2.25 \times 10^{15}$ | $225,179,981\text{ km}$ | **Reaches the Sun** (Sun distance: $\approx 149,600,000\text{ km}$) |
+| **0** | 2⁰ = 1 | 0.1 mm | Single sheet of paper |
+| **1** | 2¹ = 2 | $0.2\text{ mm}$ | Cardstock |
+| **7** | 2⁷ = 128 | 1.28 cm | Small notebook |
+| **14** | 2¹⁴ = 16,384 | 1.64 meters | Height of an adult |
+| **20** | 2²⁰ = 1,048,576 | 104.85 meters | Height of Big Ben / 30-story building |
+| **30** | 2³⁰ ≈ 1.07 × 10⁹ | 107.37 km | Crosses the Kármán Line into outer space |
+| **42** | 2⁴² ≈ 4.40 × 10¹² | 439,804 km | **Reaches the Moon** (Moon distance: ≈ 384,400 km) |
+| **51** | 2⁵¹ ≈ 2.25 × 10¹⁵ | 225,179,981 km | **Reaches the Sun** (Sun distance: ≈ 149,600,000 km) |
 
 \`\`\`python
 def paper_fold_thickness(num_folds: int, base_thickness_mm: float = 0.1) -> float:
@@ -758,36 +758,36 @@ for folds in [10, 20, 30, 42, 51]:
 \`\`\`
 
 > [!NOTE]
-> **Takeaway:** Exponential functions ($2^n$) grow faster than any polynomial function ($n^k$). What begins deceptively small quickly eclipses astronomical scales.
+> **Takeaway:** Exponential functions (2ⁿ) grow faster than any polynomial function (nᵏ). What begins deceptively small quickly eclipses astronomical scales.
 
 ## 11. Rubik's Cube Combinatorial State Space
 
-A standard $3 \times 3 \times 3$ Rubik's cube has $6$ colored faces, $8$ corner pieces, and $12$ edge pieces. How many valid configurations can be reached by turning the faces?
+A standard 3 × 3 × 3 Rubik's cube has 6 colored faces, 8 corner pieces, and 12 edge pieces. How many valid configurations can be reached by turning the faces?
 
 ### Calculation Breakdown:
-1. **8 Corner Pieces**: Can be arranged in $8!$ ways. Each corner has $3$ possible orientations ($3^8$ ways). Because orientation of the last corner is fixed by the rest: $3^{8-1} = 3^7$ independent orientations.
-2. **12 Edge Pieces**: Can be arranged in $12!$ ways. Each edge has $2$ possible orientations ($2^{12}$ ways). Because the orientation of the last edge is fixed: $2^{12-1} = 2^{11}$ independent orientations.
-3. **Parity Constraint**: Half of all reachable permutations are unreachable without taking the cube apart (dividing by $2$).
+1. **8 Corner Pieces**: Can be arranged in 8! ways. Each corner has 3 possible orientations (3⁸ ways). Because orientation of the last corner is fixed by the rest: 3⁸⁻¹ = 3⁷ independent orientations.
+2. **12 Edge Pieces**: Can be arranged in 12! ways. Each edge has 2 possible orientations (2¹² ways). Because the orientation of the last edge is fixed: 2¹²⁻¹ = 2¹¹ independent orientations.
+3. **Parity Constraint**: Half of all reachable permutations are unreachable without taking the cube apart (dividing by 2).
 
-$$\text{Total Valid Configurations} = \frac{8! \times 3^7 \times 12! \times 2^{11}}{2} = 43,252,003,274,489,856,000 \approx 4.33 \times 10^{19}$$
+**Total Valid Configurations = (8! × 3⁷ × 12! × 2¹¹) / 2 = 43,252,003,274,489,856,000 ≈ 4.33 × 10¹⁹**
 
-$$\text{43 Quintillion, 252 Quadrillion States}$$
+**43 Quintillion, 252 Quadrillion States**
 
 > [!IMPORTANT]
 > **God's Number:** In 2010, mathematicians and computer scientists proved using supercomputers that **every single one of these 43 quintillion states can be solved in 20 moves or fewer**.
 
-## 12. Factorial Growth & Combinatorial Explosion ($n!$)
+## 12. Factorial Growth & Combinatorial Explosion (n!)
 
-When arranging $n$ distinct objects in a line, the number of permutations is $n! = n \times (n-1) \times (n-2) \times \cdots \times 1$.
+When arranging n distinct objects in a line, the number of permutations is n! = n × (n-1) × (n-2) × ... × 1.
 
-| $n$ | $n!$ | Approximate Value | Computational Context |
+| n | $n!$ | Approximate Value | Computational Context |
 | :--- | :--- | :--- | :--- |
-| **5** | 120 | $1.2 \times 10^2$ | Instantaneous |
-| **10** | 3,628,800 | $3.63 \times 10^6$ | $3.6$ million operations ($< 1\text{ ms}$) |
-| **15** | 1,307,674,368,000 | $1.31 \times 10^{12}$ | $1.3$ trillion (few seconds on modern CPU) |
-| **20** | 2,432,902,008,176,640,000 | $2.43 \times 10^{18}$ | $\approx 77$ years on a 1 GHz processor |
-| **25** | $15,511,210,043,330,985,984,000,000$ | $1.55 \times 10^{25}$ | Longer than the age of the Universe |
-| **52** | $52!$ (Deck of cards) | $8.06 \times 10^{67}$ | More than atoms in our Galaxy |
+| **5** | 120 | 1.2 × 10² | Instantaneous |
+| **10** | 3,628,800 | 3.63 × 10⁶ | $3.6$ million operations (< 1 ms) |
+| **15** | 1,307,674,368,000 | 1.31 × 10¹² | $1.3$ trillion (few seconds on modern CPU) |
+| **20** | 2,432,902,008,176,640,000 | 2.43 × 10¹⁸ | ≈ 77 years on a 1 GHz processor |
+| **25** | 15,511,210,043,330,985,984,000,000 | 1.55 × 10²⁵ | Longer than the age of the Universe |
+| **52** | 52! (Deck of cards) | 8.06 × 10⁶⁷ | More than atoms in our Galaxy |
 
 \`\`\`text
 Standard 52-card deck:
@@ -797,48 +797,48 @@ that exact sequence of 52 cards has NEVER existed in human history.
 \`\`\`
 
 ### Travelling Salesperson Problem (TSP):
-Given $n$ cities, finding the shortest round-trip route by brute-force checking all $(n-1)! / 2$ routes becomes physically impossible for $n \ge 30$, motivating the need for dynamic programming and approximation heuristics.
+Given n cities, finding the shortest round-trip route by brute-force checking all (n-1)! / 2 routes becomes physically impossible for n ≥ 30, motivating the need for dynamic programming and approximation heuristics.
 
 ## 13. The Rule of Sum (Addition Principle)
 
-If a first task can be performed in $m$ distinct ways, and a second task can be performed in $n$ distinct ways, and the two tasks **cannot be done simultaneously (they are mutually exclusive / disjoint)**, then performing either the first task or the second task can be done in:
+If a first task can be performed in m distinct ways, and a second task can be performed in n distinct ways, and the two tasks **cannot be done simultaneously (they are mutually exclusive / disjoint)**, then performing either the first task or the second task can be done in:
 
-$$\text{Total Ways} = m + n$$
+**Total Ways = m + n**
 
 In set-theoretic terms:
-$$|A \cup B| = |A| + |B| \quad \text{when } A \cap B = \emptyset$$
+**|A ∪ B| = |A| + |B|** (when A ∩ B = ∅)
 
 ### Non-Disjoint Sets (Inclusion-Exclusion Principle):
-If the tasks or sets have common elements ($A \cap B \neq \emptyset$):
-$$|A \cup B| = |A| + |B| - |A \cap B|$$
+If the tasks or sets have common elements (A ∩ B ≠ ∅):
+**|A ∪ B| = |A| + |B| − |A ∩ B|**
 
 ### Example Problem:
 *A university student can choose a computer science project from one of 3 lists: List A has 15 AI projects, List B has 12 Cybersecurity projects, and List C has 8 Web projects. No project appears in more than one list. How many choices does the student have?*
 
-$$\text{Total Choices} = 15 + 12 + 8 = 35\text{ choices}$$
+**Total Choices = 15 + 12 + 8 = 35 choices**
 
 ## 14. The Rule of Product (Multiplication Principle)
 
-If a procedure can be broken down into a sequence of two independent stages, where Stage 1 has $m$ possible outcomes and Stage 2 has $n$ possible outcomes regardless of the choice in Stage 1, then the total number of ways to complete the procedure is:
+If a procedure can be broken down into a sequence of two independent stages, where Stage 1 has m possible outcomes and Stage 2 has n possible outcomes regardless of the choice in Stage 1, then the total number of ways to complete the procedure is:
 
-$$\text{Total Ways} = m \times n$$
+**Total Ways = m × n**
 
 In set-theoretic terms:
-$$|A \times B| = |A| \times |B|$$
+**|A × B| = |A| × |B|**
 
-Extended to $k$ sequential stages:
-$$\text{Total Ways} = n_1 \times n_2 \times n_3 \times \cdots \times n_k$$
+Extended to k sequential stages:
+**Total Ways = n₁ × n₂ × n₃ × ... × nₖ**
 
 ### Classic Examples:
 
-1. **Bitstrings of Length $n$**:
-   Each bit has 2 choices ($0$ or $1$).
-   $$\\underbrace{2 \times 2 \times \cdots \times 2}_{n \text{ times}} = 2^n$$
-   A 32-bit integer can represent $2^{32} = 4,294,967,296$ unique values.
+1. **Bitstrings of Length n**:
+   Each bit has 2 choices (0 or 1).
+   \`2 × 2 × ... × 2 (n times) = 2ⁿ\`
+   A 32-bit integer can represent 2³² = 4,294,967,296 unique values.
 
 2. **Password Search Space**:
-   A password of length 8 containing lowercase letters, uppercase letters, and digits ($26 + 26 + 10 = 62$ characters):
-   $$\text{Possible Passwords} = 62^8 = 218,340,105,584,896 \approx 2.18 \times 10^{14}$$
+   A password of length 8 containing lowercase letters, uppercase letters, and digits (26 + 26 + 10 = 62 characters):
+   **Possible Passwords = 62⁸ = 218,340,105,584,896 ≈ 2.18 × 10¹⁴**
 
 \`\`\`python
 def calculate_search_space(charset_size: int, length: int) -> int:
@@ -855,46 +855,46 @@ print(f"Full ASCII (94^8):   {full_ascii:,}")
 
 ## 15. Permutations vs. Combinations
 
-| Feature | Permutation $P(n, r)$ | Combination $C(n, r) = \binom{n}{r}$ |
+| Feature | Permutation P(n, r) | Combination C(n, r) = Cₙʳ |
 | :--- | :--- | :--- |
-| **Core Question** | In how many ways can we **arrange** $r$ items from $n$? | In how many ways can we **select** $r$ items from $n$? |
+| **Core Question** | In how many ways can we **arrange** r items from n? | In how many ways can we **select** r items from n? |
 | **Order Matters?** | **YES** (e.g. Password, Race Finishers: 1st, 2nd, 3rd) | **NO** (e.g. Committee, Hand of cards, Team roster) |
-| **Formula** | $P(n, r) = \frac{n!}{(n-r)!}$ | $C(n, r) = \frac{n!}{r!(n-r)!} = \frac{P(n, r)}{r!}$ |
-| **Relationship** | $P(n, r) = r! \times C(n, r)$ | $C(n, r) = C(n, n-r)$ |
+| **Formula** | P(n, r) = n! / (n−r)! | C(n, r) = n! / (r!(n−r)!) = P(n, r) / r! |
+| **Relationship** | P(n, r) = r! × C(n, r) | C(n, r) = C(n, n−r) |
 
 ### Multiset Permutations (Permutations with Repetitions):
-If you have $n$ objects where $n_1$ are of type 1, $n_2$ of type 2, ..., and $n_k$ of type $k$:
-$$\text{Permutations} = \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$$
+If you have n objects where $n_1$ are of type 1, $n_2$ of type 2, ..., and $n_k$ of type k:
+**Permutations = n! / (n₁! × n₂! × ... × nₖ!)**
 
 *Example: Arrangements of letters in "SUCCESS" (Total 7 letters: 3 S, 2 C, 1 U, 1 E):*
-$$\text{Arrangements} = \frac{7!}{3! \times 2! \times 1! \times 1!} = \frac{5040}{6 \times 2} = 420$$
+**Arrangements = 7! / (3! × 2! × 1! × 1!) = 5040 / (6 × 2) = 420**
 
-## 16. Motivation for Catalan Numbers ($C_n$)
+## 16. Motivation for Catalan Numbers (Cₙ)
 
 The **Catalan Numbers** form one of the most celebrated integer sequences in combinatorial mathematics, arising naturally across dozens of computer science structures.
 
 The sequence begins:
-$$C_0 = 1, \quad C_1 = 1, \quad C_2 = 2, \quad C_3 = 5, \quad C_4 = 14, \quad C_5 = 42, \quad C_6 = 132, \quad C_7 = 429, \dots$$
+**C₀ = 1, C₁ = 1, C₂ = 2, C₃ = 5, C₄ = 14, C₅ = 42, C₆ = 132, C₇ = 429, ...**
 
 ### Formula:
-$$C_n = \frac{1}{n+1} \binom{2n}{n} = \frac{(2n)!}{(n+1)! \, n!}$$
+**Cₙ = 1/(n+1) × C(2n, n) = (2n)! / ((n+1)! × n!)**
 
 ### Prominent Appearances in Computer Science:
 
 1. **Balanced Parentheses Strings (Dyck Words)**:
-   Number of valid strings with $n$ pairs of opening and closing parentheses:
-   - $n=1$: \`()\` $\rightarrow C_1 = 1$
-   - $n=2$: \`()()\`, \`(())\` $\rightarrow C_2 = 2$
-   - $n=3$: \`((()))\`, \`(()())\`, \`(())()\`, \`()(())\`, \`()()()\` $\rightarrow C_3 = 5$
+   Number of valid strings with n pairs of opening and closing parentheses:
+   - $n=1$: \`()\` → C₁ = 1
+   - $n=2$: \`()()\`, \`(())\` → C₂ = 2
+   - $n=3$: \`((()))\`, \`(()())\`, \`(())()\`, \`()(())\`, \`()()()\` → C₃ = 5
 
-2. **Full Binary Trees with $n+1$ Leaves**:
-   Number of structurally distinct binary trees with $n$ internal nodes is exactly $C_n$.
+2. **Full Binary Trees with n+1 Leaves**:
+   Number of structurally distinct binary trees with n internal nodes is exactly Cₙ.
 
 3. **Monotonic Lattice Grid Paths (Dyck Paths)**:
-   Number of grid paths from $(0, 0)$ to $(n, n)$ moving only Right or Up that **never cross above the diagonal line $y = x$**.
+   Number of grid paths from (0, 0) to (n, n) moving only Right or Up that **never cross above the diagonal line y = x**.
 
 4. **Polygon Triangulations**:
-   Number of ways a convex polygon with $n+2$ sides can be cut into triangles by non-intersecting diagonals.
+   Number of ways a convex polygon with n+2 sides can be cut into triangles by non-intersecting diagonals.
 
 \`\`\`python
 import math
@@ -910,15 +910,15 @@ for i in range(10):
 
 ## 17. The Pigeonhole Principle (Dirichlet's Principle)
 
-> **Basic Statement:** If $n+1$ or more pigeons are placed into $n$ pigeonholes, then at least one pigeonhole must contain **two or more pigeons**.
+> **Basic Statement:** If n+1 or more pigeons are placed into n pigeonholes, then at least one pigeonhole must contain **two or more pigeons**.
 
-> **Generalized Statement:** If $N$ objects are placed into $k$ boxes, then at least one box must contain at least:
-> $$\left\lceil \frac{N}{k} \right\rceil = \text{ceil}\left(\frac{N}{k}\right) \text{ objects}$$
+> **Generalized Statement:** If N objects are placed into k boxes, then at least one box must contain at least:
+> **⌈N / k⌉ = ceil(N / k) objects**
 
 ### Classic Applications:
-1. **Birthday Collision**: In any group of $367$ people, there must be at least $2$ people with the exact same birthday (since there are at most 366 possible birthdays).
-2. **Hair Count**: Since human heads have at most 150,000 hairs, in a city with 1,000,000 residents, there are guaranteed to be at least $\lceil 1,000,000 / 150,000 \rceil = 7$ people with the exact same number of hairs.
-3. **Lossless Data Compression**: It is mathematically impossible to build an algorithm that compresses *every* possible file of $N$ bits into a strictly smaller file without loss (since there are $2^N$ input files and fewer than $2^N$ smaller target files).
+1. **Birthday Collision**: In any group of 367 people, there must be at least 2 people with the exact same birthday (since there are at most 366 possible birthdays).
+2. **Hair Count**: Since human heads have at most 150,000 hairs, in a city with 1,000,000 residents, there are guaranteed to be at least ⌈1,000,000 / 150,000⌉ = 7 people with the exact same number of hairs.
+3. **Lossless Data Compression**: It is mathematically impossible to build an algorithm that compresses *every* possible file of N bits into a strictly smaller file without loss (since there are 2ᴺ input files and fewer than 2ᴺ smaller target files).
 
 ## 18. Python Code Demonstrations for Counting & Combinatorics
 
