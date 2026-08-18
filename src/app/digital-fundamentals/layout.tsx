@@ -2,8 +2,8 @@
 
 import BlogPageHeader from "@/components/BlogPageHeader";
 import ModuleSidebar from "@/components/ModuleSidebar";
+import PageFooter from "@/components/PageFooter";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
-import gitMetadata from "@/data/git-metadata.json";
 import "@/styles/module-page.css";
 
 export default function DigitalFundamentalsLayout({
@@ -27,26 +27,10 @@ export default function DigitalFundamentalsLayout({
         <main className="module-content-area">{children}</main>
       </div>
 
-      <footer className="module-footer">
-        <p>
-          Last updated:{" "}
-          <a
-            href={gitMetadata.commitUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {gitMetadata.commitDate}
-          </a>
-          {" · "}
-          <a
-            href="https://github.com/akshayaparida/portfolio/issues/new?title=Digital%20Fundamentals%20Error&labels=bug,digital-fundamentals&body=%23%23%20Error%20Description%0A%0A%3C!--%20Describe%20the%20error%20--%3E"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Report an error
-          </a>
-        </p>
-      </footer>
+      <PageFooter
+        moduleName="Digital Fundamentals"
+        issueLabel="digital-fundamentals"
+      />
     </div>
   );
 }
