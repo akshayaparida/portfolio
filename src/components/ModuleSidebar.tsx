@@ -17,10 +17,16 @@ export default function ModuleSidebar({
   const pathname = usePathname();
 
   return (
-    <aside className="module-sidebar">
-      <h3 className="sidebar-title">Modules</h3>
+    <aside className="module-sidebar" aria-label="Course Modules Navigation">
+      <div className="sidebar-header">
+        <h3 className="sidebar-title">
+          <i className="fa-solid fa-layer-group"></i> Modules
+        </h3>
+        <span className="sidebar-count">{modules.length} total</span>
+      </div>
+
       <nav className="module-nav">
-        {modules.map((module) => {
+        {modules.map((module, idx) => {
           const href = `${basePath}/${module.id}`;
           const isActive = pathname === href;
 
@@ -29,8 +35,11 @@ export default function ModuleSidebar({
               key={module.id}
               href={href}
               className={`nav-item ${isActive ? "active" : ""}`}
+              aria-current={isActive ? "page" : undefined}
             >
+              <span className="nav-index">{idx + 1}</span>
               <span className="nav-text">{module.title}</span>
+              <i className="fa-solid fa-chevron-right nav-arrow"></i>
             </Link>
           );
         })}

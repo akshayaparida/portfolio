@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import BlogPageHeader from "@/components/BlogPageHeader";
+import PageFooter from "@/components/PageFooter";
 
 export default function ProfessionalCommunicationPage() {
   const nptelCourses = [
@@ -60,18 +61,18 @@ export default function ProfessionalCommunicationPage() {
 
   return (
     <div className="page-container">
-      <header className="page-header">
-        <Link href="/" className="back-btn" title="Back to Home">
-          <i className="fa-solid fa-arrow-left"></i>
-        </Link>
-        <div className="header-titles">
-          <span className="badge">Study Resources</span>
-          <h1 className="main-title">Professional Communication</h1>
-        </div>
-      </header>
+      {/* Consistent Header */}
+      <BlogPageHeader
+        title="Professional Communication — NPTEL Guide"
+        backLink="/learning-journey"
+        backTitle="My Journey"
+      />
 
       <main className="content-wrapper">
         <section className="intro-card">
+          <div className="badge-row">
+            <span className="badge">Study Resources</span>
+          </div>
           <h2>
             <i className="fa-solid fa-comments"></i> Professional Communication
             Roadmap
@@ -128,122 +129,134 @@ export default function ProfessionalCommunicationPage() {
         </section>
       </main>
 
+      {/* Consistent Footer */}
+      <PageFooter
+        moduleName="Professional Communication"
+        issueLabel="communication"
+      />
+
       <style jsx>{`
         .page-container {
           min-height: 100vh;
-          background: #fafafa;
-          padding: 2rem;
+          background: var(--bg-light);
+          color: var(--text-primary);
+          display: flex;
+          flex-direction: column;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+        }
+
+        .content-wrapper {
           max-width: 1200px;
+          width: 100%;
           margin: 0 auto;
-        }
-        .page-header {
+          padding: 2rem;
           display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          margin-bottom: 2rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid #e5e7eb;
+          flex-direction: column;
+          gap: 2rem;
+          box-sizing: border-box;
+          flex: 1;
         }
-        .back-btn {
+
+        .badge-row {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-          background: #fff;
-          border: 1px solid #e5e7eb;
-          color: #374151;
-          text-decoration: none;
-          transition: all 0.2s;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
         }
-        .back-btn:hover {
-          background: #f3f4f6;
-          color: #111827;
-        }
+
         .badge {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           color: #10b981;
-          background: #ecfdf5;
-          padding: 0.25rem 0.6rem;
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.2);
+          padding: 0.25rem 0.65rem;
           border-radius: 6px;
         }
-        .main-title {
-          font-size: 1.75rem;
-          font-weight: 800;
-          color: #111827;
-          margin: 0.25rem 0 0 0;
-        }
-        .content-wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-        }
+
         .intro-card {
-          background: #fff;
-          border: 1px solid #e5e7eb;
-          border-radius: 12px;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 14px;
           padding: 2rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
+
         .intro-card h2 {
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: #111827;
-          margin-top: 0;
+          font-size: 1.35rem;
+          font-weight: 800;
+          color: var(--heading-color);
+          margin: 0 0 0.5rem 0;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.6rem;
+          letter-spacing: -0.01em;
         }
+
         .intro-card h2 i {
           color: #10b981;
         }
+
         .intro-card p {
-          color: #4b5563;
-          line-height: 1.6;
+          color: var(--text-secondary);
+          line-height: 1.65;
           margin: 0;
+          font-size: 0.95rem;
         }
+
         .nptel-section {
           margin-top: 0.5rem;
         }
+
         .nptel-heading {
-          font-size: 1.2rem;
+          font-size: 1.25rem;
           font-weight: 700;
-          color: #111827;
+          color: var(--heading-color);
           margin-bottom: 1.25rem;
           display: flex;
           align-items: center;
           gap: 0.6rem;
         }
+
         .nptel-heading i {
           color: #10b981;
         }
+
         .nptel-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
           gap: 1.25rem;
         }
+
         .nptel-card {
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
-          border-radius: 12px;
-          padding: 1.25rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 1.5rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          transition: all 0.2s ease;
+          transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
+
         .nptel-card:hover {
           border-color: #10b981;
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         }
+
         .nptel-card-top {
           display: flex;
           flex-direction: column;
         }
+
         .nptel-meta-row {
           display: flex;
           align-items: center;
@@ -251,47 +264,54 @@ export default function ProfessionalCommunicationPage() {
           margin-bottom: 0.6rem;
           flex-wrap: wrap;
         }
+
         .nptel-badge-inst {
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           font-weight: 600;
-          color: #374151;
-          background: #f3f4f6;
+          color: var(--text-secondary);
+          background: var(--bg-light);
+          border: 1px solid var(--border);
           padding: 0.2rem 0.55rem;
-          border-radius: 4px;
+          border-radius: 6px;
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
         }
+
         .nptel-badge-inst i {
           color: #10b981;
         }
+
         .nptel-badge-weeks {
-          font-size: 0.7rem;
+          font-size: 0.72rem;
           font-weight: 600;
-          color: #6b7280;
-          background: #fafafa;
-          border: 1px solid #f3f4f6;
-          padding: 0.15rem 0.45rem;
-          border-radius: 4px;
+          color: var(--text-muted);
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
           display: inline-flex;
           align-items: center;
           gap: 0.3rem;
         }
+
         .nptel-course-title {
-          font-size: 1.05rem;
+          font-size: 1.1rem;
           font-weight: 700;
-          color: #111827;
+          color: var(--heading-color);
           margin: 0.25rem 0 0.35rem 0;
           line-height: 1.35;
         }
+
         .nptel-instructor-name {
           font-size: 0.825rem;
-          color: #6b7280;
+          color: var(--text-muted);
           display: flex;
           align-items: center;
           gap: 0.4rem;
           margin: 0 0 0.75rem 0;
         }
+
         .nptel-topics-list {
           list-style: none;
           padding: 0;
@@ -300,46 +320,47 @@ export default function ProfessionalCommunicationPage() {
           flex-direction: column;
           gap: 0.4rem;
         }
+
         .nptel-topics-list li {
           font-size: 0.825rem;
-          color: #4b5563;
+          color: var(--text-primary);
           display: flex;
           align-items: flex-start;
           gap: 0.45rem;
           line-height: 1.4;
         }
+
         .nptel-topics-list li i {
           color: #10b981;
           font-size: 0.7rem;
           margin-top: 0.2rem;
           flex-shrink: 0;
         }
+
         .nptel-link-btn {
           display: inline-flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.55rem 0.9rem;
-          background: #fafafa;
-          border: 1px solid #e5e7eb;
-          border-radius: 8px;
-          color: #374151;
-          font-size: 0.825rem;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.2s ease;
-        }
-        .nptel-card:hover .nptel-link-btn {
-          background: #10b981;
-          border-color: #10b981;
+          padding: 0.65rem 1rem;
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: #ffffff;
+          border-radius: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.825rem;
+          transition:
+            filter 0.2s,
+            transform 0.15s;
+        }
+
+        .nptel-link-btn:hover {
+          filter: brightness(1.1);
+          transform: translateY(-1px);
         }
 
         @media (max-width: 480px) {
-          .page-container {
+          .content-wrapper {
             padding: 1rem;
-          }
-          .main-title {
-            font-size: 1.35rem;
           }
           .nptel-grid {
             grid-template-columns: 1fr;

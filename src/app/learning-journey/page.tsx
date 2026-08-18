@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import gitMetadata from "@/data/git-metadata.json";
+import BlogPageHeader from "@/components/BlogPageHeader";
+import PageFooter from "@/components/PageFooter";
 
 interface JourneyMilestone {
   id: string;
@@ -109,12 +110,12 @@ const journeyMilestones: JourneyMilestone[] = [
 export default function LearningJourneyPage() {
   return (
     <div className="journey-container">
-      {/* Header */}
-      <header className="journey-header">
-        <Link href="/" className="back-link" title="Home">
-          <i className="fa-solid fa-house"></i>
-        </Link>
-      </header>
+      {/* Consistent Header */}
+      <BlogPageHeader
+        title="My Learning Journey"
+        backLink="/"
+        backTitle="Home"
+      />
 
       {/* Hero Section */}
       <section className="journey-hero">
@@ -199,33 +200,20 @@ export default function LearningJourneyPage() {
         </Link>
       </section>
 
-      {/* Footer */}
-      <footer className="journey-footer">
-        <p>
-          Last updated:{" "}
-          <a
-            href={gitMetadata.commitUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {gitMetadata.commitDate}
-          </a>
-          {" · "}
-          <a
-            href="https://github.com/akshayaparida/portfolio/issues/new?title=Learning%20Journey%20Error&labels=bug&body=%23%23%20Error%20Description%0A%0A%3C!--%20Describe%20the%20error%20you%20found%20--%3E%0A%0A%23%23%20Location%0A%0A-%20**Page%3A**%20Learning%20Journey%0A-%20**Section%3A**%20%0A%0A%23%23%20Expected%20Behavior%0A%0A%3C!--%20What%20should%20happen%3F%20--%3E%0A%0A%23%23%20Actual%20Behavior%0A%0A%3C!--%20What%20actually%20happens%3F%20--%3E%0A%0A%23%23%20Screenshot%20%28optional%29%0A%0A"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Report an error
-          </a>
-        </p>
-      </footer>
+      {/* Consistent Footer */}
+      <PageFooter moduleName="Learning Journey" issueLabel="journey" />
 
       <style jsx>{`
         .journey-container {
           min-height: 100vh;
-          background: #fafafa;
+          background: var(--bg-light);
+          color: var(--text-primary);
           padding: 0;
+          display: flex;
+          flex-direction: column;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
         }
 
         .journey-header {

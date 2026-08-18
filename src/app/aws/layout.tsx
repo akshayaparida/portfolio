@@ -8,24 +8,19 @@ import "@/styles/module-page.css";
 
 export default function AWSLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="aws-container">
+    <div className="module-page-container">
       <BlogPageHeader
         title="AWS Cloud"
         backLink="/learning-journey"
         backTitle="My Journey"
       />
 
-      <div
-        className="main-layout"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <div className="module-page-layout">
-          <ModuleSidebar modules={awsModules} basePath="/aws" />
-          <main className="module-content-area">{children}</main>
-        </div>
+      <div className="module-page-layout">
+        <ModuleSidebar modules={awsModules} basePath="/aws" />
+        <main className="module-content-area">{children}</main>
       </div>
 
-      <footer className="aws-footer">
+      <footer className="module-footer">
         <p>
           Last updated:{" "}
           <a
@@ -45,43 +40,6 @@ export default function AWSLayout({ children }: { children: React.ReactNode }) {
           </a>
         </p>
       </footer>
-
-      <style jsx>{`
-        .aws-container {
-          min-height: 100vh;
-          background: #fafafa;
-          display: flex;
-          flex-direction: column;
-        }
-        .main-layout {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-          flex: 1;
-          width: 100%;
-          box-sizing: border-box;
-        }
-        .aws-footer {
-          text-align: center;
-          padding: 1.5rem 2rem;
-          border-top: 1px solid #e5e7eb;
-          margin-top: auto;
-        }
-        .aws-footer p {
-          color: #9ca3af;
-          font-size: 0.85rem;
-          margin: 0;
-        }
-        .aws-footer a {
-          color: #ff9900;
-          text-decoration: underline;
-        }
-        @media (max-width: 900px) {
-          .main-layout {
-            padding: 1rem;
-          }
-        }
-      `}</style>
     </div>
   );
 }

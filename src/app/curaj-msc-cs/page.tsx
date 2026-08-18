@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import BlogPageHeader from "@/components/BlogPageHeader";
+import PageFooter from "@/components/PageFooter";
 
 interface Course {
   code: string;
@@ -27,7 +28,8 @@ export default function CurajMscCsPage() {
       semester: "Semester I",
       type: "Major",
       credits: 4,
-      description: "State-space search, heuristic search (A*, IDA*), adversarial search, constraint satisfaction (CSPs), PDDL planning, and probabilistic reasoning.",
+      description:
+        "State-space search, heuristic search (A*, IDA*), adversarial search, constraint satisfaction (CSPs), PDDL planning, and probabilistic reasoning.",
       units: [
         "Uninformed Search (BFS, DFS, Uniform Cost Search)",
         "Informed Search (Best-First, A*, Simulated Annealing, Genetic Algorithms)",
@@ -36,7 +38,8 @@ export default function CurajMscCsPage() {
         "AI Planning (PDDL, GraphPlan)",
         "Probabilistic Reasoning (Bayesian Networks, HMMs)",
       ],
-      nptelTitle: "NPTEL: An Introduction to Artificial Intelligence (IIT Madras)",
+      nptelTitle:
+        "NPTEL: An Introduction to Artificial Intelligence (IIT Madras)",
       nptelUrl: "https://nptel.ac.in/courses/106106126",
     },
     {
@@ -45,7 +48,8 @@ export default function CurajMscCsPage() {
       semester: "Semester I",
       type: "Major",
       credits: 4,
-      description: "Design paradigms, amortized analysis, randomized & parallel algorithms, approximation algorithms, NP-completeness, and Indian Knowledge Systems.",
+      description:
+        "Design paradigms, amortized analysis, randomized & parallel algorithms, approximation algorithms, NP-completeness, and Indian Knowledge Systems.",
       units: [
         "Divide & Conquer, Greedy, Dynamic Programming",
         "Backtracking, Branch & Bound, Max Flow, String Matching",
@@ -63,7 +67,8 @@ export default function CurajMscCsPage() {
       semester: "Semester I",
       type: "Major",
       credits: 4,
-      description: "In-depth Python programming, OOPs design, Exception handling, File I/O, SQLite database integration, and Data Analysis with NumPy, Pandas & Scikit-Learn.",
+      description:
+        "In-depth Python programming, OOPs design, Exception handling, File I/O, SQLite database integration, and Data Analysis with NumPy, Pandas & Scikit-Learn.",
       units: [
         "Python Fundamentals & Data Structures (Lists, Tuples, Dicts)",
         "Object-Oriented Programming (Classes, Inheritance, Polymorphism)",
@@ -81,7 +86,8 @@ export default function CurajMscCsPage() {
       semester: "Semester I",
       type: "AEC",
       credits: 2,
-      description: "Technical writing, research presentation skills, corporate communication, and academic paper drafting.",
+      description:
+        "Technical writing, research presentation skills, corporate communication, and academic paper drafting.",
       units: [
         "Technical & Academic Report Writing",
         "Research Paper Formatting & Presentation Skills",
@@ -98,7 +104,8 @@ export default function CurajMscCsPage() {
       semester: "Semester II",
       type: "Major",
       credits: 4,
-      description: "Levels of NLU analysis, formal grammars, morphological parsing, WordNet/IndoNet integration, POS tagging, and statistical ambiguity resolution.",
+      description:
+        "Levels of NLU analysis, formal grammars, morphological parsing, WordNet/IndoNet integration, POS tagging, and statistical ambiguity resolution.",
       units: [
         "Introduction to NLU & Levels of Language Analysis",
         "Linguistic Background & English Syntax Outline",
@@ -116,7 +123,8 @@ export default function CurajMscCsPage() {
       semester: "Semester II",
       type: "Major",
       credits: 4,
-      description: "Supervised and unsupervised learning, linear/logistic regression, SVMs, Decision Trees, Neural Networks, Ensembles, Clustering, and Reinforcement Learning.",
+      description:
+        "Supervised and unsupervised learning, linear/logistic regression, SVMs, Decision Trees, Neural Networks, Ensembles, Clustering, and Reinforcement Learning.",
       units: [
         "Basics & Regression (Linear, Ridge, Lasso, Bayesian Regression)",
         "Classification (LDA, Logistic Regression, SVMs, Decision Trees)",
@@ -134,7 +142,8 @@ export default function CurajMscCsPage() {
       semester: "Semester II",
       type: "Minor",
       credits: 4,
-      description: "Big data storage architectures, Hadoop HDFS, MapReduce programming, Hadoop Ecosystem (HBase, Hive, Pig, Zookeeper), and Apache Spark/GraphX.",
+      description:
+        "Big data storage architectures, Hadoop HDFS, MapReduce programming, Hadoop Ecosystem (HBase, Hive, Pig, Zookeeper), and Apache Spark/GraphX.",
       units: [
         "Big Data Fundamentals, Storage & Analytical Architectures",
         "Hadoop Framework, HDFS Architecture & MapReduce Programming",
@@ -154,7 +163,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Major",
       credits: 4,
-      description: "Digital image representation, contrast enhancement, 2D Fourier transforms, morphological filtering, SIFT/HOG feature extraction, CNNs, and motion tracking.",
+      description:
+        "Digital image representation, contrast enhancement, 2D Fourier transforms, morphological filtering, SIFT/HOG feature extraction, CNNs, and motion tracking.",
       units: [
         "Image Formation, Perception & Digital Quantization",
         "Contrast Enhancement, Histogram Equalization & 2D Fourier Transforms",
@@ -172,7 +182,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Major",
       credits: 4,
-      description: "KDD process, OLAP vs OLTP, Data Preprocessing, Association Rules (Apriori, FP-Growth), Classification, Clustering, and Vector Space Information Retrieval.",
+      description:
+        "KDD process, OLAP vs OLTP, Data Preprocessing, Association Rules (Apriori, FP-Growth), Classification, Clustering, and Vector Space Information Retrieval.",
       units: [
         "Data Mining Fundamentals, Strategies & KDD Process",
         "Data Preprocessing, Warehousing, Cleaning & OLAP Technology",
@@ -190,7 +201,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Biological vs artificial neurons, Perceptron learning rules, Multi-layer feedforward networks, Backpropagation, SOM, Hopfield networks, CNNs, and LSTMs.",
+      description:
+        "Biological vs artificial neurons, Perceptron learning rules, Multi-layer feedforward networks, Backpropagation, SOM, Hopfield networks, CNNs, and LSTMs.",
       units: [
         "Biological Neurons & ANN Models (Hebb, Perceptron, Delta Rule)",
         "Single-layer Perceptron Classifier & Linear Separability",
@@ -210,7 +222,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Pipelining, SIMD/MIMD architectures, Flynn's classification, PRAM models, multiprocessor topologies, speedup metrics, and parallel scheduling.",
+      description:
+        "Pipelining, SIMD/MIMD architectures, Flynn's classification, PRAM models, multiprocessor topologies, speedup metrics, and parallel scheduling.",
       units: [
         "Pipeline & Vector Processing (Linear/Nonlinear Pipelining)",
         "Parallel Computing Paradigms (SIMD, MIMD, Flynn's Taxonomy, PRAM)",
@@ -228,7 +241,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Multicore architectures, HPC linear algebra, parallel dense/sparse matrix operations, PDE solvers, molecular dynamics, and Monte Carlo methods.",
+      description:
+        "Multicore architectures, HPC linear algebra, parallel dense/sparse matrix operations, PDE solvers, molecular dynamics, and Monte Carlo methods.",
       units: [
         "Von Neumann vs Modern Multicore Architectures & Memory Hierarchy",
         "Parallel Computing Architectures & Floating Point Arithmetic",
@@ -237,7 +251,8 @@ export default function CurajMscCsPage() {
         "Parallel FFT, Molecular Dynamics & Parallel Graph Algorithms",
         "N-body Barnes-Hut Algorithm & Parallel Monte Carlo Methods",
       ],
-      nptelTitle: "NPTEL: High Performance Computer Architecture (IIT Kharagpur)",
+      nptelTitle:
+        "NPTEL: High Performance Computer Architecture (IIT Kharagpur)",
       nptelUrl: "https://nptel.ac.in/courses/106105033",
     },
     {
@@ -246,7 +261,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Wireless sensor networks, MAC/Routing protocols, IoT communication stacks (Zigbee, Z-Wave, RPL, MQTT), and Raspberry Pi IoT applications.",
+      description:
+        "Wireless sensor networks, MAC/Routing protocols, IoT communication stacks (Zigbee, Z-Wave, RPL, MQTT), and Raspberry Pi IoT applications.",
       units: [
         "Wireless Sensor Networks Overview & Characteristics",
         "MAC Protocols for WSN (Energy Efficiency, Demand Assignment)",
@@ -264,7 +280,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Distributed database architecture, distribution design, query processing, distributed concurrency control, object databases, and spatial/deductive databases.",
+      description:
+        "Distributed database architecture, distribution design, query processing, distributed concurrency control, object databases, and spatial/deductive databases.",
       units: [
         "Distributed DBMS Architecture & Models",
         "Distributed DB Design (Fragmentation, Allocation, Semantic Control)",
@@ -282,7 +299,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Symmetric/Asymmetric encryption, RSA, Diffie-Hellman, SHA hashing, digital signatures, PKI, network firewalls, and critical infrastructure protection.",
+      description:
+        "Symmetric/Asymmetric encryption, RSA, Diffie-Hellman, SHA hashing, digital signatures, PKI, network firewalls, and critical infrastructure protection.",
       units: [
         "Cryptography Fundamentals (Symmetric/Asymmetric, DES, Ciphers)",
         "Public Key Cryptosystems (RSA Algorithm, Key Management, Diffie-Hellman)",
@@ -300,7 +318,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Distributed computing roots, cloud deployment models, IaaS/PaaS/SaaS architectures, virtual machine provisioning/migration, and cloud security.",
+      description:
+        "Distributed computing roots, cloud deployment models, IaaS/PaaS/SaaS architectures, virtual machine provisioning/migration, and cloud security.",
       units: [
         "Roots of Cloud Computing (Distributed, Grid & Cluster Systems)",
         "Cloud Service Models (IaaS, PaaS, SaaS) & Deployment Models",
@@ -318,7 +337,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Lexical analysis (LEX), top-down/bottom-up parsing (LL, LR, LALR, YACC), syntax-directed translation, symbol tables, DAG optimization, and code generation.",
+      description:
+        "Lexical analysis (LEX), top-down/bottom-up parsing (LL, LR, LALR, YACC), syntax-directed translation, symbol tables, DAG optimization, and code generation.",
       units: [
         "Phases of Compilation & LEX Lexical Analyzer",
         "Top-down Parsing (Context-Free Grammars, LL(1), Recursive Descent)",
@@ -336,7 +356,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Distributed ledger technology, consensus algorithms, PKI, Bitcoin cryptoeconomics, Ethereum smart contracts, and blockchain security.",
+      description:
+        "Distributed ledger technology, consensus algorithms, PKI, Bitcoin cryptoeconomics, Ethereum smart contracts, and blockchain security.",
       units: [
         "Digital Trust, Ledgers, Consensus & Smart Contracts",
         "Symmetric/Asymmetric Cryptography, Hash Functions & DES",
@@ -354,7 +375,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Complex Hilbert spaces, Qubits, Quantum gates (Hadamard, CNOT), Deutsch-Jozsa algorithm, Grover's search, Shor's factoring, and IBMQ simulators.",
+      description:
+        "Complex Hilbert spaces, Qubits, Quantum gates (Hadamard, CNOT), Deutsch-Jozsa algorithm, Grover's search, Shor's factoring, and IBMQ simulators.",
       units: [
         "Complex Vector Spaces, Hilbert Spaces & Unitary Matrices",
         "Dirac Formalism, Qubits & Quantum Gates (Hadamard, CNOT)",
@@ -372,7 +394,8 @@ export default function CurajMscCsPage() {
       semester: "Semester III",
       type: "Elective",
       credits: 4,
-      description: "Fuzzy logic, membership functions, Fuzzy Inference Systems (FIS), Genetic Algorithms (crossover/mutation), Particle Swarm Optimization (PSO), and ACO.",
+      description:
+        "Fuzzy logic, membership functions, Fuzzy Inference Systems (FIS), Genetic Algorithms (crossover/mutation), Particle Swarm Optimization (PSO), and ACO.",
       units: [
         "Hard vs Soft Computing, Neural Nets & Evolutionary Algorithms",
         "Fuzzy Sets & 1D/2D Membership Functions",
@@ -392,7 +415,8 @@ export default function CurajMscCsPage() {
       semester: "Semester IV",
       type: "Project",
       credits: 20,
-      description: "Full-semester major research project or industrial internship under faculty mentorship, ending with thesis submission, presentation, and defense.",
+      description:
+        "Full-semester major research project or industrial internship under faculty mentorship, ending with thesis submission, presentation, and defense.",
       units: [
         "Problem Formulation & Literature Survey",
         "System Architecture & Algorithm Design",
@@ -415,27 +439,27 @@ export default function CurajMscCsPage() {
 
   return (
     <div className="page-container">
-      {/* Top Bar Navigation */}
-      <header className="page-header">
-        <Link href="/" className="back-btn" title="Back to Portfolio">
-          <i className="fa-solid fa-arrow-left"></i>
-        </Link>
-        <div className="header-titles">
-          <div className="badge-row">
-            <span className="badge">Central University of Rajasthan</span>
-            <span className="badge badge-accent">NEP 2020 Scheme</span>
-          </div>
-          <h1 className="main-title">M.Sc. Computer Science Syllabus & NPTEL Study Guide</h1>
-        </div>
-      </header>
+      {/* Consistent Header */}
+      <BlogPageHeader
+        title="M.Sc. Computer Science — Syllabus & Study Guide"
+        backLink="/learning-journey"
+        backTitle="My Journey"
+      />
 
       <main className="content-wrapper">
         {/* Program Highlights Banner */}
         <section className="intro-card">
           <div className="intro-content">
+            <div className="badge-row">
+              <span className="badge">Central University of Rajasthan</span>
+              <span className="badge badge-accent">NEP 2020 Scheme</span>
+            </div>
             <h2>2-Year M.Sc. (Computer Science) Curriculum</h2>
             <p>
-              Syllabus for Central University of Rajasthan (CURAJ). Each course below is matched with curated <strong>NPTEL / SWAYAM video lectures and study resources</strong> from top IITs and IISc.
+              Syllabus for Central University of Rajasthan (CURAJ). Each course
+              below is matched with curated{" "}
+              <strong>NPTEL / SWAYAM video lectures and study resources</strong>{" "}
+              from top IITs and IISc.
             </p>
           </div>
           <div className="pdf-action">
@@ -453,17 +477,21 @@ export default function CurajMscCsPage() {
         {/* Filter Controls */}
         <section className="controls-bar">
           <div className="tabs">
-            {["All", "Semester I", "Semester II", "Semester III", "Semester IV"].map(
-              (sem) => (
-                <button
-                  key={sem}
-                  onClick={() => setSelectedSem(sem)}
-                  className={`tab-btn ${selectedSem === sem ? "active" : ""}`}
-                >
-                  {sem}
-                </button>
-              )
-            )}
+            {[
+              "All",
+              "Semester I",
+              "Semester II",
+              "Semester III",
+              "Semester IV",
+            ].map((sem) => (
+              <button
+                key={sem}
+                onClick={() => setSelectedSem(sem)}
+                className={`tab-btn ${selectedSem === sem ? "active" : ""}`}
+              >
+                {sem}
+              </button>
+            ))}
           </div>
 
           <div className="search-box">
@@ -523,81 +551,59 @@ export default function CurajMscCsPage() {
         </section>
       </main>
 
+      {/* Consistent Footer */}
+      <PageFooter moduleName="CURAJ MSc CS" issueLabel="curaj-msc-cs" />
+
       <style jsx>{`
         .page-container {
           min-height: 100vh;
-          background: #fafafa;
-          padding: 2rem;
+          background: var(--bg-light);
+          color: var(--text-primary);
+          display: flex;
+          flex-direction: column;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
+        }
+
+        .content-wrapper {
           max-width: 1240px;
+          width: 100%;
           margin: 0 auto;
-          font-family: inherit;
-        }
-
-        .page-header {
+          padding: 2rem;
           display: flex;
-          align-items: center;
-          gap: 1.25rem;
-          margin-bottom: 2rem;
-          padding-bottom: 1rem;
-          border-bottom: 1px solid #e5e7eb;
-        }
-
-        .back-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
-          background: #fff;
-          border: 1px solid #e5e7eb;
-          color: #374151;
-          text-decoration: none;
-          transition: all 0.2s;
-        }
-        .back-btn:hover {
-          background: #f3f4f6;
-          color: #111827;
+          flex-direction: column;
+          gap: 2rem;
+          box-sizing: border-box;
+          flex: 1;
         }
 
         .badge-row {
           display: flex;
+          flex-wrap: wrap;
           gap: 0.5rem;
-          margin-bottom: 0.35rem;
+          margin-bottom: 0.65rem;
         }
 
         .badge {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.5px;
-          color: #2563eb;
-          background: #eff6ff;
-          padding: 0.2rem 0.6rem;
+          color: #10b981;
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.2);
+          padding: 0.25rem 0.65rem;
           border-radius: 6px;
         }
 
         .badge-accent {
-          color: #059669;
-          background: #ecfdf5;
-        }
-
-        .main-title {
-          font-size: 1.65rem;
-          font-weight: 800;
-          color: #111827;
-          margin: 0;
-        }
-
-        .content-wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
+          color: #10b981;
         }
 
         .intro-card {
-          background: #fff;
-          border: 1px solid #e5e7eb;
+          background: var(--surface);
+          border: 1px solid var(--border);
           border-radius: 14px;
           padding: 2rem;
           display: flex;
@@ -605,6 +611,7 @@ export default function CurajMscCsPage() {
           justify-content: space-between;
           gap: 1.5rem;
           flex-wrap: wrap;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
         .intro-content {
@@ -614,14 +621,15 @@ export default function CurajMscCsPage() {
 
         .intro-content h2 {
           font-size: 1.35rem;
-          font-weight: 700;
-          color: #111827;
+          font-weight: 800;
+          color: var(--heading-color);
           margin: 0 0 0.5rem 0;
+          letter-spacing: -0.01em;
         }
 
         .intro-content p {
-          color: #4b5563;
-          line-height: 1.6;
+          color: var(--text-secondary);
+          line-height: 1.65;
           margin: 0;
           font-size: 0.95rem;
         }
@@ -631,16 +639,19 @@ export default function CurajMscCsPage() {
           align-items: center;
           gap: 0.6rem;
           padding: 0.75rem 1.25rem;
-          background: #dc2626;
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: #fff;
           border-radius: 10px;
           text-decoration: none;
           font-weight: 600;
           font-size: 0.9rem;
-          transition: background 0.2s;
+          transition:
+            filter 0.2s,
+            transform 0.15s;
         }
         .pdf-btn:hover {
-          background: #b91c1c;
+          filter: brightness(1.1);
+          transform: translateY(-1px);
         }
 
         .controls-bar {
@@ -660,9 +671,9 @@ export default function CurajMscCsPage() {
         .tab-btn {
           padding: 0.55rem 1rem;
           border-radius: 8px;
-          border: 1px solid #e5e7eb;
-          background: #fff;
-          color: #4b5563;
+          border: 1px solid var(--border);
+          background: var(--surface);
+          color: var(--text-secondary);
           font-weight: 600;
           font-size: 0.85rem;
           cursor: pointer;
@@ -670,14 +681,14 @@ export default function CurajMscCsPage() {
         }
 
         .tab-btn:hover {
-          background: #f3f4f6;
-          color: #111827;
+          background: var(--bg-light);
+          color: var(--heading-color);
         }
 
         .tab-btn.active {
-          background: #2563eb;
+          background: #10b981;
           color: #fff;
-          border-color: #2563eb;
+          border-color: #10b981;
         }
 
         .search-box {
@@ -690,21 +701,24 @@ export default function CurajMscCsPage() {
           left: 0.85rem;
           top: 50%;
           transform: translateY(-50%);
-          color: #9ca3af;
+          color: var(--text-muted);
           font-size: 0.85rem;
         }
 
         .search-input {
           width: 100%;
-          padding: 0.55rem 0.85rem 0.55rem 2.25rem;
+          padding: 0.6rem 0.85rem 0.6rem 2.25rem;
           border-radius: 8px;
-          border: 1px solid #e5e7eb;
-          background: #fff;
+          border: 1px solid var(--border);
+          background: var(--surface);
+          color: var(--heading-color);
           font-size: 0.85rem;
           outline: none;
+          transition: border-color 0.2s;
+          box-sizing: border-box;
         }
         .search-input:focus {
-          border-color: #2563eb;
+          border-color: #10b981;
         }
 
         .courses-grid {
@@ -714,18 +728,23 @@ export default function CurajMscCsPage() {
         }
 
         .course-card {
-          background: #fff;
-          border: 1px solid #e5e7eb;
+          background: var(--surface);
+          border: 1px solid var(--border);
           border-radius: 14px;
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
-          transition: transform 0.2s, box-shadow 0.2s;
+          transition:
+            transform 0.2s,
+            box-shadow 0.2s,
+            border-color 0.2s;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
         .course-card:hover {
           transform: translateY(-3px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+          border-color: #10b981;
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         }
 
         .card-top {
@@ -738,8 +757,9 @@ export default function CurajMscCsPage() {
         .course-code {
           font-size: 0.75rem;
           font-weight: 800;
-          color: #6b7280;
-          background: #f3f4f6;
+          color: #10b981;
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.2);
           padding: 0.2rem 0.5rem;
           border-radius: 5px;
           letter-spacing: 0.5px;
@@ -751,46 +771,44 @@ export default function CurajMscCsPage() {
           padding: 0.2rem 0.55rem;
           border-radius: 5px;
           text-transform: uppercase;
+          color: #10b981;
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.2);
         }
         .type-major {
-          color: #2563eb;
-          background: #eff6ff;
+          color: #10b981;
         }
         .type-minor {
-          color: #d97706;
-          background: #fffbeb;
+          color: #10b981;
         }
         .type-elective {
-          color: #7c3aed;
-          background: #f5f3ff;
+          color: #10b981;
         }
         .type-aec {
-          color: #059669;
-          background: #ecfdf5;
+          color: #10b981;
         }
         .type-project {
-          color: #dc2626;
-          background: #fef2f2;
+          color: #10b981;
         }
 
         .course-title {
           font-size: 1.15rem;
           font-weight: 700;
-          color: #111827;
+          color: var(--heading-color);
           margin: 0 0 0.5rem 0;
           line-height: 1.35;
         }
 
         .course-desc {
           font-size: 0.88rem;
-          color: #4b5563;
+          color: var(--text-secondary);
           line-height: 1.55;
           margin: 0 0 1.25rem 0;
         }
 
         .units-section {
-          background: #fafafa;
-          border: 1px solid #f3f4f6;
+          background: var(--bg-light);
+          border: 1px solid var(--border);
           border-radius: 8px;
           padding: 1rem;
           margin-bottom: 1.25rem;
@@ -800,7 +818,7 @@ export default function CurajMscCsPage() {
         .units-heading {
           font-size: 0.75rem;
           font-weight: 700;
-          color: #6b7280;
+          color: var(--text-muted);
           text-transform: uppercase;
           letter-spacing: 0.5px;
           margin: 0 0 0.6rem 0;
@@ -820,12 +838,12 @@ export default function CurajMscCsPage() {
 
         .units-list li {
           font-size: 0.82rem;
-          color: #374151;
+          color: var(--text-primary);
           line-height: 1.45;
         }
 
         .bullet {
-          color: #2563eb;
+          color: #10b981;
           font-weight: 800;
           margin-right: 0.25rem;
         }
@@ -839,17 +857,20 @@ export default function CurajMscCsPage() {
           align-items: center;
           justify-content: space-between;
           padding: 0.65rem 1rem;
-          background: #1e293b;
-          color: #fff;
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+          color: #ffffff;
           border-radius: 8px;
           text-decoration: none;
           font-weight: 600;
           font-size: 0.85rem;
-          transition: background 0.2s;
+          transition:
+            filter 0.2s,
+            transform 0.15s;
         }
 
         .nptel-btn:hover {
-          background: #0f172a;
+          filter: brightness(1.1);
+          transform: translateY(-1px);
         }
 
         .nptel-btn span {
@@ -858,7 +879,7 @@ export default function CurajMscCsPage() {
         }
 
         @media (max-width: 640px) {
-          .page-container {
+          .content-wrapper {
             padding: 1rem;
           }
           .courses-grid {

@@ -17,7 +17,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const [showExplanation, setShowExplanation] = useState(false);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
-  const [answers, setAnswers] = useState<Record<string, boolean>>({}); // track correct/incorrect for each question
+  const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const [timerActive, setTimerActive] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
@@ -55,7 +55,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   }, [timeLeft, timerActive, handleTimeout]);
 
   const handleOptionSelect = (optionIndex: number) => {
-    if (showExplanation) return; // Prevent changing answer after reveal
+    if (showExplanation) return;
     setSelectedOption(optionIndex);
   };
 
@@ -105,7 +105,6 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     setTimerActive(true);
   };
 
-  // Timer helper
   const timerProgress = timeLeft / TIMER_SECONDS;
   const strokeDashoffset = TIMER_CIRCUMFERENCE * (1 - timerProgress);
   const timerColor =
@@ -135,52 +134,52 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         </div>
         <style jsx>{`
           .quiz-container {
-            background: #fff;
+            background: var(--surface);
             border-radius: 12px;
-            border: 1px solid #e5e7eb;
+            border: 1px solid var(--border);
             padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-top: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             text-align: center;
           }
           .start-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
           }
           .start-screen h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.5rem;
+            color: var(--heading-color);
+            margin-bottom: 0.4rem;
           }
           .start-info {
-            font-size: 1rem;
-            color: #6b7280;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
           }
           .start-desc {
-            font-size: 0.9rem;
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
             max-width: 400px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.5;
           }
           .start-btn {
-            background: #111827;
-            color: white;
+            background: var(--heading-color);
+            color: var(--surface);
             border: none;
-            padding: 0.75rem 2rem;
+            padding: 0.65rem 1.75rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
           }
           .start-btn:hover {
-            background: #374151;
+            opacity: 0.9;
             transform: translateY(-1px);
           }
         `}</style>
@@ -220,28 +219,28 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         </div>
         <style jsx>{`
           .quiz-container {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             padding: 2rem;
-            background: #fff;
+            background: var(--surface);
             border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             text-align: center;
           }
           .completion-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
           }
           .completion-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.5rem;
+            color: var(--heading-color);
+            margin-bottom: 0.4rem;
           }
           .final-score {
-            font-size: 1.1rem;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
           }
           .final-score span {
             font-weight: 700;
@@ -249,12 +248,12 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           }
           .score-bar-container {
             width: 100%;
-            height: 12px;
-            background: #e5e7eb;
-            border-radius: 6px;
+            height: 10px;
+            background: var(--border);
+            border-radius: 5px;
             overflow: hidden;
-            margin-bottom: 1.5rem;
-            max-width: 300px;
+            margin-bottom: 1.25rem;
+            max-width: 280px;
             margin-left: auto;
             margin-right: auto;
           }
@@ -264,23 +263,28 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
             transition: width 1s ease-out;
           }
           .timeout-summary {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #ef4444;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.85rem;
+          }
+          .completion-message {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
           }
           .retry-btn {
-            background: #111827;
-            color: white;
+            background: var(--heading-color);
+            color: var(--surface);
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.65rem 1.5rem;
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.15s ease;
           }
           .retry-btn:hover {
-            background: #374151;
+            opacity: 0.9;
             transform: translateY(-1px);
           }
         `}</style>
@@ -298,13 +302,13 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           <div
             className={`timer-container${timeLeft <= 10 && timerActive ? " pulse" : ""}${timedOut ? " timed-out" : ""}`}
           >
-            <svg width="44" height="44" viewBox="0 0 44 44">
+            <svg width="40" height="40" viewBox="0 0 44 44">
               <circle
                 cx="22"
                 cy="22"
                 r={TIMER_RADIUS}
                 fill="none"
-                stroke="#e5e7eb"
+                stroke="var(--border)"
                 strokeWidth="3"
               />
               <circle
@@ -421,12 +425,12 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
       <style jsx>{`
         .quiz-container {
-          background: #fff;
+          background: var(--surface);
           border-radius: 12px;
-          border: 1px solid #e5e7eb;
+          border: 1px solid var(--border);
           padding: 1.5rem;
-          margin-top: 2rem;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+          margin-top: 1.5rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         }
 
         .quiz-header {
@@ -444,8 +448,8 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
         .timer-container {
           position: relative;
-          width: 44px;
-          height: 44px;
+          width: 40px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -453,7 +457,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
         .timer-text {
           position: absolute;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           font-variant-numeric: tabular-nums;
         }
@@ -477,93 +481,80 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         }
 
         .timeout-banner {
-          background: #fef2f2;
-          border: 1px solid #fecaca;
-          color: #dc2626;
-          padding: 0.625rem 1rem;
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid rgba(239, 68, 68, 0.25);
+          color: #ef4444;
+          padding: 0.5rem 0.85rem;
           border-radius: 8px;
           font-weight: 600;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           text-align: center;
           margin-bottom: 1rem;
-          animation: fadeIn 0.3s ease;
         }
 
         .question-counter {
-          font-size: 0.875rem;
-          color: #6b7280;
-          font-weight: 500;
+          font-size: 0.82rem;
+          color: var(--text-muted);
+          font-weight: 600;
         }
 
         .difficulty-badge {
-          font-size: 0.75rem;
-          padding: 0.25rem 0.75rem;
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
           border-radius: 999px;
           text-transform: uppercase;
           font-weight: 700;
           letter-spacing: 0.05em;
-        }
-
-        .difficulty-badge.easy {
-          background: #ecfdf5;
-          color: #059669;
-        }
-        .difficulty-badge.medium {
-          background: #fffbeb;
-          color: #d97706;
-        }
-        .difficulty-badge.hard {
-          background: #fef2f2;
-          color: #dc2626;
+          border: 1px solid var(--border);
+          color: var(--text-secondary);
         }
 
         .question-text {
-          font-size: 1.125rem;
+          font-size: 1.05rem;
           font-weight: 700;
-          color: #111827;
-          margin-bottom: 1.5rem;
+          color: var(--heading-color);
+          margin-bottom: 1.25rem;
           line-height: 1.5;
         }
 
         .options-grid {
           display: grid;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
+          gap: 0.65rem;
+          margin-bottom: 1.25rem;
         }
 
         .option-btn {
           display: flex;
           align-items: center;
-          padding: 1rem;
-          background: #f9fafb;
-          border: 2px solid #e5e7eb;
+          padding: 0.85rem 1rem;
+          background: var(--bg-light);
+          border: 1.5px solid var(--border);
           border-radius: 8px;
           cursor: pointer;
-          transition: all 0.2s;
+          transition: all 0.15s ease;
           text-align: left;
-          position: relative;
+          color: var(--text-primary);
         }
 
         .option-btn:hover:not(:disabled) {
-          background: #f3f4f6;
-          border-color: #d1d5db;
+          border-color: var(--heading-color);
         }
 
         .option-btn.selected {
           border-color: #3b82f6;
-          background: #eff6ff;
+          background: rgba(59, 130, 246, 0.08);
         }
 
         .option-btn.correct {
           border-color: #10b981;
-          background: #ecfdf5;
-          color: #065f46;
+          background: rgba(16, 185, 129, 0.08);
+          color: #10b981;
         }
 
         .option-btn.incorrect {
           border-color: #ef4444;
-          background: #fef2f2;
-          color: #991b1b;
+          background: rgba(239, 68, 68, 0.08);
+          color: #ef4444;
         }
 
         .option-btn.disabled {
@@ -572,17 +563,17 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         }
 
         .option-letter {
-          width: 28px;
-          height: 28px;
+          width: 24px;
+          height: 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #e5e7eb;
+          background: var(--border);
           border-radius: 50%;
           font-weight: 700;
-          font-size: 0.875rem;
-          color: #4b5563;
-          margin-right: 1rem;
+          font-size: 0.78rem;
+          color: var(--text-secondary);
+          margin-right: 0.75rem;
           flex-shrink: 0;
         }
 
@@ -602,95 +593,84 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         }
 
         .option-text {
-          font-size: 1rem;
+          font-size: 0.92rem;
           font-weight: 500;
           color: inherit;
         }
 
         .result-icon {
           margin-left: auto;
-          font-size: 1.25rem;
+          font-size: 1.1rem;
         }
 
         .explanation-box {
-          padding: 1rem;
+          padding: 0.9rem 1.1rem;
           border-radius: 8px;
-          margin-bottom: 1.5rem;
-          animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(5px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          margin-bottom: 1.25rem;
+          background: var(--bg-light);
+          border: 1px solid var(--border);
         }
 
         .explanation-box.success {
-          background: #ecfdf5;
-          border: 1px solid #a7f3d0;
+          border-left: 3.5px solid #10b981;
         }
 
         .explanation-box.info {
-          background: #f0f9ff;
-          border: 1px solid #bae6fd;
+          border-left: 3.5px solid #3b82f6;
         }
 
         .explanation-box.timeout {
-          background: #fef2f2;
-          border: 1px solid #fecaca;
+          border-left: 3.5px solid #ef4444;
         }
 
         .explanation-box h4 {
-          font-size: 1rem;
+          font-size: 0.92rem;
           font-weight: 700;
-          margin-bottom: 0.5rem;
-          color: #111827;
+          margin-bottom: 0.35rem;
+          color: var(--heading-color);
         }
 
         .explanation-box p {
-          font-size: 0.95rem;
-          color: #4b5563;
-          line-height: 1.8;
+          font-size: 0.88rem;
+          color: var(--text-secondary);
+          line-height: 1.7;
           white-space: pre-line;
+          margin: 0;
         }
 
         .quiz-footer {
           display: flex;
           justify-content: flex-end;
-          padding-top: 1rem;
-          border-top: 1px solid #f3f4f6;
+          padding-top: 0.85rem;
+          border-top: 1px solid var(--border);
         }
 
         .action-btn {
-          padding: 0.75rem 1.5rem;
+          padding: 0.6rem 1.35rem;
           border-radius: 8px;
           font-weight: 600;
+          font-size: 0.9rem;
           cursor: pointer;
           border: none;
-          transition: all 0.2s;
+          transition: all 0.15s ease;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.45rem;
         }
 
         .check-btn {
-          background: #111827;
-          color: white;
+          background: var(--heading-color);
+          color: var(--surface);
         }
 
         .check-btn:disabled {
-          background: #e5e7eb;
-          color: #9ca3af;
+          background: var(--border);
+          color: var(--text-muted);
           cursor: not-allowed;
         }
 
         .check-btn:hover:not(:disabled) {
-          background: #374151;
+          opacity: 0.9;
         }
 
         .next-btn {
