@@ -12,6 +12,8 @@
   display: flex;
   flex-direction: column;
   transition: background-color 0.3s ease, color 0.3s ease;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Master Layout - Stretches edge-to-edge with clean margins */
@@ -32,6 +34,8 @@
 .module-content-area {
   min-width: 0;
   width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 /* Module Viewer 2-Column Grid (Main Reading Area + Right Subtopics TOC) */
@@ -904,6 +908,8 @@ html.dark .callout-content-body {
     flex-direction: column;
     padding: 1rem;
     gap: 1rem;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .module-sidebar {
@@ -922,24 +928,101 @@ html.dark .callout-content-body {
 
   .module-card {
     padding: 1.5rem;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .module-title {
     font-size: 1.45rem;
   }
+
+  .markdown-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
 }
 
 @media (max-width: 600px) {
+  .module-page-layout {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
   .module-card {
-    padding: 1.25rem 1rem;
+    padding: 1.15rem 0.85rem;
+    border-radius: 10px;
   }
 
   .module-nav {
     grid-template-columns: 1fr;
   }
 
+  .module-title {
+    font-size: 1.25rem;
+  }
+
+  .module-description {
+    font-size: 0.92rem;
+  }
+
+  .markdown-content {
+    font-size: 0.95rem;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.05rem;
+  }
+
   .markdown-content table {
     display: block;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .markdown-content pre {
+    padding: 0.85rem;
+    font-size: 0.8rem;
+    border-radius: 8px;
+  }
+
+  .callout-box {
+    padding: 0.85rem 1rem;
+  }
+
+  .module-sidebar {
+    padding: 0.75rem;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .module-page-layout {
+    padding: 0.5rem;
+  }
+
+  .module-card {
+    padding: 1rem 0.65rem;
+  }
+
+  .module-title {
+    font-size: 1.15rem;
+  }
+
+  .module-meta-line {
+    font-size: 0.72rem;
+  }
+
+  .markdown-content {
+    font-size: 0.9rem;
+  }
+
+  .markdown-content pre {
+    padding: 0.65rem;
+    font-size: 0.75rem;
   }
 }

@@ -75,11 +75,6 @@ export async function GET() {
 
     const videosMap = new Map<string, YouTubeVideo>();
 
-    // Seed preset catalog of all full videos first
-    for (const v of FULL_VIDEOS_CATALOG) {
-      videosMap.set(v.id, v);
-    }
-
     if (res.ok) {
       const xmlText = await res.text();
       const entryMatches = Array.from(
@@ -129,11 +124,13 @@ export async function GET() {
             ? publishedMatch[1]
             : new Date().toISOString();
           const dateObj = new Date(rawDate);
-          const published = dateObj.toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          });
+          const published = isNaN(dateObj.getTime())
+            ? "Recent"
+            : dateObj.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              });
 
           videosMap.set(id, {
             id,
@@ -144,6 +141,13 @@ export async function GET() {
             isShort,
           });
         }
+      }
+    }
+
+    // Append any older preset catalog videos that might not be in the RSS feed (older than the top 15)
+    for (const v of FULL_VIDEOS_CATALOG) {
+      if (!videosMap.has(v.id)) {
+        videosMap.set(v.id, v);
       }
     }
 
