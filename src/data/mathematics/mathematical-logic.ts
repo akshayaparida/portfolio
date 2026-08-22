@@ -285,6 +285,34 @@ Consider predicate M(x, y) meaning *"x knows y"*:
 > - \`∀x ∃y P(x, y)\` allows each x to have their own different y (Weaker statement).
 > - **Implication:** \`∃y ∀x P(x, y) ⟹ ∀x ∃y P(x, y)\`, but the converse is FALSE!
 
+#### 7.4 Uniqueness Quantification (∃!x) & "Exactly One" Translation Rules
+
+The uniqueness quantifier **∃!x P(x)** asserts that there exists **one and only one** element in domain D satisfying predicate P.
+
+##### 🌟 Two Core Components of "Exactly One":
+1. **Existence (At least one):** \`∃y P(y)\`
+2. **Uniqueness (At most one):** Any other entity \`z ≠ y\` cannot satisfy P, or equivalently, if \`P(z)\` holds, then \`z\` must be \`y\`.
+
+##### 📐 Standard Logical Forms of "Everyone has exactly one mother":
+Let \`mother(y, x)\` denote *"y is the mother of x"* and \`noteq(x, y)\` denote \`x ≠ y\`:
+
+- **Form 1: Universal Non-Equality Implication (GATE Standard Form):**
+  > \`∀x ∃y [mother(y, x) ∧ ∀z (noteq(z, y) ⟹ ¬mother(z, x))]\`
+  *(For every x, there is a mother y, and anyone z distinct from y is NOT a mother of x)*
+
+- **Form 2: Existential Negation via De Morgan's Law (Equivalent Form):**
+  > \`∀x ∃y [mother(y, x) ∧ ¬∃z (noteq(z, y) ∧ mother(z, x))]\`
+  *(For every x, there is a mother y, and NO person z distinct from y is also a mother of x)*
+
+- **Form 3: Contrapositive Equivalence:**
+  > \`∀x ∃y [mother(y, x) ∧ ∀z (mother(z, x) ⟹ ¬noteq(z, y))]\`
+  *(If z is also a mother of x, then z MUST be y)*
+
+> [!WARNING]
+> **Common GATE Traps in Uniqueness Questions (AIR 1 Traps):**
+> - **Trap 1 (Option A style):** \`∀x ∃y ∃z (mother(y, x) ∧ ¬mother(z, x))\` only says x has at least one mother and someone in the universe is not a mother. It does NOT restrict x from having 10 mothers!
+> - **Trap 2 (Option C style):** \`∀x ∀y [mother(y, x) ⟹ ∃z (mother(z, x) ∧ z = y)]\` simplifies to \`mother(y, x) ⟹ mother(y, x)\` (a vacuous tautology that asserts neither existence nor uniqueness).
+
 ---
 
 ### 8. Negating Quantified Statements
@@ -421,6 +449,7 @@ Digital computers implement propositional logic directly using transistors:
       id: "logic-gate-2025-set2",
       gateYear: "GATE CSE 2025 Set-2",
       topicTag: "Mathematical Induction & Predicates",
+      type: "MCQ",
       question:
         "Let P(x) be an arbitrary predicate over the domain of natural numbers. Which ONE of the following statements is TRUE?",
       options: [
@@ -433,6 +462,24 @@ Digital computers implement propositional logic directly using transistors:
       explanation:
         "AIR 1 Analysis:\n1) Option A is the exact First-Order Logic formal statement of the Principle of Mathematical Induction (Peano Axiom 5).\n2) Base Step: P(0) is True.\n3) Inductive Step: ∀x [P(x) ⇒ P(x+1)] guarantees the truth cascades forward to 1, 2, 3, ... to all natural numbers.\n4) Options B & C fail because backward implication P(x) ⇒ P(x-1) cannot reach numbers greater than the base.\n5) Option D fails because starting at P(1000) leaves all numbers from 0 to 999 unproven.",
       difficulty: "medium",
+    },
+    {
+      id: "logic-gate-2025-set1",
+      gateYear: "GATE CSE 2025 Set-1",
+      topicTag: "Uniqueness Quantification & Relations",
+      type: "MSQ",
+      question:
+        "Which of the following predicate logic formulae is/are CORRECT representation(s) of the statement: 'Everyone has exactly one mother'? (Predicates: mother(y, x): y is the mother of x; noteq(x, y): x and y are not equal)",
+      options: [
+        "∀x ∃y ∃z (mother(y, x) ∧ ¬mother(z, x))",
+        "∀x ∃y [mother(y, x) ∧ ∀z (noteq(z, y) → ¬mother(z, x))]",
+        "∀x ∀y [mother(y, x) → ∃z (mother(z, x) ∧ ¬noteq(z, y))]",
+        "∀x ∃y [mother(y, x) ∧ ¬∃z (noteq(z, y) ∧ mother(z, x))]",
+      ],
+      correctAnswer: [1, 3],
+      explanation:
+        "AIR 1 Analysis (MSQ - Correct: B & D):\n\n1) Concept: 'Everyone has exactly one mother' requires: (i) Existence of mother y: ∃y mother(y, x), and (ii) Uniqueness of y (no other distinct z can be mother).\n\n2) Option B (CORRECT): ∀x ∃y [mother(y, x) ∧ ∀z (noteq(z, y) → ¬mother(z, x))] asserts y is mother AND for any other person z ≠ y, z is NOT mother of x.\n\n3) Option D (CORRECT): By De Morgan's Law for quantifiers, ¬∃z (noteq(z, y) ∧ mother(z, x)) ≡ ∀z (noteq(z, y) → ¬mother(z, x)). Thus Option D is logically identical to Option B.\n\n4) Option A (WRONG): Only asserts x has at least one mother and at least one non-mother. Does not prevent x from having multiple mothers.\n\n5) Option C (WRONG): Since ¬noteq(z, y) ≡ (z = y), the inner part simplifies to mother(y, x), reducing the entire statement to a vacuous tautology: mother(y, x) → mother(y, x).",
+      difficulty: "hard",
     },
   ],
 };

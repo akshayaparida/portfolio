@@ -13,7 +13,7 @@ interface PracticeQuizProps {
 
 export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
   const [showExplanation, setShowExplanation] = useState(false);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -26,6 +26,12 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const currentQuestion = questions[currentQuestionIndex];
+  const isMSQ =
+    currentQuestion?.type === "MSQ" ||
+    Array.isArray(currentQuestion?.correctAnswer);
+  const correctArray = Array.isArray(currentQuestion?.correctAnswer)
+    ? currentQuestion.correctAnswer
+    : [currentQuestion?.correctAnswer];
 
   // Timer countdown effect
   useEffect(() => {
@@ -56,14 +62,24 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
   const handleOptionSelect = (optionIndex: number) => {
     if (showExplanation) return;
-    setSelectedOption(optionIndex);
+    if (isMSQ) {
+      setSelectedOptions((prev) =>
+        prev.includes(optionIndex)
+          ? prev.filter((i) => i !== optionIndex)
+          : [...prev, optionIndex],
+      );
+    } else {
+      setSelectedOptions([optionIndex]);
+    }
   };
 
   const handleCheckAnswer = () => {
-    if (selectedOption === null) return;
+    if (selectedOptions.length === 0) return;
 
     setTimerActive(false);
-    const isCorrect = selectedOption === currentQuestion.correctAnswer;
+    const isCorrect =
+      selectedOptions.length === correctArray.length &&
+      selectedOptions.every((idx) => correctArray.includes(idx));
     setAnswers({ ...answers, [currentQuestion.id]: isCorrect });
 
     if (isCorrect) {
@@ -76,7 +92,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setSelectedOption(null);
+      setSelectedOptions([]);
       setShowExplanation(false);
       setTimeLeft(TIMER_SECONDS);
       setTimerActive(true);
@@ -88,7 +104,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
   const resetQuiz = () => {
     setCurrentQuestionIndex(0);
-    setSelectedOption(null);
+    setSelectedOptions([]);
     setShowExplanation(false);
     setScore(0);
     setQuizCompleted(false);
@@ -138,10 +154,17 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     .replace(/\[GATE[^\]]+\]\s*/i, "")
     .replace(/\[Topic:\s*[^\]]+\]\s*/i, "");
 
+  const correctLetters = correctArray
+    .map((i) => String.fromCharCode(65 + i))
+    .join(", ");
+  const isAllCorrect =
+    selectedOptions.length === correctArray.length &&
+    selectedOptions.every((idx) => correctArray.includes(idx));
+
   const handleJumpToQuestion = (targetIndex: number) => {
     if (targetIndex === currentQuestionIndex) return;
     setCurrentQuestionIndex(targetIndex);
-    setSelectedOption(null);
+    setSelectedOptions([]);
     setShowExplanation(false);
     setTimeLeft(TIMER_SECONDS);
     setTimerActive(true);
@@ -447,6 +470,9 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           <span className={`difficulty-badge ${currentQuestion.difficulty}`}>
             {currentQuestion.difficulty}
           </span>
+          <span className={`type-badge ${isMSQ ? "msq" : "mcq"}`}>
+            {isMSQ ? "MSQ (Multi-Select)" : "MCQ"}
+          </span>
         </div>
       </div>
 
@@ -461,16 +487,18 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
       <div className="options-grid">
         {currentQuestion.options.map((option, index) => {
           let optionClass = "option-btn";
+          const isSelected = selectedOptions.includes(index);
+          const isAnswerCorrect = correctArray.includes(index);
 
           if (showExplanation) {
-            if (index === currentQuestion.correctAnswer) {
+            if (isAnswerCorrect) {
               optionClass += " correct";
-            } else if (index === selectedOption) {
+            } else if (isSelected && !isAnswerCorrect) {
               optionClass += " incorrect";
             } else {
               optionClass += " disabled";
             }
-          } else if (selectedOption === index) {
+          } else if (isSelected) {
             optionClass += " selected";
           }
 
@@ -481,18 +509,16 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
               onClick={() => handleOptionSelect(index)}
               disabled={showExplanation}
             >
-              <span className="option-letter">
+              <span className={`option-letter ${isMSQ ? "msq-checkbox" : ""}`}>
                 {String.fromCharCode(65 + index)}
               </span>
               <span className="option-text">{option}</span>
-              {showExplanation && index === currentQuestion.correctAnswer && (
+              {showExplanation && isAnswerCorrect && (
                 <i className="fas fa-check-circle result-icon"></i>
               )}
-              {showExplanation &&
-                index === selectedOption &&
-                index !== currentQuestion.correctAnswer && (
-                  <i className="fas fa-times-circle result-icon"></i>
-                )}
+              {showExplanation && isSelected && !isAnswerCorrect && (
+                <i className="fas fa-times-circle result-icon"></i>
+              )}
             </button>
           );
         })}
@@ -500,18 +526,14 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
       {showExplanation && (
         <div
-          className={`explanation-box ${timedOut ? "timeout" : selectedOption === currentQuestion.correctAnswer ? "success" : "info"}`}
+          className={`explanation-box ${timedOut ? "timeout" : isAllCorrect ? "success" : "info"}`}
         >
           <h4>
             {timedOut
-              ? "⏱ Time's up! The correct answer is " +
-                String.fromCharCode(65 + currentQuestion.correctAnswer) +
-                "."
-              : selectedOption === currentQuestion.correctAnswer
+              ? `⏱ Time's up! The correct answer is ${correctLetters}.`
+              : isAllCorrect
                 ? "Correct! 🎉"
-                : "Not quite. The correct answer is " +
-                  String.fromCharCode(65 + currentQuestion.correctAnswer) +
-                  "."}
+                : `Not quite. The correct answer is ${correctLetters}.`}
           </h4>
           <p>{currentQuestion.explanation}</p>
         </div>
@@ -522,7 +544,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           <button
             className="action-btn check-btn"
             onClick={handleCheckAnswer}
-            disabled={selectedOption === null}
+            disabled={selectedOptions.length === 0}
           >
             Check Answer
           </button>
@@ -770,6 +792,32 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           letter-spacing: 0.05em;
           border: 1px solid var(--border);
           color: var(--text-secondary);
+        }
+
+        .type-badge {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+          border-radius: 999px;
+          text-transform: uppercase;
+          font-weight: 800;
+          letter-spacing: 0.04em;
+          border: 1px solid var(--border);
+        }
+
+        .type-badge.msq {
+          background: rgba(168, 85, 247, 0.12);
+          border-color: rgba(168, 85, 247, 0.35);
+          color: #a855f7;
+        }
+
+        .type-badge.mcq {
+          background: rgba(59, 130, 246, 0.08);
+          border-color: rgba(59, 130, 246, 0.25);
+          color: #3b82f6;
+        }
+
+        .option-letter.msq-checkbox {
+          border-radius: 4px;
         }
 
         .question-text {

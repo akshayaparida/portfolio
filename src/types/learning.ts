@@ -21,9 +21,10 @@ export interface PracticeQuestion {
   id: string;
   question: string;
   options: string[];
-  correctAnswer: number; // Index of the correct option (0-3)
+  correctAnswer: number | number[]; // Index or array of indices for MSQ
   explanation: string;
   difficulty: "easy" | "medium" | "hard";
+  type?: "MCQ" | "MSQ" | "NAT";
   gateYear?: string;
   topicTag?: string;
 }
