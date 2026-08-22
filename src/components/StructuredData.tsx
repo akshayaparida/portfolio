@@ -87,6 +87,30 @@ export default function StructuredData() {
     ],
   };
 
+  // Course schema for Educational SEO indexing
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "Discrete Mathematics & Computer Science Engineering for GATE & UGC NET",
+    description:
+      "Comprehensive Computer Science engineering tutorials, interactive visualizations, and AIR 1 previous year question walkthroughs covering Mathematical Logic, Set Theory, Algorithms, DBMS, and Operating Systems.",
+    provider: {
+      "@type": "Person",
+      name: "Akshaya Parida",
+      url: "https://akshayaparida.vercel.app",
+    },
+    educationalLevel: "Advanced",
+    about: [
+      "Discrete Mathematics",
+      "Mathematical Logic",
+      "First-Order Predicate Logic",
+      "GATE CSE",
+      "Data Structures and Algorithms",
+      "Database Management Systems",
+      "Operating Systems",
+    ],
+  };
+
   return (
     <>
       <Script
@@ -108,6 +132,11 @@ export default function StructuredData() {
         id="structured-data-breadcrumb"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="structured-data-course"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
       />
     </>
   );
