@@ -136,13 +136,21 @@ In the implication **p ⟹ q**:
 +-------+-------+-------------------------+-------------------------+
 \`\`\`
 
-**Common Natural Language Phrasings for p ⟹ q:**
-- *"If p, then q"*
-- *"q if p"*
-- *"p is sufficient for q"*
-- *"q is necessary for p"*
-- *"p only if q"*
-- *"q whenever p"*
+**GATE Translation Cheat Sheet for Conditional Statements (p ⟹ q):**
+
+In GATE exams, questions regularly test your ability to correctly identify the **Hypothesis (p)** vs. the **Conclusion (q)** in natural language sentences:
+
+| English Phrasing | Symbolic Translation | Which is the Hypothesis (Premise)? |
+|:-----------------|:---------------------|:-----------------------------------|
+| *"If p, then q"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"q if p"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"q when p"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"q whenever p"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"p is sufficient for q"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"q is necessary for p"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"p only if q"* | \`p ⟹ q\` | \`p\` is hypothesis (Trap!) |
+| *"q provided that p"* | \`p ⟹ q\` | \`p\` is hypothesis |
+| *"q unless p"* | \`¬p ⟹ q\` or \`q ∨ p\` | \`¬p\` is hypothesis |
 
 **Fundamental Equivalence of Implication:**
 > \`p ⟹ q  ≡  ¬p ∨ q\`
@@ -480,6 +488,19 @@ Digital computers implement propositional logic directly using transistors:
       explanation:
         "AIR 1 Analysis (MSQ - Correct: B & D):\n\n1) Concept: 'Everyone has exactly one mother' requires: (i) Existence of mother y: ∃y mother(y, x), and (ii) Uniqueness of y (no other distinct z can be mother).\n\n2) Option B (CORRECT): ∀x ∃y [mother(y, x) ∧ ∀z (noteq(z, y) → ¬mother(z, x))] asserts y is mother AND for any other person z ≠ y, z is NOT mother of x.\n\n3) Option D (CORRECT): By De Morgan's Law for quantifiers, ¬∃z (noteq(z, y) ∧ mother(z, x)) ≡ ∀z (noteq(z, y) → ¬mother(z, x)). Thus Option D is logically identical to Option B.\n\n4) Option A (WRONG): Only asserts x has at least one mother and at least one non-mother. Does not prevent x from having multiple mothers.\n\n5) Option C (WRONG): Since ¬noteq(z, y) ≡ (z = y), the inner part simplifies to mother(y, x), reducing the entire statement to a vacuous tautology: mother(y, x) → mother(y, x).",
       difficulty: "hard",
+    },
+    {
+      id: "logic-gate-2024-set2",
+      gateYear: "GATE CSE 2024 Set-2",
+      topicTag: "Propositional Logic Translation",
+      type: "MCQ",
+      question:
+        "Let p and q be the propositions: p: 'Fail grade can be given', q: 'Student scores more than 50% marks'. Which is the CORRECT representation of: 'Fail grade cannot be given when student scores more than 50% marks'?",
+      options: ["q → ¬p", "q → p", "p → q", "¬p → q"],
+      correctAnswer: 0,
+      explanation:
+        "AIR 1 Analysis (Correct: A):\n\n1) Identify Components:\n   • p: 'Fail grade can be given' ⟹ ¬p: 'Fail grade cannot be given'\n   • q: 'Student scores more than 50% marks'\n\n2) Translation Rule for 'B when A':\n   In propositional logic, 'B when A' ≡ 'If A, then B' ≡ A → B.\n   • Hypothesis (Premise): 'student scores more than 50% marks' ≡ q\n   • Conclusion (Consequent): 'Fail grade cannot be given' ≡ ¬p\n\n3) Final Formula: q → ¬p (Option A).\n\n4) Contrapositive Equivalent: (p → ¬q) ('If a fail grade can be given, then the student did not score more than 50% marks').",
+      difficulty: "easy",
     },
   ],
 };
