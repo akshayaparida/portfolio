@@ -5,6 +5,7 @@ import BlogPageHeader from "@/components/BlogPageHeader";
 import PageFooter from "@/components/PageFooter";
 
 interface Subject {
+  id: string;
   name: string;
   weightage: string;
   topics: string;
@@ -18,6 +19,7 @@ export default function GateCsPage() {
 
   const subjects: Subject[] = [
     {
+      id: "engineering-mathematics",
       name: "Engineering Mathematics & Discrete Math",
       weightage: "~13%",
       topics:
@@ -28,6 +30,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106106183",
     },
     {
+      id: "digital-logic",
       name: "Digital Logic",
       weightage: "~5%",
       topics:
@@ -38,6 +41,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106105185",
     },
     {
+      id: "coa",
       name: "Computer Organization & Architecture",
       weightage: "~8%",
       topics:
@@ -48,6 +52,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106106092",
     },
     {
+      id: "dsa",
       name: "Data Structures & Algorithms",
       weightage: "~16%",
       topics:
@@ -58,6 +63,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106106145",
     },
     {
+      id: "toc",
       name: "Theory of Computation",
       weightage: "~9%",
       topics:
@@ -68,6 +74,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106104148",
     },
     {
+      id: "compiler-design",
       name: "Compiler Design",
       weightage: "~5%",
       topics:
@@ -78,6 +85,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106105190",
     },
     {
+      id: "os",
       name: "Operating Systems",
       weightage: "~10%",
       topics:
@@ -88,6 +96,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106106144",
     },
     {
+      id: "databases",
       name: "Databases",
       weightage: "~8%",
       topics:
@@ -98,6 +107,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106105175",
     },
     {
+      id: "networks",
       name: "Computer Networks",
       weightage: "~10%",
       topics:
@@ -109,6 +119,7 @@ export default function GateCsPage() {
       nptelUrl: "https://nptel.ac.in/courses/106105183",
     },
     {
+      id: "general-aptitude",
       name: "General Aptitude",
       weightage: "15%",
       topics:
@@ -175,7 +186,7 @@ export default function GateCsPage() {
         {/* Grid */}
         <section className="subjects-grid">
           {filteredSubjects.map((sub, idx) => (
-            <div key={idx} className="subject-card">
+            <div key={sub.id || idx} id={sub.id} className="subject-card">
               <div className="card-top">
                 <h3 className="subject-name">{sub.name}</h3>
                 <span className="weightage-badge">{sub.weightage}</span>
@@ -384,11 +395,31 @@ export default function GateCsPage() {
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
+          scroll-margin-top: 100px;
           transition:
             transform 0.2s,
             box-shadow 0.2s,
             border-color 0.2s;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .subject-card:target {
+          border-color: #10b981;
+          box-shadow:
+            0 0 0 3px rgba(16, 185, 129, 0.25),
+            0 8px 24px rgba(16, 185, 129, 0.12);
+          animation: highlightTarget 2s ease-out;
+        }
+
+        @keyframes highlightTarget {
+          0% {
+            background-color: rgba(16, 185, 129, 0.15);
+            transform: scale(1.02);
+          }
+          100% {
+            background-color: var(--surface);
+            transform: scale(1);
+          }
         }
 
         .subject-card:hover {

@@ -19,8 +19,8 @@
 /* Master Layout - Stretches edge-to-edge with clean margins */
 .module-page-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 1.75rem;
   max-width: 1760px;
   width: 100%;
   margin: 0 auto;
@@ -102,6 +102,37 @@
 
 .module-meta-text.status-text {
   text-transform: capitalize;
+}
+
+.module-gate-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10b981;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.module-gate-pill:hover {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+  transform: translateY(-1px);
+}
+
+.module-gate-pill .pill-arrow {
+  font-size: 0.62rem;
+  opacity: 0.75;
+}
+
+.module-gate-pill:hover .pill-arrow {
+  opacity: 1;
 }
 
 .module-title {
@@ -229,35 +260,41 @@
   gap: 0.35rem;
 }
 
-.nav-item {
+.nav-item-wrapper {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid transparent;
+  flex-direction: column;
   border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  border: 1px solid transparent;
 }
 
-.nav-item:hover {
+.nav-item-wrapper:hover {
   background: var(--bg-light);
   border-color: var(--border);
 }
 
-.nav-item.active {
+.nav-item-wrapper.active {
   background: rgba(16, 185, 129, 0.08);
   border-left: 3px solid #10b981;
   border-radius: 0 8px 8px 0;
   border-color: transparent transparent transparent #10b981;
 }
 
-html.dark .nav-item.active {
+html.dark .nav-item-wrapper.active {
   background: rgba(16, 185, 129, 0.12);
   border-left: 3px solid #10b981;
   border-color: transparent transparent transparent #10b981;
+}
+
+.nav-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem 0.25rem 0.65rem;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
 }
 
 .nav-index {
@@ -272,13 +309,16 @@ html.dark .nav-item.active {
   font-size: 0.7rem;
   font-weight: 700;
   flex-shrink: 0;
+  margin-top: 0.1rem;
 }
 
+.nav-item-wrapper.active .nav-index,
 .nav-item.active .nav-index {
   background: #10b981;
   color: #ffffff;
 }
 
+html.dark .nav-item-wrapper.active .nav-index,
 html.dark .nav-item.active .nav-index {
   background: #10b981;
   color: #0a0a0a;
@@ -288,12 +328,12 @@ html.dark .nav-item.active .nav-index {
   flex: 1;
   font-size: 0.84rem;
   color: var(--text-secondary);
-  line-height: 1.35;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.4;
+  white-space: normal;
+  word-break: break-word;
 }
 
+.nav-item-wrapper.active .nav-text,
 .nav-item.active .nav-text {
   color: var(--heading-color);
   font-weight: 700;
@@ -304,12 +344,58 @@ html.dark .nav-item.active .nav-index {
   color: var(--text-muted);
   opacity: 0;
   transition: opacity 0.15s;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
 }
 
-.nav-item:hover .nav-arrow,
-.nav-item.active .nav-arrow {
+.nav-item-wrapper:hover .nav-arrow,
+.nav-item-wrapper.active .nav-arrow {
   opacity: 0.9;
   color: #10b981;
+}
+
+.gate-topic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 2rem;
+  margin-right: 0.65rem;
+  margin-bottom: 0.45rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  color: #10b981;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-decoration: none;
+  width: fit-content;
+  letter-spacing: 0.02em;
+  transition: all 0.15s ease;
+}
+
+.gate-topic-badge:hover {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+  transform: translateX(2px);
+}
+
+.gate-badge-icon {
+  font-size: 0.62rem;
+}
+
+.gate-badge-label {
+  line-height: 1;
+}
+
+.gate-badge-arrow {
+  font-size: 0.58rem;
+  opacity: 0.7;
+}
+
+.gate-topic-badge:hover .gate-badge-arrow {
+  opacity: 1;
 }
 
 /* ==========================================================================

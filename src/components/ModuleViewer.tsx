@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
@@ -223,6 +224,20 @@ export default function ModuleViewer({
                     ? "In Progress"
                     : module.status}
                 </span>
+              </>
+            )}
+            {module.gateTag && (
+              <>
+                <span className="meta-dot">·</span>
+                <Link
+                  href={`/gate-cs#${module.gateTag.anchorId}`}
+                  className="module-gate-pill"
+                  title={`View ${module.gateTag.label} in GATE CS Syllabus`}
+                >
+                  <i className="fa-solid fa-graduation-cap"></i>
+                  <span>GATE CS: {module.gateTag.label}</span>
+                  <i className="fa-solid fa-arrow-up-right-from-square pill-arrow"></i>
+                </Link>
               </>
             )}
           </div>
