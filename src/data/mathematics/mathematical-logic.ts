@@ -250,15 +250,6 @@ A **predicate** P(x) is a statement containing variable x. Once a domain of disc
 - **Condition for True**: Finding at least one witness c in D where P(c) is true.
 - **Condition for False**: P(x) is false for every element in D.
 
-\`\`\`text
-Statement                         | Symbolic Logic (Domain: All Animals)
-----------------------------------|---------------------------------------
-"Every dog has four legs."        | ∀x (Dog(x) ⟹ FourLegged(x))
-"Some birds cannot fly."          | ∃x (Bird(x) ∧ ¬CanFly(x))
-"No fish can breathe air."        | ∀x (Fish(x) ⟹ ¬BreathesAir(x))
-"There is a smart student."       | ∃x (Student(x) ∧ Smart(x))
-\`\`\`
-
 #### 7.3 Multi-Variable Predicates & Translation Patterns (GATE AIR 1 Core Rules)
 
 In GATE, questions frequently involve binary relational predicates P(x, y) (e.g., M(x, y): *"x knows y"*, L(x, y): *"x loves y"*, D(x, y): *"x divides y"*) over a domain D.
@@ -276,7 +267,7 @@ In GATE, questions frequently involve binary relational predicates P(x, y) (e.g.
 ╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
 \`\`\`
 
-##### 🌟 The Celebrity / Master Problem Pattern:
+##### The Celebrity / Master Problem Pattern:
 Consider predicate M(x, y) meaning *"x knows y"*:
 
 1. **"Person y is known by everyone else (excluding themselves)":**
@@ -297,11 +288,11 @@ Consider predicate M(x, y) meaning *"x knows y"*:
 
 The uniqueness quantifier **∃!x P(x)** asserts that there exists **one and only one** element in domain D satisfying predicate P.
 
-##### 🌟 Two Core Components of "Exactly One":
+##### Two Core Components of "Exactly One":
 1. **Existence (At least one):** \`∃y P(y)\`
 2. **Uniqueness (At most one):** Any other entity \`z ≠ y\` cannot satisfy P, or equivalently, if \`P(z)\` holds, then \`z\` must be \`y\`.
 
-##### 📐 Standard Logical Forms of "Everyone has exactly one mother":
+##### Standard Logical Forms of "Everyone has exactly one mother":
 Let \`mother(y, x)\` denote *"y is the mother of x"* and \`noteq(x, y)\` denote \`x ≠ y\`:
 
 - **Form 1: Universal Non-Equality Implication (GATE Standard Form):**
@@ -325,14 +316,14 @@ Let \`mother(y, x)\` denote *"y is the mother of x"* and \`noteq(x, y)\` denote 
 
 In GATE, questions frequently test **implication strength** between quantified formulas (i.e., whether Premise A ⟹ Conclusion B).
 
-##### 🌟 1. The Fundamental Quantifier Swap Theorem:
+##### 1. The Fundamental Quantifier Swap Theorem:
 > \`∃y ∀x φ(x, y) ⟹ ∀x ∃y φ(x, y)\`
 
 - **Why it holds:** If **one universal witness y** works for all x simultaneously (\`∃y ∀x\`), then for every x, we can simply choose that same witness y (\`∀x ∃y\`).
 - **The Converse is FALSE:** \`∀x ∃y φ(x, y)\` DOES NOT imply \`∃y ∀x φ(x, y)\`.  
   *(Example over integers: "Every number has a successor" [\`∀x ∃y (y = x+1)\`] is True, but "There is a single number that is successor to all numbers" [\`∃y ∀x (y = x+1)\`] is False!)*
 
-##### 🌟 2. Quantifier Movement Over Implication (Scope Rules):
+##### 2. Quantifier Movement Over Implication (Scope Rules):
 When variable y does not occur free in P(x):
 - \`∃y [P(x) ⟹ Q(x, y)] ≡ P(x) ⟹ ∃y Q(x, y)\`
 - \`∀y [P(x) ⟹ Q(x, y)] ≡ P(x) ⟹ ∀y Q(x, y)\`
@@ -343,7 +334,7 @@ When variable y does not occur free in P(x):
 > - \`[∀x P(x)] ⟹ Q ≡ ∃x [P(x) ⟹ Q]\`
 > - \`[∃x P(x)] ⟹ Q ≡ ∀x [P(x) ⟹ Q]\`
 
-##### 🌟 3. AIR 1 Implication Testing Framework:
+##### 3. AIR 1 Implication Testing Framework:
 To test whether Premise **A** implies Target **G**: \`∀x [P(x) ⟹ ∃y Q(x, y)]\`:
 - **Universal Consequent Dominance:** If \`∀x ∀y Q(x, y)\` is True, then \`∃y Q(x, y)\` is always True. Because \`Anything ⟹ True ≡ True\`, the conjecture is guaranteed to hold.
 - **Existential Scope Insufficiency:** A premise asserting only existence for a single instance \`∃x [...]\` can **never** imply a universal claim \`∀x [...]\` over an infinite domain.
@@ -393,7 +384,7 @@ To disprove a universal statement ∀x P(x), it suffices to construct **one conc
 
 Mathematical induction is a fundamental proof technique for establishing that a predicate P(x) holds for all natural numbers ℕ = {0, 1, 2, ...}.
 
-##### 🌟 The Formal Axiom of Induction:
+##### The Formal Axiom of Induction:
 > \`(P(0) ∧ ∀x [P(x) ⟹ P(x+1)]) ⟹ ∀x P(x)\`
 
 - **Base Case (P(0)):** Proves that the property holds for the minimal starting element x = 0.

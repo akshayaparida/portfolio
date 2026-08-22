@@ -127,6 +127,27 @@ const Heading4 = ({
   );
 };
 
+const Heading5 = ({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) => {
+  const text = getNodeText(children);
+  const id = slugify(text);
+  return (
+    <h5 id={id} className="heading-with-anchor heading-h5 group" {...props}>
+      <span className="heading-text">{children}</span>
+      <a
+        href={`#${id}`}
+        className="heading-anchor-link"
+        aria-label={`Link to concept: ${text}`}
+        title="Direct section link"
+      >
+        #
+      </a>
+    </h5>
+  );
+};
+
 // Custom Blockquote Renderer for Rich Alert Callouts
 const Blockquote = ({
   children,
@@ -251,6 +272,7 @@ export default function ModuleViewer({
                     h2: Heading2,
                     h3: Heading3,
                     h4: Heading4,
+                    h5: Heading5,
                     blockquote: Blockquote,
                   }}
                 >

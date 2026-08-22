@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 // Generate random 3D data points in an ellipsoid shape
 function generateData(numPoints: number = 50) {
@@ -9,12 +9,12 @@ function generateData(numPoints: number = 50) {
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.random() * Math.PI;
     const r = Math.random();
-    
+
     // Create ellipsoid (stretched sphere)
     const x = 4 * r * Math.sin(phi) * Math.cos(theta);
     const y = 2 * r * Math.sin(phi) * Math.sin(theta);
     const z = 1 * r * Math.cos(phi);
-    
+
     points.push([x, y, z]);
   }
   return points;
@@ -23,27 +23,34 @@ function generateData(numPoints: number = 50) {
 // Simple PCA implementation
 function performPCA(points: [number, number, number][]) {
   // Center the data
-  const mean = points.reduce((acc, p) => [acc[0] + p[0], acc[1] + p[1], acc[2] + p[2]], [0, 0, 0]);
+  const mean = points.reduce(
+    (acc, p) => [acc[0] + p[0], acc[1] + p[1], acc[2] + p[2]],
+    [0, 0, 0],
+  );
   mean[0] /= points.length;
   mean[1] /= points.length;
   mean[2] /= points.length;
-  
-  const centered = points.map(p => [p[0] - mean[0], p[1] - mean[1], p[2] - mean[2]]) as [number, number, number][];
-  
+
+  const centered = points.map((p) => [
+    p[0] - mean[0],
+    p[1] - mean[1],
+    p[2] - mean[2],
+  ]) as [number, number, number][];
+
   // Simplified: Just use the dominant directions
   // PC1: direction of maximum variance (X-axis dominant)
   const pc1 = [1, 0, 0]; // normalized
-  
+
   // PC2: perpendicular to PC1 (Y-axis dominant)
   const pc2 = [0, 1, 0]; // normalized
-  
+
   // Project onto PC1 and PC2
-  const projected = centered.map(p => {
+  const projected = centered.map((p) => {
     const pc1Val = p[0] * pc1[0] + p[1] * pc1[1] + p[2] * pc1[2];
     const pc2Val = p[0] * pc2[0] + p[1] * pc2[1] + p[2] * pc2[2];
     return [pc1Val, pc2Val] as [number, number];
   });
-  
+
   return { projected, pc1, pc2, mean };
 }
 
@@ -52,30 +59,37 @@ export default function PCAVisualization() {
   const [showProjection, setShowProjection] = useState(false);
   const [show3D, setShow3D] = useState(true);
   const [rotationAngle, setRotationAngle] = useState(30);
-  
+
   const { projected } = performPCA(dataPoints);
-  
+
   // Calculate explained variance (simplified)
-  const totalVariance = dataPoints.reduce((acc, p) => acc + p[0]**2 + p[1]**2 + p[2]**2, 0);
-  const pc1Variance = projected.reduce((acc, p) => acc + p[0]**2, 0);
-  const pc2Variance = projected.reduce((acc, p) => acc + p[1]**2, 0);
-  const explainedByPC12 = ((pc1Variance + pc2Variance) / totalVariance * 100).toFixed(1);
-  
+  const totalVariance = dataPoints.reduce(
+    (acc, p) => acc + p[0] ** 2 + p[1] ** 2 + p[2] ** 2,
+    0,
+  );
+  const pc1Variance = projected.reduce((acc, p) => acc + p[0] ** 2, 0);
+  const pc2Variance = projected.reduce((acc, p) => acc + p[1] ** 2, 0);
+  const explainedByPC12 = (
+    ((pc1Variance + pc2Variance) / totalVariance) *
+    100
+  ).toFixed(1);
+
   // Project 3D points to 2D for visualization
   const project3DTo2D = (x: number, y: number, z: number, angle: number) => {
-    const rad = angle * Math.PI / 180;
+    const rad = (angle * Math.PI) / 180;
     const rotX = x * Math.cos(rad) - z * Math.sin(rad);
     const rotY = y;
     return [rotX * 30 + 250, rotY * 30 + 200]; // scale and center
   };
-  
+
   return (
     <div className="pca-container">
       <div className="pca-header">
-        <h3>🎯 What is PCA?</h3>
+        <h3>What is PCA?</h3>
         <p>
-          <strong>Principal Component Analysis</strong> finds the directions where your data varies the most.
-          This lets you reduce 1000 dimensions → 2D while keeping most information!
+          <strong>Principal Component Analysis</strong> finds the directions
+          where your data varies the most. This lets you reduce 1000 dimensions
+          → 2D while keeping most information!
         </p>
       </div>
 
@@ -90,7 +104,7 @@ export default function PCAVisualization() {
             <span>Show Original 3D Data</span>
           </label>
         </div>
-        
+
         <div className="control-group">
           <label>
             <input
@@ -101,7 +115,7 @@ export default function PCAVisualization() {
             <span>Show 2D Projection (PCA Result)</span>
           </label>
         </div>
-        
+
         <div className="control-group">
           <label>
             <span>Rotate 3D View: {rotationAngle}°</span>
@@ -126,18 +140,41 @@ export default function PCAVisualization() {
             </div>
             <svg width="500" height="400" className="viz-svg">
               <rect width="500" height="400" fill="#fafafa" />
-              
+
               {/* Grid lines */}
-              <line x1="50" y1="200" x2="450" y2="200" stroke="#ddd" strokeWidth="1" />
-              <line x1="250" y1="50" x2="250" y2="350" stroke="#ddd" strokeWidth="1" />
-              
+              <line
+                x1="50"
+                y1="200"
+                x2="450"
+                y2="200"
+                stroke="#ddd"
+                strokeWidth="1"
+              />
+              <line
+                x1="250"
+                y1="50"
+                x2="250"
+                y2="350"
+                stroke="#ddd"
+                strokeWidth="1"
+              />
+
               {/* Axes labels */}
-              <text x="460" y="205" fill="#666" fontSize="12">X</text>
-              <text x="255" y="45" fill="#666" fontSize="12">Y</text>
-              
+              <text x="460" y="205" fill="#666" fontSize="12">
+                X
+              </text>
+              <text x="255" y="45" fill="#666" fontSize="12">
+                Y
+              </text>
+
               {/* Data points */}
               {dataPoints.map((point, i) => {
-                const [x2d, y2d] = project3DTo2D(point[0], point[1], point[2], rotationAngle);
+                const [x2d, y2d] = project3DTo2D(
+                  point[0],
+                  point[1],
+                  point[2],
+                  rotationAngle,
+                );
                 return (
                   <circle
                     key={i}
@@ -149,14 +186,21 @@ export default function PCAVisualization() {
                   />
                 );
               })}
-              
-              <text x="250" y="380" textAnchor="middle" fill="#666" fontSize="14" fontWeight="600">
+
+              <text
+                x="250"
+                y="380"
+                textAnchor="middle"
+                fill="#666"
+                fontSize="14"
+                fontWeight="600"
+              >
                 {dataPoints.length} points in 3D space
               </text>
             </svg>
           </div>
         )}
-        
+
         {showProjection && (
           <div className="viz-panel">
             <div className="panel-header">
@@ -165,15 +209,45 @@ export default function PCAVisualization() {
             </div>
             <svg width="500" height="400" className="viz-svg">
               <rect width="500" height="400" fill="#fafafa" />
-              
+
               {/* Grid */}
-              <line x1="50" y1="200" x2="450" y2="200" stroke="#ddd" strokeWidth="1" />
-              <line x1="250" y1="50" x2="250" y2="350" stroke="#ddd" strokeWidth="1" />
-              
+              <line
+                x1="50"
+                y1="200"
+                x2="450"
+                y2="200"
+                stroke="#ddd"
+                strokeWidth="1"
+              />
+              <line
+                x1="250"
+                y1="50"
+                x2="250"
+                y2="350"
+                stroke="#ddd"
+                strokeWidth="1"
+              />
+
               {/* Axes labels */}
-              <text x="460" y="205" fill="#10b981" fontSize="12" fontWeight="600">PC1</text>
-              <text x="255" y="45" fill="#10b981" fontSize="12" fontWeight="600">PC2</text>
-              
+              <text
+                x="460"
+                y="205"
+                fill="#10b981"
+                fontSize="12"
+                fontWeight="600"
+              >
+                PC1
+              </text>
+              <text
+                x="255"
+                y="45"
+                fill="#10b981"
+                fontSize="12"
+                fontWeight="600"
+              >
+                PC2
+              </text>
+
               {/* Projected points */}
               {projected.map((point, i) => {
                 const x2d = point[0] * 30 + 250;
@@ -189,8 +263,15 @@ export default function PCAVisualization() {
                   />
                 );
               })}
-              
-              <text x="250" y="380" textAnchor="middle" fill="#10b981" fontSize="14" fontWeight="600">
+
+              <text
+                x="250"
+                y="380"
+                textAnchor="middle"
+                fill="#10b981"
+                fontSize="14"
+                fontWeight="600"
+              >
                 Compressed to 2D • {explainedByPC12}% variance kept!
               </text>
             </svg>
@@ -200,39 +281,59 @@ export default function PCAVisualization() {
 
       <div className="info-cards">
         <div className="info-card">
-          <div className="info-icon">📊</div>
+          <div className="info-icon">
+            <i className="fa-solid fa-chart-column"></i>
+          </div>
           <h4>Original Dimensions</h4>
           <div className="info-value">3D</div>
           <p>X, Y, Z coordinates</p>
         </div>
-        
+
         <div className="info-card">
-          <div className="info-icon">➡️</div>
+          <div className="info-icon">
+            <i className="fa-solid fa-arrow-right"></i>
+          </div>
           <h4>PCA Magic</h4>
           <div className="info-value">2D</div>
           <p>PC1 (most variance) + PC2</p>
         </div>
-        
+
         <div className="info-card highlight">
-          <div className="info-icon">✨</div>
+          <div className="info-icon">
+            <i className="fa-solid fa-bolt"></i>
+          </div>
           <h4>Information Kept</h4>
           <div className="info-value">{explainedByPC12}%</div>
-          <p>Lost only {(100 - parseFloat(explainedByPC12)).toFixed(1)}% of variance!</p>
+          <p>
+            Lost only {(100 - parseFloat(explainedByPC12)).toFixed(1)}% of
+            variance!
+          </p>
         </div>
       </div>
 
       <div className="explanation-section">
-        <h4>🎓 How PCA Works:</h4>
+        <h4>How PCA Works:</h4>
         <ol>
-          <li><strong>Find direction of maximum spread</strong> → That&apos;s PC1 (Principal Component 1)</li>
-          <li><strong>Find next best direction</strong> (perpendicular to PC1) → That&apos;s PC2</li>
-          <li><strong>Project all points</strong> onto PC1 and PC2 axes</li>
-          <li><strong>Drop PC3</strong> (least important) → Now you have 2D data!</li>
+          <li>
+            <strong>Find direction of maximum spread</strong> → That&apos;s PC1
+            (Principal Component 1)
+          </li>
+          <li>
+            <strong>Find next best direction</strong> (perpendicular to PC1) →
+            That&apos;s PC2
+          </li>
+          <li>
+            <strong>Project all points</strong> onto PC1 and PC2 axes
+          </li>
+          <li>
+            <strong>Drop PC3</strong> (least important) → Now you have 2D data!
+          </li>
         </ol>
-        
+
         <div className="use-case">
-          <strong>Real Example:</strong> Customer data with 1,000 features (age, purchases, clicks, etc.) 
-          → PCA reduces to 2D for visualization, keeping 95% of the important patterns!
+          <strong>Real Example:</strong> Customer data with 1,000 features (age,
+          purchases, clicks, etc.) → PCA reduces to 2D for visualization,
+          keeping 95% of the important patterns!
         </div>
       </div>
 

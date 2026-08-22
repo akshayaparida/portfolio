@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Mafs, Coordinates, Vector, useMovablePoint, Theme } from 'mafs';
-import 'mafs/core.css';
+import { Mafs, Coordinates, Vector, useMovablePoint, Theme } from "mafs";
+import "mafs/core.css";
 
 export default function VectorSpace2D() {
   const vector1 = useMovablePoint([2, 3], {
@@ -10,23 +10,25 @@ export default function VectorSpace2D() {
   const vector2 = useMovablePoint([-1, 2], {
     color: Theme.red,
   });
-  
+
   const v1x = vector1.point[0];
   const v1y = vector1.point[1];
   const v2x = vector2.point[0];
   const v2y = vector2.point[1];
-  
+
   const dotProduct = v1x * v2x + v1y * v2y;
-  
+
   const magnitude1 = Math.sqrt(v1x * v1x + v1y * v1y);
   const magnitude2 = Math.sqrt(v2x * v2x + v2y * v2y);
-  
-  const cosineSimilarity = magnitude1 === 0 || magnitude2 === 0 
-    ? 0 
-    : dotProduct / (magnitude1 * magnitude2);
-  
-  const angleDegrees = Math.acos(Math.max(-1, Math.min(1, cosineSimilarity))) * (180 / Math.PI);
-  
+
+  const cosineSimilarity =
+    magnitude1 === 0 || magnitude2 === 0
+      ? 0
+      : dotProduct / (magnitude1 * magnitude2);
+
+  const angleDegrees =
+    Math.acos(Math.max(-1, Math.min(1, cosineSimilarity))) * (180 / Math.PI);
+
   return (
     <div className="vector-space-container">
       <div className="mafs-wrapper">
@@ -45,20 +47,24 @@ export default function VectorSpace2D() {
           {vector2.element}
         </Mafs>
       </div>
-      
+
       <div className="math-output">
         <div className="output-section">
           <h3>Vector A (Blue)</h3>
-          <p className="vector-display">[{v1x.toFixed(2)}, {v1y.toFixed(2)}]</p>
+          <p className="vector-display">
+            [{v1x.toFixed(2)}, {v1y.toFixed(2)}]
+          </p>
           <p className="magnitude">Magnitude: {magnitude1.toFixed(3)}</p>
         </div>
-        
+
         <div className="output-section">
           <h3>Vector B (Red)</h3>
-          <p className="vector-display">[{v2x.toFixed(2)}, {v2y.toFixed(2)}]</p>
+          <p className="vector-display">
+            [{v2x.toFixed(2)}, {v2y.toFixed(2)}]
+          </p>
           <p className="magnitude">Magnitude: {magnitude2.toFixed(3)}</p>
         </div>
-        
+
         <div className="output-section highlight">
           <h3>Similarity Metrics</h3>
           <div className="metric">
@@ -74,15 +80,16 @@ export default function VectorSpace2D() {
             <span className="metric-value">{angleDegrees.toFixed(1)}°</span>
           </div>
         </div>
-        
+
         <div className="explanation">
           <p className="tip">
-            💡 <strong>Drag the dots</strong> to move vectors around.
+            <strong>Drag the dots</strong> to move vectors around.
           </p>
           <p className="tip-detail">
-            Cosine similarity near <strong>1.0</strong> means vectors point in the same direction (semantically similar).
-            Near <strong>0.0</strong> means perpendicular (unrelated).
-            Near <strong>-1.0</strong> means opposite directions (semantically opposite).
+            Cosine similarity near <strong>1.0</strong> means vectors point in
+            the same direction (semantically similar). Near <strong>0.0</strong>{" "}
+            means perpendicular (unrelated). Near <strong>-1.0</strong> means
+            opposite directions (semantically opposite).
           </p>
         </div>
       </div>
@@ -139,7 +146,7 @@ export default function VectorSpace2D() {
           font-size: 18px;
           font-weight: 600;
           color: #1a1a1a;
-          font-family: 'Courier New', monospace;
+          font-family: "Courier New", monospace;
           margin: 0 0 8px 0;
         }
 
@@ -170,7 +177,7 @@ export default function VectorSpace2D() {
           font-size: 16px;
           font-weight: 700;
           color: #1a1a1a;
-          font-family: 'Courier New', monospace;
+          font-family: "Courier New", monospace;
         }
 
         .explanation {

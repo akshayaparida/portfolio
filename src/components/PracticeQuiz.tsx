@@ -179,7 +179,9 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     return (
       <div className="quiz-container">
         <div className="start-screen">
-          <div className="start-icon">📝</div>
+          <div className="start-icon">
+            <i className="fa-solid fa-file-lines"></i>
+          </div>
           <h3>Practice Quiz</h3>
           <p className="start-info">
             {questions.length} question{questions.length > 1 ? "s" : ""} ·{" "}
@@ -274,7 +276,9 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     return (
       <div className="quiz-container completed">
         <div className="completion-card">
-          <div className="completion-icon">🏆</div>
+          <div className="completion-icon">
+            <i className="fa-solid fa-trophy"></i>
+          </div>
           <h3>Quiz Completed!</h3>
           <p className="final-score">
             You scored <span>{score}</span> out of{" "}
@@ -478,7 +482,8 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
       {timedOut && (
         <div className="timeout-banner">
-          ⏱ Time&apos;s up! Moving to explanation.
+          <i className="fa-solid fa-clock"></i> Time&apos;s up! Moving to
+          explanation.
         </div>
       )}
 
@@ -530,9 +535,9 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         >
           <h4>
             {timedOut
-              ? `⏱ Time's up! The correct answer is ${correctLetters}.`
+              ? `Time's up! The correct answer is ${correctLetters}.`
               : isAllCorrect
-                ? "Correct! 🎉"
+                ? "Correct!"
                 : `Not quite. The correct answer is ${correctLetters}.`}
           </h4>
           <p>{currentQuestion.explanation}</p>
