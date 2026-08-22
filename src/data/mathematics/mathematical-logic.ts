@@ -145,14 +145,12 @@ In the implication **p ⟹ q**:
 - *"q whenever p"*
 
 **Fundamental Equivalence of Implication:**
-$$p \\implies q \\equiv \\neg p \\lor q$$
-> **In Plain Text:** \`p ⟹ q  ≡  ¬p ∨ q\`
+> \`p ⟹ q  ≡  ¬p ∨ q\`
 
 #### 3.2 The Biconditional (p ⟺ q)
 **p ⟺ q** states *"p if and only if q"* (often written **iff**).
 It is True whenever p and q share the **exact same truth value** (T ⟺ T and F ⟺ F).
-$$p \\iff q \\equiv (p \\implies q) \\land (q \\implies p)$$
-> **In Plain Text:** \`p ⟺ q  ≡  (p ⟹ q) ∧ (q ⟹ p)\`
+> \`p ⟺ q  ≡  (p ⟹ q) ∧ (q ⟹ p)\`
 
 ---
 
@@ -255,7 +253,7 @@ Statement                         | Symbolic Logic (Domain: All Animals)
 
 #### 7.3 Multi-Variable Predicates & Translation Patterns (GATE AIR 1 Core Rules)
 
-In GATE, questions frequently involve binary relational predicates $P(x, y)$ (e.g., $M(x, y)$: "$x$ knows $y$", $L(x, y)$: "$x$ loves $y$", $D(x, y)$: "$x$ divides $y$") over a domain $D$.
+In GATE, questions frequently involve binary relational predicates P(x, y) (e.g., M(x, y): *"x knows y"*, L(x, y): *"x loves y"*, D(x, y): *"x divides y"*) over a domain D.
 
 \`\`\`text
 ╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
@@ -271,21 +269,21 @@ In GATE, questions frequently involve binary relational predicates $P(x, y)$ (e.
 \`\`\`
 
 ##### 🌟 The Celebrity / Master Problem Pattern:
-Consider predicate $M(x, y)$ meaning *"x knows y"*:
+Consider predicate M(x, y) meaning *"x knows y"*:
 
 1. **"Person y is known by everyone else (excluding themselves)":**
-   $$\forall x ((x \neq y) \to M(x, y))$$
+   > \`∀x ((x ≠ y) ⟹ M(x, y))\`
 2. **"Person y knows nobody else (excluding themselves)":**
-   $$\forall x ((x \neq y) \to \neg M(y, x))$$
+   > \`∀x ((x ≠ y) ⟹ ¬M(y, x))\`
 3. **"There exists a person y who knows nobody else, but is known by everyone else":**
-   Combining the two properties with an existential witness $y$:
-   $$(\exists y)(\forall x)((x \neq y) \to (M(x, y) \land \neg M(y, x)))$$
+   Combining the two properties with an existential witness y:
+   > \`(∃y)(∀x)((x ≠ y) ⟹ (M(x, y) ∧ ¬M(y, x)))\`
 
 > [!IMPORTANT]
 > **Order of Quantifiers Matters:**
-> - $\exists y \forall x P(x, y)$ asserts **ONE single person $y$** works for all $x$ simultaneously (Strong statement).
-> - $\forall x \exists y P(x, y)$ allows each $x$ to have their own different $y$ (Weaker statement).
-> - **Implication:** $\exists y \forall x P(x, y) \implies \forall x \exists y P(x, y)$, but the converse is FALSE!
+> - \`∃y ∀x P(x, y)\` asserts **ONE single person y** works for all x simultaneously (Strong statement).
+> - \`∀x ∃y P(x, y)\` allows each x to have their own different y (Weaker statement).
+> - **Implication:** \`∃y ∀x P(x, y) ⟹ ∀x ∃y P(x, y)\`, but the converse is FALSE!
 
 ---
 
@@ -330,22 +328,22 @@ To disprove a universal statement ∀x P(x), it suffices to construct **one conc
 
 #### 9.5 Principle of Mathematical Induction (PMI in First-Order Logic)
 
-Mathematical induction is a fundamental proof technique for establishing that a predicate $P(x)$ holds for all natural numbers $\mathbb{N} = \{0, 1, 2, \dots\}$.
+Mathematical induction is a fundamental proof technique for establishing that a predicate P(x) holds for all natural numbers ℕ = {0, 1, 2, ...}.
 
 ##### 🌟 The Formal Axiom of Induction:
-$$\Big( P(0) \land \forall x [P(x) \implies P(x+1)] \Big) \implies \forall x P(x)$$
+> \`(P(0) ∧ ∀x [P(x) ⟹ P(x+1)]) ⟹ ∀x P(x)\`
 
-- **Base Case ($P(0)$):** Proves that the property holds for the minimal starting element $x = 0$.
-- **Inductive Step ($\forall x [P(x) \implies P(x+1)]$):** Proves that truth transfers from any number $x$ to its immediate successor $x + 1$ (the "domino effect").
-- **Universal Conclusion ($\forall x P(x)$):** Because 0 holds, 1 holds; because 1 holds, 2 holds; and so forth, guaranteeing $P(x)$ for all $x \in \mathbb{N}$.
+- **Base Case (P(0)):** Proves that the property holds for the minimal starting element x = 0.
+- **Inductive Step (∀x [P(x) ⟹ P(x+1)]):** Proves that truth transfers from any number x to its immediate successor x + 1 (the "domino effect").
+- **Universal Conclusion (∀x P(x)):** Because 0 holds, 1 holds; because 1 holds, 2 holds; and so forth, guaranteeing P(x) for all x ∈ ℕ.
 
 > [!WARNING]
 > **GATE Common Induction Fallacies (AIR 1 Traps):**
-> 1. **Backward Step Fallacy:** $(P(0) \land \forall x [P(x) \implies P(x-1)]) \centernot\implies \forall x P(x)$  
->    *Flaw:* From 0, going backward ($x-1$) cannot prove truth for positive numbers $1, 2, 3, \dots$.
-> 2. **Truncated Base Fallacy:** $(P(1000) \land \forall x [P(x) \implies P(x+1)]) \centernot\implies \forall x P(x)$  
->    *Flaw:* Only proves truth for $x \ge 1000$; it leaves $0, 1, \dots, 999$ unverified.
-> 3. **Strong Induction:** $\Big( P(0) \land \forall x [(\forall k \le x P(k)) \implies P(x+1)] \Big) \implies \forall x P(x)$.
+> 1. **Backward Step Fallacy:** \`(P(0) ∧ ∀x [P(x) ⟹ P(x-1)])\` DOES NOT imply \`∀x P(x)\`  
+>    *Flaw:* From 0, going backward (x - 1) cannot prove truth for positive numbers 1, 2, 3, ...
+> 2. **Truncated Base Fallacy:** \`(P(1000) ∧ ∀x [P(x) ⟹ P(x+1)])\` DOES NOT imply \`∀x P(x)\`  
+>    *Flaw:* Only proves truth for x ≥ 1000; it leaves 0, 1, ..., 999 unverified.
+> 3. **Strong Induction:** \`(P(0) ∧ ∀x [(∀k ≤ x P(k)) ⟹ P(x+1)]) ⟹ ∀x P(x)\`.
 
 ---
 
@@ -386,7 +384,7 @@ Digital computers implement propositional logic directly using transistors:
 | **Universal Quantifier** | \`∀x P(x)\` | True if holds for all elements |
 | **Existential Quantifier**| \`∃x P(x)\` | True if holds for at least one element |
 | **Quantifier Negation** | \`¬(∀x P(x)) ≡ ∃x ¬P(x)\` | \`¬(∃x P(x)) ≡ ∀x ¬P(x)\` |
-| **Mathematical Induction**| \`[P(0) ∧ ∀x(P(x)⇒P(x+1))] ⇒ ∀xP(x)\` | Proves universal validity over $\mathbb{N}$ |
+| **Mathematical Induction**| \`[P(0) ∧ ∀x(P(x)⇒P(x+1))] ⇒ ∀xP(x)\` | Proves universal validity over ℕ |
 
 ---
 
