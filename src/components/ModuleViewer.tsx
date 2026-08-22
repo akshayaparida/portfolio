@@ -226,20 +226,6 @@ export default function ModuleViewer({
                 </span>
               </>
             )}
-            {module.gateTag && (
-              <>
-                <span className="meta-dot">·</span>
-                <Link
-                  href={`/gate-cs#${module.gateTag.anchorId}`}
-                  className="module-gate-pill"
-                  title={`View ${module.gateTag.label} in GATE CS Syllabus`}
-                >
-                  <i className="fa-solid fa-graduation-cap"></i>
-                  <span>GATE CS: {module.gateTag.label}</span>
-                  <i className="fa-solid fa-arrow-up-right-from-square pill-arrow"></i>
-                </Link>
-              </>
-            )}
           </div>
 
           <h2 className="module-title">{module.title}</h2>

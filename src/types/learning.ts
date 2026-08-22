@@ -26,17 +26,11 @@ export interface PracticeQuestion {
   difficulty: "easy" | "medium" | "hard";
 }
 
-export interface GateTag {
-  label: string;
-  anchorId: string;
-}
-
 export interface LearningModule {
   id: string;
   title: string;
   description: string;
   status: ModuleStatus;
-  gateTag?: GateTag;
   tags?: string[];
   startDate?: string;
   completedDate?: string;
