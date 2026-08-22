@@ -328,6 +328,25 @@ To prove proposition p, assume ¬p is true. Derive a logical impossibility or co
 To disprove a universal statement ∀x P(x), it suffices to construct **one concrete instance c** where P(c) is false.
 - *Example:* *"All prime numbers are odd."* Counterexample: n = 2 is prime and even.
 
+#### 9.5 Principle of Mathematical Induction (PMI in First-Order Logic)
+
+Mathematical induction is a fundamental proof technique for establishing that a predicate $P(x)$ holds for all natural numbers $\mathbb{N} = \{0, 1, 2, \dots\}$.
+
+##### 🌟 The Formal Axiom of Induction:
+$$\Big( P(0) \land \forall x [P(x) \implies P(x+1)] \Big) \implies \forall x P(x)$$
+
+- **Base Case ($P(0)$):** Proves that the property holds for the minimal starting element $x = 0$.
+- **Inductive Step ($\forall x [P(x) \implies P(x+1)]$):** Proves that truth transfers from any number $x$ to its immediate successor $x + 1$ (the "domino effect").
+- **Universal Conclusion ($\forall x P(x)$):** Because 0 holds, 1 holds; because 1 holds, 2 holds; and so forth, guaranteeing $P(x)$ for all $x \in \mathbb{N}$.
+
+> [!WARNING]
+> **GATE Common Induction Fallacies (AIR 1 Traps):**
+> 1. **Backward Step Fallacy:** $(P(0) \land \forall x [P(x) \implies P(x-1)]) \centernot\implies \forall x P(x)$  
+>    *Flaw:* From 0, going backward ($x-1$) cannot prove truth for positive numbers $1, 2, 3, \dots$.
+> 2. **Truncated Base Fallacy:** $(P(1000) \land \forall x [P(x) \implies P(x+1)]) \centernot\implies \forall x P(x)$  
+>    *Flaw:* Only proves truth for $x \ge 1000$; it leaves $0, 1, \dots, 999$ unverified.
+> 3. **Strong Induction:** $\Big( P(0) \land \forall x [(\forall k \le x P(k)) \implies P(x+1)] \Big) \implies \forall x P(x)$.
+
 ---
 
 ### 10. Boolean Satisfiability (SAT) & Logic Gates
@@ -367,6 +386,7 @@ Digital computers implement propositional logic directly using transistors:
 | **Universal Quantifier** | \`∀x P(x)\` | True if holds for all elements |
 | **Existential Quantifier**| \`∃x P(x)\` | True if holds for at least one element |
 | **Quantifier Negation** | \`¬(∀x P(x)) ≡ ∃x ¬P(x)\` | \`¬(∃x P(x)) ≡ ∀x ¬P(x)\` |
+| **Mathematical Induction**| \`[P(0) ∧ ∀x(P(x)⇒P(x+1))] ⇒ ∀xP(x)\` | Proves universal validity over $\mathbb{N}$ |
 
 ---
 
@@ -396,8 +416,25 @@ Digital computers implement propositional logic directly using transistors:
       ],
       correctAnswer: 0,
       explanation:
-        "AIR 1 Analysis: 1) 'There is a person' asserts existence of a single individual y → (∃y). 2) 'everyone else' asserts a condition for all other individuals x (x ≠ y) → (∀x). 3) For all other x: 'known by x' is M(x, y) and 'does not know x' is ¬M(y, x). Combining under the domain filter (x ≠ y) gives (x ≠ y) → (M(x, y) ∧ ¬M(y, x)). Overall formula: (∃y)(∀x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x))).",
+        "AIR 1 Analysis:\n1) 'There is a person' asserts existence of a single individual y → (∃y).\n2) 'everyone else' asserts a condition for all other individuals x (x ≠ y) → (∀x).\n3) For all other x: 'known by x' is M(x, y) and 'does not know x' is ¬M(y, x).\n4) Combining under the domain filter (x ≠ y) gives (x ≠ y) → (M(x, y) ∧ ¬M(y, x)).\n\nOverall formula: (∃y)(∀x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x))).",
       difficulty: "hard",
+    },
+    {
+      id: "logic-gate-2025-set2",
+      gateYear: "GATE CSE 2025 Set-2",
+      topicTag: "Mathematical Induction & Predicates",
+      question:
+        "Let P(x) be an arbitrary predicate over the domain of natural numbers. Which ONE of the following statements is TRUE?",
+      options: [
+        "(P(0) ∧ (∀x[P(x) ⇒ P(x+1)])) ⇒ (∀xP(x))",
+        "(P(0) ∧ (∀x[P(x) ⇒ P(x-1)])) ⇒ (∀xP(x))",
+        "(P(1000) ∧ (∀x[P(x) ⇒ P(x-1)])) ⇒ (∀xP(x))",
+        "(P(1000) ∧ (∀x[P(x) ⇒ P(x+1)])) ⇒ (∀xP(x))",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "AIR 1 Analysis:\n1) Option A is the exact First-Order Logic formal statement of the Principle of Mathematical Induction (Peano Axiom 5).\n2) Base Step: P(0) is True.\n3) Inductive Step: ∀x [P(x) ⇒ P(x+1)] guarantees the truth cascades forward to 1, 2, 3, ... to all natural numbers.\n4) Options B & C fail because backward implication P(x) ⇒ P(x-1) cannot reach numbers greater than the base.\n5) Option D fails because starting at P(1000) leaves all numbers from 0 to 999 unproven.",
+      difficulty: "medium",
     },
   ],
 };
