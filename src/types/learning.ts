@@ -24,6 +24,8 @@ export interface PracticeQuestion {
   correctAnswer: number; // Index of the correct option (0-3)
   explanation: string;
   difficulty: "easy" | "medium" | "hard";
+  gateYear?: string;
+  topicTag?: string;
 }
 
 export interface LearningModule {

@@ -110,6 +110,44 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
   const timerColor =
     timeLeft > 30 ? "#10b981" : timeLeft > 10 ? "#f59e0b" : "#ef4444";
 
+  const [filterGateOnly, setFilterGateOnly] = useState(false);
+
+  const getQuestionGateYear = (q: PracticeQuestion) => {
+    if (q.gateYear) return q.gateYear;
+    const match = q.question.match(/\[(GATE[^\]]+)\]/i);
+    return match ? match[1] : null;
+  };
+
+  const getQuestionTopic = (q: PracticeQuestion) => {
+    if (q.topicTag) return q.topicTag;
+    const match = q.question.match(/\[Topic:\s*([^\]]+)\]/i);
+    return match ? match[1] : null;
+  };
+
+  const gateQuestionsCount = questions.filter((q) =>
+    getQuestionGateYear(q),
+  ).length;
+  const filteredIndices = questions
+    .map((q, idx) => ({ q, idx }))
+    .filter(({ q }) => (filterGateOnly ? !!getQuestionGateYear(q) : true))
+    .map(({ idx }) => idx);
+
+  const currentGateYear = getQuestionGateYear(currentQuestion);
+  const currentTopicTag = getQuestionTopic(currentQuestion);
+  const cleanQuestionText = currentQuestion.question
+    .replace(/\[GATE[^\]]+\]\s*/i, "")
+    .replace(/\[Topic:\s*[^\]]+\]\s*/i, "");
+
+  const handleJumpToQuestion = (targetIndex: number) => {
+    if (targetIndex === currentQuestionIndex) return;
+    setCurrentQuestionIndex(targetIndex);
+    setSelectedOption(null);
+    setShowExplanation(false);
+    setTimeLeft(TIMER_SECONDS);
+    setTimerActive(true);
+    setTimedOut(false);
+  };
+
   if (!questions || questions.length === 0) {
     return null;
   }
@@ -124,6 +162,15 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
             {questions.length} question{questions.length > 1 ? "s" : ""} ·{" "}
             {TIMER_SECONDS}s per question
           </p>
+          {gateQuestionsCount > 0 && (
+            <div className="gate-featured-badge">
+              <i className="fa-solid fa-graduation-cap"></i> Includes{" "}
+              <strong>
+                {gateQuestionsCount} GATE Previous Year Question
+                {gateQuestionsCount > 1 ? "s" : ""}
+              </strong>
+            </div>
+          )}
           <p className="start-desc">
             Each question has a {TIMER_SECONDS}-second time limit. Unanswered
             questions will be auto-submitted when time runs out.
@@ -157,6 +204,19 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
             color: var(--text-secondary);
             font-weight: 600;
             margin-bottom: 0.4rem;
+          }
+          .gate-featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.85rem;
           }
           .start-desc {
             font-size: 0.88rem;
@@ -294,10 +354,70 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
 
   return (
     <div className="quiz-container">
+      {/* Question Jump & Filter Strip */}
+      <div className="quiz-nav-strip">
+        <div className="filter-group">
+          <button
+            className={`filter-btn ${!filterGateOnly ? "active" : ""}`}
+            onClick={() => setFilterGateOnly(false)}
+          >
+            All ({questions.length})
+          </button>
+          {gateQuestionsCount > 0 && (
+            <button
+              className={`filter-btn gate-filter ${filterGateOnly ? "active" : ""}`}
+              onClick={() => setFilterGateOnly(true)}
+            >
+              <i className="fa-solid fa-graduation-cap"></i> GATE PYQs (
+              {gateQuestionsCount})
+            </button>
+          )}
+        </div>
+
+        <div className="jump-pills-list">
+          {filteredIndices.map((idx) => {
+            const q = questions[idx];
+            const isCurrent = idx === currentQuestionIndex;
+            const isAnswered = answers[q.id] !== undefined;
+            const isCorrect = answers[q.id] === true;
+            const hasGateTag = !!getQuestionGateYear(q);
+
+            return (
+              <button
+                key={q.id}
+                onClick={() => handleJumpToQuestion(idx)}
+                className={`jump-pill ${isCurrent ? "current" : ""} ${isAnswered ? (isCorrect ? "correct" : "incorrect") : ""} ${hasGateTag ? "is-gate" : ""}`}
+                title={`Q${idx + 1}${hasGateTag ? ` - ${getQuestionGateYear(q)}` : ""}`}
+              >
+                {hasGateTag && (
+                  <i className="fa-solid fa-graduation-cap pill-icon"></i>
+                )}
+                <span>Q{idx + 1}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="quiz-header">
-        <span className="question-counter">
-          Question {currentQuestionIndex + 1} of {questions.length}
-        </span>
+        <div className="header-left">
+          <span className="question-counter">
+            Question {currentQuestionIndex + 1} of {questions.length}
+          </span>
+          <div className="tags-row">
+            {currentGateYear && (
+              <span className="gate-badge">
+                <i className="fa-solid fa-graduation-cap"></i> {currentGateYear}
+              </span>
+            )}
+            {currentTopicTag && (
+              <span className="topic-badge">
+                <i className="fa-solid fa-bookmark"></i> {currentTopicTag}
+              </span>
+            )}
+          </div>
+        </div>
+
         <div className="header-right">
           <div
             className={`timer-container${timeLeft <= 10 && timerActive ? " pulse" : ""}${timedOut ? " timed-out" : ""}`}
@@ -318,13 +438,6 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
                 fill="none"
                 stroke={timerColor}
                 strokeWidth="3"
-                strokeDasharray={TIMER_CIRCUMFERENCE}
-                strokeDashoffset={strokeDashoffset}
-                strokeLinecap="round"
-                transform="rotate(-90 22 22)"
-                style={{
-                  transition: "stroke-dashoffset 1s linear, stroke 0.5s ease",
-                }}
               />
             </svg>
             <span className="timer-text" style={{ color: timerColor }}>
@@ -343,7 +456,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
         </div>
       )}
 
-      <h3 className="question-text">{currentQuestion.question}</h3>
+      <h3 className="question-text">{cleanQuestionText}</h3>
 
       <div className="options-grid">
         {currentQuestion.options.map((option, index) => {
@@ -431,6 +544,156 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           padding: 1.5rem;
           margin-top: 1.5rem;
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .quiz-nav-strip {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+          margin-bottom: 1.25rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .filter-group {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .filter-btn {
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+          font-size: 0.76rem;
+          font-weight: 700;
+          border: 1px solid var(--border);
+          background: var(--bg-light);
+          color: var(--text-secondary);
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .filter-btn:hover {
+          border-color: var(--heading-color);
+        }
+
+        .filter-btn.active {
+          background: var(--heading-color);
+          color: var(--surface);
+          border-color: var(--heading-color);
+        }
+
+        .filter-btn.gate-filter {
+          color: #10b981;
+          border-color: rgba(16, 185, 129, 0.3);
+          background: rgba(16, 185, 129, 0.06);
+        }
+
+        .filter-btn.gate-filter.active {
+          background: #10b981;
+          color: #ffffff;
+          border-color: #10b981;
+        }
+
+        .jump-pills-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.35rem;
+          align-items: center;
+        }
+
+        .jump-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 0.2rem 0.5rem;
+          border-radius: 6px;
+          border: 1px solid var(--border);
+          background: var(--surface);
+          color: var(--text-secondary);
+          font-size: 0.74rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+
+        .jump-pill:hover {
+          border-color: #10b981;
+          transform: translateY(-1px);
+        }
+
+        .jump-pill.current {
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+          color: #3b82f6;
+          background: rgba(59, 130, 246, 0.08);
+        }
+
+        .jump-pill.correct {
+          border-color: #10b981;
+          background: rgba(16, 185, 129, 0.12);
+          color: #10b981;
+        }
+
+        .jump-pill.incorrect {
+          border-color: #ef4444;
+          background: rgba(239, 68, 68, 0.1);
+          color: #ef4444;
+        }
+
+        .jump-pill.is-gate {
+          border-color: #f59e0b;
+          color: #d97706;
+          background: rgba(245, 158, 11, 0.08);
+        }
+
+        html.dark .jump-pill.is-gate {
+          color: #fbbf24;
+          border-color: rgba(251, 191, 36, 0.35);
+        }
+
+        .pill-icon {
+          font-size: 0.65rem;
+        }
+
+        .header-left {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+
+        .tags-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          align-items: center;
+        }
+
+        .gate-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          padding: 0.15rem 0.55rem;
+          border-radius: 6px;
+          background: rgba(16, 185, 129, 0.12);
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          color: #10b981;
+          font-size: 0.72rem;
+          font-weight: 800;
+          letter-spacing: 0.02em;
+        }
+
+        .topic-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          padding: 0.15rem 0.55rem;
+          border-radius: 6px;
+          background: rgba(59, 130, 246, 0.08);
+          border: 1px solid rgba(59, 130, 246, 0.25);
+          color: #3b82f6;
+          font-size: 0.72rem;
+          font-weight: 700;
         }
 
         .quiz-header {

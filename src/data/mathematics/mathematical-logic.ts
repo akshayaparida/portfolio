@@ -253,6 +253,40 @@ Statement                         | Symbolic Logic (Domain: All Animals)
 "There is a smart student."       | ∃x (Student(x) ∧ Smart(x))
 \`\`\`
 
+#### 7.3 Multi-Variable Predicates & Translation Patterns (GATE AIR 1 Core Rules)
+
+In GATE, questions frequently involve binary relational predicates $P(x, y)$ (e.g., $M(x, y)$: "$x$ knows $y$", $L(x, y)$: "$x$ loves $y$", $D(x, y)$: "$x$ divides $y$") over a domain $D$.
+
+\`\`\`text
+╔══════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                 THE GOLDEN QUANTIFIER RULE                                        ║
+║  1. Universal Quantifier (∀x) naturally pairs with IMPLICATION (→)                               ║
+║     "Every student who studies passes"  ⟹  ∀x (Student(x) ∧ Studies(x) → Passes(x))              ║
+║     [Trap: Using ∧ with ∀ makes it assert EVERY object in the universe is a student!]            ║
+║                                                                                                  ║
+║  2. Existential Quantifier (∃x) naturally pairs with CONJUNCTION (∧)                             ║
+║     "There is a student who passes"     ⟹  ∃x (Student(x) ∧ Passes(x))                           ║
+║     [Trap: Using → with ∃ is vacuously True if any non-student exists in the universe!]          ║
+╚══════════════════════════════════════════════════════════════════════════════════════════════════╝
+\`\`\`
+
+##### 🌟 The Celebrity / Master Problem Pattern:
+Consider predicate $M(x, y)$ meaning *"x knows y"*:
+
+1. **"Person y is known by everyone else (excluding themselves)":**
+   $$\forall x ((x \neq y) \to M(x, y))$$
+2. **"Person y knows nobody else (excluding themselves)":**
+   $$\forall x ((x \neq y) \to \neg M(y, x))$$
+3. **"There exists a person y who knows nobody else, but is known by everyone else":**
+   Combining the two properties with an existential witness $y$:
+   $$(\exists y)(\forall x)((x \neq y) \to (M(x, y) \land \neg M(y, x)))$$
+
+> [!IMPORTANT]
+> **Order of Quantifiers Matters:**
+> - $\exists y \forall x P(x, y)$ asserts **ONE single person $y$** works for all $x$ simultaneously (Strong statement).
+> - $\forall x \exists y P(x, y)$ allows each $x$ to have their own different $y$ (Weaker statement).
+> - **Implication:** $\exists y \forall x P(x, y) \implies \forall x \exists y P(x, y)$, but the converse is FALSE!
+
 ---
 
 ### 8. Negating Quantified Statements
@@ -626,6 +660,23 @@ Digital computers implement propositional logic directly using transistors:
       explanation:
         "Proof by Contradiction (Reductio ad Absurdum) assumes the negation of the proposition and derives an impossibility (such as p ∧ ¬p or 1 = 0), proving that the original proposition must be True.",
       difficulty: "easy",
+    },
+    {
+      id: "logic-q21",
+      gateYear: "GATE CSE 2026 Set-2",
+      topicTag: "First-Order Predicate Logic",
+      question:
+        "For two different persons x and y, the predicate M(x, y) denotes that x knows y. Which expression represents: 'There is a person who does not know anyone else, but that person is known by everyone else'?",
+      options: [
+        "(∃y)(∀x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x)))",
+        "(∀y)(∃x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x)))",
+        "(∃y)(∃x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x)))",
+        "(∀y)(∀x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x)))",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "AIR 1 Analysis: 1) 'There is a person' asserts existence of a single individual y → (∃y). 2) 'everyone else' asserts a condition for all other individuals x (x ≠ y) → (∀x). 3) For all other x: 'known by x' is M(x, y) and 'does not know x' is ¬M(y, x). Combining under the domain filter (x ≠ y) gives (x ≠ y) → (M(x, y) ∧ ¬M(y, x)). Overall formula: (∃y)(∀x)((x ≠ y) → (M(x, y) ∧ ¬M(y, x))).",
+      difficulty: "hard",
     },
   ],
 };
