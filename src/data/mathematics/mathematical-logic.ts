@@ -321,6 +321,33 @@ Let \`mother(y, x)\` denote *"y is the mother of x"* and \`noteq(x, y)\` denote 
 > - **Trap 1 (Option A style):** \`∀x ∃y ∃z (mother(y, x) ∧ ¬mother(z, x))\` only says x has at least one mother and someone in the universe is not a mother. It does NOT restrict x from having 10 mothers!
 > - **Trap 2 (Option C style):** \`∀x ∀y [mother(y, x) ⟹ ∃z (mother(z, x) ∧ z = y)]\` simplifies to \`mother(y, x) ⟹ mother(y, x)\` (a vacuous tautology that asserts neither existence nor uniqueness).
 
+#### 7.5 Quantifier Inference & Implication Rules (GATE AIR 1 Core)
+
+In GATE, questions frequently test **implication strength** between quantified formulas (i.e., whether Premise A ⟹ Conclusion B).
+
+##### 🌟 1. The Fundamental Quantifier Swap Theorem:
+> \`∃y ∀x φ(x, y) ⟹ ∀x ∃y φ(x, y)\`
+
+- **Why it holds:** If **one universal witness y** works for all x simultaneously (\`∃y ∀x\`), then for every x, we can simply choose that same witness y (\`∀x ∃y\`).
+- **The Converse is FALSE:** \`∀x ∃y φ(x, y)\` DOES NOT imply \`∃y ∀x φ(x, y)\`.  
+  *(Example over integers: "Every number has a successor" [\`∀x ∃y (y = x+1)\`] is True, but "There is a single number that is successor to all numbers" [\`∃y ∀x (y = x+1)\`] is False!)*
+
+##### 🌟 2. Quantifier Movement Over Implication (Scope Rules):
+When variable y does not occur free in P(x):
+- \`∃y [P(x) ⟹ Q(x, y)] ≡ P(x) ⟹ ∃y Q(x, y)\`
+- \`∀y [P(x) ⟹ Q(x, y)] ≡ P(x) ⟹ ∀y Q(x, y)\`
+
+> [!IMPORTANT]
+> **Quantifier Flip Rule when moving from Antecedent (Hypothesis):**
+> When variable x moves out of the hypothesis of an implication, the quantifier **FLIPS**:
+> - \`[∀x P(x)] ⟹ Q ≡ ∃x [P(x) ⟹ Q]\`
+> - \`[∃x P(x)] ⟹ Q ≡ ∀x [P(x) ⟹ Q]\`
+
+##### 🌟 3. AIR 1 Implication Testing Framework:
+To test whether Premise **A** implies Target **G**: \`∀x [P(x) ⟹ ∃y Q(x, y)]\`:
+- **Universal Consequent Dominance:** If \`∀x ∀y Q(x, y)\` is True, then \`∃y Q(x, y)\` is always True. Because \`Anything ⟹ True ≡ True\`, the conjecture is guaranteed to hold.
+- **Existential Scope Insufficiency:** A premise asserting only existence for a single instance \`∃x [...]\` can **never** imply a universal claim \`∀x [...]\` over an infinite domain.
+
 ---
 
 ### 8. Negating Quantified Statements
@@ -501,6 +528,24 @@ Digital computers implement propositional logic directly using transistors:
       explanation:
         "AIR 1 Analysis (Correct: A):\n\n1) Identify Components:\n   • p: 'Fail grade can be given' ⟹ ¬p: 'Fail grade cannot be given'\n   • q: 'Student scores more than 50% marks'\n\n2) Translation Rule for 'B when A':\n   In propositional logic, 'B when A' ≡ 'If A, then B' ≡ A → B.\n   • Hypothesis (Premise): 'student scores more than 50% marks' ≡ q\n   • Conclusion (Consequent): 'Fail grade cannot be given' ≡ ¬p\n\n3) Final Formula: q → ¬p (Option A).\n\n4) Contrapositive Equivalent: (p → ¬q) ('If a fail grade can be given, then the student did not score more than 50% marks').",
       difficulty: "easy",
+    },
+    {
+      id: "logic-gate-2023",
+      gateYear: "GATE CSE 2023",
+      topicTag: "First-Order Logic Inference & Quantifiers",
+      type: "MSQ",
+      question:
+        "Geetha has a conjecture about integers of the form: ∀x [P(x) ⇒ ∃y Q(x, y)], where P is a statement about integers, and Q is a statement about pairs of integers. Which of the following (one or more) option(s) would imply Geetha's conjecture?",
+      options: [
+        "∃x [P(x) ∧ ∀y Q(x, y)]",
+        "∀x ∀y Q(x, y)",
+        "∃y ∀x [P(x) ⇒ Q(x, y)]",
+        "∃x [P(x) ∧ ∃y Q(x, y)]",
+      ],
+      correctAnswer: [1, 2],
+      explanation:
+        "AIR 1 Analysis (MSQ - Correct: B & C):\n\nTarget Conjecture G: ∀x [P(x) ⇒ ∃y Q(x, y)]\n\n1) Option B (CORRECT): ∀x ∀y Q(x, y)\n   If Q(x, y) holds for all x and all y, then ∃y Q(x, y) is always True for every x. Since (Anything ⇒ True) ≡ True, the implication P(x) ⇒ ∃y Q(x, y) holds for every x. Thus B ⇒ G.\n\n2) Option C (CORRECT): ∃y ∀x [P(x) ⇒ Q(x, y)]\n   By the Quantifier Swap Rule: ∃y ∀x φ(x, y) ⇒ ∀x ∃y φ(x, y). Setting φ(x, y) = [P(x) ⇒ Q(x, y)] gives ∀x ∃y [P(x) ⇒ Q(x, y)]. Since y is not in P(x), ∃y [P(x) ⇒ Q(x, y)] ≡ [P(x) ⇒ ∃y Q(x, y)]. Thus C ⇒ G.\n\n3) Option A & D (WRONG): Both A and D only assert an existential claim about a single integer x (∃x [...]). An existential claim about one element cannot prove a universal property ∀x over all integers.",
+      difficulty: "medium",
     },
   ],
 };
