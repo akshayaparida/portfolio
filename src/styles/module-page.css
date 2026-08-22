@@ -13,7 +13,6 @@
   flex-direction: column;
   transition: background-color 0.3s ease, color 0.3s ease;
   max-width: 100vw;
-  overflow-x: hidden;
 }
 
 /* Master Layout - Stretches edge-to-edge with clean margins */
@@ -34,7 +33,6 @@
 .module-content-area {
   min-width: 0;
   width: 100%;
-  overflow-x: hidden;
   box-sizing: border-box;
 }
 
