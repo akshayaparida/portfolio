@@ -226,13 +226,6 @@ export default function GateCsPage() {
                 color: "#2563eb",
               },
               {
-                name: "MargDarshan — GATE PYQs",
-                desc: "Curated PYQs with no login required. Practice online or PDF.",
-                url: "https://margdarshanprep.com/",
-                icon: "fa-solid fa-file-circle-check",
-                color: "#7c3aed",
-              },
-              {
                 name: "PracticePaper — GATE CS",
                 desc: "Free topic-wise PYQs, mock tests, and handwritten notes.",
                 url: "https://practicepaper.in/gate-cse",
@@ -240,18 +233,11 @@ export default function GateCsPage() {
                 color: "#0891b2",
               },
               {
-                name: "Testbook — GATE CS Mock Tests",
-                desc: "Full-length mock tests with performance analytics & solutions.",
-                url: "https://testbook.com/gate",
-                icon: "fa-solid fa-chart-line",
-                color: "#ea580c",
-              },
-              {
-                name: "KnowledgeGate — Pariksha Mocks",
-                desc: "Free GATE CS mock tests and learning programs from experts.",
-                url: "https://knowledgegate.in/gate-cse",
-                icon: "fa-solid fa-brain",
-                color: "#dc2626",
+                name: "GateOverflow — PYQ Solutions & Discussion",
+                desc: "Community-driven GATE CS PYQ solutions, detailed explanations, and subject-wise question banks.",
+                url: "https://gateoverflow.in/",
+                icon: "fa-solid fa-comments",
+                color: "#16a34a",
               },
             ].map((r, idx) => (
               <a

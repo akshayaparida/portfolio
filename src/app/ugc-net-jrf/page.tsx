@@ -380,25 +380,18 @@ export default function UgcNetJrfPage() {
                 color: "#dc2626",
               },
               {
-                name: "Testbook — Mock Tests",
-                desc: "Free full-length CBT mock tests with performance analysis.",
-                url: "https://testbook.com/ugc-net",
+                name: "UGC NET Online — PYQ Papers Archive",
+                desc: "Free previous year question papers with answer keys for all subjects. No login required.",
+                url: "https://www.ugcnetonline.in/previous_question_papers.php",
                 icon: "fa-solid fa-file-circle-check",
-                color: "#2563eb",
-              },
-              {
-                name: "NTA Official — Previous Year Papers",
-                desc: "Download official NTA question papers and answer keys.",
-                url: "https://ugcnet.nta.ac.in/",
-                icon: "fa-solid fa-landmark",
                 color: "#7c3aed",
               },
               {
-                name: "Adda247 — Free Mock Series",
-                desc: "Memory-based and unit-wise practice sets with analytics.",
-                url: "https://www.adda247.com/teaching-jobs-exam/ugc-net/",
-                icon: "fa-solid fa-chart-line",
-                color: "#ea580c",
+                name: "GateOverflow — UGC NET PYQ Solutions",
+                desc: "Community-driven previous year question solutions with detailed explanations.",
+                url: "https://gateoverflow.in/previous-years",
+                icon: "fa-solid fa-comments",
+                color: "#16a34a",
               },
             ].map((r, idx) => (
               <a
