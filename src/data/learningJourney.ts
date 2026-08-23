@@ -99,54 +99,124 @@ In production AI systems at companies, these tools are non-negotiable:
   },
   {
     id: "module-2",
-    title: "AI/ML Foundations",
+    title: "AI/ML Foundations & Python Mastery",
     description:
-      "Build core Python and mathematical foundations for AI engineering",
+      "Master Python from basic to advanced with Real Python deep dives, followed by mathematics and machine learning foundations",
     status: "in-progress",
     detailedContent: `
 Why Study This Module:
-Before diving into neural networks and complex AI models, you need to master the Python tools and patterns that AI engineers use daily. This module focuses on practical skills that will make you more productive and your code more reliable.
+Before diving into neural networks and complex AI models, you need to master Python from first principles to advanced metaprogramming and vectorization patterns. This module structures Python progression from basic syntax to advanced architecture, supplemented with the best Real Python deep-dives.
 
 What You'll Learn:
-• Python data structures optimized for AI workloads
-• Functional programming patterns for data processing
-• Type-safe code for production AI systems
-• NumPy and Pandas for numerical computing and data analysis
-• Clean file handling and configuration management
+• Tier 1 (Basics): Variables, built-in types, conditionals, loops, and modular functions
+• Tier 2 (Data Structures): Lists, tuples, hash maps (dicts), sets, and fast comprehensions
+• Tier 3 (Intermediate): Static typing with type hints, pathlib, JSON, and defensive error handling
+• Tier 4 (Advanced): OOP, dataclasses, decorators, generators, context managers, and functional patterns
+• Tier 5 (Data & AI): NumPy vectorization, Pandas DataFrames, data cleaning, and scikit-learn models
+• Tier 6 (Math & Deep Learning): Mathematical foundations, linear models, and production PyTorch
 
 Real-World Importance:
-Every AI project starts with data wrangling, preprocessing, and pipeline building. The difference between hobby projects and production systems is clean, maintainable Python code. Master these foundations and you'll debug faster, build cleaner pipelines, and ship more reliable AI systems.
+Every AI project starts with data wrangling, preprocessing, and pipeline building. The difference between hobby projects and production systems is clean, maintainable, and type-safe Python code. Master these foundations and you'll debug faster, build cleaner pipelines, and ship more reliable AI systems.
     `,
     subModules: [
       {
         id: "module-2-1",
-        title: "Python Essentials for AI Engineering",
+        title: "Level 1: Python Basics & Core Syntax (Real Python)",
         description:
-          "Master Python data structures, functional tricks, typing, JSON, pathlib, NumPy, and Pandas - all distilled for machine-learning engineers",
-        status: "in-progress",
+          "Variables, fundamental data types, string manipulation, conditionals, loops, and function definitions",
+        status: "completed",
         resources: [
           {
-            title: "Tuples: Immutable Data Collections",
+            title: "Variables in Python: Usage and Best Practices",
+            url: "https://realpython.com/python-variables/",
+            type: "article",
+          },
+          {
+            title: "Basic Data Types: Numbers, Booleans, and None",
+            url: "https://realpython.com/python-data-types/",
+            type: "article",
+          },
+          {
+            title: "Python Strings and Character Data",
+            url: "https://realpython.com/python-strings/",
+            type: "article",
+          },
+          {
+            title: "Conditional Statements (if / elif / else)",
+            url: "https://realpython.com/python-conditional-statements/",
+            type: "article",
+          },
+          {
+            title: "Python 'for' Loops (Definite Iteration)",
+            url: "https://realpython.com/python-for-loop/",
+            type: "article",
+          },
+          {
+            title: "Python 'while' Loops (Indefinite Iteration)",
+            url: "https://realpython.com/python-while-loop/",
+            type: "article",
+          },
+          {
+            title: "Defining Your Own Python Functions",
+            url: "https://realpython.com/defining-your-own-python-function/",
+            type: "article",
+          },
+          {
+            title: "Python Scope and the LEGB Rule",
+            url: "https://realpython.com/python-scope-legb-rule/",
+            type: "article",
+          },
+        ],
+      },
+      {
+        id: "module-2-2",
+        title: "Level 2: Data Structures & Comprehensions (Real Python)",
+        description:
+          "Master Lists, Tuples, Dictionaries, Sets, and efficient Pythonic comprehensions",
+        status: "completed",
+        resources: [
+          {
+            title: "Lists and Tuples: Ordered Data Collections",
+            url: "https://realpython.com/python-lists-tuples/",
+            type: "article",
+          },
+          {
+            title: "Tuples: Immutable Data Sequences",
             url: "https://realpython.com/python-tuples/",
             type: "article",
           },
           {
-            title: "Sets: Unique Elements and Set Operations",
-            url: "https://realpython.com/python-sets/",
-            type: "article",
-          },
-          {
-            title: "Dictionaries: Fast Key-Value Lookups",
+            title: "Dictionaries: Fast Key-Value Lookups & Hash Maps",
             url: "https://realpython.com/python-dicts/",
             type: "article",
           },
           {
-            title: "List Comprehensions Explained",
+            title: "Sets: Unique Elements & Set Theory Operations",
+            url: "https://realpython.com/python-sets/",
+            type: "article",
+          },
+          {
+            title: "List Comprehensions: Writing Clean, Pythonic Loops",
             url: "https://realpython.com/list-comprehension-python/",
             type: "article",
           },
           {
-            title: "Python Type Hints and Typing Module",
+            title: "Python f-Strings: The Complete String Formatting Guide",
+            url: "https://realpython.com/python-f-strings/",
+            type: "article",
+          },
+        ],
+      },
+      {
+        id: "module-2-3",
+        title:
+          "Level 3: Intermediate Python & Engineering Best Practices (Real Python)",
+        description:
+          "Type hints, modern file system handling with Pathlib, JSON serialization, and defensive exception handling",
+        status: "in-progress",
+        resources: [
+          {
+            title: "Python Type Checking & Type Hints Guide",
             url: "https://realpython.com/python-type-checking/",
             type: "article",
           },
@@ -156,74 +226,139 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
             type: "documentation",
           },
           {
-            title: "Python Typing Module - Official Docs",
-            url: "https://docs.python.org/3/library/typing.html",
-            type: "documentation",
-          },
-          {
-            title: "Working with JSON in Python",
-            url: "https://realpython.com/python-json/",
-            type: "article",
-          },
-          {
-            title: "JSON Module - Official Documentation",
-            url: "https://docs.python.org/3/library/json.html",
-            type: "documentation",
-          },
-          {
-            title: "Pathlib: Modern Path Handling",
+            title: "Pathlib: Modern & Elegant File System Paths",
             url: "https://realpython.com/python-pathlib/",
             type: "article",
           },
           {
-            title: "pathlib - Official Documentation",
-            url: "https://docs.python.org/3/library/pathlib.html",
-            type: "documentation",
-          },
-          {
-            title: "NumPy Quickstart",
-            url: "https://numpy.org/doc/stable/user/quickstart.html",
-            type: "tutorial",
-          },
-          {
-            title: "Pandas 10 Minutes to Pandas",
-            url: "https://pandas.pydata.org/docs/user_guide/10min.html",
-            type: "tutorial",
-          },
-          {
-            title: "Functional Programming in Python",
-            url: "https://realpython.com/python-functional-programming/",
+            title: "Working With JSON Data in Python",
+            url: "https://realpython.com/python-json/",
             type: "article",
           },
           {
-            title: "Python Lambda Functions",
-            url: "https://realpython.com/python-lambda/",
+            title: "Reading and Writing Files in Python (I/O Guide)",
+            url: "https://realpython.com/read-write-files-python/",
             type: "article",
           },
           {
-            title: "Python map() Function",
-            url: "https://realpython.com/python-map-function/",
+            title: "Python Exceptions: An Introduction to Error Handling",
+            url: "https://realpython.com/python-exceptions/",
             type: "article",
           },
           {
-            title: "Python filter() Function",
-            url: "https://realpython.com/python-filter-function/",
+            title: "Python Virtual Environments: A Primer",
+            url: "https://realpython.com/python-virtual-environments-a-primer/",
             type: "article",
-          },
-          {
-            title: "Python Dataclasses Guide",
-            url: "https://realpython.com/python-data-classes/",
-            type: "article",
-          },
-          {
-            title: "Dataclasses - Official Documentation",
-            url: "https://docs.python.org/3/library/dataclasses.html",
-            type: "documentation",
           },
         ],
       },
       {
-        id: "module-2-2",
+        id: "module-2-4",
+        title:
+          "Level 4: Advanced Python & Object-Oriented Architecture (Real Python)",
+        description:
+          "OOP design, Dataclasses, Decorators, Generators, Context Managers, and Functional Programming patterns",
+        status: "in-progress",
+        resources: [
+          {
+            title: "Object-Oriented Programming (OOP) in Python 3",
+            url: "https://realpython.com/python3-object-oriented-programming/",
+            type: "article",
+          },
+          {
+            title: "Data Classes in Python: Guide and Best Practices",
+            url: "https://realpython.com/python-data-classes/",
+            type: "article",
+          },
+          {
+            title: "Primer on Python Decorators: Metaprogramming Made Easy",
+            url: "https://realpython.com/primer-on-python-decorators/",
+            type: "article",
+          },
+          {
+            title: "Introduction to Python Generators & the 'yield' Keyword",
+            url: "https://realpython.com/introduction-to-python-generators/",
+            type: "article",
+          },
+          {
+            title: "Context Managers and the 'with' Statement in Python",
+            url: "https://realpython.com/python-with-statement/",
+            type: "article",
+          },
+          {
+            title: "Functional Programming in Python: Concepts & Techniques",
+            url: "https://realpython.com/python-functional-programming/",
+            type: "article",
+          },
+          {
+            title: "How to Use Python Lambda Functions",
+            url: "https://realpython.com/python-lambda/",
+            type: "article",
+          },
+          {
+            title: "Python map() Function: Transforming Iterables",
+            url: "https://realpython.com/python-map-function/",
+            type: "article",
+          },
+          {
+            title: "Python filter() Function: Filtering Iterables",
+            url: "https://realpython.com/python-filter-function/",
+            type: "article",
+          },
+          {
+            title: "Python *args and **kwargs: Demystified",
+            url: "https://realpython.com/python-kwargs-and-args/",
+            type: "article",
+          },
+          {
+            title: "Async IO in Python: A Complete Walkthrough",
+            url: "https://realpython.com/async-io-python/",
+            type: "article",
+          },
+        ],
+      },
+      {
+        id: "module-2-5",
+        title:
+          "Level 5: Python for AI, Data Engineering & Numerical Computing (Real Python)",
+        description:
+          "NumPy array vectorization, Pandas DataFrames, and scientific data manipulation for AI pipelines",
+        status: "in-progress",
+        resources: [
+          {
+            title: "NumPy Tutorial: Your First Steps Into Data Science",
+            url: "https://realpython.com/numpy-tutorial/",
+            type: "article",
+          },
+          {
+            title: "The Pandas DataFrame: Working With Structured Data",
+            url: "https://realpython.com/pandas-dataframe/",
+            type: "article",
+          },
+          {
+            title: "Pythonic Data Cleaning With pandas and NumPy",
+            url: "https://realpython.com/python-data-cleaning-numpy-pandas/",
+            type: "article",
+          },
+          {
+            title: "Jupyter Notebook: An Introduction for Beginners",
+            url: "https://realpython.com/jupyter-notebook-introduction/",
+            type: "article",
+          },
+          {
+            title: "Linear Regression in Python with Scikit-Learn",
+            url: "https://realpython.com/linear-regression-in-python/",
+            type: "article",
+          },
+          {
+            title: "Train Test Split in Python with Scikit-Learn",
+            url: "https://realpython.com/train-test-split-python-data/",
+            type: "article",
+          },
+        ],
+      },
+      {
+        id: "module-2-6",
         title: "Mathematics is the Language of AI",
         description:
           "Build the mathematical foundation essential for understanding AI algorithms and models",
@@ -237,7 +372,7 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         ],
       },
       {
-        id: "module-2-3",
+        id: "module-2-7",
         title: "The Power of Linear Models",
         description:
           "Learn how and why to build strong, interpretable baselines: explore linear regression end-to-end, from feature scaling to evaluation, with hands-on notebooks and real data",
@@ -342,7 +477,7 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         ],
       },
       {
-        id: "module-2-4",
+        id: "module-2-8",
         title: "PyTorch: Deep Learning Framework",
         description:
           "Master PyTorch, the go-to deep learning framework for research and production. Learn tensors, neural networks, and GPU acceleration.",

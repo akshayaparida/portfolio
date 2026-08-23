@@ -2652,17 +2652,34 @@ html.dark .ai-eng-container .resources-title {
 html.dark .ai-eng-container .resource-link {
   background: #0a0a0a !important;
   border-color: #262626 !important;
-  color: #60a5fa !important;
 }
 
 html.dark .ai-eng-container .resource-link:hover {
   background: #171717 !important;
-  border-color: #60a5fa !important;
+  border-color: #3b82f6 !important;
+}
+
+html.dark .ai-eng-container .resource-title-wrap {
+  color: #e5e5e5 !important;
+}
+
+html.dark .ai-eng-container .resource-link:hover .resource-title-wrap {
+  color: #60a5fa !important;
+}
+
+html.dark .ai-eng-container .badge-rp {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  color: #38bdf8 !important;
 }
 
 html.dark .ai-eng-container .resource-type {
   background: #262626 !important;
   color: #a3a3a3 !important;
+}
+
+html.dark .ai-eng-container .ext-arrow {
+  color: #737373 !important;
 }
 
 html.dark .ai-eng-footer {

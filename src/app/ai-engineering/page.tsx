@@ -65,25 +65,43 @@ export default function AIEngineeringPage() {
                       <div className="resources">
                         <h5 className="resources-title">Resources</h5>
                         <ul className="resources-list">
-                          {sub.resources.map((resource, idx) => (
-                            <li key={idx}>
-                              <a
-                                href={resource.url}
-                                target={
-                                  resource.url.startsWith("/")
-                                    ? "_self"
-                                    : "_blank"
-                                }
-                                rel="noopener noreferrer"
-                                className="resource-link"
-                              >
-                                {resource.title}
-                                <span className="resource-type">
-                                  {resource.type}
-                                </span>
-                              </a>
-                            </li>
-                          ))}
+                          {sub.resources.map((resource, idx) => {
+                            const isRealPython =
+                              resource.url.includes("realpython.com");
+                            const isExternal = resource.url.startsWith("http");
+                            return (
+                              <li key={idx}>
+                                <a
+                                  href={resource.url}
+                                  target={isExternal ? "_blank" : "_self"}
+                                  rel="noopener noreferrer"
+                                  className="resource-link"
+                                >
+                                  <span className="resource-title-wrap">
+                                    {isRealPython && (
+                                      <i className="fa-brands fa-python python-brand-icon"></i>
+                                    )}
+                                    <span className="resource-name">
+                                      {resource.title}
+                                    </span>
+                                  </span>
+                                  <span className="resource-tags">
+                                    {isRealPython && (
+                                      <span className="badge-rp">
+                                        Real Python
+                                      </span>
+                                    )}
+                                    <span className="resource-type">
+                                      {resource.type}
+                                    </span>
+                                    {isExternal && (
+                                      <i className="fa-solid fa-arrow-up-right-from-square ext-arrow"></i>
+                                    )}
+                                  </span>
+                                </a>
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     )}
@@ -106,8 +124,12 @@ export default function AIEngineeringPage() {
           display: flex;
           flex-direction: column;
           overflow-y: scroll;
-          transition: background-color 0.3s ease, color 0.3s ease;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
         }
+
+        .ai-eng-header {
           background: rgba(250, 250, 250, 0.95);
           backdrop-filter: blur(10px);
           z-index: 100;
@@ -277,20 +299,66 @@ export default function AIEngineeringPage() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.5rem 0.75rem;
+          padding: 0.65rem 0.85rem;
           background: var(--surface);
           border: 1px solid var(--border);
-          border-radius: 6px;
-          color: #10b981;
+          border-radius: 8px;
+          color: var(--text-primary);
           text-decoration: none;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           font-weight: 500;
-          transition: all 0.2s;
+          transition: all 0.2s ease;
+          gap: 0.75rem;
         }
 
         .resource-link:hover {
           background: var(--bg-light);
           border-color: #10b981;
+          transform: translateY(-1px);
+        }
+
+        .resource-title-wrap {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          color: var(--heading-color);
+          font-weight: 500;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .resource-name {
+          line-height: 1.4;
+          font-size: 0.85rem;
+        }
+
+        .resource-link:hover .resource-title-wrap {
+          color: #10b981;
+        }
+
+        .python-brand-icon {
+          color: #3b82f6;
+          font-size: 1rem;
+          flex-shrink: 0;
+        }
+
+        .resource-tags {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          flex-shrink: 0;
+        }
+
+        .badge-rp {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: #0284c7;
+          background: rgba(2, 132, 199, 0.1);
+          border: 1px solid rgba(2, 132, 199, 0.25);
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+          text-transform: uppercase;
+          letter-spacing: 0.3px;
         }
 
         .resource-type {
@@ -301,6 +369,11 @@ export default function AIEngineeringPage() {
           background: var(--bg-light);
           border: 1px solid var(--border);
           border-radius: 4px;
+        }
+
+        .ext-arrow {
+          font-size: 0.65rem;
+          color: var(--text-muted);
         }
 
         /* Sidebar */

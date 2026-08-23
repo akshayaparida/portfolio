@@ -22,6 +22,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-book-bookmark",
   },
   {
+    label: "AI Engineering",
+    href: "/ai-engineering",
+    icon: "fa-solid fa-brain",
+  },
+  {
     label: "Mathematics",
     href: "/mathematics",
     icon: "fa-solid fa-calculator",
