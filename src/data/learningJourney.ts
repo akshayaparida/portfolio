@@ -127,6 +127,12 @@ Every AI project starts with data wrangling, preprocessing, and pipeline buildin
         status: "completed",
         resources: [
           {
+            title:
+              "Real Python Official Learning Paths (All Tracks & Roadmaps)",
+            url: "https://realpython.com/learning-paths/",
+            type: "course",
+          },
+          {
             title: "Variables in Python: Usage and Best Practices",
             url: "https://realpython.com/python-variables/",
             type: "article",

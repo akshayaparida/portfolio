@@ -53,6 +53,38 @@ export default function AIEngineeringPage() {
               </div>
             )}
 
+            {/* Real Python Learning Paths Featured Highlight Box */}
+            {activeModule.id === "module-2" && (
+              <div className="rp-highlight-card">
+                <div className="rp-highlight-left">
+                  <div className="rp-badge-wrap">
+                    <span className="rp-pulse-dot"></span>
+                    <span className="rp-badge-text">
+                      Featured Learning Path
+                    </span>
+                  </div>
+                  <h3 className="rp-highlight-title">
+                    <i className="fa-brands fa-python rp-title-icon"></i>
+                    Real Python Official Learning Paths
+                  </h3>
+                  <p className="rp-highlight-desc">
+                    Accelerate your Python mastery with Real Python&apos;s
+                    curated, step-by-step learning paths covering core syntax,
+                    data structures, OOP design, and machine learning tracks.
+                  </p>
+                </div>
+                <a
+                  href="https://realpython.com/learning-paths/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rp-highlight-btn"
+                >
+                  <span>Explore Learning Paths</span>
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+              </div>
+            )}
+
             {activeModule.subModules && activeModule.subModules.length > 0 && (
               <div className="submodules">
                 <h3 className="section-title">Topics</h3>
@@ -246,6 +278,129 @@ export default function AIEngineeringPage() {
           font-weight: 700;
           color: var(--heading-color);
           margin: 0 0 1rem 0;
+        }
+
+        /* Real Python Highlight Box */
+        .rp-highlight-card {
+          margin-bottom: 2rem;
+          padding: 1.5rem 1.75rem;
+          background: linear-gradient(
+            135deg,
+            rgba(2, 132, 199, 0.08) 0%,
+            rgba(16, 185, 129, 0.06) 100%
+          );
+          border: 1.5px solid rgba(2, 132, 199, 0.3);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.5rem;
+          box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .rp-highlight-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(to bottom, #0284c7, #10b981);
+        }
+
+        .rp-highlight-left {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .rp-badge-wrap {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          padding: 0.2rem 0.6rem;
+          background: rgba(2, 132, 199, 0.12);
+          border: 1px solid rgba(2, 132, 199, 0.25);
+          border-radius: 20px;
+          margin-bottom: 0.6rem;
+        }
+
+        .rp-pulse-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #0284c7;
+          box-shadow: 0 0 8px #0284c7;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0% {
+            opacity: 0.4;
+            transform: scale(0.9);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
+          100% {
+            opacity: 0.4;
+            transform: scale(0.9);
+          }
+        }
+
+        .rp-badge-text {
+          font-size: 0.7rem;
+          font-weight: 700;
+          color: #0284c7;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .rp-highlight-title {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: var(--heading-color);
+          margin: 0 0 0.4rem 0;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .rp-title-icon {
+          color: #38bdf8;
+          font-size: 1.3rem;
+        }
+
+        .rp-highlight-desc {
+          font-size: 0.88rem;
+          color: var(--text-secondary);
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .rp-highlight-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.25rem;
+          background: #0284c7;
+          color: #ffffff !important;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          text-decoration: none;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+          transition: all 0.2s ease;
+          flex-shrink: 0;
+        }
+
+        .rp-highlight-btn:hover {
+          background: #0369a1;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
         }
 
         .submodules {

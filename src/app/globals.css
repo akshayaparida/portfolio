@@ -2645,8 +2645,45 @@ html.dark .ai-eng-container .submodule-description {
   color: #a3a3a3 !important;
 }
 
-html.dark .ai-eng-container .resources-title {
-  color: #737373 !important;
+html.dark .ai-eng-container .rp-highlight-card {
+  background: linear-gradient(
+    135deg,
+    rgba(2, 132, 199, 0.15) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  ) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+html.dark .ai-eng-container .rp-highlight-title {
+  color: #f8fafc !important;
+}
+
+html.dark .ai-eng-container .rp-highlight-desc {
+  color: #94a3b8 !important;
+}
+
+html.dark .ai-eng-container .rp-badge-wrap {
+  background: rgba(56, 189, 248, 0.15) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+html.dark .ai-eng-container .rp-badge-text {
+  color: #38bdf8 !important;
+}
+
+html.dark .ai-eng-container .rp-pulse-dot {
+  background: #38bdf8 !important;
+  box-shadow: 0 0 8px #38bdf8 !important;
+}
+
+html.dark .ai-eng-container .rp-highlight-btn {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+html.dark .ai-eng-container .rp-highlight-btn:hover {
+  background: #0369a1 !important;
 }
 
 html.dark .ai-eng-container .resource-link {
