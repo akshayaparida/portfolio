@@ -9,3 +9,4 @@ public/sw.js.map
 # Test coverage output
 coverage/
 .serwist/
+*.tsbuildinfo

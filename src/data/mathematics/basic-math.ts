@@ -737,7 +737,7 @@ Every time you fold the paper in half, the thickness doubles.
 | Number of Folds (n) | Number of Layers (2ⁿ) | Total Thickness | Real-World Comparison |
 | :--- | :--- | :--- | :--- |
 | **0** | 2⁰ = 1 | 0.1 mm | Single sheet of paper |
-| **1** | 2¹ = 2 | $0.2\text{ mm}$ | Cardstock |
+| **1** | 2¹ = 2 | 0.2 mm | Cardstock |
 | **7** | 2⁷ = 128 | 1.28 cm | Small notebook |
 | **14** | 2¹⁴ = 16,384 | 1.64 meters | Height of an adult |
 | **20** | 2²⁰ = 1,048,576 | 104.85 meters | Height of Big Ben / 30-story building |
@@ -780,11 +780,11 @@ A standard 3 × 3 × 3 Rubik's cube has 6 colored faces, 8 corner pieces, and 12
 
 When arranging n distinct objects in a line, the number of permutations is n! = n × (n-1) × (n-2) × ... × 1.
 
-| n | $n!$ | Approximate Value | Computational Context |
+| n | n! | Approximate Value | Computational Context |
 | :--- | :--- | :--- | :--- |
 | **5** | 120 | 1.2 × 10² | Instantaneous |
-| **10** | 3,628,800 | 3.63 × 10⁶ | $3.6$ million operations (< 1 ms) |
-| **15** | 1,307,674,368,000 | 1.31 × 10¹² | $1.3$ trillion (few seconds on modern CPU) |
+| **10** | 3,628,800 | 3.63 × 10⁶ | 3.6 million operations (< 1 ms) |
+| **15** | 1,307,674,368,000 | 1.31 × 10¹² | 1.3 trillion (few seconds on modern CPU) |
 | **20** | 2,432,902,008,176,640,000 | 2.43 × 10¹⁸ | ≈ 77 years on a 1 GHz processor |
 | **25** | 15,511,210,043,330,985,984,000,000 | 1.55 × 10²⁵ | Longer than the age of the Universe |
 | **52** | 52! (Deck of cards) | 8.06 × 10⁶⁷ | More than atoms in our Galaxy |
@@ -863,7 +863,7 @@ print(f"Full ASCII (94^8):   {full_ascii:,}")
 | **Relationship** | P(n, r) = r! × C(n, r) | C(n, r) = C(n, n−r) |
 
 ### Multiset Permutations (Permutations with Repetitions):
-If you have n objects where $n_1$ are of type 1, $n_2$ of type 2, ..., and $n_k$ of type k:
+If you have n objects where n₁ are of type 1, n₂ of type 2, ..., and nₖ of type k:
 **Permutations = n! / (n₁! × n₂! × ... × nₖ!)**
 
 *Example: Arrangements of letters in "SUCCESS" (Total 7 letters: 3 S, 2 C, 1 U, 1 E):*
@@ -883,9 +883,9 @@ The sequence begins:
 
 1. **Balanced Parentheses Strings (Dyck Words)**:
    Number of valid strings with n pairs of opening and closing parentheses:
-   - $n=1$: \`()\` → C₁ = 1
-   - $n=2$: \`()()\`, \`(())\` → C₂ = 2
-   - $n=3$: \`((()))\`, \`(()())\`, \`(())()\`, \`()(())\`, \`()()()\` → C₃ = 5
+   - n = 1: \`()\` → C₁ = 1
+   - n = 2: \`()()\`, \`(())\` → C₂ = 2
+   - n = 3: \`((()))\`, \`(()())\`, \`(())()\`, \`()(())\`, \`()()()\` → C₃ = 5
 
 2. **Full Binary Trees with n+1 Leaves**:
    Number of structurally distinct binary trees with n internal nodes is exactly Cₙ.

@@ -326,9 +326,9 @@ A sequence is in Harmonic Progression (HP) if the reciprocals of its terms form 
 
 - HP Terms: 1/a, 1/(a+d), 1/(a+2d), ...
 - General term: nth term of HP = 1 / (nth term of corresponding AP)
-- $H_n = \frac{1}{a + (n-1)d}$
-- Harmonic Mean (HM) between a and b: $HM = \frac{2ab}{a+b}$
-- Relationship: $AM \geq GM \geq HM$
+- H_n = 1 / (a + (n-1)d)
+- Harmonic Mean (HM) between a and b: HM = 2ab / (a + b)
+- Relationship: AM ≥ GM ≥ HM
 
 \`\`\`python path=null start=null
 def harmonic_progression(a, d, n):
@@ -432,39 +432,39 @@ print(A @ A_inv)
 **Extended Matrices & Determinants Theory:**
 
 **Types of Matrices:**
-- **Square Matrix**: Number of rows equals columns ($n \times n$).
+- **Square Matrix**: Number of rows equals columns (n × n).
   - **Diagonal Matrix**: All non-diagonal elements are 0.
   - **Scalar Matrix**: Diagonal matrix with all identical non-zero diagonal entries.
   - **Identity Matrix**: Scalar matrix with 1s on diagonal.
   - **Triangular Matrix**: Upper (elements below diagonal are 0) or Lower (elements above are 0).
-  - **Idempotent Matrix**: $A^2 = A$.
-  - **Symmetric Matrix**: $A^T = A$.
-  - **Skew-Symmetric Matrix**: $A^T = -A$ (diagonal elements must be 0).
+  - **Idempotent Matrix**: A² = A.
+  - **Symmetric Matrix**: Aᵀ = A.
+  - **Skew-Symmetric Matrix**: Aᵀ = -A (diagonal elements must be 0).
 
 **Operations & Properties:**
-- **Trace ($tr(A)$)**: Sum of principal diagonal elements. $tr(A+B) = tr(A)+tr(B)$.
-- **Multiplication**: $AB \neq BA$ generally.
+- **Trace (tr(A))**: Sum of principal diagonal elements. tr(A+B) = tr(A) + tr(B).
+- **Multiplication**: AB ≠ BA generally.
 
 **Determinant Applications:**
-- $|A| = |A^T|$
-- $|kA| = k^n|A|$
-- If two rows/cols are identical, $|A| = 0$.
-- Area of triangle formed by $(x_1, y_1), (x_2, y_2), (x_3, y_3)$ is:
-  $\frac{1}{2} \begin{vmatrix} x_1 & y_1 & 1 \\ x_2 & y_2 & 1 \\ x_3 & y_3 & 1 \end{vmatrix}$
+- |A| = |Aᵀ|
+- |kA| = kⁿ|A|
+- If two rows/cols are identical, |A| = 0.
+- Area of triangle formed by (x₁, y₁), (x₂, y₂), (x₃, y₃) is:
+  (1/2) |x₁(y₂ - y₃) + x₂(y₃ - y₁) + x₃(y₁ - y₂)|
 - Points are collinear if Area = 0.
 
 **Minors, Cofactors & Adjoint:**
-- **Minor ($M_{ij}$)**: Determinant of submatrix after removing $i^{th}$ row and $j^{th}$ column.
-- **Cofactor ($C_{ij}$)**: $(-1)^{i+j} M_{ij}$.
-- **Adjoint ($adj A$)**: Transpose of the cofactor matrix.
-  - $A(adj A) = |A|I_n$
-  - $|adj A| = |A|^{n-1}$
-  - $A^{-1} = \frac{1}{|A|} adj(A)$
+- **Minor (M_ij)**: Determinant of submatrix after removing i-th row and j-th column.
+- **Cofactor (C_ij)**: (-1)^(i+j) × M_ij.
+- **Adjoint (adj A)**: Transpose of the cofactor matrix.
+  - A(adj A) = |A| · I_n
+  - |adj A| = |A|ⁿ⁻¹
+  - A⁻¹ = (1/|A|) · adj(A)
 
-**Consistency of Linear Equations ($AX=B$):**
-- $|A| \neq 0$: Unique solution (Consistent)
-- $|A| = 0$ and $(adj A)B = 0$: Infinitely many solutions (Consistent)
-- $|A| = 0$ and $(adj A)B \neq 0$: No solution (Inconsistent)
+**Consistency of Linear Equations (AX = B):**
+- |A| ≠ 0: Unique solution (Consistent)
+- |A| = 0 and (adj A)B = 0: Infinitely many solutions (Consistent)
+- |A| = 0 and (adj A)B ≠ 0: No solution (Inconsistent)
 
 ---
 
