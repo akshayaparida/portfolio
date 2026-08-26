@@ -2804,6 +2804,38 @@ html.dark .yt-tab-btn.active {
   letter-spacing: 0.05em;
 }
 
+.yt-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.yt-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.yt-nav-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.yt-nav-btn:hover {
+  background: var(--border);
+  transform: translateY(-1px);
+}
+
 .yt-subscribe-btn {
   display: inline-flex;
   align-items: center;
@@ -2988,6 +3020,16 @@ html.dark .yt-live-tag {
   color: #d1d5db;
   background: #262626;
   border-color: #404040;
+}
+
+html.dark .yt-nav-btn {
+  background: #262626;
+  border-color: #404040;
+  color: #f3f4f6;
+}
+
+html.dark .yt-nav-btn:hover {
+  background: #333333;
 }
 
 html.dark .yt-subscribe-btn {

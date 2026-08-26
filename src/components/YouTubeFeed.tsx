@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { YouTubeVideo } from "@/app/api/youtube/route";
 
@@ -9,30 +9,32 @@ export default function YouTubeFeed() {
   const [activeTab, setActiveTab] = useState<"videos" | "shorts">("videos");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const fetchVideos = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/youtube");
+      if (!res.ok) throw new Error("Failed to load");
+      const data = await res.json();
+      if (data.videos && data.videos.length > 0) {
+        const vids: YouTubeVideo[] = data.videos;
+        setAllVideos(vids);
+        const regularVids = vids.filter((v) => !v.isShort);
+        const shortsVids = vids.filter((v) => v.isShort);
+        if (regularVids.length === 0 && shortsVids.length > 0) {
+          setActiveTab("shorts");
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load YouTube feed", err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    async function fetchVideos() {
-      try {
-        const res = await fetch("/api/youtube");
-        if (!res.ok) throw new Error("Failed to load");
-        const data = await res.json();
-        if (data.videos && data.videos.length > 0) {
-          const vids: YouTubeVideo[] = data.videos;
-          setAllVideos(vids);
-          const regularVids = vids.filter((v) => !v.isShort);
-          const shortsVids = vids.filter((v) => v.isShort);
-          if (regularVids.length === 0 && shortsVids.length > 0) {
-            setActiveTab("shorts");
-          }
-        }
-      } catch (err) {
-        console.error("Failed to load YouTube feed", err);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    }
-
     fetchVideos();
   }, []);
 
@@ -40,7 +42,17 @@ export default function YouTubeFeed() {
   const shortsVideos = allVideos.filter((v) => v.isShort);
   const currentList = activeTab === "videos" ? regularVideos : shortsVideos;
 
-  if (error || (!loading && allVideos.length === 0)) {
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === "left" ? -350 : 350;
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  if (error && allVideos.length === 0) {
     return null;
   }
 
@@ -51,7 +63,7 @@ export default function YouTubeFeed() {
           <h3 className="section-title">
             <i
               className="fa-brands fa-youtube"
-              style={{ color: "var(--heading-color)", marginRight: "0.5rem" }}
+              style={{ color: "#ef4444", marginRight: "0.5rem" }}
             ></i>
             YouTube Channel Feed
           </h3>
@@ -60,6 +72,7 @@ export default function YouTubeFeed() {
             <button
               className={`yt-tab-btn ${activeTab === "videos" ? "active" : ""}`}
               onClick={() => setActiveTab("videos")}
+              aria-label="View Regular Videos"
             >
               <i className="fa-solid fa-video"></i> Videos (
               {regularVideos.length})
@@ -67,6 +80,7 @@ export default function YouTubeFeed() {
             <button
               className={`yt-tab-btn ${activeTab === "shorts" ? "active" : ""}`}
               onClick={() => setActiveTab("shorts")}
+              aria-label="View YouTube Shorts"
             >
               <i className="fa-solid fa-bolt"></i> Shorts ({shortsVideos.length}
               )
@@ -74,14 +88,35 @@ export default function YouTubeFeed() {
           </div>
         </div>
 
-        <a
-          href="https://www.youtube.com/@akshaya.parida?sub_confirmation=1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="yt-subscribe-btn"
-        >
-          <i className="fa-brands fa-youtube"></i> Subscribe @akshaya.parida
-        </a>
+        <div className="yt-actions-group">
+          <div className="yt-nav-arrows">
+            <button
+              className="yt-nav-btn"
+              onClick={() => scroll("left")}
+              aria-label="Scroll Left"
+              title="Scroll Left"
+            >
+              <i className="fa-solid fa-chevron-left"></i>
+            </button>
+            <button
+              className="yt-nav-btn"
+              onClick={() => scroll("right")}
+              aria-label="Scroll Right"
+              title="Scroll Right"
+            >
+              <i className="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <a
+            href="https://www.youtube.com/@akshaya.parida?sub_confirmation=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="yt-subscribe-btn"
+          >
+            <i className="fa-brands fa-youtube"></i> Subscribe @akshaya.parida
+          </a>
+        </div>
       </div>
 
       {loading ? (
@@ -90,7 +125,7 @@ export default function YouTubeFeed() {
           <span>Loading YouTube feed...</span>
         </div>
       ) : (
-        <div className="yt-scroll-container">
+        <div className="yt-scroll-container" ref={scrollContainerRef}>
           {currentList.length > 0 ? (
             <div
               className={`yt-scroll-track ${activeTab === "shorts" ? "shorts-track" : ""}`}
