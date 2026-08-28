@@ -5,21 +5,28 @@ const path = require("path");
 async function generateSitemap() {
   const hostname = "https://akshayaparida.vercel.app";
 
-  // Define your routes
+  // Define your core routes
   const routes = [
     { path: "/", priority: "1.0", changeFreq: "weekly" },
     { path: "/learning-journey", priority: "0.9", changeFreq: "weekly" },
-    { path: "/mathematics", priority: "0.8", changeFreq: "weekly" },
+    { path: "/mathematics", priority: "0.9", changeFreq: "weekly" },
+    { path: "/gate-cs", priority: "0.9", changeFreq: "weekly" },
+    { path: "/ugc-net-jrf", priority: "0.85", changeFreq: "weekly" },
+    { path: "/curaj-msc-cs", priority: "0.85", changeFreq: "weekly" },
+    { path: "/dsa", priority: "0.85", changeFreq: "weekly" },
+    { path: "/dbms", priority: "0.85", changeFreq: "weekly" },
+    { path: "/os", priority: "0.85", changeFreq: "weekly" },
+    { path: "/networks", priority: "0.85", changeFreq: "weekly" },
+    { path: "/ai-engineering", priority: "0.85", changeFreq: "weekly" },
     { path: "/mlops", priority: "0.8", changeFreq: "weekly" },
-    { path: "/dbms", priority: "0.8", changeFreq: "weekly" },
-    { path: "/dsa", priority: "0.8", changeFreq: "weekly" },
-    { path: "/networks", priority: "0.8", changeFreq: "weekly" },
-    { path: "/os", priority: "0.8", changeFreq: "weekly" },
+    { path: "/aws", priority: "0.8", changeFreq: "weekly" },
+    { path: "/digital-fundamentals", priority: "0.8", changeFreq: "weekly" },
     { path: "/reasoning", priority: "0.8", changeFreq: "weekly" },
-    { path: "/ai-engineering", priority: "0.8", changeFreq: "weekly" },
-    { path: "/curaj-msc-cs", priority: "0.8", changeFreq: "weekly" },
-    { path: "/ugc-net-jrf", priority: "0.8", changeFreq: "weekly" },
-    { path: "/gate-cs", priority: "0.8", changeFreq: "weekly" },
+    {
+      path: "/professional-communication",
+      priority: "0.8",
+      changeFreq: "weekly",
+    },
   ];
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>

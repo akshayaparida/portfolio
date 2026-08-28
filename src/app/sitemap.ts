@@ -4,6 +4,10 @@ import { dbmsModules } from "@/data/dbms";
 import { osModules } from "@/data/os";
 import { dsaModules } from "@/data/dsa";
 import { networksModules } from "@/data/networks";
+import { awsModules } from "@/data/aws";
+import { mlopsModules } from "@/data/mlops";
+import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
+import { reasoningModules } from "@/data/reasoning";
 
 export const dynamic = "force-static";
 
@@ -39,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/ugc-net-jrf`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/curaj-msc-cs`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
@@ -81,6 +91,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/aws`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/digital-fundamentals`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/reasoning`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/professional-communication`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
@@ -131,6 +159,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  // Dynamic Module Pages for AWS
+  const awsPages: MetadataRoute.Sitemap = (awsModules || []).map((m) => ({
+    url: `${baseUrl}/aws/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Module Pages for MLOps
+  const mlopsPages: MetadataRoute.Sitemap = (mlopsModules || []).map((m) => ({
+    url: `${baseUrl}/mlops/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Module Pages for Digital Fundamentals
+  const digitalPages: MetadataRoute.Sitemap = (
+    digitalFundamentalsModules || []
+  ).map((m) => ({
+    url: `${baseUrl}/digital-fundamentals/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Module Pages for Reasoning
+  const reasoningPages: MetadataRoute.Sitemap = (reasoningModules || []).map(
+    (m) => ({
+      url: `${baseUrl}/reasoning/${m.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }),
+  );
+
   return [
     ...staticPages,
     ...mathPages,
@@ -138,5 +202,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...osPages,
     ...dsaPages,
     ...networkPages,
+    ...awsPages,
+    ...mlopsPages,
+    ...digitalPages,
+    ...reasoningPages,
   ];
 }
