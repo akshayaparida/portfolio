@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { navigationLinks } from "@/data/navigationLinks";
+import SearchTrigger from "./SearchTrigger";
 
 export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-inner">
+        <div className="sidebar-search-box" style={{ marginBottom: "1.25rem" }}>
+          <SearchTrigger placeholder="Quick search notes & topics..." />
+        </div>
         <h4 className="sidebar-title">Explore more stuff</h4>
         <nav className="sidebar-links">
           {navigationLinks.map((link) => (
@@ -20,7 +24,10 @@ export default function Sidebar() {
             I&apos;m always open to discussing new projects, creative ideas or
             opportunities to be part of your visions.
           </p>
-          <a href="mailto:enquiries.akshayaparida@gmail.com" className="connect-link">
+          <a
+            href="mailto:enquiries.akshayaparida@gmail.com"
+            className="connect-link"
+          >
             <i className="fa-solid fa-paper-plane"></i>
             Say hi!
           </a>

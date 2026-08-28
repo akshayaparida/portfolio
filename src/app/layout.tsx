@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Eczar } from "next/font/google";
 import "./globals.css";
+import "@/styles/search.css";
 import StructuredData from "@/components/StructuredData";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { SearchProvider } from "@/components/SearchContext";
+import SearchModal from "@/components/SearchModal";
 
 const eczar = Eczar({
   subsets: ["latin"],
@@ -121,8 +124,11 @@ export default function RootLayout({
       </head>
       <body className={`${eczar.variable} preload`}>
         <ThemeProvider>
-          <StructuredData />
-          {children}
+          <SearchProvider>
+            <StructuredData />
+            {children}
+            <SearchModal />
+          </SearchProvider>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

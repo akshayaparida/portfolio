@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";

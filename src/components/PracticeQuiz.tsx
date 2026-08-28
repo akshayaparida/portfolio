@@ -5,7 +5,6 @@ import { PracticeQuestion } from "@/types/learning";
 
 const TIMER_SECONDS = 90;
 const TIMER_RADIUS = 18;
-const TIMER_CIRCUMFERENCE = 2 * Math.PI * TIMER_RADIUS;
 
 interface PracticeQuizProps {
   questions: PracticeQuestion[];
@@ -121,8 +120,6 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
     setTimerActive(true);
   };
 
-  const timerProgress = timeLeft / TIMER_SECONDS;
-  const strokeDashoffset = TIMER_CIRCUMFERENCE * (1 - timerProgress);
   const timerColor =
     timeLeft > 30 ? "#10b981" : timeLeft > 10 ? "#f59e0b" : "#ef4444";
 

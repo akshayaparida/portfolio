@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import SearchTrigger from "./SearchTrigger";
 
 type BlogPageHeaderProps = {
   title: string;
@@ -9,7 +10,7 @@ type BlogPageHeaderProps = {
 
 /**
  * Reusable header component for blog-style and module pages.
- * Provides consistent navigation with back arrow, title, and home link.
+ * Provides consistent navigation with back arrow, title, search, and home link.
  */
 export default function BlogPageHeader({
   title,
@@ -27,14 +28,17 @@ export default function BlogPageHeader({
         <i className="fa-solid fa-arrow-left"></i>
       </Link>
       <h1 className="header-title">{title}</h1>
-      <Link
-        href="/"
-        className="nav-btn home-link"
-        title="Home"
-        aria-label="Home"
-      >
-        <i className="fa-solid fa-house"></i>
-      </Link>
+      <div className="header-actions">
+        <SearchTrigger compact />
+        <Link
+          href="/"
+          className="nav-btn home-link"
+          title="Home"
+          aria-label="Home"
+        >
+          <i className="fa-solid fa-house"></i>
+        </Link>
+      </div>
 
       <style jsx>{`
         .blog-page-header {
@@ -52,6 +56,12 @@ export default function BlogPageHeader({
           transition:
             background-color 0.3s ease,
             border-color 0.3s ease;
+        }
+
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
 
         .nav-btn {
