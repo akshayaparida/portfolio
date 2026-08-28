@@ -1,43 +1,55 @@
-"use client";
-
-import { mathematicsModules } from "@/data/mathematics";
-import ModuleViewer from "@/components/ModuleViewer";
-import VectorSpace2D from "@/components/math-visualizations/VectorSpace2D";
-import MatrixMultiplication from "@/components/math-visualizations/MatrixMultiplication";
-import PCAVisualization from "@/components/math-visualizations/PCAVisualization";
-import GradientDescentPlayground from "@/components/math-visualizations/GradientDescentPlayground";
-import ActivationFunctions from "@/components/math-visualizations/ActivationFunctions";
-import ScalarMultiplication from "@/components/math-visualizations/ScalarMultiplication";
 import { notFound } from "next/navigation";
-import { useParams } from "next/navigation";
-import React from "react";
+import { mathematicsModules } from "@/data/mathematics";
+import MathModuleClient from "@/components/MathModuleClient";
+import type { Metadata } from "next";
 
-const demoComponents: Record<string, React.ComponentType> = {
-  vectors: VectorSpace2D,
-  matrices: MatrixMultiplication,
-  pca: PCAVisualization,
-  "gradient-descent": GradientDescentPlayground,
-  activations: ActivationFunctions,
-  "scalar-mult": ScalarMultiplication,
-};
+export function generateStaticParams() {
+  return mathematicsModules.map((m) => ({
+    moduleId: m.id,
+  }));
+}
 
-export default function ModulePage() {
-  const { moduleId } = useParams() as { moduleId: string };
-
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ moduleId: string }>;
+}): Promise<Metadata> {
+  const { moduleId } = await params;
   const currentModule = mathematicsModules.find((m) => m.id === moduleId);
 
   if (!currentModule) {
-    return notFound();
+    return {
+      title: "Module Not Found",
+    };
   }
 
-  // Calculate index for display (1-based)
+  return {
+    title: `${currentModule.title} | Mathematics for AI`,
+    description: currentModule.description,
+    openGraph: {
+      title: `${currentModule.title} | Mathematics for AI | Akshaya Parida`,
+      description: currentModule.description,
+      url: `https://akshayaparida.vercel.app/mathematics/${moduleId}`,
+    },
+    alternates: {
+      canonical: `/mathematics/${moduleId}`,
+    },
+  };
+}
+
+export default async function MathModulePage({
+  params,
+}: {
+  params: Promise<{ moduleId: string }>;
+}) {
+  const { moduleId } = await params;
+  const currentModule = mathematicsModules.find((m) => m.id === moduleId);
+
+  if (!currentModule) {
+    notFound();
+  }
+
   const index = mathematicsModules.findIndex((m) => m.id === moduleId);
 
-  return (
-    <ModuleViewer
-      module={currentModule}
-      index={index}
-      demoComponents={demoComponents}
-    />
-  );
+  return <MathModuleClient module={currentModule} index={index} />;
 }

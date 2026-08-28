@@ -132,11 +132,13 @@ describe("Mathematics Dynamic Routes", () => {
   });
 
   describe("ModulePage", () => {
-    it("renders content for a valid module ID", () => {
-      const mathModule = mathematicsModules[0]; // set-theory
-      mockUseParams.mockReturnValue({ moduleId: mathModule.id });
+    it("renders content for a valid module ID", async () => {
+      const mathModule = mathematicsModules[0];
+      const pageEl = await ModulePage({
+        params: Promise.resolve({ moduleId: mathModule.id }),
+      });
 
-      render(<ModulePage />);
+      render(pageEl);
 
       expect(screen.getByText(mathModule.title)).toBeInTheDocument();
       expect(screen.getByText(mathModule.description)).toBeInTheDocument();
@@ -147,34 +149,36 @@ describe("Mathematics Dynamic Routes", () => {
       }
     });
 
-    it("calls notFound for invalid module ID", () => {
-      mockUseParams.mockReturnValue({ moduleId: "invalid-id" });
-
-      render(<ModulePage />);
+    it("calls notFound for invalid module ID", async () => {
+      await ModulePage({
+        params: Promise.resolve({ moduleId: "invalid-id" }),
+      });
 
       expect(mockNotFound).toHaveBeenCalled();
     });
 
-    it("renders interactive demos if present", () => {
-      // Find a module with submodules (e.g. algebra has demos?)
+    it("renders interactive demos if present", async () => {
       const moduleWithDemos = mathematicsModules.find(
         (m) => m.subModules && m.subModules.length > 0,
       );
       if (moduleWithDemos) {
-        mockUseParams.mockReturnValue({ moduleId: moduleWithDemos.id });
-        render(<ModulePage />);
+        const pageEl = await ModulePage({
+          params: Promise.resolve({ moduleId: moduleWithDemos.id }),
+        });
+        render(pageEl);
         expect(screen.getByText("Interactive Demos")).toBeInTheDocument();
       }
     });
 
-    it("renders practice quiz if present", () => {
-      // Find a module with quiz
+    it("renders practice quiz if present", async () => {
       const moduleWithQuiz = mathematicsModules.find(
         (m) => m.practiceQuiz && m.practiceQuiz.length > 0,
       );
       if (moduleWithQuiz) {
-        mockUseParams.mockReturnValue({ moduleId: moduleWithQuiz.id });
-        render(<ModulePage />);
+        const pageEl = await ModulePage({
+          params: Promise.resolve({ moduleId: moduleWithQuiz.id }),
+        });
+        render(pageEl);
         expect(screen.getByTestId("practice-quiz")).toBeInTheDocument();
       }
     });

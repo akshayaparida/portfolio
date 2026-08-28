@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   creator: "Akshaya Parida",
   publisher: "Akshaya Parida",
   alternates: {
-    canonical: "https://akshayaparida.vercel.app/",
+    canonical: "./",
   },
   openGraph: {
     type: "website",

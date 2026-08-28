@@ -1,21 +1,54 @@
-"use client";
-
+import { notFound } from "next/navigation";
 import { dsaModules } from "@/data/dsa";
 import ModuleViewer from "@/components/ModuleViewer";
-import { notFound } from "next/navigation";
-import { useParams } from "next/navigation";
-import React from "react";
+import type { Metadata } from "next";
 
-export default function DSAModulePage() {
-  const { moduleId } = useParams() as { moduleId: string };
+export function generateStaticParams() {
+  return dsaModules.map((module) => ({
+    moduleId: module.id,
+  }));
+}
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ moduleId: string }>;
+}): Promise<Metadata> {
+  const { moduleId } = await params;
   const currentModule = dsaModules.find((m) => m.id === moduleId);
 
   if (!currentModule) {
-    return notFound();
+    return {
+      title: "Module Not Found",
+    };
   }
 
-  // Calculate index for display (1-based)
+  return {
+    title: `${currentModule.title} | Data Structures & Algorithms`,
+    description: currentModule.description,
+    openGraph: {
+      title: `${currentModule.title} | DSA | Akshaya Parida`,
+      description: currentModule.description,
+      url: `https://akshayaparida.vercel.app/dsa/${moduleId}`,
+    },
+    alternates: {
+      canonical: `/dsa/${moduleId}`,
+    },
+  };
+}
+
+export default async function DSAModulePage({
+  params,
+}: {
+  params: Promise<{ moduleId: string }>;
+}) {
+  const { moduleId } = await params;
+  const currentModule = dsaModules.find((m) => m.id === moduleId);
+
+  if (!currentModule) {
+    notFound();
+  }
+
   const index = dsaModules.findIndex((m) => m.id === moduleId);
 
   return <ModuleViewer module={currentModule} index={index} />;
