@@ -6,8 +6,8 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-inner">
-        <div className="sidebar-search-box" style={{ marginBottom: "1.25rem" }}>
-          <SearchTrigger placeholder="Quick search notes & topics..." />
+        <div className="sidebar-search-box">
+          <SearchTrigger placeholder="Search topics..." />
         </div>
         <h4 className="sidebar-title">Explore more stuff</h4>
         <nav className="sidebar-links">

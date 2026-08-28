@@ -11,7 +11,7 @@ interface SearchTriggerProps {
 
 export default function SearchTrigger({
   compact = false,
-  placeholder = "Search topics, notes...",
+  placeholder = "Search topics...",
   className = "",
 }: SearchTriggerProps) {
   const { openSearch } = useSearch();

@@ -6,8 +6,8 @@ export default function MobileExplore() {
   return (
     <section className="mobile-explore">
       <div className="mobile-explore-inner">
-        <div className="mobile-search-box" style={{ marginBottom: "1.25rem" }}>
-          <SearchTrigger placeholder="Search topics & notes..." />
+        <div className="mobile-search-box">
+          <SearchTrigger placeholder="Search topics..." />
         </div>
         <h4 className="sidebar-title">Explore more stuff</h4>
         <nav className="sidebar-links">
