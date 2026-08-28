@@ -259,7 +259,7 @@ export default function UgcNetJrfPage() {
     <div className="page-container">
       {/* Consistent Header */}
       <BlogPageHeader
-        title="UGC NET JRF — Complete Syllabus & NPTEL Guide"
+        title="UGC NET JRF 2026 — Complete Syllabus & NPTEL Guide"
         backLink="/learning-journey"
         backTitle="My Journey"
       />
@@ -270,11 +270,16 @@ export default function UgcNetJrfPage() {
           <div className="intro-content">
             <div className="badge-row">
               <span className="badge">National Eligibility Test</span>
+              <span className="badge badge-accent">
+                UGC NET 2026 (June & Dec)
+              </span>
               <span className="badge badge-accent">Paper I & Paper II</span>
             </div>
-            <h2>Complete UGC NET JRF Preparation Hub (Paper 1 + Paper 2)</h2>
+            <h2>
+              Complete UGC NET JRF 2026 Preparation Hub (Paper 1 + Paper 2)
+            </h2>
             <p>
-              Comprehensive syllabus coverage for both{" "}
+              Comprehensive syllabus coverage for UGC NET 2026 across both{" "}
               <strong>Paper I (General Teaching & Research Aptitude)</strong>{" "}
               and <strong>Paper II (Computer Science & Applications)</strong>.
               Paper I units link to{" "}
@@ -292,12 +297,12 @@ export default function UgcNetJrfPage() {
               <span className="official-tag">
                 <i className="fa-solid fa-shield-halved"></i> Verified Official
               </span>
-              <h3>UGC NET JRF Official Examination & Information Portals</h3>
+              <h3>UGC NET 2026 Official Examination & Information Portals</h3>
             </div>
             <p className="official-subtitle">
-              Direct access to NTA examination portal, UGC official
-              notifications, syllabus downloads for Paper 1 & Paper 2, and
-              previous year answer keys.
+              Direct access to NTA 2026 examination portal, UGC official
+              circulars, syllabus downloads for Paper 1 & Paper 2, and previous
+              year answer keys.
             </p>
           </div>
 
@@ -310,7 +315,7 @@ export default function UgcNetJrfPage() {
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-primary">
-                  NTA Exam Portal
+                  NTA UGC NET 2026 Portal
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -328,8 +333,8 @@ export default function UgcNetJrfPage() {
                 <div className="official-card-text">
                   <h4>NTA UGC NET Official Portal</h4>
                   <p>
-                    National Testing Agency portal for application forms, city
-                    intimation slips, admit cards & scorecards.
+                    National Testing Agency 2026 portal for online application
+                    forms, city intimation slips, admit cards & scorecards.
                   </p>
                 </div>
               </div>
@@ -349,7 +354,7 @@ export default function UgcNetJrfPage() {
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-accent">
-                  Official Syllabus
+                  Official 2026 Syllabus
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>

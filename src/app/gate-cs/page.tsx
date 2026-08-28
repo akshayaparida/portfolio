@@ -142,7 +142,7 @@ export default function GateCsPage() {
     <div className="page-container">
       {/* Consistent Header */}
       <BlogPageHeader
-        title="GATE CS — Subject Syllabus & NPTEL Guide"
+        title="GATE CS 2027 / 2026 — Subject Syllabus & NPTEL Guide"
         backLink="/learning-journey"
         backTitle="My Journey"
       />
@@ -155,12 +155,14 @@ export default function GateCsPage() {
               <span className="badge">
                 Graduate Aptitude Test in Engineering
               </span>
-              <span className="badge badge-accent">GATE CS & IT</span>
+              <span className="badge badge-accent">
+                GATE CS & IT 2027 / 2026 Target
+              </span>
             </div>
-            <h2>Complete GATE Computer Science Syllabus Breakdown</h2>
+            <h2>Complete GATE CS 2027 / 2026 Syllabus Breakdown</h2>
             <p>
-              Subject-wise weightage and core topic breakdown for GATE CS 2026 /
-              2027. Each subject is linked directly to{" "}
+              Comprehensive subject-wise weightage and core topic breakdown for
+              GATE CS 2027 / 2026. Each subject is linked directly to{" "}
               <strong>
                 official NPTEL video lectures and course materials
               </strong>{" "}
@@ -176,12 +178,14 @@ export default function GateCsPage() {
               <span className="official-tag">
                 <i className="fa-solid fa-shield-halved"></i> Verified Official
               </span>
-              <h3>GATE Official Examination & Information Portals</h3>
+              <h3>
+                GATE 2027 / 2026 Official Examination & Information Portals
+              </h3>
             </div>
             <p className="official-subtitle">
-              Direct access to organizing IIT portals, official syllabus PDFs,
-              application form links (GOAPS), and previous year question paper
-              archives.
+              Direct access to organizing IIT portals (IIT Roorkee / IIT
+              Guwahati / IIT Kanpur), official GATE 2026 & 2027 syllabus PDFs,
+              GOAPS application portals, and answer key archives.
             </p>
           </div>
 
@@ -194,7 +198,7 @@ export default function GateCsPage() {
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-primary">
-                  Exam Portal
+                  GATE Exam Portal (2026/2027)
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -212,15 +216,17 @@ export default function GateCsPage() {
                 <div className="official-card-text">
                   <h4>GATE Official Website & GOAPS</h4>
                   <p>
-                    Organizing IIT portal for registration, exam schedule, admit
-                    cards, and scorecards.
+                    Central organizing IIT portal for online registration, exam
+                    schedule, candidate login (GOAPS), admit cards, and
+                    scorecards.
                   </p>
                 </div>
               </div>
               <div className="official-card-footer">
                 <span className="official-url-text">gate2025.iitr.ac.in</span>
                 <span className="official-action-label">
-                  Open Portal <i className="fa-solid fa-arrow-right"></i>
+                  Open Official Portal{" "}
+                  <i className="fa-solid fa-arrow-right"></i>
                 </span>
               </div>
             </a>
@@ -233,7 +239,7 @@ export default function GateCsPage() {
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-accent">
-                  Official Syllabus
+                  Official Syllabus (2026/2027)
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -252,7 +258,7 @@ export default function GateCsPage() {
                   <h4>Official GATE CS Syllabus (PDF)</h4>
                   <p>
                     Authoritative Computer Science & Information Technology
-                    syllabus directly from the IIT committee.
+                    syllabus and paper pattern directly from the IIT committee.
                   </p>
                 </div>
               </div>
@@ -261,7 +267,7 @@ export default function GateCsPage() {
                   gate2025.iitr.ac.in/syllabus
                 </span>
                 <span className="official-action-label">
-                  View Syllabus <i className="fa-solid fa-arrow-right"></i>
+                  Download Syllabus <i className="fa-solid fa-arrow-right"></i>
                 </span>
               </div>
             </a>
