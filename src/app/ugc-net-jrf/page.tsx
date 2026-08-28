@@ -285,6 +285,185 @@ export default function UgcNetJrfPage() {
           </div>
         </section>
 
+        {/* Official Portals & Direct Links */}
+        <section className="official-portals-section">
+          <div className="official-header">
+            <div className="official-title-group">
+              <span className="official-tag">
+                <i className="fa-solid fa-shield-halved"></i> Verified Official
+              </span>
+              <h3>UGC NET JRF Official Examination & Information Portals</h3>
+            </div>
+            <p className="official-subtitle">
+              Direct access to NTA examination portal, UGC official
+              notifications, syllabus downloads for Paper 1 & Paper 2, and
+              previous year answer keys.
+            </p>
+          </div>
+
+          <div className="official-grid">
+            <a
+              href="https://ugcnet.nta.ac.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="official-card"
+            >
+              <div className="official-badge-row">
+                <span className="official-type-pill pill-primary">
+                  NTA Exam Portal
+                </span>
+                <span className="official-external-badge">
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+              </div>
+              <div className="official-card-body">
+                <div
+                  className="official-icon-wrap"
+                  style={{
+                    background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                  }}
+                >
+                  <i className="fa-solid fa-building-columns"></i>
+                </div>
+                <div className="official-card-text">
+                  <h4>NTA UGC NET Official Portal</h4>
+                  <p>
+                    National Testing Agency portal for application forms, city
+                    intimation slips, admit cards & scorecards.
+                  </p>
+                </div>
+              </div>
+              <div className="official-card-footer">
+                <span className="official-url-text">ugcnet.nta.ac.in</span>
+                <span className="official-action-label">
+                  Open NTA Portal <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.ugcnetonline.in/syllabus-new.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="official-card"
+            >
+              <div className="official-badge-row">
+                <span className="official-type-pill pill-accent">
+                  Official Syllabus
+                </span>
+                <span className="official-external-badge">
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+              </div>
+              <div className="official-card-body">
+                <div
+                  className="official-icon-wrap"
+                  style={{
+                    background: "linear-gradient(135deg, #059669, #047857)",
+                  }}
+                >
+                  <i className="fa-solid fa-file-lines"></i>
+                </div>
+                <div className="official-card-text">
+                  <h4>Official UGC NET Syllabus (PDFs)</h4>
+                  <p>
+                    Download official English and Hindi syllabus for General
+                    Paper 1 and Computer Science (Subject Code: 87).
+                  </p>
+                </div>
+              </div>
+              <div className="official-card-footer">
+                <span className="official-url-text">
+                  ugcnetonline.in/syllabus
+                </span>
+                <span className="official-action-label">
+                  Download Syllabus <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.ugc.gov.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="official-card"
+            >
+              <div className="official-badge-row">
+                <span className="official-type-pill pill-purple">
+                  UGC Govt. Portal
+                </span>
+                <span className="official-external-badge">
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+              </div>
+              <div className="official-card-body">
+                <div
+                  className="official-icon-wrap"
+                  style={{
+                    background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
+                  }}
+                >
+                  <i className="fa-solid fa-landmark"></i>
+                </div>
+                <div className="official-card-text">
+                  <h4>University Grants Commission (UGC)</h4>
+                  <p>
+                    Official guidelines on JRF fellowship stipends, reservation
+                    rules, Assistant Professor eligibility, and circulars.
+                  </p>
+                </div>
+              </div>
+              <div className="official-card-footer">
+                <span className="official-url-text">ugc.gov.in</span>
+                <span className="official-action-label">
+                  Visit UGC <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="https://www.ugcnetonline.in/previous_question_papers.php"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="official-card"
+            >
+              <div className="official-badge-row">
+                <span className="official-type-pill pill-warning">
+                  Answer Keys & Archive
+                </span>
+                <span className="official-external-badge">
+                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+              </div>
+              <div className="official-card-body">
+                <div
+                  className="official-icon-wrap"
+                  style={{
+                    background: "linear-gradient(135deg, #d97706, #b45309)",
+                  }}
+                >
+                  <i className="fa-solid fa-file-circle-check"></i>
+                </div>
+                <div className="official-card-text">
+                  <h4>Official Previous Year Papers Archive</h4>
+                  <p>
+                    Free official repository of previous year UGC NET question
+                    papers and answer keys with no login required.
+                  </p>
+                </div>
+              </div>
+              <div className="official-card-footer">
+                <span className="official-url-text">
+                  ugcnetonline.in/papers
+                </span>
+                <span className="official-action-label">
+                  Access Archive <i className="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </a>
+          </div>
+        </section>
+
         {/* Paper Tabs & Search */}
         <section className="controls-bar">
           <div className="tabs">
@@ -488,6 +667,178 @@ export default function UgcNetJrfPage() {
           line-height: 1.65;
           margin: 0;
           font-size: 0.95rem;
+        }
+
+        /* Official Portals Section */
+        .official-portals-section {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 1.6rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+        .official-header {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+        }
+        .official-title-group {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+        .official-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.25rem 0.65rem;
+          background: rgba(37, 99, 235, 0.1);
+          color: #2563eb;
+          border: 1px solid rgba(37, 99, 235, 0.2);
+          border-radius: 999px;
+          font-size: 0.725rem;
+          font-weight: 700;
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+        }
+        .official-header h3 {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: var(--heading-color);
+          margin: 0;
+        }
+        .official-subtitle {
+          font-size: 0.85rem;
+          color: var(--text-secondary);
+          margin: 0;
+          line-height: 1.5;
+        }
+        .official-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 1rem;
+        }
+        .official-card {
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 12px;
+          padding: 1.15rem;
+          text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1rem;
+          transition: all 0.2s ease-in-out;
+          position: relative;
+        }
+        .official-card:hover {
+          background: var(--surface);
+          border-color: #2563eb;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+        }
+        .official-badge-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5rem;
+        }
+        .official-type-pill {
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
+          letter-spacing: 0.02em;
+        }
+        .pill-primary {
+          background: rgba(37, 99, 235, 0.12);
+          color: #2563eb;
+        }
+        .pill-accent {
+          background: rgba(16, 185, 129, 0.12);
+          color: #059669;
+        }
+        .pill-warning {
+          background: rgba(245, 158, 11, 0.12);
+          color: #d97706;
+        }
+        .pill-purple {
+          background: rgba(139, 92, 246, 0.12);
+          color: #7c3aed;
+        }
+        .official-external-badge {
+          color: var(--text-muted);
+          font-size: 0.75rem;
+          transition: color 0.2s;
+        }
+        .official-card:hover .official-external-badge {
+          color: #2563eb;
+        }
+        .official-card-body {
+          display: flex;
+          gap: 0.85rem;
+          align-items: flex-start;
+        }
+        .official-icon-wrap {
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: 1rem;
+          flex-shrink: 0;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .official-card-text {
+          flex: 1;
+          min-width: 0;
+        }
+        .official-card-text h4 {
+          font-size: 0.925rem;
+          font-weight: 700;
+          color: var(--heading-color);
+          margin: 0 0 0.25rem 0;
+          line-height: 1.35;
+        }
+        .official-card-text p {
+          font-size: 0.785rem;
+          color: var(--text-secondary);
+          margin: 0;
+          line-height: 1.45;
+        }
+        .official-card-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 0.75rem;
+          border-top: 1px solid var(--border);
+          font-size: 0.75rem;
+        }
+        .official-url-text {
+          color: var(--text-muted);
+          font-family: var(--font-mono, monospace);
+          font-size: 0.7rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 140px;
+        }
+        .official-action-label {
+          color: #2563eb;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          transition: gap 0.2s;
+        }
+        .official-card:hover .official-action-label {
+          gap: 0.5rem;
         }
 
         .controls-bar {
@@ -796,6 +1147,23 @@ export default function UgcNetJrfPage() {
         @media (max-width: 640px) {
           .content-wrapper {
             padding: 1rem;
+          }
+          .official-portals-section {
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+          }
+          .official-header h3 {
+            font-size: 1.05rem;
+          }
+          .official-subtitle {
+            font-size: 0.785rem;
+          }
+          .official-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+          }
+          .official-card {
+            padding: 0.95rem;
           }
           .units-grid {
             grid-template-columns: 1fr;
