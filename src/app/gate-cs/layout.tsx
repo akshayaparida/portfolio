@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GATE CS 2027 / 2026 — Complete Computer Science Syllabus & Key Notes",
+  title:
+    "GATE CS 2027 (IIT Madras) — Complete Computer Science Syllabus & Notes",
   description:
-    "Comprehensive GATE Computer Science (GATE CS 2027 / 2026) syllabus breakdown, subject-wise weightages (Algorithms, OS, DBMS, Networks, Digital Logic, TOC, CD, Math), key exam concepts, and official NPTEL course links.",
+    "Comprehensive GATE Computer Science (GATE CS 2027 — IIT Madras) syllabus breakdown, subject-wise weightages (Algorithms, OS, DBMS, Networks, Digital Logic, TOC, CD, Math), key exam concepts, and official IITM & NPTEL portal links.",
   keywords: [
     "GATE CS 2027",
+    "GATE 2027 IIT Madras",
+    "GATE 2027 IITM",
     "GATE CS 2026",
     "GATE Computer Science",
     "GATE CSE Syllabus 2027",
@@ -20,9 +23,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "GATE CS 2027 / 2026 Syllabus & Official Exam Portals | Akshaya Parida",
+      "GATE CS 2027 (IIT Madras) Syllabus & Official Portals | Akshaya Parida",
     description:
-      "Comprehensive GATE Computer Science (GATE CS 2027 / 2026) syllabus breakdown, subject-wise weightages, key exam concepts, and official portal links.",
+      "Comprehensive GATE Computer Science (GATE CS 2027 — IIT Madras) syllabus breakdown, subject-wise weightages, key exam concepts, and official IITM portal links.",
     url: "https://akshayaparida.vercel.app/gate-cs",
     type: "website",
   },

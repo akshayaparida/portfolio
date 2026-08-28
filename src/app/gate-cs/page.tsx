@@ -178,27 +178,25 @@ export default function GateCsPage() {
               <span className="official-tag">
                 <i className="fa-solid fa-shield-halved"></i> Verified Official
               </span>
-              <h3>
-                GATE 2027 / 2026 Official Examination & Information Portals
-              </h3>
+              <h3>GATE 2027 Official Examination & Information Portals</h3>
             </div>
             <p className="official-subtitle">
-              Direct access to organizing IIT portals (IIT Roorkee / IIT
-              Guwahati / IIT Kanpur), official GATE 2026 & 2027 syllabus PDFs,
-              GOAPS application portals, and answer key archives.
+              Direct access to organizing institute portal (IIT Madras — IITM),
+              official GATE 2027 syllabus, GOAPS application portal, and MoE /
+              NPTEL preparation resources.
             </p>
           </div>
 
           <div className="official-grid">
             <a
-              href="https://gate2025.iitr.ac.in"
+              href="https://gate.iitm.ac.in"
               target="_blank"
               rel="noopener noreferrer"
               className="official-card"
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-primary">
-                  GATE Exam Portal (2026/2027)
+                  IIT Madras (IITM) Portal
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -214,16 +212,16 @@ export default function GateCsPage() {
                   <i className="fa-solid fa-building-columns"></i>
                 </div>
                 <div className="official-card-text">
-                  <h4>GATE Official Website & GOAPS</h4>
+                  <h4>GATE 2027 Official Portal (IIT Madras)</h4>
                   <p>
-                    Central organizing IIT portal for online registration, exam
-                    schedule, candidate login (GOAPS), admit cards, and
+                    Official IIT Madras portal for GATE 2027 announcements,
+                    candidate registration (GOAPS), eligibility criteria, and
                     scorecards.
                   </p>
                 </div>
               </div>
               <div className="official-card-footer">
-                <span className="official-url-text">gate2025.iitr.ac.in</span>
+                <span className="official-url-text">gate.iitm.ac.in</span>
                 <span className="official-action-label">
                   Open Official Portal{" "}
                   <i className="fa-solid fa-arrow-right"></i>
@@ -232,14 +230,14 @@ export default function GateCsPage() {
             </a>
 
             <a
-              href="https://gate2025.iitr.ac.in/syllabus.html"
+              href="https://gate.iitm.ac.in"
               target="_blank"
               rel="noopener noreferrer"
               className="official-card"
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-accent">
-                  Official Syllabus (2026/2027)
+                  Official 2027 Syllabus
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -255,60 +253,18 @@ export default function GateCsPage() {
                   <i className="fa-solid fa-file-lines"></i>
                 </div>
                 <div className="official-card-text">
-                  <h4>Official GATE CS Syllabus (PDF)</h4>
+                  <h4>Official GATE 2027 CS & IT Syllabus</h4>
                   <p>
                     Authoritative Computer Science & Information Technology
-                    syllabus and paper pattern directly from the IIT committee.
+                    syllabus structure and marking scheme from the organizing
+                    committee.
                   </p>
                 </div>
               </div>
               <div className="official-card-footer">
-                <span className="official-url-text">
-                  gate2025.iitr.ac.in/syllabus
-                </span>
+                <span className="official-url-text">gate.iitm.ac.in</span>
                 <span className="official-action-label">
-                  Download Syllabus <i className="fa-solid fa-arrow-right"></i>
-                </span>
-              </div>
-            </a>
-
-            <a
-              href="https://gate2025.iitr.ac.in/previous-year-question-papers.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="official-card"
-            >
-              <div className="official-badge-row">
-                <span className="official-type-pill pill-warning">
-                  Answer Keys & PYQs
-                </span>
-                <span className="official-external-badge">
-                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                </span>
-              </div>
-              <div className="official-card-body">
-                <div
-                  className="official-icon-wrap"
-                  style={{
-                    background: "linear-gradient(135deg, #d97706, #b45309)",
-                  }}
-                >
-                  <i className="fa-solid fa-file-circle-check"></i>
-                </div>
-                <div className="official-card-text">
-                  <h4>Official Question Papers Archive</h4>
-                  <p>
-                    Download original question papers and verified master answer
-                    keys from previous exam years.
-                  </p>
-                </div>
-              </div>
-              <div className="official-card-footer">
-                <span className="official-url-text">
-                  gate2025.iitr.ac.in/papers
-                </span>
-                <span className="official-action-label">
-                  Download Papers <i className="fa-solid fa-arrow-right"></i>
+                  View Syllabus <i className="fa-solid fa-arrow-right"></i>
                 </span>
               </div>
             </a>
@@ -321,7 +277,7 @@ export default function GateCsPage() {
             >
               <div className="official-badge-row">
                 <span className="official-type-pill pill-purple">
-                  Govt. of India / MoE
+                  IITM & Govt. of India
                 </span>
                 <span className="official-external-badge">
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
@@ -339,8 +295,8 @@ export default function GateCsPage() {
                 <div className="official-card-text">
                   <h4>NPTEL GATE Preparation Portal</h4>
                   <p>
-                    Free video courses, syllabus mapping, and full-length
-                    official mock tests by IIT professors.
+                    Free video lecture series, subject-wise syllabus mappings,
+                    and mock test series coordinated by IIT Madras and NPTEL.
                   </p>
                 </div>
               </div>

@@ -301,8 +301,8 @@ export default function UgcNetJrfPage() {
             </div>
             <p className="official-subtitle">
               Direct access to NTA 2026 examination portal, UGC official
-              circulars, syllabus downloads for Paper 1 & Paper 2, and previous
-              year answer keys.
+              circulars, and authoritative syllabus downloads for Paper 1 &
+              Paper 2.
             </p>
           </div>
 
@@ -425,47 +425,6 @@ export default function UgcNetJrfPage() {
                 </span>
               </div>
             </a>
-
-            <a
-              href="https://www.ugcnetonline.in/previous_question_papers.php"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="official-card"
-            >
-              <div className="official-badge-row">
-                <span className="official-type-pill pill-warning">
-                  Answer Keys & Archive
-                </span>
-                <span className="official-external-badge">
-                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                </span>
-              </div>
-              <div className="official-card-body">
-                <div
-                  className="official-icon-wrap"
-                  style={{
-                    background: "linear-gradient(135deg, #d97706, #b45309)",
-                  }}
-                >
-                  <i className="fa-solid fa-file-circle-check"></i>
-                </div>
-                <div className="official-card-text">
-                  <h4>Official Previous Year Papers Archive</h4>
-                  <p>
-                    Free official repository of previous year UGC NET question
-                    papers and answer keys with no login required.
-                  </p>
-                </div>
-              </div>
-              <div className="official-card-footer">
-                <span className="official-url-text">
-                  ugcnetonline.in/papers
-                </span>
-                <span className="official-action-label">
-                  Access Archive <i className="fa-solid fa-arrow-right"></i>
-                </span>
-              </div>
-            </a>
           </div>
         </section>
 
@@ -562,13 +521,6 @@ export default function UgcNetJrfPage() {
                 url: "https://www.youtube.com/@KumarBharat/playlists",
                 icon: "fa-brands fa-youtube",
                 color: "#dc2626",
-              },
-              {
-                name: "UGC NET Online — PYQ Papers Archive",
-                desc: "Free previous year question papers with answer keys for all subjects. No login required.",
-                url: "https://www.ugcnetonline.in/previous_question_papers.php",
-                icon: "fa-solid fa-file-circle-check",
-                color: "#7c3aed",
               },
               {
                 name: "GateOverflow — UGC NET PYQ Solutions",
