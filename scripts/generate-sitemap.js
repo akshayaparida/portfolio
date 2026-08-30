@@ -18,6 +18,7 @@ async function generateSitemap() {
     { path: "/os", priority: "0.85", changeFreq: "weekly" },
     { path: "/networks", priority: "0.85", changeFreq: "weekly" },
     { path: "/ai-engineering", priority: "0.85", changeFreq: "weekly" },
+    { path: "/engineering-blogs", priority: "0.85", changeFreq: "weekly" },
     { path: "/mlops", priority: "0.8", changeFreq: "weekly" },
     { path: "/aws", priority: "0.8", changeFreq: "weekly" },
     { path: "/digital-fundamentals", priority: "0.8", changeFreq: "weekly" },

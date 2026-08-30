@@ -86,4 +86,20 @@ describe("searchIndex library", () => {
     expect(searchItems("")).toEqual([]);
     expect(searchItems("   ")).toEqual([]);
   });
+
+  it("indexes and searches engineering blogs and high-tech missions", () => {
+    const aiResults = searchItems("OpenAI");
+    expect(aiResults.length).toBeGreaterThan(0);
+    expect(aiResults.some((r) => r.url === "/engineering-blogs")).toBe(true);
+
+    const secResults = searchItems("PortSwigger");
+    expect(secResults.length).toBeGreaterThan(0);
+    expect(secResults.some((r) => r.url === "/engineering-blogs")).toBe(true);
+
+    const ismResults = searchItems("Semiconductor Mission");
+    expect(ismResults.length).toBeGreaterThan(0);
+    expect(
+      ismResults.some((r) => r.title.includes("India Semiconductor Mission")),
+    ).toBe(true);
+  });
 });

@@ -17,6 +17,7 @@ import { learningModules } from "@/data/learningJourney";
 import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 import { navigationLinks } from "@/data/navigationLinks";
+import { engineeringBlogs } from "@/data/engineeringBlogs";
 
 /**
  * URL/anchor-friendly slug generator consistent with TableOfContents and ModuleViewer
@@ -446,7 +447,41 @@ export function buildSearchIndex(): SearchIndexItem[] {
     });
   });
 
-  // 14. Top Navigation Links
+  // 14. Engineering Blogs & Deep Tech Publications
+  engineeringBlogs.forEach((blog) => {
+    const articleTitles = blog.featuredArticles
+      ? blog.featuredArticles.map((a) => a.title).join(" ")
+      : "";
+    index.push({
+      id: `eng-blog-${blog.id}`,
+      title: blog.title,
+      description: blog.description,
+      content: `${blog.title} ${blog.organization} ${blog.description} ${blog.tags.join(" ")} ${articleTitles}`,
+      category: "page",
+      categoryLabel: blog.categoryLabel,
+      domain: blog.categoryLabel,
+      icon: blog.icon || "fa-solid fa-newspaper",
+      url: `/engineering-blogs`,
+      breadcrumb: `Engineering Blogs > ${blog.categoryLabel} > ${blog.title}`,
+      tags: blog.tags,
+      keywords: [
+        "Engineering Blog",
+        "Deep Tech",
+        blog.title,
+        blog.organization,
+        blog.categoryLabel,
+        ...blog.tags,
+        ...(blog.isIndiaTech
+          ? ["India Tech", "ISRO", "DRDO", "Make In India"]
+          : []),
+        ...(blog.isGovtScheme
+          ? ["Government Scheme", "National Mission", "MeitY", "DST"]
+          : []),
+      ],
+    });
+  });
+
+  // 15. Top Navigation Links
   navigationLinks.forEach((nav) => {
     if (!index.some((item) => item.url === nav.href)) {
       index.push({
