@@ -102,4 +102,30 @@ describe("searchIndex library", () => {
       ismResults.some((r) => r.title.includes("India Semiconductor Mission")),
     ).toBe(true);
   });
+
+  it("indexes and searches politics, student wings, and geopolitics dossiers", () => {
+    const bjpResults = searchItems("Bharatiya Janata Party");
+    expect(bjpResults.length).toBeGreaterThan(0);
+    expect(bjpResults.some((r) => r.url === "/politics-and-geopolitics")).toBe(
+      true,
+    );
+
+    const quadResults = searchItems("Quad");
+    expect(quadResults.length).toBeGreaterThan(0);
+    expect(quadResults.some((r) => r.url === "/politics-and-geopolitics")).toBe(
+      true,
+    );
+
+    const abvpResults = searchItems("ABVP");
+    expect(abvpResults.length).toBeGreaterThan(0);
+    expect(abvpResults.some((r) => r.url === "/politics-and-geopolitics")).toBe(
+      true,
+    );
+
+    const fcraResults = searchItems("FCRA");
+    expect(fcraResults.length).toBeGreaterThan(0);
+    expect(fcraResults.some((r) => r.url === "/politics-and-geopolitics")).toBe(
+      true,
+    );
+  });
 });

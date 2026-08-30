@@ -56,6 +56,16 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://akshayaparida.vercel.app/engineering-blogs</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://akshayaparida.vercel.app/politics-and-geopolitics</loc>
+    <priority>0.85</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://akshayaparida.vercel.app/mlops</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>

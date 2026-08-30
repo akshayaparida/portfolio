@@ -1,0 +1,1084 @@
+/* ==========================================================================
+   Politics & Geopolitics Hub Styles
+   Subtle, minimalist, and deeply readable design using portfolio theme tokens.
+   ========================================================================== */
+
+/* Page Container */
+.pol-container {
+  min-height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 100vw;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main Content Wrapper */
+.pol-main {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4.5rem;
+  flex: 1;
+  box-sizing: border-box;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.pol-hero {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.pol-hero-badge-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.85rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pol-hero-title {
+  font-size: clamp(1.85rem, 3.8vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--heading-color);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.65rem;
+}
+
+.pol-hero-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 860px;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+/* Metrics Row */
+.pol-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.pol-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.pol-stat-count {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+/* ==========================================
+   Interactive Geopolitics Map Section
+   ========================================== */
+.pol-map-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.35rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.pol-map-top-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+
+.pol-map-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.pol-radar-indicator {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.pol-radar-dot {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.pol-radar-ping {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.4);
+  animation: radarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radarPing {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.pol-map-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.2rem;
+}
+
+.pol-map-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.pol-map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pol-map-filter-btn {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pol-map-filter-btn:hover {
+  background: var(--border);
+  color: var(--heading-color);
+}
+
+.pol-map-filter-btn.active {
+  background: var(--heading-color);
+  border-color: var(--heading-color);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+/* Map Split Grid */
+.pol-map-split-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.pol-map-canvas-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.pol-map-canvas-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pol-svg-map {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
+}
+
+.pol-map-landmass {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1.4;
+  transition: fill 0.3s ease;
+}
+
+.pol-map-island {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 1.2;
+}
+
+.pol-map-island-label {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--text-muted);
+  font-family: inherit;
+}
+
+.pol-svg-watermark {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text-muted);
+  opacity: 0.35;
+  letter-spacing: 0.08em;
+  font-family: inherit;
+}
+
+/* Hotspot Radar Beacons */
+.pol-beacon-pulse {
+  fill: none;
+  stroke-width: 1.5;
+  animation: beaconPulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.pol-beacon-pulse.lac {
+  stroke: #e11d48;
+}
+
+.pol-beacon-pulse.loc {
+  stroke: #d97706;
+}
+
+.pol-beacon-pulse.ior {
+  stroke: #0284c7;
+}
+
+.pol-beacon-pulse.myanmar {
+  stroke: #10b981;
+}
+
+.pol-beacon-pulse.corridor {
+  stroke: #8b5cf6;
+}
+
+@keyframes beaconPulse {
+  0% {
+    r: 6;
+    opacity: 0.9;
+  }
+  100% {
+    r: 22;
+    opacity: 0;
+  }
+}
+
+.pol-beacon-ring {
+  fill: none;
+  stroke-width: 1.6;
+}
+
+.pol-beacon-ring.lac {
+  stroke: #e11d48;
+}
+
+.pol-beacon-ring.loc {
+  stroke: #d97706;
+}
+
+.pol-beacon-ring.ior {
+  stroke: #0284c7;
+}
+
+.pol-beacon-ring.myanmar {
+  stroke: #10b981;
+}
+
+.pol-beacon-ring.corridor {
+  stroke: #8b5cf6;
+}
+
+.pol-beacon-core {
+  stroke: var(--surface);
+  stroke-width: 1;
+}
+
+.pol-beacon-core.lac {
+  fill: #e11d48;
+}
+
+.pol-beacon-core.loc {
+  fill: #d97706;
+}
+
+.pol-beacon-core.ior {
+  fill: #0284c7;
+}
+
+.pol-beacon-core.myanmar {
+  fill: #10b981;
+}
+
+.pol-beacon-core.corridor {
+  fill: #8b5cf6;
+}
+
+.pol-beacon-text {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--text-primary);
+  font-family: inherit;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.pol-beacon-text.active {
+  fill: var(--heading-color);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.pol-hotspot-group:hover .pol-beacon-text {
+  fill: var(--primary);
+}
+
+.pol-occupied-zone {
+  transition: all 0.2s ease;
+}
+
+.pol-occupied-zone:hover {
+  filter: brightness(1.2);
+  stroke-width: 1.8;
+}
+
+.pol-map-region-tag {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: inherit;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.pol-map-region-tag.india {
+  fill: var(--heading-color);
+  opacity: 0.85;
+}
+
+.pol-map-region-tag.pok {
+  fill: #f59e0b;
+}
+
+.pol-map-region-tag.china {
+  fill: #ef4444;
+}
+
+.pol-map-region-tag.shaksgam {
+  fill: #a855f7;
+}
+
+.pol-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--border);
+  justify-content: center;
+}
+
+.pol-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.pol-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.pol-legend-dot.red {
+  background: #ef4444;
+}
+
+.pol-legend-dot.amber {
+  background: #f59e0b;
+}
+
+.pol-legend-dot.blue {
+  background: #0284c7;
+}
+
+.pol-legend-dot.emerald {
+  background: #10b981;
+}
+
+.pol-legend-box {
+  width: 12px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
+}
+
+.pol-legend-box.red-hatch {
+  background: repeating-linear-gradient(-45deg, #ef4444, #ef4444 2px, transparent 2px, transparent 4px);
+  border-color: #ef4444;
+}
+
+.pol-legend-box.amber-hatch {
+  background: repeating-linear-gradient(45deg, #f59e0b, #f59e0b 2px, transparent 2px, transparent 4px);
+  border-color: #f59e0b;
+}
+
+.pol-legend-box.purple-hatch {
+  background: repeating-linear-gradient(30deg, #a855f7, #a855f7 2px, transparent 2px, transparent 4px);
+  border-color: #a855f7;
+}
+
+/* Dossier Detail Card */
+.pol-dossier-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+}
+
+.pol-dossier-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.pol-dossier-status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.pol-status-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.pol-status-badge.illegally-occupied {
+  color: #a855f7;
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.08);
+}
+
+.pol-status-badge.active-vigil {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+  background: rgba(2, 132, 199, 0.06);
+}
+
+.pol-status-badge.high-alert {
+  color: #e11d48;
+  border-color: rgba(225, 29, 72, 0.3);
+  background: rgba(225, 29, 72, 0.06);
+}
+
+.pol-status-badge.strategic-chokepoint {
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.06);
+}
+
+.pol-status-badge.under-construction {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.3);
+  background: rgba(217, 119, 6, 0.06);
+}
+
+.pol-front-badge {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.pol-dossier-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.pol-dossier-opposing {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.pol-dossier-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pol-dossier-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pol-dossier-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+}
+
+.pol-dossier-text {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.pol-dossier-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.pol-asset-pill {
+  font-size: 0.72rem;
+  padding: 0.18rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.pol-infra-pill {
+  font-size: 0.72rem;
+  padding: 0.18rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ==========================================
+   Navigation Tabs & Controls
+   ========================================== */
+.pol-nav-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.15rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Top Section Tabs */
+.pol-main-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pol-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.pol-tab-btn:hover {
+  background: var(--surface);
+  border-color: var(--text-muted);
+  color: var(--heading-color);
+}
+
+.pol-tab-btn.active {
+  background: var(--heading-color);
+  border-color: var(--heading-color);
+  color: var(--surface);
+  font-weight: 600;
+}
+
+/* Search Box */
+.pol-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.pol-search-icon {
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.pol-search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.6rem;
+  font-size: 0.92rem;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.pol-search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.12);
+  background: var(--surface);
+}
+
+.pol-search-clear {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+}
+
+.pol-search-clear:hover {
+  color: var(--heading-color);
+}
+
+/* Subfilters Row */
+.pol-subfilters-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+
+.pol-filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pol-filter-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-right: 0.2rem;
+}
+
+.pol-filter-btn {
+  padding: 0.24rem 0.55rem;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pol-filter-btn:hover {
+  background: var(--border);
+  color: var(--heading-color);
+}
+
+.pol-filter-btn.active {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  color: var(--bg-light);
+  font-weight: 600;
+}
+
+/* ==========================================
+   Cards & Layouts
+   ========================================== */
+.pol-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
+}
+
+.pol-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.pol-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--text-muted);
+}
+
+/* Card Header */
+.pol-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.pol-card-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.pol-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  line-height: 1.3;
+}
+
+.pol-card-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pol-badges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+}
+
+.pol-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.pol-badge-nda {
+  color: #d97706;
+  border-color: rgba(217, 119, 6, 0.3);
+  background: rgba(217, 119, 6, 0.06);
+}
+
+.pol-badge-india-alliance {
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+  background: rgba(2, 132, 199, 0.06);
+}
+
+.pol-badge-independent {
+  color: var(--text-muted);
+}
+
+/* Card Content Details */
+.pol-card-section {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.pol-section-heading {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.pol-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.65rem;
+}
+
+.pol-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.pol-tag-pill {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.4rem;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+/* List Items in Cards */
+.pol-bullet-list {
+  margin: 0.35rem 0;
+  padding-left: 1.15rem;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.pol-bullet-list li {
+  margin-bottom: 0.3rem;
+}
+
+/* Card Footer */
+.pol-card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pol-footer-meta {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.pol-ext-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  color: var(--heading-color);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pol-ext-btn:hover {
+  background: var(--border);
+  color: var(--heading-color);
+}
+
+/* ==========================================
+   Parliament & Government Specific Styles
+   ========================================== */
+.pol-gov-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.pol-gov-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pol-gov-stat-val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.25rem;
+}
+
+.pol-gov-stat-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.pol-cabinet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.15rem;
+}
+
+.pol-cabinet-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.pol-cabinet-portfolio {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.pol-cabinet-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.4rem;
+}
+
+/* ==========================================
+   Empty State
+   ========================================== */
+.pol-empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.pol-empty-icon {
+  font-size: 2.25rem;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.pol-empty-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.4rem;
+}
+
+.pol-empty-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.pol-reset-btn {
+  padding: 0.55rem 1.15rem;
+  border-radius: 6px;
+  background: var(--heading-color);
+  color: var(--surface);
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.pol-reset-btn:hover {
+  opacity: 0.9;
+}
+
+/* ==========================================
+   Responsive Breakpoints
+   ========================================== */
+@media (max-width: 980px) {
+  .pol-map-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .pol-main {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .pol-cards-grid,
+  .pol-cabinet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pol-nav-card,
+  .pol-map-wrapper {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .pol-tab-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .pol-subfilters-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -32,6 +32,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-newspaper",
   },
   {
+    label: "Politics & Geopolitics",
+    href: "/politics-and-geopolitics",
+    icon: "fa-solid fa-landmark",
+  },
+  {
     label: "Mathematics",
     href: "/mathematics",
     icon: "fa-solid fa-calculator",

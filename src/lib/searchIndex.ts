@@ -18,6 +18,13 @@ import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 import { navigationLinks } from "@/data/navigationLinks";
 import { engineeringBlogs } from "@/data/engineeringBlogs";
+import {
+  politicalParties,
+  bilateralRelations,
+  borderChallenges,
+  studentWings,
+  internalSecurityThreats,
+} from "@/data/politicsAndGeopolitics";
 
 /**
  * URL/anchor-friendly slug generator consistent with TableOfContents and ModuleViewer
@@ -481,7 +488,129 @@ export function buildSearchIndex(): SearchIndexItem[] {
     });
   });
 
-  // 15. Top Navigation Links
+  // 15. Politics & Geopolitics: Political Parties
+  politicalParties.forEach((party) => {
+    index.push({
+      id: `party-${party.id}`,
+      title: `${party.name} (${party.abbreviation})`,
+      description: `${party.categoryLabel} • Alliance: ${party.alliance} • Leader: ${party.currentLeader}`,
+      content: `${party.corePhilosophy} ${party.economicVision} ${party.foreignPolicyStance}`,
+      category: "section",
+      categoryLabel: "Political Party",
+      domain: "Politics & Geopolitics",
+      icon: "fa-solid fa-landmark",
+      url: `/politics-and-geopolitics`,
+      breadcrumb: `Politics > Parties > ${party.name}`,
+      tags: party.coreIdeologies,
+      keywords: [
+        party.name,
+        party.abbreviation,
+        party.alliance,
+        party.currentLeader,
+        ...party.coreIdeologies,
+        party.primaryBase,
+      ],
+    });
+  });
+
+  // 16. Politics & Geopolitics: Bilateral Relations
+  bilateralRelations.forEach((rel) => {
+    index.push({
+      id: `bilateral-${rel.id}`,
+      title: `India–${rel.country} Relations (${rel.partnershipTitle})`,
+      description: rel.executiveSummary,
+      content: `${rel.executiveSummary} ${rel.keyStrategicConvergences.join(" ")} ${rel.frictionPointsAndChallenges.join(" ")}`,
+      category: "section",
+      categoryLabel: "Geopolitics",
+      domain: "Politics & Geopolitics",
+      icon: "fa-solid fa-earth-americas",
+      url: `/politics-and-geopolitics`,
+      breadcrumb: `Geopolitics > Bilateral > India–${rel.country}`,
+      tags: ["Foreign Policy", "Geopolitics", rel.country],
+      keywords: [
+        rel.country,
+        rel.partnershipTitle,
+        "Foreign Policy",
+        "Geopolitics",
+        ...rel.keyStrategicConvergences,
+      ],
+    });
+  });
+
+  // 17. Politics & Geopolitics: Border Frontiers
+  borderChallenges.forEach((border) => {
+    index.push({
+      id: `border-${border.id}`,
+      title: `${border.borderName} (${border.front})`,
+      description: border.strategicSignificance,
+      content: `${border.strategicSignificance} ${border.majorFlashpointsAndChallenges.join(" ")} ${border.infrastructureAndDefensiveMeasures.join(" ")}`,
+      category: "section",
+      categoryLabel: "Border Security",
+      domain: "Politics & Geopolitics",
+      icon: "fa-solid fa-shield-halved",
+      url: `/politics-and-geopolitics`,
+      breadcrumb: `National Security > Frontiers > ${border.borderName}`,
+      tags: ["Border Security", "National Defense", border.front],
+      keywords: [
+        border.borderName,
+        border.counterpartCountry,
+        "LAC",
+        "LoC",
+        "National Defense",
+        ...border.keySectors,
+      ],
+    });
+  });
+
+  // 18. Politics & Geopolitics: Student Wings
+  studentWings.forEach((wing) => {
+    index.push({
+      id: `student-wing-${wing.id}`,
+      title: `${wing.name} (${wing.abbreviation})`,
+      description: `${wing.ideologicalStance} • ${wing.parentPartyOrIdeology}`,
+      content: `${wing.description} ${wing.coreIssues.join(" ")}`,
+      category: "section",
+      categoryLabel: "Student Politics",
+      domain: "Politics & Geopolitics",
+      icon: "fa-solid fa-graduation-cap",
+      url: `/politics-and-geopolitics`,
+      breadcrumb: `Politics > Student Wings > ${wing.name}`,
+      tags: ["Student Politics", wing.abbreviation],
+      keywords: [
+        wing.name,
+        wing.abbreviation,
+        wing.parentPartyOrIdeology,
+        ...wing.keyCampusHubs,
+      ],
+    });
+  });
+
+  // 19. Politics & Geopolitics: Internal Security & FCRA
+  internalSecurityThreats.forEach((threat) => {
+    index.push({
+      id: `security-${threat.id}`,
+      title: threat.title,
+      description: threat.threatDescription,
+      content: `${threat.threatDescription} ${threat.mechanismsAndVectors.join(" ")} ${threat.regulatoryAndLegalFramework.join(" ")}`,
+      category: "section",
+      categoryLabel: "Internal Security",
+      domain: "Politics & Geopolitics",
+      icon: "fa-solid fa-lock",
+      url: `/politics-and-geopolitics`,
+      breadcrumb: `National Security > Internal > ${threat.title}`,
+      tags: ["Internal Security", "FCRA", "UAPA"],
+      keywords: [
+        threat.title,
+        "FCRA",
+        "UAPA",
+        "Terror Financing",
+        "PFI Ban",
+        ...threat.enforcementAgencies,
+      ],
+    });
+  });
+
+  // 20. Top Navigation Links
   navigationLinks.forEach((nav) => {
     if (!index.some((item) => item.url === nav.href)) {
       index.push({
