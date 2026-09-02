@@ -4,6 +4,7 @@ import { setTheoryModule } from "./mathematics/set-theory";
 import { mathematicalLogicModule } from "./mathematics/mathematical-logic";
 import { relationsModule } from "./mathematics/relations";
 import { functionsModule } from "./mathematics/functions";
+import { mathematicalInductionModule } from "./mathematics/mathematical-induction";
 import { algebraModule } from "./mathematics/algebra";
 import { coordinateGeometryModule } from "./mathematics/coordinate-geometry";
 import { linearAlgebraModule } from "./mathematics/linear-algebra";
@@ -17,6 +18,7 @@ export const mathematicsModules: LearningModule[] = [
   mathematicalLogicModule,
   relationsModule,
   functionsModule,
+  mathematicalInductionModule,
   algebraModule,
   coordinateGeometryModule,
   linearAlgebraModule,
