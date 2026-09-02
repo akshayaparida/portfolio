@@ -25,7 +25,7 @@ export const journeyLocations: JourneyLocation[] = [
   {
     id: "haridwar-dsvv",
     stepNumber: 1,
-    city: "Haridwar",
+    city: "DSVV in Haridwar",
     state: "Uttarakhand",
     institutionOrEra: "Dev Sanskriti Vishwavidyalaya (DSVV)",
     title: "The Undergraduate Foundation & Discipline",
@@ -33,9 +33,9 @@ export const journeyLocations: JourneyLocation[] = [
     phase: "Phase 1: Foundation",
     icon: "fa-solid fa-graduation-cap",
     tagline:
-      "From shy student to discovering the power of disciplined learning.",
+      "From shy student to discovering the power of disciplined learning at DSVV in Haridwar.",
     story:
-      "Began my academic voyage at DSVV in the serene foothills of the Himalayas. Overcame early introversion, adapted to new environments, built foundational skills in computer science, programming fundamentals (C/C++, Java, JavaScript), and internalized Life Management, moral discipline, and reflective values that continue to anchor my work ethics.",
+      "Began my academic voyage at DSVV in Haridwar in the serene foothills of the Himalayas. Overcame early introversion, adapted to new environments, built foundational skills in computer science, programming fundamentals (C/C++, Java, JavaScript), and internalized Life Management, moral discipline, and reflective values that continue to anchor my work ethics.",
     keyTakeaways: [
       "Built strong foundational skills in programming and web basics with JavaScript",
       "Studied Life Management, holistic wellness, and self-discipline",
@@ -56,7 +56,7 @@ export const journeyLocations: JourneyLocation[] = [
   {
     id: "bhikapada-covid",
     stepNumber: 2,
-    city: "Bhikapada Village, Ganjam",
+    city: "Khallikote Village (Bhikapada), Ganjam",
     state: "Odisha",
     institutionOrEra: "COVID-19 Lockdown & Self-Directed Awakening",
     title: "The 'High Agency' Mindset Shift & Deep Self-Study",
@@ -64,9 +64,9 @@ export const journeyLocations: JourneyLocation[] = [
     phase: "Phase 2: The Awakening",
     icon: "fa-solid fa-laptop-code",
     tagline:
-      "COVID lockdown sparked the realization: real learning is understanding deeply.",
+      "COVID lockdown in Khallikote village sparked the realization: real learning is understanding deeply.",
     story:
-      "During the global pandemic lockdown in my hometown village (Bhikapada, Ganjam, Odisha), I shifted from passive coursework to relentless, self-driven mastery. Inspired by intense curiosity, I broke away from rote learning, dove deep into Data Structures & Algorithms, full-stack web architecture, and built high-agency problem-solving habits using open internet resources.",
+      "During the global pandemic lockdown in my hometown Khallikote village (Bhikapada, Ganjam, Odisha), I shifted from passive coursework to relentless, self-driven mastery. Inspired by intense curiosity, I broke away from rote learning, dove deep into Data Structures & Algorithms, full-stack web architecture, and built high-agency problem-solving habits using open internet resources.",
     keyTakeaways: [
       "Transformed from rote memorization to first-principles thinking",
       "Mastered Data Structures & Algorithms from foundational ground up",
@@ -86,17 +86,17 @@ export const journeyLocations: JourneyLocation[] = [
   {
     id: "bangalore-tech",
     stepNumber: 3,
-    city: "Bengaluru (Bangalore)",
+    city: "Bengaluru (Bangalore) Workplace",
     state: "Karnataka",
-    institutionOrEra: "The Silicon Valley of India",
+    institutionOrEra: "The Silicon Valley of India — Workplace",
     title: "The Leap, Real-World Hustle & Communication Mastery",
     timeline: "Professional Growth Phase",
     phase: "Phase 3: Real-World Grit",
     icon: "fa-solid fa-city",
     tagline:
-      "Stepping into India's tech capital — converting challenges into growth.",
+      "Stepping into India's tech capital — converting workplace challenges into growth.",
     story:
-      "Took a bold leap to Bengaluru, immersing myself in India's buzzing startup and technology capital. Worked in fast-paced e-commerce operations and software workflows, communicating daily with cross-functional stakeholders. This intensive real-world experience transformed my hesitant English into confident, articulate professional fluency and instilled a builder's velocity.",
+      "Took a bold leap to Bengaluru, working at my corporate workplace in India's buzzing startup and technology capital. Worked in fast-paced e-commerce operations and software workflows, communicating daily with cross-functional stakeholders. This intensive real-world experience transformed my hesitant English into confident, articulate professional fluency and instilled a builder's velocity.",
     keyTakeaways: [
       "Achieved professional English fluency and confident client communication",
       "Navigated real-world business operations, software delivery, and deadlines",
@@ -116,17 +116,17 @@ export const journeyLocations: JourneyLocation[] = [
   {
     id: "curaj-ajmer",
     stepNumber: 4,
-    city: "Bandarsindri, Ajmer",
+    city: "Bandarsindri (CURAJ), Ajmer",
     state: "Rajasthan",
-    institutionOrEra: "Central University of Rajasthan (CURAJ)",
+    institutionOrEra: "Central University of Rajasthan (CURAJ), Bandarsindri",
     title: "MSc in Computer Science & Advanced Deep Tech",
-    timeline: "2024 – Present (Current)",
+    timeline: "2026 – Present (Current)",
     phase: "Phase 4: Advanced Systems & AI",
     icon: "fa-solid fa-brain",
     tagline:
-      "Master's research, AI Engineering, MLOps, and building production systems.",
+      "Master's research, AI Engineering, MLOps, and building production systems at CURAJ.",
     story:
-      "Currently pursuing an MSc in Computer Science at CURAJ. Engaging deeply in advanced distributed operating systems, database internals, theoretical computer science, machine learning pipelines, and agentic AI architectures. Actively building comprehensive open-source knowledge bases, interactive visualization engines, and preparing for GATE CS and UGC NET JRF.",
+      "Currently pursuing an MSc in Computer Science specifically at CURAJ (Bandarsindri, Ajmer). Engaging deeply in advanced distributed operating systems, database internals, theoretical computer science, machine learning pipelines, and agentic AI architectures. Actively building comprehensive open-source knowledge bases, interactive visualization engines, and preparing for GATE CS and UGC NET JRF.",
     keyTakeaways: [
       "Advanced coursework in Operating Systems, DBMS internals, Computer Networks, and AI",
       "Building full-stack interactive learning platforms and algorithmic visualizers",
@@ -212,8 +212,10 @@ export default function InteractiveJourneyMap() {
             </h2>
             <p className="journey-map-subtitle">
               Follow my transformation across India: from Himalayan discipline
-              in Haridwar, through rural deep-study in Odisha, industry hustle
-              in Bengaluru, to advanced CS research at CURAJ.
+              at DSVV in Haridwar, through rural deep-study in Khallikote
+              Village (Bhikapada, Odisha), industry hustle at my Bengaluru
+              workplace, to advanced CS research specifically at CURAJ
+              (Bandarsindri).
             </p>
           </div>
         </div>
@@ -523,7 +525,7 @@ export default function InteractiveJourneyMap() {
               </div>
               <div className="journey-legend-item">
                 <span className="journey-legend-dot current"></span>
-                <span>CURAJ (Current Base)</span>
+                <span>Bandarsindri, CURAJ (Current Base)</span>
               </div>
               <div className="journey-legend-item">
                 <span className="journey-legend-dot visited"></span>

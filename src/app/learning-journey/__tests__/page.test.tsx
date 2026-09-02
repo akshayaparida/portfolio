@@ -43,12 +43,12 @@ describe("LearningJourneyPage", () => {
     render(<LearningJourneyPage />);
 
     // Default selection is CURAJ (Step 4)
-    expect(screen.getAllByText(/Bandarsindri, Ajmer/i).length).toBeGreaterThan(
-      0,
-    );
+    expect(screen.getAllByText(/Bandarsindri/i).length).toBeGreaterThan(0);
 
     // Switch to Haridwar (Step 1)
-    const haridwarBtn = screen.getByRole("button", { name: /1 Haridwar/i });
+    const haridwarBtn = screen.getByRole("button", {
+      name: /1.*(DSVV|Haridwar)/i,
+    });
     fireEvent.click(haridwarBtn);
 
     expect(
@@ -62,7 +62,7 @@ describe("LearningJourneyPage", () => {
 
     // Switch to Bhikapada (Step 2)
     const bhikapadaBtn = screen.getByRole("button", {
-      name: /2 Bhikapada Village, Ganjam/i,
+      name: /2.*(Bhikapada|Khallikote)/i,
     });
     fireEvent.click(bhikapadaBtn);
 

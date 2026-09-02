@@ -28,10 +28,11 @@ export default function LearningJourneyPage() {
           </h1>
 
           <p className="journey-subtitle">
-            From an introverted undergraduate in the Himalayan foothills of
-            Haridwar, through self-directed COVID lockdowns in rural Odisha and
-            industry hustle in Bengaluru, to advanced Computer Science research
-            at CURAJ.
+            From an introverted undergraduate at DSVV in Haridwar, through
+            self-directed COVID lockdowns in Khallikote village (Bhikapada,
+            Odisha) and corporate workplace hustle in Bengaluru, to advanced
+            Computer Science research specifically at CURAJ (Bandarsindri,
+            Ajmer).
           </p>
 
           {/* Metrics Pill Row */}
@@ -44,18 +45,20 @@ export default function LearningJourneyPage() {
             <div className="journey-stat-pill">
               <i className="fa-solid fa-location-dot text-emerald-500"></i>
               <span>Current Base:</span>
-              <span className="journey-stat-val">CURAJ, Ajmer (MSc CS)</span>
+              <span className="journey-stat-val">
+                CURAJ, Bandarsindri (MSc CS)
+              </span>
             </div>
             <div className="journey-stat-pill">
               <i className="fa-solid fa-graduation-cap text-purple-500"></i>
               <span>Origins:</span>
-              <span className="journey-stat-val">DSVV, Haridwar (BSc)</span>
+              <span className="journey-stat-val">DSVV in Haridwar (BSc)</span>
             </div>
             <div className="journey-stat-pill">
               <i className="fa-solid fa-house-laptop text-amber-500"></i>
               <span>Awakening:</span>
               <span className="journey-stat-val">
-                Bhikapada, Ganjam, Odisha
+                Bhikapada, Khallikote Village, Odisha
               </span>
             </div>
           </div>
