@@ -162,13 +162,29 @@ const Heading5 = ({
 function cleanAlertChildren(node: React.ReactNode): React.ReactNode {
   if (typeof node === "string") {
     return node.replace(
-      /^(\[!?(?:TIP|NOTE|WARNING|CAUTION|IMPORTANT|EXAM SHORTCUT|EXAM TIP)\]?:?)\s*/i,
+      /^\s*(\[!?(?:TIP|NOTE|WARNING|CAUTION|IMPORTANT|EXAM SHORTCUT|EXAM TIP)\]?:?)\s*/i,
       "",
     );
   }
   if (Array.isArray(node)) {
     if (node.length === 0) return node;
-    return [cleanAlertChildren(node[0]), ...node.slice(1)];
+    let removed = false;
+    return node.map((child) => {
+      if (removed) return child;
+      const cleaned = cleanAlertChildren(child);
+      if (typeof child === "string" && cleaned !== child) {
+        removed = true;
+        return cleaned;
+      }
+      if (
+        React.isValidElement(child) &&
+        getNodeText(cleaned) !== getNodeText(child)
+      ) {
+        removed = true;
+        return cleaned;
+      }
+      return cleaned;
+    });
   }
   if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
     return React.cloneElement(node, {

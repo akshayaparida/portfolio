@@ -828,6 +828,7 @@ export default function PracticeQuiz({ questions }: PracticeQuizProps) {
           color: var(--heading-color);
           margin-bottom: 1.25rem;
           line-height: 1.5;
+          white-space: pre-wrap;
         }
 
         .options-grid {
