@@ -7,6 +7,8 @@ import { LearningModule, SubModule } from "@/types/learning";
 import { mathematicsModules } from "@/data/mathematics";
 import { osModules } from "@/data/os";
 import { dsaModules } from "@/data/dsa";
+import { dataStructuresModules } from "@/data/data-structures";
+import { algorithmsModules } from "@/data/algorithms";
 import { dbmsModules } from "@/data/dbms";
 import { networksModules } from "@/data/networks";
 import { awsModules } from "@/data/aws";
@@ -230,6 +232,22 @@ export function buildSearchIndex(): SearchIndexItem[] {
   // 3. Core CS: Data Structures & Algorithms
   index.push(
     ...indexModuleCategory(dsaModules, "/dsa", "DSA", "fa-solid fa-code"),
+  );
+  index.push(
+    ...indexModuleCategory(
+      dataStructuresModules,
+      "/data-structures",
+      "Data Structures",
+      "fa-solid fa-diagram-project",
+    ),
+  );
+  index.push(
+    ...indexModuleCategory(
+      algorithmsModules,
+      "/algorithms",
+      "Algorithms",
+      "fa-solid fa-code-branch",
+    ),
   );
 
   // 4. Core CS: DBMS

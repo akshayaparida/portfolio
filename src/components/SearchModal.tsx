@@ -32,13 +32,15 @@ const FILTER_TABS: {
 
 const SUGGESTED_SEARCHES = [
   "Linear Algebra",
+  "Binary Search",
+  "AVL Trees",
+  "Dynamic Programming",
   "Banker's Algorithm",
   "Normalization",
   "TCP Handshake",
   "Docker",
   "GATE CS",
   "PyTorch",
-  "Bengaluru Infra",
   "Calculus",
   "Process Management",
 ];

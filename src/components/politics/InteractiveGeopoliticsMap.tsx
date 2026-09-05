@@ -341,31 +341,36 @@ export default function InteractiveGeopoliticsMap() {
             onClick={() => setActiveCategory("lac")}
             className={`pol-map-filter-btn ${activeCategory === "lac" ? "active" : ""}`}
           >
-            🏔️ LAC &amp; Aksai Chin
+            <i className="fa-solid fa-mountain mr-1.5 opacity-75"></i> LAC &amp;
+            Aksai Chin
           </button>
           <button
             onClick={() => setActiveCategory("loc")}
             className={`pol-map-filter-btn ${activeCategory === "loc" ? "active" : ""}`}
           >
-            ⚔️ LoC &amp; PoK
+            <i className="fa-solid fa-shield-halved mr-1.5 opacity-75"></i> LoC
+            &amp; PoK
           </button>
           <button
             onClick={() => setActiveCategory("ior")}
             className={`pol-map-filter-btn ${activeCategory === "ior" ? "active" : ""}`}
           >
-            🌊 Maritime (IOR)
+            <i className="fa-solid fa-water mr-1.5 opacity-75"></i> Maritime
+            (IOR)
           </button>
           <button
             onClick={() => setActiveCategory("myanmar")}
             className={`pol-map-filter-btn ${activeCategory === "myanmar" ? "active" : ""}`}
           >
-            🌿 Myanmar Frontier
+            <i className="fa-solid fa-tree mr-1.5 opacity-75"></i> Myanmar
+            Frontier
           </button>
           <button
             onClick={() => setActiveCategory("corridor")}
             className={`pol-map-filter-btn ${activeCategory === "corridor" ? "active" : ""}`}
           >
-            🚢 IMEC / Chabahar
+            <i className="fa-solid fa-ship mr-1.5 opacity-75"></i> IMEC /
+            Chabahar
           </button>
         </div>
       </div>

@@ -3,6 +3,8 @@ import { mathematicsModules } from "@/data/mathematics";
 import { dbmsModules } from "@/data/dbms";
 import { osModules } from "@/data/os";
 import { dsaModules } from "@/data/dsa";
+import { dataStructuresModules } from "@/data/data-structures";
+import { algorithmsModules } from "@/data/algorithms";
 import { networksModules } from "@/data/networks";
 import { awsModules } from "@/data/aws";
 import { mlopsModules } from "@/data/mlops";
@@ -52,6 +54,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/data-structures`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.88,
+    },
+    {
+      url: `${baseUrl}/algorithms`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.88,
     },
     {
       url: `${baseUrl}/dsa`,
@@ -153,6 +167,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Dynamic Module Pages for Data Structures
+  const dataStructuresPages: MetadataRoute.Sitemap = (
+    dataStructuresModules || []
+  ).map((m) => ({
+    url: `${baseUrl}/data-structures/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Module Pages for Algorithms
+  const algorithmsPages: MetadataRoute.Sitemap = (algorithmsModules || []).map(
+    (m) => ({
+      url: `${baseUrl}/algorithms/${m.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }),
+  );
+
   // Dynamic Module Pages for DSA
   const dsaPages: MetadataRoute.Sitemap = (dsaModules || []).map((m) => ({
     url: `${baseUrl}/dsa/${m.id}`,
@@ -212,6 +246,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...mathPages,
     ...dbmsPages,
     ...osPages,
+    ...dataStructuresPages,
+    ...algorithmsPages,
     ...dsaPages,
     ...networkPages,
     ...awsPages,

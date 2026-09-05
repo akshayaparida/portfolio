@@ -1,57 +1,65 @@
-import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
-import CodeBlock from '../CodeBlock';
+import React from "react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
+import CodeBlock from "../CodeBlock";
 
-describe('CodeBlock Component', () => {
+describe("CodeBlock Component", () => {
   beforeEach(() => {
     Object.assign(navigator, {
       clipboard: {
         writeText: jest.fn().mockResolvedValue(undefined),
-      }
+      },
     });
   });
 
-  it('renders code content correctly', () => {
+  it("renders code content correctly", () => {
     const code = 'console.log("test")';
     render(<CodeBlock className="language-js">{code}</CodeBlock>);
-    expect(screen.getByText(code)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        (content, element) =>
+          element?.tagName.toLowerCase() === "code" &&
+          element.textContent === code,
+      ),
+    ).toBeInTheDocument();
   });
 
-  it('displays the correct language label', () => {
-    render(<CodeBlock className="language-python">{"print(\"test\")"}</CodeBlock>);
-    expect(screen.getByText('python')).toBeInTheDocument();
+  it("displays the correct language label", () => {
+    render(
+      <CodeBlock className="language-python">{'print("test")'}</CodeBlock>,
+    );
+    expect(screen.getByText(/python/i)).toBeInTheDocument();
   });
 
-  it('copies code to clipboard when button is clicked', async () => {
-    const code = 'const x = 1;';
+  it("copies code to clipboard when button is clicked", async () => {
+    const code = "const x = 1;";
     render(<CodeBlock className="language-ts">{code}</CodeBlock>);
-    
-    const copyButton = screen.getByRole('button', { name: /copy/i });
+
+    const copyButton = screen.getByRole("button", { name: /copy/i });
     await act(async () => {
       fireEvent.click(copyButton);
     });
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(code);
-    expect(screen.getByText('Copied!')).toBeInTheDocument();
+    expect(screen.getByText("Copied!")).toBeInTheDocument();
   });
 
-  it('reverts copy button text after delay', async () => {
+  it("reverts copy button text after delay", async () => {
     jest.useFakeTimers();
-    const code = 'test';
+    const code = "test";
     render(<CodeBlock className="language-text">{code}</CodeBlock>);
-    
-    const copyButton = screen.getByRole('button', { name: /copy/i });
+
+    const copyButton = screen.getByRole("button", { name: /copy/i });
     await act(async () => {
       fireEvent.click(copyButton);
     });
 
-    expect(screen.getByText('Copied!')).toBeInTheDocument();
+    expect(screen.getByText("Copied!")).toBeInTheDocument();
 
     act(() => {
       jest.advanceTimersByTime(2000);
     });
 
-    expect(screen.getByText('Copy')).toBeInTheDocument();
+    expect(screen.getByText("Copy")).toBeInTheDocument();
     jest.useRealTimers();
   });
 });

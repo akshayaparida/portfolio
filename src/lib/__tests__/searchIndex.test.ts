@@ -34,6 +34,8 @@ describe("searchIndex library", () => {
     expect(domains.has("Mathematics")).toBe(true);
     expect(domains.has("OS")).toBe(true);
     expect(domains.has("DSA")).toBe(true);
+    expect(domains.has("Data Structures")).toBe(true);
+    expect(domains.has("Algorithms")).toBe(true);
     expect(domains.has("DBMS")).toBe(true);
     expect(domains.has("Networks")).toBe(true);
     expect(domains.has("AWS")).toBe(true);

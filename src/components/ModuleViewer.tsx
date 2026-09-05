@@ -2,15 +2,17 @@
 
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import CodeBlock from "@/components/CodeBlock";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import MathErrorFallback from "@/components/MathErrorFallback";
 import PracticeQuiz from "@/components/PracticeQuiz";
 import TableOfContents, { slugify } from "@/components/TableOfContents";
 import { LearningModule } from "@/types/learning";
+import type { Root as MdastRoot, RootContent } from "mdast";
 
 interface ModuleViewerProps {
   module: LearningModule;
@@ -18,7 +20,17 @@ interface ModuleViewerProps {
   demoComponents?: Record<string, React.ComponentType>;
 }
 
-const Pre = ({ children }: { children?: React.ReactNode }) => <>{children}</>;
+const Pre = ({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLPreElement> & { children?: React.ReactNode }) => {
+  if (React.isValidElement<{ isBlockCode?: boolean }>(children)) {
+    return React.cloneElement(children, {
+      isBlockCode: true,
+    });
+  }
+  return <pre {...props}>{children}</pre>;
+};
 
 const sanitizeSchema = {
   ...defaultSchema,
@@ -147,33 +159,54 @@ const Heading5 = ({
   );
 };
 
+function cleanAlertChildren(node: React.ReactNode): React.ReactNode {
+  if (typeof node === "string") {
+    return node.replace(
+      /^(\[!?(?:TIP|NOTE|WARNING|CAUTION|IMPORTANT|EXAM SHORTCUT|EXAM TIP)\]?:?)\s*/i,
+      "",
+    );
+  }
+  if (Array.isArray(node)) {
+    if (node.length === 0) return node;
+    return [cleanAlertChildren(node[0]), ...node.slice(1)];
+  }
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return React.cloneElement(node, {
+      ...node.props,
+      children: cleanAlertChildren(node.props.children),
+    });
+  }
+  return node;
+}
+
 // Custom Blockquote Renderer for Rich Alert Callouts
 const Blockquote = ({
   children,
   ...props
 }: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => {
   const text = getNodeText(children);
+  const trimmed = text.trim();
   let type = "default";
   let icon = "fa-quote-left";
   let label = "Note";
 
-  if (/^(TIP|Tip):/i.test(text.trim())) {
+  if (/^(\[!TIP\]|TIP:)/i.test(trimmed)) {
     type = "tip";
     icon = "fa-lightbulb";
     label = "Tip";
-  } else if (/^(NOTE|Note):/i.test(text.trim())) {
+  } else if (/^(\[!NOTE\]|NOTE:)/i.test(trimmed)) {
     type = "note";
     icon = "fa-circle-info";
     label = "Note";
-  } else if (/^(WARNING|Warning|CAUTION|Caution):/i.test(text.trim())) {
+  } else if (/^(\[!WARNING\]|WARNING:|CAUTION:|\[!CAUTION\])/i.test(trimmed)) {
     type = "warning";
     icon = "fa-triangle-exclamation";
     label = "Warning";
-  } else if (/^(IMPORTANT|Important):/i.test(text.trim())) {
+  } else if (/^(\[!IMPORTANT\]|IMPORTANT:)/i.test(trimmed)) {
     type = "important";
     icon = "fa-star";
     label = "Important";
-  } else if (/^(Exam Shortcut|EXAM SHORTCUT|Exam Tip):/i.test(text.trim())) {
+  } else if (/^(Exam Shortcut|EXAM SHORTCUT|Exam Tip):/i.test(trimmed)) {
     type = "exam";
     icon = "fa-bolt";
     label = "Exam Shortcut";
@@ -186,7 +219,9 @@ const Blockquote = ({
           <i className={`fa-solid ${icon} callout-icon-glyph`}></i>
           <span className="callout-badge-title">{label}</span>
         </div>
-        <div className="callout-content-body">{children}</div>
+        <div className="callout-content-body">
+          {cleanAlertChildren(children)}
+        </div>
       </div>
     );
   }
@@ -203,6 +238,87 @@ function getReadingTime(text?: string): number {
   if (!text) return 3;
   const words = text.trim().split(/\s+/).length;
   return Math.max(2, Math.ceil(words / 180));
+}
+
+// ─── Remark plugin: merge consecutive language implementation blocks into tabs ───
+function remarkCodeTabs() {
+  return (tree: MdastRoot) => {
+    if (!tree || !tree.children) return;
+    const children = tree.children;
+    const newChildren: RootContent[] = [];
+    let i = 0;
+
+    const parseLangHeading = (node: RootContent) => {
+      if (!node || node.type !== "heading") return null;
+      const text = (node.children || [])
+        .map((c) => ("value" in c ? (c.value as string) : ""))
+        .join("")
+        .trim();
+      const m =
+        /^(C\+\+|C|Python|Java|JavaScript|TypeScript|Go|Rust)\s+Implementation(?:\s*\((.*?)\))?/i.exec(
+          text,
+        );
+      if (m) {
+        return {
+          langLabel: m[1],
+          langKey: m[1].toLowerCase() === "c++" ? "cpp" : m[1].toLowerCase(),
+          subtitle: m[2] || "",
+        };
+      }
+      return null;
+    };
+
+    while (i < children.length) {
+      const node = children[i];
+      const headingInfo = parseLangHeading(node);
+      const nextNode = children[i + 1];
+
+      if (headingInfo && nextNode && nextNode.type === "code") {
+        const tabs: {
+          lang: string;
+          label: string;
+          title: string;
+          code: string;
+        }[] = [];
+        let cursor = i;
+
+        while (cursor < children.length) {
+          const h = parseLangHeading(children[cursor]);
+          const codeNode = children[cursor + 1];
+          if (h && codeNode && codeNode.type === "code") {
+            tabs.push({
+              lang: codeNode.lang || h.langKey,
+              label: h.langLabel,
+              title: h.subtitle,
+              code: codeNode.value,
+            });
+            cursor += 2;
+            // Skip thematic breaks between implementations
+            if (children[cursor] && children[cursor].type === "thematicBreak") {
+              cursor++;
+            }
+          } else {
+            break;
+          }
+        }
+
+        if (tabs.length >= 2) {
+          newChildren.push({
+            type: "code",
+            lang: "multilang",
+            value: JSON.stringify(tabs),
+          });
+          i = cursor;
+          continue;
+        }
+      }
+
+      newChildren.push(node);
+      i++;
+    }
+
+    tree.children = newChildren;
+  };
 }
 
 export default function ModuleViewer({
@@ -258,10 +374,10 @@ export default function ModuleViewer({
             <div className="markdown-content">
               <ErrorBoundary fallback={MathErrorFallback}>
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
+                  remarkPlugins={[remarkGfm, remarkMath, remarkCodeTabs]}
                   rehypePlugins={[
-                    rehypeHighlight,
                     [rehypeSanitize, sanitizeSchema],
+                    rehypeKatex,
                   ]}
                   components={{
                     code: CodeBlock,

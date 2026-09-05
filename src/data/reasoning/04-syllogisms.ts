@@ -110,13 +110,13 @@ All C are A
 ## 4. Invalid Conclusions (Avoid!)
 
 \`\`\`text
-❌ "All A are B" does NOT mean "All B are A"
+✗ "All A are B" does NOT mean "All B are A"
    Example: All dogs are animals ≠ All animals are dogs
 
-❌ "Some A are B" does NOT mean "Some A are not B"
+✗ "Some A are B" does NOT mean "Some A are not B"
    (They might all be B!)
 
-❌ "Some A are not B" does NOT mean "Some A are B"
+✗ "Some A are not B" does NOT mean "Some A are B"
 \`\`\`
 
 ---

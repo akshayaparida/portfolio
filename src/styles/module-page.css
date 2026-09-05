@@ -1100,3 +1100,305 @@ html.dark .callout-content-body {
     font-size: 0.75rem;
   }
 }
+
+/* ===================================================================
+   SYNTAX HIGHLIGHTING — Vibrant GitHub Dark / One Dark Palette
+   =================================================================== */
+
+/* Base code token color — override flat monochrome */
+.markdown-content pre code,
+.code-block-wrapper pre code {
+  color: #e6edf3;
+}
+
+/* Keywords: if, return, for, while, def, class, import, etc. */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #ff7b72;
+  font-weight: 600;
+}
+
+/* Built-in functions: print, len, range, printf, cout */
+.hljs-built_in {
+  color: #ffa657;
+}
+
+/* Function declarations & titles */
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_ {
+  color: #d2a8ff;
+  font-weight: 600;
+}
+
+/* Strings & string templates */
+.hljs-string,
+.hljs-doctag,
+.hljs-regexp {
+  color: #a5d6ff;
+}
+
+/* Numbers & numeric literals */
+.hljs-number,
+.hljs-literal {
+  color: #79c0ff;
+}
+
+/* Type names: int, float, void, char, size_t */
+.hljs-type,
+.hljs-params {
+  color: #ffa657;
+}
+
+/* Comments — italic for visual distinction */
+.hljs-comment {
+  color: #8b949e;
+  font-style: italic;
+}
+
+/* Preprocessor directives: #include, #define */
+.hljs-meta {
+  color: #79c0ff;
+}
+
+.hljs-meta .hljs-keyword {
+  color: #ff7b72;
+}
+
+.hljs-meta .hljs-string {
+  color: #a5d6ff;
+}
+
+/* Operators & punctuation */
+.hljs-operator,
+.hljs-punctuation {
+  color: #c9d1d9;
+}
+
+/* Variables & attributes */
+.hljs-variable,
+.hljs-attr {
+  color: #ffa657;
+}
+
+/* Symbols & selectors */
+.hljs-symbol,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #7ee787;
+}
+
+/* Additions in diffs */
+.hljs-addition {
+  color: #aff5b4;
+  background: rgba(46, 160, 67, 0.15);
+}
+
+/* Deletions in diffs */
+.hljs-deletion {
+  color: #ffdcd7;
+  background: rgba(248, 81, 73, 0.15);
+}
+
+/* Section headers */
+.hljs-section {
+  color: #79c0ff;
+  font-weight: 700;
+}
+
+/* Emphasis & strong */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+/* Template variables & subst */
+.hljs-subst {
+  color: #c9d1d9;
+}
+
+/* ===================================================================
+   MULTI-LANGUAGE TAB SWITCHER
+   =================================================================== */
+
+.multilang-code-wrapper {
+  position: relative;
+  margin: 1.25rem 0 1.5rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border, #30363d);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.multilang-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: #161b22;
+  padding: 6px 10px;
+  border-bottom: 1px solid #30363d;
+  flex-wrap: wrap;
+}
+
+.multilang-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.multilang-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #8b949e;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono, "Fira Code", monospace);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.multilang-tab-btn:hover {
+  color: #c9d1d9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.multilang-tab-btn.active {
+  color: #58a6ff;
+  background: rgba(56, 139, 253, 0.12);
+  border-color: rgba(56, 139, 253, 0.3);
+}
+
+.multilang-tab-icon {
+  font-size: 13px;
+}
+
+.multilang-tab-btn.active .multilang-tab-icon {
+  color: #10b981;
+}
+
+.multilang-subtitle {
+  display: none;
+  font-size: 11px;
+  color: #8b949e;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  font-family: var(--font-mono, "Fira Code", monospace);
+  margin-left: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 350px;
+}
+
+.multilang-subtitle.visible {
+  display: block;
+}
+
+.multilang-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: var(--font-mono, "Fira Code", monospace);
+  white-space: nowrap;
+}
+
+.multilang-copy-btn:hover {
+  background: #30363d;
+  color: #fff;
+  border-color: #8b949e;
+}
+
+.multilang-copy-btn.copied {
+  background: #0f533a;
+  color: #3fb950;
+  border-color: #238636;
+}
+
+.multilang-code-body {
+  background: #0d1117;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #e6edf3;
+}
+
+.multilang-code-body pre {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.multilang-code-body code {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+  color: inherit;
+}
+
+/* ===================================================================
+   KaTeX MATH FORMULA OVERRIDES
+   =================================================================== */
+
+/* Ensure KaTeX block math has some breathing room */
+.markdown-content .katex-display {
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4rem 0;
+}
+
+/* Inline math should not break flow */
+.markdown-content .katex {
+  font-size: 1.05em;
+}
+
+/* Dark mode adjustments for math */
+html.dark .markdown-content .katex {
+  color: #e6edf3;
+}
+
+/* Responsive tab styles */
+@media (max-width: 768px) {
+  .multilang-header {
+    padding: 4px 6px;
+  }
+  .multilang-tab-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  .multilang-subtitle {
+    max-width: 180px;
+    font-size: 10px;
+  }
+  .multilang-code-body {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.78rem;
+  }
+}

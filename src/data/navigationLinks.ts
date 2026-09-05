@@ -52,9 +52,14 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-cloud",
   },
   {
-    label: "DSA",
-    href: "/dsa",
-    icon: "fa-solid fa-code",
+    label: "Data Structures",
+    href: "/data-structures",
+    icon: "fa-solid fa-diagram-project",
+  },
+  {
+    label: "Algorithms",
+    href: "/algorithms",
+    icon: "fa-solid fa-code-branch",
   },
   {
     label: "DBMS",
