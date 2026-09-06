@@ -12,6 +12,7 @@ async function generateSitemap() {
     { path: "/mathematics", priority: "0.9", changeFreq: "weekly" },
     { path: "/gate-cs", priority: "0.9", changeFreq: "weekly" },
     { path: "/ugc-net-jrf", priority: "0.85", changeFreq: "weekly" },
+    { path: "/c-programming", priority: "0.88", changeFreq: "weekly" },
     { path: "/data-structures", priority: "0.88", changeFreq: "weekly" },
     { path: "/algorithms", priority: "0.88", changeFreq: "weekly" },
     { path: "/dsa", priority: "0.85", changeFreq: "weekly" },

@@ -52,6 +52,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-cloud",
   },
   {
+    label: "C Programming",
+    href: "/c-programming",
+    icon: "fa-solid fa-c",
+  },
+  {
     label: "Data Structures",
     href: "/data-structures",
     icon: "fa-solid fa-diagram-project",

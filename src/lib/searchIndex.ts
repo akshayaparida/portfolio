@@ -8,6 +8,7 @@ import { mathematicsModules } from "@/data/mathematics";
 import { osModules } from "@/data/os";
 import { dsaModules } from "@/data/dsa";
 import { dataStructuresModules } from "@/data/data-structures";
+import { cProgrammingModules } from "@/data/c-programming";
 import { algorithmsModules } from "@/data/algorithms";
 import { dbmsModules } from "@/data/dbms";
 import { networksModules } from "@/data/networks";
@@ -232,6 +233,14 @@ export function buildSearchIndex(): SearchIndexItem[] {
   // 3. Core CS: Data Structures & Algorithms
   index.push(
     ...indexModuleCategory(dsaModules, "/dsa", "DSA", "fa-solid fa-code"),
+  );
+  index.push(
+    ...indexModuleCategory(
+      cProgrammingModules,
+      "/c-programming",
+      "C Programming",
+      "fa-solid fa-c",
+    ),
   );
   index.push(
     ...indexModuleCategory(

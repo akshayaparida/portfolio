@@ -3,6 +3,7 @@ import { mathematicsModules } from "@/data/mathematics";
 import { dbmsModules } from "@/data/dbms";
 import { osModules } from "@/data/os";
 import { dsaModules } from "@/data/dsa";
+import { cProgrammingModules } from "@/data/c-programming";
 import { dataStructuresModules } from "@/data/data-structures";
 import { algorithmsModules } from "@/data/algorithms";
 import { networksModules } from "@/data/networks";
@@ -54,6 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/c-programming`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.88,
     },
     {
       url: `${baseUrl}/data-structures`,
@@ -167,6 +174,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Dynamic Module Pages for C Programming
+  const cProgrammingPages: MetadataRoute.Sitemap = (
+    cProgrammingModules || []
+  ).map((m) => ({
+    url: `${baseUrl}/c-programming/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   // Dynamic Module Pages for Data Structures
   const dataStructuresPages: MetadataRoute.Sitemap = (
     dataStructuresModules || []
@@ -246,6 +263,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...mathPages,
     ...dbmsPages,
     ...osPages,
+    ...cProgrammingPages,
     ...dataStructuresPages,
     ...algorithmsPages,
     ...dsaPages,

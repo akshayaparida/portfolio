@@ -26,6 +26,11 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://akshayaparida.vercel.app/c-programming</loc>
+    <priority>0.88</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://akshayaparida.vercel.app/data-structures</loc>
     <priority>0.88</priority>
     <changefreq>weekly</changefreq>
