@@ -1,4 +1,5 @@
 import { LearningModule } from "@/types/learning";
+import { dsDefinitionModule } from "./00-definition-ds";
 import { memoryArraysModule } from "./01-memory-arrays";
 import { linkedListsModule } from "./02-linked-lists";
 import { stacksModule } from "./03-stacks";
@@ -11,6 +12,7 @@ import { graphsRepresentationModule } from "./09-graphs-representation";
 import { advancedDsModule } from "./10-advanced-ds";
 
 export const dataStructuresModules: LearningModule[] = [
+  dsDefinitionModule,
   memoryArraysModule,
   linkedListsModule,
   stacksModule,

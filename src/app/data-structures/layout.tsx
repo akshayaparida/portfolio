@@ -9,9 +9,11 @@ export const metadata: Metadata = {
   title:
     "Data Structures (C, C++, Python) | NPTEL, GATE & UGC NET | Akshaya Parida",
   description:
-    "Comprehensive Data Structures aligned with NPTEL, GATE CS, and UGC NET JRF syllabus: Memory Layout, Linked Lists, Stacks, Queues, Trees, Heaps, Hashing, Graphs, and Tries with complete C, C++, and Python implementations.",
+    "Comprehensive Data Structures aligned with NPTEL, GATE CS, and UGC NET JRF syllabus: Definitions & ADTs, Memory Layout, Linked Lists, Stacks, Queues, Trees, Heaps, Hashing, Graphs, and Tries with complete C, C++, and Python implementations.",
   keywords: [
     "Data Structures",
+    "Data Structure Definitions",
+    "Abstract Data Types",
     "Data Structures in C",
     "Data Structures in C++",
     "Data Structures in Python",

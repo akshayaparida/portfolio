@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function DataStructuresPage() {
-  redirect("/data-structures/01-memory-arrays");
+  redirect("/data-structures/00-definition-ds");
 }
