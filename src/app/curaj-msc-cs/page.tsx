@@ -1,434 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import BlogPageHeader from "@/components/BlogPageHeader";
 import PageFooter from "@/components/PageFooter";
-
-interface Course {
-  code: string;
-  title: string;
-  semester: string;
-  type: "Major" | "Minor" | "Elective" | "AEC" | "Project";
-  credits: number;
-  description: string;
-  units: string[];
-  nptelTitle: string;
-  nptelUrl: string;
-}
+import { curajCourses } from "@/data/curaj-msc-cs/courses";
+import { curajAssessments } from "@/data/curaj-msc-cs/assessments";
 
 export default function CurajMscCsPage() {
   const [selectedSem, setSelectedSem] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  const courses: Course[] = [
-    // Semester 1
-    {
-      code: "6.0CSC01",
-      title: "Introduction to Artificial Intelligence",
-      semester: "Semester I",
-      type: "Major",
-      credits: 4,
-      description:
-        "State-space search, heuristic search (A*, IDA*), adversarial search, constraint satisfaction (CSPs), PDDL planning, and probabilistic reasoning.",
-      units: [
-        "Uninformed Search (BFS, DFS, Uniform Cost Search)",
-        "Informed Search (Best-First, A*, Simulated Annealing, Genetic Algorithms)",
-        "Adversarial Search (Min-Max, Alpha-Beta Pruning)",
-        "Constraint Satisfaction Problems (CSPs)",
-        "AI Planning (PDDL, GraphPlan)",
-        "Probabilistic Reasoning (Bayesian Networks, HMMs)",
-      ],
-      nptelTitle:
-        "NPTEL: An Introduction to Artificial Intelligence (IIT Madras)",
-      nptelUrl: "https://nptel.ac.in/courses/106106126",
-    },
-    {
-      code: "6.0CSC02",
-      title: "Advanced Algorithms",
-      semester: "Semester I",
-      type: "Major",
-      credits: 4,
-      description:
-        "Design paradigms, amortized analysis, randomized & parallel algorithms, approximation algorithms, NP-completeness, and Indian Knowledge Systems.",
-      units: [
-        "Divide & Conquer, Greedy, Dynamic Programming",
-        "Backtracking, Branch & Bound, Max Flow, String Matching",
-        "Amortized Analysis, B-Trees, Fibonacci Heaps, Disjoint Sets",
-        "Randomized Algorithms (Las Vegas, Monte Carlo, Primality Testing)",
-        "Approximation Algorithms (Vertex Cover, Set Cover, TSP)",
-        "Indian Knowledge Systems (Kaprekar Constants, Bhadra Ganita, Meru Prastara)",
-      ],
-      nptelTitle: "NPTEL: Design and Analysis of Algorithms (CMI)",
-      nptelUrl: "https://nptel.ac.in/courses/106106131",
-    },
-    {
-      code: "6.0CSC03",
-      title: "Advanced Python Programming",
-      semester: "Semester I",
-      type: "Major",
-      credits: 4,
-      description:
-        "In-depth Python programming, OOPs design, Exception handling, File I/O, SQLite database integration, and Data Analysis with NumPy, Pandas & Scikit-Learn.",
-      units: [
-        "Python Fundamentals & Data Structures (Lists, Tuples, Dicts)",
-        "Object-Oriented Programming (Classes, Inheritance, Polymorphism)",
-        "File Handling, Exception Hierarchy & I/O Streams",
-        "Modules, Packages, Namespace & Scoping",
-        "Relational Databases & GUI Programming (SQLite, Event Handling)",
-        "Data Analysis & ML Libraries (NumPy, Pandas, Matplotlib, Scikit-Learn)",
-      ],
-      nptelTitle: "NPTEL: Programming & Data Structures using Python (CMI)",
-      nptelUrl: "https://nptel.ac.in/courses/106106145",
-    },
-    {
-      code: "6.0CSC04",
-      title: "Professional Communication",
-      semester: "Semester I",
-      type: "AEC",
-      credits: 2,
-      description:
-        "Technical writing, research presentation skills, corporate communication, and academic paper drafting.",
-      units: [
-        "Technical & Academic Report Writing",
-        "Research Paper Formatting & Presentation Skills",
-        "Professional & Business Communication",
-      ],
-      nptelTitle: "NPTEL: Soft Skills and Personality Development (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/109104031",
-    },
-
-    // Semester 2
-    {
-      code: "6.0CSC05",
-      title: "Natural Language Processing",
-      semester: "Semester II",
-      type: "Major",
-      credits: 4,
-      description:
-        "Levels of NLU analysis, formal grammars, morphological parsing, WordNet/IndoNet integration, POS tagging, and statistical ambiguity resolution.",
-      units: [
-        "Introduction to NLU & Levels of Language Analysis",
-        "Linguistic Background & English Syntax Outline",
-        "Grammars & Parsing (Top-Down, Bottom-Up, Morphological Analysis)",
-        "Feature Parsing, ATNs, WordNet & IndoNet Knowledge Sources",
-        "Grammars for NL (POS Taggers, Stemming, ATN Hold Mechanisms)",
-        "Ambiguity Resolution (Probabilistic CFGs, Semantics, Pragmatic Analysis)",
-      ],
-      nptelTitle: "NPTEL: Natural Language Processing (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105158",
-    },
-    {
-      code: "6.0CSC06",
-      title: "Machine Learning",
-      semester: "Semester II",
-      type: "Major",
-      credits: 4,
-      description:
-        "Supervised and unsupervised learning, linear/logistic regression, SVMs, Decision Trees, Neural Networks, Ensembles, Clustering, and Reinforcement Learning.",
-      units: [
-        "Basics & Regression (Linear, Ridge, Lasso, Bayesian Regression)",
-        "Classification (LDA, Logistic Regression, SVMs, Decision Trees)",
-        "Neural Networks (MLPs, Backpropagation, Deep Learning)",
-        "Graphical Models & Ensembles (HMM, Bayes Nets, Boosting, Random Forest)",
-        "Clustering (K-Means, Hierarchical, DBSCAN, Spectral Clustering)",
-        "Dimensionality Reduction (PCA, ICA) & Reinforcement Learning (Q-Learning)",
-      ],
-      nptelTitle: "NPTEL: Introduction to Machine Learning (IIT Madras)",
-      nptelUrl: "https://nptel.ac.in/courses/106106139",
-    },
-    {
-      code: "6.0CSC07",
-      title: "Big Data Analytics",
-      semester: "Semester II",
-      type: "Minor",
-      credits: 4,
-      description:
-        "Big data storage architectures, Hadoop HDFS, MapReduce programming, Hadoop Ecosystem (HBase, Hive, Pig, Zookeeper), and Apache Spark/GraphX.",
-      units: [
-        "Big Data Fundamentals, Storage & Analytical Architectures",
-        "Hadoop Framework, HDFS Architecture & MapReduce Programming",
-        "Hadoop Ecosystem (AVRO, Zookeeper, HBase, Hive, Pig, Flink)",
-        "MapReduce Workflows, YARN Architecture & Job Scheduling",
-        "Apache Spark Framework (Scala, Python, PySpark, R)",
-        "Spark SQL, DataFrames & GraphX Algorithms",
-      ],
-      nptelTitle: "NPTEL: Big Data Computing (IIT Patna)",
-      nptelUrl: "https://nptel.ac.in/courses/106104189",
-    },
-
-    // Semester 3
-    {
-      code: "6.5CSC01",
-      title: "Image Processing & Computer Vision",
-      semester: "Semester III",
-      type: "Major",
-      credits: 4,
-      description:
-        "Digital image representation, contrast enhancement, 2D Fourier transforms, morphological filtering, SIFT/HOG feature extraction, CNNs, and motion tracking.",
-      units: [
-        "Image Formation, Perception & Digital Quantization",
-        "Contrast Enhancement, Histogram Equalization & 2D Fourier Transforms",
-        "Spatial Linear Filtering, Edge Detection & DFT Filtering",
-        "Morphological Filtering, Color Models & Image Resizing",
-        "Segmentation, SIFT/HOG Features & Multi-view Geometry",
-        "Deep Learning in Vision (CNN Classification, Object Detection, Motion Tracking)",
-      ],
-      nptelTitle: "NPTEL: Digital Image Processing (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105032",
-    },
-    {
-      code: "6.5CSC02",
-      title: "Data Mining and Warehousing",
-      semester: "Semester III",
-      type: "Major",
-      credits: 4,
-      description:
-        "KDD process, OLAP vs OLTP, Data Preprocessing, Association Rules (Apriori, FP-Growth), Classification, Clustering, and Vector Space Information Retrieval.",
-      units: [
-        "Data Mining Fundamentals, Strategies & KDD Process",
-        "Data Preprocessing, Warehousing, Cleaning & OLAP Technology",
-        "Association Rule Mining (Apriori, FP-Growth Algorithms)",
-        "Classification Models (Decision Trees, Random Forests, Naive Bayes, SVM)",
-        "Clustering Techniques (K-Means, Hierarchical, DBSCAN, SOM)",
-        "Information Retrieval (TF-IDF, Vector Space Model, Search Dictionaries)",
-      ],
-      nptelTitle: "NPTEL: Data Mining (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105174",
-    },
-    {
-      code: "6.5CSC03",
-      title: "Neural Networks & Deep Learning",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Biological vs artificial neurons, Perceptron learning rules, Multi-layer feedforward networks, Backpropagation, SOM, Hopfield networks, CNNs, and LSTMs.",
-      units: [
-        "Biological Neurons & ANN Models (Hebb, Perceptron, Delta Rule)",
-        "Single-layer Perceptron Classifier & Linear Separability",
-        "Multi-layer Feedforward Networks & Backpropagation Training",
-        "Self-Organizing Maps (SOM) & Adaptive Resonance Theory (ART)",
-        "Associative Memories (Recurrent Auto-associative, BAM)",
-        "Deep Learning Architectures (CNNs, RNNs, LSTMs, BiLSTMs)",
-      ],
-      nptelTitle: "NPTEL: Deep Learning (IIT Madras)",
-      nptelUrl: "https://nptel.ac.in/courses/106106184",
-    },
-
-    // Electives
-    {
-      code: "6.0CSC08",
-      title: "Parallel Processing",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Pipelining, SIMD/MIMD architectures, Flynn's classification, PRAM models, multiprocessor topologies, speedup metrics, and parallel scheduling.",
-      units: [
-        "Pipeline & Vector Processing (Linear/Nonlinear Pipelining)",
-        "Parallel Computing Paradigms (SIMD, MIMD, Flynn's Taxonomy, PRAM)",
-        "Parallel Processors Topology & Shared/Distributed Memory Networks",
-        "Processor Organization & Interconnection Embeddings",
-        "Parallel Performance Metrics (Amdahl's Law, Speedup, Efficiency)",
-        "Parallel Program Scheduling & Loop Parallelization",
-      ],
-      nptelTitle: "NPTEL: Parallel Computer Architecture (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106104024",
-    },
-    {
-      code: "6.0CSC10",
-      title: "High Performance Computing",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Multicore architectures, HPC linear algebra, parallel dense/sparse matrix operations, PDE solvers, molecular dynamics, and Monte Carlo methods.",
-      units: [
-        "Von Neumann vs Modern Multicore Architectures & Memory Hierarchy",
-        "Parallel Computing Architectures & Floating Point Arithmetic",
-        "Numerical Linear Algebra & LU Factorization",
-        "High Performance Matrix-Vector Products & PDE Parallel Solvers",
-        "Parallel FFT, Molecular Dynamics & Parallel Graph Algorithms",
-        "N-body Barnes-Hut Algorithm & Parallel Monte Carlo Methods",
-      ],
-      nptelTitle:
-        "NPTEL: High Performance Computer Architecture (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105033",
-    },
-    {
-      code: "6.0CSC11",
-      title: "Internet of Things (IoT)",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Wireless sensor networks, MAC/Routing protocols, IoT communication stacks (Zigbee, Z-Wave, RPL, MQTT), and Raspberry Pi IoT applications.",
-      units: [
-        "Wireless Sensor Networks Overview & Characteristics",
-        "MAC Protocols for WSN (Energy Efficiency, Demand Assignment)",
-        "Routing & Transport Protocols for Sensor Networks",
-        "IoT Components & Communication Protocols",
-        "Physical & Data Link IoT Protocols (ZigBee, Z-Wave, RPL)",
-        "IoT Application Layer Protocols (MQTT, CoAP) & Raspberry Pi",
-      ],
-      nptelTitle: "NPTEL: Introduction to Internet of Things (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105166",
-    },
-    {
-      code: "6.0CSC13",
-      title: "Advanced Database Systems (ADBMS)",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Distributed database architecture, distribution design, query processing, distributed concurrency control, object databases, and spatial/deductive databases.",
-      units: [
-        "Distributed DBMS Architecture & Models",
-        "Distributed DB Design (Fragmentation, Allocation, Semantic Control)",
-        "Query Processing & Distributed Transaction Management",
-        "Distributed Concurrency Control & Locking Algorithms",
-        "Parallel Database Systems & Database Interoperability",
-        "Distributed Object DBs, Spatial & Deductive Databases",
-      ],
-      nptelTitle: "NPTEL: Fundamentals of Database Systems (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106104135",
-    },
-    {
-      code: "6.0CSC17",
-      title: "Cyber Security & Cryptography",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Symmetric/Asymmetric encryption, RSA, Diffie-Hellman, SHA hashing, digital signatures, PKI, network firewalls, and critical infrastructure protection.",
-      units: [
-        "Cryptography Fundamentals (Symmetric/Asymmetric, DES, Ciphers)",
-        "Public Key Cryptosystems (RSA Algorithm, Key Management, Diffie-Hellman)",
-        "Message Authentication, Hashing & Digital Signatures (El Gamal, RSA)",
-        "Network Security Controls (Firewalls, Intrusion Detection Systems)",
-        "Cyber Security Threat Landscape & Vulnerability Exploitation",
-        "Cyber Terrorism & Critical Infrastructure Defense",
-      ],
-      nptelTitle: "NPTEL: Cryptography and Network Security (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105031",
-    },
-    {
-      code: "6.0CSC19",
-      title: "Cloud Computing",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Distributed computing roots, cloud deployment models, IaaS/PaaS/SaaS architectures, virtual machine provisioning/migration, and cloud security.",
-      units: [
-        "Roots of Cloud Computing (Distributed, Grid & Cluster Systems)",
-        "Cloud Service Models (IaaS, PaaS, SaaS) & Deployment Models",
-        "Cloud Platforms (Google App Engine, Azure, Salesforce)",
-        "VM Provisioning, Migration & Resource Scheduling",
-        "Economic Models & Heuristic Schedulers for Cloud Tasks",
-        "Cloud Applications, Security, Privacy & Wireless Integration",
-      ],
-      nptelTitle: "NPTEL: Cloud Computing (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105167",
-    },
-    {
-      code: "6.5CSC06",
-      title: "Compiler Design",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Lexical analysis (LEX), top-down/bottom-up parsing (LL, LR, LALR, YACC), syntax-directed translation, symbol tables, DAG optimization, and code generation.",
-      units: [
-        "Phases of Compilation & LEX Lexical Analyzer",
-        "Top-down Parsing (Context-Free Grammars, LL(1), Recursive Descent)",
-        "Bottom-up Parsing (Shift-Reduce, LR, LALR, YACC Generator)",
-        "Syntax Directed Translation & Intermediate Code Forms (AST, 3-Address Code)",
-        "Symbol Table Organization & Memory Allocation (Stack/Heap)",
-        "Code Optimization (DAG, Data Flow Analysis, Register Allocation)",
-      ],
-      nptelTitle: "NPTEL: Compiler Design (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105190",
-    },
-    {
-      code: "6.5CSC11",
-      title: "Blockchain & Cybersecurity",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Distributed ledger technology, consensus algorithms, PKI, Bitcoin cryptoeconomics, Ethereum smart contracts, and blockchain security.",
-      units: [
-        "Digital Trust, Ledgers, Consensus & Smart Contracts",
-        "Symmetric/Asymmetric Cryptography, Hash Functions & DES",
-        "PKI, Digital Signatures, RSA & Diffie-Hellman Key Exchange",
-        "Cryptocurrency Economics (Bitcoin, Ethereum, Limited Supply)",
-        "Blockchain Application Development & Smart Contract Tokens",
-        "Use Cases in Finance/Gov & Blockchain Security (DDoS, AI Integration)",
-      ],
-      nptelTitle: "NPTEL: Blockchain and its Applications (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105184",
-    },
-    {
-      code: "6.5CSC14",
-      title: "Quantum Computing",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Complex Hilbert spaces, Qubits, Quantum gates (Hadamard, CNOT), Deutsch-Jozsa algorithm, Grover's search, Shor's factoring, and IBMQ simulators.",
-      units: [
-        "Complex Vector Spaces, Hilbert Spaces & Unitary Matrices",
-        "Dirac Formalism, Qubits & Quantum Gates (Hadamard, CNOT)",
-        "Quantum Algorithms I (Deutsch-Jozsa, Simon's Algorithm)",
-        "Quantum Algorithms II (Grover's Search, Shor's Factoring)",
-        "Quantum Programming Languages & Cryptography Theory",
-        "Quantum Circuits, IBMQ & Quantum Simulator Measurement",
-      ],
-      nptelTitle: "NPTEL: Quantum Computing (IIT Kanpur)",
-      nptelUrl: "https://nptel.ac.in/courses/104104085",
-    },
-    {
-      code: "6.5CSC15",
-      title: "Soft Computing",
-      semester: "Semester III",
-      type: "Elective",
-      credits: 4,
-      description:
-        "Fuzzy logic, membership functions, Fuzzy Inference Systems (FIS), Genetic Algorithms (crossover/mutation), Particle Swarm Optimization (PSO), and ACO.",
-      units: [
-        "Hard vs Soft Computing, Neural Nets & Evolutionary Algorithms",
-        "Fuzzy Sets & 1D/2D Membership Functions",
-        "Fuzzy Relations, Rules & Reasoning Systems",
-        "Fuzzy Inference Systems (FIS) & Defuzzification",
-        "Evolutionary Computation & Genetic Algorithms (GA)",
-        "Swarm Intelligence (PSO, Ant Colony Optimization)",
-      ],
-      nptelTitle: "NPTEL: Soft Computing (IIT Kharagpur)",
-      nptelUrl: "https://nptel.ac.in/courses/106105173",
-    },
-
-    // Semester 4
-    {
-      code: "6.5CSC05",
-      title: "Master's Research Project / Dissertation",
-      semester: "Semester IV",
-      type: "Project",
-      credits: 20,
-      description:
-        "Full-semester major research project or industrial internship under faculty mentorship, ending with thesis submission, presentation, and defense.",
-      units: [
-        "Problem Formulation & Literature Survey",
-        "System Architecture & Algorithm Design",
-        "Implementation, Experimental Setup & Benchmarking",
-        "Thesis Writing, Publication & Comprehensive Viva-Voce",
-      ],
-      nptelTitle: "NPTEL: Research Methodology in Science and Engineering",
-      nptelUrl: "https://nptel.ac.in/courses/121106007",
-    },
-  ];
-
-  const filteredCourses = courses.filter((course) => {
+  const filteredCourses = curajCourses.filter((course) => {
     const matchesSem = selectedSem === "All" || course.semester === selectedSem;
     const matchesSearch =
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -453,16 +36,27 @@ export default function CurajMscCsPage() {
             <div className="badge-row">
               <span className="badge">Central University of Rajasthan</span>
               <span className="badge badge-accent">NEP 2020 Scheme</span>
+              <span className="badge badge-cia">
+                <i className="fa-solid fa-file-circle-check"></i> CIA-1 Papers &
+                Solutions
+              </span>
             </div>
             <h2>2-Year M.Sc. (Computer Science) Curriculum</h2>
             <p>
-              Syllabus for Central University of Rajasthan (CURAJ). Each course
-              below is matched with curated{" "}
-              <strong>NPTEL / SWAYAM video lectures and study resources</strong>{" "}
-              from top IITs and IISc.
+              Academic syllabus for Central University of Rajasthan (CURAJ).
+              Each course is structured with syllabus units, curated{" "}
+              <strong>NPTEL / SWAYAM lectures</strong>, and direct links to{" "}
+              <strong>
+                Continuous Internal Assessment (CIA-1 & CIA-2) question papers
+                with model solutions
+              </strong>
+              .
             </p>
           </div>
-          <div className="pdf-action">
+          <div className="banner-actions">
+            <Link href="/curaj-msc-cs/assessments" className="cia-portal-btn">
+              <i className="fa-solid fa-file-pen"></i> View CIA Assessments Hub
+            </Link>
             <a
               href="https://drive.google.com/file/d/1B7TmMHPivoDZptiCfI21Ho3tOt9vFfHu/view?usp=sharing"
               target="_blank"
@@ -492,6 +86,12 @@ export default function CurajMscCsPage() {
                 {sem}
               </button>
             ))}
+            <Link
+              href="/curaj-msc-cs/assessments"
+              className="tab-btn assessments-quick-tab"
+            >
+              <i className="fa-solid fa-file-lines"></i> CIA Exam Papers
+            </Link>
           </div>
 
           <div className="search-box">
@@ -508,46 +108,101 @@ export default function CurajMscCsPage() {
 
         {/* Courses Grid */}
         <section className="courses-grid">
-          {filteredCourses.map((c) => (
-            <div key={c.code} className="course-card">
-              <div className="card-top">
-                <span className="course-code">{c.code}</span>
-                <span className={`type-tag type-${c.type.toLowerCase()}`}>
-                  {c.type} ({c.credits} Credits)
-                </span>
-              </div>
+          {filteredCourses.map((c) => {
+            const courseAssessments = curajAssessments.filter(
+              (a) => a.courseCode === c.code,
+            );
+            const availableAssessments = courseAssessments.filter(
+              (a) => a.status === "available",
+            );
 
-              <h3 className="course-title">{c.title}</h3>
-              <p className="course-desc">{c.description}</p>
+            return (
+              <div key={c.code} className="course-card">
+                <div className="card-top">
+                  <span className="course-code">{c.code}</span>
+                  <span className={`type-tag type-${c.type.toLowerCase()}`}>
+                    {c.type} ({c.credits} Credits)
+                  </span>
+                </div>
 
-              <div className="units-section">
-                <h4 className="units-heading">
-                  <i className="fa-solid fa-layer-group"></i> Key Units in PDF
-                </h4>
-                <ul className="units-list">
-                  {c.units.map((unit, uIdx) => (
-                    <li key={uIdx}>
-                      <span className="bullet">•</span> {unit}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <h3 className="course-title">{c.title}</h3>
+                <p className="course-desc">{c.description}</p>
 
-              {/* NPTEL Resource Link Button */}
-              <div className="card-action">
-                <a
-                  href={c.nptelUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nptel-btn"
-                >
-                  <i className="fa-solid fa-graduation-cap"></i>
-                  <span>Study on NPTEL</span>
-                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                <div className="units-section">
+                  <h4 className="units-heading">
+                    <i className="fa-solid fa-layer-group"></i> Key Units in PDF
+                  </h4>
+                  <ul className="units-list">
+                    {c.units.map((unit, uIdx) => (
+                      <li key={uIdx}>
+                        <span className="bullet">•</span> {unit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Continuous Internal Assessment Section */}
+                <div className="card-assessment-box">
+                  <div className="assessment-label-row">
+                    <span className="asm-label">
+                      <i className="fa-solid fa-pen-ruler"></i> Internal
+                      Assessments:
+                    </span>
+                    {availableAssessments.length > 0 ? (
+                      <span className="asm-badge available">
+                        <i className="fa-solid fa-circle-check"></i> CIA-1
+                        Available
+                      </span>
+                    ) : (
+                      <span className="asm-badge upcoming">
+                        <i className="fa-regular fa-clock"></i> CIA-1 & CIA-2
+                        Upcoming
+                      </span>
+                    )}
+                  </div>
+
+                  <Link
+                    href={`/curaj-msc-cs/assessments?course=${c.code}`}
+                    className={`asm-link-btn ${
+                      availableAssessments.length > 0 ? "highlight" : ""
+                    }`}
+                  >
+                    {availableAssessments.length > 0 ? (
+                      <>
+                        <span className="btn-left">
+                          <i className="fa-solid fa-file-circle-check"></i>
+                          <span>View CIA-1 Paper & Solutions</span>
+                        </span>
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </>
+                    ) : (
+                      <>
+                        <span className="btn-left">
+                          <i className="fa-solid fa-calendar-check"></i>
+                          <span>View Assessment Info</span>
+                        </span>
+                        <i className="fa-solid fa-chevron-right"></i>
+                      </>
+                    )}
+                  </Link>
+                </div>
+
+                {/* NPTEL Resource Link Button */}
+                <div className="card-action">
+                  <a
+                    href={c.nptelUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nptel-btn"
+                  >
+                    <i className="fa-solid fa-graduation-cap"></i>
+                    <span>Study on NPTEL</span>
+                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </section>
       </main>
 
@@ -601,6 +256,15 @@ export default function CurajMscCsPage() {
           color: #10b981;
         }
 
+        .badge-cia {
+          color: #3b82f6;
+          background: rgba(59, 130, 246, 0.08);
+          border-color: rgba(59, 130, 246, 0.25);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
         .intro-card {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -634,23 +298,55 @@ export default function CurajMscCsPage() {
           font-size: 0.95rem;
         }
 
-        .pdf-btn {
+        .banner-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .cia-portal-btn {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 0.6rem;
           padding: 0.75rem 1.25rem;
           background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: #fff;
           border-radius: 10px;
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 0.9rem;
           transition:
             filter 0.2s,
             transform 0.15s;
+          box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
         }
-        .pdf-btn:hover {
+
+        .cia-portal-btn:hover {
           filter: brightness(1.1);
+          transform: translateY(-1px);
+        }
+
+        .pdf-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.6rem;
+          padding: 0.65rem 1.25rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.88rem;
+          transition: all 0.2s;
+        }
+
+        .pdf-btn:hover {
+          border-color: #10b981;
+          color: #10b981;
+          background: var(--bg-light);
           transform: translateY(-1px);
         }
 
@@ -666,6 +362,7 @@ export default function CurajMscCsPage() {
           display: flex;
           gap: 0.5rem;
           flex-wrap: wrap;
+          align-items: center;
         }
 
         .tab-btn {
@@ -678,6 +375,10 @@ export default function CurajMscCsPage() {
           font-size: 0.85rem;
           cursor: pointer;
           transition: all 0.2s;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
         }
 
         .tab-btn:hover {
@@ -689,6 +390,18 @@ export default function CurajMscCsPage() {
           background: #10b981;
           color: #fff;
           border-color: #10b981;
+        }
+
+        .assessments-quick-tab {
+          background: rgba(16, 185, 129, 0.08);
+          color: #10b981;
+          border-color: rgba(16, 185, 129, 0.3);
+          font-weight: 700;
+        }
+
+        .assessments-quick-tab:hover {
+          background: #10b981;
+          color: #ffffff;
         }
 
         .search-box {
@@ -775,18 +488,10 @@ export default function CurajMscCsPage() {
           background: rgba(16, 185, 129, 0.08);
           border: 1px solid rgba(16, 185, 129, 0.2);
         }
-        .type-major {
-          color: #10b981;
-        }
-        .type-minor {
-          color: #10b981;
-        }
-        .type-elective {
-          color: #10b981;
-        }
-        .type-aec {
-          color: #10b981;
-        }
+        .type-major,
+        .type-minor,
+        .type-elective,
+        .type-aec,
         .type-project {
           color: #10b981;
         }
@@ -848,6 +553,98 @@ export default function CurajMscCsPage() {
           margin-right: 0.25rem;
         }
 
+        /* Assessment Card Box */
+        .card-assessment-box {
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 0.85rem 1rem;
+          margin-bottom: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .assessment-label-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+        }
+
+        .asm-label {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .asm-badge {
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 0.15rem 0.5rem;
+          border-radius: 4px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+        }
+
+        .asm-badge.available {
+          background: rgba(16, 185, 129, 0.15);
+          color: #10b981;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .asm-badge.upcoming {
+          background: rgba(148, 163, 184, 0.1);
+          color: var(--text-muted);
+          border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .asm-link-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem 0.8rem;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          text-decoration: none;
+          border: 1px solid var(--border);
+          background: var(--surface);
+          color: var(--text-primary);
+          transition: all 0.2s;
+        }
+
+        .asm-link-btn .btn-left {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+
+        .asm-link-btn:hover {
+          border-color: #10b981;
+          background: var(--bg-light);
+          color: #10b981;
+        }
+
+        .asm-link-btn.highlight {
+          border-color: rgba(16, 185, 129, 0.4);
+          background: rgba(16, 185, 129, 0.08);
+          color: #059669;
+          font-weight: 700;
+        }
+
+        .asm-link-btn.highlight:hover {
+          background: #10b981;
+          color: #ffffff;
+        }
+
         .card-action {
           margin-top: auto;
         }
@@ -888,6 +685,9 @@ export default function CurajMscCsPage() {
           .intro-card {
             flex-direction: column;
             align-items: flex-start;
+          }
+          .banner-actions {
+            width: 100%;
           }
         }
       `}</style>
