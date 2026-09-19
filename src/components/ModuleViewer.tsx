@@ -57,6 +57,45 @@ const ExternalLink = ({
   </a>
 );
 
+const ExamImage = ({
+  src,
+  alt,
+  ...props
+}: React.ImgHTMLAttributes<HTMLImageElement>) => (
+  <figure className="exam-image-container">
+    <div className="exam-image-frame">
+      <img
+        src={src}
+        alt={alt || "Exam Paper Reference"}
+        className="exam-paper-img"
+        loading="lazy"
+        {...props}
+      />
+    </div>
+    <figcaption className="exam-image-caption">
+      <span className="exam-image-caption-text">
+        <i
+          className="fa-solid fa-file-invoice"
+          style={{ marginRight: 8, color: "#3b82f6" }}
+        />
+        {alt || "Official Examination Question Paper"}
+      </span>
+      {typeof src === "string" && (
+        <a
+          href={src}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="exam-image-open-btn"
+          title="Open high-resolution image in new tab"
+        >
+          <span>Open Full Paper</span>
+          <i className="fa-solid fa-arrow-up-right-from-square" />
+        </a>
+      )}
+    </figcaption>
+  </figure>
+);
+
 // Helper to extract plain text string from React children nodes
 function getNodeText(children: React.ReactNode): string {
   if (typeof children === "string") return children;
@@ -400,6 +439,7 @@ export default function ModuleViewer({
                     code: CodeBlock,
                     pre: Pre,
                     a: ExternalLink,
+                    img: ExamImage,
                     h1: Heading1,
                     h2: Heading2,
                     h3: Heading3,

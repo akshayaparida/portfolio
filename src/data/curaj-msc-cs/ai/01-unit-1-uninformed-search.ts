@@ -125,6 +125,18 @@ export const unit1UninformedSearchModule: LearningModule = {
   ],
   resources: [
     {
+      title:
+        "Official CURAJ First Mid-Term Examination (CIA-1) Question Paper (September 2025, CSC-401)",
+      url: "/AICIA12025.jpg",
+      type: "documentation",
+    },
+    {
+      title:
+        "Official CURAJ Previous Year Mid-Term Examination (CIA-1) Question Paper (August 2024, MAI-401)",
+      url: "/AICIA12024.jpg",
+      type: "documentation",
+    },
+    {
       title: "Gate Smashers: Complete Artificial Intelligence Playlist",
       url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-nwb0HR5US5GFKFI",
       type: "video",
@@ -387,6 +399,57 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 
 ---
 
+### 2.4 Production Systems in Artificial Intelligence (CURAJ CIA-1 Q3 Core Concept)
+
+A **Production System** (first introduced by Emil Post and adapted for AI by Allen Newell & Herbert Simon in 1972) is a fundamental computational architecture for knowledge representation, cognitive modeling, and automated state-space search.
+
+#### Architectural Components:
+A production system consists of three distinct modules:
+
+\`\`\`
+┌────────────────────────────────────────────────────────────────────────┐
+│                        PRODUCTION SYSTEM IN AI                         │
+├────────────────────────────────────────────────────────────────────────┤
+│                                                                        │
+│   ┌────────────────────────┐            ┌──────────────────────────┐   │
+│   │  CONTEXT / WORKING     │  Matches   │   PRODUCTION RULE BASE   │   │
+│   │  MEMORY (Global State) │ ─────────> │   (IF - THEN Knowledge)  │   │
+│   │  • Current Facts/State │            │   • Rule 1: Condition->Act   │   │
+│   │  • Problem Assertions  │ <───────── │   • Rule 2: Condition->Act   │   │
+│   └────────────────────────┘   Fires    └─────────────┬────────────┘   │
+│               │                                       │                │
+│               │ Read / Modify                         │ Applicable     │
+│               ▼                                       ▼ Rules          │
+│   ┌────────────────────────────────────────────────────────────┐       │
+│   │            CONTROL STRATEGY / RULE INTERPRETER             │       │
+│   │   1. Match (Form Conflict Set of triggered rules)          │       │
+│   │   2. Resolve Conflict (Pick 1 rule via priority/recency)   │       │
+│   │   3. Execute (Fire action, mutate Working Memory)          │       │
+│   └────────────────────────────────────────────────────────────┘       │
+└────────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+1. **Rule Base (Production Rules)**:
+   - A collection of condition-action statements of the form:
+     $\\mathbf{IF} \quad \langle\text{Condition / Premise (LHS)}\rangle \quad \\mathbf{THEN} \quad \langle\text{Action / Conclusion (RHS)}\rangle$
+   - The LHS checks whether conditions in the Working Memory are met; the RHS specifies the state modification or action to execute.
+2. **Context / Working Memory (Global Database)**:
+   - Contains the current state configuration, active data structures, and environmental facts.
+   - Dynamic: changes whenever a production rule fires.
+3. **Control Strategy / Rule Interpreter**:
+   - Manages the execution loop (Recognize-Act Cycle):
+     - **Match**: Compares Working Memory against all rule preconditions to form the **Conflict Set**.
+     - **Conflict Resolution**: If multiple rules match, selects exactly one rule using a predetermined strategy (e.g., Specificity, Priority, Recency, Refractoriness).
+     - **Act (Execution)**: Executes the selected rule's RHS, mutating the Working Memory until a goal condition is satisfied or no rules apply.
+
+#### Key Characteristics of Production Systems:
+1. **Modularity**: Individual rules can be added, modified, or removed independently without altering the rest of the rule base.
+2. **Uniformity**: All knowledge is expressed in the identical standardized $\text{IF } \dots \text{ THEN } \dots$ syntax.
+3. **Naturalness**: Directly mimics human domain expert reasoning, clinical diagnosis, and heuristic problem solving.
+4. **Separation of Knowledge and Control**: The domain expertise (Rule Base) is decoupled from the execution engine (Control Strategy), enabling domain portability.
+
+---
+
 ### 2.5 Classical Problem Formulations & Production Rules (University Favorites)
 
 #### 1. The Water Jug Problem
@@ -471,6 +534,61 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 - **Solvability Condition**:
   $$\\text{State } S \\text{ can reach Goal } G \\iff \\text{InversionParity}(S) \\equiv \\text{InversionParity}(G) \\pmod 2$$
   Because the standard goal has 0 inversions (even), **exactly half ($9! / 2 = 181,440$) of all configurations are reachable**, and odd configurations are mathematically impossible to solve!
+
+---
+
+#### 4. The Farmer, Wolf, Goat, and Cabbage Problem (CURAJ CIA-1 2025 Actual Exam Question ⭐⭐⭐⭐⭐)
+
+- **Problem Description**:
+  A farmer with his wolf, goat, and cabbage must cross a river using a small boat that can only carry the farmer and at most one item at a time.
+  - If the wolf and goat are left alone without the farmer, the wolf will eat the goat.
+  - If the goat and cabbage are left alone without the farmer, the goat will eat the cabbage.
+  - The farmer must row the boat across the river so that all four characters arrive safely on the other side.
+- **State Representation**:
+  An ordered 4-tuple vector:
+  $S = (F, W, G, C) \in \{0, 1\}^4$
+  where each variable indicates the riverbank location:
+  - $0 = \text{Near Bank (Starting Side)}$
+  - $1 = \text{Far Bank (Destination Side)}$
+  - Total theoretical configurations = $2^4 = 16$ states.
+- **Initial State**: $S_0 = (0, 0, 0, 0)$ (everyone on near bank).
+- **Goal State**: $S_{\text{goal}} = (1, 1, 1, 1)$ (everyone safely on far bank).
+- **Safety Constraints (Mathematical Invariants)**:
+  A state is **UNSAFE** if either of the following holds without the farmer:
+  1. $(W = G) \\land (F \\ne W)$ [Wolf eats Goat]
+  2. $(G = C) \\land (F \\ne G)$ [Goat eats Cabbage]
+
+  Therefore, a state $(F, W, G, C)$ is **SAFE** if and only if:
+  $\\mathbf{Safe}(F, W, G, C) \\iff ((W \\ne G) \\lor (F = W)) \\;\\land\\; ((G \\ne C) \\lor (F = G))$
+  Out of 16 possible states, exactly 6 states are fatal/unsafe:
+  $(0,1,1,0), (0,1,1,1), (0,0,1,1), (1,0,0,1), (1,0,0,0), (1,1,0,0)$.
+  Exactly **10 valid, safe states** exist in the searchable graph!
+
+- **Formal Production Rules (Operators)**:
+  Let current state be $(F, W, G, C)$:
+
+| Rule # | Name | Precondition | Action Result | Description |
+|:---:|:---|:---|:---|:---|
+| **$R_1$** | \`Cross-Alone\` | Resulting state is Safe | $F \\gets 1 - F$ | Farmer rows alone across |
+| **$R_2$** | \`Cross-Wolf\` | $F = W$ and Resulting state is Safe | $F \\gets 1 - F, \\; W \\gets 1 - W$ | Farmer transports Wolf |
+| **$R_3$** | \`Cross-Goat\` | $F = G$ and Resulting state is Safe | $F \\gets 1 - F, \\; G \\gets 1 - G$ | Farmer transports Goat |
+| **$R_4$** | \`Cross-Cabbage\` | $F = C$ and Resulting state is Safe | $F \\gets 1 - F, \\; C \\gets 1 - C$ | Farmer transports Cabbage |
+
+- **Optimal 7-Step Solution Sequence**:
+
+| Step | Action Taken | Current State $(F,W,G,C)$ | Near Bank | Far Bank | Safety Check |
+|:---:|:---|:---:|:---:|:---:|:---|
+| **0** | *Initial State* | $(0, 0, 0, 0)$ | $\\{F, W, G, C\\}$ | $\\emptyset$ | Everyone on near bank |
+| **1** | Farmer takes **Goat** across ($R_3$) | $(1, 0, 1, 0)$ | $\\{W, C\\}$ | $\\{F, G\\}$ | Safe: Wolf does not eat Cabbage! |
+| **2** | Farmer returns **alone** ($R_1$) | $(0, 0, 1, 0)$ | $\\{F, W, C\\}$ | $\\{G\\}$ | Safe: Goat alone on far bank |
+| **3** | Farmer takes **Wolf** across ($R_2$) | $(1, 1, 1, 0)$ | $\\{C\\}$ | $\\{F, W, G\\}$ | Safe while Farmer is on boat/bank |
+| **4** | ⭐ **CRITICAL MOVE: Farmer brings Goat back!** ($R_3$) | $(0, 1, 0, 0)$ | $\\{F, G, C\\}$ | $\\{W\\}$ | **Crucial Step**: Prevents Wolf eating Goat on far bank! |
+| **5** | Farmer takes **Cabbage** across ($R_4$) | $(1, 1, 0, 1)$ | $\\{G\\}$ | $\\{F, W, C\\}$ | Safe: Goat alone on near bank; Wolf does not eat Cabbage |
+| **6** | Farmer returns **alone** ($R_1$) | $(0, 1, 0, 1)$ | $\\{F, G\\}$ | $\\{W, C\\}$ | Safe: Wolf and Cabbage safely together on far bank |
+| **7** | Farmer takes **Goat** across ($R_3$) | $(1, 1, 1, 1)$ | $\\emptyset$ | $\\{F, W, G, C\\}$ | **GOAL REACHED! All safely on far bank.** |
+
+> **Examination Note**:  
+> There is an alternative symmetrical optimal path where the Farmer takes the **Cabbage** on Step 3, returns with the **Goat** on Step 4, and takes the **Wolf** on Step 5. Both optimal paths require exactly **7 river crossings** ($c^* = 7$).
 
 ---
 
@@ -795,9 +913,252 @@ The definitive comparison matrix required for university and competitive exams:
 
 ---
 
-## 6. CIA-1 Internal Assessment Preparation Corner
+## 6. Official CURAJ CIA-1 (September 2025) Question Paper & Comprehensive Solutions
 
-### 6.1 Standard CURAJ Subjective Questions & Model Solutions
+> [!IMPORTANT]
+> **Official University Examination Paper Analysis**:
+> - **Institution**: Central University of Rajasthan (CURAJ)
+> - **Examination**: First Mid Term Examination (September 2025)
+> - **Degree & Branch**: M.Sc. CS / Integrated M.Sc. VII & M.Sc. 1st Semester
+> - **Course Code & Title**: **CSC-401 Introduction to AI**
+> - **Exam Duration**: 1 Hour | **Maximum Marks**: 20 Marks
+> - **Coverage**: Unit 1 Foundations, Problem Solving, Production Systems & Search Algorithms
+
+### 📸 Official Examination Question Paper
+
+![Official CURAJ First Mid-Term Examination (September-2025) Question Paper for CSC-401 Introduction to AI](/AICIA12025.jpg)
+
+---
+
+### 6.1 Comprehensive Question-by-Question Model Solutions (September 2025)
+
+---
+
+#### Question 1: What is "Artificial Intelligence"? Explain this term with its various application domains. [3 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Definition of AI & Core Paradigm**: 1 Mark
+> - **Application Domains with Concrete Industry Examples**: 2 Marks (at least 4 distinct domains required)
+
+##### 1. Formal Definition of Artificial Intelligence:
+- **Historical Classical Definition (John McCarthy, Dartmouth 1956)**:  
+  *"The science and engineering of making intelligent machines, especially intelligent computer programs."*
+- **Modern Computational Definition (Stuart Russell & Peter Norvig, AIMA)**:  
+  Artificial Intelligence is the study and construction of **Rational Agents**—computational entities that perceive their operating environment through sensors, reason about possible trajectories, and act autonomously through actuators to maximize their expected performance measure given available percept history.
+- **The Four Conceptual Facets**:
+  1. *Thinking Humanly* (Cognitive Science modeling)
+  2. *Acting Humanly* (Turing Test operational benchmark)
+  3. *Thinking Rationally* (Aristotelian Laws of Thought / Formal Logic)
+  4. *Acting Rationally* (Goal-directed Expected Utility Maximization — Modern Standard)
+
+##### 2. Major Application Domains of Artificial Intelligence:
+1. **Natural Language Processing (NLP) & Speech**:
+   - *Applications*: Large Language Models (LLMs like ChatGPT, Gemini), automated real-time translation (Google Translate), sentiment analysis, semantic information retrieval, voice assistants (Siri, Alexa).
+2. **Computer Vision & Perception**:
+   - *Applications*: Autonomous driving systems (Tesla FSD, Waymo obstacle detection & lane segmentation), medical diagnostics (tumor detection on MRI/CT scans), facial biometric recognition, automated visual quality inspection in manufacturing.
+3. **Robotics & Autonomous Navigation**:
+   - *Applications*: Autonomous warehouse fulfillment robots (Amazon Kiva robots), robotic surgery (da Vinci surgical system), space exploration rovers (NASA Perseverance on Mars), industrial robotic arms.
+4. **Healthcare, Bioinformatics & Drug Discovery**:
+   - *Applications*: Molecular protein folding (DeepMind AlphaFold), computer-aided drug synthesis, early disease trajectory prediction, genomic sequence variant analysis.
+5. **Game Playing & Strategic Reasoning**:
+   - *Applications*: Superhuman game agents (Deep Blue for Chess, AlphaGo for Go, Libratus for imperfect-information Poker) utilizing heuristic evaluation, minimax, alpha-beta pruning, and reinforcement learning.
+6. **Finance, Cybersecurity & Expert Systems**:
+   - *Applications*: Algorithmic automated high-frequency trading, real-time credit card fraud detection, automated network intrusion detection, medical expert diagnosis systems (e.g., MYCIN heritage).
+
+---
+
+#### Question 2: How heuristic search is different from uninformed search? [3 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Conceptual Distinction Statement**: 0.5 Mark
+> - **Comprehensive Comparison Matrix (at least 5 parameters)**: 2 Marks
+> - **Concrete Algorithm Examples**: 0.5 Mark
+
+##### 1. Fundamental Conceptual Difference:
+- **Uninformed (Blind) Search**: Operates **strictly with the problem formulation** ($S_0$, $Actions$, $Result$, $GoalTest$, $c$). It has zero domain-specific knowledge about the search space and cannot estimate how far a given non-goal state is from the goal. Exploration proceeds uniformly and blindly in all directions.
+- **Heuristic (Informed) Search**: Employs a **domain-specific heuristic evaluation function $h(n)$** that estimates the cheapest path cost from node $n$ to a goal state. This heuristic injects guidance, allowing the search to prioritize promising nodes and prune unpromising branches.
+
+##### 2. Detailed Technical Comparison Table:
+
+| Technical Parameter | Uninformed (Blind) Search | Heuristic (Informed) Search |
+|:---|:---|:---|
+| **Knowledge Employed** | Zero domain knowledge; relies solely on state definitions and edge step costs $c(s, a, s')$. | Employs problem definition **plus** a heuristic function $h(n)$ estimating distance/cost to goal. |
+| **Node Evaluation Function $f(n)$** | $f(n) = g(n)$ (cumulative cost from start) or simple search depth $d$. | $f(n) = h(n)$ (Greedy Search) or $f(n) = g(n) + h(n)$ (A* Search). |
+| **Search Trajectory** | Explores uniformly in spherical or depth-first waves across all directions. | Focused, directional beam oriented toward the target goal state. |
+| **Number of Node Expansions** | High; expands exponentially large volumes of irrelevant states ($O(b^d)$ or $O(b^m)$). | Drastically reduced; prunes large subspaces when heuristic is informed. |
+| **Time & Space Complexity** | Typically exponential in branching factor $b$ and depth $d$. BFS is memory-bounded ($O(b^d)$). | Can achieve polynomial or linear time/space with an accurate, admissible heuristic. |
+| **Optimality Guarantee** | Optimal only under special cases: BFS for unit step costs; UCS for positive costs $c \ge \epsilon > 0$. | Guaranteed optimal if heuristic $h(n)$ is **admissible** (tree search) and **consistent** (graph search). |
+| **Representative Algorithms** | Breadth-First Search (BFS), Depth-First Search (DFS), Depth-Limited Search (DLS), Iterative Deepening (IDS), Uniform Cost Search (UCS). | Greedy Best-First Search, A* Algorithm, Iterative Deepening A* (IDA*), Simplified Memory Bounded A* (SMA*), Beam Search. |
+
+---
+
+#### Question 3: What is production system? Explain it with an example. Discuss the Characteristics of a production system. [4 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Definition & 3 Architecture Components**: 1.5 Marks
+> - **Concrete Problem Example with Rules & Working Memory**: 1.5 Marks
+> - **Key Characteristics (Modularity, Uniformity, etc.)**: 1 Mark
+
+##### 1. Definition of Production System:
+A **Production System** is a modular knowledge representation and inference architecture in Artificial Intelligence (pioneered by Newell & Simon). It models problem solving as a dynamic cycle of pattern-matching and rule execution.
+
+##### 2. Three Core Architectural Components:
+1. **Rule Base (Production Rules)**:
+   - A declarative set of condition-action rules:
+     $\\mathbf{IF} \quad \langle\text{Condition / LHS}\rangle \quad \\mathbf{THEN} \quad \langle\text{Action / RHS}\rangle$
+   - The LHS defines state patterns in the database; the RHS specifies state modifications or transitions.
+2. **Context / Working Memory (Global Database)**:
+   - Contains the current state description, active facts, and intermediate problem assertions.
+3. **Control Strategy / Rule Interpreter**:
+   - Executes the engine cycle:
+     - **Match**: Identifies all rules whose preconditions match current Working Memory (forms the **Conflict Set**).
+     - **Conflict Resolution**: Chooses exactly one rule to fire using criteria like **Specificity** (most detailed condition), **Recency** (latest facts), or **Rule Priority**.
+     - **Act (Execution)**: Fires the selected rule's RHS, mutating Working Memory.
+
+##### 3. Concrete Illustrative Example (Water Jug Problem: 4G & 3G Jugs, Target 2G):
+- **Working Memory**: Current volume state $(x, y)$ where $x \in \{0..4\}, y \in \{0..3\}$. Initial State = $(0, 0)$.
+- **Production Rules**:
+  - $R_1$: $\\mathbf{IF} \\; (x < 4) \\; \\mathbf{THEN} \\; x \\gets 4$ *(Fill 4G jug)*
+  - $R_2$: $\\mathbf{IF} \\; (y < 3) \\; \\mathbf{THEN} \\; y \\gets 3$ *(Fill 3G jug)*
+  - $R_5$: $\\mathbf{IF} \\; (x + y \ge 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets 4, \\; y \\gets y - (4 - x)$ *(Pour 3G into 4G until full)*
+  - $R_7$: $\\mathbf{IF} \\; (x + y \le 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets x + y, \\; y \\gets 0$ *(Pour all 3G into 4G)*
+- **Execution**:
+  1. Working Memory $(0, 0) \\xrightarrow{\text{Fire } R_2} (0, 3)$
+  2. $(0, 3) \\xrightarrow{\text{Fire } R_7} (3, 0)$
+  3. $(3, 0) \\xrightarrow{\text{Fire } R_2} (3, 3)$
+  4. $(3, 3) \\xrightarrow{\text{Fire } R_5} (4, 2)$
+  5. $(4, 2) \\xrightarrow{\text{Empty 4G}} (0, 2) \\xrightarrow{\text{Pour 3G to 4G}} (2, 0)$ [Goal Reached: $x=2$]
+
+##### 4. Key Characteristics of a Production System:
+1. **Modularity**: Rules are independent knowledge packets. Adding, modifying, or deleting a rule does not break other rules.
+2. **Uniformity**: All domain knowledge is structured into identical $\text{IF } \dots \text{ THEN } \dots$ syntax.
+3. **Naturalness**: Enables domain specialists to express heuristic expertise, legal rules, or diagnostic knowledge naturally without low-level programming.
+4. **Separation of Knowledge from Control**: The knowledge base (rules) is isolated from the inference engine (interpreter), allowing the same engine to be reused across different problem domains.
+
+---
+
+#### Question 4: Discuss the Depth First Search techniques with the help of an example. Also discuss the benefits and shortcoming of it. [4 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **DFS Technique Description & Traversal Mechanism**: 1 Mark
+> - **Step-by-Step Graph/Tree Example**: 1.5 Marks
+> - **Benefits (Space Advantage, Dense Solutions)**: 0.75 Mark
+> - **Shortcomings (Incompleteness, Suboptimality, Left-Bias)**: 0.75 Mark
+
+##### 1. DFS Technique & Search Mechanism:
+- **Frontier Data Structure**: Implemented as a **Last-In, First-Out (LIFO) Stack** (or recursive call stack).
+- **Expansion Order**: Always expands the deepest unexpanded node in the current frontier. It drops straight down along a single branch until it hits a leaf node (dead end), then backtracks to the most recent ancestor with unexplored children.
+
+##### 2. Illustrative Example:
+Consider a state space tree with Root $A$, branching factor $b=2$, and goal $G$ at node $F$:
+
+\`\`\`
+               A (Root)
+             /   \
+            B     C
+           / \   / \
+          D   E F   G (Goal)
+\`\`\`
+
+- **Step-by-Step Execution Trace**:
+  1. **Initialize**: Push $A$ onto Stack: \`[A]\`. Explored: \`{}\`.
+  2. **Pop $A$**: Expand $A$. Push children $C, B$ (so $B$ is on top): Stack = \`[C, B]\`.
+  3. **Pop $B$**: Expand $B$. Push children $E, D$: Stack = \`[C, E, D]\`.
+  4. **Pop $D$**: $D$ is a leaf node (dead-end). Stack = \`[C, E]\`. **Backtrack to $B$**.
+  5. **Pop $E$**: $E$ is a leaf node. Stack = \`[C]\`. **Backtrack to $A$**.
+  6. **Pop $C$**: Expand $C$. Push children $G, F$: Stack = \`[G, F]\`.
+  7. **Pop $F$**: $F$ is a leaf node. Stack = \`[G]\`.
+  8. **Pop $G$**: **Goal Test Passes! Solution Found: Path $A \to C \to G$.**
+- **Traversal Sequence**: $A \to B \to D \to E \to C \to F \to G$.
+
+##### 3. Benefits of Depth First Search:
+1. **Linear Space Complexity ($O(bm)$)**:
+   - **Crucial Memory Advantage**: DFS only stores the current active path from the root to the active node, plus unexpanded sibling nodes at each depth.
+   - For $b = 10, d = 5$, BFS requires $10^5 = 100{,}000$ nodes in memory, while DFS requires only $10 \times 5 = 50$ nodes!
+2. **Rapid Goal Discovery in Dense State Spaces**:
+   - If solutions are numerous and distributed across multiple branches, DFS can locate a solution very quickly without exploring entire horizontal levels.
+3. **Minimal Implementation Overhead**:
+   - Easily expressed via simple recursion without complex priority queue maintenance.
+
+##### 4. Shortcomings of Depth First Search:
+1. **Incompleteness in Infinite State Spaces**:
+   - If the search graph contains loops, cycles, or infinite-depth branches, DFS will traverse endlessly down that branch without ever backtracking, even if a trivial goal exists at depth 1 on an adjacent branch.
+2. **Suboptimal Solutions**:
+   - DFS returns the *first* solution it encounters, which may be at depth $m = 25$ with high path cost, completely missing the optimal solution at depth $d = 2$.
+3. **Pathological Sensitivity to Branch Ordering**:
+   - If the algorithm happens to choose the wrong child to expand first, it may waste enormous time exploring a vast, futile subtree.
+
+---
+
+#### Question 5: Define the State space for the following problem and solve them as state space search? Rules for solution can be assumed. [6 Marks]
+##### The Wolf-Goat-Cabbage Problem:
+> *"A farmer with his wolf, goat and cabbage come to the edge of a river, they wish to cross. There is a boat at the river's edge but, of course, only the farmer can row. The boat also can carry only two things (including the rower) at a time. If the wolf is ever left alone with the goat, the wolf will eat the goat; similarly, if the goat is left alone with the cabbage, the goat will eat the cabbage. Devise a sequence of crossing of the river so that all four characters arrive safely on the other side of the river."*
+
+> **Curaj Marking Scheme Rubric**:
+> - **Formal State Space Representation (Vector, Initial, Goal)**: 1.5 Marks
+> - **Mathematical Safety Constraints Formulation**: 1.5 Marks
+> - **Production Rules / Legal Operators**: 1 Mark
+> - **Step-by-Step 7-Crossing Solution Sequence & Trace**: 2 Marks
+
+##### 1. Formal State Space Definition:
+- **State Vector**:
+  Represented as an ordered 4-tuple:
+  $S = (F, W, G, C) \in \{0, 1\}^4$
+  where each binary variable represents the current riverbank of the character:
+  - $F \in \{0, 1\}$: Location of the **Farmer** ($0 = \text{Near / Left Bank}, \\; 1 = \text{Far / Right Bank}$)
+  - $W \in \{0, 1\}$: Location of the **Wolf**
+  - $G \in \{0, 1\}$: Location of the **Goat**
+  - $C \in \{0, 1\}$: Location of the **Cabbage**
+- **Size of Full Configuration Space**: $2^4 = 16$ possible mathematical states.
+- **Initial State ($S_0$)**:
+  $S_0 = (0, 0, 0, 0) \quad [\text{All entities on the near bank}]$
+- **Goal State ($S_{\text{goal}}$)**:
+  $S_{\text{goal}} = (1, 1, 1, 1) \quad [\text{All entities safely on the far bank}]$
+
+##### 2. Mathematical Safety Constraints (Forbidden States):
+The physical safety rules demand that vulnerable pairs cannot be left unattended by the farmer on either bank:
+1. *Wolf eats Goat*: If Wolf and Goat are on the same bank, the Farmer must also be on that bank:
+   $(W = G) \implies (F = W)$
+   Contrapositively: $(W = G \\land F \\ne W) \implies \text{FATAL / UNSAFE}$.
+2. *Goat eats Cabbage*: If Goat and Cabbage are on the same bank, the Farmer must also be on that bank:
+   $(G = C) \implies (F = G)$
+   Contrapositively: $(G = C \\land F \\ne G) \implies \text{FATAL / UNSAFE}$.
+
+**Formal Safe State Predicate**:
+$\\mathbf{Safe}(F, W, G, C) \\iff ((W \\ne G) \\lor (F = W)) \\;\\land\\; ((G \\ne C) \\lor (F = G))$
+
+- **Unsafe States (6 configurations)**:
+  - Near bank unsafe: $(0, 1, 1, 0)$ [Goat & Cabbage alone on far bank], $(0, 1, 1, 1)$ [W, G, C alone on far], $(0, 0, 1, 1)$ [W & G alone on near bank].
+  - Far bank unsafe: $(1, 0, 0, 1)$ [W & G alone on near], $(1, 0, 0, 0)$ [W, G, C alone on near], $(1, 1, 0, 0)$ [G & C alone on near].
+- **Safe States (10 configurations)**:
+  $\{(0,0,0,0), (1,0,1,0), (0,0,1,0), (1,1,1,0), (0,1,0,0), (1,1,0,1), (0,0,0,1), (1,0,1,1), (0,1,0,1), (1,1,1,1)\}$.
+
+##### 3. Legal Production Operators (Action Schema):
+Since the boat holds at most 2 entities and only the farmer can row, each transition inverts $F$ ($F \\gets 1 - F$) and at most one passenger:
+- **$R_1$ (Cross Alone)**: $\\mathbf{IF} \\; \\mathbf{Safe}(1-F, W, G, C) \\; \\mathbf{THEN} \\; F \\gets 1-F$
+- **$R_2$ (Cross with Wolf)**: $\\mathbf{IF} \\; (F = W) \\land \\mathbf{Safe}(1-F, 1-W, G, C) \\; \\mathbf{THEN} \\; F \\gets 1-F, \\; W \\gets 1-W$
+- **$R_3$ (Cross with Goat)**: $\\mathbf{IF} \\; (F = G) \\land \\mathbf{Safe}(1-F, W, 1-G, C) \\; \\mathbf{THEN} \\; F \\gets 1-F, \\; G \\gets 1-G$
+- **$R_4$ (Cross with Cabbage)**: $\\mathbf{IF} \\; (F = C) \\land \\mathbf{Safe}(1-F, W, G, 1-C) \\; \\mathbf{THEN} \\; F \\gets 1-F, \\; C \\gets 1-C$
+
+##### 4. Step-by-Step 7-Crossing State Space Solution:
+
+| Step # | Action Applied | Resulting State $(F,W,G,C)$ | Near Bank Contents | Far Bank Contents | Constraint & Safety Verification |
+|:---:|:---|:---:|:---:|:---:|:---|
+| **0** | **Start** | $(0, 0, 0, 0)$ | $\\{F, W, G, C\\}$ | $\\emptyset$ | Initial State (Safe) |
+| **1** | Farmer takes **Goat** to far bank ($R_3$) | $(1, 0, 1, 0)$ | $\\{W, C\\}$ | $\\{F, G\\}$ | **Safe**: Wolf does not eat Cabbage! |
+| **2** | Farmer returns **alone** ($R_1$) | $(0, 0, 1, 0)$ | $\\{F, W, C\\}$ | $\\{G\\}$ | **Safe**: Goat is alone on far bank. |
+| **3** | Farmer takes **Wolf** to far bank ($R_2$) | $(1, 1, 1, 0)$ | $\\{C\\}$ | $\\{F, W, G\\}$ | **Safe**: Farmer is present on far bank with Wolf & Goat. |
+| **4** | ⭐ **CRITICAL TRICK: Farmer brings Goat back!** ($R_3$) | $(0, 1, 0, 0)$ | $\\{F, G, C\\}$ | $\\{W\\}$ | **Mandatory Move**: If farmer returned alone, Wolf would eat Goat! Bringing Goat back keeps all safe. |
+| **5** | Farmer takes **Cabbage** to far bank ($R_4$) | $(1, 1, 0, 1)$ | $\\{G\\}$ | $\\{F, W, C\\}$ | **Safe**: Goat alone on near bank; Wolf does not eat Cabbage on far bank. |
+| **6** | Farmer returns **alone** ($R_1$) | $(0, 1, 0, 1)$ | $\\{F, G\\}$ | $\\{W, C\\}$ | **Safe**: Wolf and Cabbage left together peacefully on far bank. |
+| **7** | Farmer takes **Goat** to far bank ($R_3$) | $(1, 1, 1, 1)$ | $\\emptyset$ | $\\{F, W, G, C\\}$ | **GOAL STATE REACHED!** All four safely across. |
+
+- **Minimum Solution Cost**: Exactly **7 crossings** ($c^* = 7$).
+- **Symmetric Alternative Solution**: At Step 3, the Farmer may take the **Cabbage** across, bring the **Goat** back at Step 4, and take the **Wolf** across at Step 5. Both paths yield optimal length 7.
+
+---
+
+### 6.2 Additional University Subjective Questions & Model Solutions
 
 #### Q1: "Differentiate between a State and a Search Node with an illustrative diagram." [5 Marks]
 > **Model Answer Key**:
