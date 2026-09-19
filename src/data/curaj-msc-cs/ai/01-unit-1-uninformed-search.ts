@@ -913,7 +913,9 @@ The definitive comparison matrix required for university and competitive exams:
 
 ---
 
-## 6. Official CURAJ CIA-1 (September 2025) Question Paper & Comprehensive Solutions
+## 6. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (2024 & 2025)
+
+### 6.1 Official CIA-1 Question Paper (September 2025, CSC-401) — 20 Marks
 
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
@@ -924,13 +926,9 @@ The definitive comparison matrix required for university and competitive exams:
 > - **Exam Duration**: 1 Hour | **Maximum Marks**: 20 Marks
 > - **Coverage**: Unit 1 Foundations, Problem Solving, Production Systems & Search Algorithms
 
-### 📸 Official Examination Question Paper
+### 📸 Official Examination Question Paper (September 2025)
 
 ![Official CURAJ First Mid-Term Examination (September-2025) Question Paper for CSC-401 Introduction to AI](/AICIA12025.jpg)
-
----
-
-### 6.1 Comprehensive Question-by-Question Model Solutions (September 2025)
 
 ---
 
@@ -1158,7 +1156,245 @@ Since the boat holds at most 2 entities and only the farmer can row, each transi
 
 ---
 
-### 6.2 Additional University Subjective Questions & Model Solutions
+---
+
+### 6.2 Official CIA-1 Question Paper (August 2024, MAI-401) — 20 Marks
+
+> [!IMPORTANT]
+> **Official University Examination Paper Analysis**:
+> - **Institution**: Central University of Rajasthan (CURAJ)
+> - **Examination**: First Mid Term Examination (August 2024 — Conducted: 30/08/2024)
+> - **Degree & Branch**: M.Sc. CS / Integrated M.Sc. VII & M.Sc. 1st Semester
+> - **Course Code & Title**: **MAI-401 Introduction to AI**
+> - **Exam Duration**: 1 Hour | **Maximum Marks**: 20 Marks
+> - **Coverage**: Semantic Networks, Expert Systems, Foundations of Intelligence, AI Applications, Water Jug Problem Formulation
+
+### 📸 Official Examination Question Paper (August 2024)
+
+![Official CURAJ First Mid-Term Examination (August-2024) Question Paper for MAI-401 Introduction to AI](/AICIA12024.jpg)
+
+---
+
+#### Question 1: What is "Semantic network"? Represent the following problem into semantic network. [6 Marks]
+> *"Description: Central University of Rajasthan is an accredited academic institution of higher learning. There are four school in the university namely, computer science, business, physical sciences, and mathematical sciences. Prof. A is the president of the university. Prof. B is vice-president of the university. Dr. C is head of school of computer science, and he is married to D. D is a lecturer of Economics in business school. They have one son. They are native of Jaipur."*
+
+> **Curaj Marking Scheme Rubric**:
+> - **Definition & Key Concepts of Semantic Network**: 2 Marks
+> - **Entity Nodes Identification & Edge Relations Extraction**: 2 Marks
+> - **Complete Semantic Network Graph Diagram & Representation**: 2 Marks
+
+##### 1. Definition of Semantic Network:
+- A **Semantic Network** (first introduced by Ross Quillian in 1968 for cognitive human memory modeling) is an associative graph-based knowledge representation formalism in Artificial Intelligence.
+- It represents knowledge declaratively as a **directed labeled graph**:
+  - **Nodes (Vertices)**: Represent physical or abstract objects, concepts, entities, or situations.
+  - **Directed Edges (Arcs)**: Represent semantic relations, properties, or factual assertions connecting the concepts.
+  - **Standard Inherent Relations**:
+    - \`is-a\` / \`instance-of\`: Class-subclass and class-instance inheritance relations.
+    - \`has-part\` / \`part-of\`: Mereological structural compositions.
+    - *Domain-Specific Predicates*: Role-based relationships (e.g., \`president-of\`, \`head-of\`, \`married-to\`, \`native-of\`).
+- **Core Advantage**: Enables **Property Inheritance**—subordinate nodes automatically inherit attributes from superordinate concept categories without redundant storage.
+
+##### 2. Knowledge Extraction & Semantic Triples from Problem Description:
+From the examination narrative, the formal semantic assertions $(\\text{Subject} \\xrightarrow{\\text{Predicate}} \\text{Object})$ are:
+1. $\\text{CURAJ} \\xrightarrow{\\text{is-a}} \\text{Accredited Academic Institution of Higher Learning}$
+2. $\\text{CURAJ} \\xrightarrow{\\text{has-school}} \\text{School of Computer Science}$
+3. $\\text{CURAJ} \\xrightarrow{\\text{has-school}} \\text{School of Business}$
+4. $\\text{CURAJ} \\xrightarrow{\\text{has-school}} \\text{School of Physical Sciences}$
+5. $\\text{CURAJ} \\xrightarrow{\\text{has-school}} \\text{School of Mathematical Sciences}$
+6. $\\text{Prof. A} \\xrightarrow{\\text{is-president-of}} \\text{CURAJ}$
+7. $\\text{Prof. B} \\xrightarrow{\\text{is-vice-president-of}} \\text{CURAJ}$
+8. $\\text{Dr. C} \\xrightarrow{\\text{is-head-of}} \\text{School of Computer Science}$
+9. $\\text{Dr. C} \\xrightarrow{\\text{married-to}} \\text{D}$
+10. $\\text{D} \\xrightarrow{\\text{is-lecturer-in}} \\text{School of Business}$
+11. $\\text{D} \\xrightarrow{\\text{teaches-subject}} \\text{Economics}$
+12. $\\text{Dr. C} \\xrightarrow{\\text{has-child / has-son}} \\text{Son}$
+13. $\\text{D} \\xrightarrow{\\text{has-child / has-son}} \\text{Son}$
+14. $\\text{Dr. C, D, Son} \\xrightarrow{\\text{native-of}} \\text{Jaipur}$
+
+##### 3. Complete Semantic Network Graph Architecture:
+
+\`\`\`text
+                [ Accredited Academic Institution of Higher Learning ]
+                                        ▲
+                                        │ is-a
+                        ┌───────────────┴───────────────┐
+                        │  Central University of        │◄─────── is-president-of ────── [ Prof. A ]
+                        │  Rajasthan (CURAJ)            │◄─────── is-vice-president-of ── [ Prof. B ]
+                        └───────┬───────────────┬───────┘
+                                │ has-school    │ has-school
+          ┌─────────────────────┼───────────────┴─────────────────────┐
+          ▼                     ▼                                     ▼
+ [ School of Phys. Sci ]  [ School of Math. Sci ]                     │
+                                                                      │ has-school
+          ┌───────────────────────────────────────────────────────────┤
+          ▼                                                           ▼
+ [ School of Computer Science ]                              [ School of Business ]
+          ▲                                                           ▲
+          │ is-head-of                                                │ is-lecturer-in
+    [ Dr. C ] ◄────────────────── married-to ───────────────────► [ D ]
+          │                                                           │
+          │                                                           │ teaches
+          │                                                           ▼
+          │                                                    [ Economics ]
+          │
+          ├───────── has-son ─────────► [ Son ] ◄────── has-son ──────┤
+          │                               │                           │
+          ▼                               ▼                           ▼
+    native-of                         native-of                   native-of
+          └──────────────────────────► [ Jaipur ] ◄───────────────────┘
+\`\`\`
+
+##### 4. Key Properties Demonstrated in this Network:
+- **Relational Symmetry**: The link \`married-to\` is bidirectional between \`[Dr. C]\` and \`[D]\`.
+- **Inheritance**: Any attribute associated with an "Academic Institution of Higher Learning" (e.g., grants degrees, has students) is automatically inherited by \`[CURAJ]\`.
+- **Multi-Parent Attribution**: \`[Son]\` inherits \`native-of: Jaipur\` through both parental nodes \`[Dr. C]\` and \`[D]\`.
+
+---
+
+#### Question 2: What are Expert systems? [2 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Definition & Operational Purpose**: 1 Mark
+> - **Core Architecture Components & Classic Examples**: 1 Mark
+
+##### 1. Formal Definition:
+An **Expert System** is a knowledge-intensive artificial intelligence computer program designed to solve complex, domain-specific problems by emulating the decision-making and cognitive reasoning capabilities of human experts in a specialized discipline (e.g., medical diagnosis, geological prospecting, organic chemistry analysis).
+
+##### 2. Core Architectural Components:
+
+\`\`\`text
+ ┌──────────────────────┐         ┌───────────────────────────────┐
+ │   DOMAIN KNOWLEDGE   │         │       INFERENCE ENGINE        │
+ │         BASE         │<───────>│   (Forward/Backward Chaining) │
+ │  • Rules: IF-THEN    │         └───────────────┬───────────────┘
+ │  • Factual Heuristics│                         │
+ └──────────────────────┘                         │
+                                                  ▼
+ ┌──────────────────────┐         ┌───────────────────────────────┐
+ │    USER INTERFACE    │<───────>│     EXPLANATION FACILITY      │
+ │  (Query Input & Ans) │         │  ("Why was this rule fired?") │
+ └──────────────────────┘         └───────────────────────────────┘
+\`\`\`
+
+1. **Knowledge Base**: Contains domain-specific expert heuristics, facts, relationships, and production rules ($\\text{IF } \\dots \\text{ THEN } \\dots$).
+2. **Inference Engine**: The cognitive processing unit that applies logical reasoning algorithms (such as *Forward Chaining* for data-driven deduction or *Backward Chaining* for goal-driven diagnosis) to infer conclusions from the knowledge base.
+3. **Working Memory (Blackboard)**: Stores transient case facts entered by the user and intermediate inferred assertions.
+4. **Explanation Facility**: Justifies its reasoning trajectory to the human user by explaining *how* a specific conclusion was derived and *why* a particular piece of evidence was requested.
+5. **User Interface**: Provides natural interaction between non-expert end-users and the system.
+
+##### 3. Historic Landmark Examples:
+- **MYCIN (Stanford, 1970s)**: Automated medical expert system diagnosing infectious blood bacterial infections (meningitis, bacteremia) and prescribing appropriate antibiotic regimens with certainty factors.
+- **DENDRAL (1965)**: Identified chemical molecular structures from mass spectrometry raw data.
+- **PROSPECTOR (1970s)**: Geological exploration system that famously predicted a multi-million-dollar molybdenum deposit in Washington State.
+
+---
+
+#### Question 3: Explain why AI is beneficial even though computers cannot really think. [3 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Philosophical Demarcation (Weak AI vs. Strong AI / Thinking vs. Simulating)**: 1 Mark
+> - **Practical Real-World Benefits with Concrete Rationales**: 2 Marks (at least 4 solid benefits)
+
+##### 1. Conceptual Framework: "Acting as if Thinking" (Weak AI):
+As philosopher John Searle demonstrated in his famous **Chinese Room Gedankenexperiment (1980)**, computers manipulate formal syntax without possessing biological semantics, phenomenal consciousness, or genuine subjective understanding. However, in engineering and scientific reality, **computers do not need to possess genuine biological consciousness to deliver monumental societal, scientific, and industrial benefits**.
+
+Just as a mechanical airplane does not need to flap its wings or feel the joy of flight like an eagle to transport 500 passengers across oceans safely, an AI system does not need biological sentience to solve complex intellectual tasks rationally and optimally.
+
+##### 2. Core Technological & Practical Benefits of AI Systems:
+
+1. **Superhuman Computational Speed & Combinatorial Search Scale**:
+   - Computers evaluate millions of combinatorial paths, game branches, or optimization parameters per second. In chess or logistics, an AI algorithm (AlphaGo, Minimax with $\\alpha$-$\\beta$ pruning) explores thousands of moves beyond human cognitive working memory capacity ($7 \\pm 2$ chunks).
+2. **Impartial Precision, Tireless Operation & 24/7 Reliability**:
+   - Human cognition is prone to cognitive fatigue, emotional bias, stress, visual inattention, and shift-work sleep deprivation. An AI monitoring cardiac telemetry in an ICU or analyzing air-traffic collision alerts maintains unwavering, deterministic precision 24 hours a day, 365 days a year.
+3. **High-Dimensional Pattern Recognition Beyond Human Senses**:
+   - Humans are evolutionarily wired to perceive patterns in 2D and 3D. AI models process multi-thousand-dimensional vector spaces, detecting sub-visual oncological biomarkers in MRI scans, folding 200 million protein structures (AlphaFold), or identifying subtle multi-node network intrusion anomalies across terabytes of log data.
+4. **Safety in Extreme, Hazardous & Inaccessible Environments**:
+   - AI-driven autonomous systems can operate where human presence is lethal: deep underwater trench inspection, Mars surface exploration (NASA Curiosity & Perseverance rovers), nuclear reactor core decontamination, and explosive ordnance disposal (EOD robots).
+5. **Augmented Intelligence (Human-in-the-Loop Productivity Force-Multiplier)**:
+   - AI acts as a collaborative cognitive copilot. Radiologists assisted by AI CAD systems demonstrate significantly lower false-negative cancer detection rates. Software developers and mathematicians use automated theorem provers and coding assistants to eradicate boilerplate, debug complex logic, and accelerate scientific discovery.
+
+---
+
+#### Question 4: What is "Artificial Intelligence"? Explain this term with its various application domains. [3 Marks]
+
+> [!NOTE]
+> **Repeated Core Exam Question**:  
+> This identical question was set in **both August 2024 (MAI-401 Q4)** and **September 2025 (CSC-401 Q1)**, demonstrating that it is an absolute mandatory recurrent question for CURAJ internal and semester examinations!
+
+##### Model Solution Reference:
+- Refer to the exhaustive model solution provided under **[Section 6.1 Question 1](#question-1-what-is-artificial-intelligence-explain-this-term-with-its-various-application-domains-3-marks)** for:
+  - Formal dual definitions (John McCarthy 1956 & Russell-Norvig 2020 Rational Agent paradigm).
+  - The 4 conceptual quadrants matrix (Thinking/Acting Humanly/Rationally).
+  - Six industry application domains: Natural Language Processing, Computer Vision, Robotics, Healthcare/Bioinformatics, Game Theory, and Cybersecurity/FinTech.
+
+---
+
+#### Question 5: Enumerate classical "water jug problem" as mentioned in AI texts. Describe the state Space for this problem. Solve this problem by giving its operator sequences. [6 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Problem Enumeration & Formal Formulation**: 1.5 Marks
+> - **State Space Mathematical Description (States, S0, Goal, Limits)**: 1.5 Marks
+> - **Complete Production Operator Set**: 1.5 Marks
+> - **Step-by-Step Operator Sequence & State Trace to Goal**: 1.5 Marks
+
+##### 1. Problem Enumeration:
+The classic **Water Jug Problem** (Rich & Knight Ch 2; Russell & Norvig Ch 3) is stated as follows:
+- We are provided with two water jugs:
+  - A **4-gallon jug** (Jug $X$).
+  - A **3-gallon jug** (Jug $Y$).
+- Neither jug has any measuring markings on its body.
+- There is an endless source of running tap water and a drain.
+- **Objective**: Measure out **exactly 2 gallons of water** in the 4-gallon jug using the minimum sequence of valid pouring operations.
+
+##### 2. Formal Mathematical State Space Description:
+1. **State Representation**:
+   Represented as an ordered pair vector:
+   $S = (x, y)$
+   where:
+   - $x \\in \\{0, 1, 2, 3, 4\\}$ denotes the current volume of water in the 4-gallon jug.
+   - $y \\in \\{0, 1, 2, 3\\}$ denotes the current volume of water in the 3-gallon jug.
+2. **State Space Universe**:
+   The full Cartesian product has $5 \\times 4 = 20$ discrete states. Exactly **14 states are reachable** from the initial state via valid production operators.
+3. **Initial State ($S_0$)**:
+   $S_0 = (0, 0) \\quad [\\text{Both jugs empty}]$
+4. **Goal State ($S_G$)**:
+   $S_G = (2, y) \\quad \\forall y \\in \\{0, 1, 2, 3\\} \\quad [\\text{Exactly 2 gallons in the 4-gallon jug}]$
+
+##### 3. Complete Set of Formal Production Rules (Operators):
+
+| Rule # | Precondition / State Condition | Operator Action | Resulting State | Formal Description |
+|:---:|:---|:---|:---:|:---|
+| **$R_1$** | $x < 4$ | Fill 4-Gallon Jug | $(4, y)$ | Fill jug 4 to brim from tap |
+| **$R_2$** | $y < 3$ | Fill 3-Gallon Jug | $(x, 3)$ | Fill jug 3 to brim from tap |
+| **$R_3$** | $x > 0$ | Empty 4-Gallon Jug | $(0, y)$ | Dump all water from 4G jug on ground |
+| **$R_4$** | $y > 0$ | Empty 3-Gallon Jug | $(x, 0)$ | Dump all water from 3G jug on ground |
+| **$R_5$** | $x + y \\ge 4 \\land y > 0$ | Pour from 3G into 4G until 4G is full | $(4, y - (4 - x))$ | Pour 3G to 4G until jug 4 is completely full |
+| **$R_6$** | $x + y \\ge 3 \\land x > 0$ | Pour from 4G into 3G until 3G is full | $(x - (3 - y), 3)$ | Pour 4G to 3G until jug 3 is completely full |
+| **$R_7$** | $x + y \\le 4 \\land y > 0$ | Pour all water from 3G into 4G | $(x + y, 0)$ | Empty 3G completely into 4G |
+| **$R_8$** | $x + y \\le 3 \\land x > 0$ | Pour all water from 4G into 3G | $(0, x + y)$ | Empty 4G completely into 3G |
+
+##### 4. Step-by-Step Operator Sequence & Solution Trace:
+
+| Step # | Current State $(x, y)$ | Operator Applied | Operator Description | Resulting Contents |
+|:---:|:---:|:---:|:---|:---|
+| **0** | **$(0, 0)$** | *Start* | Initial State: Both jugs empty | $4G = 0, \\; 3G = 0$ |
+| **1** | **$(0, 3)$** | **$R_2$** | Fill the 3-gallon jug completely from the pump | $4G = 0, \\; 3G = 3$ |
+| **2** | **$(3, 0)$** | **$R_7$** | Pour all 3 gallons from the 3G jug into the 4G jug | $4G = 3, \\; 3G = 0$ |
+| **3** | **$(3, 3)$** | **$R_2$** | Fill the 3-gallon jug completely again | $4G = 3, \\; 3G = 3$ |
+| **4** | **$(4, 2)$** | **$R_5$** | Pour water from 3G into 4G until 4G is full (takes 1 gal; leaves 2 gal in 3G) | $4G = 4, \\; 3G = 2$ |
+| **5** | **$(0, 2)$** | **$R_3$** | Empty the 4-gallon jug completely on the ground | $4G = 0, \\; 3G = 2$ |
+| **6** | **$(2, 0)$** | **$R_7$** | Pour the remaining 2 gallons from 3G into the 4G jug | **$4G = 2, \\; 3G = 0$ [GOAL REACHED!]** |
+
+- **Total Optimal Path Cost**: Exactly **6 production operator applications**.
+- **Target Achieved**: The 4-gallon jug contains exactly **2 gallons of water**.
+- **Alternative 8-Step Path (Starting by filling 4G jug first)**:
+  - $(0,0) \\xrightarrow{R_1} (4,0) \\xrightarrow{R_6} (1,3) \\xrightarrow{R_4} (1,0) \\xrightarrow{R_8} (0,1) \\xrightarrow{R_1} (4,1) \\xrightarrow{R_6} (2,3) \\xrightarrow{R_4} (2,0)$.
+  - Both sequences reach the goal, but the 6-step sequence is strictly optimal.
+
+---
+
+### 6.3 Additional High-Yield Semester Subjective Questions & Model Solutions
+
 
 #### Q1: "Differentiate between a State and a Search Node with an illustrative diagram." [5 Marks]
 > **Model Answer Key**:
