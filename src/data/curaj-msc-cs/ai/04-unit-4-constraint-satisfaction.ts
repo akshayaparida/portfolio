@@ -17,7 +17,7 @@ export const unit4ConstraintSatisfactionModule: LearningModule = {
 ## Unit Topics Outline
 
 1. **Formal Definition of CSP**:
-   - Variables $X = \{X_1, \dots, X_n\}$, Domains $D = \{D_1, \dots, D_n\}$, Constraints $C = \{C_1, \dots, C_m\}$.
+   - Variables $X = \{X_1, \\dots, X_n\}$, Domains $D = \{D_1, \\dots, D_n\}$, Constraints $C = \{C_1, \\dots, C_m\}$.
 2. **Constraint Propagation & Consistency**:
    - Node Consistency, Arc Consistency (AC-3 algorithm), Path Consistency, and $k$-Consistency.
 3. **Backtracking Search for CSPs**:

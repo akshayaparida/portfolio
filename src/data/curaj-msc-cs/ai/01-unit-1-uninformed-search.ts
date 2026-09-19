@@ -128,7 +128,7 @@ Every well-defined search problem consists of 5 mathematical components:
 
 1. **Initial State ($S_0$)**: The starting state in which the agent begins.
 2. **Actions Function ($Actions(s)$)**: Returns the legal set of actions executable in state $s$:
-   $$\text{Actions}(s) = \{a_1, a_2, \dots, a_k\}$$
+   $$\\text{Actions}(s) = \{a_1, a_2, \\dots, a_k\}$$
 3. **Transition Model ($Result(s, a)$)**: A deterministic function describing the outcome state of applying action $a$ to state $s$:
    $$s' = Result(s, a)$$
 4. **Goal Test ($IsGoal(s)$)**: A Boolean predicate determining whether state $s$ satisfies the goal conditions (explicit single goal or implicit property test).
@@ -152,7 +152,7 @@ A **Solution** is an action sequence mapping $S_0$ to a goal state. An **Optimal
    - *Incremental Formulation (State Space)*: Start with an empty board; add a queen to each column without conflict ($8^8$ states max).
    - *Complete-State Formulation (Solution Space)*: Start with all 8 queens on board, move queens within columns to eliminate conflicts.
 3. **Water Jug Problem (4-Gallon & 3-Gallon Jugs, target 2 gallons)**:
-   - *State*: Pair $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ and $y \in \{0, 1, 2, 3\}$.
+   - *State*: Pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ and $y \\in \{0, 1, 2, 3\}$.
    - *Actions*: Fill jug, Empty jug, Pour from one jug to another until full or empty.
 
 ---
@@ -196,9 +196,9 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 
 #### 1. The Water Jug Problem
 - **Problem**: Given a 4-gallon jug and a 3-gallon jug, neither having measuring markings, and an endless water pump, measure exactly 2 gallons in the 4-gallon jug.
-- **State Representation**: An ordered pair $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ denotes gallons in the 4-gallon jug, and $y \in \{0, 1, 2, 3\}$ denotes gallons in the 3-gallon jug.
+- **State Representation**: An ordered pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ denotes gallons in the 4-gallon jug, and $y \\in \{0, 1, 2, 3\}$ denotes gallons in the 3-gallon jug.
 - **Initial State**: $(0, 0)$
-- **Goal State**: $(2, y)$ for any $y \in \{0, 1, 2, 3\}$.
+- **Goal State**: $(2, y)$ for any $y \\in \{0, 1, 2, 3\}$.
 - **Formal Production Rules**:
 
 | Rule # | Current State Condition | Action Taken | Resulting State | Description |
@@ -207,27 +207,27 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 | **R2** | $(x, y < 3)$ | Fill 3-Gallon Jug | $(x, 3)$ | Fill the 3-gallon jug to the brim |
 | **R3** | $(x > 0, y)$ | Empty 4-Gallon Jug | $(0, y)$ | Dump all water from 4-gallon jug |
 | **R4** | $(x, y > 0)$ | Empty 3-Gallon Jug | $(x, 0)$ | Dump all water from 3-gallon jug |
-| **R5** | $(x + y \ge 4, y > 0)$ | Pour 3G into 4G until full | $(4, y - (4 - x))$ | Pour from 3G to 4G until 4G is full |
-| **R6** | $(x + y \ge 3, x > 0)$ | Pour 4G into 3G until full | $(x - (3 - y), 3)$ | Pour from 4G to 3G until 3G is full |
-| **R7** | $(x + y \le 4, y > 0)$ | Pour all 3G into 4G | $(x + y, 0)$ | Empty 3G completely into 4G |
-| **R8** | $(x + y \le 3, x > 0)$ | Pour all 4G into 3G | $(0, x + y)$ | Empty 4G completely into 3G |
+| **R5** | $(x + y \\ge 4, y > 0)$ | Pour 3G into 4G until full | $(4, y - (4 - x))$ | Pour from 3G to 4G until 4G is full |
+| **R6** | $(x + y \\ge 3, x > 0)$ | Pour 4G into 3G until full | $(x - (3 - y), 3)$ | Pour from 4G to 3G until 3G is full |
+| **R7** | $(x + y \\le 4, y > 0)$ | Pour all 3G into 4G | $(x + y, 0)$ | Empty 3G completely into 4G |
+| **R8** | $(x + y \\le 3, x > 0)$ | Pour all 4G into 3G | $(0, x + y)$ | Empty 4G completely into 3G |
 
 - **Optimal Solution Trajectory (6 Steps)**:
-  $$(0, 0) \to (0, 3) \to (3, 0) \to (3, 3) \to (4, 2) \to (0, 2) \to (2, 0) \quad [\text{Goal Reached: } x=2]$$
+  $$(0, 0) \\to (0, 3) \\to (3, 0) \\to (3, 3) \\to (4, 2) \\to (0, 2) \\to (2, 0) \\quad [\\text{Goal Reached: } x=2]$$
 
 ---
 
 #### 2. The Missionaries and Cannibals Problem
 - **Problem**: 3 Missionaries and 3 Cannibals must cross a river using a boat carrying at most 2 people. If cannibals ever outnumber missionaries on either bank, the missionaries are eaten.
-- **State Representation**: Vector $(M, C, B)$ representing count of Missionaries, Cannibals, and Boat location on the near bank ($B \in \{1, 0\}$, where $1 = \text{near}, 0 = \text{far}$).
+- **State Representation**: Vector $(M, C, B)$ representing count of Missionaries, Cannibals, and Boat location on the near bank ($B \\in \{1, 0\}$, where $1 = \\text{near}, 0 = \\text{far}$).
 - **Initial State**: $(3, 3, 1)$
 - **Goal State**: $(0, 0, 0)$
-- **Safety Constraint**: On both near and far banks, $M \ge C$ whenever $M > 0$. That is:
-  $$\forall \text{ bank}: \quad M = 0 \quad \lor \quad M \ge C$$
-- **Permissible Boat Actions ($\Delta M, \Delta C$)**:
+- **Safety Constraint**: On both near and far banks, $M \\ge C$ whenever $M > 0$. That is:
+  $$\\forall \\text{ bank}: \\quad M = 0 \\quad \\lor \\quad M \\ge C$$
+- **Permissible Boat Actions ($\\Delta M, \\Delta C$)**:
   $\{(1, 0), (2, 0), (0, 1), (0, 2), (1, 1)\}$.
 - **Optimal 11-Step Crossing Sequence**:
-  $$(3,3,1) \to (3,1,0) \to (3,2,1) \to (3,0,0) \to (3,1,1) \to (1,1,0) \to (2,2,1) \to (0,2,0) \to (0,3,1) \to (0,1,0) \to (0,2,1) \to (0,0,0)$$
+  $$(3,3,1) \\to (3,1,0) \\to (3,2,1) \\to (3,0,0) \\to (3,1,1) \\to (1,1,0) \\to (2,2,1) \\to (0,2,0) \\to (0,3,1) \\to (0,1,0) \\to (0,2,1) \\to (0,0,0)$$
 
 ---
 
@@ -238,7 +238,7 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
   - Vertical blank moves jump a tile over exactly 2 other tiles: **inversions change by $0, +2,$ or $-2$**.
   - Therefore, the **parity (even vs. odd) of the inversion count is an invariant** under all valid sliding moves!
 - **Solvability Condition**:
-  $$\text{State } S \text{ can reach Goal } G \iff \text{InversionParity}(S) \equiv \text{InversionParity}(G) \pmod 2$$
+  $$\\text{State } S \\text{ can reach Goal } G \\iff \\text{InversionParity}(S) \\equiv \\text{InversionParity}(G) \\pmod 2$$
   Because the standard goal has 0 inversions (even), **exactly half ($9! / 2 = 181,440$) of all configurations are reachable**, and odd configurations are mathematically impossible to solve!
 
 ---
@@ -255,8 +255,8 @@ Every search algorithm is evaluated along four fundamental performance dimension
 ### Standard Notation Parameters:
 - **$b$ (Branching Factor)**: Maximum number of successors (children) of any node.
 - **$d$ (Shallowest Goal Depth)**: Depth of the shallowest goal node in the search tree.
-- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\infty$ in spaces with infinite loops).
-- **$\\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\epsilon > 0$).
+- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\\infty$ in spaces with infinite loops).
+- **$\\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\\epsilon > 0$).
 - **$C^*$ (Optimal Solution Cost)**: Cost of the optimal path.
 
 ---
@@ -312,7 +312,7 @@ def breadth_first_search(problem):
 #### Performance Analysis:
 - **Completeness**: **Yes** (if branching factor $b$ is finite).
 - **Time Complexity**:
-  $$1 + b + b^2 + b^3 + \dots + b^d = O(b^d)$$
+  $$1 + b + b^2 + b^3 + \\dots + b^d = O(b^d)$$
 - **Space Complexity**: All frontier and explored nodes must remain in memory:
   $$O(b^d)$$
 - **Optimality**: **Yes** if and only if **all step costs are identical / uniform (e.g., unit cost = 1)**. In general weighted graphs, BFS is *not* optimal.
@@ -368,7 +368,7 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
   3. \`cutoff\`: Goal not found within limit $l$, but deeper nodes existed.
 
 #### Performance Analysis:
-- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \ge d$ in finite spaces.
+- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \\ge d$ in finite spaces.
 - **Time Complexity**: $O(b^l)$
 - **Space Complexity**: $O(bl)$
 - **Optimality**: **No** (even if $l > d$, it may find a suboptimal goal first).
@@ -378,7 +378,7 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
 ### 4.4 Iterative Deepening Search (IDS / IDDFS)
 
 #### Mechanism:
-Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \dots, d$:
+Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \\dots, d$:
 
 \`\`\`
 Level 0:  (l = 0)  Root
@@ -401,14 +401,14 @@ def iterative_deepening_search(problem):
 A common intuitive objection is that IDS is wasteful because it repeatedly regenerates upper levels. Let's calculate the exact total nodes generated:
 - In level $d$, nodes generated $1$ time: $b^d$
 - In level $d-1$, nodes generated $2$ times: $2 b^{d-1}$
-- In level $1$, nodes generated $d$ times: $d \cdot b$
+- In level $1$, nodes generated $d$ times: $d \\cdot b$
 
-$$\text{Total Nodes} = d \cdot b + (d-1)b^2 + (d-2)b^3 + \dots + 1 \cdot b^d$$
+$$\\text{Total Nodes} = d \\cdot b + (d-1)b^2 + (d-2)b^3 + \\dots + 1 \\cdot b^d$$
 
 **Concrete Comparison ($b = 10, d = 5$):**
 - **BFS Nodes**: $1 + 10 + 100 + 1,000 + 10,000 + 100,000 = 111,111$
 - **IDS Nodes**: $5(10) + 4(100) + 3(1,000) + 2(10,000) + 1(100,000) = 123,450$
-- **Overhead**: Only $\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
+- **Overhead**: Only $\\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
 
 #### Performance Analysis:
 - **Completeness**: **Yes** (if $b$ is finite).
@@ -462,10 +462,10 @@ def uniform_cost_search(problem):
 
 #### Performance Analysis:
 - **Completeness**: **Yes**, provided every step cost is strictly positive:
-  $$c(s, a, s') \ge \epsilon > 0$$
+  $$c(s, a, s') \\ge \\epsilon > 0$$
   *(If step costs can be zero or negative, UCS can loop infinitely along zero-cost cycles).*
 - **Time & Space Complexity**:
-  $$O\left(b^{1 + \lfloor C^* / \epsilon \rfloor}\right)$$
+  $$O\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$$
   Where $C^*$ is the cost of the optimal solution.
 - **Optimality**: **Yes**! Always finds the lowest-cost path for any non-negative cost function.
 
@@ -491,7 +491,7 @@ Rather than expanding $b^d$ nodes, bidirectional search expands:
 $$b^{d/2} + b^{d/2} = 2 b^{d/2} = O(b^{d/2})$$
 For $b = 10, d = 6$:
 - Single Direction: $10^6 = 1,000,000$ nodes.
-- Bidirectional: $2 \times 10^3 = 2,000$ nodes! A **500x speedup**.
+- Bidirectional: $2 \\times 10^3 = 2,000$ nodes! A **500x speedup**.
 
 #### Challenges & Practical Limitations:
 1. **Predecessor Calculation**: Must be able to calculate reverse transitions $Result^{-1}(s, a)$.
@@ -507,12 +507,12 @@ The definitive comparison matrix required for university and competitive exams:
 
 | Search Strategy | Completeness | Time Complexity | Space Complexity | Optimality (Unit Cost) | Optimality (General Cost) | Frontier Data Structure |
 |---|---|---|---|---|---|---|
-| **Breadth-First Search (BFS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
+| **Breadth-First Search (BFS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
 | **Depth-First Search (DFS)** | **No** (finite graphs: Yes) | $O(b^m)$ | **$O(bm)$** *(Linear Space)* | **No** | **No** | LIFO Stack |
 | **Depth-Limited Search (DLS)** | **No** (if $l < d$) | $O(b^l)$ | $O(bl)$ | **No** | **No** | LIFO Stack with depth limit |
-| **Iterative Deepening (IDS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
-| **Uniform Cost Search (UCS)** | **Yes** (if $\epsilon > 0$) | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
-| **Bidirectional Search** | **Yes** (if $b < \infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
+| **Iterative Deepening (IDS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
+| **Uniform Cost Search (UCS)** | **Yes** (if $\\epsilon > 0$) | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
+| **Bidirectional Search** | **Yes** (if $b < \\infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
 
 ---
 
@@ -528,7 +528,7 @@ The definitive comparison matrix required for university and competitive exams:
 >   2. \`Parent\`: Pointer to the node that generated this node.
 >   3. \`Action\`: Action applied to parent to produce this node.
 >   4. \`Path-Cost\` $g(n)$: Total accumulated cost from root to this node.
->   5. \`Depth\` $d$: Number of steps from root ($d = \text{parent.depth} + 1$).
+>   5. \`Depth\` $d$: Number of steps from root ($d = \\text{parent.depth} + 1$).
 > - **Diagram**: Show two nodes with different parents referencing the same city state (e.g., node from Sibiu to Arad vs node from Zerind to Arad).
 
 ---
@@ -536,12 +536,12 @@ The definitive comparison matrix required for university and competitive exams:
 #### Q2: "Prove why Iterative Deepening Search (IDS) is asymptotically optimal in both time and space for uninformed search." [5 Marks]
 > **Model Answer Key**:
 > 1. **Time Complexity Derivation**:
->    $$N(\text{IDS}) = \sum_{i=1}^d (d - i + 1) b^i = d \cdot b + (d-1)b^2 + \dots + 1 \cdot b^d$$
+>    $$N(\\text{IDS}) = \sum_{i=1}^d (d - i + 1) b^i = d \\cdot b + (d-1)b^2 + \\dots + 1 \\cdot b^d$$
 >    Factoring the dominant term:
->    $$N(\text{IDS}) \le b^d \sum_{j=0}^{\infty} (j+1) b^{-j} = b^d \left(\frac{b}{b-1}\right)^2 = O(b^d)$$
->    For $b \ge 2$, $\left(\frac{b}{b-1}\right)^2 \le 4$. Hence, time complexity matches BFS: $O(b^d)$.
+>    $$N(\\text{IDS}) \\le b^d \sum_{j=0}^{\\infty} (j+1) b^{-j} = b^d \\left(\\frac{b}{b-1}\\right)^2 = O(b^d)$$
+>    For $b \\ge 2$, $\\left(\\frac{b}{b-1}\\right)^2 \\le 4$. Hence, time complexity matches BFS: $O(b^d)$.
 > 2. **Space Complexity Derivation**:
->    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \times d$ nodes: $O(bd)$, which is linear.
+>    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \\times d$ nodes: $O(bd)$, which is linear.
 > 3. **Conclusion**: IDS uniquely achieves $O(bd)$ space without sacrificing $O(b^d)$ time or unit-cost optimality.
 
 ---
@@ -577,22 +577,22 @@ Graph Edges:
 >    - Frontier: \`[(8, G)]\`. Explored: \`{S, A, B, C, D}\`.
 > 7. **Step 6**: Pop \`(8, G)\`.
 >    - **Goal Test**: State is $G$. Success!
->    - **Optimal Path**: $S \to B \to D \to G$ with Total Cost **8**.
+>    - **Optimal Path**: $S \\to B \\to D \\to G$ with Total Cost **8**.
 
 ---
 
 #### Q4: "Formulate the 4-Gallon and 3-Gallon Water Jug problem with state representation, initial state, goal state, and 4 essential production rules." [5 Marks]
 > **Model Answer Key**:
-> 1. **State Space**: Vector $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ (4-gallon jug) and $y \in \{0, 1, 2, 3\}$ (3-gallon jug). Total possible states = $5 \times 4 = 20$.
+> 1. **State Space**: Vector $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ (4-gallon jug) and $y \\in \{0, 1, 2, 3\}$ (3-gallon jug). Total possible states = $5 \\times 4 = 20$.
 > 2. **Initial State**: $(0, 0)$ (both jugs empty).
-> 3. **Goal State**: $(2, y)$ for any $y \in \{0, 1, 2, 3\}$.
+> 3. **Goal State**: $(2, y)$ for any $y \\in \{0, 1, 2, 3\}$.
 > 4. **Four Key Production Rules**:
->    - *Fill 3-Gallon Jug*: If $y < 3$, then $(x, y) \to (x, 3)$.
->    - *Pour 3G into 4G (empty completely)*: If $x + y \le 4$ and $y > 0$, then $(x, y) \to (x + y, 0)$.
->    - *Pour 3G into 4G (until 4G is full)*: If $x + y \ge 4$ and $y > 0$, then $(x, y) \to (4, y - (4 - x))$.
->    - *Empty 4-Gallon Jug*: If $x > 0$, then $(x, y) \to (0, y)$.
+>    - *Fill 3-Gallon Jug*: If $y < 3$, then $(x, y) \\to (x, 3)$.
+>    - *Pour 3G into 4G (empty completely)*: If $x + y \\le 4$ and $y > 0$, then $(x, y) \\to (x + y, 0)$.
+>    - *Pour 3G into 4G (until 4G is full)*: If $x + y \\ge 4$ and $y > 0$, then $(x, y) \\to (4, y - (4 - x))$.
+>    - *Empty 4-Gallon Jug*: If $x > 0$, then $(x, y) \\to (0, y)$.
 > 5. **Solution Trajectory**:
->    $(0,0) \to (0,3) \to (3,0) \to (3,3) \to (4,2) \to (0,2) \to (2,0)$.
+>    $(0,0) \\to (0,3) \\to (3,0) \\to (3,3) \\to (4,2) \\to (0,2) \\to (2,0)$.
 
 ---
 
@@ -600,13 +600,13 @@ Graph Edges:
 > **Model Answer Key**:
 > 1. **Definition of Inversion**: For any permutation of tiles $1$ through $8$ (ignoring the blank space), an inversion occurs when tile $i$ appears before tile $j$ but $i > j$.
 > 2. **Parity Invariance**:
->    - A horizontal move slides a tile into the adjacent empty spot in the same row $\implies$ relative order of all other tiles is unchanged $\implies$ inversion count changes by $0$.
->    - A vertical move shifts a tile up or down by 1 row, skipping over exactly 2 tiles $\implies$ the inversion count changes by $+2, 0,$ or $-2$ (parity remains unchanged).
-> 3. **Mathematical Proof**: Because sliding moves change the inversion count by an even integer ($0, \pm 2$), the **parity** (odd vs. even) is strictly invariant.
+>    - A horizontal move slides a tile into the adjacent empty spot in the same row $\\implies$ relative order of all other tiles is unchanged $\\implies$ inversion count changes by $0$.
+>    - A vertical move shifts a tile up or down by 1 row, skipping over exactly 2 tiles $\\implies$ the inversion count changes by $+2, 0,$ or $-2$ (parity remains unchanged).
+> 3. **Mathematical Proof**: Because sliding moves change the inversion count by an even integer ($0, \\pm 2$), the **parity** (odd vs. even) is strictly invariant.
 > 4. **Answer to Specific Question**:
->    - The standard goal state $[1, 2, 3, 4, 5, 6, 7, 8, \text{blank}]$ has $0$ inversions (Even parity).
+>    - The standard goal state $[1, 2, 3, 4, 5, 6, 7, 8, \\text{blank}]$ has $0$ inversions (Even parity).
 >    - An initial state with $9$ inversions has **Odd parity**.
->    - Since $\text{Odd} \not\equiv \text{Even} \pmod 2$, it is **mathematically impossible** for this initial state to reach the goal state!
+>    - Since $\\text{Odd} \\not\\equiv \\text{Even} \\pmod 2$, it is **mathematically impossible** for this initial state to reach the goal state!
 
 ---
 
@@ -619,21 +619,65 @@ Graph Edges:
 2. **Infinite Loops in DFS**:
    - DFS on a tree structure is **incomplete** if loops exist. On a finite graph search with a closed list (explored set), DFS is **complete**.
 3. **Step Cost Condition for UCS**:
-   - For UCS to be complete and optimal, all step costs must satisfy $c(s, a, s') \ge \epsilon > 0$. If edge costs can be zero, UCS can run indefinitely expanding an infinite number of zero-cost actions without making progress toward the goal.
+   - For UCS to be complete and optimal, all step costs must satisfy $c(s, a, s') \\ge \\epsilon > 0$. If edge costs can be zero, UCS can run indefinitely expanding an infinite number of zero-cost actions without making progress toward the goal.
 4. **Number of Visited Nodes in Complete Tree**:
-   - In a uniform $m$-ary tree of depth $d$, total internal nodes = $\frac{b^d - 1}{b - 1}$; total leaves = $b^d$. Total nodes = $\frac{b^{d+1} - 1}{b - 1}$.
+   - In a uniform $m$-ary tree of depth $d$, total internal nodes = $\\frac{b^d - 1}{b - 1}$; total leaves = $b^d$. Total nodes = $\\frac{b^{d+1} - 1}{b - 1}$.
 
 ---
 
-## Summary Formula Cheat Sheet
+## 8. Master Formula Cheat Sheet & Quick-Reference Guide
 
-$$\begin{aligned}
-\text{BFS Time} &= O(b^d), \quad \text{BFS Space} = O(b^d) \\
-\text{DFS Time} &= O(b^m), \quad \text{DFS Space} = O(bm) \\
-\text{IDS Time} &= O(b^d), \quad \text{IDS Space} = O(bd) \\
-\text{UCS Time \& Space} &= O\left(b^{1 + \lfloor C^* / \epsilon \rfloor}\right) \\
-\text{Bidirectional Time \& Space} &= O\left(b^{d/2}\right)
-\end{aligned}$$
+> **Rapid Revision Guide** for **CURAJ CIA-1 Assessments**, **End-Semester Exams**, and **UGC NET / JRF Paper II**.
+
+### 8.1 Key Mathematical Parameters Glossary
+
+| Parameter | Formal Mathematical Meaning | Role in Search Complexity |
+|:---:|---|---|
+| $b$ | **Branching Factor**: Maximum number of successors (children) of any node. | Governs tree expansion rate |
+| $d$ | **Shallowest Goal Depth**: Depth of the shallowest goal node in the tree. | Primary factor in BFS / IDS time & space |
+| $m$ | **Maximum Search Depth**: Maximum depth of the state space (can be $\\infty$). | Worst-case depth for DFS |
+| $l$ | **Depth Limit**: The cutoff limit set in Depth-Limited Search (DLS). | Bounded search horizon |
+| $\\epsilon$ | **Minimum Step Cost**: Smallest positive edge cost (strictly $\\epsilon > 0$). | Guarantees UCS terminates |
+| $C^*$ | **Optimal Solution Cost**: Path cost of the cheapest path to a goal. | Used in UCS complexity $\\lfloor C^* / \\epsilon \\rfloor$ |
+
+---
+
+### 8.2 Algorithm Complexity Cheat Sheet Matrix
+
+| Algorithm | Frontier Data Structure | Time Complexity | Space Complexity | Complete? | Optimal? | Essential Takeaway |
+|---|---|:---:|:---:|:---:|:---:|---|
+| **BFS** | FIFO Queue | $\\mathcal{O}(b^d)$ | $\\mathcal{O}(b^d)$ | **Yes** $(b < \\infty)$ | **Yes** *(unit cost)* | **Memory is the fatal bottleneck** |
+| **DFS** | LIFO Stack | $\\mathcal{O}(b^m)$ | $\\mathcal{O}(b \\cdot m)$ | **No** *(loops)* | **No** | **Linear memory is its superpower** |
+| **DLS** | Stack with cutoff $l$ | $\\mathcal{O}(b^l)$ | $\\mathcal{O}(b \\cdot l)$ | **No** *(if $l < d$)* | **No** | Incomplete if $l < d$; prevents infinite depth |
+| **IDS** | Successive LIFO Stack | $\\mathcal{O}(b^d)$ | $\\mathcal{O}(b \\cdot d)$ | **Yes** $(b < \\infty)$ | **Yes** *(unit cost)* | **Universal Uninformed Champion**: BFS optimality + DFS linear space |
+| **UCS** | Priority Queue ($g(n)$) | $\\mathcal{O}\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$ | $\\mathcal{O}\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$ | **Yes** $(\\epsilon > 0)$ | **Yes** *(any $c \\ge 0$)* | Goal test strictly at **node expansion (pop)** |
+| **Bidirectional** | Two Hash Sets | $\\mathcal{O}(b^{d/2})$ | $\\mathcal{O}(b^{d/2})$ | **Yes** $(b < \\infty)$ | **Yes** *(if BFS/UCS)* | Exponential speedup ($2 \\cdot b^{d/2} \\ll b^d$) |
+
+---
+
+### 8.3 Essential Derivations & Exam Formulas
+
+#### 1. Uniform Tree Node Calculations
+- **Total Leaves at Depth $d$**:
+  $$L = b^d$$
+- **Total Internal Nodes (from root to depth $d-1$)**:
+  $$I = \\sum_{i=0}^{d-1} b^i = \\frac{b^d - 1}{b - 1}$$
+- **Total Nodes in Entire Search Tree**:
+  $$N = \\sum_{i=0}^d b^i = \\frac{b^{d+1} - 1}{b - 1}$$
+
+#### 2. Iterative Deepening Search Total Generated Nodes Proof
+$$N_{\\text{IDS}} = d \\cdot b + (d - 1)b^2 + (d - 2)b^3 + \\dots + 1 \\cdot b^d = \\mathcal{O}(b^d)$$
+- **Concrete Numerical Ratio for $b = 10, d = 5$**:
+  $$\\frac{N_{\\text{IDS}}}{N_{\\text{BFS}}} = \\frac{123{,}450}{111{,}111} \\approx 1.11 \\quad (\\text{Only } 11\\% \\text{ overhead!})$$
+
+#### 3. Uniform Cost Search Complexity Formula
+$$\\text{Time Complexity} = \\text{Space Complexity} = \\mathcal{O}\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$$
+- If step costs are uniform ($c = 1$), then $\\lfloor C^* / \\epsilon \\rfloor = d$, which simplifies to BFS: $\\mathcal{O}(b^{d+1})$.
+
+#### 4. 8-Puzzle Solvability Parity Criterion
+$$\\text{State } S \\text{ can reach Goal } G \\iff \\text{Inversions}(S) \\equiv \\text{Inversions}(G) \\pmod 2$$
+- Total reachable states in 8-puzzle:
+  $$\\text{Reachable States} = \\frac{9!}{2} = 181{,}440 \\quad (\\text{out of } 362{,}880 \\text{ total permutations})$$
 `,
   practiceQuiz: [
     {

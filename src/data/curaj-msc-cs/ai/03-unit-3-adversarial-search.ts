@@ -20,12 +20,12 @@ export const unit3AdversarialSearchModule: LearningModule = {
    - Zero-sum, deterministic, perfect information 2-player games ($S_0$, $Player(s)$, $Actions(s)$, $Result(s, a)$, $TerminalTest(s)$, $Utility(s, p)$).
 2. **Minimax Algorithm**:
    - Optimal strategy against a rational opponent:
-     $$\text{Minimax}(s) = \begin{cases} Utility(s) & \text{if Terminal}(s) \\ \max_{a} \text{Minimax}(Result(s, a)) & \text{if Player}(s) = \text{MAX} \\ \min_{a} \text{Minimax}(Result(s, a)) & \text{if Player}(s) = \text{MIN} \end{cases}$$
+     $$\\text{Minimax}(s) = \\begin{cases} Utility(s) & \\text{if Terminal}(s) \\ \max_{a} \\text{Minimax}(Result(s, a)) & \\text{if Player}(s) = \\text{MAX} \\ \min_{a} \\text{Minimax}(Result(s, a)) & \\text{if Player}(s) = \\text{MIN} \\end{cases}$$
 3. **Alpha-Beta Pruning**:
    - Pruning branches that cannot influence the final decision.
-   - $\alpha$: Best value for MAX found along path so far (initially $-\infty$).
-   - $\beta$: Best value for MIN found along path so far (initially $+\infty$).
-   - Pruning condition: $\alpha \ge \beta$.
+   - $\\alpha$: Best value for MAX found along path so far (initially $-\\infty$).
+   - $\\beta$: Best value for MIN found along path so far (initially $+\\infty$).
+   - Pruning condition: $\\alpha \\ge \\beta$.
    - Time complexity: With optimal move ordering, reduces effective branching factor from $b^m$ to $b^{m/2}$.
 4. **Stochastic Games**:
    - Chance nodes (dice rolls), Expectiminimax algorithm calculating expected utility values.

@@ -18,16 +18,16 @@ export const unit6ProbabilisticReasoningModule: LearningModule = {
 
 1. **Uncertainty & Probabilistic Foundations**:
    - Prior probability, Conditional probability, Product Rule, and Bayes' Theorem:
-     $$P(H \mid E) = \frac{P(E \mid H) \cdot P(H)}{P(E)}$$
+     $$P(H \\mid E) = \\frac{P(E \\mid H) \\cdot P(H)}{P(E)}$$
 2. **Bayesian Belief Networks (BBNs)**:
    - Directed Acyclic Graphs (DAGs) representing joint probability distributions compactly:
-     $$P(X_1, \dots, X_n) = \prod_{i=1}^n P(X_i \mid \text{Parents}(X_i))$$
+     $$P(X_1, \\dots, X_n) = \prod_{i=1}^n P(X_i \\mid \\text{Parents}(X_i))$$
    - Conditional independence and $d$-separation rules.
 3. **Temporal Probabilistic Models**:
-   - Markov Chains (Markov Property: $P(X_t \mid X_{0:t-1}) = P(X_t \mid X_{t-1})$).
+   - Markov Chains (Markov Property: $P(X_t \\mid X_{0:t-1}) = P(X_t \\mid X_{t-1})$).
    - Hidden Markov Models (HMMs): State transitions, Observation emissions, Forward-Backward algorithm, Viterbi decoding.
 4. **Dempster-Shafer Theory of Evidence**:
    - Frame of discernment, Basic Probability Assignment (Mass function $m$), Belief and Plausibility functions:
-     $$Bel(A) \le P(A) \le Pl(A)$$
+     $$Bel(A) \\le P(A) \\le Pl(A)$$
 `,
 };
