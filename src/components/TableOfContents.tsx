@@ -10,6 +10,7 @@ export interface TocItem {
 
 interface TableOfContentsProps {
   content?: string;
+  hasVideos?: boolean;
   hasDemos?: boolean;
   hasQuiz?: boolean;
   quizCount?: number;
@@ -28,6 +29,7 @@ export function extractHeadings(
   content?: string,
   hasDemos?: boolean,
   hasQuiz?: boolean,
+  hasVideos?: boolean,
 ): TocItem[] {
   if (!content) return [];
 
@@ -89,18 +91,27 @@ export function extractHeadings(
     });
   }
 
+  if (hasVideos) {
+    items.unshift({
+      id: "video-lectures",
+      title: "Video Lectures (Watch First)",
+      level: 2,
+    });
+  }
+
   return items;
 }
 
 export default function TableOfContents({
   content,
+  hasVideos = false,
   hasDemos = false,
   hasQuiz = false,
   quizCount = 0,
 }: TableOfContentsProps) {
   const headings = useMemo(
-    () => extractHeadings(content, hasDemos, hasQuiz),
-    [content, hasDemos, hasQuiz],
+    () => extractHeadings(content, hasDemos, hasQuiz, hasVideos),
+    [content, hasDemos, hasQuiz, hasVideos],
   );
 
   const [activeId, setActiveId] = useState<string>("");
@@ -242,6 +253,17 @@ export default function TableOfContents({
 
         {/* Quick Actions */}
         <div className="toc-actions">
+          {hasVideos && (
+            <a
+              href="#video-lectures"
+              onClick={(e) => scrollToSection(e, "video-lectures")}
+              className="toc-quick-btn video-btn"
+            >
+              <i className="fa-brands fa-youtube text-red-500"></i>
+              <span>Video Lectures</span>
+            </a>
+          )}
+
           {hasQuiz && (
             <a
               href="#practice-quiz"

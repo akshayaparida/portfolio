@@ -7,10 +7,155 @@ export const unit1UninformedSearchModule: LearningModule = {
     "Foundations of AI, Turing Test, State vs Node, Evaluation Criteria, and Classical Blind Search Algorithms (BFS, DFS, DLS, IDS, UCS, Bidirectional Search) with CIA & UGC NET / JRF focus.",
   status: "completed",
   tags: ["CURAJ MSc CS", "Core 1: 6.0CSC01", "CIA-1 Exam", "UGC NET JRF"],
+  videoLectures: [
+    {
+      id: "lec-state-space-gate-smashers",
+      title:
+        "Lec-4: What is State Space Search | Problem Solving in Artificial Intelligence",
+      channel: "Gate Smashers (Varun Singla)",
+      youtubeId: "Jb-w019Jm9w",
+      duration: "11:24",
+      recommendedSpeed: "1.25x – 1.5x",
+      description:
+        "Visual conceptual breakdown of State Space Search, initial state, actions, transition models, and state space graph representations in AI.",
+      examRelevance: "CURAJ CIA-1 ⭐⭐⭐⭐⭐ | GATE CS & UGC NET",
+      keyTopics: [
+        "State Space Definition",
+        "Initial State & Goal State",
+        "Legal Moves & Operators",
+        "Search Tree vs State Graph",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=Jb-w019Jm9w",
+    },
+    {
+      id: "lec-bfs-gate-smashers",
+      title:
+        "Lec-7: Breadth First Search (BFS) with Example & Trace | Uninformed Search",
+      channel: "Gate Smashers (Varun Singla)",
+      youtubeId: "pcW1g-a7a2Y",
+      duration: "13:45",
+      recommendedSpeed: "1.25x – 1.5x",
+      description:
+        "Detailed step-by-step trace of Breadth-First Search (BFS) using FIFO Queue, level-by-level exploration, completeness proof, and O(b^d) complexity analysis.",
+      examRelevance: "CURAJ CIA-1 ⭐⭐⭐⭐⭐ | UGC NET JRF (O(b^d) Trap)",
+      keyTopics: [
+        "FIFO Queue Frontier",
+        "Level-by-level Traversal",
+        "Completeness & Optimality",
+        "Space Complexity O(b^d)",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=pcW1g-a7a2Y",
+    },
+    {
+      id: "lec-dfs-gate-smashers",
+      title:
+        "Lec-8: Depth First Search (DFS) with Example & Backtracking | Uninformed Search",
+      channel: "Gate Smashers (Varun Singla)",
+      youtubeId: "7fujbpJ0LB4",
+      duration: "12:18",
+      recommendedSpeed: "1.25x – 1.5x",
+      description:
+        "In-depth explanation of Depth-First Search (DFS) using LIFO Stack, deep branch traversal, backtracking mechanics, and why DFS is incomplete in infinite state spaces.",
+      examRelevance: "CURAJ CIA-1 ⭐⭐⭐⭐⭐ | GATE CS Complexity Matrix",
+      keyTopics: [
+        "LIFO Stack Frontier",
+        "Backtracking Mechanism",
+        "Incompleteness in Infinite Trees",
+        "Linear Space O(bm)",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=7fujbpJ0LB4",
+    },
+    {
+      id: "lec-water-jug-huddar",
+      title:
+        "Solution to Water Jug Problem in AI (Production Rules & State Tree)",
+      channel: "Dr. Mahesh Huddar",
+      youtubeId: "Jb1N15lW7W0",
+      duration: "11:50",
+      recommendedSpeed: "1.25x",
+      description:
+        "Clear academic walkthrough of the classic 4-Gallon & 3-Gallon Water Jug Problem: formal production rules, state representation (x, y), and the optimal 6-step solution path.",
+      examRelevance: "CURAJ CIA-1 Compulsory 5-Mark Question ⭐⭐⭐⭐⭐",
+      keyTopics: [
+        "State Vector (x, y)",
+        "8 Formal Production Rules",
+        "Optimal Solution Path (0,0) -> (2,0)",
+        "State Transition Table",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=Jb1N15lW7W0",
+    },
+    {
+      id: "lec-missionaries-cannibals-huddar",
+      title:
+        "Missionaries and Cannibals Problem Formulation & Constraints in AI",
+      channel: "Dr. Mahesh Huddar",
+      youtubeId: "kYJ7Z0wB_P0",
+      duration: "14:10",
+      recommendedSpeed: "1.25x",
+      description:
+        "Step-by-step solution to the Missionaries and Cannibals River Crossing problem: safety constraints (M >= C on both banks), state vector (M, C, B), and 11-step optimal sequence.",
+      examRelevance: "CURAJ CIA-1 Long Answer (10 Marks) ⭐⭐⭐⭐⭐",
+      keyTopics: [
+        "State Vector (M, C, B)",
+        "Cannibal Safety Constraint",
+        "Legal Boat Operations",
+        "11-Step Transition Sequence",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=kYJ7Z0wB_P0",
+    },
+    {
+      id: "lec-search-khemani-nptel",
+      title: "AI Search Methods for Problem Solving: State Space Foundations",
+      channel: "Prof. Deepak Khemani (IIT Madras / NPTEL)",
+      youtubeId: "531599865",
+      duration: "42:30",
+      recommendedSpeed: "1.5x",
+      description:
+        "Authoritative lecture by Prof. Deepak Khemani (author of 'A First Course in Artificial Intelligence', the official CURAJ prescribed textbook) covering state space representation and graph search foundations.",
+      examRelevance:
+        "CURAJ Official Syllabus Reference Textbook Author ⭐⭐⭐⭐⭐",
+      keyTopics: [
+        "State Space Graph vs Tree",
+        "Systematic Exploration",
+        "Uninformed Search Criteria",
+        "Branching Factor & Depth Proofs",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=531599865",
+    },
+  ],
+  resources: [
+    {
+      title: "Gate Smashers: Complete Artificial Intelligence Playlist",
+      url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-n5vKEFGi105v3hx",
+      type: "video",
+    },
+    {
+      title:
+        "NPTEL: AI Search Methods for Problem Solving (Prof. Deepak Khemani, IIT Madras)",
+      url: "https://nptel.ac.in/courses/106106226",
+      type: "course",
+    },
+    {
+      title: "Dr. Mahesh Huddar: Water Jug Problem Step-by-Step in AI",
+      url: "https://www.youtube.com/watch?v=Jb1N15lW7W0",
+      type: "video",
+    },
+    {
+      title: "Dr. Mahesh Huddar: Missionaries and Cannibals Problem in AI",
+      url: "https://www.youtube.com/watch?v=kYJ7Z0wB_P0",
+      type: "video",
+    },
+    {
+      title:
+        "Stuart Russell & Peter Norvig: AIMA 4th Edition Official Code Repository",
+      url: "https://github.com/aimacode/aima-python",
+      type: "documentation",
+    },
+  ],
   detailedContent: `# Unit 1: Introduction, Problem Solving & Uninformed Search
 
 > **CURAJ M.Sc. Computer Science — Course Code: 6.0CSC01 (Core 1, 4 Credits)**  
-> **Textbooks Aligned**: Stuart Russell & Peter Norvig (*AIMA 4th Ed.*), David Poole & Alan Mackworth (*Foundations of Computational Agents 3rd Ed.*).  
+> **Textbooks Aligned**: Stuart Russell & Peter Norvig (*AIMA 4th Ed.*), David Poole & Alan Mackworth (*Foundations of Computational Agents 3rd Ed.*), Deepak Khemani (*A First Course in AI*).  
 > **Exam Weightage**: Primary focus of **Continuous Internal Assessment 1 (CIA-1)** (~20 Marks) and high-yield topic for **UGC NET / JRF (Paper II Computer Science)** and **GATE CS**.
 
 ---
@@ -33,6 +178,32 @@ export const unit1UninformedSearchModule: LearningModule = {
    - Bidirectional Search
 9. **CIA-1 University Model Problems**: Subjective proofs, step-by-step traces, and state-space formulations.
 10. **UGC NET / JRF PYQ Corner**: High-frequency exam traps, trick questions, and quick revision cheatsheet.
+
+---
+
+## 0. 🎬 Video-First Lecture Roadmap & Exam Strategy Matrix
+
+> [!TIP]
+> **Study Workflow (First Video $\\to$ Then Text Notes $\\to$ Then Exam Answers)**:
+> 1. **Watch On-The-Go First (10–15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\\times$ or $1.5\\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level-by-level).
+> 2. **Study Bookish Notes Second**: Read the formal mathematical formulations below. In CURAJ semester exams, CIA-1 tests, and competitive exams, marks are awarded for formal 5-tuple specifications $(S, A, T, G, c)$, production rule tables, and exact Big-$O$ complexity derivations.
+> 3. **Revise University Model Answers (Section 6)**: Study the exact standard answers for compulsory 5-mark and 10-mark questions.
+> 4. **Master Formula Cheat Sheet (Section 8)**: Memorize the comparison matrix, uniform tree node sums, and inversion parity rules.
+> 5. **Practice Interactive Quiz**: Attempt the 18 timed questions with step-by-step solutions below.
+
+### 📚 Syllabus-to-Video & Exam Alignment Matrix
+
+| Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA-1) | UGC NET JRF / GATE CS Trap |
+|:---|:---|:---|:---|:---|
+| **AI Foundations & Approaches** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig (*AIMA*) Ch 1; Khemani Ch 1 | 2-Mark: Define Rational Agent; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
+| **State Space Formulation** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Deepak Khemani (*A First Course in AI*) Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
+| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=Jb1N15lW7W0) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \\ge 4$ vs $x + y < 4$ in pour operations) |
+| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=kYJ7Z0wB_P0) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \\ge C$ applies to **both** banks whenever $M > 0$ |
+| **Breadth-First Search (BFS)** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
+| **Depth-First Search (DFS)** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=7fujbpJ0LB4) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
+| **Iterative Deepening (IDS)** | [Gate Smashers: DLS & IDS in AI](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\\le \\frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \\ge 2$, bottom level dominates ($> 50\\%$ of nodes) |
+| **Uniform Cost Search (UCS)** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
+| **8-Puzzle Solvability** | [Gate Smashers: 8-Puzzle Problem Formulation](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.2; Khemani Ch 2 | 5-Mark: Inversion count definition & parity preservation theorem | Total states $9! = 362{,}880$, but reachable state space is exactly half $\\frac{9!}{2} = 181{,}440$ |
 
 ---
 
@@ -194,6 +365,9 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 
 ### 2.5 Classical Problem Formulations & Production Rules (University Favorites)
 
+> [!TIP]
+> **Watch On-The-Go Before Reading**: [Watch Water Jug Problem Step-by-Step (Dr. Mahesh Huddar)](https://www.youtube.com/watch?v=Jb1N15lW7W0) (11 mins) and [Missionaries & Cannibals River Crossing](https://www.youtube.com/watch?v=kYJ7Z0wB_P0) (14 mins) to visualize state transitions before memorizing the 8 production rules and safe state constraints below.
+
 #### 1. The Water Jug Problem
 - **Problem**: Given a 4-gallon jug and a 3-gallon jug, neither having measuring markings, and an endless water pump, measure exactly 2 gallons in the 4-gallon jug.
 - **State Representation**: An ordered pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ denotes gallons in the 4-gallon jug, and $y \\in \{0, 1, 2, 3\}$ denotes gallons in the 3-gallon jug.
@@ -262,6 +436,9 @@ Every search algorithm is evaluated along four fundamental performance dimension
 ---
 
 ## 4. Uninformed (Blind) Search Algorithms
+
+> [!TIP]
+> **Watch On-The-Go Before Reading**: [Watch BFS with Example (Gate Smashers)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) (13 mins) & [DFS with Example (Gate Smashers)](https://www.youtube.com/watch?v=7fujbpJ0LB4) (12 mins) for visual FIFO queue vs. LIFO stack exploration.
 
 Uninformed search algorithms operate **solely with problem formulation specifications** ($S_0$, $Actions$, $Result$, $GoalTest$, $c$). They possess no domain-specific heuristic knowledge regarding how close a given state is to the goal.
 

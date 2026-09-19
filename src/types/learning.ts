@@ -29,6 +29,19 @@ export interface PracticeQuestion {
   topicTag?: string;
 }
 
+export interface VideoLecture {
+  id: string;
+  title: string;
+  channel: string;
+  youtubeId: string;
+  duration?: string;
+  description: string;
+  examRelevance: string;
+  recommendedSpeed?: string;
+  keyTopics?: string[];
+  directUrl?: string;
+}
+
 export interface LearningModule {
   id: string;
   title: string;
@@ -43,6 +56,7 @@ export interface LearningModule {
   detailedContent?: string;
   subModules?: SubModule[];
   resources?: ResourceLink[];
+  videoLectures?: VideoLecture[];
   practiceQuiz?: PracticeQuestion[];
 }
 

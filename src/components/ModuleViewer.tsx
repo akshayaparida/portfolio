@@ -11,6 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import MathErrorFallback from "@/components/MathErrorFallback";
 import PracticeQuiz from "@/components/PracticeQuiz";
 import TableOfContents, { slugify } from "@/components/TableOfContents";
+import VideoLectureHub from "@/components/VideoLectureHub";
 import { LearningModule } from "@/types/learning";
 import type { Root as MdastRoot, RootContent } from "mdast";
 
@@ -344,6 +345,9 @@ export default function ModuleViewer({
 }: ModuleViewerProps) {
   const readingTime = getReadingTime(module.detailedContent);
   const quizCount = module.practiceQuiz?.length || 0;
+  const hasVideos = Boolean(
+    module.videoLectures && module.videoLectures.length > 0,
+  );
   const hasDemos = Boolean(module.subModules && module.subModules.length > 0);
   const hasQuiz = quizCount > 0;
 
@@ -359,6 +363,14 @@ export default function ModuleViewer({
             <span className="module-meta-text">
               <i className="fa-regular fa-clock"></i> {readingTime} min read
             </span>
+            {hasVideos && (
+              <>
+                <span className="meta-dot">·</span>
+                <span className="module-meta-text text-amber-500 font-medium">
+                  <i className="fa-brands fa-youtube"></i> Video Lectures
+                </span>
+              </>
+            )}
             {hasQuiz && (
               <>
                 <span className="meta-dot">·</span>
@@ -383,6 +395,11 @@ export default function ModuleViewer({
           <h2 className="module-title">{module.title}</h2>
           <p className="module-description">{module.description}</p>
         </header>
+
+        {/* Video-First Learning Hub: Watch Before Studying Notes */}
+        {hasVideos && module.videoLectures && (
+          <VideoLectureHub videoLectures={module.videoLectures} />
+        )}
 
         {/* Theory & Markdown Content */}
         {module.detailedContent && (
@@ -465,6 +482,7 @@ export default function ModuleViewer({
       <aside className="module-toc-column">
         <TableOfContents
           content={module.detailedContent}
+          hasVideos={hasVideos}
           hasDemos={hasDemos}
           hasQuiz={hasQuiz}
           quizCount={quizCount}
