@@ -11,6 +11,7 @@ import { awsModules } from "@/data/aws";
 import { mlopsModules } from "@/data/mlops";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import { reasoningModules } from "@/data/reasoning";
+import { aiModules } from "@/data/curaj-msc-cs/ai";
 
 export const dynamic = "force-static";
 
@@ -55,6 +56,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/curaj-msc-cs/assessments`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/curaj-msc-cs/ai`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.88,
     },
     {
       url: `${baseUrl}/c-programming`,
@@ -258,6 +271,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }),
   );
 
+  // Dynamic Module Pages for CURAJ AI
+  const curajAiPages: MetadataRoute.Sitemap = (aiModules || []).map((m) => ({
+    url: `${baseUrl}/curaj-msc-cs/ai/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
   return [
     ...staticPages,
     ...mathPages,
@@ -272,5 +293,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...mlopsPages,
     ...digitalPages,
     ...reasoningPages,
+    ...curajAiPages,
   ];
 }

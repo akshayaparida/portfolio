@@ -57,4 +57,7 @@ export interface Course {
   units: string[];
   nptelTitle: string;
   nptelUrl: string;
+  notesUrl?: string;
+  notesTitle?: string;
+  availableNotesUnits?: number[];
 }

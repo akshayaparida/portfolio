@@ -40,6 +40,12 @@ export default function CurajMscCsPage() {
                 <i className="fa-solid fa-file-circle-check"></i> CIA-1 Papers &
                 Solutions
               </span>
+              <Link
+                href="/curaj-msc-cs/ai/unit-1-uninformed-search"
+                className="badge badge-ai-live"
+              >
+                <i className="fa-solid fa-sparkles"></i> AI Unit 1 Notes & Quiz
+              </Link>
             </div>
             <h2>2-Year M.Sc. (Computer Science) Curriculum</h2>
             <p>
@@ -54,6 +60,12 @@ export default function CurajMscCsPage() {
             </p>
           </div>
           <div className="banner-actions">
+            <Link
+              href="/curaj-msc-cs/ai/unit-1-uninformed-search"
+              className="ai-notes-banner-btn"
+            >
+              <i className="fa-solid fa-brain"></i> Study AI Unit 1 Notes & Quiz
+            </Link>
             <Link href="/curaj-msc-cs/assessments" className="cia-portal-btn">
               <i className="fa-solid fa-file-pen"></i> View CIA Assessments Hub
             </Link>
@@ -133,13 +145,71 @@ export default function CurajMscCsPage() {
                     <i className="fa-solid fa-layer-group"></i> Key Units in PDF
                   </h4>
                   <ul className="units-list">
-                    {c.units.map((unit, uIdx) => (
-                      <li key={uIdx}>
-                        <span className="bullet">•</span> {unit}
-                      </li>
-                    ))}
+                    {c.units.map((unit, uIdx) => {
+                      const hasNotes =
+                        c.availableNotesUnits &&
+                        c.availableNotesUnits.includes(uIdx + 1) &&
+                        c.notesUrl;
+
+                      return (
+                        <li
+                          key={uIdx}
+                          className={`unit-item ${hasNotes ? "unit-has-notes" : ""}`}
+                        >
+                          <div className="unit-content-row">
+                            <span className="unit-text">
+                              <span className="bullet">•</span> {unit}
+                            </span>
+                            {hasNotes && (
+                              <Link
+                                href={c.notesUrl!}
+                                className="unit-notes-pill"
+                                title="Study notes & take practice quiz"
+                              >
+                                <i className="fa-solid fa-book-open"></i>
+                                <span>Notes & Quiz</span>
+                                <i className="fa-solid fa-arrow-right"></i>
+                              </Link>
+                            )}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
+
+                {/* Course Study Notes Section */}
+                {c.notesUrl && (
+                  <div className="card-notes-box">
+                    <div className="notes-label-row">
+                      <span className="notes-label">
+                        <i className="fa-solid fa-graduation-cap"></i> Course
+                        Notes & Quiz:
+                      </span>
+                      <span className="notes-badge available">
+                        <i className="fa-solid fa-circle-check"></i> Unit 1
+                        Available
+                      </span>
+                    </div>
+
+                    <Link
+                      href={c.notesUrl}
+                      className="notes-link-btn highlight"
+                    >
+                      <span className="btn-left">
+                        <i className="fa-solid fa-book-open-reader"></i>
+                        <span>
+                          {c.notesTitle || "Study Unit 1 Notes & Quiz"}
+                        </span>
+                      </span>
+                      <span className="btn-tags">
+                        <span className="exam-pill cia">CIA-1</span>
+                        <span className="exam-pill jrf">UGC NET JRF</span>
+                        <i className="fa-solid fa-arrow-right"></i>
+                      </span>
+                    </Link>
+                  </div>
+                )}
 
                 {/* Continuous Internal Assessment Section */}
                 <div className="card-assessment-box">
@@ -304,7 +374,21 @@ export default function CurajMscCsPage() {
           gap: 0.75rem;
         }
 
-        .cia-portal-btn {
+        .badge-ai-live {
+          background: rgba(16, 185, 129, 0.2);
+          color: #059669;
+          border: 1px solid rgba(16, 185, 129, 0.4);
+          text-decoration: none;
+          font-weight: 700;
+          transition: all 0.2s;
+        }
+
+        .badge-ai-live:hover {
+          background: #10b981;
+          color: #ffffff;
+        }
+
+        .ai-notes-banner-btn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -319,11 +403,34 @@ export default function CurajMscCsPage() {
           transition:
             filter 0.2s,
             transform 0.15s;
-          box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+          box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
+        }
+
+        .ai-notes-banner-btn:hover {
+          filter: brightness(1.1);
+          transform: translateY(-1px);
+        }
+
+        .cia-portal-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.6rem;
+          padding: 0.65rem 1.25rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          color: var(--text-primary);
+          border-radius: 10px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 0.88rem;
+          transition: all 0.2s;
         }
 
         .cia-portal-btn:hover {
-          filter: brightness(1.1);
+          border-color: #10b981;
+          color: #10b981;
+          background: var(--bg-light);
           transform: translateY(-1px);
         }
 
@@ -551,6 +658,155 @@ export default function CurajMscCsPage() {
           color: #10b981;
           font-weight: 800;
           margin-right: 0.25rem;
+        }
+
+        .unit-item {
+          font-size: 0.82rem;
+          color: var(--text-primary);
+          line-height: 1.45;
+        }
+
+        .unit-has-notes {
+          background: rgba(16, 185, 129, 0.05);
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          border-radius: 6px;
+          padding: 0.4rem 0.55rem;
+        }
+
+        .unit-content-row {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .unit-text {
+          flex: 1;
+          min-width: 200px;
+        }
+
+        .unit-notes-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          background: #10b981;
+          color: #ffffff;
+          padding: 0.2rem 0.55rem;
+          border-radius: 4px;
+          font-size: 0.72rem;
+          font-weight: 700;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: all 0.2s;
+          box-shadow: 0 1px 4px rgba(16, 185, 129, 0.25);
+        }
+
+        .unit-notes-pill:hover {
+          background: #059669;
+          transform: scale(1.02);
+        }
+
+        /* Course Study Notes Card Box */
+        .card-notes-box {
+          background: var(--bg-light);
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          border-radius: 10px;
+          padding: 0.85rem 1rem;
+          margin-bottom: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+        }
+
+        .notes-label-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+        }
+
+        .notes-label {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .notes-badge {
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 0.15rem 0.5rem;
+          border-radius: 4px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+        }
+
+        .notes-badge.available {
+          background: rgba(16, 185, 129, 0.15);
+          color: #059669;
+          border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .notes-link-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.55rem 0.85rem;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-decoration: none;
+          border: 1px solid rgba(16, 185, 129, 0.4);
+          background: rgba(16, 185, 129, 0.08);
+          color: #059669;
+          transition: all 0.2s;
+        }
+
+        .notes-link-btn .btn-left {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+
+        .notes-link-btn .btn-tags {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .exam-pill {
+          font-size: 0.65rem;
+          padding: 0.1rem 0.35rem;
+          border-radius: 3px;
+          font-weight: 700;
+        }
+
+        .exam-pill.cia {
+          background: rgba(16, 185, 129, 0.2);
+          color: #047857;
+        }
+
+        .exam-pill.jrf {
+          background: rgba(99, 102, 241, 0.15);
+          color: #4f46e5;
+        }
+
+        .notes-link-btn:hover {
+          background: #10b981;
+          color: #ffffff;
+          border-color: #10b981;
+        }
+
+        .notes-link-btn:hover .exam-pill {
+          background: rgba(255, 255, 255, 0.25);
+          color: #ffffff;
         }
 
         /* Assessment Card Box */

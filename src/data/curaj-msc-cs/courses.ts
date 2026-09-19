@@ -12,16 +12,19 @@ export const curajCourses: Course[] = [
     description:
       "State-space search, heuristic search (A*, IDA*), adversarial search, constraint satisfaction (CSPs), PDDL planning, and probabilistic reasoning.",
     units: [
-      "Uninformed Search (BFS, DFS, Uniform Cost Search)",
-      "Informed Search (Best-First, A*, Simulated Annealing, Genetic Algorithms)",
-      "Adversarial Search (Min-Max, Alpha-Beta Pruning)",
-      "Constraint Satisfaction Problems (CSPs)",
-      "AI Planning (PDDL, GraphPlan)",
-      "Probabilistic Reasoning (Bayesian Networks, HMMs)",
+      "Unit 1: Introduction, Turing Test, State-space & Solution-space, State vs Node, Evaluation Metrics, Uninformed Search (BFS, DFS, IDS, UCS, Bidirectional)",
+      "Unit 2: Informed Search (Best-First, A*, Admissibility & Consistency, IDA*, Weighted A*, Hill Climbing, Simulated Annealing, Genetic Algorithms)",
+      "Unit 3: Adversarial Search & Game Playing (Minimax, Alpha-Beta Pruning, Partially Observable Games, Stochastic Games)",
+      "Unit 4: Constraint Satisfaction Problems (CSPs, Arc Consistency AC-3, Backtracking Search, Dynamic Programming, Variable Elimination)",
+      "Unit 5: AI Planning (PDDL Syntax, Domain-Independent Planning, Forward vs Backward Search, Planning Graphs, GraphPlan)",
+      "Unit 6: Probabilistic Reasoning (Bayesian Networks, Markov Random Fields, HMMs, Dynamic Bayesian Networks, Dempster-Shafer Framework)",
     ],
     nptelTitle:
       "NPTEL: An Introduction to Artificial Intelligence (IIT Madras)",
     nptelUrl: "https://nptel.ac.in/courses/106106126",
+    notesUrl: "/curaj-msc-cs/ai/unit-1-uninformed-search",
+    notesTitle: "Unit 1: Uninformed Search Notes & Quiz",
+    availableNotesUnits: [1],
   },
   {
     code: "6.0CSC02",
