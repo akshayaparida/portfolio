@@ -205,6 +205,94 @@ function MultiLangCodeBlock({ tabs }: { tabs: MultiLangTab[] }) {
   );
 }
 
+/* ─────────────── Section Video Player Block ─────────────── */
+
+interface SectionVideoData {
+  id: string;
+  title: string;
+  channel: string;
+  duration?: string;
+  speed?: string;
+  relevance: string;
+  takeaway?: string;
+}
+
+function SectionVideoBlock({ video }: { video: SectionVideoData }) {
+  const youtubeUrl = `https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`;
+  const directUrl = `https://www.youtube.com/watch?v=${video.id}`;
+
+  return (
+    <div
+      className="section-video-card"
+      role="region"
+      aria-label={`Video: ${video.title}`}
+    >
+      <div className="section-video-top-bar">
+        <div className="section-video-badge">
+          <i className="fa-brands fa-youtube section-video-icon"></i>
+          <span>Watch First (Intuition)</span>
+        </div>
+        <div className="section-video-meta-pills">
+          <span className="section-video-channel">
+            <i className="fa-solid fa-graduation-cap"></i> {video.channel}
+          </span>
+          {video.duration && (
+            <span className="section-video-duration">
+              <i className="fa-regular fa-clock"></i> {video.duration}
+            </span>
+          )}
+          {video.speed && (
+            <span
+              className="section-video-speed"
+              title="Recommended speed for efficient studying"
+            >
+              <i className="fa-solid fa-gauge-high"></i> Speed: {video.speed}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <h4 className="section-video-title">{video.title}</h4>
+
+      <div className="section-video-player-wrapper">
+        <iframe
+          src={youtubeUrl}
+          title={video.title}
+          className="section-video-iframe"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          loading="lazy"
+        />
+      </div>
+
+      <div className="section-video-footer">
+        <div className="section-video-relevance-box">
+          <div className="section-video-relevance-label">
+            <i className="fa-solid fa-award"></i>
+            <span>Exam Relevance</span>
+          </div>
+          <p className="section-video-relevance-text">{video.relevance}</p>
+        </div>
+        {video.takeaway && (
+          <p className="section-video-takeaway">{video.takeaway}</p>
+        )}
+        <div className="section-video-action-row">
+          <a
+            href={directUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="section-video-external-btn"
+            title="Open in YouTube app for mobile offline view or 2x speed"
+          >
+            <span>Watch on YouTube</span>
+            <i className="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────── Single Code Block (existing behavior) ─────────────── */
 
 const CodeBlock: React.FunctionComponent<CodeBlockProps> = ({
@@ -238,6 +326,18 @@ const CodeBlock: React.FunctionComponent<CodeBlockProps> = ({
 
   if (!isBlock) {
     return <code className={className}>{children}</code>;
+  }
+
+  // Section Video Player block
+  if (language === "video" || language === "youtube") {
+    try {
+      const videoData: SectionVideoData = JSON.parse(codeString);
+      if (videoData && videoData.id) {
+        return <SectionVideoBlock video={videoData} />;
+      }
+    } catch {
+      /* fall through to standard code block */
+    }
   }
 
   // Multi-language tabbed block

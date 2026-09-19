@@ -32,7 +32,7 @@ export const unit1UninformedSearchModule: LearningModule = {
       title:
         "Lec-7: Breadth First Search (BFS) with Example & Trace | Uninformed Search",
       channel: "Gate Smashers (Varun Singla)",
-      youtubeId: "pcW1g-a7a2Y",
+      youtubeId: "qul0f79gxGs",
       duration: "13:45",
       recommendedSpeed: "1.25x – 1.5x",
       description:
@@ -44,14 +44,14 @@ export const unit1UninformedSearchModule: LearningModule = {
         "Completeness & Optimality",
         "Space Complexity O(b^d)",
       ],
-      directUrl: "https://www.youtube.com/watch?v=pcW1g-a7a2Y",
+      directUrl: "https://www.youtube.com/watch?v=qul0f79gxGs",
     },
     {
       id: "lec-dfs-gate-smashers",
       title:
         "Lec-8: Depth First Search (DFS) with Example & Backtracking | Uninformed Search",
       channel: "Gate Smashers (Varun Singla)",
-      youtubeId: "7fujbpJ0LB4",
+      youtubeId: "f8luGFRtshY",
       duration: "12:18",
       recommendedSpeed: "1.25x – 1.5x",
       description:
@@ -63,14 +63,14 @@ export const unit1UninformedSearchModule: LearningModule = {
         "Incompleteness in Infinite Trees",
         "Linear Space O(bm)",
       ],
-      directUrl: "https://www.youtube.com/watch?v=7fujbpJ0LB4",
+      directUrl: "https://www.youtube.com/watch?v=f8luGFRtshY",
     },
     {
       id: "lec-water-jug-huddar",
       title:
         "Solution to Water Jug Problem in AI (Production Rules & State Tree)",
       channel: "Dr. Mahesh Huddar",
-      youtubeId: "Jb1N15lW7W0",
+      youtubeId: "26YyD_K-gpA",
       duration: "11:50",
       recommendedSpeed: "1.25x",
       description:
@@ -82,14 +82,14 @@ export const unit1UninformedSearchModule: LearningModule = {
         "Optimal Solution Path (0,0) -> (2,0)",
         "State Transition Table",
       ],
-      directUrl: "https://www.youtube.com/watch?v=Jb1N15lW7W0",
+      directUrl: "https://www.youtube.com/watch?v=26YyD_K-gpA",
     },
     {
       id: "lec-missionaries-cannibals-huddar",
       title:
         "Missionaries and Cannibals Problem Formulation & Constraints in AI",
       channel: "Dr. Mahesh Huddar",
-      youtubeId: "kYJ7Z0wB_P0",
+      youtubeId: "i7oB0OGU3fc",
       duration: "14:10",
       recommendedSpeed: "1.25x",
       description:
@@ -101,7 +101,7 @@ export const unit1UninformedSearchModule: LearningModule = {
         "Legal Boat Operations",
         "11-Step Transition Sequence",
       ],
-      directUrl: "https://www.youtube.com/watch?v=kYJ7Z0wB_P0",
+      directUrl: "https://www.youtube.com/watch?v=i7oB0OGU3fc",
     },
     {
       id: "lec-search-khemani-nptel",
@@ -126,7 +126,7 @@ export const unit1UninformedSearchModule: LearningModule = {
   resources: [
     {
       title: "Gate Smashers: Complete Artificial Intelligence Playlist",
-      url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-n5vKEFGi105v3hx",
+      url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-nwb0HR5US5GFKFI",
       type: "video",
     },
     {
@@ -195,19 +195,31 @@ export const unit1UninformedSearchModule: LearningModule = {
 
 | Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA-1) | UGC NET JRF / GATE CS Trap |
 |:---|:---|:---|:---|:---|
-| **AI Foundations & Approaches** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig (*AIMA*) Ch 1; Khemani Ch 1 | 2-Mark: Define Rational Agent; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
-| **State Space Formulation** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Deepak Khemani (*A First Course in AI*) Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
-| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=Jb1N15lW7W0) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \\ge 4$ vs $x + y < 4$ in pour operations) |
-| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=kYJ7Z0wB_P0) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \\ge C$ applies to **both** banks whenever $M > 0$ |
-| **Breadth-First Search (BFS)** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
-| **Depth-First Search (DFS)** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=7fujbpJ0LB4) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
-| **Iterative Deepening (IDS)** | [Gate Smashers: DLS & IDS in AI](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\\le \\frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \\ge 2$, bottom level dominates ($> 50\\%$ of nodes) |
-| **Uniform Cost Search (UCS)** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
-| **8-Puzzle Solvability** | [Gate Smashers: 8-Puzzle Problem Formulation](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.2; Khemani Ch 2 | 5-Mark: Inversion count definition & parity preservation theorem | Total states $9! = 362{,}880$, but reachable state space is exactly half $\\frac{9!}{2} = 181{,}440$ |
+| **AI Foundations & Approaches** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Russell & Norvig (*AIMA*) Ch 1; Khemani Ch 1 | 2-Mark: Define Rational Agent; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
+| **State Space Formulation** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=E5jVBqe59EE) | Deepak Khemani (*A First Course in AI*) Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
+| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \\ge 4$ vs $x + y < 4$ in pour operations) |
+| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \\ge C$ applies to **both** banks whenever $M > 0$ |
+| **Breadth-First Search (BFS)** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
+| **Depth-First Search (DFS)** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=f8luGFRtshY) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
+| **Iterative Deepening (IDS)** | [Gate Smashers: DLS & IDS in AI (Lec-13)](https://www.youtube.com/watch?v=0-vP781wblQ) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\\le \\frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \\ge 2$, bottom level dominates ($> 50\\%$ of nodes) |
+| **Uniform Cost Search (UCS)** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=w5Xawyfrf0s) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
+| **8-Puzzle Solvability** | [Gate Smashers: 8-Puzzle Problem Formulation (Lec-14)](https://www.youtube.com/watch?v=_CrEYrcImv0) | Russell & Norvig Ch 3.2; Khemani Ch 2 | 5-Mark: Inversion count definition & parity preservation theorem | Total states $9! = 362{,}880$, but reachable state space is exactly half $\\frac{9!}{2} = 181{,}440$ |
 
 ---
 
 ## 1. Introduction to Artificial Intelligence
+
+\`\`\`video
+{
+  "id": "s-s9ilkMVj8",
+  "title": "Lec-3: What is Artificial Intelligence | Can Machines Think?",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "11:32",
+  "speed": "1.25x – 1.5x",
+  "relevance": "CURAJ CIA-1 2-Mark & 5-Mark | UGC NET JRF",
+  "takeaway": "Watch this 11-min lecture to gain clear intuition on AI definitions, human vs rational agent paradigms, and problem spaces before reading the detailed textbook notes below."
+}
+\`\`\`
 
 ### 1.1 The Four Conceptual Approaches (Russell & Norvig)
 
@@ -291,6 +303,18 @@ Extends the standard test by requiring a physical interface to test interaction 
 
 ## 2. Problem Solving as State-Space Search
 
+\`\`\`video
+{
+  "id": "E5jVBqe59EE",
+  "title": "Lec-4: What is State Space Search | Problem Solving in AI",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "10:48",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 5-Mark Compulsory Question | UGC NET JRF",
+  "takeaway": "Watch this lecture to see how states, actions, transition models, and state spaces are visualized mathematically before reading the 5-tuple formalization and 8-puzzle walkthrough below."
+}
+\`\`\`
+
 A problem can be formally defined as a **collection of information and mathematical constraints** that an agent uses to decide what actions to take.
 
 ### 2.1 Formal 5-Tuple Problem Formulation
@@ -365,10 +389,19 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 
 ### 2.5 Classical Problem Formulations & Production Rules (University Favorites)
 
-> [!TIP]
-> **Watch On-The-Go Before Reading**: [Watch Water Jug Problem Step-by-Step (Dr. Mahesh Huddar)](https://www.youtube.com/watch?v=Jb1N15lW7W0) (11 mins) and [Missionaries & Cannibals River Crossing](https://www.youtube.com/watch?v=kYJ7Z0wB_P0) (14 mins) to visualize state transitions before memorizing the 8 production rules and safe state constraints below.
-
 #### 1. The Water Jug Problem
+
+\`\`\`video
+{
+  "id": "26YyD_K-gpA",
+  "title": "Solution to Water Jug Problem Step-by-Step in AI",
+  "channel": "Dr. Mahesh Huddar",
+  "duration": "09:42",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 5-Mark Compulsory Question ⭐⭐⭐⭐⭐",
+  "takeaway": "Watch this video to master the state transitions (x, y) and how to apply each of the 8 production rules systematically before writing out the state table in your examination."
+}
+\`\`\`
 - **Problem**: Given a 4-gallon jug and a 3-gallon jug, neither having measuring markings, and an endless water pump, measure exactly 2 gallons in the 4-gallon jug.
 - **State Representation**: An ordered pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ denotes gallons in the 4-gallon jug, and $y \\in \{0, 1, 2, 3\}$ denotes gallons in the 3-gallon jug.
 - **Initial State**: $(0, 0)$
@@ -392,6 +425,18 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 ---
 
 #### 2. The Missionaries and Cannibals Problem
+
+\`\`\`video
+{
+  "id": "i7oB0OGU3fc",
+  "title": "Missionaries and Cannibals Problem Solved Example in AI",
+  "channel": "Dr. Mahesh Huddar",
+  "duration": "10:15",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 10-Mark Long Answer Question ⭐⭐⭐⭐⭐",
+  "takeaway": "Watch this video to visualize valid boat operations and safety constraints (M >= C on both banks) before writing out the state vector (M, C, B) and 11-step solution sequence in your exam."
+}
+\`\`\`
 - **Problem**: 3 Missionaries and 3 Cannibals must cross a river using a boat carrying at most 2 people. If cannibals ever outnumber missionaries on either bank, the missionaries are eaten.
 - **State Representation**: Vector $(M, C, B)$ representing count of Missionaries, Cannibals, and Boat location on the near bank ($B \\in \{1, 0\}$, where $1 = \\text{near}, 0 = \\text{far}$).
 - **Initial State**: $(3, 3, 1)$
@@ -406,6 +451,18 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 ---
 
 #### 3. 8-Puzzle Solvability & Inversion Parity Criterion (UGC NET & GATE High-Yield)
+
+\`\`\`video
+{
+  "id": "_CrEYrcImv0",
+  "title": "Lec-14: 8-Puzzle Problem in AI without Heuristic | All Important Points",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "12:05",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 5-Mark Question | Inversion Count Parity Proof",
+  "takeaway": "Watch this video to visualize the 3x3 sliding tile state space and understand why exactly half (181,440) of the 9! states are reachable from any initial configuration."
+}
+\`\`\`
 - An **Inversion** occurs whenever a tile with a higher number appears before a tile with a lower number in linear row-major array order (omitting the blank tile).
 - **Parity Invariant Theorem**:
   - Horizontal blank moves shift tiles within the same row: **0 inversions changed**.
@@ -437,9 +494,6 @@ Every search algorithm is evaluated along four fundamental performance dimension
 
 ## 4. Uninformed (Blind) Search Algorithms
 
-> [!TIP]
-> **Watch On-The-Go Before Reading**: [Watch BFS with Example (Gate Smashers)](https://www.youtube.com/watch?v=pcW1g-a7a2Y) (13 mins) & [DFS with Example (Gate Smashers)](https://www.youtube.com/watch?v=7fujbpJ0LB4) (12 mins) for visual FIFO queue vs. LIFO stack exploration.
-
 Uninformed search algorithms operate **solely with problem formulation specifications** ($S_0$, $Actions$, $Result$, $GoalTest$, $c$). They possess no domain-specific heuristic knowledge regarding how close a given state is to the goal.
 
 \`\`\`
@@ -456,6 +510,18 @@ Uninformed search algorithms operate **solely with problem formulation specifica
 ---
 
 ### 4.1 Breadth-First Search (BFS)
+
+\`\`\`video
+{
+  "id": "qul0f79gxGs",
+  "title": "Lec-7: Breadth First Search (BFS) with Example & Trace | Uninformed Search",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "13:45",
+  "speed": "1.25x – 1.5x",
+  "relevance": "CURAJ CIA-1 5-Mark Question | UGC NET JRF (O(b^d) Trap)",
+  "takeaway": "Watch this lecture to see level-by-level queue exploration animated before studying the formal BFS pseudocode, completeness proof, and O(b^d) time/space derivation below."
+}
+\`\`\`
 
 #### Mechanism:
 - The **Frontier** is implemented as a **First-In, First-Out (FIFO) Queue**.
@@ -500,6 +566,18 @@ def breadth_first_search(problem):
 ---
 
 ### 4.2 Depth-First Search (DFS)
+
+\`\`\`video
+{
+  "id": "f8luGFRtshY",
+  "title": "Lec-8: Depth First Search (DFS) with Example & Backtracking | Uninformed Search",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "12:18",
+  "speed": "1.25x – 1.5x",
+  "relevance": "CURAJ CIA-1 5-Mark Question | GATE CS Space Complexity",
+  "takeaway": "Watch this lecture to master deep-branch exploration and backtracking on a stack before memorizing why DFS achieves linear space O(bm) but is incomplete in infinite state spaces."
+}
+\`\`\`
 
 #### Mechanism:
 - The **Frontier** is implemented as a **Last-In, First-Out (LIFO) Stack** (or call-stack via recursion).
@@ -554,6 +632,18 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
 
 ### 4.4 Iterative Deepening Search (IDS / IDDFS)
 
+\`\`\`video
+{
+  "id": "0-vP781wblQ",
+  "title": "Lec-13: Iterative Deepening Depth-First Search (IDDFS) | AI",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "11:50",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 10-Mark Compulsory Question ⭐⭐⭐⭐⭐",
+  "takeaway": "Watch this video to see why IDS combines the completeness and optimality of BFS with the linear space efficiency of DFS, and why repeating shallow levels incurs very little overhead."
+}
+\`\`\`
+
 #### Mechanism:
 Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \\dots, d$:
 
@@ -599,6 +689,18 @@ $$\\text{Total Nodes} = d \\cdot b + (d-1)b^2 + (d-2)b^3 + \\dots + 1 \\cdot b^d
 ---
 
 ### 4.5 Uniform Cost Search (UCS)
+
+\`\`\`video
+{
+  "id": "w5Xawyfrf0s",
+  "title": "Introduction to Uniform Cost Search (UCS) | Artificial Intelligence",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "13:20",
+  "speed": "1.25x",
+  "relevance": "CURAJ CIA-1 5-Mark Question | GATE CS Optimal Search",
+  "takeaway": "Watch this video to understand why UCS expands the node with minimum path cost g(n) and why the goal test must be applied at dequeue/expansion time rather than generation time."
+}
+\`\`\`
 
 #### Mechanism:
 - Extends BFS to arbitrary non-negative step costs $c(s, a, s')$. Equivalent to **Dijkstra's Algorithm** adapted for search trees.
