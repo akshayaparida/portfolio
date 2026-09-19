@@ -192,6 +192,57 @@ PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
 
 ---
 
+### 2.5 Classical Problem Formulations & Production Rules (University Favorites)
+
+#### 1. The Water Jug Problem
+- **Problem**: Given a 4-gallon jug and a 3-gallon jug, neither having measuring markings, and an endless water pump, measure exactly 2 gallons in the 4-gallon jug.
+- **State Representation**: An ordered pair $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ denotes gallons in the 4-gallon jug, and $y \in \{0, 1, 2, 3\}$ denotes gallons in the 3-gallon jug.
+- **Initial State**: $(0, 0)$
+- **Goal State**: $(2, y)$ for any $y \in \{0, 1, 2, 3\}$.
+- **Formal Production Rules**:
+
+| Rule # | Current State Condition | Action Taken | Resulting State | Description |
+|---|---|---|---|---|
+| **R1** | $(x < 4, y)$ | Fill 4-Gallon Jug | $(4, y)$ | Fill the 4-gallon jug to the brim |
+| **R2** | $(x, y < 3)$ | Fill 3-Gallon Jug | $(x, 3)$ | Fill the 3-gallon jug to the brim |
+| **R3** | $(x > 0, y)$ | Empty 4-Gallon Jug | $(0, y)$ | Dump all water from 4-gallon jug |
+| **R4** | $(x, y > 0)$ | Empty 3-Gallon Jug | $(x, 0)$ | Dump all water from 3-gallon jug |
+| **R5** | $(x + y \ge 4, y > 0)$ | Pour 3G into 4G until full | $(4, y - (4 - x))$ | Pour from 3G to 4G until 4G is full |
+| **R6** | $(x + y \ge 3, x > 0)$ | Pour 4G into 3G until full | $(x - (3 - y), 3)$ | Pour from 4G to 3G until 3G is full |
+| **R7** | $(x + y \le 4, y > 0)$ | Pour all 3G into 4G | $(x + y, 0)$ | Empty 3G completely into 4G |
+| **R8** | $(x + y \le 3, x > 0)$ | Pour all 4G into 3G | $(0, x + y)$ | Empty 4G completely into 3G |
+
+- **Optimal Solution Trajectory (6 Steps)**:
+  $$(0, 0) \to (0, 3) \to (3, 0) \to (3, 3) \to (4, 2) \to (0, 2) \to (2, 0) \quad [\text{Goal Reached: } x=2]$$
+
+---
+
+#### 2. The Missionaries and Cannibals Problem
+- **Problem**: 3 Missionaries and 3 Cannibals must cross a river using a boat carrying at most 2 people. If cannibals ever outnumber missionaries on either bank, the missionaries are eaten.
+- **State Representation**: Vector $(M, C, B)$ representing count of Missionaries, Cannibals, and Boat location on the near bank ($B \in \{1, 0\}$, where $1 = \text{near}, 0 = \text{far}$).
+- **Initial State**: $(3, 3, 1)$
+- **Goal State**: $(0, 0, 0)$
+- **Safety Constraint**: On both near and far banks, $M \ge C$ whenever $M > 0$. That is:
+  $$\forall \text{ bank}: \quad M = 0 \quad \lor \quad M \ge C$$
+- **Permissible Boat Actions ($\Delta M, \Delta C$)**:
+  $\{(1, 0), (2, 0), (0, 1), (0, 2), (1, 1)\}$.
+- **Optimal 11-Step Crossing Sequence**:
+  $$(3,3,1) \to (3,1,0) \to (3,2,1) \to (3,0,0) \to (3,1,1) \to (1,1,0) \to (2,2,1) \to (0,2,0) \to (0,3,1) \to (0,1,0) \to (0,2,1) \to (0,0,0)$$
+
+---
+
+#### 3. 8-Puzzle Solvability & Inversion Parity Criterion (UGC NET & GATE High-Yield)
+- An **Inversion** occurs whenever a tile with a higher number appears before a tile with a lower number in linear row-major array order (omitting the blank tile).
+- **Parity Invariant Theorem**:
+  - Horizontal blank moves shift tiles within the same row: **0 inversions changed**.
+  - Vertical blank moves jump a tile over exactly 2 other tiles: **inversions change by $0, +2,$ or $-2$**.
+  - Therefore, the **parity (even vs. odd) of the inversion count is an invariant** under all valid sliding moves!
+- **Solvability Condition**:
+  $$\text{State } S \text{ can reach Goal } G \iff \text{InversionParity}(S) \equiv \text{InversionParity}(G) \pmod 2$$
+  Because the standard goal has 0 inversions (even), **exactly half ($9! / 2 = 181,440$) of all configurations are reachable**, and odd configurations are mathematically impossible to solve!
+
+---
+
 ## 3. Evaluating Search Strategies
 
 Every search algorithm is evaluated along four fundamental performance dimensions:
@@ -530,6 +581,35 @@ Graph Edges:
 
 ---
 
+#### Q4: "Formulate the 4-Gallon and 3-Gallon Water Jug problem with state representation, initial state, goal state, and 4 essential production rules." [5 Marks]
+> **Model Answer Key**:
+> 1. **State Space**: Vector $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ (4-gallon jug) and $y \in \{0, 1, 2, 3\}$ (3-gallon jug). Total possible states = $5 \times 4 = 20$.
+> 2. **Initial State**: $(0, 0)$ (both jugs empty).
+> 3. **Goal State**: $(2, y)$ for any $y \in \{0, 1, 2, 3\}$.
+> 4. **Four Key Production Rules**:
+>    - *Fill 3-Gallon Jug*: If $y < 3$, then $(x, y) \to (x, 3)$.
+>    - *Pour 3G into 4G (empty completely)*: If $x + y \le 4$ and $y > 0$, then $(x, y) \to (x + y, 0)$.
+>    - *Pour 3G into 4G (until 4G is full)*: If $x + y \ge 4$ and $y > 0$, then $(x, y) \to (4, y - (4 - x))$.
+>    - *Empty 4-Gallon Jug*: If $x > 0$, then $(x, y) \to (0, y)$.
+> 5. **Solution Trajectory**:
+>    $(0,0) \to (0,3) \to (3,0) \to (3,3) \to (4,2) \to (0,2) \to (2,0)$.
+
+---
+
+#### Q5: "Explain why exactly half of all 8-puzzle configurations are solvable. Given an initial state with 9 inversions, can it reach the standard goal state?" [5 Marks]
+> **Model Answer Key**:
+> 1. **Definition of Inversion**: For any permutation of tiles $1$ through $8$ (ignoring the blank space), an inversion occurs when tile $i$ appears before tile $j$ but $i > j$.
+> 2. **Parity Invariance**:
+>    - A horizontal move slides a tile into the adjacent empty spot in the same row $\implies$ relative order of all other tiles is unchanged $\implies$ inversion count changes by $0$.
+>    - A vertical move shifts a tile up or down by 1 row, skipping over exactly 2 tiles $\implies$ the inversion count changes by $+2, 0,$ or $-2$ (parity remains unchanged).
+> 3. **Mathematical Proof**: Because sliding moves change the inversion count by an even integer ($0, \pm 2$), the **parity** (odd vs. even) is strictly invariant.
+> 4. **Answer to Specific Question**:
+>    - The standard goal state $[1, 2, 3, 4, 5, 6, 7, 8, \text{blank}]$ has $0$ inversions (Even parity).
+>    - An initial state with $9$ inversions has **Odd parity**.
+>    - Since $\text{Odd} \not\equiv \text{Even} \pmod 2$, it is **mathematically impossible** for this initial state to reach the goal state!
+
+---
+
 ## 7. UGC NET / JRF & GATE CS Preparation Corner
 
 ### 7.1 High-Yield Examination Points & Recurrent Traps
@@ -790,6 +870,49 @@ $$\begin{aligned}
         "Cumulative costs: S(0) -> B(1) -> A(1+1=2) -> G(2+4=6). Compare to S -> A -> G (3+4=7) and S -> B -> G (1+6=7). UCS explores S(0), then B(1), then A(2), then expands A to reach G with optimal cost 6 via S → B → A → G.",
       difficulty: "hard",
       topicTag: "UCS Trace",
+    },
+    {
+      id: "ai-u1-q16",
+      question:
+        "In the 4-gallon and 3-gallon Water Jug problem, if the current state is (4, 2) and the operation is 'Empty the 4-gallon jug', what is the resulting state?",
+      options: ["(0, 0)", "(0, 2)", "(2, 0)", "(4, 0)"],
+      correctAnswer: 1,
+      explanation:
+        "Emptying the 4-gallon jug transforms (x, y) into (0, y). Since the 3-gallon jug retains its 2 gallons, the state becomes (0, 2).",
+      difficulty: "easy",
+      topicTag: "Water Jug Problem",
+    },
+    {
+      id: "ai-u1-q17",
+      question:
+        "An 8-puzzle configuration has 9 inversions. Can it reach the standard goal state [1, 2, 3, 4, 5, 6, 7, 8, blank] which has 0 inversions?",
+      options: [
+        "Yes, by using more than 30 moves",
+        "Yes, by moving the blank tile diagonally",
+        "No, because horizontal moves preserve inversion parity and vertical moves change inversions only by 0 or ±2, making parity invariant",
+        "It depends on the position of the blank tile",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "In the 8-puzzle (odd grid width 3), legal sliding moves always change the inversion count by an even number (0, +2, or -2). Parity is invariant. A state with 9 inversions (odd) can never reach a goal with 0 inversions (even).",
+      difficulty: "medium",
+      topicTag: "8-Puzzle Solvability",
+    },
+    {
+      id: "ai-u1-q18",
+      question:
+        "In the Missionaries and Cannibals problem with 3 missionaries and 3 cannibals, which of the following states on the near bank is INVALID (violates safety constraints)?",
+      options: [
+        "(3, 2, 1) - 3 Missionaries, 2 Cannibals, Boat near",
+        "(2, 1, 1) - 2 Missionaries, 1 Cannibal, Boat near",
+        "(1, 2, 1) - 1 Missionary, 2 Cannibals, Boat near",
+        "(0, 2, 1) - 0 Missionaries, 2 Cannibals, Boat near",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "State (1, 2, 1) on the near bank has 1 Missionary and 2 Cannibals. Cannibals outnumber missionaries (2 > 1) when missionaries are present, causing the missionaries to be eaten. (Note: (0, 2, 1) is valid because no missionaries are present on that bank).",
+      difficulty: "medium",
+      topicTag: "Missionaries & Cannibals",
     },
   ],
 };
