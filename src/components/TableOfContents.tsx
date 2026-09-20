@@ -36,6 +36,14 @@ export function extractHeadings(
   const items: TocItem[] = [];
   const lines = content.split("\n");
   let inCodeBlock = false;
+  const slugCounts = new Map<string, number>();
+
+  const getUniqueSlug = (title: string): string => {
+    const base = slugify(title);
+    const count = (slugCounts.get(base) || 0) + 1;
+    slugCounts.set(base, count);
+    return count === 1 ? base : `${base}-${count}`;
+  };
 
   for (const line of lines) {
     if (line.trim().startsWith("```")) {
@@ -52,7 +60,7 @@ export function extractHeadings(
       const rawTitle = h2Match[1].trim();
       const cleanTitle = rawTitle.replace(/[*_`]/g, "");
       items.push({
-        id: slugify(cleanTitle),
+        id: getUniqueSlug(cleanTitle),
         title: cleanTitle,
         level: 2,
       });
@@ -60,7 +68,7 @@ export function extractHeadings(
       const rawTitle = h3Match[1].trim();
       const cleanTitle = rawTitle.replace(/[*_`]/g, "");
       items.push({
-        id: slugify(cleanTitle),
+        id: getUniqueSlug(cleanTitle),
         title: cleanTitle,
         level: 3,
       });
@@ -68,7 +76,7 @@ export function extractHeadings(
       const rawTitle = h4Match[1].trim();
       const cleanTitle = rawTitle.replace(/[*_`]/g, "");
       items.push({
-        id: slugify(cleanTitle),
+        id: getUniqueSlug(cleanTitle),
         title: cleanTitle,
         level: 4,
       });

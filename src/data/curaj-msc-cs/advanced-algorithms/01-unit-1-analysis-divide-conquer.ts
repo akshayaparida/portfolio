@@ -33,108 +33,101 @@ export const unit1AnalysisDivideConquerModule: LearningModule = {
         "Big-Theta Tight Bound Theorem",
         "Constants c1, c2, n0 Graphical Meaning",
       ],
-      directUrl: "https://www.youtube.com/watch?v=A03oI0znAoc",
     },
     {
       id: "lec-master-theorem-bari",
-      title: "2.4.1 Master's Theorem in Algorithms for Dividing Functions",
+      title: "2.4.1 Master's Theorem in Algorithms for Dividing Recurrences",
       channel: "Abdul Bari",
       youtubeId: "OynWkEj0S-s",
       duration: "17:15",
       recommendedSpeed: "1.25x",
       description:
-        "Master Theorem cases 1, 2, and 3 for divide-and-conquer recurrences T(n) = aT(n/b) + f(n), watershed function n^(log_b a), and regularity conditions.",
-      examRelevance:
-        "CURAJ CIA-1 Q3 (5 Marks) ⭐⭐⭐⭐⭐ | GATE CS Core Formula",
+        "Master Method cookbook formulation for T(n) = aT(n/b) + f(n), comparing watershed function n^(log_b a) across all three cases, and regularity condition.",
+      examRelevance: "CURAJ CIA-1 Q3 (5 Marks) ⭐⭐⭐⭐⭐ | GATE CS Core",
       keyTopics: [
         "Watershed Function n^(log_b a)",
-        "Case 1 (Root/Leaf Dominated)",
-        "Case 2 (Equal Work per Level)",
-        "Case 3 & Regularity Condition",
+        "Case 1 (Leaf Heavy)",
+        "Case 2 (Balanced Work)",
+        "Case 3 (Root Heavy)",
+        "Polynomial Gap Trap",
       ],
-      directUrl: "https://www.youtube.com/watch?v=OynWkEj0S-s",
     },
     {
       id: "lec-binary-search-bari",
-      title:
-        "2.6.1 Binary Search: Iterative & Recursive Implementation Analysis",
+      title: "1.2 Binary Search Algorithm with Complete Tracing and Recurrence",
       channel: "Abdul Bari",
       youtubeId: "C2apEw9pgtw",
-      duration: "13:20",
+      duration: "16:20",
       recommendedSpeed: "1.25x",
       description:
-        "Step-by-step trace of Binary Search, recurrence relation T(n) = T(n/2) + 1, loop invariant proof, and O(log n) time complexity derivation.",
-      examRelevance: "CURAJ CIA-1 Q2 (5 Marks) ⭐⭐⭐⭐⭐",
+        "Divide and conquer searching technique, loop invariant, mid calculation overflow prevention, and recurrence derivation to O(log n).",
+      examRelevance:
+        "CURAJ CIA-1 Q2 (5 Marks) ⭐⭐⭐⭐⭐ | Practical Lab & Viva",
       keyTopics: [
-        "Array Halving Principle",
-        "Recurrence T(n) = T(n/2) + 1",
-        "Best Case vs Worst Case",
-        "Iterative vs Recursive Memory Cost",
+        "Iterative & Recursive Search in C",
+        "Loop Invariant Formulation",
+        "Recurrence T(n) = T(n/2) + c",
+        "Logarithmic Time Complexity Proof",
       ],
-      directUrl: "https://www.youtube.com/watch?v=C2apEw9pgtw",
     },
     {
       id: "lec-merge-sort-bari",
-      title: "2.7.2 Merge Sort Algorithm, Recurrence & Space Complexity",
+      title: "2.6.1 Merge Sort Algorithm with Divide and Conquer Analysis",
       channel: "Abdul Bari",
       youtubeId: "mB5HXBb_HY8",
-      duration: "21:10",
+      duration: "24:10",
       recommendedSpeed: "1.25x",
       description:
-        "Divide and Conquer sorting: recursive splitting, two-way merging in C, recurrence T(n) = 2T(n/2) + n, and O(n log n) Master Theorem proof.",
-      examRelevance: "CURAJ Semester Exams & UGC NET JRF ⭐⭐⭐⭐⭐",
+        "Two-way merge procedure, recursive divide and conquer tree, Theta(n log n) proof, and auxiliary memory management in C.",
+      examRelevance: "CURAJ Semester Exam (10 Marks) ⭐⭐⭐⭐⭐ | Core Sorting",
       keyTopics: [
-        "Divide & Conquer Paradigm",
+        "Divide, Conquer, Combine Paradigm",
         "Merge Subroutine in C",
-        "Recurrence Tree & Height log n",
-        "Auxiliary Space O(n)",
+        "Recurrence T(n) = 2T(n/2) + n",
+        "Stability vs In-Place Tradeoff",
       ],
-      directUrl: "https://www.youtube.com/watch?v=mB5HXBb_HY8",
     },
     {
       id: "lec-quicksort-bari",
-      title: "2.8.1 QuickSort Algorithm: Partitioning & Complexity Analysis",
+      title: "2.8.1 QuickSort Algorithm: Partitioning and Complexity Analysis",
       channel: "Abdul Bari",
       youtubeId: "7h1s2SojIRw",
-      duration: "24:35",
+      duration: "26:45",
       recommendedSpeed: "1.25x",
       description:
-        "In-place partitioning, pivot selection strategies, Lomuto vs Hoare partition, worst case O(n²), best case O(n log n), and Randomized Quick Sort.",
+        "Lomuto vs Hoare partition routines, worst case on sorted arrays, best case, expected average case analysis, and randomized pivot selection.",
       examRelevance:
-        "CURAJ Semester 10-Mark Question | GATE CS Partition Analysis",
+        "CURAJ Semester Exam (10 Marks) ⭐⭐⭐⭐⭐ | Sorting Standard",
       keyTopics: [
-        "Partitioning Mechanics",
-        "Lomuto vs Hoare Scheme",
-        "Worst-case Pivot Degeneration",
-        "Randomized Pivot Strategy",
+        "Lomuto Partition in C",
+        "Worst-Case Quadratic Time O(n^2)",
+        "Randomized QuickSort",
+        "In-Place Space Complexity",
       ],
-      directUrl: "https://www.youtube.com/watch?v=7h1s2SojIRw",
     },
     {
       id: "lec-strassen-bari",
-      title: "2.9 Strassen's Matrix Multiplication: 7 Products Subcube Method",
+      title: "2.5.1 Strassen's Matrix Multiplication Algorithm",
       channel: "Abdul Bari",
       youtubeId: "0oJyNmEbS4w",
-      duration: "18:50",
+      duration: "22:15",
       recommendedSpeed: "1.25x",
       description:
-        "How Strassen reduced subproblem multiplications from 8 to 7, deriving recurrence T(n) = 7T(n/2) + O(n²) and O(n^2.807) complexity.",
-      examRelevance: "CURAJ CIA-1 Q4 Direct Recurrence Formulation ⭐⭐⭐⭐⭐",
+        "Volker Strassen's reduction from 8 to 7 matrix multiplications (P1-P7), recurrence T(n) = 7T(n/2) + Theta(n^2), and solving to Theta(n^2.807).",
+      examRelevance: "CURAJ CIA-1 Q4 (5 Marks) ⭐⭐⭐⭐⭐ | End-Sem Advanced",
       keyTopics: [
-        "Naive Matrix Multiply O(n³)",
+        "Divide and Conquer Matrix Multiplication",
         "Strassen Formulas P1 to P7",
-        "Recurrence T(n) = 7T(n/2) + an²",
-        "Sub-cubic Time Complexity",
+        "Iteration Method Recurrence Solving",
+        "Sub-Cubic O(n^2.807) Bound",
       ],
-      directUrl: "https://www.youtube.com/watch?v=0oJyNmEbS4w",
     },
   ],
   resources: [
     {
-      title:
-        "Official CURAJ First Mid-Term Examination (CIA-1) Question Paper (August 2024, CSC-404)",
-      url: "/AIGOCIA12024.jpg",
-      type: "documentation",
+      title: "Abdul Bari: Algorithms Lecture Series Playlist (Complete DAA)",
+      url: "https://www.youtube.com/playlist?list=PLDNrQCjsFq99Z9jG41sH_L0N9835vEw1D",
+      type: "video",
     },
     {
       title:
@@ -154,38 +147,33 @@ export const unit1AnalysisDivideConquerModule: LearningModule = {
       url: "https://nptel.ac.in/courses/106106131",
       type: "course",
     },
-    {
-      title: "Abdul Bari: Algorithms Lecture Series Playlist (Complete DAA)",
-      url: "https://www.youtube.com/playlist?list=PLDNrQCjsFq99Z9jG41sH_L0N9835vEw1D",
-      type: "video",
-    },
   ],
   detailedContent: `# Unit 1: Asymptotic Analysis, Recurrences & Divide-and-Conquer
 
 > **CURAJ M.Sc. Computer Science — Course Code: 6.0CSC02 / CSC-404 (Core 2, 4 Credits, 10 Hours)**  
-> **Official CURAJ Syllabus Sequence**: Foundations of Algorithm Analysis $\to$ Asymptotic Notations (Theta $\Theta$, Omega $\Omega$, Big-Oh $O$, Little-oh $o$, Little-omega $\omega$) $\to$ Recurrence Relations (Substitution / Iteration Method, Recursion Tree Method, Master Theorem) $\to$ Divide and Conquer Paradigm (Binary Search, Merge Sort, Quick Sort, Strassen's Matrix Multiplication, Maximum & Minimum Selection) $\to$ Foundations of Greedy Strategy & Dynamic Programming.  
+> **Official CURAJ Syllabus Sequence**: Foundations of Algorithm Analysis $\\to$ Asymptotic Notations ($\\Theta, \\Omega, O, o, \\omega$) $\\to$ Recurrence Relations (Substitution / Iteration Method, Recursion Tree Method, Master Theorem) $\\to$ Divide and Conquer Paradigm (Binary Search, Merge Sort, Quick Sort, Strassen's Matrix Multiplication, Maximum & Minimum Selection) $\\to$ Foundations of Greedy Strategy & Dynamic Programming.  
 > **Prescribed References**: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein (*Introduction to Algorithms*, 3rd/4th Edition, MIT Press — **CLRS**); Ellis Horowitz, Sartaj Sahni, Sanguthevar Rajasekaran (*Fundamentals of Computer Algorithms*, Universities Press); Jon Kleinberg & Éva Tardos (*Algorithm Design*, Pearson).  
-> **Exam Weightage**: Continuous Internal Assessment 1 (CIA-1) (~20 Marks), End-Semester Theory Exam, **UGC NET / JRF Paper II Computer Science**, and **GATE CS**.
+> **Exam Weightage**: Continuous Internal Assessment 1 (CIA-1) (20 Marks), End-Semester Theory Exam, **UGC NET / JRF Paper II Computer Science**, and **GATE CS**.
 
 ---
 
 ## Unit Overview & Learning Goals (Aligned with CURAJ Unit 1 Syllabus)
 
 1. **Foundations of Algorithm Analysis**: Formal definition of algorithms (finiteness, definiteness, input, output, effectiveness), RAM model of computation, space complexity (fixed vs. variable part), and time complexity (worst-case, best-case, average-case).
-2. **Asymptotic Notations & Growth of Functions**: Formal mathematical definitions of $O$, $\Omega$, $\Theta$, $o$, and $\omega$ using constants $c_1, c_2, n_0$, graphical interpretations, asymptotic properties (transitivity, symmetry, transpose symmetry), and the standard complexity hierarchy.
+2. **Asymptotic Notations & Growth of Functions**: Formal mathematical definitions of $O$, $\\Omega$, $\\Theta$, $o$, and $\\omega$ using constants $c_1, c_2, n_0$, graphical interpretations, asymptotic properties (transitivity, symmetry, transpose symmetry), and the standard complexity hierarchy.
 3. **Mathematical Recurrence Solving Techniques**:
    - **Substitution / Iteration Method**: Step-by-step unrolling, finding the general $k$-th iteration, boundary condition matching, and closed-form summation (solving CURAJ CIA-1 Q4: $T(n) = 7T(n/2) + an^2$).
-   - **Recursion-Tree Method**: Visualizing cost per level, calculating tree height $\log_b n$, summing across all levels, and evaluating leaf work.
-   - **Master Method**: Comprehensive coverage of CLRS Cases 1, 2, and 3, watershed function $n^{\log_b a}$, regularity conditions, and solving CURAJ CIA-1 Q3: $T(n) = T(2n/3) + 1$.
+   - **Recursion-Tree Method**: Visualizing cost per level, calculating tree height $\\log_b n$, summing across all levels, and evaluating leaf work.
+   - **Master Method**: Comprehensive coverage of CLRS Cases 1, 2, and 3, watershed function $n^{\\log_b a}$, regularity conditions, and solving CURAJ CIA-1 Q3: $T(n) = T(2n/3) + 1$.
 4. **Divide-and-Conquer Paradigm & Canonical Algorithms in Pure C**:
-   - **Binary Search**: Complete iterative and recursive C implementations, recurrence $T(n) = T(n/2) + \Theta(1)$, loop invariant proof, and $O(\log n)$ derivation (CURAJ CIA-1 Q2).
-   - **Merge Sort**: Complete C implementation with dynamic buffer allocation, recurrence $T(n) = 2T(n/2) + \Theta(n)$, and $O(n \log n)$ proof.
-   - **Quick Sort**: Complete C implementation with Lomuto and Hoare partitioning, worst-case $\Theta(n^2)$, best-case $\Theta(n \log n)$, and Randomized Quick Sort in C.
-   - **Strassen's Matrix Multiplication**: Naive $O(n^3)$ algorithm in C vs. Strassen's 7 submatrix products ($P_1$ to $P_7$), recurrence $T(n) = 7T(n/2) + \Theta(n^2)$, and derivation of $\Theta(n^{\log_2 7}) \approx \Theta(n^{2.807})$.
-   - **Simultaneous Maximum & Minimum**: Pairwise divide-and-conquer in C achieving $\lceil 3n/2 \rceil - 2$ comparisons.
-5. **Greedy Strategy & Dynamic Programming Foundations**: Greedy choice property vs. optimal substructure, Fractional Knapsack in C ($O(n \log n)$), 0/1 Knapsack in C via Dynamic Programming table ($O(n \cdot W)$), and paradigm comparison matrix.
+   - **Binary Search**: Complete iterative and recursive C implementations, recurrence $T(n) = T(n/2) + \\Theta(1)$, loop invariant proof, and $O(\\log n)$ derivation (CURAJ CIA-1 Q2).
+   - **Merge Sort**: Complete C implementation with dynamic buffer allocation, recurrence $T(n) = 2T(n/2) + \\Theta(n)$, and $O(n \\log n)$ proof.
+   - **Quick Sort**: Complete C implementation with Lomuto and Hoare partitioning, worst-case $\\Theta(n^2)$, best-case $\\Theta(n \\log n)$, and Randomized Quick Sort in C.
+   - **Strassen's Matrix Multiplication**: Naive $O(n^3)$ algorithm in C vs. Strassen's 7 submatrix products ($P_1$ to $P_7$), recurrence $T(n) = 7T(n/2) + \\Theta(n^2)$, and derivation of $\\Theta(n^{\\log_2 7}) \\approx \\Theta(n^{2.807})$.
+   - **Simultaneous Maximum & Minimum**: Pairwise divide-and-conquer in C achieving $\\lceil 3n/2 \\rceil - 2$ comparisons.
+5. **Greedy Strategy & Dynamic Programming Foundations**: Greedy choice property vs. optimal substructure, Fractional Knapsack in C ($O(n \\log n)$), 0/1 Knapsack in C via Dynamic Programming table ($O(n \\cdot W)$), and paradigm comparison matrix.
 6. **Official CURAJ CIA-1 Examination Papers & Model Solutions**: Full August 2024 Question Paper (CSC-404, 20 Marks) with photographic evidence and step-by-step marking scheme answers for Q1, Q2, Q3, and Q4.
-7. **UGC NET / JRF & GATE CS Preparation Corner**: High-yield traps on Master Theorem non-applicability, tricky asymptotic comparisons, and comparison sort lower bounds $\Omega(n \log n)$.
+7. **UGC NET / JRF & GATE CS Preparation Corner**: High-yield traps on Master Theorem non-applicability, tricky asymptotic comparisons, and comparison sort lower bounds $\\Omega(n \\log n)$.
 8. **Master Formula Cheat Sheet & Quick-Reference Guide**: Rapid-revision tables for asymptotic definitions, Master theorem cases, sorting algorithm complexities, and geometric series formulas.
 9. **Interactive Practice Quiz**: 20 timed examination-style questions with detailed explanations.
 
@@ -194,40 +182,35 @@ export const unit1AnalysisDivideConquerModule: LearningModule = {
 ## 0. 🎬 Video-First Lecture Roadmap & Exam Strategy Matrix
 
 > [!TIP]
-> **Study Strategy (Watch First $\to$ Study Textbook Notes $\to$ Solve Exam Questions)**:
-> 1. **Watch Curated Video First (10–15 mins)**: Watch Abdul Bari's conceptual breakdowns to build visual intuition (e.g. how a recursion tree splits, or how Strassen combines 7 products).
-> 2. **Master C Implementations Second**: In CURAJ exams and lab assessments, algorithms must be written in **standard C language** with clean pointers, array indexing, and memory allocation.
-> 3. **Revise University Model Answers (Section 6)**: Study the exact mathematical solutions for the August 2024 CURAJ CIA-1 paper.
-> 4. **Memorize Cheat Sheet Formulas (Section 8)**: Master the Master Theorem decision rules, inversion parity, and geometric summation formulas.
+> **University Exam Preparation Workflow**:
+> 1. **Watch Concept Lecture First (10–15 mins)**: Use the **Curated Video Hub** above. Watch Abdul Bari's whiteboard derivations at $1.25\\times$ to develop strong geometric and algebraic intuition.
+> 2. **Study Textbook Rigor (CLRS & Horowitz-Sahni)**: Review the formal definitions of bounding constants ($c, n_0$), RAM model properties, and loop invariants.
+> 3. **Implement in Pure C**: Compile and run the C algorithms using \`gcc -Wall -Wextra -std=c99\`.
+> 4. **Master Past Papers (Section 6)**: Study the model solutions for the official CURAJ CIA-1 August 2024 examination paper.
 
-### 📚 Syllabus-to-Video & Exam Alignment Matrix
-
-| Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA-1) | UGC NET JRF / GATE CS Trap |
-|:---|:---|:---|:---|:---|
-| **1. Asymptotic Notations ($\Theta, \Omega, O$)** | [Abdul Bari: Asymptotic Notations #1](https://www.youtube.com/watch?v=A03oI0znAoc) | CLRS Ch 3.1; Horowitz & Sahni Ch 1.4 | **5-Mark Compulsory (CIA-1 Q1)**: Formal definitions with $c_1, c_2, n_0$ and graphs | Confusing upper bound Big-$O$ with worst-case performance (Big-$O$ is a bound, not a case!) |
-| **2. Properties & Hierarchy of Functions** | [Abdul Bari: Properties of Asymptotic Notations](https://www.youtube.com/watch?v=A03oI0znAoc) | CLRS Ch 3.2; Kleinberg & Tardos Ch 2 | 3-Mark: Transitivity, symmetry, and transpose symmetry | Ranking functions like $n^{\sqrt{\log n}}$ vs $2^{\sqrt{\log n}}$ vs $n^{1/\log n}$ |
-| **3. Master Theorem for Recurrences** | [Abdul Bari: Master's Theorem #1](https://www.youtube.com/watch?v=OynWkEj0S-s) | CLRS Ch 4.5; Horowitz & Sahni Ch 3.2 | **5-Mark Compulsory (CIA-1 Q3)**: State 3 cases & solve $T(n) = T(2n/3) + 1$ | Applying Master Theorem when $f(n)$ is not polynomially larger/smaller by $n^\epsilon$ |
-| **4. Iteration Method for Recurrences** | [Abdul Bari: Recurrence Relations #1](https://www.youtube.com/watch?v=OynWkEj0S-s) | CLRS Ch 4.3–4.4; Horowitz & Sahni Ch 3.2 | **5-Mark Compulsory (CIA-1 Q4)**: Step-by-step unrolling of $T(n) = 7T(n/2) + an^2$ | Determining the stopping condition $n/2^k = 2$ and summing geometric series with $r > 1$ |
-| **5. Binary Search (Divide & Conquer)** | [Abdul Bari: Binary Search Iterative](https://www.youtube.com/watch?v=C2apEw9pgtw) | CLRS Ch 2.3; Horowitz & Sahni Ch 3.3 | **5-Mark Compulsory (CIA-1 Q2)**: C algorithm, recurrence $T(n) = T(n/2) + c$, and $O(\log n)$ proof | Integer overflow in \`(low + high)/2\`; must use \`low + (high - low)/2\` in C |
-| **6. Merge Sort Algorithm in C** | [Abdul Bari: Merge Sort Algorithm](https://www.youtube.com/watch?v=mB5HXBb_HY8) | CLRS Ch 2.3; Horowitz & Sahni Ch 3.4 | 5-Mark: C code, recursive trace, recurrence $T(n) = 2T(n/2) + \Theta(n)$ | Auxiliary memory is $O(n)$, NOT in-place; why it is preferred for linked lists |
-| **7. Quick Sort & Partitioning in C** | [Abdul Bari: QuickSort Algorithm](https://www.youtube.com/watch?v=7h1s2SojIRw) | CLRS Ch 7; Horowitz & Sahni Ch 3.5 | 10-Mark: Lomuto vs Hoare partition in C, worst-case $O(n^2)$ vs best-case $O(n \log n)$ | QuickSort worst-case on already sorted array; randomized pivot eliminates input traps |
-| **8. Strassen's Matrix Multiplication** | [Abdul Bari: Strassen's Matrix Multiply](https://www.youtube.com/watch?v=0oJyNmEbS4w) | CLRS Ch 4.2; Horowitz & Sahni Ch 3.6 | 10-Mark: 7 products ($P_1..P_7$), recurrence $T(n) = 7T(n/2) + O(n^2)$, $O(n^{2.807})$ | Why 18 additions are acceptable to save 1 multiplication (additions are $O(n^2)$, mults are cubic) |
-| **9. Simultaneous Max & Min** | [Abdul Bari: Min-Max Divide & Conquer](https://www.youtube.com/watch?v=C2apEw9pgtw) | Horowitz & Sahni Ch 3.2; CLRS Ex 9.1 | 5-Mark: C code and proof of $\lceil 3n/2 \rceil - 2$ comparisons | Comparing elements in pairs vs naive $2n - 2$ comparisons |
-| **10. Greedy vs. Dynamic Programming** | [Abdul Bari: Knapsack Problem](https://www.youtube.com/watch?v=oTTzNMHM05I) | CLRS Ch 15–16; Horowitz & Sahni Ch 4–5 | 5-Mark: Fractional Knapsack (Greedy) vs 0/1 Knapsack (DP table) in C | Why greedy fails for 0/1 Knapsack (empty space penalty destroys greedy choice) |
+| Topic | Curated Video (Abdul Bari) | Textbook Reference | Exam Weightage | Key Trap to Avoid |
+|:---|:---|:---|:---:|:---|
+| **Asymptotic Notations** | [1.8.1 Asymptotic Notations](https://www.youtube.com/watch?v=A03oI0znAoc) | CLRS Ch 3.1; Horowitz & Sahni Ch 1.3 | CURAJ CIA-1 Q1 (5M) | Confusing $O$ (upper bound) with worst-case running time |
+| **Master Theorem** | [2.4.1 Master's Theorem](https://www.youtube.com/watch?v=OynWkEj0S-s) | CLRS Ch 4.5; Kleinberg & Tardos Ch 5.2 | CURAJ CIA-1 Q3 (5M) | Applying Master Theorem when $f(n)$ has a non-polynomial gap |
+| **Iteration / Substitution** | [2.2.1 Recurrence Solving](https://www.youtube.com/watch?v=7h1s2SojIRw) | CLRS Ch 4.3; Horowitz & Sahni Ch 3.1 | CURAJ CIA-1 Q4 (5M) | Forgetting the $T(2)=b$ base case stopping index |
+| **Binary Search in C** | [1.2 Binary Search Algorithm](https://www.youtube.com/watch?v=C2apEw9pgtw) | CLRS Ch 2.3; Horowitz & Sahni Ch 3.3 | CURAJ CIA-1 Q2 (5M) | Integer overflow in \`(low + high) / 2\`; use \`low + (high - low) / 2\` |
+| **Merge Sort in C** | [2.6.1 Merge Sort Algorithm](https://www.youtube.com/watch?v=mB5HXBb_HY8) | CLRS Ch 2.3; Kleinberg & Tardos Ch 5.1 | End-Sem (10M) | Forgetting that Merge Sort requires $\\Theta(n)$ auxiliary heap space |
+| **Quick Sort in C** | [2.8.1 QuickSort Algorithm](https://www.youtube.com/watch?v=7h1s2SojIRw) | CLRS Ch 7.1; Horowitz & Sahni Ch 3.5 | End-Sem (10M) | Assuming QuickSort is always $O(n \\log n)$; worst case is $\\Theta(n^2)$ |
+| **Strassen's Multiplication** | [2.5.1 Strassen's Matrix Multiply](https://www.youtube.com/watch?v=0oJyNmEbS4w) | CLRS Ch 4.2; Horowitz & Sahni Ch 3.6 | End-Sem / GATE | Computing 8 subproblems instead of 7; $T(n)=7T(n/2)+\\Theta(n^2)$ |
 
 ---
 
 ## 1. Foundations of Algorithm Analysis (CLRS Ch 1–2, Horowitz & Sahni Ch 1)
 
-### 1.1 Formal Definition of an Algorithm
-According to **Ellis Horowitz, Sartaj Sahni, and Sanguthevar Rajasekaran** (*Fundamentals of Computer Algorithms*), an algorithm is a finite set of unambiguous instructions that, given a set of initial conditions, accomplishes a well-defined task and halts in a finite amount of time.
+### 1.1 Formal Definition & Five Criteria of an Algorithm
+According to **Ellis Horowitz and Sartaj Sahni** (*Fundamentals of Computer Algorithms*), an **algorithm** is a finite sequence of unambiguous instructions that, given a set of valid inputs, produces an output and terminates in a finite amount of time.
 
-An algorithm must satisfy the following **five fundamental criteria**:
+Every valid algorithm must satisfy **five essential criteria**:
 1. **Input**: Zero or more quantities are externally supplied.
-2. **Output**: At least one quantity is produced.
-3. **Definiteness**: Each instruction must be clear, unambiguous, and precise.
-4. **Finiteness**: For all legal inputs, the algorithm must terminate after a finite number of discrete computational steps.
-5. **Effectiveness**: Every instruction must be sufficiently basic that it can in principle be carried out by a person using pencil and paper in finite time (computable).
+2. **Output**: At least one quantity is produced as a result.
+3. **Definiteness (Unambiguity)**: Each instruction must be clear, unambiguous, and mathematically precise.
+4. **Finiteness**: For all legal input cases, the algorithm must terminate after a finite number of steps.
+5. **Effectiveness**: Every instruction must be sufficiently basic that it can be carried out, in principle, by a person using paper and pencil in a finite amount of time.
 
 ---
 
@@ -236,7 +219,7 @@ In theoretical algorithm analysis (pioneered by **CLRS Chapter 2.2**), algorithm
 - Instructions are executed sequentially, one after another (no concurrent operations).
 - Basic operations (arithmetic addition, subtraction, multiplication, division, modulo, pointer dereferencing, assignment, and comparison) take **one constant time unit** ($O(1)$).
 - Memory access is uniform: accessing any memory cell takes constant time $O(1)$, independent of the address.
-- Integers are represented using $c \log n$ bits (standard word size), so basic operations on indices fit in a single machine word.
+- Integers are represented using $c \\log n$ bits (standard word size), so basic operations on indices fit in a single machine word.
 
 ---
 
@@ -257,22 +240,22 @@ Where:
 ---
 
 ### 1.4 Time Complexity Analysis Paradigms
-1. **Worst-Case Time Complexity ($T_{\text{worst}}(n)$)**:
+1. **Worst-Case Time Complexity ($T_{\\text{worst}}(n)$)**:
    - The **maximum** running time over all legal inputs of size $n$:
-     $$T_{\text{worst}}(n) = \max_{I \in D_n} \{T(I)\}$$
+     $$T_{\\text{worst}}(n) = \\max_{I \\in D_n} \\{T(I)\\}$$
    - Provides a guaranteed **upper bound / safety guarantee** that the algorithm will never exceed. Primary metric used in computer science.
-2. **Best-Case Time Complexity ($T_{\text{best}}(n)$)**:
+2. **Best-Case Time Complexity ($T_{\\text{best}}(n)$)**:
    - The **minimum** running time over all legal inputs of size $n$:
-     $$T_{\text{best}}(n) = \min_{I \in D_n} \{T(I)\}$$
-   - Represents optimal conditions (e.g., target element found at the exact middle index in Binary Search on the very first comparison: $T_{\text{best}}(n) = O(1)$).
-3. **Average-Case Time Complexity ($T_{\text{avg}}(n)$)**:
+     $$T_{\\text{best}}(n) = \\min_{I \\in D_n} \\{T(I)\\}$$
+   - Represents optimal conditions (e.g., target element found at the exact middle index in Binary Search on the very first comparison: $T_{\\text{best}}(n) = O(1)$).
+3. **Average-Case Time Complexity ($T_{\\text{avg}}(n)$)**:
    - The expected running time over a probabilistic distribution $P(I)$ of inputs of size $n$:
-     $$T_{\text{avg}}(n) = \sum_{I \in D_n} P(I) \cdot T(I)$$
+     $$T_{\\text{avg}}(n) = \\sum_{I \\in D_n} P(I) \\cdot T(I)$$
    - Often requires sophisticated mathematical tools (e.g., indicator random variables in QuickSort expected analysis).
 
 ---
 
-## 2. Asymptotic Notations & Growth of Functions (CLRS Ch 3, Horowitz & Sahni Ch 1.4)
+## 2. Asymptotic Notations & Growth of Functions (CLRS Ch 3)
 
 \`\`\`video
 {
@@ -281,111 +264,84 @@ Where:
   "channel": "Abdul Bari",
   "duration": "18:40",
   "speed": "1.25x",
-  "relevance": "CURAJ CIA-1 Q1 Compulsory (5 Marks) \u2b50\u2b50\u2b50\u2b50\u2b50 | GATE CS & UGC NET",
-  "takeaway": "Watch this lecture to clearly visualize how constants c, c1, c2 and threshold n0 define the asymptotic upper, lower, and tight envelopes for algorithm growth."
+  "relevance": "CURAJ CIA-1 Q1 Compulsory (5 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50 | GATE CS Core",
+  "takeaway": "Master the formal mathematical definitions of c, n0 constants and why Theta represents a tight sandwich bound while Big-O is an upper bound."
 }
 \`\`\`
 
-Asymptotic analysis focuses on the behavior of functions in the limit—as the input size $n$ approaches infinity ($n \to \infty$).
+Asymptotic notation describes the behavior of functions in the limit—that is, for sufficiently large input sizes $n \\to \\infty$. It allows us to focus on the **rate of growth** of running time while disregarding constant multiplicative factors and lower-order terms.
 
-### 2.1 Big-Oh Notation ($O$): Asymptotic Upper Bound
+### 2.1 Big-Oh ($O$) Notation — Asymptotic Upper Bound
+> **CLRS Formal Definition**:
+> For a given function $g(n)$, we denote by $O(g(n))$ the set of functions:
+> $$O(g(n)) = \\left\\{ f(n) : \\exists \\text{ positive constants } c > 0 \\text{ and } n_0 > 0 \\text{ such that } 0 \\le f(n) \\le c \\cdot g(n) \\text{ for all } n \\ge n_0 \\right\\}$$
 
-> **Formal Definition (CLRS Chapter 3.1)**:  
-> For a given function $g(n)$, we denote by $O(g(n))$ the set of functions:  
-> $$O(g(n)) = \{f(n) : \exists \text{ positive constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \le f(n) \le c \cdot g(n), \; \forall n \ge n_0\}$$
-
-- **Intuition**: $f(n) = O(g(n))$ means that $f(n)$ grows **at most as fast as** $g(n)$ (up to a constant factor $c$) for sufficiently large $n$. $g(n)$ provides a mathematical ceiling.
-- **Limit Definition**: If $\lim_{n \to \infty} \frac{f(n)}{g(n)} < \infty$, then $f(n) = O(g(n))$.
-
-\`\`\`
-  Running Time
-       ^
-       |                   /  c * g(n)  [Upper Bound]
-       |                  / 
-       |          _--""""/--_  f(n)
-       |        _"      /    "_
-       |       /       /       "_
-       |      /       /          "_
-       |     /       /
-       +----+-------+---------------------> Input Size (n)
-       0    |       n₀
-            |<-- Region of validity -->|
-\`\`\`
+- **Intuition**: $g(n)$ is an **asymptotic upper bound** on $f(n)$. Past threshold $n_0$, $f(n)$ never grows faster than $c \\cdot g(n)$.
+- **Concrete Verification**: Prove $f(n) = 7n^2 + 5n + 3 = O(n^2)$.
+  For all $n \\ge 1$, we have $5n \\le 5n^2$ and $3 \\le 3n^2$.
+  $$7n^2 + 5n + 3 \\le 7n^2 + 5n^2 + 3n^2 = 15n^2$$
+  Choosing $c = 15$ and $n_0 = 1$, the inequality $0 \\le 7n^2 + 5n + 3 \\le 15n^2$ holds for all $n \\ge 1$. Hence, $7n^2 + 5n + 3 = O(n^2)$.
 
 ---
 
-### 2.2 Big-Omega Notation ($\Omega$): Asymptotic Lower Bound
+### 2.2 Big-Omega ($\\Omega$) Notation — Asymptotic Lower Bound
+> **CLRS Formal Definition**:
+> For a given function $g(n)$, we denote by $\\Omega(g(n))$ the set of functions:
+> $$\\Omega(g(n)) = \\left\\{ f(n) : \\exists \\text{ positive constants } c > 0 \\text{ and } n_0 > 0 \\text{ such that } 0 \\le c \\cdot g(n) \\le f(n) \\text{ for all } n \\ge n_0 \\right\\}$$
 
-> **Formal Definition (CLRS Chapter 3.1)**:  
-> For a given function $g(n)$, we denote by $\Omega(g(n))$ the set of functions:  
-> $$\Omega(g(n)) = \{f(n) : \exists \text{ positive constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \le c \cdot g(n) \le f(n), \; \forall n \ge n_0\}$$
-
-- **Intuition**: $f(n) = \Omega(g(n))$ means that $f(n)$ grows **at least as fast as** $g(n)$ (up to a constant factor $c$) for sufficiently large $n$. $g(n)$ provides a mathematical floor.
-- **Limit Definition**: If $\lim_{n \to \infty} \frac{f(n)}{g(n)} > 0$, then $f(n) = \Omega(g(n))$.
-
----
-
-### 2.3 Big-Theta Notation ($\Theta$): Asymptotically Tight Bound
-
-> **Formal Definition (CLRS Chapter 3.1)**:  
-> For a given function $g(n)$, we denote by $\Theta(g(n))$ the set of functions:  
-> $$\Theta(g(n)) = \{f(n) : \exists \text{ positive constants } c_1 > 0, c_2 > 0, \text{ and } n_0 > 0 \text{ such that } 0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n), \; \forall n \ge n_0\}$$
-
-- **Fundamental Theorem (CLRS Theorem 3.1)**:  
-  $$\mathbf{f(n) = \Theta(g(n)) \iff f(n) = O(g(n)) \quad \text{and} \quad f(n) = \Omega(g(n))}$$
-- **Intuition**: $f(n)$ is sandwiched between $c_1 g(n)$ and $c_2 g(n)$ for all $n \ge n_0$. Their growth rates are asymptotically identical.
-- **Limit Definition**: If $\lim_{n \to \infty} \frac{f(n)}{g(n)} = L$ where $0 < L < \infty$, then $f(n) = \Theta(g(n))$.
-
-\`\`\`
-  Running Time
-       ^
-       |                    /  c₂ * g(n)  [Upper Envelope]
-       |                   / 
-       |           _--""""/--_  f(n)      [Sandwiched Function]
-       |         _"      /    "_
-       |        /       /  /-----"  c₁ * g(n) [Lower Envelope]
-       |       /       /  /
-       +------+-------+--+----------------> Input Size (n)
-       0      |       n₀
-\`\`\`
+- **Intuition**: $g(n)$ is an **asymptotic lower bound** on $f(n)$. Past threshold $n_0$, the algorithm's running time requires at least $c \\cdot g(n)$ operations.
+- **Concrete Verification**: Prove $f(n) = 3n^3 - 4n = \\Omega(n^3)$.
+  We need $c \\cdot n^3 \\le 3n^3 - 4n \\iff 4n \\le (3 - c)n^3$.
+  If we choose $c = 2$, this requires $4n \\le n^3 \\iff 4 \\le n^2 \\iff n \\ge 2$.
+  Choosing $c = 2$ and $n_0 = 2$, the inequality $0 \\le 2n^3 \\le 3n^3 - 4n$ holds for all $n \\ge 2$. Hence, $3n^3 - 4n = \\Omega(n^3)$.
 
 ---
 
-### 2.4 Little-oh ($o$) and Little-omega ($\omega$) Notations
+### 2.3 Big-Theta ($\\Theta$) Notation — Asymptotically Tight Bound
+> **CLRS Formal Definition**:
+> For a given function $g(n)$, we denote by $\\Theta(g(n))$ the set of functions:
+> $$\\Theta(g(n)) = \\left\\{ f(n) : \\exists \\text{ positive constants } c_1 > 0, c_2 > 0, n_0 > 0 \\text{ such that } 0 \\le c_1 g(n) \\le f(n) \\le c_2 g(n) \\text{ for all } n \\ge n_0 \\right\\}$$
 
-| Notation | Defining Inequality | Limit Condition | Informal Meaning | Example |
-|:---:|:---|:---:|:---|:---|
-| **$o(g(n))$** | $\forall c > 0, \exists n_0 > 0 : 0 \le f(n) < c \cdot g(n), \; \forall n \ge n_0$ | $\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0$ | $f(n)$ becomes insignificant relative to $g(n)$ | $2n = o(n^2)$, but $2n^2 \ne o(n^2)$ |
-| **$\omega(g(n))$** | $\forall c > 0, \exists n_0 > 0 : 0 \le c \cdot g(n) < f(n), \; \forall n \ge n_0$ | $\lim_{n \to \infty} \frac{f(n)}{g(n)} = \infty$ | $f(n)$ dominates $g(n)$ strictly | $n^2 = \omega(n)$, but $n^2 \ne \omega(n^2)$ |
+- **The Equivalence Theorem (CLRS Theorem 3.1)**:  
+  For any two functions $f(n)$ and $g(n)$:
+  $$f(n) = \\Theta(g(n)) \\iff f(n) = O(g(n)) \\quad \\text{and} \\quad f(n) = \\Omega(g(n))$$
+- **Intuition**: $g(n)$ is a **tight sandwich bound** on $f(n)$. From $n_0$ onward, $f(n)$ is trapped between $c_1 g(n)$ and $c_2 g(n)$.
 
 ---
 
-### 2.5 Mathematical Properties of Asymptotic Relations (CLRS Ch 3.2)
+### 2.4 Little-oh ($o$) and Little-omega ($\\omega$) Notations
+While $O$ and $\\Omega$ allow the possibility of equality in growth rate ($2n = O(n)$), little-oh ($o$) and little-omega ($\\omega$) denote strict asymptotic bounds:
+
+1. **Little-oh ($o$)**:
+   $$o(g(n)) = \\left\\{ f(n) : \\forall c > 0, \\exists n_0 > 0 \\text{ such that } 0 \\le f(n) < c \\cdot g(n) \\text{ for all } n \\ge n_0 \\right\\}$$
+   - **Limit Definition**: $\\lim_{n \\to \\infty} \\frac{f(n)}{g(n)} = 0$.
+   - E.g., $2n = o(n^2)$, but $2n \\ne o(n)$.
+
+2. **Little-omega ($\\omega$)**:
+   $$\\omega(g(n)) = \\left\\{ f(n) : \\forall c > 0, \\exists n_0 > 0 \\text{ such that } 0 \\le c \\cdot g(n) < f(n) \\text{ for all } n \\ge n_0 \\right\\}$$
+   - **Limit Definition**: $\\lim_{n \\to \\infty} \\frac{f(n)}{g(n)} = \\infty$.
+   - E.g., $n^2 = \\omega(n)$, but $n^2 \\ne \\omega(n^2)$.
+
+---
+
+### 2.5 Relational Properties of Asymptotic Notations
 1. **Transitivity**:
-   - $f(n) = \Theta(g(n)) \land g(n) = \Theta(h(n)) \implies f(n) = \Theta(h(n))$
-   - $f(n) = O(g(n)) \land g(n) = O(h(n)) \implies f(n) = O(h(n))$
-   - $f(n) = \Omega(g(n)) \land g(n) = \Omega(h(n)) \implies f(n) = \Omega(h(n))$
+   - $f(n) = \\Theta(g(n)) \\land g(n) = \\Theta(h(n)) \\implies f(n) = \\Theta(h(n))$
+   - $f(n) = O(g(n)) \\land g(n) = O(h(n)) \\implies f(n) = O(h(n))$
+   - $f(n) = \\Omega(g(n)) \\land g(n) = \\Omega(h(n)) \\implies f(n) = \\Omega(h(n))$
 2. **Reflexivity**:
-   - $f(n) = \Theta(f(n)), \quad f(n) = O(f(n)), \quad f(n) = \Omega(f(n))$
+   - $f(n) = \\Theta(f(n))$, $f(n) = O(f(n))$, $f(n) = \\Omega(f(n))$
 3. **Symmetry**:
-   - $f(n) = \Theta(g(n)) \iff g(n) = \Theta(f(n))$
+   - $f(n) = \\Theta(g(n)) \\iff g(n) = \\Theta(f(n))$
 4. **Transpose Symmetry**:
-   - $f(n) = O(g(n)) \iff g(n) = \Omega(f(n))$
-   - $f(n) = o(g(n)) \iff g(n) = \omega(f(n))$
+   - $f(n) = O(g(n)) \\iff g(n) = \\Omega(f(n))$
+   - $f(n) = o(g(n)) \\iff g(n) = \\omega(f(n))$
 
 ---
 
-### 2.6 Hierarchy of Standard Growth Functions
-Arranged in order of **strictly increasing asymptotic growth rate** ($f_i(n) = o(f_{i+1}(n))$):
-
-$$1 < \log(\log n) < \log n < \sqrt{n} < n < n \log n < n^2 < n^3 < n^k < 2^n < e^n < 3^n < n! < n^n$$
-
-> [!IMPORTANT]
-> **Useful Logarithmic Identities for Competitive Exams**:
-> - $\log(n!) = \Theta(n \log n)$ (by Stirling's Approximation: $n! \approx \sqrt{2\pi n} (n/e)^n$)
-> - $a^{\log_b c} = c^{\log_b a}$ (crucial for Master Method derivations)
-> - $2^{\log_2 n} = n$
-> - $(\log n)^k = o(n^\epsilon)$ for any $k > 0$ and any $\epsilon > 0$ (any polynomial dominates any polylogarithm!)
+### 2.6 Standard Asymptotic Complexity Hierarchy
+In algorithm analysis, standard function classes ordered by strictly increasing rate of growth ($o$ relation):
+$$O(1) < O(\\log \\log n) < O(\\log n) < O(\\sqrt{n}) < O(n) < O(n \\log n) < O(n^2) < O(n^3) < O(2^n) < O(n!) < O(n^n)$$
 
 ---
 
@@ -398,7 +354,7 @@ $$1 < \log(\log n) < \log n < \sqrt{n} < n < n \log n < n^2 < n^3 < n^k < 2^n < 
   "channel": "Abdul Bari",
   "duration": "17:15",
   "speed": "1.25x",
-  "relevance": "CURAJ CIA-1 Q3 Compulsory (5 Marks) \u2b50\u2b50\u2b50\u2b50\u2b50 | GATE CS Core",
+  "relevance": "CURAJ CIA-1 Q3 Compulsory (5 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50 | GATE CS Core",
   "takeaway": "Understand how the watershed function n^(log_b a) compares with f(n) across the three cases of Master Theorem, and why regularity conditions matter."
 }
 \`\`\`
@@ -409,7 +365,7 @@ A **recurrence relation** is an equation or inequality that describes a function
 In the **Iteration Method** (also called repeated substitution or backward substitution), we repeatedly expand the recurrence by substituting the recurrence relation into itself until a discernible mathematical pattern emerges, then express the general $k$-th term, substitute the base case, and sum the resulting algebraic series.
 
 #### 4-Step Iteration Framework:
-1. **Expand**: Unroll the recurrence for steps $k = 1, 2, 3$ by repeatedly replacing $T(\cdot)$.
+1. **Expand**: Unroll the recurrence for steps $k = 1, 2, 3$ by repeatedly replacing $T(\\cdot)$.
 2. **Pattern Identify**: Express $T(n)$ as a general function of iteration counter $k$.
 3. **Boundary Match**: Set the subproblem argument equal to the base-case threshold (e.g. $n/b^k = 1$ or $n/b^k = 2$) to solve for $k$.
 4. **Evaluate Sum**: Substitute $k$ back into the formula and evaluate the summation (arithmetic or geometric progression).
@@ -420,47 +376,47 @@ In the **Iteration Method** (also called repeated substitution or backward subst
 In a **Recursion Tree**, each node represents the cost of a single subproblem in the recursive call hierarchy:
 1. **Root**: Cost of dividing and combining at initial problem size $n$ ($f(n)$).
 2. **Depth $i$**: $a^i$ subproblems, each operating on input size $n / b^i$, each costing $f(n / b^i)$.
-3. **Tree Height**: The problem size reaches 1 when $n / b^h = 1 \implies h = \log_b n$.
-4. **Number of Leaves**: At depth $h = \log_b n$, total leaf count is:
-   $$a^h = a^{\log_b n} = n^{\log_b a}$$
+3. **Tree Height**: The problem size reaches 1 when $n / b^h = 1 \\implies h = \\log_b n$.
+4. **Number of Leaves**: At depth $h = \\log_b n$, total leaf count is:
+   $$a^h = a^{\\log_b n} = n^{\\log_b a}$$
 5. **Total Cost**: Sum of costs across all levels from $i = 0$ to $h$:
-   $$T(n) = \sum_{i=0}^{\log_b n - 1} a^i f(n/b^i) + \Theta(n^{\log_b a})$$
+   $$T(n) = \\sum_{i=0}^{\\log_b n - 1} a^i f(n/b^i) + \\Theta(n^{\\log_b a})$$
 
 ---
 
 ### 3.3 The Master Method (CLRS Ch 4.5)
 
 > **Master Theorem (CLRS Theorem 4.1)**:  
-> Let $a \ge 1$ and $b > 1$ be constants, let $f(n)$ be a function, and let $T(n)$ be defined on the non-negative integers by the recurrence:  
+> Let $a \\ge 1$ and $b > 1$ be constants, let $f(n)$ be a function, and let $T(n)$ be defined on the non-negative integers by the recurrence:  
 > $$T(n) = a T(n/b) + f(n)$$  
-> Where $n/b$ can be interpreted as either $\lfloor n/b \rfloor$ or $\lceil n/b \rceil$.  
-> Let the **watershed function** be $n^{\log_b a}$. Then $T(n)$ has the following asymptotic bounds:
+> Where $n/b$ can be interpreted as either $\\lfloor n/b \\rfloor$ or $\\lceil n/b \\rceil$.  
+> Let the **watershed function** be $n^{\\log_b a}$. Then $T(n)$ has the following asymptotic bounds:
 
 #### Case 1: Leaf-Dominated (Cost grows toward leaves)
-If $f(n) = O(n^{\log_b a - \epsilon})$ for some constant $\epsilon > 0$, then:
-$$T(n) = \Theta(n^{\log_b a})$$
+If $f(n) = O(n^{\\log_b a - \\epsilon})$ for some constant $\\epsilon > 0$, then:
+$$T(n) = \\Theta(n^{\\log_b a})$$
 *(The cost is dominated by the work done at the leaves).*
 
 #### Case 2: Balanced Work (Equal cost across all levels)
-If $f(n) = \Theta(n^{\log_b a} \log^k n)$ for some constant $k \ge 0$, then:
-$$T(n) = \Theta(n^{\log_b a} \log^{k+1} n)$$
-*(Standard Case 2 is when $k = 0$: $f(n) = \Theta(n^{\log_b a}) \implies T(n) = \Theta(n^{\log_b a} \log n)$).*
+If $f(n) = \\Theta(n^{\\log_b a} \\log^k n)$ for some constant $k \\ge 0$, then:
+$$T(n) = \\Theta(n^{\\log_b a} \\log^{k+1} n)$$
+*(Standard Case 2 is when $k = 0$: $f(n) = \\Theta(n^{\\log_b a}) \\implies T(n) = \\Theta(n^{\\log_b a} \\log n)$).*
 
 #### Case 3: Root-Dominated (Cost dominated by root division)
-If $f(n) = \Omega(n^{\log_b a + \epsilon})$ for some constant $\epsilon > 0$, **AND** if $f(n)$ satisfies the **Regularity Condition**:
-$$a \cdot f(n/b) \le c \cdot f(n) \quad \text{for some constant } c < 1 \text{ and all sufficiently large } n$$
+If $f(n) = \\Omega(n^{\\log_b a + \\epsilon})$ for some constant $\\epsilon > 0$, **AND** if $f(n)$ satisfies the **Regularity Condition**:
+$$a \\cdot f(n/b) \\le c \\cdot f(n) \\quad \\text{for some constant } c < 1 \\text{ and all sufficiently large } n$$
 Then:
-$$T(n) = \Theta(f(n))$$
+$$T(n) = \\Theta(f(n))$$
 
 #### Limitations & When Master Method Fails:
 The Master Method does **NOT** apply if:
 1. $a$ is not constant (e.g. $T(n) = n T(n/2) + n$).
-2. $b \le 1$ (e.g. $T(n) = T(n-1) + 1$ — subtracting recurrence, not dividing).
+2. $b \\le 1$ (e.g. $T(n) = T(n-1) + 1$ — subtracting recurrence, not dividing).
 3. $f(n)$ is not polynomially bounded (e.g. $T(n) = 2T(n/2) + 2^n$).
 4. **The Polynomial Gap Trap (GATE / UGC NET)**:  
-   Consider $T(n) = 2T(n/2) + \frac{n}{\log n}$.  
-   Here $a=2, b=2 \implies n^{\log_2 2} = n^1$. The ratio $f(n) / n = 1/\log n$.  
-   Although $f(n) < n$, it is **not polynomially smaller** by a factor of $n^\epsilon$ for any $\epsilon > 0$! Master Theorem Case 1 does NOT apply.
+   Consider $T(n) = 2T(n/2) + \\frac{n}{\\log n}$.  
+   Here $a=2, b=2 \\implies n^{\\log_2 2} = n^1$. The ratio $f(n) / n = 1/\\log n$.  
+   Although $f(n) < n$, it is **not polynomially smaller** by a factor of $n^{\\epsilon}$ for any $\\epsilon > 0$! Master Theorem Case 1 does NOT apply.
 
 ---
 
@@ -478,100 +434,55 @@ The **Divide-and-Conquer** algorithmic paradigm operates on three structural pil
 \`\`\`video
 {
   "id": "C2apEw9pgtw",
-  "title": "2.6.1 Binary Search: Iterative & Recursive Method Trace",
+  "title": "1.2 Binary Search Algorithm with Code and Tracing",
   "channel": "Abdul Bari",
-  "duration": "13:20",
+  "duration": "16:20",
   "speed": "1.25x",
-  "relevance": "CURAJ CIA-1 Q2 Compulsory (5 Marks) \u2b50\u2b50\u2b50\u2b50\u2b50",
-  "takeaway": "Understand how dividing the search space by half at each step yields recurrence T(n) = T(n/2) + 1 and logarithmic time complexity."
+  "relevance": "CURAJ CIA-1 Q2 Compulsory (5 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50 | GATE CS Core",
+  "takeaway": "Understand recursive vs iterative binary search in C, how mid calculation avoids integer overflow, and step-by-step recurrence derivation."
 }
 \`\`\`
 
-#### Pure C Implementation (Iterative & Recursive with Driver):
+Binary Search operates on an already sorted array $A[0 \\dots n-1]$ by comparing the target element with the middle element $A[\\text{mid}]$.
 
 \`\`\`c
-/*
- * ============================================================================
- * Program     : binary_search.c
- * Description : Pure C Implementation of Iterative & Recursive Binary Search
- * Author      : Central University of Rajasthan (CURAJ) MSc CS Curriculum
- * Complexity  : Time: O(log n), Space: O(1) iterative, O(log n) recursive
- * ============================================================================
- */
-
+/* Pure C Implementation of Binary Search: Iterative and Recursive */
 #include <stdio.h>
-#include <stdlib.h>
 
-/*
- * Iterative Binary Search
- * Returns index of target if found in sorted array arr[], else returns -1.
- */
-int binary_search_iterative(const int arr[], int n, int target) {
-    int low = 0;
-    int high = n - 1;
-
+int binary_search_iterative(const int arr[], int n, int key) {
+    int low = 0, high = n - 1;
     while (low <= high) {
-        /* Prevents integer overflow when (low + high) > INT_MAX */
+        /* Avoids potential integer overflow of (low + high) */
         int mid = low + (high - low) / 2;
-
-        if (arr[mid] == target) {
-            return mid; /* Element found at index mid */
-        } else if (arr[mid] < target) {
-            low = mid + 1; /* Target lies in right subarray */
-        } else {
-            high = mid - 1; /* Target lies in left subarray */
-        }
+        if (arr[mid] == key)
+            return mid; /* Key found at index mid */
+        else if (arr[mid] < key)
+            low = mid + 1; /* Discard left half */
+        else
+            high = mid - 1; /* Discard right half */
     }
-    return -1; /* Target not present in array */
+    return -1; /* Key not present in array */
 }
 
-/*
- * Recursive Binary Search
- */
-int binary_search_recursive(const int arr[], int low, int high, int target) {
-    if (low > high) {
-        return -1; /* Base case: search space exhausted */
-    }
-
+int binary_search_recursive(const int arr[], int low, int high, int key) {
+    if (low > high)
+        return -1; /* Base case: sub-array is empty */
     int mid = low + (high - low) / 2;
-
-    if (arr[mid] == target) {
+    if (arr[mid] == key)
         return mid;
-    }
-    if (arr[mid] > target) {
-        return binary_search_recursive(arr, low, mid - 1, target);
-    }
-    return binary_search_recursive(arr, mid + 1, high, target);
-}
-
-int main(void) {
-    int arr[] = {2, 5, 8, 12, 16, 23, 38, 45, 56, 72, 91};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int target = 23;
-
-    printf("Input Sorted Array: ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\n");
-
-    int idx_iter = binary_search_iterative(arr, n, target);
-    printf("[Iterative] Element %d found at index: %d\n", target, idx_iter);
-
-    int idx_rec = binary_search_recursive(arr, 0, n - 1, target);
-    printf("[Recursive] Element %d found at index: %d\n", target, idx_rec);
-
-    return 0;
+    else if (arr[mid] < key)
+        return binary_search_recursive(arr, mid + 1, high, key);
+    else
+        return binary_search_recursive(arr, low, mid - 1, key);
 }
 \`\`\`
 
-#### Recurrence Formulation & Derivation:
-- **Recurrence Equation**:
-  $$T(n) = T\left(\left\lfloor \frac{n}{2} \right\rfloor\right) + \Theta(1)$$
-- **Base Case**: $T(1) = \Theta(1)$
-- **Master Method Proof**:
-  - $a = 1, b = 2, f(n) = \Theta(1) = \Theta(n^0)$
-  - Watershed function: $n^{\log_b a} = n^{\log_2 1} = n^0 = 1$
-  - Since $f(n) = \Theta(n^{\log_b a})$, Case 2 applies with $k = 0$:
-    $$T(n) = \Theta(n^0 \log n) = \mathbf{\Theta(\log_2 n)}$$
+#### Recurrence & Time Complexity:
+- Recurrence: $T(n) = T(\\lfloor n/2 \\rfloor) + \\Theta(1)$
+- By Master Theorem: $a=1, b=2, f(n)=1 \\implies n^{\\log_2 1} = n^0 = 1$. Case 2 ($k=0$):
+  $$T(n) = \\Theta(\\log n)$$
+- Best Case: $\\Theta(1)$ (target element is located at middle on first probe).
+- Space Complexity: Iterative is $O(1)$; Recursive is $O(\\log n)$ due to call stack frames.
 
 ---
 
@@ -580,91 +491,59 @@ int main(void) {
 \`\`\`video
 {
   "id": "mB5HXBb_HY8",
-  "title": "2.7.2 Merge Sort Algorithm, Recurrence & Space Complexity",
+  "title": "2.6.1 Merge Sort Algorithm with Divide and Conquer Analysis",
   "channel": "Abdul Bari",
-  "duration": "21:10",
+  "duration": "24:10",
   "speed": "1.25x",
-  "relevance": "CURAJ Semester Exams & UGC NET JRF \u2b50\u2b50\u2b50\u2b50\u2b50",
-  "takeaway": "Trace the recursive division into single elements and observe how linear merging achieves O(n log n) total time with O(n) temporary space."
+  "relevance": "CURAJ Semester Theory (10 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50 | GATE CS / UGC NET",
+  "takeaway": "Understand two-way merge procedure in C, auxiliary memory requirements, stability properties, and recursion tree height log2 n."
 }
 \`\`\`
 
-#### Pure C Implementation:
+Merge Sort divides the array into two equal halves, recursively sorts each half, and merges the two sorted halves using an auxiliary buffer.
 
 \`\`\`c
-/*
- * ============================================================================
- * Program     : merge_sort.c
- * Description : Pure C Implementation of Merge Sort with Dynamic Buffer
- * Complexity  : Time: O(n log n) everywhere, Auxiliary Space: O(n)
- * ============================================================================
- */
-
+/* Pure C Implementation of Merge Sort with Dynamic Buffer Allocation */
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Merges two sorted subarrays arr[l..m] and arr[m+1..r] */
-void merge(int arr[], int l, int m, int r) {
-    int n1 = m - l + 1;
-    int n2 = r - m;
+void merge(int arr[], int low, int mid, int high) {
+    int i = low, j = mid + 1, k = 0;
+    int size = high - low + 1;
+    int *temp = (int *)malloc(size * sizeof(int));
+    if (!temp) return;
 
-    /* Dynamic allocation of auxiliary arrays */
-    int *L = (int *)malloc(n1 * sizeof(int));
-    int *R = (int *)malloc(n2 * sizeof(int));
-
-    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
-    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
-
-    int i = 0, j = 0, k = l;
-    while (i < n1 && j < n2) {
-        /* Stability preserved by <= */
-        if (L[i] <= R[j]) {
-            arr[k++] = L[i++];
+    while (i <= mid && j <= high) {
+        if (arr[i] <= arr[j]) { /* <= ensures stability */
+            temp[k++] = arr[i++];
         } else {
-            arr[k++] = R[j++];
+            temp[k++] = arr[j++];
         }
     }
+    while (i <= mid)  temp[k++] = arr[i++];
+    while (j <= high) temp[k++] = arr[j++];
 
-    /* Copy remaining elements */
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
-
-    free(L);
-    free(R);
-}
-
-void merge_sort(int arr[], int l, int r) {
-    if (l < r) {
-        int m = l + (r - l) / 2;
-        merge_sort(arr, l, m);
-        merge_sort(arr, m + 1, r);
-        merge(arr, l, m, r);
+    for (i = 0; i < size; i++) {
+        arr[low + i] = temp[i];
     }
+    free(temp);
 }
 
-int main(void) {
-    int arr[] = {38, 27, 43, 3, 9, 82, 10};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Before MergeSort: ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\n");
-
-    merge_sort(arr, 0, n - 1);
-
-    printf("After MergeSort : ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\n");
-
-    return 0;
+void merge_sort(int arr[], int low, int high) {
+    if (low < high) {
+        int mid = low + (high - low) / 2;
+        merge_sort(arr, low, mid);
+        merge_sort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
 }
 \`\`\`
 
-#### Recurrence & Complexity:
-- Recurrence: $T(n) = 2T(n/2) + \Theta(n)$
-- Master Theorem: $a=2, b=2, f(n)=\Theta(n) \implies n^{\log_2 2} = n^1$. Case 2 applies:
-  $$T(n) = \mathbf{\Theta(n \log n)}$$
-- **Auxiliary Space**: $\Theta(n)$ buffer required during merge. Merge Sort is **not in-place**, but is **stable**.
+#### Recurrence & Time Complexity:
+- Recurrence: $T(n) = 2T(n/2) + \\Theta(n)$
+- By Master Theorem: $a=2, b=2, f(n)=n \\implies n^{\\log_2 2} = n^1 = n$. Case 2 ($k=0$):
+  $$T(n) = \\Theta(n \\log n)$$
+- **Properties**: Best, Worst, and Average time are all $\\Theta(n \\log n)$. Merge sort is **stable**, but requires $\\Theta(n)$ auxiliary space.
 
 ---
 
@@ -673,41 +552,29 @@ int main(void) {
 \`\`\`video
 {
   "id": "7h1s2SojIRw",
-  "title": "2.8.1 QuickSort Algorithm: Partitioning & Complexity Analysis",
+  "title": "2.8.1 QuickSort Algorithm: Partitioning, Best and Worst Case Analysis",
   "channel": "Abdul Bari",
-  "duration": "24:35",
+  "duration": "26:45",
   "speed": "1.25x",
-  "relevance": "CURAJ Semester 10-Mark Question | GATE CS Partition Analysis",
-  "takeaway": "Learn how in-place partitioning rearranges elements around a pivot, and how randomized pivot selection eliminates the O(n\u00b2) worst-case."
+  "relevance": "CURAJ Semester Theory (10 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50 | GATE CS / UGC NET",
+  "takeaway": "Understand Lomuto vs Hoare partition, worst case when already sorted, and why Randomized QuickSort guarantees expected O(n log n) time."
 }
 \`\`\`
 
-#### Pure C Implementation (Lomuto Partition & Randomized QuickSort):
+Quick Sort selects a pivot element and rearranges the array into two partitions such that all elements in the left partition are $\\le \\text{pivot}$ and all elements in the right partition are $\\ge \\text{pivot}$.
 
 \`\`\`c
-/*
- * ============================================================================
- * Program     : quick_sort.c
- * Description : Pure C Implementation of QuickSort and Randomized QuickSort
- * Author      : Central University of Rajasthan (CURAJ) Curriculum
- * ============================================================================
- */
-
+/* Pure C Implementation of Quick Sort with Lomuto Partition & Randomized Pivot */
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+static void swap(int *a, int *b) {
+    int t = *a; *a = *b; *b = t;
 }
 
-/* Lomuto Partition Scheme: Pivot chosen as arr[high] */
-int partition_lomuto(int arr[], int low, int high) {
+int lomuto_partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = low - 1;
-
     for (int j = low; j < high; j++) {
         if (arr[j] <= pivot) {
             i++;
@@ -715,50 +582,31 @@ int partition_lomuto(int arr[], int low, int high) {
         }
     }
     swap(&arr[i + 1], &arr[high]);
-    return i + 1; /* Return final position of pivot */
+    return i + 1;
 }
 
-/* Randomized Partition: Selects a pivot uniformly at random */
-int partition_random(int arr[], int low, int high) {
-    int random_idx = low + rand() % (high - low + 1);
-    swap(&arr[random_idx], &arr[high]); /* Swap random element to end */
-    return partition_lomuto(arr, low, high);
+int randomized_partition(int arr[], int low, int high) {
+    int rand_idx = low + rand() % (high - low + 1);
+    swap(&arr[rand_idx], &arr[high]);
+    return lomuto_partition(arr, low, high);
 }
 
 void quick_sort(int arr[], int low, int high) {
     if (low < high) {
-        int pi = partition_random(arr, low, high);
+        int pi = randomized_partition(arr, low, high);
         quick_sort(arr, low, pi - 1);
         quick_sort(arr, pi + 1, high);
     }
 }
-
-int main(void) {
-    srand((unsigned int)time(NULL));
-    int arr[] = {10, 80, 30, 90, 40, 50, 70};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    printf("Before QuickSort: ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\n");
-
-    quick_sort(arr, 0, n - 1);
-
-    printf("After QuickSort : ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\n");
-
-    return 0;
-}
 \`\`\`
 
-#### Recurrence Analysis:
-- **Worst Case** (Unbalanced partition, e.g. sorted array with end pivot):
-  $$T(n) = T(n-1) + T(0) + \Theta(n) = T(n-1) + \Theta(n) = \mathbf{\Theta(n^2)}$$
-- **Best Case** (Perfect middle split):
-  $$T(n) = 2T(n/2) + \Theta(n) = \mathbf{\Theta(n \log n)}$$
-- **Average Case** (Randomized pivot):
-  $$T_{\text{avg}}(n) = \mathbf{\Theta(n \log n)}$$
+#### Complexity Analysis:
+- **Best Case**: Pivot splits array into two equal halves $n/2$.
+  $$T(n) = 2T(n/2) + \\Theta(n) \\implies \\Theta(n \\log n)$$
+- **Worst Case**: Pivot is always the extreme (minimum or maximum) element (e.g. already sorted array):
+  $$T(n) = T(n-1) + \\Theta(n) \\implies \\Theta(n^2)$$
+- **Average Case (CLRS Ch 7.4)**: Under uniform random permutations, expected comparisons = $2n \\ln n \\approx 1.386 n \\log_2 n \\implies \\Theta(n \\log n)$.
+- **Space**: In-place data movement, but stack space is $O(\\log n)$ on average and $O(n)$ worst case.
 
 ---
 
@@ -767,24 +615,21 @@ int main(void) {
 \`\`\`video
 {
   "id": "0oJyNmEbS4w",
-  "title": "2.9 Strassen's Matrix Multiplication: 7 Products Subcube Method",
+  "title": "2.5.1 Strassen's Matrix Multiplication Algorithm",
   "channel": "Abdul Bari",
-  "duration": "18:50",
+  "duration": "22:15",
   "speed": "1.25x",
-  "relevance": "CURAJ CIA-1 Q4 Direct Recurrence Formulation \u2b50\u2b50\u2b50\u2b50\u2b50",
-  "takeaway": "Understand why reducing submatrix multiplications from 8 to 7 drops the asymptotic complexity from O(n\u00b3) to O(n^2.807)."
+  "relevance": "CURAJ CIA-1 Q4 (5 Marks) & End-Sem (10 Marks) \\u2b50\\u2b50\\u2b50\\u2b50\\u2b50",
+  "takeaway": "Understand how Volker Strassen reduced 8 multiplications to 7 submatrix products P1-P7, deriving T(n) = 7T(n/2) + Theta(n^2) = Theta(n^2.807)."
 }
 \`\`\`
 
-#### Conceptual Breakthrough:
-Standard block matrix multiplication partitions two $n \times n$ matrices $A$ and $B$ into four $n/2 \times n/2$ submatrices:
-$$\begin{pmatrix} C_{11} & C_{12} \\ C_{21} & C_{22} \end{pmatrix} = \begin{pmatrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{pmatrix} \begin{pmatrix} B_{11} & B_{12} \\ B_{21} & B_{22} \end{pmatrix}$$
+To multiply two $n \\times n$ matrices $A$ and $B$ where $n$ is a power of 2, standard block division partitions them into $(n/2) \\times (n/2)$ submatrices:
+$$\\begin{pmatrix} C_{11} & C_{12} \\\\ C_{21} & C_{22} \\end{pmatrix} = \\begin{pmatrix} A_{11} & A_{12} \\\\ A_{21} & A_{22} \\end{pmatrix} \\begin{pmatrix} B_{11} & B_{12} \\\\ B_{21} & B_{22} \\end{pmatrix}$$
 
-The naive block approach requires **8 recursive multiplications** and 4 additions:
-$$T(n) = 8T(n/2) + \Theta(n^2) \implies n^{\log_2 8} = n^3 \implies T(n) = \Theta(n^3)$$
-
-Volker Strassen (1969) discovered that by taking clever linear combinations, one can compute $C$ with only **7 submatrix multiplications** ($P_1$ through $P_7$) and 18 matrix additions:
-
+- **Naive Divide & Conquer**: Computes 8 submatrix multiplications:
+  $$T(n) = 8 T(n/2) + \\Theta(n^2) \\implies T(n) = \\Theta(n^{\\log_2 8}) = \\Theta(n^3)$$
+- **Volker Strassen's Breakthrough (1969)**: By computing **7 products ($P_1 \\dots P_7$)** instead of 8 using clever linear combinations:
 $$P_1 = A_{11} (B_{12} - B_{22})$$
 $$P_2 = (A_{11} + A_{12}) B_{22}$$
 $$P_3 = (A_{21} + A_{22}) B_{11}$$
@@ -793,17 +638,17 @@ $$P_5 = (A_{11} + A_{22}) (B_{11} + B_{22})$$
 $$P_6 = (A_{12} - A_{22}) (B_{21} + B_{22})$$
 $$P_7 = (A_{11} - A_{21}) (B_{11} + B_{12})$$
 
-Then the quadrants of $C$ are:
+The quadrant submatrices of $C$ are reconstructed via additions and subtractions:
 $$C_{11} = P_5 + P_4 - P_2 + P_6$$
 $$C_{12} = P_1 + P_2$$
 $$C_{21} = P_3 + P_4$$
 $$C_{22} = P_1 + P_5 - P_3 - P_7$$
 
 #### Recurrence & Master Theorem Derivation:
-$$T(n) = 7 T(n/2) + \Theta(n^2)$$
-- Watershed function: $n^{\log_2 7} \approx n^{2.807354...}$
-- Since $f(n) = \Theta(n^2) = O(n^{\log_2 7 - \epsilon})$ where $\epsilon = \log_2 7 - 2 \approx 0.807 > 0$, Master Theorem Case 1 applies:
-$$T(n) = \mathbf{\Theta\left(n^{\log_2 7}\right) \approx \Theta(n^{2.807})}$$
+$$T(n) = 7 T(n/2) + \\Theta(n^2)$$
+- Watershed function: $n^{\\log_2 7} \\approx n^{2.807354...}$
+- Since $f(n) = \\Theta(n^2) = O(n^{\\log_2 7 - \\epsilon})$ where $\\epsilon = \\log_2 7 - 2 \\approx 0.807 > 0$, Master Theorem Case 1 applies:
+$$T(n) = \\Theta\\left(n^{\\log_2 7}\\right) \\approx \\Theta(n^{2.807})$$
 *(Notice: this exact recurrence $T(n) = 7T(n/2) + an^2$ is Question 4 on the official CURAJ CIA-1 2024 Examination Paper!)*
 
 ---
@@ -815,7 +660,7 @@ To find both the maximum and minimum elements in an array of $n$ numbers:
   - Compare elements in pairs.
   - Compare the larger element with the current maximum.
   - Compare the smaller element with the current minimum.
-  - **Total Comparisons**: Exactly $\lceil 3n/2 \rceil - 2$ comparisons (a 25% reduction in comparison operations!).
+  - **Total Comparisons**: Exactly $\\lceil 3n/2 \\rceil - 2$ comparisons (a 25% reduction in comparison operations!).
 
 \`\`\`c
 /* Pure C implementation of Pairwise Simultaneous Min-Max */
@@ -859,16 +704,16 @@ MinMax find_min_max(const int arr[], int low, int high) {
 2. **Optimal Substructure**: An optimal solution to the problem contains within it optimal solutions to subproblems.
 
 ### 5.2 Fractional Knapsack (Greedy) vs. 0/1 Knapsack (Dynamic Programming)
-- In **Fractional Knapsack**, items can be broken into arbitrary fractions. We sort items by value-to-weight density $v_i / w_i$ and greedily consume highest-density items. Solvable in $O(n \log n)$ time.
+- In **Fractional Knapsack**, items can be broken into arbitrary fractions. We sort items by value-to-weight density $v_i / w_i$ and greedily consume highest-density items. Solvable in $O(n \\log n)$ time.
 - In **0/1 Knapsack**, items are indivisible (either take entirely or leave). Greedy fails because taking a high-density item can leave unused weight capacity that lowers total value. Solved via **Dynamic Programming**:
-  $$dp[i][w] = \begin{cases} dp[i-1][w], & \text{if } w_i > w \\ \max(dp[i-1][w], v_i + dp[i-1][w - w_i]), & \text{if } w_i \le w \end{cases}$$
-  Complexity: $O(n \cdot W)$ pseudo-polynomial time.
+  $$dp[i][w] = \\begin{cases} dp[i-1][w], & \\text{if } w_i > w \\\\ \\max(dp[i-1][w], v_i + dp[i-1][w - w_i]), & \\text{if } w_i \\le w \\end{cases}$$
+  Complexity: $O(n \\cdot W)$ pseudo-polynomial time.
 
 \`\`\`c
 /* Pure C implementation of 0/1 Knapsack via Dynamic Programming */
 #include <stdio.h>
 
-int max(int a, int b) { return (a > b) ? a : b; }
+static int knapsack_max(int a, int b) { return (a > b) ? a : b; }
 
 int knapsack_01(int W, const int wt[], const int val[], int n) {
     int dp[n + 1][W + 1];
@@ -877,7 +722,7 @@ int knapsack_01(int W, const int wt[], const int val[], int n) {
             if (i == 0 || w == 0) {
                 dp[i][w] = 0;
             } else if (wt[i - 1] <= w) {
-                dp[i][w] = max(dp[i - 1][w], val[i - 1] + dp[i - 1][w - wt[i - 1]]);
+                dp[i][w] = knapsack_max(dp[i - 1][w], val[i - 1] + dp[i - 1][w - wt[i - 1]]);
             } else {
                 dp[i][w] = dp[i - 1][w];
             }
@@ -899,7 +744,7 @@ int knapsack_01(int W, const int wt[], const int val[], int n) {
 > - **Degree & Branch**: M.Sc. (CS) - I Semester / Integrated M.Sc. (CS) - VII Semester
 > - **Course Code & Title**: **CSC-404 Advanced Algorithms**
 > - **Exam Duration**: 1 Hour | **Maximum Marks**: 20 Marks
-> - **Coverage**: Asymptotic Measures ($\Theta, \Omega, O$), Binary Search Analysis & Recurrence, Master Method, Iteration Method
+> - **Coverage**: Asymptotic Measures ($\\Theta, \\Omega, O$), Binary Search Analysis & Recurrence, Master Method, Iteration Method
 
 ### 📸 Official Examination Question Paper (August 2024)
 
@@ -907,33 +752,33 @@ int knapsack_01(int W, const int wt[], const int val[], int n) {
 
 ---
 
-### Question 1: Give formal definitions for complexity measures - Theta ($\Theta$), Omega ($\Omega$), and big oh ($O$). [5 Marks]
+### Question 1: Give formal definitions for complexity measures - Theta ($\\Theta$), Omega ($\\Omega$), and big oh ($O$). [5 Marks]
 
 > **CURAJ Marking Scheme Rubric**:
 > - **Definition of Big-Oh ($O$) with inequality, constants, and geometric graph**: 1.5 Marks
-> - **Definition of Big-Omega ($\Omega$) with inequality, constants, and graph**: 1.5 Marks
-> - **Definition of Big-Theta ($\Theta$) and Equivalence Theorem**: 2.0 Marks
+> - **Definition of Big-Omega ($\\Omega$) with inequality, constants, and graph**: 1.5 Marks
+> - **Definition of Big-Theta ($\\Theta$) and Equivalence Theorem**: 2.0 Marks
 
-#### Model Solution:
+#### Q1 Model Solution: Formal Definitions of Complexity Measures
 
 ##### 1. Big-Oh ($O$) Notation — Asymptotic Upper Bound:
 For a given function $g(n)$, $O(g(n))$ is defined as:
-$$O(g(n)) = \{f(n) : \exists \text{ positive constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \le f(n) \le c \cdot g(n), \; \forall n \ge n_0\}$$
-- **Significance**: Specifies an asymptotic upper bound. For all input sizes at or beyond $n_0$, the value of $f(n)$ is bounded from above by $c \cdot g(n)$.
-- **Example**: If $f(n) = 3n + 8$, choose $c = 4$ and $n_0 = 8$. Then $3n + 8 \le 4n$ holds $\forall n \ge 8$. Hence $3n + 8 = O(n)$.
+$$O(g(n)) = \\{f(n) : \\exists \\text{ positive constants } c > 0 \\text{ and } n_0 > 0 \\text{ such that } 0 \\le f(n) \\le c \\cdot g(n), \\; \\forall n \\ge n_0\\}$$
+- **Significance**: Specifies an asymptotic upper bound. For all input sizes at or beyond $n_0$, the value of $f(n)$ is bounded from above by $c \\cdot g(n)$.
+- **Example**: If $f(n) = 3n + 8$, choose $c = 4$ and $n_0 = 8$. Then $3n + 8 \\le 4n$ holds $\\forall n \\ge 8$. Hence $3n + 8 = O(n)$.
 
-##### 2. Big-Omega ($\Omega$) Notation — Asymptotic Lower Bound:
-For a given function $g(n)$, $\Omega(g(n))$ is defined as:
-$$\Omega(g(n)) = \{f(n) : \exists \text{ positive constants } c > 0 \text{ and } n_0 > 0 \text{ such that } 0 \le c \cdot g(n) \le f(n), \; \forall n \ge n_0\}$$
-- **Significance**: Specifies an asymptotic lower bound. For all inputs at or beyond $n_0$, the algorithm's running time will take at least $c \cdot g(n)$ steps.
-- **Example**: If $f(n) = 5n^2 - 3n$, choose $c = 4$ and $n_0 = 3$. Then $4n^2 \le 5n^2 - 3n$ holds $\forall n \ge 3$. Hence $5n^2 - 3n = \Omega(n^2)$.
+##### 2. Big-Omega ($\\Omega$) Notation — Asymptotic Lower Bound:
+For a given function $g(n)$, $\\Omega(g(n))$ is defined as:
+$$\\Omega(g(n)) = \\{f(n) : \\exists \\text{ positive constants } c > 0 \\text{ and } n_0 > 0 \\text{ such that } 0 \\le c \\cdot g(n) \\le f(n), \\; \\forall n \\ge n_0\\}$$
+- **Significance**: Specifies an asymptotic lower bound. For all inputs at or beyond $n_0$, the algorithm's running time will take at least $c \\cdot g(n)$ steps.
+- **Example**: If $f(n) = 5n^2 - 3n$, choose $c = 4$ and $n_0 = 3$. Then $4n^2 \\le 5n^2 - 3n$ holds $\\forall n \\ge 3$. Hence $5n^2 - 3n = \\Omega(n^2)$.
 
-##### 3. Big-Theta ($\Theta$) Notation — Asymptotically Tight Bound:
-For a given function $g(n)$, $\Theta(g(n))$ is defined as:
-$$\Theta(g(n)) = \{f(n) : \exists \text{ positive constants } c_1 > 0, c_2 > 0, \text{ and } n_0 > 0 \text{ such that } 0 \le c_1 g(n) \le f(n) \le c_2 g(n), \; \forall n \ge n_0\}$$
+##### 3. Big-Theta ($\\Theta$) Notation — Asymptotically Tight Bound:
+For a given function $g(n)$, $\\Theta(g(n))$ is defined as:
+$$\\Theta(g(n)) = \\{f(n) : \\exists \\text{ positive constants } c_1 > 0, c_2 > 0, \\text{ and } n_0 > 0 \\text{ such that } 0 \\le c_1 g(n) \\le f(n) \\le c_2 g(n), \\; \\forall n \\ge n_0\\}$$
 - **Equivalence Theorem (CLRS Theorem 3.1)**:  
   For any two functions $f(n)$ and $g(n)$:
-  $$f(n) = \Theta(g(n)) \iff f(n) = O(g(n)) \quad \text{and} \quad f(n) = \Omega(g(n))$$
+  $$f(n) = \\Theta(g(n)) \\iff f(n) = O(g(n)) \\quad \\text{and} \\quad f(n) = \\Omega(g(n))$$
 - **Significance**: $f(n)$ is bounded from above and below by constant multiples of $g(n)$. $g(n)$ is an asymptotically tight bound.
 
 ---
@@ -943,9 +788,9 @@ $$\Theta(g(n)) = \{f(n) : \exists \text{ positive constants } c_1 > 0, c_2 > 0, 
 > **CURAJ Marking Scheme Rubric**:
 > - **Correct Binary Search Algorithm / C implementation with loop/recursive condition**: 2 Marks
 > - **Formulation of Recurrence Relation with base case**: 1.5 Marks
-> - **Step-by-step solving of recurrence to $O(\log n)$**: 1.5 Marks
+> - **Step-by-step solving of recurrence to $O(\\log n)$**: 1.5 Marks
 
-#### Model Solution:
+#### Q2 Model Solution: Binary Search Algorithm and Recurrence Analysis
 
 ##### 1. Algorithm for Binary Search (in C):
 \`\`\`c
@@ -965,8 +810,8 @@ int binary_search(const int A[], int n, int key) {
 \`\`\`
 
 ##### 2. Recurrence Relation Formulation:
-In each iteration, binary search performs $O(1)$ comparisons ($A[mid] == key$, $A[mid] < key$) and discards half of the remaining array. Thus:
-$$T(n) = \begin{cases} c_1, & \text{if } n = 1 \\ T\left(\left\lfloor \frac{n}{2} \right\rfloor\right) + c_2, & \text{if } n > 1 \end{cases}$$
+In each iteration, binary search performs $O(1)$ comparisons ($A[\\text{mid}] == \\text{key}$, $A[\\text{mid}] < \\text{key}$) and discards half of the remaining array. Thus:
+$$T(n) = \\begin{cases} c_1, & \\text{if } n = 1 \\\\ T\\left(\\left\\lfloor \\frac{n}{2} \\right\\rfloor\\right) + c_2, & \\text{if } n > 1 \\end{cases}$$
 Where $c_1$ and $c_2$ are positive constants.
 
 ##### 3. Solving the Recurrence (Iteration Method):
@@ -974,114 +819,114 @@ Assume $n = 2^k$ for simplicity:
 $$T(n) = T(n/2) + c_2$$
 $$T(n) = [T(n/4) + c_2] + c_2 = T(n/2^2) + 2c_2$$
 $$T(n) = [T(n/8) + c_2] + 2c_2 = T(n/2^3) + 3c_2$$
-$$...$$
-$$\text{After } k \text{ iterations: } T(n) = T\left(\frac{n}{2^k}\right) + k \cdot c_2$$
+$$\\dots$$
+$$\\text{After } k \\text{ iterations: } T(n) = T\\left(\\frac{n}{2^k}\\right) + k \\cdot c_2$$
 
 The search terminates when the subproblem size becomes $1$:
-$$\frac{n}{2^k} = 1 \implies n = 2^k \implies k = \log_2 n$$
+$$\\frac{n}{2^k} = 1 \\implies n = 2^k \\implies k = \\log_2 n$$
 
-Substitute $k = \log_2 n$ and $T(1) = c_1$:
-$$T(n) = T(1) + c_2 \log_2 n = c_1 + c_2 \log_2 n = \mathbf{\Theta(\log_2 n)}$$
-Hence, the time complexity of Binary Search is **$\Theta(\log n)$**.
+Substitute $k = \\log_2 n$ and $T(1) = c_1$:
+$$T(n) = T(1) + c_2 \\log_2 n = c_1 + c_2 \\log_2 n = \\Theta(\\log_2 n)$$
+Hence, the time complexity of Binary Search is **$\\Theta(\\log n)$**.
 
 ---
 
 ### Question 3: Explain the master method for solving recurrences. Use the master method to solve the following recurrence equation: [5 Marks]
-$$T(n) = T\left(\frac{2n}{3}\right) + 1$$
+$$T(n) = T\\left(\\frac{2n}{3}\\right) + 1$$
 
 > **CURAJ Marking Scheme Rubric**:
 > - **Explanation of Master Method & statement of 3 cases**: 2.5 Marks
-> - **Identification of $a, b, f(n)$, calculation of $n^{\log_b a}$**: 1 Mark
-> - **Matching Case 2 and final solution $\Theta(\log n)$**: 1.5 Marks
+> - **Identification of $a, b, f(n)$, calculation of $n^{\\log_b a}$**: 1 Mark
+> - **Matching Case 2 and final solution $\\Theta(\\log n)$**: 1.5 Marks
 
-#### Model Solution:
+#### Q3 Model Solution: Master Method and Recurrence Solving
 
 ##### 1. Master Method Explanation (CLRS Chapter 4.5):
 The Master Method provides a cookbook recipe for solving divide-and-conquer recurrences of the form:
 $$T(n) = a T(n/b) + f(n)$$
-where $a \ge 1$ is the number of recursive subproblems, $b > 1$ is the factor by which subproblem size is divided, and $f(n)$ is the cost of dividing and combining.
+where $a \\ge 1$ is the number of recursive subproblems, $b > 1$ is the factor by which subproblem size is divided, and $f(n)$ is the cost of dividing and combining.
 
-The solution is determined by comparing $f(n)$ with the watershed function $n^{\log_b a}$:
-- **Case 1**: If $f(n) = O(n^{\log_b a - \epsilon})$ for some $\epsilon > 0$, then $T(n) = \Theta(n^{\log_b a})$.
-- **Case 2**: If $f(n) = \Theta(n^{\log_b a} \log^k n)$ for $k \ge 0$, then $T(n) = \Theta(n^{\log_b a} \log^{k+1} n)$.
-- **Case 3**: If $f(n) = \Omega(n^{\log_b a + \epsilon})$ for $\epsilon > 0$, and $a f(n/b) \le c f(n)$ for $c < 1$, then $T(n) = \Theta(f(n))$.
+The solution is determined by comparing $f(n)$ with the watershed function $n^{\\log_b a}$:
+- **Case 1**: If $f(n) = O(n^{\\log_b a - \\epsilon})$ for some $\\epsilon > 0$, then $T(n) = \\Theta(n^{\\log_b a})$.
+- **Case 2**: If $f(n) = \\Theta(n^{\\log_b a} \\log^k n)$ for $k \\ge 0$, then $T(n) = \\Theta(n^{\\log_b a} \\log^{k+1} n)$.
+- **Case 3**: If $f(n) = \\Omega(n^{\\log_b a + \\epsilon})$ for $\\epsilon > 0$, and $a f(n/b) \\le c f(n)$ for $c < 1$, then $T(n) = \\Theta(f(n))$.
 
-##### 2. Solving $T(n) = T\left(\frac{2n}{3}\right) + 1$:
+##### 2. Solving $T(n) = T\\left(\\frac{2n}{3}\\right) + 1$:
 Rewrite the argument as a division:
-$$T(n) = T\left(\frac{n}{3/2}\right) + 1$$
+$$T(n) = T\\left(\\frac{n}{3/2}\\right) + 1$$
 
 - Parameter identification:
-  $$a = 1, \quad b = \frac{3}{2} = 1.5, \quad f(n) = 1$$
-- Compute the watershed exponent $\log_b a$:
-  $$\log_b a = \log_{1.5}(1) = 0$$
-- Evaluate $n^{\log_b a}$:
-  $$n^{\log_b a} = n^0 = 1$$
-- Compare $f(n)$ with $n^{\log_b a}$:
-  $$f(n) = 1 = \Theta(1) = \Theta(n^{\log_b a})$$
+  $$a = 1, \\quad b = \\frac{3}{2} = 1.5, \\quad f(n) = 1$$
+- Compute the watershed exponent $\\log_b a$:
+  $$\\log_b a = \\log_{1.5}(1) = 0$$
+- Evaluate $n^{\\log_b a}$:
+  $$n^{\\log_b a} = n^0 = 1$$
+- Compare $f(n)$ with $n^{\\log_b a}$:
+  $$f(n) = 1 = \\Theta(1) = \\Theta(n^{\\log_b a})$$
 
 This corresponds exactly to **Master Method Case 2** with $k = 0$:
-$$T(n) = \Theta(n^{\log_b a} \log^{0+1} n) = \Theta(n^0 \log n) = \mathbf{\Theta(\log n)}$$
-Hence, the solution is **$\Theta(\log n)$**.
+$$T(n) = \\Theta(n^{\\log_b a} \\log^{0+1} n) = \\Theta(n^0 \\log n) = \\Theta(\\log n)$$
+Hence, the solution is **$\\Theta(\\log n)$**.
 
 ---
 
 ### Question 4: Solve the following recurrence equation using iteration method: [5 Marks]
-$$T(n) = \begin{cases} b, & n \le 2 \\ 7T\left(\frac{n}{2}\right) + an^2, & n > 2 \end{cases}$$
+$$T(n) = \\begin{cases} b, & n \\le 2 \\\\ 7T\\left(\\frac{n}{2}\\right) + an^2, & n > 2 \\end{cases}$$
 where $a$ and $b$ are constants.
 
 > **CURAJ Marking Scheme Rubric**:
 > - **Step-by-step expansion for $k = 1, 2, 3$ iterations**: 2 Marks
 > - **Formulation of general $k$-th iteration term and geometric series**: 1.5 Marks
-> - **Base-case stopping condition $n/2^k = 2$ and asymptotic result $\Theta(n^{\log_2 7})$**: 1.5 Marks
+> - **Base-case stopping condition $n/2^k = 2$ and asymptotic result $\\Theta(n^{\\log_2 7})$**: 1.5 Marks
 
-#### Model Solution:
+#### Q4 Model Solution: Iteration Method Derivation for Strassen Recurrence
 
 ##### 1. Repeated Substitution (Unrolling):
 Given for $n > 2$:
-$$T(n) = 7 T\left(\frac{n}{2}\right) + an^2 \quad \text{--- (1)}$$
+$$T(n) = 7 T\\left(\\frac{n}{2}\\right) + an^2 \\quad \\text{--- (1)}$$
 
 Substitute $n/2$ into the recurrence:
-$$T\left(\frac{n}{2}\right) = 7 T\left(\frac{n}{4}\right) + a\left(\frac{n}{2}\right)^2 = 7 T\left(\frac{n}{4}\right) + \frac{an^2}{4}$$
+$$T\\left(\\frac{n}{2}\\right) = 7 T\\left(\\frac{n}{4}\\right) + a\\left(\\frac{n}{2}\\right)^2 = 7 T\\left(\\frac{n}{4}\\right) + \\frac{an^2}{4}$$
 
 Substitute into equation (1):
-$$T(n) = 7 \left[7 T\left(\frac{n}{4}\right) + \frac{an^2}{4}\right] + an^2 = 7^2 T\left(\frac{n}{4}\right) + an^2 \left[1 + \frac{7}{4}\right] \quad \text{--- (2)}$$
+$$T(n) = 7 \\left[7 T\\left(\\frac{n}{4}\\right) + \\frac{an^2}{4}\\right] + an^2 = 7^2 T\\left(\\frac{n}{4}\\right) + an^2 \\left[1 + \\frac{7}{4}\\right] \\quad \\text{--- (2)}$$
 
 Substitute $n/4$ into the recurrence:
-$$T\left(\frac{n}{4}\right) = 7 T\left(\frac{n}{8}\right) + a\left(\frac{n}{4}\right)^2 = 7 T\left(\frac{n}{8}\right) + \frac{an^2}{16}$$
+$$T\\left(\\frac{n}{4}\\right) = 7 T\\left(\\frac{n}{8}\\right) + a\\left(\\frac{n}{4}\\right)^2 = 7 T\\left(\\frac{n}{8}\\right) + \\frac{an^2}{16}$$
 
 Substitute into equation (2):
-$$T(n) = 7^2 \left[7 T\left(\frac{n}{8}\right) + \frac{an^2}{16}\right] + an^2 \left[1 + \frac{7}{4}\right]$$
-$$T(n) = 7^3 T\left(\frac{n}{8}\right) + an^2 \left[1 + \frac{7}{4} + \left(\frac{7}{4}\right)^2\right] \quad \text{--- (3)}$$
+$$T(n) = 7^2 \\left[7 T\\left(\\frac{n}{8}\\right) + \\frac{an^2}{16}\\right] + an^2 \\left[1 + \\frac{7}{4}\\right]$$
+$$T(n) = 7^3 T\\left(\\frac{n}{8}\\right) + an^2 \\left[1 + \\frac{7}{4} + \\left(\\frac{7}{4}\\right)^2\\right] \\quad \\text{--- (3)}$$
 
 ##### 2. General $k$-th Iteration Pattern:
-$$T(n) = 7^k T\left(\frac{n}{2^k}\right) + an^2 \sum_{i=0}^{k-1} \left(\frac{7}{4}\right)^i \quad \text{--- (4)}$$
+$$T(n) = 7^k T\\left(\\frac{n}{2^k}\\right) + an^2 \\sum_{i=0}^{k-1} \\left(\\frac{7}{4}\\right)^i \\quad \\text{--- (4)}$$
 
 ##### 3. Applying the Base Case:
-The recurrence stops when the subproblem size satisfies the base condition $n \le 2$:
-$$\frac{n}{2^k} = 2 \implies n = 2^{k+1} \implies k + 1 = \log_2 n \implies k = \log_2 n - 1$$
+The recurrence stops when the subproblem size satisfies the base condition $n \\le 2$:
+$$\\frac{n}{2^k} = 2 \\implies n = 2^{k+1} \\implies k + 1 = \\log_2 n \\implies k = \\log_2 n - 1$$
 At this point, $T(n/2^k) = T(2) = b$.
 
 Evaluate the first term $7^k T(2)$:
-$$7^k = 7^{\log_2 n - 1} = \frac{7^{\log_2 n}}{7} = \frac{n^{\log_2 7}}{7}$$
-$$\implies 7^k T(2) = \frac{b}{7} n^{\log_2 7}$$
+$$7^k = 7^{\\log_2 n - 1} = \\frac{7^{\\log_2 n}}{7} = \\frac{n^{\\log_2 7}}{7}$$
+$$\\implies 7^k T(2) = \\frac{b}{7} n^{\\log_2 7}$$
 
 ##### 4. Evaluating the Geometric Progression:
-The series $\sum_{i=0}^{k-1} (7/4)^i$ is a geometric series with initial term $1$, ratio $r = 7/4 > 1$, and $k$ terms:
-$$\sum_{i=0}^{k-1} \left(\frac{7}{4}\right)^i = \frac{(7/4)^k - 1}{7/4 - 1} = \frac{(7/4)^k - 1}{3/4} = \frac{4}{3} \left[\left(\frac{7}{4}\right)^k - 1\right] = \frac{4}{3} \left[\frac{7^k}{4^k} - 1\right]$$
+The series $\\sum_{i=0}^{k-1} (7/4)^i$ is a geometric series with initial term $1$, ratio $r = 7/4 > 1$, and $k$ terms:
+$$\\sum_{i=0}^{k-1} \\left(\\frac{7}{4}\\right)^i = \\frac{(7/4)^k - 1}{7/4 - 1} = \\frac{(7/4)^k - 1}{3/4} = \\frac{4}{3} \\left[\\left(\\frac{7}{4}\\right)^k - 1\\right] = \\frac{4}{3} \\left[\\frac{7^k}{4^k} - 1\\right]$$
 
 Note that:
-$$4^k = 4^{\log_2 n - 1} = \frac{(2^{\log_2 n})^2}{4} = \frac{n^2}{4}, \qquad 7^k = \frac{n^{\log_2 7}}{7}$$
-$$\implies \frac{7^k}{4^k} = \frac{n^{\log_2 7} / 7}{n^2 / 4} = \frac{4}{7} \cdot \frac{n^{\log_2 7}}{n^2}$$
+$$4^k = 4^{\\log_2 n - 1} = \\frac{(2^{\\log_2 n})^2}{4} = \\frac{n^2}{4}, \\qquad 7^k = \\frac{n^{\\log_2 7}}{7}$$
+$$\\implies \\frac{7^k}{4^k} = \\frac{n^{\\log_2 7} / 7}{n^2 / 4} = \\frac{4}{7} \\cdot \\frac{n^{\\log_2 7}}{n^2}$$
 
 Multiply by $a n^2$:
-$$a n^2 \cdot \frac{4}{3} \left[\frac{4}{7} \cdot \frac{n^{\log_2 7}}{n^2} - 1\right] = \frac{4}{3} a n^2 \left[\frac{4}{7} \cdot \frac{n^{\log_2 7}}{n^2}\right] - \frac{4}{3} a n^2 = \frac{16 a}{21} n^{\log_2 7} - \frac{4 a}{3} n^2$$
+$$a n^2 \\cdot \\frac{4}{3} \\left[\\frac{4}{7} \\cdot \\frac{n^{\\log_2 7}}{n^2} - 1\\right] = \\frac{4}{3} a n^2 \\left[\\frac{4}{7} \\cdot \\frac{n^{\\log_2 7}}{n^2}\\right] - \\frac{4}{3} a n^2 = \\frac{16 a}{21} n^{\\log_2 7} - \\frac{4 a}{3} n^2$$
 
 ##### 5. Final Asymptotic Solution:
 Summing both terms into equation (4):
-$$T(n) = \frac{b}{7} n^{\log_2 7} + \frac{16 a}{21} n^{\log_2 7} - \frac{4 a}{3} n^2 = \left(\frac{b}{7} + \frac{16 a}{21}\right) n^{\log_2 7} - \frac{4 a}{3} n^2$$
+$$T(n) = \\frac{b}{7} n^{\\log_2 7} + \\frac{16 a}{21} n^{\\log_2 7} - \\frac{4 a}{3} n^2 = \\left(\\frac{b}{7} + \\frac{16 a}{21}\\right) n^{\\log_2 7} - \\frac{4 a}{3} n^2$$
 
-Since $\log_2 7 \approx 2.80735 > 2$, the term $n^{\log_2 7}$ asymptotically dominates $n^2$. Therefore:
-$$T(n) = \mathbf{\Theta\left(n^{\log_2 7}\right) \approx \Theta(n^{2.807})}$$
+Since $\\log_2 7 \\approx 2.80735 > 2$, the term $n^{\\log_2 7}$ asymptotically dominates $n^2$. Therefore:
+$$T(n) = \\Theta\\left(n^{\\log_2 7}\\right) \\approx \\Theta(n^{2.807})$$
 *(This is the exact derivation of Strassen's Matrix Multiplication complexity!)*
 
 ---
@@ -1091,12 +936,11 @@ $$T(n) = \mathbf{\Theta\left(n^{\log_2 7}\right) \approx \Theta(n^{2.807})}$$
 ### 7.1 High-Yield Examination Points & Recurrent Traps
 1. **Big-$O$ Is NOT 'Worst Case'**:
    - Big-$O$ is an **asymptotic upper bound**, not a case. It can bound best, worst, or average cases.
-   - Saying 'QuickSort's best-case time complexity is $O(n \log n)$' is 100% mathematically correct!
+   - Saying 'QuickSort best-case time complexity is $O(n \\log n)$' is 100% mathematically correct!
 2. **Comparison-Based Sorting Lower Bound**:
-   - Any comparison-based sorting algorithm requires at least $\Omega(n \log n)$ comparisons in the worst case (proven by the binary decision tree model of height $\lceil \log_2(n!) \rceil \ge n \log_2(n/e)$).
+   - Any comparison-based sorting algorithm requires at least $\\Omega(n \\log n)$ comparisons in the worst case (proven by the binary decision tree model of height $\\lceil \\log_2(n!) \\rceil \\ge n \\log_2(n/e)$).
 3. **Master Theorem Case Gaps**:
-   - Remember that the condition $f(n) = O(n^{\log_b a - \epsilon})$ requires a **polynomial** difference ($
-^\epsilon$). It is not enough for $f(n)$ to be simply smaller than $n^{\log_b a}$.
+   - Remember that the condition $f(n) = O(n^{\\log_b a - \\epsilon})$ requires a **polynomial** difference ($n^{\\epsilon}$). It is not enough for $f(n)$ to be simply smaller than $n^{\\log_b a}$.
 4. **Inversion Counting**:
    - An inversion in array $A$ is a pair $(i, j)$ such that $i < j$ and $A[i] > A[j]$. Insertion Sort makes exactly (number of inversions) $+ (n - 1)$ comparisons.
 
@@ -1108,24 +952,24 @@ $$T(n) = \mathbf{\Theta\left(n^{\log_2 7}\right) \approx \Theta(n^{2.807})}$$
 
 | Notation | Meaning | Mathematical Criterion | Limit Analogy |
 |:---:|:---|:---|:---:|
-| **$O$** | Asymptotic Upper Bound | $f(n) \le c \cdot g(n)$ for $n \ge n_0$ | $\le$ |
-| **$\Omega$** | Asymptotic Lower Bound | $f(n) \ge c \cdot g(n)$ for $n \ge n_0$ | $\ge$ |
-| **$\Theta$** | Asymptotically Tight Bound | $c_1 g(n) \le f(n) \le c_2 g(n)$ for $n \ge n_0$ | $=$ |
-| **$o$** | Strict Asymptotic Upper Bound | $\forall c > 0, f(n) < c \cdot g(n)$ for $n \ge n_0$ | $<$ |
-| **$\omega$** | Strict Asymptotic Lower Bound | $\forall c > 0, f(n) > c \cdot g(n)$ for $n \ge n_0$ | $>$ |
+| **$O$** | Asymptotic Upper Bound | $f(n) \\le c \\cdot g(n)$ for $n \\ge n_0$ | $\\le$ |
+| **$\\Omega$** | Asymptotic Lower Bound | $f(n) \\ge c \\cdot g(n)$ for $n \\ge n_0$ | $\\ge$ |
+| **$\\Theta$** | Asymptotically Tight Bound | $c_1 g(n) \\le f(n) \\le c_2 g(n)$ for $n \\ge n_0$ | $=$ |
+| **$o$** | Strict Asymptotic Upper Bound | $\\forall c > 0, f(n) < c \\cdot g(n)$ for $n \\ge n_0$ | $<$ |
+| **$\\omega$** | Strict Asymptotic Lower Bound | $\\forall c > 0, f(n) > c \\cdot g(n)$ for $n \\ge n_0$ | $>$ |
 
 ---
 
 ### 8.2 Master Theorem Quick Lookup Matrix
 
-| Recurrence Form | Watershed $n^{\log_b a}$ | $f(n)$ Comparison | Case | Final Bound $T(n)$ | Canonical Example |
+| Recurrence Form | Watershed $n^{\\log_b a}$ | $f(n)$ Comparison | Case | Final Bound $T(n)$ | Canonical Example |
 |---|:---:|:---:|:---:|:---:|---|
-| $T(n) = T(2n/3) + 1$ | $n^0 = 1$ | $f(n) = \Theta(1)$ | Case 2 ($k=0$) | $\Theta(\log n)$ | Binary Search on 2/3 scale |
-| $T(n) = T(n/2) + 1$ | $n^0 = 1$ | $f(n) = \Theta(1)$ | Case 2 ($k=0$) | $\Theta(\log n)$ | **Binary Search** |
-| $T(n) = 2T(n/2) + n$ | $n^1 = n$ | $f(n) = \Theta(n)$ | Case 2 ($k=0$) | $\Theta(n \log n)$ | **Merge Sort** |
-| $T(n) = 7T(n/2) + n^2$ | $n^{\log_2 7} \approx n^{2.807}$ | $f(n) = O(n^{2.807 - \epsilon})$ | Case 1 | $\Theta(n^{\log_2 7})$ | **Strassen's Matrix Multiply** |
-| $T(n) = 8T(n/2) + n^2$ | $n^3$ | $f(n) = O(n^{3 - \epsilon})$ | Case 1 | $\Theta(n^3)$ | **Naive Block Matrix Multiply** |
-| $T(n) = 3T(n/4) + n^2$ | $n^{\log_4 3} \approx n^{0.79}$ | $f(n) = \Omega(n^{0.79 + \epsilon})$ | Case 3 | $\Theta(n^2)$ | Root-dominated recurrence |
+| $T(n) = T(2n/3) + 1$ | $n^0 = 1$ | $f(n) = \\Theta(1)$ | Case 2 ($k=0$) | $\\Theta(\\log n)$ | Binary Search on 2/3 scale |
+| $T(n) = T(n/2) + 1$ | $n^0 = 1$ | $f(n) = \\Theta(1)$ | Case 2 ($k=0$) | $\\Theta(\\log n)$ | **Binary Search** |
+| $T(n) = 2T(n/2) + n$ | $n^1 = n$ | $f(n) = \\Theta(n)$ | Case 2 ($k=0$) | $\\Theta(n \\log n)$ | **Merge Sort** |
+| $T(n) = 7T(n/2) + n^2$ | $n^{\\log_2 7} \\approx n^{2.807}$ | $f(n) = O(n^{2.807 - \\epsilon})$ | Case 1 | $\\Theta(n^{\\log_2 7})$ | **Strassen's Matrix Multiply** |
+| $T(n) = 8T(n/2) + n^2$ | $n^3$ | $f(n) = O(n^{3 - \\epsilon})$ | Case 1 | $\\Theta(n^3)$ | **Naive Block Matrix Multiply** |
+| $T(n) = 3T(n/4) + n^2$ | $n^{\\log_4 3} \\approx n^{0.79}$ | $f(n) = \\Omega(n^{0.79 + \\epsilon})$ | Case 3 | $\\Theta(n^2)$ | Root-dominated recurrence |
 
 ---
 
@@ -1133,13 +977,13 @@ $$T(n) = \mathbf{\Theta\left(n^{\log_2 7}\right) \approx \Theta(n^{2.807})}$$
 
 | Algorithm | Paradigm | Best Time | Average Time | Worst Time | Space | Stable? | In-Place? |
 |---|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Binary Search** | Divide & Conquer | $\Theta(1)$ | $\Theta(\log n)$ | $\Theta(\log n)$ | $O(1)$ | N/A | Yes |
-| **Merge Sort** | Divide & Conquer | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n)$ | **Yes** | No |
-| **Quick Sort** | Divide & Conquer | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n^2)$ | $\Theta(\log n)$ | No | **Yes** |
-| **Randomized QuickSort** | Randomized D&C | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n^2)$ | $\Theta(\log n)$ | No | **Yes** |
-| **Min-Max Selection** | Divide & Conquer | $\lceil 3n/2 \rceil - 2$ | $\lceil 3n/2 \rceil - 2$ | $\lceil 3n/2 \rceil - 2$ | $O(\log n)$ | N/A | Yes |
-| **0/1 Knapsack** | Dynamic Programming | $\Theta(n W)$ | $\Theta(n W)$ | $\Theta(n W)$ | $\Theta(n W)$ | N/A | No |
-| **Fractional Knapsack** | Greedy | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $O(1)$ | N/A | Yes |
+| **Binary Search** | Divide & Conquer | $\\Theta(1)$ | $\\Theta(\\log n)$ | $\\Theta(\\log n)$ | $O(1)$ | N/A | Yes |
+| **Merge Sort** | Divide & Conquer | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $\\Theta(n)$ | **Yes** | No |
+| **Quick Sort** | Divide & Conquer | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $\\Theta(n^2)$ | $\\Theta(\\log n)$ | No | **Yes** |
+| **Randomized QuickSort** | Randomized D&C | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $\\Theta(n^2)$ | $\\Theta(\\log n)$ | No | **Yes** |
+| **Min-Max Selection** | Divide & Conquer | $\\lceil 3n/2 \\rceil - 2$ | $\\lceil 3n/2 \\rceil - 2$ | $\\lceil 3n/2 \\rceil - 2$ | $O(\\log n)$ | N/A | Yes |
+| **0/1 Knapsack** | Dynamic Programming | $\\Theta(n W)$ | $\\Theta(n W)$ | $\\Theta(n W)$ | $\\Theta(n W)$ | N/A | No |
+| **Fractional Knapsack** | Greedy | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $\\Theta(n \\log n)$ | $O(1)$ | N/A | Yes |
 `,
   practiceQuiz: [
     {
