@@ -1,0 +1,754 @@
+/* ==========================================================================
+   CURAJ M.Sc. Computer Science Curriculum Stylesheet
+   Modern, responsive, glassmorphic design matching portfolio theme tokens.
+   ========================================================================== */
+
+.curaj-page-container {
+  min-height: 100vh;
+  background: var(--bg-light);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.curaj-content-wrapper {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* ==========================================
+   Hero Section / Program Highlights Banner
+   ========================================== */
+.curaj-intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.curaj-intro-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #10b981 0%, #3b82f6 100%);
+  border-radius: 16px 0 0 16px;
+}
+
+.curaj-intro-content {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.curaj-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.curaj-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #059669;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.curaj-badge-accent {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.curaj-badge-info {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.curaj-badge-outline {
+  color: var(--text-secondary);
+  background: var(--bg-light);
+  border-color: var(--border);
+}
+
+.curaj-intro-content h2 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  margin: 0 0 0.65rem 0;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.curaj-intro-content p {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.93rem;
+  max-width: 620px;
+}
+
+.curaj-intro-content p strong {
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   Quick Study Hub (Right Column of Hero)
+   ========================================== */
+.curaj-quick-hub {
+  width: 380px;
+  max-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.85rem;
+  box-sizing: border-box;
+}
+
+.curaj-hub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.2rem 0.4rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0.25rem;
+}
+
+.curaj-hub-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.curaj-hub-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+}
+
+.curaj-action-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 9px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.curaj-action-item:hover {
+  transform: translateX(3px);
+  border-color: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.12);
+}
+
+.curaj-action-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.curaj-action-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.icon-ai {
+  background: rgba(139, 92, 246, 0.12);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.icon-algo {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.icon-cia {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.icon-pdf {
+  background: rgba(244, 63, 94, 0.12);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.25);
+}
+
+.curaj-action-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.curaj-action-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.curaj-action-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.curaj-action-arrow {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.curaj-action-item:hover .curaj-action-arrow {
+  color: #10b981;
+  transform: translateX(2px);
+}
+
+/* ==========================================
+   Controls Bar (Tabs & Search)
+   ========================================== */
+.curaj-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.curaj-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.curaj-tab-btn {
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.curaj-tab-btn:hover {
+  background: var(--bg-light);
+  color: var(--heading-color);
+}
+
+.curaj-tab-btn.active {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.curaj-assessments-quick-tab {
+  background: rgba(16, 185, 129, 0.08);
+  color: #10b981;
+  border-color: rgba(16, 185, 129, 0.3);
+  font-weight: 700;
+}
+
+.curaj-assessments-quick-tab:hover {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.curaj-search-box {
+  position: relative;
+  min-width: 260px;
+}
+
+.curaj-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.curaj-search-input {
+  width: 100%;
+  padding: 0.6rem 0.85rem 0.6rem 2.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--heading-color);
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.curaj-search-input:focus {
+  border-color: #10b981;
+}
+
+/* ==========================================
+   Courses Grid
+   ========================================== */
+.curaj-courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.curaj-course-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.curaj-course-card:hover {
+  transform: translateY(-3px);
+  border-color: #10b981;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.curaj-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.curaj-course-code {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+}
+
+.curaj-type-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.curaj-course-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.35;
+}
+
+.curaj-course-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Units Section */
+.curaj-units-section {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.curaj-units-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.6rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.curaj-units-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.curaj-unit-item {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.curaj-unit-item.unit-has-notes {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 6px;
+  padding: 0.4rem 0.55rem;
+}
+
+.curaj-unit-content-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.curaj-unit-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.curaj-bullet {
+  color: #10b981;
+  font-weight: 800;
+  margin-right: 0.25rem;
+}
+
+.curaj-unit-notes-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #10b981;
+  color: #ffffff !important;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+  box-shadow: 0 1px 4px rgba(16, 185, 129, 0.25);
+}
+
+.curaj-unit-notes-pill:hover {
+  background: #059669;
+  transform: scale(1.02);
+}
+
+/* Course Study Notes Box */
+.curaj-card-notes-box {
+  background: var(--bg-light);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.curaj-notes-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.curaj-notes-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.curaj-notes-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.curaj-notes-badge.available {
+  background: rgba(16, 185, 129, 0.15);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.curaj-notes-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669 !important;
+  transition: all 0.2s;
+}
+
+.curaj-notes-link-btn .btn-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.curaj-notes-link-btn .btn-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.curaj-exam-pill {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.curaj-exam-pill.cia {
+  background: rgba(16, 185, 129, 0.2);
+  color: #047857;
+}
+
+.curaj-exam-pill.jrf {
+  background: rgba(99, 102, 241, 0.15);
+  color: #4f46e5;
+}
+
+.curaj-notes-link-btn:hover {
+  background: #10b981;
+  color: #ffffff !important;
+  border-color: #10b981;
+}
+
+.curaj-notes-link-btn:hover .curaj-exam-pill {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Assessment Card Box */
+.curaj-card-assessment-box {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.curaj-assessment-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.curaj-asm-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.curaj-asm-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.curaj-asm-badge.available {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.curaj-asm-badge.upcoming {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text-muted);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.curaj-asm-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary) !important;
+  transition: all 0.2s;
+}
+
+.curaj-asm-link-btn .btn-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.curaj-asm-link-btn:hover {
+  border-color: #10b981;
+  background: var(--bg-light);
+  color: #10b981 !important;
+}
+
+.curaj-asm-link-btn.highlight {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669 !important;
+  font-weight: 700;
+}
+
+.curaj-asm-link-btn.highlight:hover {
+  background: #10b981;
+  color: #ffffff !important;
+}
+
+.curaj-card-action {
+  margin-top: auto;
+}
+
+.curaj-nptel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: filter 0.2s, transform 0.15s;
+}
+
+.curaj-nptel-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.curaj-nptel-btn span {
+  flex: 1;
+  margin-left: 0.6rem;
+}
+
+/* ==========================================
+   Responsive Adaptations
+   ========================================== */
+@media (max-width: 960px) {
+  .curaj-intro-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .curaj-quick-hub {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .curaj-content-wrapper {
+    padding: 1rem;
+  }
+  .curaj-courses-grid {
+    grid-template-columns: 1fr;
+  }
+}
