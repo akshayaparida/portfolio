@@ -63,99 +63,17 @@ export default function CurajMscCsPage() {
             </p>
           </div>
 
-          {/* Clean, Unified Quick Study Hub */}
-          <div className="curaj-quick-hub">
-            <div className="curaj-hub-header">
-              <span className="curaj-hub-title">
-                <i className="fa-solid fa-bolt"></i> Quick Study Access
-              </span>
-              <span className="curaj-hub-badge">Live Modules</span>
-            </div>
-
-            {/* AI Unit 1 */}
-            <Link
-              href="/curaj-msc-cs/ai/unit-1-uninformed-search"
-              className="curaj-action-item active-module"
-            >
-              <div className="curaj-action-left">
-                <div className="curaj-action-icon icon-ai">
-                  <i className="fa-solid fa-brain"></i>
-                </div>
-                <div className="curaj-action-text">
-                  <span className="curaj-action-label">
-                    AI Unit 1: Uninformed Search
-                  </span>
-                  <span className="curaj-action-desc">
-                    Rich &amp; Knight Theory • Notes &amp; Quiz
-                  </span>
-                </div>
-              </div>
-              <i className="fa-solid fa-chevron-right curaj-action-arrow"></i>
-            </Link>
-
-            {/* Algo Unit 1 */}
-            <Link
-              href="/curaj-msc-cs/advanced-algorithms/unit-1-analysis-divide-conquer"
-              className="curaj-action-item active-module"
-            >
-              <div className="curaj-action-left">
-                <div className="curaj-action-icon icon-algo">
-                  <i className="fa-solid fa-code"></i>
-                </div>
-                <div className="curaj-action-text">
-                  <span className="curaj-action-label">
-                    Algo Unit 1: Analysis &amp; Recurrences
-                  </span>
-                  <span className="curaj-action-desc">
-                    Pure C Code • Master Theorem • CIA-1
-                  </span>
-                </div>
-              </div>
-              <i className="fa-solid fa-chevron-right curaj-action-arrow"></i>
-            </Link>
-
-            {/* CIA Assessments Hub */}
-            <Link
-              href="/curaj-msc-cs/assessments"
-              className="curaj-action-item"
-            >
-              <div className="curaj-action-left">
-                <div className="curaj-action-icon icon-cia">
-                  <i className="fa-solid fa-file-circle-check"></i>
-                </div>
-                <div className="curaj-action-text">
-                  <span className="curaj-action-label">
-                    CIA Question Papers Hub
-                  </span>
-                  <span className="curaj-action-desc">
-                    Official CIA-1 &amp; 2 Model Solutions
-                  </span>
-                </div>
-              </div>
-              <i className="fa-solid fa-chevron-right curaj-action-arrow"></i>
-            </Link>
-
-            {/* Download Official PDF */}
+          {/* Official Syllabus PDF Download */}
+          <div className="curaj-intro-actions">
             <a
               href="https://drive.google.com/file/d/1B7TmMHPivoDZptiCfI21Ho3tOt9vFfHu/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="curaj-action-item"
+              className="curaj-pdf-btn"
             >
-              <div className="curaj-action-left">
-                <div className="curaj-action-icon icon-pdf">
-                  <i className="fa-solid fa-file-pdf"></i>
-                </div>
-                <div className="curaj-action-text">
-                  <span className="curaj-action-label">
-                    Official Curriculum PDF
-                  </span>
-                  <span className="curaj-action-desc">
-                    CURAJ Drive Download
-                  </span>
-                </div>
-              </div>
-              <i className="fa-solid fa-arrow-up-right-from-square curaj-action-arrow"></i>
+              <i className="fa-solid fa-file-pdf"></i>
+              <span>Download Official Syllabus PDF</span>
+              <i className="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
           </div>
         </section>
