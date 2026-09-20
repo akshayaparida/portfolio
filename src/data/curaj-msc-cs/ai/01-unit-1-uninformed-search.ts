@@ -122,6 +122,25 @@ export const unit1UninformedSearchModule: LearningModule = {
       ],
       directUrl: "https://www.youtube.com/watch?v=531599865",
     },
+    {
+      id: "lec-cryptarithmetic-send-more-money",
+      title:
+        "CryptArithmetic Problem in AI: SEND + MORE = MONEY Step-by-Step Solution",
+      channel: "Easy Engineering Classes",
+      youtubeId: "aZblDSAx4cg",
+      duration: "14:15",
+      recommendedSpeed: "1.25x",
+      description:
+        "Comprehensive step-by-step tutorial solving the classic Cryptarithmetic puzzle (SEND + MORE = MONEY) in Artificial Intelligence using constraint satisfaction and carry-over deductions.",
+      examRelevance: "CURAJ Semester Exams & UGC NET JRF ⭐⭐⭐⭐⭐",
+      keyTopics: [
+        "Cryptarithmetic Constraints",
+        "Unique Digit Mapping [0-9]",
+        "Carry Propagation Analysis",
+        "SEND + MORE = MONEY Complete Proof",
+      ],
+      directUrl: "https://www.youtube.com/watch?v=aZblDSAx4cg",
+    },
   ],
   resources: [
     {
@@ -155,6 +174,12 @@ export const unit1UninformedSearchModule: LearningModule = {
     {
       title: "Dr. Mahesh Huddar: Missionaries and Cannibals Problem in AI",
       url: "https://www.youtube.com/watch?v=kYJ7Z0wB_P0",
+      type: "video",
+    },
+    {
+      title:
+        "Easy Engineering Classes: Cryptarithmetic SEND + MORE = MONEY Problem in AI",
+      url: "https://www.youtube.com/watch?v=aZblDSAx4cg",
       type: "video",
     },
     {
@@ -220,7 +245,7 @@ export const unit1UninformedSearchModule: LearningModule = {
 | **The 7 Problem Characteristics** | [Dr. Mahesh Huddar: Problem Characteristics in AI](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 10-Mark Compulsory Long Answer: Explain all 7 characteristics with examples | Confusing "ignorable" (theorem proving) with "recoverable" (8-puzzle) steps |
 | **Tic-Tac-Toe 3 Approaches** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 1; Deepak Khemani Ch 2 | 5-Mark: Compare vector lookup, magic square heuristic, and state space minimax | Why Program 2 is smart arithmetic but Program 3 is a true AI technique |
 | **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \ge 4$ vs $x + y < 4$ in pour operations) |
-| **Cryptarithmetic Problem** | [Dr. Mahesh Huddar: Cryptarithmetic Problem in AI](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; Russell & Norvig Ch 6 | 6-Mark: Solve $SEND + MORE = MONEY$ with column constraint deductions | Overlooking that distinct letters must have distinct digits and leading letters $\ne 0$ |
+| **Cryptarithmetic Problem** | [Easy Engineering Classes: Cryptarithmetic SEND+MORE=MONEY](https://www.youtube.com/watch?v=aZblDSAx4cg) | Rich & Knight Ch 2; Russell & Norvig Ch 6 | 6-Mark: Solve $SEND + MORE = MONEY$ with column constraint deductions | Overlooking that distinct letters must have distinct digits and leading letters $\ne 0$ |
 | **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \ge C$ applies to **both** banks whenever $M > 0$ |
 | **6. State Space as Graph: State vs Node** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.3; Khemani Ch 2 | 5-Mark: Differentiate State vs Node; Graph vs Tree search | Generating infinite search tree from finite state graph via cycles |
 | **7. Evaluating Search Strategies** | [Gate Smashers: BFS vs DFS](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4; Khemani Ch 2 | 4-Mark: State 4 criteria (Time, Space, Completeness, Optimality) | Asymptotic complexity parameters $(b, d, m, \epsilon)$ |
@@ -958,13 +983,13 @@ To demonstrate precisely what differentiates a naive non-AI computer program fro
 
 \`\`\`video
 {
-  "id": "Jb-w019Jm9w",
-  "title": "Cryptarithmetic Problem in AI with Step-by-Step Solution",
-  "channel": "Gate Smashers (Varun Singla)",
-  "duration": "12:40",
+  "id": "aZblDSAx4cg",
+  "title": "CryptArithmetic Problem in AI: SEND + MORE = MONEY Step-by-Step Solution",
+  "channel": "Easy Engineering Classes",
+  "duration": "14:15",
   "speed": "1.25x",
   "relevance": "CURAJ Semester Exams & UGC NET JRF ⭐⭐⭐⭐⭐",
-  "takeaway": "Watch this lecture to understand how Cryptarithmetic is formulated as a Constraint Satisfaction Problem (CSP) before studying the column-by-column carry deductions below."
+  "takeaway": "Watch this step-by-step tutorial to master the constraint satisfaction rules and column-by-column carry deductions for solving SEND + MORE = MONEY before studying the formal mathematical proof below."
 }
 \`\`\`
 
