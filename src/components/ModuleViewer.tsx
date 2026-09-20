@@ -11,7 +11,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import MathErrorFallback from "@/components/MathErrorFallback";
 import PracticeQuiz from "@/components/PracticeQuiz";
 import TableOfContents, { slugify } from "@/components/TableOfContents";
-import VideoLectureHub from "@/components/VideoLectureHub";
+import AudioReader from "@/components/AudioReader";
 import { LearningModule } from "@/types/learning";
 import type { Root as MdastRoot, RootContent } from "mdast";
 
@@ -121,17 +121,38 @@ const Heading2 = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => {
   const text = getNodeText(children);
   const id = slugify(text);
+
+  const handleListen = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("study-listen-section", { detail: { heading: text } }),
+      );
+    }
+  };
+
   return (
     <h2 id={id} className="heading-with-anchor heading-h2 group" {...props}>
       <span className="heading-text">{children}</span>
-      <a
-        href={`#${id}`}
-        className="heading-anchor-link"
-        aria-label={`Link to section: ${text}`}
-        title="Direct section link"
-      >
-        #
-      </a>
+      <div className="heading-actions-bar">
+        <button
+          type="button"
+          onClick={handleListen}
+          className="heading-audio-listen-btn"
+          title={`Listen to section: ${text}`}
+          aria-label={`Listen to section: ${text}`}
+        >
+          <i className="fa-solid fa-volume-high"></i>
+          <span className="listen-btn-text">Listen</span>
+        </button>
+        <a
+          href={`#${id}`}
+          className="heading-anchor-link"
+          aria-label={`Link to section: ${text}`}
+          title="Direct section link"
+        >
+          #
+        </a>
+      </div>
     </h2>
   );
 };
@@ -142,17 +163,37 @@ const Heading3 = ({
 }: React.HTMLAttributes<HTMLHeadingElement>) => {
   const text = getNodeText(children);
   const id = slugify(text);
+
+  const handleListen = () => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("study-listen-section", { detail: { heading: text } }),
+      );
+    }
+  };
+
   return (
     <h3 id={id} className="heading-with-anchor heading-h3 group" {...props}>
       <span className="heading-text">{children}</span>
-      <a
-        href={`#${id}`}
-        className="heading-anchor-link"
-        aria-label={`Link to subtopic: ${text}`}
-        title="Direct section link"
-      >
-        #
-      </a>
+      <div className="heading-actions-bar">
+        <button
+          type="button"
+          onClick={handleListen}
+          className="heading-audio-listen-btn compact"
+          title={`Listen to subtopic: ${text}`}
+          aria-label={`Listen to subtopic: ${text}`}
+        >
+          <i className="fa-solid fa-volume-high"></i>
+        </button>
+        <a
+          href={`#${id}`}
+          className="heading-anchor-link"
+          aria-label={`Link to subtopic: ${text}`}
+          title="Direct section link"
+        >
+          #
+        </a>
+      </div>
     </h3>
   );
 };
@@ -422,6 +463,13 @@ export default function ModuleViewer({
 
           <h2 className="module-title">{module.title}</h2>
           <p className="module-description">{module.description}</p>
+
+          {/* Text-to-Speech Audio Reader */}
+          <AudioReader
+            content={module.detailedContent}
+            moduleTitle={module.title}
+            moduleDescription={module.description}
+          />
         </header>
 
         {/* Theory & Markdown Content */}
