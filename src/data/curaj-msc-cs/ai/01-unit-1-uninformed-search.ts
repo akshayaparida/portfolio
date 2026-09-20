@@ -221,39 +221,39 @@ export const unit1UninformedSearchModule: LearningModule = {
 
 ---
 
-## 0. 🎬 Video-First Lecture Roadmap & Exam Strategy Matrix
+## 0. 🎬 Video First Lecture Roadmap & Exam Strategy Matrix
 
 > [!TIP]
 > **Study Workflow (First Video $\to$ Then Text Notes $\to$ Then Exam Answers)**:
-> 1. **Watch On-The-Go First (10–15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\times$ or $1.5\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level-by-level).
-> 2. **Study Bookish Notes Second**: Read the formal mathematical formulations below. In CURAJ semester exams, CIA-1 tests, and competitive exams, marks are awarded for formal 5-tuple specifications $(S, A, T, G, c)$, production rule tables, and exact Big-$O$ complexity derivations.
-> 3. **Revise University Model Answers (Section 10)**: Study the exact standard answers for compulsory 5-mark and 10-mark questions.
+> 1. **Watch On The Go First (10 to 15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\times$ or $1.5\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level by level).
+> 2. **Study Bookish Notes Second**: Read the formal mathematical formulations below. In CURAJ semester exams, CIA 1 tests, and competitive exams, marks are awarded for formal 5-tuple specifications $(S, A, T, G, c)$, production rule tables, and exact Big $O$ complexity derivations.
+> 3. **Revise University Model Answers (Section 10)**: Study the exact standard answers for compulsory 5 mark and 10 mark questions.
 > 4. **Master Formula Cheat Sheet (Section 12)**: Memorize the comparison matrix, uniform tree node sums, and inversion parity rules.
-> 5. **Practice Interactive Quiz**: Attempt the 23 timed questions with step-by-step solutions below.
+> 5. **Practice Interactive Quiz**: Attempt the 23 timed questions with step by step solutions below.
 
-### 📚 Syllabus-to-Video & Exam Alignment Matrix
+### 📚 Syllabus to Video & Exam Alignment Matrix
 
-| Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA-1) | UGC NET JRF / GATE CS Trap |
+| Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA 1) | UGC NET JRF / GATE CS Trap |
 |:---|:---|:---|:---|:---|
-| **1. Introduction to AI** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Russell & Norvig (*AIMA*) Ch 1 | 2-Mark: Operational definition of AI; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
-| **What is an AI Technique? & PSSH** | [Gate Smashers: Can Machines Think?](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Newell & Simon (1976) | 5-Mark: State PSSH; 4 Hallmarks of an AI Technique | Why physical symbol systems are necessary and sufficient for general intelligence |
-| **2. Historical Development** | [Gate Smashers: History of AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Russell & Norvig Ch 1; Khemani Ch 1 | 3-Mark: Dartmouth 1956, AI Winters causes | Lighthill Report (1973) combinatorial explosion trigger |
-| **3. Turing Test & Philosophy** | [Gate Smashers: Turing Test in AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Turing (1950); Searle (1980) | 5-Mark: Standard vs Total Turing Test; Chinese Room | Syntax does not equal Semantics (Searle's refutation of Strong AI) |
-| **4. Problem Solving & Control Strategies** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 2; Khemani Ch 2 | 5-Mark: 4 steps to solve a problem; 2 Control strategy criteria | Causing motion vs being systematic; Forward vs Backward search |
-| **5. State-Space & Solution Space** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=E5jVBqe59EE) | Deepak Khemani Ch 2; Rich & Knight Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
-| **Production System Classes** | [Gate Smashers: Rule-Based Systems](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Rich & Knight Ch 2; Nilsson Ch 2 | 4-Mark: Monotonic vs Non-monotonic & Commutative systems | Recognizing that Water Jug is non-monotonic and non-commutative |
-| **The 7 Problem Characteristics** | [Dr. Mahesh Huddar: Problem Characteristics in AI](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 10-Mark Compulsory Long Answer: Explain all 7 characteristics with examples | Confusing "ignorable" (theorem proving) with "recoverable" (8-puzzle) steps |
-| **Tic-Tac-Toe 3 Approaches** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 1; Deepak Khemani Ch 2 | 5-Mark: Compare vector lookup, magic square heuristic, and state space minimax | Why Program 2 is smart arithmetic but Program 3 is a true AI technique |
-| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \ge 4$ vs $x + y < 4$ in pour operations) |
-| **Cryptarithmetic Problem** | [Easy Engineering Classes: Cryptarithmetic SEND+MORE=MONEY](https://www.youtube.com/watch?v=aZblDSAx4cg) | Rich & Knight Ch 2; Russell & Norvig Ch 6 | 6-Mark: Solve $SEND + MORE = MONEY$ with column constraint deductions | Overlooking that distinct letters must have distinct digits and leading letters $\ne 0$ |
-| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \ge C$ applies to **both** banks whenever $M > 0$ |
-| **6. State Space as Graph: State vs Node** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.3; Khemani Ch 2 | 5-Mark: Differentiate State vs Node; Graph vs Tree search | Generating infinite search tree from finite state graph via cycles |
-| **7. Evaluating Search Strategies** | [Gate Smashers: BFS vs DFS](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4; Khemani Ch 2 | 4-Mark: State 4 criteria (Time, Space, Completeness, Optimality) | Asymptotic complexity parameters $(b, d, m, \epsilon)$ |
-| **8. Uninformed Search: BFS** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
-| **Uninformed Search: DFS** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=f8luGFRtshY) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
-| **Uninformed Search: IDS** | [Gate Smashers: DLS & IDS in AI (Lec-13)](https://www.youtube.com/watch?v=0-vP781wblQ) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\le \frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \ge 2$, bottom level dominates ($> 50\%$ of nodes) |
-| **Uninformed Search: Bidirectional** | [Gate Smashers: Bidirectional Search](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.6; Rich & Knight Ch 3 | 5-Mark: Explain intersection test and $O(b^{d/2})$ time/space speedup | Computing backward transitions $Result^{-1}(s, a)$ when goals are implicit |
-| **Uninformed Search: UCS** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=w5Xawyfrf0s) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
+| **1. Introduction to AI** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Russell & Norvig (*AIMA*) Ch 1 | 2 Marks: Operational definition of AI; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
+| **2. What is an AI Technique? & PSSH** | [Gate Smashers: Can Machines Think?](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Newell & Simon (1976) | 5 Marks: State PSSH; 4 Hallmarks of an AI Technique | Why physical symbol systems are necessary and sufficient for general intelligence |
+| **3. Historical Development of AI** | [Gate Smashers: History of AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Russell & Norvig Ch 1; Khemani Ch 1 | 3 Marks: Dartmouth 1956, AI Winters causes | Lighthill Report (1973) combinatorial explosion trigger |
+| **4. Turing Test & Philosophy** | [Gate Smashers: Turing Test in AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Turing (1950); Searle (1980) | 5 Marks: Standard vs Total Turing Test; Chinese Room | Syntax does not equal Semantics (Searle's refutation of Strong AI) |
+| **5. Problem Solving & Control Strategies** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 2; Khemani Ch 2 | 5 Marks: 4 steps to solve a problem; 2 Control strategy criteria | Causing motion vs being systematic; Forward vs Backward search |
+| **6. State Space & Solution Space** | [Gate Smashers: State Space Search (Lecture 4)](https://www.youtube.com/watch?v=E5jVBqe59EE) | Deepak Khemani Ch 2; Rich & Knight Ch 2 | 5 Marks: State 5-tuple $(S, A, T, G, c)$ with 8 Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
+| **7. Production System Classes** | [Gate Smashers: Rule Based Systems](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Rich & Knight Ch 2; Nilsson Ch 2 | 4 Marks: Monotonic vs Nonmonotonic & Commutative systems | Recognizing that Water Jug is nonmonotonic and noncommutative |
+| **8. The 7 Problem Characteristics** | [Dr. Mahesh Huddar: Problem Characteristics in AI](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 10 Marks Compulsory Long Answer: Explain all 7 characteristics with examples | Confusing "ignorable" (theorem proving) with "recoverable" (8 puzzle) steps |
+| **9. Tic Tac Toe (3 Approaches)** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 1; Deepak Khemani Ch 2 | 5 Marks: Compare vector lookup, magic square heuristic, and state space minimax | Why Program 2 is smart arithmetic but Program 3 is a true AI technique |
+| **10. Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step by Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5 Marks Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \\ge 4$ vs $x + y < 4$ in pour operations) |
+| **11. Cryptarithmetic Problem** | [Easy Engineering Classes: Cryptarithmetic SEND+MORE=MONEY](https://www.youtube.com/watch?v=aZblDSAx4cg) | Rich & Knight Ch 2; Russell & Norvig Ch 6 | 6 Marks: Solve $SEND + MORE = MONEY$ with column constraint deductions | Overlooking that distinct letters must have distinct digits and leading letters $\\ne 0$ |
+| **12. Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10 Marks Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11 step solution | Overlooking that constraint $M \\ge C$ applies to **both** banks whenever $M > 0$ |
+| **13. State Space as Graph (State vs Node)** | [Gate Smashers: State Space Search (Lecture 4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.3; Khemani Ch 2 | 5 Marks: Differentiate State vs Node; Graph vs Tree search | Generating infinite search tree from finite state graph via cycles |
+| **14. Evaluating Search Strategies** | [Gate Smashers: BFS vs DFS](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4; Khemani Ch 2 | 4 Marks: State 4 criteria (Time, Space, Completeness, Optimality) | Asymptotic complexity parameters $(b, d, m, \\epsilon)$ |
+| **15. Breadth First Search (BFS)** | [Gate Smashers: BFS with Example (Lecture 7)](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5 Marks: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
+| **16. Depth First Search (DFS)** | [Gate Smashers: DFS with Example (Lecture 8)](https://www.youtube.com/watch?v=f8luGFRtshY) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5 Marks: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
+| **17. Iterative Deepening Search (IDS)** | [Gate Smashers: DLS & IDS in AI (Lecture 13)](https://www.youtube.com/watch?v=0-vP781wblQ) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10 Marks: Prove that overhead of repeated node generation is $\\le \\frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \\ge 2$, bottom level dominates ($> 50\%$ of nodes) |
+| **18. Bidirectional Search** | [Gate Smashers: Bidirectional Search](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.6; Rich & Knight Ch 3 | 5 Marks: Explain intersection test and $O(b^{d/2})$ time and space speedup | Computing backward transitions $Result^{-1}(s, a)$ when goals are implicit |
+| **19. Uniform Cost Search (UCS)** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=w5Xawyfrf0s) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5 Marks: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
 
 ---
 
@@ -1918,12 +1918,12 @@ The classic **Water Jug Problem** (Rich & Knight Ch 2; Russell & Norvig Ch 3) is
 #### Q2: "Prove why Iterative Deepening Search (IDS) is asymptotically optimal in both time and space for uninformed search." [5 Marks]
 > **Model Answer Key**:
 > 1. **Time Complexity Derivation**:
->    $$N(\text{IDS}) = \sum_{i=1}^d (d - i + 1) b^i = d \cdot b + (d-1)b^2 + \dots + 1 \cdot b^d$$
+>    $$N(\\text{IDS}) = \\sum_{i=1}^d (d - i + 1) b^i = d \\cdot b + (d-1)b^2 + \\dots + 1 \\cdot b^d$$
 >    Factoring the dominant term:
->    $$N(\text{IDS}) \le b^d \sum_{j=0}^{\infty} (j+1) b^{-j} = b^d \left(\frac{b}{b-1}\right)^2 = O(b^d)$$
->    For $b \ge 2$, $\left(\frac{b}{b-1}\right)^2 \le 4$. Hence, time complexity matches BFS: $O(b^d)$.
+>    $$N(\\text{IDS}) \\le b^d \\sum_{j=0}^{\\infty} (j+1) b^{-j} = b^d \\left(\\frac{b}{b-1}\\right)^2 = O(b^d)$$
+>    For $b \\ge 2$, $\\left(\\frac{b}{b-1}\\right)^2 \\le 4$. Hence, time complexity matches BFS: $O(b^d)$.
 > 2. **Space Complexity Derivation**:
->    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \times d$ nodes: $O(bd)$, which is linear.
+>    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \\times d$ nodes: $O(bd)$, which is linear.
 > 3. **Conclusion**: IDS uniquely achieves $O(bd)$ space without sacrificing $O(b^d)$ time or unit-cost optimality.
 
 ---
