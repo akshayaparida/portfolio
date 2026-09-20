@@ -45,6 +45,10 @@ export const curajCourses: Course[] = [
     ],
     nptelTitle: "NPTEL: Design and Analysis of Algorithms (CMI)",
     nptelUrl: "https://nptel.ac.in/courses/106106131",
+    notesUrl:
+      "/curaj-msc-cs/advanced-algorithms/unit-1-analysis-divide-conquer",
+    notesTitle: "Unit 1: Analysis, Recurrences & Divide-Conquer Notes & Quiz",
+    availableNotesUnits: [1],
   },
   {
     code: "6.0CSC03",

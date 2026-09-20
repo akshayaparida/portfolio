@@ -46,6 +46,17 @@ export default function CurajMscCsPage() {
               >
                 <i className="fa-solid fa-sparkles"></i> AI Unit 1 Notes & Quiz
               </Link>
+              <Link
+                href="/curaj-msc-cs/advanced-algorithms/unit-1-analysis-divide-conquer"
+                className="badge badge-ai-live"
+                style={{
+                  borderColor: "rgba(16, 185, 129, 0.4)",
+                  color: "#34d399",
+                }}
+              >
+                <i className="fa-solid fa-code"></i> Algo Unit 1 (C Lang) &
+                CIA-1
+              </Link>
             </div>
             <h2>2-Year M.Sc. (Computer Science) Curriculum</h2>
             <p>
@@ -65,6 +76,16 @@ export default function CurajMscCsPage() {
               className="ai-notes-banner-btn"
             >
               <i className="fa-solid fa-brain"></i> Study AI Unit 1 Notes & Quiz
+            </Link>
+            <Link
+              href="/curaj-msc-cs/advanced-algorithms/unit-1-analysis-divide-conquer"
+              className="ai-notes-banner-btn"
+              style={{
+                background: "linear-gradient(135deg, #059669, #0d9488)",
+              }}
+            >
+              <i className="fa-solid fa-laptop-code"></i> Algo Unit 1 (C Lang) &
+              Quiz
             </Link>
             <Link href="/curaj-msc-cs/assessments" className="cia-portal-btn">
               <i className="fa-solid fa-file-pen"></i> View CIA Assessments Hub

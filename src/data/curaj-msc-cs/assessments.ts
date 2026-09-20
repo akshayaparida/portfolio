@@ -429,13 +429,102 @@ Explicit area() call: 75.00 sq units`,
     semester: "Semester I",
     assessmentType: "CIA-1",
     title: "Continuous Internal Assessment 1 (CIA-1)",
-    status: "upcoming",
-    totalMarks: 20,
+    date: "August 2024",
     time: "01 Hrs.",
-    paperImages: [],
+    totalMarks: 20,
+    instructions: ["All questions are compulsory."],
+    paperImages: ["/AIGOCIA12024.jpg"],
+    status: "available",
     notes:
-      "Upcoming CIA-1 for Advanced Algorithms covering Divide & Conquer, Greedy, DP, Backtracking, and Indian Knowledge Systems.",
-    questions: [],
+      "Department of Computer Science, School of Mathematics, Statistics & Computational Sciences, Central University of Rajasthan (CURAJ). Official examination covering Asymptotic Complexity Measures (Theta, Omega, Big-Oh), Binary Search in C with Recurrence Analysis, Master Method on T(n)=T(2n/3)+1, and Iteration Method on T(n)=7T(n/2)+an².",
+    questions: [
+      {
+        id: "q1",
+        qNumber: "Q1",
+        marks: 5,
+        question:
+          "Give formal definitions for complexity measures- Theta (Θ), Omega (Ω), and big oh (O).",
+        solution: {
+          summary:
+            "Formal mathematical set-theoretic definitions and geometric bounding interpretations of asymptotic notations as defined in CLRS Chapter 3.",
+          keyPoints: [
+            "Big-Oh O(g(n)): Set of functions f(n) such that 0 <= f(n) <= c*g(n) for all n >= n0 with positive constants c, n0 > 0. Provides asymptotic upper bound.",
+            "Big-Omega Ω(g(n)): Set of functions f(n) such that 0 <= c*g(n) <= f(n) for all n >= n0 with positive constants c, n0 > 0. Provides asymptotic lower bound.",
+            "Big-Theta Θ(g(n)): Set of functions f(n) such that 0 <= c1*g(n) <= f(n) <= c2*g(n) for all n >= n0 with positive constants c1, c2, n0 > 0. Provides asymptotically tight bound.",
+            "Theorem: f(n) = Θ(g(n)) if and only if f(n) = O(g(n)) and f(n) = Ω(g(n)).",
+          ],
+        },
+      },
+      {
+        id: "q2",
+        qNumber: "Q2",
+        marks: 5,
+        question:
+          "Write an algorithm for searching an element using the binary search method. Analyze the algorithm by writing the recurrence relation and solve it to determine its time complexity.",
+        solution: {
+          summary:
+            "Binary Search algorithm implemented in C, recurrence relation T(n) = T(n/2) + c, and derivation of O(log n) time complexity.",
+          keyPoints: [
+            "Algorithm divides sorted array into two equal halves at mid = low + (high - low) / 2.",
+            "Recurrence relation: T(n) = T(n/2) + c2 for n > 1, with base case T(1) = c1.",
+            "Solving by iteration: T(n) = T(n/2^k) + k*c2. With n/2^k = 1 => k = log2(n).",
+            "Resulting time complexity: T(n) = c1 + c2*log2(n) = Θ(log n).",
+          ],
+          code: `int binary_search(const int A[], int n, int key) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (A[mid] == key)
+            return mid;
+        else if (A[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}`,
+        },
+      },
+      {
+        id: "q3",
+        qNumber: "Q3",
+        marks: 5,
+        question:
+          "Explain the master method for solving recurrences. Use the master method to solve the following recurrence equation: T(n) = T(2n/3) + 1",
+        solution: {
+          summary:
+            "Cookbook method for recurrences of the form T(n) = aT(n/b) + f(n) by comparing f(n) with the watershed function n^(log_b a).",
+          keyPoints: [
+            "Case 1 (Leaf dominated): f(n) = O(n^(log_b a - ε)) => T(n) = Θ(n^(log_b a)).",
+            "Case 2 (Equal work): f(n) = Θ(n^(log_b a) * log^k n) => T(n) = Θ(n^(log_b a) * log^(k+1) n).",
+            "Case 3 (Root dominated): f(n) = Ω(n^(log_b a + ε)) with regularity a*f(n/b) <= c*f(n) => T(n) = Θ(f(n)).",
+            "For T(n) = T(2n/3) + 1: Rewrite as T(n/(3/2)) + 1. Here a = 1, b = 3/2 = 1.5, f(n) = 1.",
+            "Watershed function: n^(log_{1.5} 1) = n^0 = 1. Since f(n) = 1 = Θ(n^0), Master Method Case 2 with k = 0 applies.",
+            "Final complexity: T(n) = Θ(n^0 * log^(0+1) n) = Θ(log n).",
+          ],
+        },
+      },
+      {
+        id: "q4",
+        qNumber: "Q4",
+        marks: 5,
+        question:
+          "Solve the following recurrence equation using iteration method: T(n) = b for n <= 2, and T(n) = 7T(n/2) + an² for n > 2, where a and b are constants.",
+        solution: {
+          summary:
+            "Solving Strassen's matrix multiplication recurrence by repeated substitution, geometric series summation, and base-case matching.",
+          keyPoints: [
+            "Step 1: T(n) = 7[7T(n/4) + an²/4] + an² = 7²T(n/4) + an²[1 + 7/4].",
+            "Step 2: T(n) = 7³T(n/8) + an²[1 + 7/4 + (7/4)²].",
+            "General k-th iteration: T(n) = 7^k * T(n/2^k) + an² * ∑_{i=0}^{k-1} (7/4)^i.",
+            "Base condition: n/2^k = 2 => k = log2(n) - 1, and T(2) = b.",
+            "First term: 7^k * T(2) = (b/7) * n^(log2 7).",
+            "Geometric sum with r = 7/4 > 1 evaluates to (16a/21) * n^(log2 7) - (4a/3) * n².",
+            "Since log2(7) ≈ 2.807 > 2, the term n^(log2 7) dominates: T(n) = Θ(n^(log2 7)) ≈ Θ(n^2.807).",
+          ],
+        },
+      },
+    ],
   },
   {
     id: "sem1-algo-cia2",
