@@ -166,60 +166,73 @@ export const unit1UninformedSearchModule: LearningModule = {
   ],
   detailedContent: `# Unit 1: Introduction, Problem Solving & Uninformed Search
 
-> **CURAJ M.Sc. Computer Science — Course Code: 6.0CSC01 (Core 1, 4 Credits)**  
-> **Textbooks Aligned**: Stuart Russell & Peter Norvig (*AIMA 4th Ed.*), David Poole & Alan Mackworth (*Foundations of Computational Agents 3rd Ed.*), Deepak Khemani (*A First Course in AI*).  
-> **Exam Weightage**: Primary focus of **Continuous Internal Assessment 1 (CIA-1)** (~20 Marks) and high-yield topic for **UGC NET / JRF (Paper II Computer Science)** and **GATE CS**.
+> **CURAJ M.Sc. Computer Science — Course Code: 6.0CSC01 (Core 1, 4 Credits, 10 Hours)**  
+> **Official CURAJ Syllabus Sequence**: Introduction to AI $\to$ Historical Development $\to$ Turing Test $\to$ Problem Solving, Search Algorithms $\to$ State-space and Solution Space Search $\to$ State space as graph-state v/s node $\to$ Evaluating Search Strategies—Time, Space, Completeness, Optimality $\to$ Uninformed search: breadth-first search, depth-first search, iterative deepening search, bidirectional search, uniform cost search.  
+> **Prescribed References**: Deepak Khemani (*A First Course in AI*), Elaine Rich & Kevin Knight (*Artificial Intelligence*, McGraw-Hill), Stuart Russell & Peter Norvig (*AIMA 4th Ed.*).  
+> **Exam Weightage**: Primary focus of **Continuous Internal Assessment 1 (CIA-1)** (~20 Marks), Semester Theory Exam, **UGC NET / JRF Paper II Computer Science**, and **GATE CS**.
 
 ---
 
-## Unit Overview & Learning Goals
+## Unit Overview & Learning Goals (Aligned with CURAJ Unit 1 Syllabus)
 
-1. **Foundations of AI**: The four conceptual approaches (Acting Humanly, Thinking Humanly, Thinking Rationally, Acting Rationally).
-2. **Historical Milestones**: Dartmouth 1956, AI Winters, Expert Systems, and the Modern Agentic Paradigm.
-3. **The Turing Test & Philosophy**: Standard Test, Total Turing Test, Chinese Room Argument, and Loebner Prize.
-4. **Problem Solving & State-Space Formulation**: Initial state, Actions, Transition model, Goal test, and Path cost function.
-5. **State Space vs. Solution Space**: Representation differences across toy and real-world problems.
-6. **State vs. Node Distinction**: Why a state in the world is fundamentally distinct from a node in a search tree.
-7. **Search Strategy Evaluation Metrics**: Mathematical formulations of Completeness, Time Complexity, Space Complexity, and Optimality ($b, d, m, \\epsilon$).
-8. **Uninformed (Blind) Search Algorithms**:
+1. **Introduction to AI**: Elaine Rich's operational definition (*"study of how to make computers do things at which, at the moment, people are better"*), the AI Effect, John McCarthy's 1956 Dartmouth definition, Russell & Norvig's 4 conceptual approaches, and Rich & Knight's 4 hallmarks of an AI technique.
+2. **Historical Development of AI**: Gestational era (1943–1955), Dartmouth Workshop (1956), early enthusiasm, First AI Winter (Lighthill Report 1973), Knowledge-Based Expert Systems (1980s), Second AI Winter, Probabilistic revolution, and modern Deep Learning & Foundation Models.
+3. **The Turing Test & Philosophical Foundations**: Alan Turing's Imitation Game (1950), Total Turing Test, Lady Lovelace objection, Searle's Chinese Room argument (Syntax vs. Semantics), and Newell & Simon's Physical Symbol System Hypothesis (PSSH, 1976).
+4. **Problem Solving & Search Algorithms**: Problem solving as state-space search, Rich & Knight's 4 steps to build a problem-solving system, Control strategy requirements (must cause motion, must be systematic), and Direction of Search (Forward vs. Backward reasoning).
+5. **State-space and Solution Space Search**: Formal 5-tuple formulation $(S_0, A, T, G, c)$, state space vs. solution space, Production Systems architecture & 4-quadrant classification (Monotonic/Commutative), Rich & Knight's 7 Problem Characteristics framework, and Classical benchmark problems (3 Tic-Tac-Toe programs, Water Jug 8 rules, Cryptarithmetic $SEND+MORE=MONEY$, 8-Puzzle solvability & parity, Farmer-Wolf-Goat-Cabbage, Missionaries & Cannibals).
+6. **State Space as Graph — State v/s Node**: World state vs. search node bookkeeping distinction, state space graph vs. search tree, graph search vs. tree search, and Explored Set (Closed List) cycle prevention.
+7. **Evaluating Search Strategies**: Time Complexity, Space Complexity, Completeness, Optimality with standard parameters ($b, d, m, \epsilon, C^*$).
+8. **Uninformed (Blind) Search Algorithms (Exact Syllabus Order)**:
    - Breadth-First Search (BFS)
    - Depth-First Search (DFS)
    - Depth-Limited Search (DLS)
    - Iterative Deepening Search (IDS / IDDFS)
-   - Uniform Cost Search (UCS / Dijkstra's variant)
    - Bidirectional Search
-9. **CIA-1 University Model Problems**: Subjective proofs, step-by-step traces, and state-space formulations.
-10. **UGC NET / JRF PYQ Corner**: High-frequency exam traps, trick questions, and quick revision cheatsheet.
+   - Uniform Cost Search (UCS / Dijkstra's variant)
+9. **Comprehensive Search Strategies Comparison Matrix**: Definitive side-by-side performance table across all dimensions.
+10. **Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions**: Full papers and step-by-step marking scheme answers for September 2025 (CSC-401) and August 2024 (MAI-401), plus 9 subjective model answers.
+11. **UGC NET / JRF & GATE CS Preparation Corner**: High-frequency exam traps and trick questions.
+12. **Master Formula Cheat Sheet & Quick-Reference Guide**: Rapid-revision formulas, derivations, and decision matrices.
 
 ---
 
 ## 0. 🎬 Video-First Lecture Roadmap & Exam Strategy Matrix
 
 > [!TIP]
-> **Study Workflow (First Video $\\to$ Then Text Notes $\\to$ Then Exam Answers)**:
-> 1. **Watch On-The-Go First (10–15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\\times$ or $1.5\\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level-by-level).
+> **Study Workflow (First Video $\to$ Then Text Notes $\to$ Then Exam Answers)**:
+> 1. **Watch On-The-Go First (10–15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\times$ or $1.5\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level-by-level).
 > 2. **Study Bookish Notes Second**: Read the formal mathematical formulations below. In CURAJ semester exams, CIA-1 tests, and competitive exams, marks are awarded for formal 5-tuple specifications $(S, A, T, G, c)$, production rule tables, and exact Big-$O$ complexity derivations.
-> 3. **Revise University Model Answers (Section 6)**: Study the exact standard answers for compulsory 5-mark and 10-mark questions.
-> 4. **Master Formula Cheat Sheet (Section 8)**: Memorize the comparison matrix, uniform tree node sums, and inversion parity rules.
-> 5. **Practice Interactive Quiz**: Attempt the 18 timed questions with step-by-step solutions below.
+> 3. **Revise University Model Answers (Section 10)**: Study the exact standard answers for compulsory 5-mark and 10-mark questions.
+> 4. **Master Formula Cheat Sheet (Section 12)**: Memorize the comparison matrix, uniform tree node sums, and inversion parity rules.
+> 5. **Practice Interactive Quiz**: Attempt the 23 timed questions with step-by-step solutions below.
 
 ### 📚 Syllabus-to-Video & Exam Alignment Matrix
 
 | Syllabus Topic | Curated YouTube Lecture | Prescribed Textbook Reference | University Exam Focus (CIA-1) | UGC NET JRF / GATE CS Trap |
 |:---|:---|:---|:---|:---|
-| **AI Foundations & Approaches** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Russell & Norvig (*AIMA*) Ch 1; Khemani Ch 1 | 2-Mark: Define Rational Agent; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
-| **State Space Formulation** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=E5jVBqe59EE) | Deepak Khemani (*A First Course in AI*) Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
-| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \\ge 4$ vs $x + y < 4$ in pour operations) |
-| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \\ge C$ applies to **both** banks whenever $M > 0$ |
-| **Breadth-First Search (BFS)** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
-| **Depth-First Search (DFS)** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=f8luGFRtshY) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
-| **Iterative Deepening (IDS)** | [Gate Smashers: DLS & IDS in AI (Lec-13)](https://www.youtube.com/watch?v=0-vP781wblQ) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\\le \\frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \\ge 2$, bottom level dominates ($> 50\\%$ of nodes) |
-| **Uniform Cost Search (UCS)** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=w5Xawyfrf0s) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
-| **8-Puzzle Solvability** | [Gate Smashers: 8-Puzzle Problem Formulation (Lec-14)](https://www.youtube.com/watch?v=_CrEYrcImv0) | Russell & Norvig Ch 3.2; Khemani Ch 2 | 5-Mark: Inversion count definition & parity preservation theorem | Total states $9! = 362{,}880$, but reachable state space is exactly half $\\frac{9!}{2} = 181{,}440$ |
+| **1. Introduction to AI** | [Gate Smashers: Introduction to AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Russell & Norvig (*AIMA*) Ch 1 | 2-Mark: Operational definition of AI; 4 Approaches matrix | Differentiating "Thinking Rationally" (Logic) vs "Acting Rationally" (Expected Utility) |
+| **What is an AI Technique? & PSSH** | [Gate Smashers: Can Machines Think?](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Rich & Knight Ch 1; Newell & Simon (1976) | 5-Mark: State PSSH; 4 Hallmarks of an AI Technique | Why physical symbol systems are necessary and sufficient for general intelligence |
+| **2. Historical Development** | [Gate Smashers: History of AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Russell & Norvig Ch 1; Khemani Ch 1 | 3-Mark: Dartmouth 1956, AI Winters causes | Lighthill Report (1973) combinatorial explosion trigger |
+| **3. Turing Test & Philosophy** | [Gate Smashers: Turing Test in AI](https://www.youtube.com/watch?v=s-s9ilkMVj8) | Turing (1950); Searle (1980) | 5-Mark: Standard vs Total Turing Test; Chinese Room | Syntax does not equal Semantics (Searle's refutation of Strong AI) |
+| **4. Problem Solving & Control Strategies** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 2; Khemani Ch 2 | 5-Mark: 4 steps to solve a problem; 2 Control strategy criteria | Causing motion vs being systematic; Forward vs Backward search |
+| **5. State-Space & Solution Space** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=E5jVBqe59EE) | Deepak Khemani Ch 2; Rich & Knight Ch 2 | 5-Mark: State 5-tuple $(S, A, T, G, c)$ with 8-Puzzle example | Confusing state in world vs search node in tree (path, parent, depth, cost) |
+| **Production System Classes** | [Gate Smashers: Rule-Based Systems](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Rich & Knight Ch 2; Nilsson Ch 2 | 4-Mark: Monotonic vs Non-monotonic & Commutative systems | Recognizing that Water Jug is non-monotonic and non-commutative |
+| **The 7 Problem Characteristics** | [Dr. Mahesh Huddar: Problem Characteristics in AI](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 10-Mark Compulsory Long Answer: Explain all 7 characteristics with examples | Confusing "ignorable" (theorem proving) with "recoverable" (8-puzzle) steps |
+| **Tic-Tac-Toe 3 Approaches** | [Gate Smashers: Problem Solving in AI](https://www.youtube.com/watch?v=E5jVBqe59EE) | Rich & Knight Ch 1; Deepak Khemani Ch 2 | 5-Mark: Compare vector lookup, magic square heuristic, and state space minimax | Why Program 2 is smart arithmetic but Program 3 is a true AI technique |
+| **Water Jug Problem** | [Dr. Mahesh Huddar: Water Jug Problem Step-by-Step](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; CURAJ Syllabus Core 1 | 5-Mark Compulsory: Write all 8 formal production rules and show optimal path to $(2, 0)$ | Forgetting edge conditions (e.g. $x + y \ge 4$ vs $x + y < 4$ in pour operations) |
+| **Cryptarithmetic Problem** | [Dr. Mahesh Huddar: Cryptarithmetic Problem in AI](https://www.youtube.com/watch?v=26YyD_K-gpA) | Rich & Knight Ch 2; Russell & Norvig Ch 6 | 6-Mark: Solve $SEND + MORE = MONEY$ with column constraint deductions | Overlooking that distinct letters must have distinct digits and leading letters $\ne 0$ |
+| **Missionaries & Cannibals** | [Dr. Mahesh Huddar: Missionaries & Cannibals Formulation](https://www.youtube.com/watch?v=i7oB0OGU3fc) | Russell & Norvig Ch 3; Poole & Mackworth Ch 3 | 10-Mark Long Answer: State vector $(M, C, B)$, safety constraints on both banks, and 11-step solution | Overlooking that constraint $M \ge C$ applies to **both** banks whenever $M > 0$ |
+| **6. State Space as Graph: State vs Node** | [Gate Smashers: State Space Search (Lec-4)](https://www.youtube.com/watch?v=Jb-w019Jm9w) | Russell & Norvig Ch 3.3; Khemani Ch 2 | 5-Mark: Differentiate State vs Node; Graph vs Tree search | Generating infinite search tree from finite state graph via cycles |
+| **7. Evaluating Search Strategies** | [Gate Smashers: BFS vs DFS](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4; Khemani Ch 2 | 4-Mark: State 4 criteria (Time, Space, Completeness, Optimality) | Asymptotic complexity parameters $(b, d, m, \epsilon)$ |
+| **8. Uninformed Search: BFS** | [Gate Smashers: BFS with Example (Lec-7)](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.1; Khemani Ch 2 | 5-Mark: Algorithm trace using FIFO queue, proof of optimality for unit step costs | Memory explosion: $O(b^d)$ space is the fatal bottleneck, NOT time |
+| **Uninformed Search: DFS** | [Gate Smashers: DFS with Example (Lec-8)](https://www.youtube.com/watch?v=f8luGFRtshY) | Russell & Norvig Ch 3.4.3; Khemani Ch 2 | 5-Mark: Algorithm trace using LIFO stack, backtracking mechanism | Incompleteness in infinite state spaces or graph search with cycles |
+| **Uninformed Search: IDS** | [Gate Smashers: DLS & IDS in AI (Lec-13)](https://www.youtube.com/watch?v=0-vP781wblQ) | Russell & Norvig Ch 3.4.5; Khemani Ch 2 | 10-Mark: Prove that overhead of repeated node generation is $\le \frac{b}{b-1}$ | Thinking IDS is inefficient; for $b \ge 2$, bottom level dominates ($> 50\%$ of nodes) |
+| **Uninformed Search: Bidirectional** | [Gate Smashers: Bidirectional Search](https://www.youtube.com/watch?v=qul0f79gxGs) | Russell & Norvig Ch 3.4.6; Rich & Knight Ch 3 | 5-Mark: Explain intersection test and $O(b^{d/2})$ time/space speedup | Computing backward transitions $Result^{-1}(s, a)$ when goals are implicit |
+| **Uninformed Search: UCS** | [Gate Smashers: Uniform Cost Search (UCS)](https://www.youtube.com/watch?v=w5Xawyfrf0s) | Russell & Norvig Ch 3.4.2; Khemani Ch 3 | 5-Mark: Priority queue $g(n)$ expansion; why goal test must be applied at dequeue | Applying goal test at generation instead of expansion (destroys optimality) |
 
 ---
 
-## 1. Introduction to Artificial Intelligence
+## 1. Introduction: Introduction to AI
 
 \`\`\`video
 {
@@ -233,18 +246,41 @@ export const unit1UninformedSearchModule: LearningModule = {
 }
 \`\`\`
 
-### 1.1 The Four Conceptual Approaches (Russell & Norvig)
+### 1.1 Defining Artificial Intelligence
 
-In classical AI literature (*Russell & Norvig*), definitions of Artificial Intelligence are categorized along two independent dimensions:
+In the academic literature of Artificial Intelligence, the definition of the discipline is approached from multiple complementary perspectives:
+
+#### 1. Elaine Rich's Operational Definition (1983) — The Moving Frontier & AI Effect
+In her foundational textbook (*Artificial Intelligence*, McGraw-Hill), **Elaine Rich** formulated one of the most widely quoted, pedagogically influential, and operationally realistic definitions of Artificial Intelligence:
+
+> *"Artificial Intelligence is the study of how to make computers do things at which, at the moment, people are better."*
+
+##### Deep Implications of Elaine Rich's Definition:
+- **The Dynamic, Moving Frontier (The "AI Effect")**:
+  - Unlike rigid definitions tied to specific algorithms, Rich's definition captures the evolutionary, shifting nature of the field. What society considers "AI" changes dynamically over time.
+  - Once an AI problem is solved and understood mathematically, critics frequently dismiss it as "routine computation" or "mere algorithmic data processing":
+    - In the 1960s, playing championship Chess was considered the pinnacle benchmark of human intelligence. When IBM Deep Blue defeated World Champion Garry Kasparov in 1997 via alpha-beta search and specialized hardware, commentators remarked: *"That is not real thinking; it is just brute-force calculation of 200 million positions per second!"*
+    - Optical Character Recognition (OCR), compiler syntax parsing, and shortest-path GPS routing were once cutting-edge AI breakthroughs; today, they are standard undergraduate computer science routines.
+- **Human-Centric Capability Benchmark**:
+  - Humans excel effortlessly at **Commonsense Reasoning**, **Perceptual Processing (Vision & Audition)**, **Natural Language Pragmatics**, and **Heuristic Navigation of Ill-Structured Realities**.
+  - Computers traditionally excelled at **Deterministic Arithmetic**, **Iterative Number Crunching**, and **Exact Memory Lookup**.
+  - The central mission of AI is to bridge this cognitive chasm—transferring human perceptual, heuristic, and inferential mastery into formal computational architectures.
+
+#### 2. John McCarthy's Engineering Definition (Dartmouth, 1956)
+> *"The science and engineering of making intelligent machines, especially intelligent computer programs."*  
+John McCarthy (who coined the term "Artificial Intelligence" at the 1956 Dartmouth Summer Research Project) defined AI from an engineering standpoint, asserting that intelligence is the computational part of the ability to achieve goals in the world.
+
+#### 3. Russell & Norvig's Four Conceptual Approaches
+In classical AI literature (*Russell & Norvig, AIMA*), definitions of Artificial Intelligence are categorized along two independent dimensions:
 1. **Thought processes & reasoning** versus **Behavior & action**.
 2. **Measuring success against human fidelity** versus **Measuring success against an ideal concept of intelligence (Rationality)**.
 
 | | Human-Centered Criterion | Rationality-Centered Criterion |
 |---|---|---|
-| **Thinking** | **Thinking Humanly**<br>• Cognitive Science & Modeling<br>• Validated via introspection & psychological testing | **Thinking Rationally**<br>• "Laws of Thought" approach (Formal Logic)<br>• Aristotle's syllogisms, automated deduction |
-| **Acting** | **Acting Humanly**<br>• The Turing Test approach<br>• Acting indistinguishably from a human | **Acting Rationally**<br>• The Rational Agent approach (*AIMA focus*)<br>• Maximizing expected utility given available percepts |
+| **Thinking** | **Thinking Humanly**<br>• Cognitive Science & Cognitive Psychology<br>• Validated via introspection & psychological testing | **Thinking Rationally**<br>• "Laws of Thought" approach (Formal Logic)<br>• Aristotle's syllogisms, automated deduction |
+| **Acting** | **Acting Humanly**<br>• The Turing Test approach<br>• Acting indistinguishably from a human | **Acting Rationally**<br>• The Rational Agent approach (*Modern standard*)<br>• Maximizing expected utility given available percepts |
 
-\`\`\`
+\`\`\`text
                        [THINKING]
                            ▲
      Thinking Humanly      │      Thinking Rationally
@@ -258,13 +294,56 @@ In classical AI literature (*Russell & Norvig*), definitions of Artificial Intel
                         [ACTING]
 \`\`\`
 
-#### Why Modern AI Focuses on "Acting Rationally"
+##### Why Modern AI Focuses on "Acting Rationally":
 - **Standard of Rationality is Mathematically Well-Defined**: Rational behavior aims to maximize an expected performance measure given the prior background knowledge and sequence of perceptions.
 - **Scientific Generalizability**: Rationality is not tethered to human biological or evolutionary quirks (e.g., optical illusions, emotional fatigue, cognitive biases). An airplane flies rationally by aerodynamics without flapping its wings like a pigeon.
 
+#### Synthesis of Classical AI Definitions:
+| Definitional Paradigm | Proponent | Core Philosophy & Focus | Practical Evaluation Test |
+|---|---|---|---|
+| **Human-Relative Capability** | **Elaine Rich & Kevin Knight** (1983) | Automating cognitive tasks where human biological cognition currently outstrips silicon execution. | Continuous historical comparison against human milestones. |
+| **Engineering Science** | **John McCarthy** (Dartmouth, 1956) | The science and engineering of making intelligent machines and programs. | Construction of working synthetic cognitive systems. |
+| **Operational Indistinguishability** | **Alan Turing** (1950) | Replicating external human conversational behavior so well that an interrogator cannot distinguish human from machine. | The Turing Test / Imitation Game. |
+| **Rational Agency** | **Stuart Russell & Peter Norvig** (1995) | Building computational entities that select actions to maximize expected utility given available percept history. | Mathematical expected utility maximization in environment. |
+
 ---
 
-### 1.2 Historical Milestones & Chronology
+### 1.2 The Nature of AI & What is an "AI Technique"? (Rich & Knight's 4 Hallmarks)
+
+In early computer science, programs solved problems through rigid, deterministic algorithmic recipes (e.g., Gauss-Jordan elimination, QuickSort). In contrast, real-world intelligent problem solving deals with domains that are ill-structured, ambiguous, combinatorially explosive, and error-prone.
+
+According to **Elaine Rich & Kevin Knight**, an **AI Technique** is a method that exploits knowledge structured in such a way that it exhibits **four fundamental hallmarks**:
+
+\`\`\`text
+                  FOUR HALLMARKS OF AN AI TECHNIQUE (RICH & KNIGHT)
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                        │
+│  1. CAPTURES GENERALIZATIONS                                                           │
+│     • Handles broad categories of situations rather than requiring distinct code      │
+│       for every corner case. If every specific move had to be hard-coded, scaling      │
+│       to complex problems would be mathematically impossible.                          │
+│                                                                                        │
+│  2. UNDERSTANDABLE / INSPECTABLE BY HUMANS                                             │
+│     • The knowledge representation can be read, analyzed, and audited by human domain  │
+│       experts who supply it, rather than existing as obscure opaque machine codes.     │
+│                                                                                        │
+│  3. EASILY MODIFIABLE & EXTENSIBLE                                                     │
+│     • Domain facts and heuristic rules can be updated, refined, or added incrementally │
+│       without having to rewrite the underlying inference engine or core program logic. │
+│                                                                                        │
+│  4. EFFECTIVE DESPITE INCOMPLETE OR INACCURATE KNOWLEDGE                               │
+│     • Unlike brittle algorithms that crash or output nonsense on missing inputs, an    │
+│       AI technique uses default rules and heuristics to produce the best feasible      │
+│       answer even in the presence of noise, errors, or partial observations.           │
+│                                                                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+---
+
+## 2. Historical Development of Artificial Intelligence
+
+### 2.1 Chronological Evolution of AI (1943–Present)
 
 | Era / Year | Milestone | Key Contributors & Impact |
 |---|---|---|
@@ -279,11 +358,13 @@ In classical AI literature (*Russell & Norvig*), definitions of Artificial Intel
 
 ---
 
-### 1.3 The Turing Test & Philosophical Debates
+## 3. The Turing Test & Philosophical Foundations
+
+### 3.1 Alan Turing's Imitation Game (1950)
 
 Proposed by **Alan Turing (1950)** in his seminal paper *"Computing Machinery and Intelligence"*:
 
-\`\`\`
+\`\`\`text
 +--------------------+        Teletype Text
 |  Human Interrogator| <─────────────────────────> [ Wall / Terminal ]
 +--------------------+                                   ▲
@@ -302,18 +383,112 @@ Proposed by **Alan Turing (1950)** in his seminal paper *"Computing Machinery an
 3. **Automated Reasoning**: To answer questions and draw new logical conclusions.
 4. **Machine Learning**: To adapt to new circumstances and detect patterns.
 
-#### The Total Turing Test:
+### 3.2 The Total Turing Test
 Extends the standard test by requiring a physical interface to test interaction with objects:
 - **Computer Vision**: To perceive physical objects presented by the interrogator.
-- **Robotics & Manipulation**: To move and manipulate physical objects.
+- **Robotics & Manipulation**: To move and manipulate physical objects in the physical world.
 
-#### Philosophical Critique: John Searle's Chinese Room Argument (1980)
-- **Premise**: A person in a closed room follows formal English rules (a syntax lookup program) to manipulate Chinese symbols. To outside native Chinese speakers, the output answers are indistinguishable from a fluent speaker.
-- **Core Thesis**: *Syntax does not equate to semantics*. Simulating understanding is not the same as genuine understanding (Weak AI vs. Strong AI).
+### 3.3 Philosophical Debates & Objections
+1. **Lady Lovelace's Objection (1842)**:
+   - Ada Lovelace remarked that Charles Babbage's Analytical Engine had no pretensions to originate anything; it could only do whatever we knew how to order it to perform. AI researchers counter that computers can learn, adapt, and produce emergent behaviors never anticipated by programmers.
+2. **John Searle's Chinese Room Argument (1980)**:
+   - **Premise**: A person in a closed room follows formal English rules (a syntax lookup program) to manipulate Chinese symbols. To outside native Chinese speakers, the output answers are indistinguishable from a fluent speaker.
+   - **Core Thesis**: *Syntax does not equate to semantics*. Simulating understanding is not the same as genuine understanding (Weak AI vs. Strong AI).
+
+### 3.4 The Physical Symbol System Hypothesis (PSSH) (Newell & Simon, 1976)
+
+In their 1975 ACM Turing Award lecture (*Computer Science as Empirical Inquiry: Symbols and Search*, 1976), **Allen Newell and Herbert Simon** laid down the core philosophical and scientific hypothesis that serves as the bedrock of classical symbolic AI, knowledge representation, and state-space search:
+
+> **The Physical Symbol System Hypothesis (PSSH)**:  
+> *"A physical symbol system has the necessary and sufficient means for general intelligent action."*
+
+#### 1. Deconstructing the Terminology:
+- **Physical**: It is physically instantiated in material reality (silicon chips, electrical logic gates, or biological human neural substrates) and obeys physical laws.
+- **Symbol**: An identifiable physical token or pattern (e.g., characters, numbers, bits, strings like \`"Arad"\`, \`"King"\`, \`"0"\`, \`"1"\`) that can designate, represent, or refer to an entity, relation, or concept in the external world.
+- **Symbol Structure (Expression)**: A collection of symbol tokens related physically (e.g., lists, graphs, trees, logical predicates, semantic networks).
+- **Process / Operation**: Algorithms that can create, modify, copy, destroy, match, and interpret symbol structures according to formal rules.
+
+#### 2. The Two Definitional Claims:
+1. **The "Necessary" Condition**:
+   - Any physical or biological entity that exhibits general intelligent action **must** be an instance of a physical symbol system.
+   - *Implication for Cognitive Science*: The human brain itself must be operating, at an abstract cognitive level, as a physical symbol manipulation engine.
+2. **The "Sufficient" Condition**:
+   - Any physical symbol system of adequate memory storage and algorithmic processing capability **can** be organized and programmed to achieve general human-level intelligence.
+   - *Implication for AI Engineering*: Intelligence does not depend on biological carbon, wetware, or organic neurons. A digital computer, being a physical symbol system, is theoretically capable of general intelligent thought.
+
+#### 3. Why PSSH Validates State-Space Search:
+Under PSSH, solving a problem equates to:
+1. Encoding the problem domain into a **symbolic state representation** (e.g., $(x, y)$ in the Water Jug problem, or $3 \times 3$ grid arrays in the 8-puzzle).
+2. Defining **operators as symbolic transformation rules** that map one symbol expression into another.
+3. Conducting **heuristic search across the symbol space** to locate an expression satisfying the goal criteria.
 
 ---
 
-## 2. Problem Solving as State-Space Search
+## 4. Problem Solving & Search Algorithms
+
+### 4.1 Problem Solving as State-Space Search (Rich & Knight's 4-Step Formulation)
+
+According to **Elaine Rich & Kevin Knight** (*Artificial Intelligence*, Chapter 2), to build a system that can successfully solve a problem, an AI engineer must execute **four essential steps**:
+
+\`\`\`text
+         RICH & KNIGHT'S 4 STEPS TO BUILD A PROBLEM-SOLVING SYSTEM
+┌────────────────────────────────────────────────────────────────────────┐
+│  STEP 1: DEFINE THE PROBLEM PRECISELY                                  │
+│  • Specify the exact initial situation (Initial State S₀).             │
+│  • Specify what constitutes an acceptable solution (Goal Test).        │
+│  • Define the set of legal operations/moves available (Operators).     │
+├────────────────────────────────────────────────────────────────────────┤
+│  STEP 2: ANALYZE THE PROBLEM ALONG KEY DIMENSIONS                      │
+│  • Evaluate the problem against the 7 Problem Characteristics          │
+│    (Decomposability, Step Reversibility, Predictability, etc.).        │
+├────────────────────────────────────────────────────────────────────────┤
+│  STEP 3: ISOLATE AND REPRESENT TASK KNOWLEDGE                          │
+│  • Identify the core domain knowledge needed to constrain search.      │
+│  • Choose an expressive representation (Production rules, Logic, etc.).│
+├────────────────────────────────────────────────────────────────────────┤
+│  STEP 4: CHOOSE THE BEST PROBLEM-SOLVING TECHNIQUE & APPLY             │
+│  • Select the search algorithm (Uninformed vs. Heuristic) based        │
+│    on the problem analysis and execute the search.                     │
+└────────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+### 4.2 Requirements of a Good Control Strategy (Rich & Knight Ch 2)
+
+In any state-space search system, the **Control Strategy** decides which state node to expand and which production rule or operator to apply next. According to **Elaine Rich and Kevin Knight**, a control strategy must satisfy two non-negotiable requirements:
+
+1. **Requirement 1: It Must Cause Motion**:
+   - The strategy must guarantee that operations advance the state space forward toward new configurations.
+   - *Failure Case*: If a control strategy selects rules that repeatedly transition between two symmetric states (e.g., in the Water Jug problem: Fill 4G $\to$ Empty 4G $\to$ Fill 4G $\to$ Empty 4G), it creates an infinite cycle with zero progress. A good strategy detects and prevents cyclical stagnation.
+2. **Requirement 2: It Must Be Systematic**:
+   - Even if a control strategy causes motion, it must not wander aimlessly or randomly through the state space.
+   - A systematic strategy maintains structured bookkeeping (e.g., the Frontier Queue and Explored Set in graph search) to guarantee that every reachable path is eventually explored and unpromising or already-explored paths are not redundantly recomputed.
+
+### 4.3 Direction of Search: Forward Search vs. Backward Search (Rich & Knight Ch 2 & 3)
+
+One of the most fundamental design choices in AI search is deciding the **direction in which to search the state space**:
+
+\`\`\`text
+FORWARD SEARCH (Data-Directed / Progression)
+  [ Initial State S₀ ] ───────► [ Successor States ] ───────► [ Goal State ]
+
+BACKWARD SEARCH (Goal-Directed / Regression)
+  [ Initial State S₀ ] ◄─────── [ Predecessor Subgoals ] ◄─────── [ Goal State ]
+\`\`\`
+
+#### Comparative Analysis: Forward vs. Backward Search
+| Dimension | Forward Search (Data-Directed) | Backward Search (Goal-Directed) |
+|---|---|---|
+| **Starting Point** | Begins at Initial State $S_0$. | Begins at Goal State $S_G$ (or goal description). |
+| **Operator Application** | Applies operators to current state to generate successor states. | Applies inverse operators to goal to generate predecessor subgoals. |
+| **When to Choose** | When initial state is single & well-defined, but goal is diffuse or many. | When goal is single & specific, but there are many possible initial states. |
+| **Branching Factor Criterion** | Prefer Forward Search if forward branching factor $b_f$ is significantly smaller than backward branching factor $b_b$ ($b_f \ll b_b$). | Prefer Backward Search if backward branching factor $b_b$ is significantly smaller than forward branching factor $b_f$ ($b_b \ll b_f$). |
+| **Typical Application** | Game playing (Chess, Tic-Tac-Toe), robot path planning. | Theorem proving (proving a theorem by generating subgoals from the conclusion), medical diagnosis. |
+| **Justification & Explanation** | Can generate unnecessary branches unrelated to the goal. | Naturally produces human-readable goal justification traces. |
+| **Bidirectional Synergy** | Combines forward search from $S_0$ and backward search from $S_G$ simultaneously, reducing search time from $\mathcal{O}(b^d)$ to $\mathcal{O}(b^{d/2})$. |
+
+---
+
+## 5. State-Space and Solution Space Search
 
 \`\`\`video
 {
@@ -329,13 +504,13 @@ Extends the standard test by requiring a physical interface to test interaction 
 
 A problem can be formally defined as a **collection of information and mathematical constraints** that an agent uses to decide what actions to take.
 
-### 2.1 Formal 5-Tuple Problem Formulation
+### 5.1 Formal 5-Tuple Problem Formulation
 
 Every well-defined search problem consists of 5 mathematical components:
 
 1. **Initial State ($S_0$)**: The starting state in which the agent begins.
 2. **Actions Function ($Actions(s)$)**: Returns the legal set of actions executable in state $s$:
-   $$\\text{Actions}(s) = \{a_1, a_2, \\dots, a_k\}$$
+   $$\text{Actions}(s) = \{a_1, a_2, \dots, a_k\}$$
 3. **Transition Model ($Result(s, a)$)**: A deterministic function describing the outcome state of applying action $a$ to state $s$:
    $$s' = Result(s, a)$$
 4. **Goal Test ($IsGoal(s)$)**: A Boolean predicate determining whether state $s$ satisfies the goal conditions (explicit single goal or implicit property test).
@@ -346,9 +521,9 @@ A **Solution** is an action sequence mapping $S_0$ to a goal state. An **Optimal
 
 ---
 
-### 2.2 State Space vs. Solution Space
+### 5.2 State Space vs. Solution Space
 
-- **State Space**: The set of all possible configurations reachable from the initial state by any sequence of valid actions. Search algorithms navigate this graph.
+- **State Space**: The set of all possible configurations reachable from the initial state by any sequence of valid actions. Search algorithms navigate this graph by incremental steps.
 - **Solution Space**: The set of valid candidate solutions (complete state configurations or paths). Common in optimization techniques (e.g., Genetic Algorithms, Simulated Annealing) where each point is already a complete candidate configuration.
 
 #### Classic Examples:
@@ -359,54 +534,19 @@ A **Solution** is an action sequence mapping $S_0$ to a goal state. An **Optimal
    - *Incremental Formulation (State Space)*: Start with an empty board; add a queen to each column without conflict ($8^8$ states max).
    - *Complete-State Formulation (Solution Space)*: Start with all 8 queens on board, move queens within columns to eliminate conflicts.
 3. **Water Jug Problem (4-Gallon & 3-Gallon Jugs, target 2 gallons)**:
-   - *State*: Pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ and $y \\in \{0, 1, 2, 3\}$.
+   - *State*: Pair $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ and $y \in \{0, 1, 2, 3\}$.
    - *Actions*: Fill jug, Empty jug, Pour from one jug to another until full or empty.
 
 ---
 
-### 2.3 State vs. Node Distinction (Crucial Exam Concept!)
-
-A frequent source of student confusion in CIA and semester exams is confusing a **State** with a **Search Node**:
-
-\`\`\`
-PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
-┌─────────────────────────┐               ┌──────────────────────────────────────────┐
-│  State:                 │               │ Node Data Structure:                     │
-│  "Arad"                 │               │ • State: "Arad"                          │
-│  (Physical location or  │ ◄──────────── │ • Parent Node: Pointer to "Sibiu"        │
-│   board configuration)  │               │ • Action: "DriveToArad"                  │
-│                         │               │ • Path Cost g(n): 140 + 118 = 258        │
-│                         │               │ • Depth d: 2                             │
-└─────────────────────────┘               └──────────────────────────────────────────┘
-\`\`\`
-
-| Dimension | State | Search Node |
-|---|---|---|
-| **What it is** | A representation of a physical configuration of the world. | A bookkeeping data structure within the search tree. |
-| **Uniqueness** | Unique in the state space graph (e.g., city "Arad" exists once). | Multiple nodes can represent the exact same state if reached via different paths! |
-| **Components** | Features of the environment (e.g., coordinates, tile positions). | \`node.STATE\`, \`node.PARENT\`, \`node.ACTION\`, \`node.PATH_COST\` ($g$), \`node.DEPTH\` ($d$). |
-| **Generated By** | The environment transition model $Result(s, a)$. | The search algorithm expanding a parent node in memory. |
-
----
-
-### 2.4 State Space Graph vs. Search Tree
-
-- **State Space Graph**: Mathematical directed graph $G = (V, E)$ where vertices are states and edges are actions. May contain directed cycles and loops.
-- **Search Tree**: A tree representing explicit paths through the state space rooted at $S_0$. If paths can contain loops, an infinite search tree can be generated from a finite state space graph!
-
-> **Graph Search vs. Tree Search**:
-> Graph search augments tree search with an **Explored Set (Closed List)** to discard any newly generated node whose state has already been expanded or exists in the frontier with lower cost. This prevents infinite cycles.
-
----
-
-### 2.4 Production Systems in Artificial Intelligence (CURAJ CIA-1 Q3 Core Concept)
+### 5.3 Production Systems in Artificial Intelligence (CURAJ CIA-1 Core Concept)
 
 A **Production System** (first introduced by Emil Post and adapted for AI by Allen Newell & Herbert Simon in 1972) is a fundamental computational architecture for knowledge representation, cognitive modeling, and automated state-space search.
 
 #### Architectural Components:
 A production system consists of three distinct modules:
 
-\`\`\`
+\`\`\`text
 ┌────────────────────────────────────────────────────────────────────────┐
 │                        PRODUCTION SYSTEM IN AI                         │
 ├────────────────────────────────────────────────────────────────────────┤
@@ -431,7 +571,7 @@ A production system consists of three distinct modules:
 
 1. **Rule Base (Production Rules)**:
    - A collection of condition-action statements of the form:
-     $\\mathbf{IF} \quad \langle\text{Condition / Premise (LHS)}\rangle \quad \\mathbf{THEN} \quad \langle\text{Action / Conclusion (RHS)}\rangle$
+     $$\mathbf{IF} \quad \langle\text{Condition / Premise (LHS)}\rangle \quad \mathbf{THEN} \quad \langle\text{Action / Conclusion (RHS)}\rangle$$
    - The LHS checks whether conditions in the Working Memory are met; the RHS specifies the state modification or action to execute.
 2. **Context / Working Memory (Global Database)**:
    - Contains the current state configuration, active data structures, and environmental facts.
@@ -450,7 +590,229 @@ A production system consists of three distinct modules:
 
 ---
 
-### 2.5 Classical Problem Formulations & Production Rules (University Favorites)
+### 5.4 Classes of Production Systems (Rich & Knight Ch 2)
+
+In classical AI literature (*Rich & Knight*, *Nilsson*), production systems are categorized along two independent theoretical axes: **Monotonicity** and **Commutativity**.
+
+#### 1. Monotonic vs. Non-Monotonic Production Systems:
+- **Monotonic Production System**:
+  - The application of a valid production rule **never invalidates or retracts** previously deduced facts or assertions in the database.
+  - New knowledge is strictly additive: $\text{KB}_{t+1} \supseteq \text{KB}_t$.
+  - *Example*: Formal mathematical theorem proving (e.g., deducing a geometric lemma adds a new truth without making prior axioms false).
+- **Non-Monotonic Production System**:
+  - The firing of a production rule **can retract, delete, or overwrite** previous assertions in the database.
+  - *Example*: The Water Jug problem (pouring water changes the volume $x$ and $y$, making the previous volumes false), Robot navigation (moving from $(0, 0)$ to $(0, 1)$ deletes the fact that the robot is at $(0, 0)$).
+
+#### 2. Commutative vs. Non-Commutative Production Systems:
+- **Commutative Production System**:
+  - If a set of rules $\{R_1, R_2, \dots, R_k\}$ are all applicable to state $S$, applying them in **any order or permutation** produces the **exact same final state**:
+    $$\text{Apply}(R_2, \text{Apply}(R_1, S)) = \text{Apply}(R_1, \text{Apply}(R_2, S))$$
+  - In a commutative system, search never has to backtrack over the order of rule firings!
+- **Non-Commutative Production System**:
+  - The sequential order in which rules are applied critically alters the resulting state or validity. Applying $R_1$ then $R_2$ may yield a completely different state than applying $R_2$ then $R_1$ (or $R_2$ may no longer even be legal).
+  - *Example*: Chess (moving a knight before a pawn is completely different from moving the pawn first).
+
+#### Rich & Knight's 4-Quadrant Production System Classification Matrix:
+| Classification Quadrant | Monotonic? | Commutative? | Real-World Benchmark Domain | Significance for Search Complexity |
+|---|:---:|:---:|---|---|
+| **Monotonic + Commutative** | **Yes** | **Yes** | **Theorem Proving in Predicate Logic**, Deductive Database Querying | **Easiest Search**: Solution steps can be taken without backtracking; order of inferences does not matter. |
+| **Monotonic + Non-Commutative** | **Yes** | **No** | **Chemical Synthesis**, Formal Language Parsing | Facts accumulate monotonically, but reaction sequence order is critical. |
+| **Non-Monotonic + Commutative** | **No** | **Yes** | **Robot Navigation with Independent Obstacle Removals**, Assembly Line Sorting | Operations delete state properties, but tasks can be completed in arbitrary order without conflict. |
+| **Non-Monotonic + Non-Commutative** | **No** | **No** | **Water Jug Problem**, **8-Puzzle**, **Chess**, **Robotic Manipulation** | **Hardest Search**: Requires full graph search with backtracking, cycle prevention, and heuristic guidance. |
+
+---
+
+### 5.5 The 7 Crucial Problem Characteristics (Rich & Knight's Landmark Framework)
+
+In Chapter 2 of *Artificial Intelligence*, **Elaine Rich and Kevin Knight** established that before selecting any search algorithm (BFS, DFS, A*, or CSP), an AI engineer must thoroughly analyze the problem along **seven fundamental dimensions**. 
+
+This 7-characteristic analysis is one of the most celebrated conceptual frameworks in AI and is a staple **10-mark compulsory question** in university examinations:
+
+\`\`\`text
+                 THE 7 PROBLEM CHARACTERISTICS (RICH & KNIGHT)
+┌──────────────────────────────────────────────────────────────────────────────┐
+│  1. Is the problem DECOMPOSABLE into independent subproblems?                │
+│  2. Can solution steps be UNDONE if they lead to an impasse?                 │
+│     (Ignorable vs. Recoverable vs. Irrecoverable)                            │
+│  3. Is the problem universe PREDICTABLE?                                     │
+│     (Certain-Outcome / Deterministic vs. Uncertain-Outcome / Stochastic)     │
+│  4. Is a good solution ABSOLUTE or RELATIVE?                                 │
+│     (Any-Path vs. Best-Path / Optimal)                                       │
+│  5. Is the knowledge base CONSISTENT?                                        │
+│  6. What is the ROLE OF KNOWLEDGE?                                           │
+│     (Knowledge-Poor / Search-Heavy vs. Knowledge-Rich / Knowledge-Intensive)│
+│  7. Does the task require INTERACTION with a person?                         │
+│     (Solitary vs. Conversational)                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+\`\`\`
+
+#### Characteristic 1: Is the problem decomposable into a set of independent subproblems?
+- **Decomposable Problems**:
+  - The master problem can be split into smaller, independent subproblems that can each be solved completely in isolation, and whose partial solutions can be stitched together without interference.
+  - *Textbook Example*: **Symbolic Integration**:
+    $$\int (x^2 + 3x + \sin x) \, dx = \int x^2 \, dx + 3 \int x \, dx + \int \sin x \, dx$$
+    Each integral can be evaluated independently by lookup or substitution rules.
+  - *Algorithmic Implication*: Solved via **AND-OR Graphs** and Divide-and-Conquer algorithms ($AO^*$).
+- **Non-Decomposable Problems**:
+  - Subproblems interact and interfere with one another; solving one subproblem may destroy or undo the conditions required for another.
+  - *Textbook Example*: **Blocks World (Sussman Anomaly)** and the **8-Puzzle**. In the 8-puzzle, you cannot solve the top row and freeze it while solving the bottom two rows; tiles in the top row must be temporarily moved to clear paths for bottom tiles.
+
+#### Characteristic 2: Can solution steps be undone if they terminate in an impasse?
+Rich & Knight divide all problems into three distinct classes of step reversibility:
+1. **Ignorable Step Problems**:
+   - Solution steps can be taken without worrying about dead ends. If an unhelpful step is taken, it never precludes or locks out finding the correct solution later. Backtracking is never required.
+   - *Example*: **Theorem Proving in Logic**. If you deduce an irrelevant lemma $P \lor Q$, you simply keep it in your database; it does not invalidate your ability to deduce the true goal theorem $R$ later.
+2. **Recoverable Step Problems**:
+   - Mistakes can be made and impasses encountered, but prior steps can be undone by **backtracking** to an earlier state.
+   - *Example*: **8-Puzzle**, **Water Jug Problem**, **Mazes**, and casual Chess puzzles. If you pour water into the wrong jug or slide a tile the wrong way, you can reverse the operator and return to the previous state.
+3. **Irrecoverable Step Problems**:
+   - Actions in the environment cannot be reversed. A mistaken move locks in a permanent real-world commitment.
+   - *Example*: **Playing a Tournament Game of Chess** (under the FIDE "touch-move" rule, an illegal or blunder move cannot be taken back), **Physical Robotic Surgery**, **Chemical Reactions**, **Stock Market Trading**.
+   - *Algorithmic Implication*: Irrecoverable problems demand extreme caution, deep lookahead, and planning prior to executing any physical action.
+
+#### Characteristic 3: Is the problem universe predictable?
+- **Certain-Outcome (Deterministic) Problems**:
+  - Every operator has an exact, deterministic outcome with $100\%$ mathematical certainty. Given state $s$ and action $a$, $Result(s, a)$ is always known beforehand.
+  - *Example*: **8-Puzzle**, **Water Jug Problem**, **Tic-Tac-Toe**, **Chess**.
+- **Uncertain-Outcome (Non-Deterministic / Stochastic) Problems**:
+  - An action may lead to multiple possible states with varying probabilities, governed by chance, hidden cards, environmental randomness, or opponent psychology.
+  - *Example*: **Bridge / Poker** (cards dealt to opponents are unobserved), **Backgammon** (dice rolls introduce stochastic transitions), **Real-World Robotic Navigation** (wheel slippage and sensor noise mean moving forward 1 meter may land the robot at $0.95$m or $1.05$m).
+  - *Algorithmic Implication*: Requires Markov Decision Processes (MDPs), Expectiminimax, and Probabilistic Belief Networks.
+
+#### Characteristic 4: Is a good solution to the problem absolute or relative?
+- **Absolute Solution (Any-Path Problems)**:
+  - We simply care about reaching **any valid goal state**. The length of the path or the number of intermediate operator applications is secondary.
+  - *Example*: **Water Jug Problem** (the problem asks to measure 2 gallons; finding any legal sequence of pours solves the problem), **Mathematical Theorem Proving** (any valid proof is accepted), **Finding a path out of a burning building**.
+- **Relative Solution (Best-Path / Optimal Problems)**:
+  - The quality, length, or cost of the path is paramount. We seek the **optimal path** that minimizes cost or maximizes utility.
+  - *Example*: **The Traveling Salesperson Problem (TSP)** (visiting all cities is trivial; the challenge is finding the Hamiltonian circuit with minimal total travel distance), **Shortest-Route GPS Navigation**.
+  - *Algorithmic Implication*: Any-path problems can be solved quickly by DFS or Greedy Search; best-path problems require exhaustive uniform exploration (UCS, $A^*$, Branch-and-Bound).
+
+#### Characteristic 5: Is the knowledge base consistent?
+- **Consistent Knowledge Bases**:
+  - Axioms, facts, and inference rules are free from contradictions. If $P$ is true, $\neg P$ is strictly false.
+  - *Example*: **Formal Euclidean Geometry**, **Axiomatic Set Theory**.
+- **Inconsistent Knowledge Bases**:
+  - The system must reason with conflicting facts, contradictory witness testimonies in legal domains, or default assumptions that may later be overturned by new evidence.
+  - *Example*: **Courtroom Legal Reasoning** (Witness A says the suspect was in Delhi; Witness B says the suspect was in Jaipur), **Medical Diagnosis** (competing test results).
+  - *Algorithmic Implication*: Requires Non-Monotonic Reasoning, Truth Maintenance Systems (TMS), and Fuzzy Logic.
+
+#### Characteristic 6: Is a large amount of knowledge required primarily to solve the problem, or is knowledge important only to constrain search?
+- **Knowledge-Poor / Search-Intensive Problems**:
+  - The domain definition requires very little knowledge (a few simple legal rules fit on a single page), but the state space is astronomically vast. Intelligence is achieved through deep, clever search.
+  - *Example*: **Chess**, **Go**, **8-Puzzle**, **Rubik's Cube**.
+- **Knowledge-Rich / Knowledge-Intensive Problems**:
+  - Solving the problem requires thousands of specific domain facts, medical heuristics, biochemical rules, or legal precedents. The search depth is typically shallow, but the breadth of specialized knowledge is massive.
+  - *Example*: **MYCIN** (medical diagnosis of bacteremia requires hundreds of clinical rules), **DENDRAL** (chemical mass spectrometry), **Legal Expert Systems**.
+
+#### Characteristic 7: Does the task require interaction with a person?
+- **Solitary Problems**:
+  - The computer is given the problem formulation and initial state, runs completely unattended in batch mode, and outputs the answer upon completion.
+  - *Example*: **Compiler Optimization**, **Mathematical Theorem Provers**, **TSP Solvers**.
+- **Conversational / Interactive Problems**:
+  - The AI must carry out an interactive dialogue with a human user to elicit intermediate information, clarify ambiguity, explain its reasoning trajectory, or accept human guidance.
+  - *Example*: **Medical Diagnostic Consultation** (system queries patient: *"Do you have a fever?"*), **Interactive CAD Design**, **Collaborative Tutoring Systems**.
+
+---
+
+#### Master Problem Classification Matrix (Rich & Knight Benchmark Comparison)
+| AI Benchmark Problem | 1. Decomposable? | 2. Step Reversibility | 3. Universe Predictability | 4. Solution Type | 5. KB Consistency | 6. Role of Knowledge | 7. Interaction |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Symbolic Integration** | **Yes** | **Ignorable** | Certain | Absolute | Consistent | Knowledge-Rich | Solitary |
+| **Water Jug Problem** | **No** | **Recoverable** | Certain | Absolute (Any-path) | Consistent | Knowledge-Poor | Solitary |
+| **8-Puzzle** | **No** | **Recoverable** | Certain | Relative (Shortest) | Consistent | Knowledge-Poor | Solitary |
+| **Traveling Salesperson (TSP)** | **No** | **Recoverable** | Certain | **Relative (Minimal)** | Consistent | Knowledge-Poor | Solitary |
+| **Tournament Chess** | **No** | **Irrecoverable** | Certain | Relative (Winning) | Consistent | Knowledge-Poor | Solitary |
+| **Bridge / Poker** | **No** | **Irrecoverable** | **Uncertain** | Relative | Inconsistent | Knowledge-Rich | Conversational |
+| **Medical Diagnosis (MYCIN)** | **Yes** | **Ignorable** | **Uncertain** | Relative | **Inconsistent** | **Knowledge-Rich** | **Conversational** |
+
+---
+
+### 5.6 Classical Problem Formulations & Production Rules (University Favorites)
+
+#### 1. Case Study: 3 Approaches to Playing Tic-Tac-Toe (Rich & Knight's Landmark Comparison)
+
+To demonstrate precisely what differentiates a naive non-AI computer program from a true AI technique, Elaine Rich and Kevin Knight presented their famous pedagogical comparison of **three distinct computer programs designed to play Tic-Tac-Toe ($3 \times 3$ board)**:
+
+\`\`\`text
+                              TIC-TAC-TOE BOARD
+                                 1 │ 2 │ 3
+                                ───┼───┼───
+                                 4 │ 5 │ 6
+                                ───┼───┼───
+                                 7 │ 8 │ 9
+\`\`\`
+
+##### Program 1: The Brute-Force Vector Lookup Table (Naive Non-AI)
+- **Data Structure**:
+  - The board is represented as a 9-element vector where each square is $0$ (blank), $1$ (X), or $2$ (O).
+  - The total number of mathematically possible board configurations is:
+    $$3^9 = 19,683 \text{ states}$$
+  - A massive precomputed lookup table of size $19,683$ is stored in memory. For every entry, a programmer has pre-calculated and stored the exact optimal square index $(1..9)$ to play.
+- **Execution**: The computer takes the current board state, treats it as a ternary index into the table, and immediately plays the stored move in $\mathcal{O}(1)$ time.
+- **Critical Evaluation**:
+  - **Pros**: Blazingly fast ($\mathcal{O}(1)$ lookup time); never makes a tactical error if the table is correct.
+  - **Fatal Flaws**:
+    - **Space Inefficiency**: Enormous memory waste for a trivial game.
+    - **Brittleness**: Cannot learn or adapt. If the rules change even slightly (e.g., $4 \times 4$ board or 3D Tic-Tac-Toe), the entire table must be discarded and recalculated.
+    - **Zero Generalizability**: Completely impossible to scale. For Chess, the number of states is roughly $10^{120}$ (Shannon number)—far exceeding the total atoms in the observable universe ($10^{80}$). A lookup table is mathematically impossible!
+
+##### Program 2: Heuristic Rules with Magic Square Arithmetic
+- **Data Structure**:
+  - Employs a classical $3 \times 3$ **Magic Square** where every row, column, and main diagonal sums to exactly **15**:
+    \`\`\`text
+    ┌───┬───┬───┐
+    │ 8 │ 1 │ 6 │  = 15
+    ├───┼───┼───┤
+    │ 3 │ 5 │ 7 │  = 15
+    ├───┼───┼───┤
+    │ 4 │ 9 │ 2 │  = 15
+    └───┴───┴───┘
+      =   =   =
+     15  15  15  (Diagonals: 8+5+2 = 15, 6+5+4 = 15)
+    \`\`\`
+  - The board vector stores the numbers $\{1..9\}$ corresponding to squares claimed by player $X$, player $O$, and blank.
+- **Rule-Based Heuristic Strategy (Ordered Production Rules)**:
+  1. **Win Rule**: If player has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \in \{1..9\}$ and square $C$ is blank, play $C$ to win!
+  2. **Block Rule**: If opponent has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \in \{1..9\}$ and square $C$ is blank, play $C$ immediately to block the opponent's imminent win!
+  3. **Fork Creation**: Check for combinations that create two simultaneous winning threats.
+  4. **Center Square**: If square $5$ (the center) is blank, claim it.
+  5. **Opposite Corner**: If opponent is in a corner, play the diametrically opposite corner.
+- **Critical Evaluation**:
+  - **Pros**: Compact memory representation; elegant arithmetic reasoning replaces millions of precomputed moves; plays perfect games.
+  - **Limitations**:
+    - Strictly tailored to $3 \times 3$ Tic-Tac-Toe. The arithmetic magic sum property cannot be transferred to Checkers, Chess, or Go. It is a domain-specific mathematical trick, not a general search architecture.
+
+##### Program 3: State Space Search with Static Board Evaluation & Minimax (True AI Technique)
+- **Data Structure**:
+  - Represents the game as an explicit **State Space Tree**.
+  - Current board configuration is the root node.
+  - Legal moves generate child nodes.
+- **Algorithm**:
+  - Conducts a multi-ply depth-limited search (lookahead).
+  - At the search depth limit, applies a **Static Heuristic Board Evaluation Function $E(p)$**:
+    $$E(p) = M(p) - O(p)$$
+    Where:
+    - $M(p)$: Number of complete winning rows, columns, and diagonals still open for the computer (MAX).
+    - $O(p)$: Number of complete winning rows, columns, and diagonals still open for the opponent (MIN).
+  - Propagates values upward using the **Minimax Procedure** (maximizing at computer's turn, minimizing at opponent's turn).
+- **Critical Evaluation**:
+  - **Pros**:
+    - **Generalizability**: The underlying framework (State Space Generation + Heuristic Evaluation + Minimax Search) is the **exact same architecture** used by IBM Deep Blue for Chess and modern game-playing systems.
+    - **Adjustable Depth**: Search depth can be dynamically adjusted based on available computing time.
+    - **Meets all 4 Criteria of an AI Technique**: Captures generalizations, transparent to inspection, modifiable heuristic weights, and robust to incomplete lookahead.
+
+##### Comprehensive Comparison Matrix: Rich & Knight's 3 Tic-Tac-Toe Programs
+| Feature / Parameter | Program 1 (Lookup Table) | Program 2 (Magic Square Heuristic) | Program 3 (State Space Search & Minimax) |
+|---|---|---|---|
+| **Underlying Approach** | Brute-force exhaustive table lookup. | Procedural arithmetic heuristic rules. | General State Space Search with static heuristic evaluation. |
+| **Storage / Memory Needed** | $19,683$ complete board mappings ($\mathcal{O}(3^N)$ space). | Minimal ($9$ integer registers). | Proportional to search stack depth ($\mathcal{O}(b \cdot d)$ space). |
+| **Computation Time per Move** | Instantaneous $\mathcal{O}(1)$ array access. | Negligible (simple algebraic subtractions). | Moderate; depends on search depth limit ($\mathcal{O}(b^d)$ time). |
+| **Human Understandability** | Zero; unreadable array of 20,000 numbers. | High; intuitive strategic rules (win, block, center). | Very High; clear minimax reasoning trace and path trees. |
+| **Modifiability** | Terrible; changing board size requires full regeneration. | Poor; Magic Square trick breaks on non-$3 \times 3$ grids. | Excellent; tweak depth or heuristic weights $E(p)$ easily. |
+| **Scalability to Chess / Real AI** | **Zero (Impossible)** ($10^{120}$ chess states). | **Zero (Domain-specific trick)**. | **Excellent (General Foundation of AI Search)**. |
+
+---
 
 #### 1. The Water Jug Problem
 
@@ -592,7 +954,117 @@ A production system consists of three distinct modules:
 
 ---
 
-## 3. Evaluating Search Strategies
+#### 5. The Cryptarithmetic Problem ($SEND + MORE = MONEY$) (Rich & Knight Ch 2)
+
+\`\`\`video
+{
+  "id": "Jb-w019Jm9w",
+  "title": "Cryptarithmetic Problem in AI with Step-by-Step Solution",
+  "channel": "Gate Smashers (Varun Singla)",
+  "duration": "12:40",
+  "speed": "1.25x",
+  "relevance": "CURAJ Semester Exams & UGC NET JRF ⭐⭐⭐⭐⭐",
+  "takeaway": "Watch this lecture to understand how Cryptarithmetic is formulated as a Constraint Satisfaction Problem (CSP) before studying the column-by-column carry deductions below."
+}
+\`\`\`
+
+The **Cryptarithmetic Problem** (also known as alphametic or verbal arithmetic) is one of the classic constraint satisfaction and heuristic search benchmark problems featured prominently in **Rich & Knight (Chapter 2 & Chapter 3)**:
+
+\`\`\`text
+    S  E  N  D
+  + M  O  R  E
+  ────────────
+  M O  N  E  Y
+\`\`\`
+
+##### 1. Problem Rules & Mathematical Constraints:
+1. **Unique Digit Assignment**: Each letter uniquely represents a single decimal digit from $\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$.
+2. **AllDifferent Constraint**: Distinct letters must map to distinct numeric values:
+   $$\text{AllDifferent}(S, E, N, D, M, O, R, Y)$$
+3. **No Leading Zero Constraint**: The leading digits of multi-digit numbers cannot be zero:
+   $$S \ne 0, \quad M \ne 0$$
+4. **Column Arithmetic with Carry Variables ($C_1, C_2, C_3, C_4 \in \{0, 1\}$)**:
+   - *Column 1 (Units)*: $D + E = Y + 10 \cdot C_1$
+   - *Column 2 (Tens)*: $N + R + C_1 = E + 10 \cdot C_2$
+   - *Column 3 (Hundreds)*: $E + O + C_2 = N + 10 \cdot C_3$
+   - *Column 4 (Thousands)*: $S + M + C_3 = O + 10 \cdot C_4$
+   - *Column 5 (Ten-Thousands)*: $C_4 = M$
+
+##### 2. Step-by-Step Formal Constraint Deduction:
+
+\`\`\`text
+  Carry:    C4   C3   C2   C1
+                 S    E    N    D
+            +    M    O    R    E
+            ─────────────────────
+            M    O    E    Y
+\`\`\`
+
+- **Step 1: Deduce $M$ and $C_4$**:
+  - Column 5 consists solely of the carry from Col---
+
+## 6. State Space as Graph — State v/s Node
+
+### 6.1 State Space as a Directed Graph
+
+Mathematically, any problem's state space can be conceptualized as a **directed graph** $G = (V, E)$:
+- **Vertices ($V$)**: Distinct physical or abstract states of the problem world.
+- **Directed Edges ($E$)**: Actions or legal operator transitions mapping state $s$ to state $s' = Result(s, a)$.
+- In most realistic problems, $G$ contains cycles, loops, and multiple alternate paths to the same vertex.
+
+---
+
+### 6.2 State vs. Node Distinction (Crucial Exam Concept!)
+
+A frequent source of student confusion in CURAJ CIA and semester examinations is confusing a **State** with a **Search Node**:
+
+\`\`\`text
+PHYSICAL WORLD: STATE                      DATA STRUCTURE: SEARCH NODE
+┌─────────────────────────┐               ┌──────────────────────────────────────────┐
+│  State:                 │               │ Node Data Structure:                     │
+│  "Arad"                 │               │ • State: "Arad"                          │
+│  (Physical location or  │ ◄──────────── │ • Parent Node: Pointer to "Sibiu"        │
+│   board configuration)  │               │ • Action: "DriveToArad"                  │
+│                         │               │ • Path Cost g(n): 140 + 118 = 258        │
+│                         │               │ • Depth d: 2                             │
+└─────────────────────────┘               └──────────────────────────────────────────┘
+\`\`\`
+
+| Dimension | State | Search Node |
+|---|---|---|
+| **What it is** | A representation of a physical configuration of the world. | A bookkeeping data structure within the search tree. |
+| **Uniqueness** | Unique in the state space graph (e.g., city "Arad" exists once). | Multiple nodes can represent the exact same state if reached via different paths! |
+| **Components** | Features of the environment (e.g., coordinates, tile positions). | \`node.STATE\`, \`node.PARENT\`, \`node.ACTION\`, \`node.PATH_COST\` ($g$), \`node.DEPTH\` ($d$). |
+| **Generated By** | The environment transition model $Result(s, a)$. | The search algorithm expanding a parent node in memory. |
+
+---
+
+### 6.3 State Space Graph vs. Search Tree
+
+- **State Space Graph**: Mathematical directed graph $G = (V, E)$ where vertices are states and edges are actions. May contain directed cycles and loops.
+- **Search Tree**: A tree representing explicit paths through the state space rooted at $S_0$. If paths can contain loops, an infinite search tree can be generated from a finite state space graph!
+
+---
+
+### 6.4 Graph Search vs. Tree Search
+
+\`\`\`text
+TREE SEARCH                                 GRAPH SEARCH
+Does NOT track visited states.              Maintains an EXPLORED SET (Closed List).
+Generates infinite trees on cyclic graphs.  Prunes redundant paths to already-explored states.
+Memory-efficient but risks infinite loops.  Guarantees termination on finite state graphs.
+\`\`\`
+
+- **The Explored Set (Closed List)**:
+  Graph search augments tree search with an Explored Set to record every state that has already been expanded. When a new child node is generated:
+  1. If \`child.STATE\` is in the Explored Set, it is immediately discarded.
+  2. If \`child.STATE\` is in the Frontier with higher path cost, its key is decreased.
+  3. Otherwise, it is added to the Frontier.
+- **Cycle Detection**: Prevents infinite loops in loopy graphs (e.g., sliding a tile back and forth in the 8-puzzle, or pouring water back and forth between jugs).
+
+---
+
+## 7. Evaluating Search Strategies — Time, Space, Completeness, Optimality
 
 Every search algorithm is evaluated along four fundamental performance dimensions:
 
@@ -601,33 +1073,41 @@ Every search algorithm is evaluated along four fundamental performance dimension
 3. **Space Complexity**: How much working memory does the algorithm require? Quantified as the **maximum number of nodes stored concurrently in memory**.
 4. **Optimality**: Does the strategy always find the solution with the lowest path cost $g(n)$ among all possible solutions?
 
-### Standard Notation Parameters:
+### 7.1 Standard Notation Parameters:
 - **$b$ (Branching Factor)**: Maximum number of successors (children) of any node.
 - **$d$ (Shallowest Goal Depth)**: Depth of the shallowest goal node in the search tree.
-- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\\infty$ in spaces with infinite loops).
-- **$\\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\\epsilon > 0$).
+- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\infty$ in spaces with infinite loops).
+- **$\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\epsilon > 0$).
 - **$C^*$ (Optimal Solution Cost)**: Cost of the optimal path.
 
 ---
 
-## 4. Uninformed (Blind) Search Algorithms
+## 8. Uninformed (Blind) Search Algorithms
 
 Uninformed search algorithms operate **solely with problem formulation specifications** ($S_0$, $Actions$, $Result$, $GoalTest$, $c$). They possess no domain-specific heuristic knowledge regarding how close a given state is to the goal.
 
-\`\`\`
+In accordance with the **CURAJ M.Sc. Computer Science Unit 1 Syllabus**, the uninformed search algorithms are examined in the following sequence:
+1. **Breadth-First Search (BFS)**
+2. **Depth-First Search (DFS)**
+3. **Depth-Limited Search (DLS)**
+4. **Iterative Deepening Search (IDS / IDDFS)**
+5. **Bidirectional Search**
+6. **Uniform Cost Search (UCS)**
+
+\`\`\`text
                                UNINFORMED SEARCH
                                        │
         ┌───────────────────┬──────────┴─────────┬───────────────────┐
         ▼                   ▼                    ▼                   ▼
- Breadth-First (BFS)  Depth-First (DFS)   Uniform Cost (UCS)   Iterative Deepening (IDS)
-  • Queue (FIFO)       • Stack (LIFO)      • Priority Queue     • Incremental Depth Cutoff
-  • Level-by-level     • Deepest path      • Min path cost g(n) • Linear space O(bd)
-  • High memory O(bᵈ)  • Linear space O(bm)• Optimal for any c  • Optimal for unit cost
+ Breadth-First (BFS)  Depth-First (DFS)   Bidirectional Search Uniform Cost (UCS)
+  • Queue (FIFO)       • Stack (LIFO)      • Dual Frontiers     • Priority Queue
+  • Level-by-level     • Deepest path      • Meets at middle    • Min path cost g(n)
+  • High memory O(bᵈ)  • Linear space O(bm)• Speedup to O(bᵈᐟ²) • Optimal for any c
 \`\`\`
 
 ---
 
-### 4.1 Breadth-First Search (BFS)
+### 8.1 Breadth-First Search (BFS)
 
 \`\`\`video
 {
@@ -673,7 +1153,7 @@ def breadth_first_search(problem):
 #### Performance Analysis:
 - **Completeness**: **Yes** (if branching factor $b$ is finite).
 - **Time Complexity**:
-  $$1 + b + b^2 + b^3 + \\dots + b^d = O(b^d)$$
+  $$1 + b + b^2 + b^3 + \dots + b^d = O(b^d)$$
 - **Space Complexity**: All frontier and explored nodes must remain in memory:
   $$O(b^d)$$
 - **Optimality**: **Yes** if and only if **all step costs are identical / uniform (e.g., unit cost = 1)**. In general weighted graphs, BFS is *not* optimal.
@@ -683,7 +1163,7 @@ def breadth_first_search(problem):
 
 ---
 
-### 4.2 Depth-First Search (DFS)
+### 8.2 Depth-First Search (DFS)
 
 \`\`\`video
 {
@@ -730,7 +1210,7 @@ def depth_first_search(problem):
 
 ---
 
-### 4.3 Depth-Limited Search (DLS)
+### 8.3 Depth-Limited Search (DLS)
 
 #### Mechanism:
 DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treated as if they have no successors.
@@ -741,14 +1221,14 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
   3. \`cutoff\`: Goal not found within limit $l$, but deeper nodes existed.
 
 #### Performance Analysis:
-- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \\ge d$ in finite spaces.
+- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \ge d$ in finite spaces.
 - **Time Complexity**: $O(b^l)$
 - **Space Complexity**: $O(bl)$
 - **Optimality**: **No** (even if $l > d$, it may find a suboptimal goal first).
 
 ---
 
-### 4.4 Iterative Deepening Search (IDS / IDDFS)
+### 8.4 Iterative Deepening Search (IDS / IDDFS)
 
 \`\`\`video
 {
@@ -763,9 +1243,9 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
 \`\`\`
 
 #### Mechanism:
-Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \\dots, d$:
+Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \dots, d$:
 
-\`\`\`
+\`\`\`text
 Level 0:  (l = 0)  Root
 Level 1:  (l = 1)  Root ──> Successors (Depth 1)
 Level 2:  (l = 2)  Root ──> Depth 1 ──> Successors (Depth 2)
@@ -786,14 +1266,14 @@ def iterative_deepening_search(problem):
 A common intuitive objection is that IDS is wasteful because it repeatedly regenerates upper levels. Let's calculate the exact total nodes generated:
 - In level $d$, nodes generated $1$ time: $b^d$
 - In level $d-1$, nodes generated $2$ times: $2 b^{d-1}$
-- In level $1$, nodes generated $d$ times: $d \\cdot b$
+- In level $1$, nodes generated $d$ times: $d \cdot b$
 
-$$\\text{Total Nodes} = d \\cdot b + (d-1)b^2 + (d-2)b^3 + \\dots + 1 \\cdot b^d$$
+$$\text{Total Nodes} = d \cdot b + (d-1)b^2 + (d-2)b^3 + \dots + 1 \cdot b^d$$
 
 **Concrete Comparison ($b = 10, d = 5$):**
 - **BFS Nodes**: $1 + 10 + 100 + 1,000 + 10,000 + 100,000 = 111,111$
 - **IDS Nodes**: $5(10) + 4(100) + 3(1,000) + 2(10,000) + 1(100,000) = 123,450$
-- **Overhead**: Only $\\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
+- **Overhead**: Only $\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
 
 #### Performance Analysis:
 - **Completeness**: **Yes** (if $b$ is finite).
@@ -806,7 +1286,38 @@ $$\\text{Total Nodes} = d \\cdot b + (d-1)b^2 + (d-2)b^3 + \\dots + 1 \\cdot b^d
 
 ---
 
-### 4.5 Uniform Cost Search (UCS)
+### 8.5 Bidirectional Search (CURAJ Syllabus Focus)
+
+#### Mechanism:
+- Runs two simultaneous searches:
+  1. **Forward Search** starting from Initial State $S_0$ (data-directed).
+  2. **Backward Search** starting from Goal State $S_G$ (goal-directed).
+- Stops when their frontiers **intersect** (a common node is generated in both directions).
+- Directly operationalizes **Rich & Knight's Direction of Search** principles (Section 4.3).
+
+\`\`\`text
+   Forward Frontier ───►                 ◄─── Backward Frontier
+        [ S₀ ] ───► [ N₁ ] ───► [ M ] ◄─── [ N₂ ] ◄─── [ S_G ]
+                                 ▲
+                          Intersection!
+\`\`\`
+
+#### Mathematical Speedup:
+Rather than expanding $b^d$ nodes, bidirectional search expands:
+$$b^{d/2} + b^{d/2} = 2 b^{d/2} = O(b^{d/2})$$
+For $b = 10, d = 6$:
+- Single Direction: $10^6 = 1,000,000$ nodes.
+- Bidirectional: $2 \times 10^3 = 2,000$ nodes! A **500x speedup**.
+
+#### Challenges & Practical Limitations:
+1. **Predecessor Calculation**: Must be able to calculate reverse transitions $Result^{-1}(s, a)$.
+2. **Multiple Goal States**: If goal is an abstract condition (e.g., "Checkmate" in Chess), generating the backward frontier is intractable.
+3. **Frontier Intersection Check**: Fast $O(1)$ hash table lookups required to check if a node generated in one direction is present in the other frontier.
+4. **Memory Constraint**: At least one frontier must be completely retained in memory ($O(b^{d/2})$ space).
+
+---
+
+### 8.6 Uniform Cost Search (UCS)
 
 \`\`\`video
 {
@@ -859,63 +1370,33 @@ def uniform_cost_search(problem):
 
 #### Performance Analysis:
 - **Completeness**: **Yes**, provided every step cost is strictly positive:
-  $$c(s, a, s') \\ge \\epsilon > 0$$
+  $$c(s, a, s') \ge \epsilon > 0$$
   *(If step costs can be zero or negative, UCS can loop infinitely along zero-cost cycles).*
 - **Time & Space Complexity**:
-  $$O\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$$
+  $$O\left(b^{1 + \lfloor C^* / \epsilon \rfloor}\right)$$
   Where $C^*$ is the cost of the optimal solution.
 - **Optimality**: **Yes**! Always finds the lowest-cost path for any non-negative cost function.
 
 ---
 
-### 4.6 Bidirectional Search
-
-#### Mechanism:
-- Runs two simultaneous searches:
-  1. **Forward Search** starting from Initial State $S_0$.
-  2. **Backward Search** starting from Goal State $S_G$.
-- Stops when their frontiers **intersect** (a common node is generated in both directions).
-
-\`\`\`
-   Forward Frontier ───►                 ◄─── Backward Frontier
-        [ S₀ ] ───► [ N₁ ] ───► [ M ] ◄─── [ N₂ ] ◄─── [ S_G ]
-                                 ▲
-                          Intersection!
-\`\`\`
-
-#### Mathematical Speedup:
-Rather than expanding $b^d$ nodes, bidirectional search expands:
-$$b^{d/2} + b^{d/2} = 2 b^{d/2} = O(b^{d/2})$$
-For $b = 10, d = 6$:
-- Single Direction: $10^6 = 1,000,000$ nodes.
-- Bidirectional: $2 \\times 10^3 = 2,000$ nodes! A **500x speedup**.
-
-#### Challenges & Practical Limitations:
-1. **Predecessor Calculation**: Must be able to calculate reverse transitions $Result^{-1}(s, a)$.
-2. **Multiple Goal States**: If goal is an abstract condition (e.g., "Checkmate" in Chess), generating the backward frontier is intractable.
-3. **Frontier Intersection Check**: Fast $O(1)$ hash table lookups required to check if a node generated in one direction is present in the other frontier.
-4. **Memory Constraint**: At least one frontier must be completely retained in memory ($O(b^{d/2})$ space).
-
----
-
-## 5. Comprehensive Search Strategies Comparison
+## 9. Comprehensive Search Strategies Comparison Matrix
 
 The definitive comparison matrix required for university and competitive exams:
 
 | Search Strategy | Completeness | Time Complexity | Space Complexity | Optimality (Unit Cost) | Optimality (General Cost) | Frontier Data Structure |
 |---|---|---|---|---|---|---|
-| **Breadth-First Search (BFS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
+| **Breadth-First Search (BFS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
 | **Depth-First Search (DFS)** | **No** (finite graphs: Yes) | $O(b^m)$ | **$O(bm)$** *(Linear Space)* | **No** | **No** | LIFO Stack |
 | **Depth-Limited Search (DLS)** | **No** (if $l < d$) | $O(b^l)$ | $O(bl)$ | **No** | **No** | LIFO Stack with depth limit |
-| **Iterative Deepening (IDS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
-| **Uniform Cost Search (UCS)** | **Yes** (if $\\epsilon > 0$) | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
-| **Bidirectional Search** | **Yes** (if $b < \\infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
+| **Iterative Deepening (IDS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
+| **Bidirectional Search** | **Yes** (if $b < \infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
+| **Uniform Cost Search (UCS)** | **Yes** (if $\epsilon > 0$) | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
 
 ---
 
-## 6. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (2024 & 2025)
+## 10. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (2024 & 2025)
 
-### 6.1 Official CIA-1 Question Paper (September 2025, CSC-401) — 20 Marks
+### 10.1 Official CIA-1 Question Paper (September 2025, CSC-401) — 20 Marks
 
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
@@ -1158,7 +1639,7 @@ Since the boat holds at most 2 entities and only the farmer can row, each transi
 
 ---
 
-### 6.2 Official CIA-1 Question Paper (August 2024, MAI-401) — 20 Marks
+### 10.2 Official CIA-1 Question Paper (August 2024, MAI-401) — 20 Marks
 
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
@@ -1322,7 +1803,7 @@ Just as a mechanical airplane does not need to flap its wings or feel the joy of
 > This identical question was set in **both August 2024 (MAI-401 Q4)** and **September 2025 (CSC-401 Q1)**, demonstrating that it is an absolute mandatory recurrent question for CURAJ internal and semester examinations!
 
 ##### Model Solution Reference:
-- Refer to the exhaustive model solution provided under **[Section 6.1 Question 1](#question-1-what-is-artificial-intelligence-explain-this-term-with-its-various-application-domains-3-marks)** for:
+- Refer to the exhaustive model solution provided under **[Section 10.1 Question 1](#question-1-what-is-artificial-intelligence-explain-this-term-with-its-various-application-domains-3-marks)** for:
   - Formal dual definitions (John McCarthy 1956 & Russell-Norvig 2020 Rational Agent paradigm).
   - The 4 conceptual quadrants matrix (Thinking/Acting Humanly/Rationally).
   - Six industry application domains: Natural Language Processing, Computer Vision, Robotics, Healthcare/Bioinformatics, Game Theory, and Cybersecurity/FinTech.
@@ -1393,7 +1874,7 @@ The classic **Water Jug Problem** (Rich & Knight Ch 2; Russell & Norvig Ch 3) is
 
 ---
 
-### 6.3 Additional High-Yield Semester Subjective Questions & Model Solutions
+### 10.3 Additional High-Yield Semester Subjective Questions & Model Solutions
 
 
 #### Q1: "Differentiate between a State and a Search Node with an illustrative diagram." [5 Marks]
@@ -1412,12 +1893,12 @@ The classic **Water Jug Problem** (Rich & Knight Ch 2; Russell & Norvig Ch 3) is
 #### Q2: "Prove why Iterative Deepening Search (IDS) is asymptotically optimal in both time and space for uninformed search." [5 Marks]
 > **Model Answer Key**:
 > 1. **Time Complexity Derivation**:
->    $$N(\\text{IDS}) = \sum_{i=1}^d (d - i + 1) b^i = d \\cdot b + (d-1)b^2 + \\dots + 1 \\cdot b^d$$
+>    $$N(\text{IDS}) = \sum_{i=1}^d (d - i + 1) b^i = d \cdot b + (d-1)b^2 + \dots + 1 \cdot b^d$$
 >    Factoring the dominant term:
->    $$N(\\text{IDS}) \\le b^d \sum_{j=0}^{\\infty} (j+1) b^{-j} = b^d \\left(\\frac{b}{b-1}\\right)^2 = O(b^d)$$
->    For $b \\ge 2$, $\\left(\\frac{b}{b-1}\\right)^2 \\le 4$. Hence, time complexity matches BFS: $O(b^d)$.
+>    $$N(\text{IDS}) \le b^d \sum_{j=0}^{\infty} (j+1) b^{-j} = b^d \left(\frac{b}{b-1}\right)^2 = O(b^d)$$
+>    For $b \ge 2$, $\left(\frac{b}{b-1}\right)^2 \le 4$. Hence, time complexity matches BFS: $O(b^d)$.
 > 2. **Space Complexity Derivation**:
->    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \\times d$ nodes: $O(bd)$, which is linear.
+>    At any point, IDS runs a DFS up to limit $d$. DFS only retains the current active branch and its immediate siblings. Total memory is $b \times d$ nodes: $O(bd)$, which is linear.
 > 3. **Conclusion**: IDS uniquely achieves $O(bd)$ space without sacrificing $O(b^d)$ time or unit-cost optimality.
 
 ---
@@ -1486,9 +1967,109 @@ Graph Edges:
 
 ---
 
-## 7. UGC NET / JRF & GATE CS Preparation Corner
+#### Q6: "Discuss the 7 Problem Characteristics defined by Elaine Rich & Kevin Knight with suitable examples." [10 Marks]
 
-### 7.1 High-Yield Examination Points & Recurrent Traps
+> **Curaj Marking Scheme Rubric**:
+> - **Explanation of all 7 characteristics**: 7 Marks (1 mark per characteristic with clear definitions)
+> - **Accurate real-world AI examples for each**: 2 Marks
+> - **Master comparison summary table**: 1 Mark
+
+##### Model Answer Key:
+In *Artificial Intelligence*, Elaine Rich and Kevin Knight demonstrated that selecting an appropriate search algorithm requires analyzing the problem across **seven fundamental characteristics**:
+
+1. **Is the problem Decomposable into independent subproblems?**
+   - *Decomposable*: Can be split into smaller, independent subproblems solved separately (e.g., **Symbolic Integration**: $\\int (x^2 + 3x + \\sin x)dx = \\int x^2 dx + 3\\int x dx + \\int \\sin x dx$). Solved via AND-OR graphs and $AO^*$.
+   - *Non-Decomposable*: Subproblems interact; solving one subproblem disrupts conditions required for another (e.g., **Blocks World Sussman Anomaly**, **8-Puzzle**).
+2. **Can solution steps be Undone if they lead to an impasse?**
+   - *Ignorable*: Steps can be taken without backtracking; mistakes never preclude finding a solution later (e.g., **Theorem Proving in Logic** — adding an irrelevant lemma never invalidates prior true statements).
+   - *Recoverable*: Steps can be undone by backtracking (e.g., **8-Puzzle**, **Water Jug Problem**, **Mazes**).
+   - *Irrecoverable*: Actions cannot be undone; represents an irreversible real-world commitment (e.g., **Playing Tournament Chess** under touch-move rules, **Robotic Surgery**, **Financial Trading**).
+3. **Is the problem universe Predictable?**
+   - *Certain-Outcome (Deterministic)*: Applying operator $a$ to state $s$ always produces state $s'$ with $100\\%$ mathematical certainty (e.g., **8-Puzzle**, **Water Jug**, **Chess**).
+   - *Uncertain-Outcome (Stochastic / Adversarial)*: Operators yield multiple probabilistic outcomes due to chance or hidden information (e.g., **Bridge**, **Backgammon**, **Real-world Robot Navigation** with wheel slippage).
+4. **Is a good solution Absolute or Relative?**
+   - *Absolute (Any-Path)*: Any valid sequence reaching a goal state is acceptable; path cost is secondary (e.g., **Water Jug Problem**, **Theorem Proving**).
+   - *Relative (Best-Path / Optimal)*: The quality or cost of the path matters; we seek the optimal or minimal-cost path (e.g., **Traveling Salesperson Problem (TSP)**, **Shortest-Route GPS Navigation**).
+5. **Is the knowledge base Consistent?**
+   - *Consistent*: Free of contradictions; classical formal logic (e.g., **Axiomatic Geometry**).
+   - *Inconsistent*: Must reason with conflicting evidence, default rules, or competing witness testimonies (e.g., **Legal Courtroom Reasoning**, **Medical Diagnosis**).
+6. **What is the Role of Knowledge?**
+   - *Knowledge-Poor / Search-Intensive*: Small rule set, vast state space; intelligence arises from deep search (e.g., **Chess**, **8-Puzzle**).
+   - *Knowledge-Rich / Knowledge-Intensive*: Massive domain facts and expert rules, shallow search (e.g., **MYCIN Medical Diagnosis**, **DENDRAL Chemistry**).
+7. **Does the task require Interaction with a person?**
+   - *Solitary*: Runs unattended from initial state to goal without human query (e.g., **Batch Compiler Optimization**, **Proof Search**).
+   - *Conversational / Interactive*: System intermediates with a human to elicit symptoms, intermediate preferences, or explanations (e.g., **Medical Consultation**, **Interactive CAD Design**).
+
+---
+
+#### Q7: "Explain the Physical Symbol System Hypothesis (PSSH) and its significance in Artificial Intelligence." [5 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Formal statement of PSSH (Allen Newell & Herbert Simon, 1976)**: 1.5 Marks
+> - **Explanation of 'Necessary' and 'Sufficient' conditions**: 2 Marks
+> - **Significance for State-Space Search & Symbolic AI**: 1.5 Marks
+
+##### Model Answer Key:
+1. **Formal Statement**:
+   Formulated by **Allen Newell and Herbert Simon** in their 1975 ACM Turing Award lecture:
+   > *"A physical symbol system has the necessary and sufficient means for general intelligent action."*
+2. **Key Concepts**:
+   - A **physical symbol system** is a physical machine (biological brain or silicon computer) that processes symbol tokens, combines them into symbol structures (expressions), and manipulates them via explicit transformation operations.
+3. **The Dual Claims**:
+   - **Necessary Condition**: Any physical or biological entity that exhibits general intelligence **must** operate as a physical symbol system. (Implies human cognition is fundamentally symbolic processing).
+   - **Sufficient Condition**: Any physical symbol system of adequate memory and computational speed **can** be organized to achieve general human-level intelligence. (Validates that digital computers can achieve general AI without biological wetware).
+4. **Significance for AI Problem Solving**:
+   - PSSH provides the foundational theoretical justification for **State-Space Search**: problem solving is formalized as encoding world states as symbol expressions, operators as symbol rewrite rules, and intelligence as heuristic search across the symbolic space.
+
+---
+
+#### Q8: "Compare the 3 approaches to playing Tic-Tac-Toe described by Rich and Knight. Why is Program 3 considered an AI technique while Program 1 and Program 2 are not?" [5 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Description of Program 1 (Lookup Table)**: 1 Mark
+> - **Description of Program 2 (Magic Square Heuristic Rules)**: 1.5 Marks
+> - **Description of Program 3 (State-Space Search & Minimax)**: 1.5 Marks
+> - **Justification against the 4 criteria of an AI technique**: 1 Mark
+
+##### Model Answer Key:
+1. **Program 1 (Brute-Force Lookup Table)**:
+   - Encodes all $3^9 = 19,683$ states in an exhaustive table mapping each board state to an optimal move. Fast ($\\mathcal{O}(1)$), but massive memory waste, zero learning, brittle, and completely unscalable to Chess ($10^{120}$ states).
+2. **Program 2 (Magic Square Heuristic Rules)**:
+   - Numbers the board with a $3 \\times 3$ Magic Square summing to 15. Uses arithmetic rules: win if $15 - (A+B)$ is blank; block if opponent has two marks summing to $15 - X$. Elegant and compact, but **strictly domain-specific**—the magic sum trick cannot generalize to Checkers, Chess, or any other game.
+3. **Program 3 (State-Space Search with Static Board Evaluation & Minimax)**:
+   - Generates a game tree of legal moves, evaluates leaf nodes using a static heuristic board evaluation function $E(p) = \\text{Open Paths for MAX} - \\text{Open Paths for MIN}$, and propagates values via minimax.
+4. **Why Program 3 is a True AI Technique**:
+   - It satisfies **Rich & Knight's 4 hallmarks of an AI technique**:
+     1. *Captures Generalizations*: The identical state-space search and minimax framework powers Chess, Checkers, and general 2-player games.
+     2. *Human Inspectability*: Minimax trees and evaluation functions are fully transparent and auditable.
+     3. *Easily Modifiable*: Search depth limit and heuristic evaluation weights can be modified dynamically without rewriting code.
+     4. *Robust to Incomplete Lookahead*: Evaluates board quality accurately even when computational limits prevent searching to terminal leaf states.
+
+---
+
+#### Q9: "Differentiate between Monotonic and Commutative production systems with examples." [4 Marks]
+
+> **Curaj Marking Scheme Rubric**:
+> - **Monotonic vs. Non-Monotonic definition & examples**: 2 Marks
+> - **Commutative vs. Non-Commutative definition & examples**: 2 Marks
+
+##### Model Answer Key:
+1. **Monotonicity**:
+   - **Monotonic**: Firing a rule **never retracts or invalidates** previously deduced facts. The knowledge base grows strictly monotonically: $\\text{KB}_{t+1} \\supseteq \\text{KB}_t$.  
+     *Example*: **Mathematical Theorem Proving** in predicate logic (proving a new lemma never makes prior axioms false).
+   - **Non-Monotonic**: Firing a rule **can retract, delete, or overwrite** existing facts in Working Memory.  
+     *Example*: **The Water Jug Problem** (pouring water alters the contents of the jugs, invalidating prior volumes), **Robotic Stacking** (moving Block A from Block B deletes \`on(A, B)\`).
+2. **Commutativity**:
+   - **Commutative**: If multiple rules are applicable to state $S$, applying them in **any order or sequence** produces the **exact same final state**. Search never needs to backtrack over rule firing permutations.  
+     *Example*: **Robot picking up independent items scattered in a room** (picking item A then B yields the exact same final state as picking B then A).
+   - **Non-Commutative**: The sequential order of rule execution strictly alters the final state or legality of subsequent moves.  
+     *Example*: **Chess** or the **8-Puzzle** (sliding tile 1 then tile 2 yields a completely different board state than sliding tile 2 then tile 1).
+
+---
+
+## 11. UGC NET / JRF & GATE CS Preparation Corner
+
+### 11.1 High-Yield Examination Points & Recurrent Traps
 1. **Early vs. Late Goal Test**:
    - **BFS**: Goal test applied when child node is **generated** (preserves time & space).
    - **UCS**: Goal test applied when node is **popped/selected for expansion** (mandatory for optimality).
@@ -1501,11 +2082,11 @@ Graph Edges:
 
 ---
 
-## 8. Master Formula Cheat Sheet & Quick-Reference Guide
+## 12. Master Formula Cheat Sheet & Quick-Reference Guide
 
 > **Rapid Revision Guide** for **CURAJ CIA-1 Assessments**, **End-Semester Exams**, and **UGC NET / JRF Paper II**.
 
-### 8.1 Key Mathematical Parameters Glossary
+### 12.1 Key Mathematical Parameters Glossary
 
 | Parameter | Formal Mathematical Meaning | Role in Search Complexity |
 |:---:|---|---|
@@ -1518,7 +2099,7 @@ Graph Edges:
 
 ---
 
-### 8.2 Algorithm Complexity Cheat Sheet Matrix
+### 12.2 Algorithm Complexity Cheat Sheet Matrix
 
 | Algorithm | Frontier Data Structure | Time Complexity | Space Complexity | Complete? | Optimal? | Essential Takeaway |
 |---|---|:---:|:---:|:---:|:---:|---|
@@ -1531,7 +2112,7 @@ Graph Edges:
 
 ---
 
-### 8.3 Essential Derivations & Exam Formulas
+### 12.3 Essential Derivations & Exam Formulas
 
 #### 1. Uniform Tree Node Calculations
 - **Total Leaves at Depth $d$**:
@@ -1554,6 +2135,31 @@ $$\\text{Time Complexity} = \\text{Space Complexity} = \\mathcal{O}\\left(b^{1 +
 $$\\text{State } S \\text{ can reach Goal } G \\iff \\text{Inversions}(S) \\equiv \\text{Inversions}(G) \\pmod 2$$
 - Total reachable states in 8-puzzle:
   $$\\text{Reachable States} = \\frac{9!}{2} = 181{,}440 \\quad (\\text{out of } 362{,}880 \\text{ total permutations})$$
+
+---
+
+### 12.4 Rich & Knight 7 Problem Characteristics Quick-Reference Guide
+
+| Characteristic | Key Binary Distinction | Canonical Exemplar 1 | Canonical Exemplar 2 | Algorithmic Impact |
+|---|---|---|---|---|
+| **1. Decomposability** | Decomposable vs Non-Decomposable | **Symbolic Integration** (Decomposable) | **8-Puzzle / Blocks World** (Non-decomposable) | Decomposable $\\implies$ AND-OR graphs / $AO^*$; Non-decomposable $\\implies$ full graph search. |
+| **2. Step Reversibility** | Ignorable vs Recoverable vs Irrecoverable | **Logic Theorem Proving** (Ignorable) | **8-Puzzle** (Recoverable) vs **Tournament Chess** (Irrecoverable) | Ignorable $\\implies$ no backtracking; Recoverable $\\implies$ DFS/A* backtracking; Irrecoverable $\\implies$ planning & safety guards. |
+| **3. Universe Predictability** | Certain-Outcome vs Uncertain-Outcome | **Water Jug / 8-Puzzle** (Certain) | **Bridge / Backgammon** (Uncertain) | Certain $\\implies$ deterministic state search; Uncertain $\\implies$ MDPs / Expectiminimax / Belief Nets. |
+| **4. Solution Standard** | Absolute (Any-path) vs Relative (Best-path) | **Water Jug** (Absolute: reach 2G) | **TSP** (Relative: minimal distance) | Absolute $\\implies$ Greedy / DFS halts on first goal; Relative $\\implies$ branch-and-bound / UCS / $A^*$. |
+| **5. KB Consistency** | Consistent vs Inconsistent | **Euclidean Geometry** (Consistent) | **Court Evidence / Medical** (Inconsistent) | Consistent $\\implies$ standard first-order logic; Inconsistent $\\implies$ Truth Maintenance Systems (TMS). |
+| **6. Role of Knowledge** | Knowledge-Poor vs Knowledge-Rich | **Chess / 8-Puzzle** (Knowledge-poor) | **MYCIN Medical Diagnosis** (Knowledge-rich) | Knowledge-poor $\\implies$ deep heuristic search; Knowledge-rich $\\implies$ expert rule-base inference. |
+| **7. User Interaction** | Solitary vs Conversational | **Batch TSP / Theorem Prover** (Solitary) | **Medical Diagnostic Assistant** (Conversational) | Solitary $\\implies$ batch execution; Conversational $\\implies$ dialogue manager & explanation facility. |
+
+---
+
+### 12.5 Production System Classification Quadrant Summary
+
+| Quadrant | Monotonic? | Commutative? | Landmark Problem Domain | Search Strategy Property |
+|---|:---:|:---:|---|---|
+| **Quadrant 1** | **Yes** | **Yes** | **Formal Theorem Proving in Predicate Logic** | **Simplest Search**: No backtracking needed; rule order irrelevant. |
+| **Quadrant 2** | **Yes** | **No** | **Chemical Organic Synthesis**, Grammar Parsing | Knowledge grows monotonically, but operational sequence order matters. |
+| **Quadrant 3** | **No** | **Yes** | **Robot Navigation with Independent Obstacle Removals** | Actions mutate states, but tasks can be executed in any order. |
+| **Quadrant 4** | **No** | **No** | **Water Jug Problem**, **8-Puzzle**, **Chess** | **Full Graph Search**: Requires cycle detection, backtracking, and heuristics. |
 `,
   practiceQuiz: [
     {
@@ -1833,6 +2439,86 @@ $$\\text{State } S \\text{ can reach Goal } G \\iff \\text{Inversions}(S) \\equi
         "State (1, 2, 1) on the near bank has 1 Missionary and 2 Cannibals. Cannibals outnumber missionaries (2 > 1) when missionaries are present, causing the missionaries to be eaten. (Note: (0, 2, 1) is valid because no missionaries are present on that bank).",
       difficulty: "medium",
       topicTag: "Missionaries & Cannibals",
+    },
+    {
+      id: "ai-u1-q19",
+      question:
+        "The Physical Symbol System Hypothesis (PSSH) formulated by Allen Newell and Herbert Simon (1976) asserts that a physical symbol system:",
+      options: [
+        "Has the necessary but not sufficient means for general intelligent action",
+        "Has the sufficient but not necessary means for general intelligent action",
+        "Has the necessary and sufficient means for general intelligent action",
+        "Is incapable of intelligent action without biological neural networks",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "PSSH asserts that a physical symbol system has both the necessary and sufficient means for general intelligent action: any intelligent agent must be an instance of a symbol system (necessary), and any symbol system of sufficient capacity can be organized to achieve general intelligence (sufficient).",
+      difficulty: "easy",
+      topicTag: "Foundations of AI",
+    },
+    {
+      id: "ai-u1-q20",
+      question:
+        "According to Elaine Rich & Kevin Knight's 7 problem characteristics, mathematical theorem proving in logic belongs to which category of step reversibility?",
+      options: [
+        "Irrecoverable steps (actions cannot be taken back)",
+        "Recoverable steps (backtracking is required to undo bad moves)",
+        "Ignorable steps (mistaken steps never preclude finding a solution later; no backtracking needed)",
+        "Stochastic steps (moves depend on probabilistic chance)",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "In theorem proving, steps are 'Ignorable'. Deducing an irrelevant lemma adds a new assertion to the database without invalidating prior truths or blocking the eventual deduction of the target theorem.",
+      difficulty: "medium",
+      topicTag: "Problem Characteristics",
+    },
+    {
+      id: "ai-u1-q21",
+      question:
+        "In Rich & Knight's problem classification, which of the following represents an 'Absolute' (any-path) problem rather than a 'Relative' (best-path) problem?",
+      options: [
+        "Traveling Salesperson Problem (TSP)",
+        "Finding the shortest driving route between two cities",
+        "The 4-gallon and 3-gallon Water Jug Problem (measuring 2 gallons)",
+        "Optimal VLSI chip routing minimizing wire length",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "In the Water Jug problem, reaching any valid state where the 4-gallon jug contains 2 gallons is an acceptable solution (Absolute / Any-Path). In contrast, TSP and shortest routing require finding the minimal cost path among all alternatives (Relative / Best-Path).",
+      difficulty: "medium",
+      topicTag: "Problem Characteristics",
+    },
+    {
+      id: "ai-u1-q22",
+      question:
+        "Which classification correctly describes the production system for the classic 8-puzzle and Water Jug problems?",
+      options: [
+        "Monotonic and Commutative",
+        "Monotonic and Non-commutative",
+        "Non-monotonic and Commutative",
+        "Non-monotonic and Non-commutative",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Both the 8-puzzle and Water Jug problems are Non-monotonic (applying an operator changes state variables, retracting prior positions/volumes) and Non-commutative (the sequential order in which sliding moves or pouring operations are executed strictly alters the resulting state).",
+      difficulty: "hard",
+      topicTag: "Production Systems",
+    },
+    {
+      id: "ai-u1-q23",
+      question:
+        "In Rich & Knight's comparison of three Tic-Tac-Toe programs, why is Program 3 (State-Space Search with static board evaluation and minimax) considered a true 'AI Technique', whereas Program 2 (Magic Square arithmetic) is not?",
+      options: [
+        "Program 3 uses less CPU time than Program 2",
+        "Program 3 runs on a quantum computer",
+        "Program 3 captures generalizations and its search architecture directly scales to other games like Chess, whereas Program 2 relies on an ad-hoc arithmetic trick unique to 3x3 grids",
+        "Program 3 requires an exhaustive lookup table of 19,683 precomputed states",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "An AI technique must capture generalizations. Program 3's architecture (state-space tree generation, static board evaluation, and depth-limited minimax) is a general paradigm that directly extends to Chess, Checkers, and complex adversarial domains, whereas the Magic Square property is a domain-specific mathematical trick restricted to 3x3 grids.",
+      difficulty: "medium",
+      topicTag: "AI Techniques",
     },
   ],
 };

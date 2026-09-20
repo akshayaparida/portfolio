@@ -503,6 +503,13 @@ export function buildSearchIndex(): SearchIndexItem[] {
         "Chinese Room",
         "CIA-1 Model Answers",
         "UGC NET JRF Quiz",
+        "Rich and Knight AI",
+        "Physical Symbol System Hypothesis",
+        "PSSH",
+        "Problem Characteristics",
+        "Tic-Tac-Toe AI",
+        "Production Systems",
+        "Cryptarithmetic",
       ],
     },
     {
