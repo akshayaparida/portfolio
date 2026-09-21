@@ -8,6 +8,7 @@ type BlogPageHeaderProps = {
   title: string;
   backLink: string;
   backTitle?: string;
+  as?: "h1" | "h2" | "span";
 };
 
 /**
@@ -18,7 +19,9 @@ export default function BlogPageHeader({
   title,
   backLink,
   backTitle = "Back",
+  as = "h2",
 }: BlogPageHeaderProps) {
+  const HeadingTag = as;
   return (
     <header className="blog-page-header">
       <Link
@@ -29,7 +32,7 @@ export default function BlogPageHeader({
       >
         <i className="fa-solid fa-arrow-left"></i>
       </Link>
-      <h1 className="header-title">{title}</h1>
+      <HeadingTag className="header-title">{title}</HeadingTag>
       <div className="header-actions">
         <SearchTrigger compact />
         <Link

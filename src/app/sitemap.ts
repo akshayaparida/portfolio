@@ -12,6 +12,7 @@ import { mlopsModules } from "@/data/mlops";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import { reasoningModules } from "@/data/reasoning";
 import { aiModules } from "@/data/curaj-msc-cs/ai";
+import { advancedAlgorithmsModules } from "@/data/curaj-msc-cs/advanced-algorithms";
 
 export const dynamic = "force-static";
 
@@ -279,6 +280,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  // Dynamic Module Pages for CURAJ Advanced Algorithms
+  const curajAdvancedAlgorithmsPages: MetadataRoute.Sitemap = (
+    advancedAlgorithmsModules || []
+  ).map((m) => ({
+    url: `${baseUrl}/curaj-msc-cs/advanced-algorithms/${m.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
   return [
     ...staticPages,
     ...mathPages,
@@ -294,5 +305,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...digitalPages,
     ...reasoningPages,
     ...curajAiPages,
+    ...curajAdvancedAlgorithmsPages,
   ];
 }

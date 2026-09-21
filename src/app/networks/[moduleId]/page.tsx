@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { networksModules } from "@/data/networks";
 import ModuleViewer from "@/components/ModuleViewer";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "Computer Networks";
+const SUBJECT_SLUG = "networks";
 
 export function generateStaticParams() {
   return networksModules.map((module) => ({
@@ -23,18 +27,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | Computer Networks`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | Computer Networks | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/networks/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/networks/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function NetworksModulePage({
@@ -50,6 +47,18 @@ export default async function NetworksModulePage({
   }
 
   const index = networksModules.findIndex((m) => m.id === moduleId);
+  const prevModule = index > 0 ? networksModules[index - 1] : undefined;
+  const nextModule =
+    index < networksModules.length - 1 ? networksModules[index + 1] : undefined;
 
-  return <ModuleViewer module={currentModule} index={index} />;
+  return (
+    <ModuleViewer
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }

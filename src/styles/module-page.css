@@ -2690,4 +2690,129 @@ html.dark .speed-pills-group {
   }
 }
 
+/* SEO Breadcrumbs */
+.module-breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-bottom: 0.85rem;
+}
+
+.module-breadcrumbs .breadcrumb-link {
+  color: #64748b;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.15s ease;
+}
+
+.module-breadcrumbs .breadcrumb-link:hover {
+  color: #10b981;
+}
+
+.module-breadcrumbs .breadcrumb-sep {
+  color: #cbd5e1;
+  font-size: 0.7rem;
+  user-select: none;
+}
+
+.module-breadcrumbs .breadcrumb-current {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+html.dark .module-breadcrumbs .breadcrumb-current {
+  color: #e2e8f0;
+}
+
+/* Module Pagination Navigation (Internal Links & Crawl Flow) */
+.module-pagination-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+html.dark .module-pagination-nav {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.module-nav-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+html.dark .module-nav-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.module-nav-card:hover {
+  border-color: #10b981;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.12);
+}
+
+.module-nav-card.next-card {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.module-nav-card.prev-card {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.nav-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-card-title {
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+html.dark .nav-card-title {
+  color: #f1f5f9;
+}
+
+.module-nav-card:hover .nav-card-title {
+  color: #10b981;
+}
+
+.module-nav-card-placeholder {
+  visibility: hidden;
+}
+
+@media (max-width: 640px) {
+  .module-pagination-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
@@ -13,11 +14,16 @@ import PracticeQuiz from "@/components/PracticeQuiz";
 import TableOfContents, { slugify } from "@/components/TableOfContents";
 import AudioReader from "@/components/AudioReader";
 import { LearningModule } from "@/types/learning";
+import { createModuleJsonLd } from "@/lib/seo";
 import type { Root as MdastRoot, RootContent } from "mdast";
 
 interface ModuleViewerProps {
   module: LearningModule;
   index: number;
+  subjectName?: string;
+  subjectSlug?: string;
+  prevModule?: LearningModule;
+  nextModule?: LearningModule;
   demoComponents?: Record<string, React.ComponentType>;
 }
 
@@ -482,6 +488,10 @@ function remarkCodeTabs() {
 export default function ModuleViewer({
   module,
   index,
+  subjectName,
+  subjectSlug,
+  prevModule,
+  nextModule,
   demoComponents = {},
 }: ModuleViewerProps) {
   const readingTime = getReadingTime(module.detailedContent);
@@ -489,12 +499,48 @@ export default function ModuleViewer({
   const hasDemos = Boolean(module.subModules && module.subModules.length > 0);
   const hasQuiz = quizCount > 0;
 
+  const jsonLdSchemas =
+    subjectName && subjectSlug
+      ? createModuleJsonLd({ module, subjectName, subjectSlug })
+      : null;
+
   return (
     <div className="module-viewer-layout">
+      {/* Schema.org Structured Data (JSON-LD) for Search Engine Rich Snippets */}
+      {jsonLdSchemas && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLdSchemas),
+          }}
+        />
+      )}
+
       {/* Center Main Content Card */}
       <article className="module-card">
         {/* Module Header with Clean Minimal Metadata */}
         <header className="module-header">
+          {/* Breadcrumb Navigation for SEO Hierarchy */}
+          {subjectName && subjectSlug && (
+            <nav className="module-breadcrumbs" aria-label="Breadcrumb">
+              <Link href="/" className="breadcrumb-link">
+                <i className="fa-solid fa-house"></i> Home
+              </Link>
+              <span className="breadcrumb-sep" aria-hidden="true">
+                /
+              </span>
+              <Link href={`/${subjectSlug}`} className="breadcrumb-link">
+                {subjectName}
+              </Link>
+              <span className="breadcrumb-sep" aria-hidden="true">
+                /
+              </span>
+              <span className="breadcrumb-current" aria-current="page">
+                Study Notes
+              </span>
+            </nav>
+          )}
+
           <div className="module-meta-line">
             <span className="module-number">Module {index + 1}</span>
             <span className="meta-dot">·</span>
@@ -522,7 +568,7 @@ export default function ModuleViewer({
             )}
           </div>
 
-          <h2 className="module-title">{module.title}</h2>
+          <h1 className="module-title">{module.title}</h1>
           <p className="module-description">{module.description}</p>
 
           {/* Text-to-Speech Audio Reader */}
@@ -608,6 +654,41 @@ export default function ModuleViewer({
               <PracticeQuiz questions={module.practiceQuiz} />
             </ErrorBoundary>
           </section>
+        )}
+
+        {/* Module Pagination Navigation (Internal Links & Crawl Path) */}
+        {(prevModule || nextModule) && subjectSlug && (
+          <nav className="module-pagination-nav" aria-label="Module Navigation">
+            {prevModule ? (
+              <Link
+                href={`/${subjectSlug}/${prevModule.id}`}
+                className="module-nav-card prev-card"
+                rel="prev"
+              >
+                <div className="nav-card-label">
+                  <i className="fa-solid fa-arrow-left"></i> Previous Concept
+                </div>
+                <div className="nav-card-title">{prevModule.title}</div>
+              </Link>
+            ) : (
+              <div className="module-nav-card-placeholder" />
+            )}
+
+            {nextModule ? (
+              <Link
+                href={`/${subjectSlug}/${nextModule.id}`}
+                className="module-nav-card next-card"
+                rel="next"
+              >
+                <div className="nav-card-label">
+                  Next Concept <i className="fa-solid fa-arrow-right"></i>
+                </div>
+                <div className="nav-card-title">{nextModule.title}</div>
+              </Link>
+            ) : (
+              <div className="module-nav-card-placeholder" />
+            )}
+          </nav>
         )}
       </article>
 

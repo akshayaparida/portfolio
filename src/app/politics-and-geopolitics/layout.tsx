@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Politics, Internal Security & Geopolitics Hub | Akshaya Parida",
     description:
       "Objective breakdown of Indian political parties, current ruling coalition, student political organizations, great power relations, border frontiers, and internal security threats.",
-    url: "https://akshayaparida.com/politics-and-geopolitics",
+    url: "https://akshayaparida.vercel.app/politics-and-geopolitics",
     siteName: "Akshaya Parida Portfolio",
     locale: "en_US",
     type: "website",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       "Curated dossiers on India's political system, 18th Lok Sabha governance, foreign relations with USA/Russia/China/Europe, and border security frontiers.",
   },
   alternates: {
-    canonical: "https://akshayaparida.com/politics-and-geopolitics",
+    canonical: "/politics-and-geopolitics",
   },
 };
 

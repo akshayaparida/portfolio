@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { mlopsModules } from "@/data/mlops";
 import ModuleViewer from "@/components/ModuleViewer";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "MLOps & Machine Learning Systems";
+const SUBJECT_SLUG = "mlops";
 
 export function generateStaticParams() {
   return mlopsModules.map((module) => ({
@@ -23,18 +27,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | MLOps Engineering`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | MLOps | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/mlops/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/mlops/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function MLOpsModulePage({
@@ -50,6 +47,18 @@ export default async function MLOpsModulePage({
   }
 
   const index = mlopsModules.findIndex((m) => m.id === moduleId);
+  const prevModule = index > 0 ? mlopsModules[index - 1] : undefined;
+  const nextModule =
+    index < mlopsModules.length - 1 ? mlopsModules[index + 1] : undefined;
 
-  return <ModuleViewer module={currentModule} index={index} />;
+  return (
+    <ModuleViewer
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }

@@ -22,14 +22,26 @@ const demoComponents: Record<string, React.ComponentType> = {
 export default function MathModuleClient({
   module,
   index,
+  subjectName,
+  subjectSlug,
+  prevModule,
+  nextModule,
 }: {
   module: LearningModule;
   index: number;
+  subjectName?: string;
+  subjectSlug?: string;
+  prevModule?: LearningModule;
+  nextModule?: LearningModule;
 }) {
   return (
     <ModuleViewer
       module={module}
       index={index}
+      subjectName={subjectName}
+      subjectSlug={subjectSlug}
+      prevModule={prevModule}
+      nextModule={nextModule}
       demoComponents={demoComponents}
     />
   );

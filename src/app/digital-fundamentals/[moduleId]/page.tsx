@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import ModuleViewer from "@/components/ModuleViewer";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "Digital Fundamentals & Logic Design";
+const SUBJECT_SLUG = "digital-fundamentals";
 
 export function generateStaticParams() {
   return digitalFundamentalsModules.map((module) => ({
@@ -25,18 +29,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | Digital Fundamentals`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | Digital Fundamentals | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/digital-fundamentals/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/digital-fundamentals/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function DigitalFundamentalsModulePage({
@@ -54,6 +51,21 @@ export default async function DigitalFundamentalsModulePage({
   }
 
   const index = digitalFundamentalsModules.findIndex((m) => m.id === moduleId);
+  const prevModule =
+    index > 0 ? digitalFundamentalsModules[index - 1] : undefined;
+  const nextModule =
+    index < digitalFundamentalsModules.length - 1
+      ? digitalFundamentalsModules[index + 1]
+      : undefined;
 
-  return <ModuleViewer module={currentModule} index={index} />;
+  return (
+    <ModuleViewer
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }

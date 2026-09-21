@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { mathematicsModules } from "@/data/mathematics";
 import MathModuleClient from "@/components/MathModuleClient";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "Mathematics for AI & Computer Science";
+const SUBJECT_SLUG = "mathematics";
 
 export function generateStaticParams() {
   return mathematicsModules.map((m) => ({
@@ -23,18 +27,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | Mathematics for AI`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | Mathematics for AI | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/mathematics/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/mathematics/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function MathModulePage({
@@ -50,6 +47,20 @@ export default async function MathModulePage({
   }
 
   const index = mathematicsModules.findIndex((m) => m.id === moduleId);
+  const prevModule = index > 0 ? mathematicsModules[index - 1] : undefined;
+  const nextModule =
+    index < mathematicsModules.length - 1
+      ? mathematicsModules[index + 1]
+      : undefined;
 
-  return <MathModuleClient module={currentModule} index={index} />;
+  return (
+    <MathModuleClient
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }

@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { algorithmsModules } from "@/data/algorithms";
 import ModuleViewer from "@/components/ModuleViewer";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "Algorithms";
+const SUBJECT_SLUG = "algorithms";
 
 export function generateStaticParams() {
   return algorithmsModules.map((module) => ({
@@ -23,18 +27,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | Algorithms`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | Algorithms | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/algorithms/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/algorithms/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function AlgorithmsModulePage({
@@ -50,6 +47,20 @@ export default async function AlgorithmsModulePage({
   }
 
   const index = algorithmsModules.findIndex((m) => m.id === moduleId);
+  const prevModule = index > 0 ? algorithmsModules[index - 1] : undefined;
+  const nextModule =
+    index < algorithmsModules.length - 1
+      ? algorithmsModules[index + 1]
+      : undefined;
 
-  return <ModuleViewer module={currentModule} index={index} />;
+  return (
+    <ModuleViewer
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }

@@ -1,7 +1,11 @@
 import { notFound } from "next/navigation";
 import { advancedAlgorithmsModules } from "@/data/curaj-msc-cs/advanced-algorithms";
 import ModuleViewer from "@/components/ModuleViewer";
+import { createModuleMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+
+const SUBJECT_NAME = "CURAJ MSc CS - Advanced Algorithms";
+const SUBJECT_SLUG = "curaj-msc-cs/advanced-algorithms";
 
 export function generateStaticParams() {
   return advancedAlgorithmsModules.map((module) => ({
@@ -25,18 +29,11 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${currentModule.title} | CURAJ MSc CS Advanced Algorithms`,
-    description: currentModule.description,
-    openGraph: {
-      title: `${currentModule.title} | CURAJ Advanced Algorithms | Akshaya Parida`,
-      description: currentModule.description,
-      url: `https://akshayaparida.vercel.app/curaj-msc-cs/advanced-algorithms/${moduleId}`,
-    },
-    alternates: {
-      canonical: `/curaj-msc-cs/advanced-algorithms/${moduleId}`,
-    },
-  };
+  return createModuleMetadata({
+    module: currentModule,
+    subjectName: SUBJECT_NAME,
+    subjectSlug: SUBJECT_SLUG,
+  });
 }
 
 export default async function CurajAdvancedAlgorithmsModulePage({
@@ -54,6 +51,21 @@ export default async function CurajAdvancedAlgorithmsModulePage({
   }
 
   const index = advancedAlgorithmsModules.findIndex((m) => m.id === moduleId);
+  const prevModule =
+    index > 0 ? advancedAlgorithmsModules[index - 1] : undefined;
+  const nextModule =
+    index < advancedAlgorithmsModules.length - 1
+      ? advancedAlgorithmsModules[index + 1]
+      : undefined;
 
-  return <ModuleViewer module={currentModule} index={index} />;
+  return (
+    <ModuleViewer
+      module={currentModule}
+      index={index}
+      subjectName={SUBJECT_NAME}
+      subjectSlug={SUBJECT_SLUG}
+      prevModule={prevModule}
+      nextModule={nextModule}
+    />
+  );
 }
