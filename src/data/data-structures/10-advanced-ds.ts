@@ -174,7 +174,7 @@ Prefix "car": c→a→r  → Path exists → all words with prefix "car": car, c
 | Feature | Hash Table | Trie |
 |:---|:---|:---|
 | **Exact Search** | $O(L)$ average | $O(L)$ guaranteed |
-| **Prefix Search** | Inefficient ($O(N \cdot L)$) | $O(L)$ to find all with prefix |
+| **Prefix Search** | Inefficient ($O(N \\cdot L)$) | $O(L)$ to find all with prefix |
 | **Autocomplete** | Requires full table scan | Natural — traverse subtree |
 | **Sorted Order** | No ordering | DFS gives lexicographic order |
 | **Space** | Compact per key | Can be large (26 pointers per node) |

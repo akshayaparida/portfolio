@@ -192,7 +192,7 @@ export const unit1UninformedSearchModule: LearningModule = {
   detailedContent: `# Unit 1: Introduction, Problem Solving & Uninformed Search
 
 > **CURAJ M.Sc. Computer Science — Course Code: 6.0CSC01 (Core 1, 4 Credits, 10 Hours)**  
-> **Official CURAJ Syllabus Sequence**: Introduction to AI $\to$ Historical Development $\to$ Turing Test $\to$ Problem Solving, Search Algorithms $\to$ State-space and Solution Space Search $\to$ State space as graph-state v/s node $\to$ Evaluating Search Strategies—Time, Space, Completeness, Optimality $\to$ Uninformed search: breadth-first search, depth-first search, iterative deepening search, bidirectional search, uniform cost search.  
+> **Official CURAJ Syllabus Sequence**: Introduction to AI $\\to$ Historical Development $\\to$ Turing Test $\\to$ Problem Solving, Search Algorithms $\\to$ State-space and Solution Space Search $\\to$ State space as graph-state v/s node $\\to$ Evaluating Search Strategies—Time, Space, Completeness, Optimality $\\to$ Uninformed search: breadth-first search, depth-first search, iterative deepening search, bidirectional search, uniform cost search.  
 > **Prescribed References**: Deepak Khemani (*A First Course in AI*), Elaine Rich & Kevin Knight (*Artificial Intelligence*, McGraw-Hill), Stuart Russell & Peter Norvig (*AIMA 4th Ed.*).  
 > **Exam Weightage**: Primary focus of **Continuous Internal Assessment 1 (CIA-1)** (~20 Marks), Semester Theory Exam, **UGC NET / JRF Paper II Computer Science**, and **GATE CS**.
 
@@ -206,7 +206,7 @@ export const unit1UninformedSearchModule: LearningModule = {
 4. **Problem Solving & Search Algorithms**: Problem solving as state-space search, Rich & Knight's 4 steps to build a problem-solving system, Control strategy requirements (must cause motion, must be systematic), and Direction of Search (Forward vs. Backward reasoning).
 5. **State-space and Solution Space Search**: Formal 5-tuple formulation $(S_0, A, T, G, c)$, state space vs. solution space, Production Systems architecture & 4-quadrant classification (Monotonic/Commutative), Rich & Knight's 7 Problem Characteristics framework, and Classical benchmark problems (3 Tic-Tac-Toe programs, Water Jug 8 rules, Cryptarithmetic $SEND+MORE=MONEY$, 8-Puzzle solvability & parity, Farmer-Wolf-Goat-Cabbage, Missionaries & Cannibals).
 6. **State Space as Graph — State v/s Node**: World state vs. search node bookkeeping distinction, state space graph vs. search tree, graph search vs. tree search, and Explored Set (Closed List) cycle prevention.
-7. **Evaluating Search Strategies**: Time Complexity, Space Complexity, Completeness, Optimality with standard parameters ($b, d, m, \epsilon, C^*$).
+7. **Evaluating Search Strategies**: Time Complexity, Space Complexity, Completeness, Optimality with standard parameters ($b, d, m, \\epsilon, C^*$).
 8. **Uninformed (Blind) Search Algorithms (Exact Syllabus Order)**:
    - Breadth-First Search (BFS)
    - Depth-First Search (DFS)
@@ -224,8 +224,8 @@ export const unit1UninformedSearchModule: LearningModule = {
 ## 0. 🎬 Video First Lecture Roadmap & Exam Strategy Matrix
 
 > [!TIP]
-> **Study Workflow (First Video $\to$ Then Text Notes $\to$ Then Exam Answers)**:
-> 1. **Watch On The Go First (10 to 15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\times$ or $1.5\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level by level).
+> **Study Workflow (First Video $\\to$ Then Text Notes $\\to$ Then Exam Answers)**:
+> 1. **Watch On The Go First (10 to 15 mins)**: Select any lecture from the **Curated Video Hub** above. Watch at $1.25\\times$ or $1.5\\times$ speed to understand the physical and visual intuition (e.g. how water is transferred between jugs, or how a FIFO queue expands nodes level by level).
 > 2. **Study Bookish Notes Second**: Read the formal mathematical formulations below. In CURAJ semester exams, CIA 1 tests, and competitive exams, marks are awarded for formal 5-tuple specifications $(S, A, T, G, c)$, production rule tables, and exact Big $O$ complexity derivations.
 > 3. **Revise University Model Answers (Section 10)**: Study the exact standard answers for compulsory 5 mark and 10 mark questions.
 > 4. **Master Formula Cheat Sheet (Section 12)**: Memorize the comparison matrix, uniform tree node sums, and inversion parity rules.
@@ -443,7 +443,7 @@ In their 1975 ACM Turing Award lecture (*Computer Science as Empirical Inquiry: 
 
 #### 3. Why PSSH Validates State-Space Search:
 Under PSSH, solving a problem equates to:
-1. Encoding the problem domain into a **symbolic state representation** (e.g., $(x, y)$ in the Water Jug problem, or $3 \times 3$ grid arrays in the 8-puzzle).
+1. Encoding the problem domain into a **symbolic state representation** (e.g., $(x, y)$ in the Water Jug problem, or $3 \\times 3$ grid arrays in the 8-puzzle).
 2. Defining **operators as symbolic transformation rules** that map one symbol expression into another.
 3. Conducting **heuristic search across the symbol space** to locate an expression satisfying the goal criteria.
 
@@ -483,7 +483,7 @@ In any state-space search system, the **Control Strategy** decides which state n
 
 1. **Requirement 1: It Must Cause Motion**:
    - The strategy must guarantee that operations advance the state space forward toward new configurations.
-   - *Failure Case*: If a control strategy selects rules that repeatedly transition between two symmetric states (e.g., in the Water Jug problem: Fill 4G $\to$ Empty 4G $\to$ Fill 4G $\to$ Empty 4G), it creates an infinite cycle with zero progress. A good strategy detects and prevents cyclical stagnation.
+   - *Failure Case*: If a control strategy selects rules that repeatedly transition between two symmetric states (e.g., in the Water Jug problem: Fill 4G $\\to$ Empty 4G $\\to$ Fill 4G $\\to$ Empty 4G), it creates an infinite cycle with zero progress. A good strategy detects and prevents cyclical stagnation.
 2. **Requirement 2: It Must Be Systematic**:
    - Even if a control strategy causes motion, it must not wander aimlessly or randomly through the state space.
    - A systematic strategy maintains structured bookkeeping (e.g., the Frontier Queue and Explored Set in graph search) to guarantee that every reachable path is eventually explored and unpromising or already-explored paths are not redundantly recomputed.
@@ -506,10 +506,10 @@ BACKWARD SEARCH (Goal-Directed / Regression)
 | **Starting Point** | Begins at Initial State $S_0$. | Begins at Goal State $S_G$ (or goal description). |
 | **Operator Application** | Applies operators to current state to generate successor states. | Applies inverse operators to goal to generate predecessor subgoals. |
 | **When to Choose** | When initial state is single & well-defined, but goal is diffuse or many. | When goal is single & specific, but there are many possible initial states. |
-| **Branching Factor Criterion** | Prefer Forward Search if forward branching factor $b_f$ is significantly smaller than backward branching factor $b_b$ ($b_f \ll b_b$). | Prefer Backward Search if backward branching factor $b_b$ is significantly smaller than forward branching factor $b_f$ ($b_b \ll b_f$). |
+| **Branching Factor Criterion** | Prefer Forward Search if forward branching factor $b_f$ is significantly smaller than backward branching factor $b_b$ ($b_f \\ll b_b$). | Prefer Backward Search if backward branching factor $b_b$ is significantly smaller than forward branching factor $b_f$ ($b_b \\ll b_f$). |
 | **Typical Application** | Game playing (Chess, Tic-Tac-Toe), robot path planning. | Theorem proving (proving a theorem by generating subgoals from the conclusion), medical diagnosis. |
 | **Justification & Explanation** | Can generate unnecessary branches unrelated to the goal. | Naturally produces human-readable goal justification traces. |
-| **Bidirectional Synergy** | Combines forward search from $S_0$ and backward search from $S_G$ simultaneously, reducing search time from $\mathcal{O}(b^d)$ to $\mathcal{O}(b^{d/2})$. |
+| **Bidirectional Synergy** | Combines forward search from $S_0$ and backward search from $S_G$ simultaneously, reducing search time from $\\mathcal{O}(b^d)$ to $\\mathcal{O}(b^{d/2})$. |
 
 ---
 
@@ -535,12 +535,12 @@ Every well-defined search problem consists of 5 mathematical components:
 
 1. **Initial State ($S_0$)**: The starting state in which the agent begins.
 2. **Actions Function ($Actions(s)$)**: Returns the legal set of actions executable in state $s$:
-   $$\text{Actions}(s) = \{a_1, a_2, \dots, a_k\}$$
+   $$\\text{Actions}(s) = \{a_1, a_2, \\dots, a_k\}$$
 3. **Transition Model ($Result(s, a)$)**: A deterministic function describing the outcome state of applying action $a$ to state $s$:
    $$s' = Result(s, a)$$
 4. **Goal Test ($IsGoal(s)$)**: A Boolean predicate determining whether state $s$ satisfies the goal conditions (explicit single goal or implicit property test).
 5. **Path Cost Function ($c(s, a, s')$)**: Cost assigned to stepping from $s$ to $s'$ via action $a$. The total path cost $g(n)$ is the sum of step costs along the trajectory:
-   $$g(n) = \sum_{i=1}^k c(s_{i-1}, a_i, s_i)$$
+   $$g(n) = \\sum_{i=1}^k c(s_{i-1}, a_i, s_i)$$
 
 A **Solution** is an action sequence mapping $S_0$ to a goal state. An **Optimal Solution** has the lowest total path cost among all solutions.
 
@@ -559,7 +559,7 @@ A **Solution** is an action sequence mapping $S_0$ to a goal state. An **Optimal
    - *Incremental Formulation (State Space)*: Start with an empty board; add a queen to each column without conflict ($8^8$ states max).
    - *Complete-State Formulation (Solution Space)*: Start with all 8 queens on board, move queens within columns to eliminate conflicts.
 3. **Water Jug Problem (4-Gallon & 3-Gallon Jugs, target 2 gallons)**:
-   - *State*: Pair $(x, y)$ where $x \in \{0, 1, 2, 3, 4\}$ and $y \in \{0, 1, 2, 3\}$.
+   - *State*: Pair $(x, y)$ where $x \\in \{0, 1, 2, 3, 4\}$ and $y \\in \{0, 1, 2, 3\}$.
    - *Actions*: Fill jug, Empty jug, Pour from one jug to another until full or empty.
 
 ---
@@ -596,7 +596,7 @@ A production system consists of three distinct modules:
 
 1. **Rule Base (Production Rules)**:
    - A collection of condition-action statements of the form:
-     $$\mathbf{IF} \quad \langle\text{Condition / Premise (LHS)}\rangle \quad \mathbf{THEN} \quad \langle\text{Action / Conclusion (RHS)}\rangle$$
+     $$\\mathbf{IF} \\quad \\langle\\text{Condition / Premise (LHS)}\\rangle \\quad \\mathbf{THEN} \\quad \\langle\\text{Action / Conclusion (RHS)}\\rangle$$
    - The LHS checks whether conditions in the Working Memory are met; the RHS specifies the state modification or action to execute.
 2. **Context / Working Memory (Global Database)**:
    - Contains the current state configuration, active data structures, and environmental facts.
@@ -609,7 +609,7 @@ A production system consists of three distinct modules:
 
 #### Key Characteristics of Production Systems:
 1. **Modularity**: Individual rules can be added, modified, or removed independently without altering the rest of the rule base.
-2. **Uniformity**: All knowledge is expressed in the identical standardized $\text{IF } \dots \text{ THEN } \dots$ syntax.
+2. **Uniformity**: All knowledge is expressed in the identical standardized $\\text{IF } \\dots \\text{ THEN } \\dots$ syntax.
 3. **Naturalness**: Directly mimics human domain expert reasoning, clinical diagnosis, and heuristic problem solving.
 4. **Separation of Knowledge and Control**: The domain expertise (Rule Base) is decoupled from the execution engine (Control Strategy), enabling domain portability.
 
@@ -622,7 +622,7 @@ In classical AI literature (*Rich & Knight*, *Nilsson*), production systems are 
 #### 1. Monotonic vs. Non-Monotonic Production Systems:
 - **Monotonic Production System**:
   - The application of a valid production rule **never invalidates or retracts** previously deduced facts or assertions in the database.
-  - New knowledge is strictly additive: $\text{KB}_{t+1} \supseteq \text{KB}_t$.
+  - New knowledge is strictly additive: $\\text{KB}_{t+1} \\supseteq \\text{KB}_t$.
   - *Example*: Formal mathematical theorem proving (e.g., deducing a geometric lemma adds a new truth without making prior axioms false).
 - **Non-Monotonic Production System**:
   - The firing of a production rule **can retract, delete, or overwrite** previous assertions in the database.
@@ -630,8 +630,8 @@ In classical AI literature (*Rich & Knight*, *Nilsson*), production systems are 
 
 #### 2. Commutative vs. Non-Commutative Production Systems:
 - **Commutative Production System**:
-  - If a set of rules $\{R_1, R_2, \dots, R_k\}$ are all applicable to state $S$, applying them in **any order or permutation** produces the **exact same final state**:
-    $$\text{Apply}(R_2, \text{Apply}(R_1, S)) = \text{Apply}(R_1, \text{Apply}(R_2, S))$$
+  - If a set of rules $\{R_1, R_2, \\dots, R_k\}$ are all applicable to state $S$, applying them in **any order or permutation** produces the **exact same final state**:
+    $$\\text{Apply}(R_2, \\text{Apply}(R_1, S)) = \\text{Apply}(R_1, \\text{Apply}(R_2, S))$$
   - In a commutative system, search never has to backtrack over the order of rule firings!
 - **Non-Commutative Production System**:
   - The sequential order in which rules are applied critically alters the resulting state or validity. Applying $R_1$ then $R_2$ may yield a completely different state than applying $R_2$ then $R_1$ (or $R_2$ may no longer even be legal).
@@ -675,7 +675,7 @@ This 7-characteristic analysis is one of the most celebrated conceptual framewor
 - **Decomposable Problems**:
   - The master problem can be split into smaller, independent subproblems that can each be solved completely in isolation, and whose partial solutions can be stitched together without interference.
   - *Textbook Example*: **Symbolic Integration**:
-    $$\int (x^2 + 3x + \sin x) \, dx = \int x^2 \, dx + 3 \int x \, dx + \int \sin x \, dx$$
+    $$\\int (x^2 + 3x + \\sin x) \, dx = \\int x^2 \, dx + 3 \\int x \, dx + \\int \\sin x \, dx$$
     Each integral can be evaluated independently by lookup or substitution rules.
   - *Algorithmic Implication*: Solved via **AND-OR Graphs** and Divide-and-Conquer algorithms ($AO^*$).
 - **Non-Decomposable Problems**:
@@ -686,7 +686,7 @@ This 7-characteristic analysis is one of the most celebrated conceptual framewor
 Rich & Knight divide all problems into three distinct classes of step reversibility:
 1. **Ignorable Step Problems**:
    - Solution steps can be taken without worrying about dead ends. If an unhelpful step is taken, it never precludes or locks out finding the correct solution later. Backtracking is never required.
-   - *Example*: **Theorem Proving in Logic**. If you deduce an irrelevant lemma $P \lor Q$, you simply keep it in your database; it does not invalidate your ability to deduce the true goal theorem $R$ later.
+   - *Example*: **Theorem Proving in Logic**. If you deduce an irrelevant lemma $P \\lor Q$, you simply keep it in your database; it does not invalidate your ability to deduce the true goal theorem $R$ later.
 2. **Recoverable Step Problems**:
    - Mistakes can be made and impasses encountered, but prior steps can be undone by **backtracking** to an earlier state.
    - *Example*: **8-Puzzle**, **Water Jug Problem**, **Mazes**, and casual Chess puzzles. If you pour water into the wrong jug or slide a tile the wrong way, you can reverse the operator and return to the previous state.
@@ -715,7 +715,7 @@ Rich & Knight divide all problems into three distinct classes of step reversibil
 
 #### Characteristic 5: Is the knowledge base consistent?
 - **Consistent Knowledge Bases**:
-  - Axioms, facts, and inference rules are free from contradictions. If $P$ is true, $\neg P$ is strictly false.
+  - Axioms, facts, and inference rules are free from contradictions. If $P$ is true, $\\neg P$ is strictly false.
   - *Example*: **Formal Euclidean Geometry**, **Axiomatic Set Theory**.
 - **Inconsistent Knowledge Bases**:
   - The system must reason with conflicting facts, contradictory witness testimonies in legal domains, or default assumptions that may later be overturned by new evidence.
@@ -757,7 +757,7 @@ Rich & Knight divide all problems into three distinct classes of step reversibil
 
 #### 1. Case Study: 3 Approaches to Playing Tic-Tac-Toe (Rich & Knight's Landmark Comparison)
 
-To demonstrate precisely what differentiates a naive non-AI computer program from a true AI technique, Elaine Rich and Kevin Knight presented their famous pedagogical comparison of **three distinct computer programs designed to play Tic-Tac-Toe ($3 \times 3$ board)**:
+To demonstrate precisely what differentiates a naive non-AI computer program from a true AI technique, Elaine Rich and Kevin Knight presented their famous pedagogical comparison of **three distinct computer programs designed to play Tic-Tac-Toe ($3 \\times 3$ board)**:
 
 \`\`\`text
                               TIC-TAC-TOE BOARD
@@ -772,19 +772,19 @@ To demonstrate precisely what differentiates a naive non-AI computer program fro
 - **Data Structure**:
   - The board is represented as a 9-element vector where each square is $0$ (blank), $1$ (X), or $2$ (O).
   - The total number of mathematically possible board configurations is:
-    $$3^9 = 19,683 \text{ states}$$
+    $$3^9 = 19,683 \\text{ states}$$
   - A massive precomputed lookup table of size $19,683$ is stored in memory. For every entry, a programmer has pre-calculated and stored the exact optimal square index $(1..9)$ to play.
-- **Execution**: The computer takes the current board state, treats it as a ternary index into the table, and immediately plays the stored move in $\mathcal{O}(1)$ time.
+- **Execution**: The computer takes the current board state, treats it as a ternary index into the table, and immediately plays the stored move in $\\mathcal{O}(1)$ time.
 - **Critical Evaluation**:
-  - **Pros**: Blazingly fast ($\mathcal{O}(1)$ lookup time); never makes a tactical error if the table is correct.
+  - **Pros**: Blazingly fast ($\\mathcal{O}(1)$ lookup time); never makes a tactical error if the table is correct.
   - **Fatal Flaws**:
     - **Space Inefficiency**: Enormous memory waste for a trivial game.
-    - **Brittleness**: Cannot learn or adapt. If the rules change even slightly (e.g., $4 \times 4$ board or 3D Tic-Tac-Toe), the entire table must be discarded and recalculated.
+    - **Brittleness**: Cannot learn or adapt. If the rules change even slightly (e.g., $4 \\times 4$ board or 3D Tic-Tac-Toe), the entire table must be discarded and recalculated.
     - **Zero Generalizability**: Completely impossible to scale. For Chess, the number of states is roughly $10^{120}$ (Shannon number)—far exceeding the total atoms in the observable universe ($10^{80}$). A lookup table is mathematically impossible!
 
 ##### Program 2: Heuristic Rules with Magic Square Arithmetic
 - **Data Structure**:
-  - Employs a classical $3 \times 3$ **Magic Square** where every row, column, and main diagonal sums to exactly **15**:
+  - Employs a classical $3 \\times 3$ **Magic Square** where every row, column, and main diagonal sums to exactly **15**:
     \`\`\`text
     ┌───┬───┬───┐
     │ 8 │ 1 │ 6 │  = 15
@@ -798,15 +798,15 @@ To demonstrate precisely what differentiates a naive non-AI computer program fro
     \`\`\`
   - The board vector stores the numbers $\{1..9\}$ corresponding to squares claimed by player $X$, player $O$, and blank.
 - **Rule-Based Heuristic Strategy (Ordered Production Rules)**:
-  1. **Win Rule**: If player has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \in \{1..9\}$ and square $C$ is blank, play $C$ to win!
-  2. **Block Rule**: If opponent has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \in \{1..9\}$ and square $C$ is blank, play $C$ immediately to block the opponent's imminent win!
+  1. **Win Rule**: If player has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \\in \{1..9\}$ and square $C$ is blank, play $C$ to win!
+  2. **Block Rule**: If opponent has two marks $A$ and $B$, compute $C = 15 - (A + B)$. If $C \\in \{1..9\}$ and square $C$ is blank, play $C$ immediately to block the opponent's imminent win!
   3. **Fork Creation**: Check for combinations that create two simultaneous winning threats.
   4. **Center Square**: If square $5$ (the center) is blank, claim it.
   5. **Opposite Corner**: If opponent is in a corner, play the diametrically opposite corner.
 - **Critical Evaluation**:
   - **Pros**: Compact memory representation; elegant arithmetic reasoning replaces millions of precomputed moves; plays perfect games.
   - **Limitations**:
-    - Strictly tailored to $3 \times 3$ Tic-Tac-Toe. The arithmetic magic sum property cannot be transferred to Checkers, Chess, or Go. It is a domain-specific mathematical trick, not a general search architecture.
+    - Strictly tailored to $3 \\times 3$ Tic-Tac-Toe. The arithmetic magic sum property cannot be transferred to Checkers, Chess, or Go. It is a domain-specific mathematical trick, not a general search architecture.
 
 ##### Program 3: State Space Search with Static Board Evaluation & Minimax (True AI Technique)
 - **Data Structure**:
@@ -831,10 +831,10 @@ To demonstrate precisely what differentiates a naive non-AI computer program fro
 | Feature / Parameter | Program 1 (Lookup Table) | Program 2 (Magic Square Heuristic) | Program 3 (State Space Search & Minimax) |
 |---|---|---|---|
 | **Underlying Approach** | Brute-force exhaustive table lookup. | Procedural arithmetic heuristic rules. | General State Space Search with static heuristic evaluation. |
-| **Storage / Memory Needed** | $19,683$ complete board mappings ($\mathcal{O}(3^N)$ space). | Minimal ($9$ integer registers). | Proportional to search stack depth ($\mathcal{O}(b \cdot d)$ space). |
-| **Computation Time per Move** | Instantaneous $\mathcal{O}(1)$ array access. | Negligible (simple algebraic subtractions). | Moderate; depends on search depth limit ($\mathcal{O}(b^d)$ time). |
+| **Storage / Memory Needed** | $19,683$ complete board mappings ($\\mathcal{O}(3^N)$ space). | Minimal ($9$ integer registers). | Proportional to search stack depth ($\\mathcal{O}(b \\cdot d)$ space). |
+| **Computation Time per Move** | Instantaneous $\\mathcal{O}(1)$ array access. | Negligible (simple algebraic subtractions). | Moderate; depends on search depth limit ($\\mathcal{O}(b^d)$ time). |
 | **Human Understandability** | Zero; unreadable array of 20,000 numbers. | High; intuitive strategic rules (win, block, center). | Very High; clear minimax reasoning trace and path trees. |
-| **Modifiability** | Terrible; changing board size requires full regeneration. | Poor; Magic Square trick breaks on non-$3 \times 3$ grids. | Excellent; tweak depth or heuristic weights $E(p)$ easily. |
+| **Modifiability** | Terrible; changing board size requires full regeneration. | Poor; Magic Square trick breaks on non-$3 \\times 3$ grids. | Excellent; tweak depth or heuristic weights $E(p)$ easily. |
 | **Scalability to Chess / Real AI** | **Zero (Impossible)** ($10^{120}$ chess states). | **Zero (Domain-specific trick)**. | **Excellent (General Foundation of AI Search)**. |
 
 ---
@@ -933,13 +933,13 @@ To demonstrate precisely what differentiates a naive non-AI computer program fro
   - The farmer must row the boat across the river so that all four characters arrive safely on the other side.
 - **State Representation**:
   An ordered 4-tuple vector:
-  $S = (F, W, G, C) \in \{0, 1\}^4$
+  $S = (F, W, G, C) \\in \{0, 1\}^4$
   where each variable indicates the riverbank location:
-  - $0 = \text{Near Bank (Starting Side)}$
-  - $1 = \text{Far Bank (Destination Side)}$
+  - $0 = \\text{Near Bank (Starting Side)}$
+  - $1 = \\text{Far Bank (Destination Side)}$
   - Total theoretical configurations = $2^4 = 16$ states.
 - **Initial State**: $S_0 = (0, 0, 0, 0)$ (everyone on near bank).
-- **Goal State**: $S_{\text{goal}} = (1, 1, 1, 1)$ (everyone safely on far bank).
+- **Goal State**: $S_{\\text{goal}} = (1, 1, 1, 1)$ (everyone safely on far bank).
 - **Safety Constraints (Mathematical Invariants)**:
   A state is **UNSAFE** if either of the following holds without the farmer:
   1. $(W = G) \\land (F \\ne W)$ [Wolf eats Goat]
@@ -1005,14 +1005,14 @@ The **Cryptarithmetic Problem** (also known as alphametic or verbal arithmetic) 
 ##### 1. Problem Rules & Mathematical Constraints:
 1. **Unique Digit Assignment**: Each letter uniquely represents a single decimal digit from $\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$.
 2. **AllDifferent Constraint**: Distinct letters must map to distinct numeric values:
-   $$\text{AllDifferent}(S, E, N, D, M, O, R, Y)$$
+   $$\\text{AllDifferent}(S, E, N, D, M, O, R, Y)$$
 3. **No Leading Zero Constraint**: The leading digits of multi-digit numbers cannot be zero:
-   $$S \ne 0, \quad M \ne 0$$
-4. **Column Arithmetic with Carry Variables ($C_1, C_2, C_3, C_4 \in \{0, 1\}$)**:
-   - *Column 1 (Units)*: $D + E = Y + 10 \cdot C_1$
-   - *Column 2 (Tens)*: $N + R + C_1 = E + 10 \cdot C_2$
-   - *Column 3 (Hundreds)*: $E + O + C_2 = N + 10 \cdot C_3$
-   - *Column 4 (Thousands)*: $S + M + C_3 = O + 10 \cdot C_4$
+   $$S \\ne 0, \\quad M \\ne 0$$
+4. **Column Arithmetic with Carry Variables ($C_1, C_2, C_3, C_4 \\in \{0, 1\}$)**:
+   - *Column 1 (Units)*: $D + E = Y + 10 \\cdot C_1$
+   - *Column 2 (Tens)*: $N + R + C_1 = E + 10 \\cdot C_2$
+   - *Column 3 (Hundreds)*: $E + O + C_2 = N + 10 \\cdot C_3$
+   - *Column 4 (Thousands)*: $S + M + C_3 = O + 10 \\cdot C_4$
    - *Column 5 (Ten-Thousands)*: $C_4 = M$
 
 ##### 2. Step-by-Step Formal Constraint Deduction:
@@ -1101,8 +1101,8 @@ Every search algorithm is evaluated along four fundamental performance dimension
 ### 7.1 Standard Notation Parameters:
 - **$b$ (Branching Factor)**: Maximum number of successors (children) of any node.
 - **$d$ (Shallowest Goal Depth)**: Depth of the shallowest goal node in the search tree.
-- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\infty$ in spaces with infinite loops).
-- **$\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\epsilon > 0$).
+- **$m$ (Maximum Depth)**: Maximum depth of the state space (can be $\\infty$ in spaces with infinite loops).
+- **$\\epsilon$ (Minimum Step Cost)**: Smallest positive edge cost (strictly $\\epsilon > 0$).
 - **$C^*$ (Optimal Solution Cost)**: Cost of the optimal path.
 
 ---
@@ -1178,7 +1178,7 @@ def breadth_first_search(problem):
 #### Performance Analysis:
 - **Completeness**: **Yes** (if branching factor $b$ is finite).
 - **Time Complexity**:
-  $$1 + b + b^2 + b^3 + \dots + b^d = O(b^d)$$
+  $$1 + b + b^2 + b^3 + \\dots + b^d = O(b^d)$$
 - **Space Complexity**: All frontier and explored nodes must remain in memory:
   $$O(b^d)$$
 - **Optimality**: **Yes** if and only if **all step costs are identical / uniform (e.g., unit cost = 1)**. In general weighted graphs, BFS is *not* optimal.
@@ -1246,7 +1246,7 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
   3. \`cutoff\`: Goal not found within limit $l$, but deeper nodes existed.
 
 #### Performance Analysis:
-- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \ge d$ in finite spaces.
+- **Completeness**: **No** if $d > l$ (goal is deeper than cutoff). **Yes** if $l \\ge d$ in finite spaces.
 - **Time Complexity**: $O(b^l)$
 - **Space Complexity**: $O(bl)$
 - **Optimality**: **No** (even if $l > d$, it may find a suboptimal goal first).
@@ -1268,7 +1268,7 @@ DFS augmented with a predetermined depth limit $l$. Nodes at depth $l$ are treat
 \`\`\`
 
 #### Mechanism:
-Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \dots, d$:
+Iterative Deepening Search systematically finds the optimal depth limit by running successive Depth-Limited Searches with increasing limits $l = 0, 1, 2, 3, \\dots, d$:
 
 \`\`\`text
 Level 0:  (l = 0)  Root
@@ -1291,14 +1291,14 @@ def iterative_deepening_search(problem):
 A common intuitive objection is that IDS is wasteful because it repeatedly regenerates upper levels. Let's calculate the exact total nodes generated:
 - In level $d$, nodes generated $1$ time: $b^d$
 - In level $d-1$, nodes generated $2$ times: $2 b^{d-1}$
-- In level $1$, nodes generated $d$ times: $d \cdot b$
+- In level $1$, nodes generated $d$ times: $d \\cdot b$
 
-$$\text{Total Nodes} = d \cdot b + (d-1)b^2 + (d-2)b^3 + \dots + 1 \cdot b^d$$
+$$\\text{Total Nodes} = d \\cdot b + (d-1)b^2 + (d-2)b^3 + \\dots + 1 \\cdot b^d$$
 
 **Concrete Comparison ($b = 10, d = 5$):**
 - **BFS Nodes**: $1 + 10 + 100 + 1,000 + 10,000 + 100,000 = 111,111$
 - **IDS Nodes**: $5(10) + 4(100) + 3(1,000) + 2(10,000) + 1(100,000) = 123,450$
-- **Overhead**: Only $\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
+- **Overhead**: Only $\\approx 11$%! Because an exponential tree has the vast majority of its nodes in the bottom leaf layer.
 
 #### Performance Analysis:
 - **Completeness**: **Yes** (if $b$ is finite).
@@ -1332,7 +1332,7 @@ Rather than expanding $b^d$ nodes, bidirectional search expands:
 $$b^{d/2} + b^{d/2} = 2 b^{d/2} = O(b^{d/2})$$
 For $b = 10, d = 6$:
 - Single Direction: $10^6 = 1,000,000$ nodes.
-- Bidirectional: $2 \times 10^3 = 2,000$ nodes! A **500x speedup**.
+- Bidirectional: $2 \\times 10^3 = 2,000$ nodes! A **500x speedup**.
 
 #### Challenges & Practical Limitations:
 1. **Predecessor Calculation**: Must be able to calculate reverse transitions $Result^{-1}(s, a)$.
@@ -1395,10 +1395,10 @@ def uniform_cost_search(problem):
 
 #### Performance Analysis:
 - **Completeness**: **Yes**, provided every step cost is strictly positive:
-  $$c(s, a, s') \ge \epsilon > 0$$
+  $$c(s, a, s') \\ge \\epsilon > 0$$
   *(If step costs can be zero or negative, UCS can loop infinitely along zero-cost cycles).*
 - **Time & Space Complexity**:
-  $$O\left(b^{1 + \lfloor C^* / \epsilon \rfloor}\right)$$
+  $$O\\left(b^{1 + \\lfloor C^* / \\epsilon \\rfloor}\\right)$$
   Where $C^*$ is the cost of the optimal solution.
 - **Optimality**: **Yes**! Always finds the lowest-cost path for any non-negative cost function.
 
@@ -1410,12 +1410,12 @@ The definitive comparison matrix required for university and competitive exams:
 
 | Search Strategy | Completeness | Time Complexity | Space Complexity | Optimality (Unit Cost) | Optimality (General Cost) | Frontier Data Structure |
 |---|---|---|---|---|---|---|
-| **Breadth-First Search (BFS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
+| **Breadth-First Search (BFS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | $O(b^d)$ *(Memory Bottleneck)* | **Yes** | **No** | FIFO Queue |
 | **Depth-First Search (DFS)** | **No** (finite graphs: Yes) | $O(b^m)$ | **$O(bm)$** *(Linear Space)* | **No** | **No** | LIFO Stack |
 | **Depth-Limited Search (DLS)** | **No** (if $l < d$) | $O(b^l)$ | $O(bl)$ | **No** | **No** | LIFO Stack with depth limit |
-| **Iterative Deepening (IDS)** | **Yes** (if $b < \infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
-| **Bidirectional Search** | **Yes** (if $b < \infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
-| **Uniform Cost Search (UCS)** | **Yes** (if $\epsilon > 0$) | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | $O(b^{1 + \lfloor C^*/\epsilon \rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
+| **Iterative Deepening (IDS)** | **Yes** (if $b < \\infty$) | $O(b^d)$ | **$O(bd)$** *(Optimal Memory)* | **Yes** | **No** | LIFO Stack (successive limits) |
+| **Bidirectional Search** | **Yes** (if $b < \\infty$) | $O(b^{d/2})$ | $O(b^{d/2})$ | **Yes** | **No** (unless UCS based) | Two Frontiers (Hash Sets) |
+| **Uniform Cost Search (UCS)** | **Yes** (if $\\epsilon > 0$) | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | $O(b^{1 + \\lfloor C^*/\\epsilon \\rfloor})$ | **Yes** | **Yes** | Priority Queue (by $g(n)$) |
 
 ---
 
@@ -1491,7 +1491,7 @@ The definitive comparison matrix required for university and competitive exams:
 | **Search Trajectory** | Explores uniformly in spherical or depth-first waves across all directions. | Focused, directional beam oriented toward the target goal state. |
 | **Number of Node Expansions** | High; expands exponentially large volumes of irrelevant states ($O(b^d)$ or $O(b^m)$). | Drastically reduced; prunes large subspaces when heuristic is informed. |
 | **Time & Space Complexity** | Typically exponential in branching factor $b$ and depth $d$. BFS is memory-bounded ($O(b^d)$). | Can achieve polynomial or linear time/space with an accurate, admissible heuristic. |
-| **Optimality Guarantee** | Optimal only under special cases: BFS for unit step costs; UCS for positive costs $c \ge \epsilon > 0$. | Guaranteed optimal if heuristic $h(n)$ is **admissible** (tree search) and **consistent** (graph search). |
+| **Optimality Guarantee** | Optimal only under special cases: BFS for unit step costs; UCS for positive costs $c \\ge \\epsilon > 0$. | Guaranteed optimal if heuristic $h(n)$ is **admissible** (tree search) and **consistent** (graph search). |
 | **Representative Algorithms** | Breadth-First Search (BFS), Depth-First Search (DFS), Depth-Limited Search (DLS), Iterative Deepening (IDS), Uniform Cost Search (UCS). | Greedy Best-First Search, A* Algorithm, Iterative Deepening A* (IDA*), Simplified Memory Bounded A* (SMA*), Beam Search. |
 
 ---
@@ -1509,7 +1509,7 @@ A **Production System** is a modular knowledge representation and inference arch
 ##### 2. Three Core Architectural Components:
 1. **Rule Base (Production Rules)**:
    - A declarative set of condition-action rules:
-     $\\mathbf{IF} \quad \langle\text{Condition / LHS}\rangle \quad \\mathbf{THEN} \quad \langle\text{Action / RHS}\rangle$
+     $\\mathbf{IF} \\quad \\langle\\text{Condition / LHS}\\rangle \\quad \\mathbf{THEN} \\quad \\langle\\text{Action / RHS}\\rangle$
    - The LHS defines state patterns in the database; the RHS specifies state modifications or transitions.
 2. **Context / Working Memory (Global Database)**:
    - Contains the current state description, active facts, and intermediate problem assertions.
@@ -1520,22 +1520,22 @@ A **Production System** is a modular knowledge representation and inference arch
      - **Act (Execution)**: Fires the selected rule's RHS, mutating Working Memory.
 
 ##### 3. Concrete Illustrative Example (Water Jug Problem: 4G & 3G Jugs, Target 2G):
-- **Working Memory**: Current volume state $(x, y)$ where $x \in \{0..4\}, y \in \{0..3\}$. Initial State = $(0, 0)$.
+- **Working Memory**: Current volume state $(x, y)$ where $x \\in \{0..4\}, y \\in \{0..3\}$. Initial State = $(0, 0)$.
 - **Production Rules**:
   - $R_1$: $\\mathbf{IF} \\; (x < 4) \\; \\mathbf{THEN} \\; x \\gets 4$ *(Fill 4G jug)*
   - $R_2$: $\\mathbf{IF} \\; (y < 3) \\; \\mathbf{THEN} \\; y \\gets 3$ *(Fill 3G jug)*
-  - $R_5$: $\\mathbf{IF} \\; (x + y \ge 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets 4, \\; y \\gets y - (4 - x)$ *(Pour 3G into 4G until full)*
-  - $R_7$: $\\mathbf{IF} \\; (x + y \le 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets x + y, \\; y \\gets 0$ *(Pour all 3G into 4G)*
+  - $R_5$: $\\mathbf{IF} \\; (x + y \\ge 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets 4, \\; y \\gets y - (4 - x)$ *(Pour 3G into 4G until full)*
+  - $R_7$: $\\mathbf{IF} \\; (x + y \\le 4 \\land y > 0) \\; \\mathbf{THEN} \\; x \\gets x + y, \\; y \\gets 0$ *(Pour all 3G into 4G)*
 - **Execution**:
-  1. Working Memory $(0, 0) \\xrightarrow{\text{Fire } R_2} (0, 3)$
-  2. $(0, 3) \\xrightarrow{\text{Fire } R_7} (3, 0)$
-  3. $(3, 0) \\xrightarrow{\text{Fire } R_2} (3, 3)$
-  4. $(3, 3) \\xrightarrow{\text{Fire } R_5} (4, 2)$
-  5. $(4, 2) \\xrightarrow{\text{Empty 4G}} (0, 2) \\xrightarrow{\text{Pour 3G to 4G}} (2, 0)$ [Goal Reached: $x=2$]
+  1. Working Memory $(0, 0) \\xrightarrow{\\text{Fire } R_2} (0, 3)$
+  2. $(0, 3) \\xrightarrow{\\text{Fire } R_7} (3, 0)$
+  3. $(3, 0) \\xrightarrow{\\text{Fire } R_2} (3, 3)$
+  4. $(3, 3) \\xrightarrow{\\text{Fire } R_5} (4, 2)$
+  5. $(4, 2) \\xrightarrow{\\text{Empty 4G}} (0, 2) \\xrightarrow{\\text{Pour 3G to 4G}} (2, 0)$ [Goal Reached: $x=2$]
 
 ##### 4. Key Characteristics of a Production System:
 1. **Modularity**: Rules are independent knowledge packets. Adding, modifying, or deleting a rule does not break other rules.
-2. **Uniformity**: All domain knowledge is structured into identical $\text{IF } \dots \text{ THEN } \dots$ syntax.
+2. **Uniformity**: All domain knowledge is structured into identical $\\text{IF } \\dots \\text{ THEN } \\dots$ syntax.
 3. **Naturalness**: Enables domain specialists to express heuristic expertise, legal rules, or diagnostic knowledge naturally without low-level programming.
 4. **Separation of Knowledge from Control**: The knowledge base (rules) is isolated from the inference engine (interpreter), allowing the same engine to be reused across different problem domains.
 
@@ -1572,13 +1572,13 @@ Consider a state space tree with Root $A$, branching factor $b=2$, and goal $G$ 
   5. **Pop $E$**: $E$ is a leaf node. Stack = \`[C]\`. **Backtrack to $A$**.
   6. **Pop $C$**: Expand $C$. Push children $G, F$: Stack = \`[G, F]\`.
   7. **Pop $F$**: $F$ is a leaf node. Stack = \`[G]\`.
-  8. **Pop $G$**: **Goal Test Passes! Solution Found: Path $A \to C \to G$.**
-- **Traversal Sequence**: $A \to B \to D \to E \to C \to F \to G$.
+  8. **Pop $G$**: **Goal Test Passes! Solution Found: Path $A \\to C \\to G$.**
+- **Traversal Sequence**: $A \\to B \\to D \\to E \\to C \\to F \\to G$.
 
 ##### 3. Benefits of Depth First Search:
 1. **Linear Space Complexity ($O(bm)$)**:
    - **Crucial Memory Advantage**: DFS only stores the current active path from the root to the active node, plus unexpanded sibling nodes at each depth.
-   - For $b = 10, d = 5$, BFS requires $10^5 = 100{,}000$ nodes in memory, while DFS requires only $10 \times 5 = 50$ nodes!
+   - For $b = 10, d = 5$, BFS requires $10^5 = 100{,}000$ nodes in memory, while DFS requires only $10 \\times 5 = 50$ nodes!
 2. **Rapid Goal Discovery in Dense State Spaces**:
    - If solutions are numerous and distributed across multiple branches, DFS can locate a solution very quickly without exploring entire horizontal levels.
 3. **Minimal Implementation Overhead**:
@@ -1607,26 +1607,26 @@ Consider a state space tree with Root $A$, branching factor $b=2$, and goal $G$ 
 ##### 1. Formal State Space Definition:
 - **State Vector**:
   Represented as an ordered 4-tuple:
-  $S = (F, W, G, C) \in \{0, 1\}^4$
+  $S = (F, W, G, C) \\in \{0, 1\}^4$
   where each binary variable represents the current riverbank of the character:
-  - $F \in \{0, 1\}$: Location of the **Farmer** ($0 = \text{Near / Left Bank}, \\; 1 = \text{Far / Right Bank}$)
-  - $W \in \{0, 1\}$: Location of the **Wolf**
-  - $G \in \{0, 1\}$: Location of the **Goat**
-  - $C \in \{0, 1\}$: Location of the **Cabbage**
+  - $F \\in \{0, 1\}$: Location of the **Farmer** ($0 = \\text{Near / Left Bank}, \\; 1 = \\text{Far / Right Bank}$)
+  - $W \\in \{0, 1\}$: Location of the **Wolf**
+  - $G \\in \{0, 1\}$: Location of the **Goat**
+  - $C \\in \{0, 1\}$: Location of the **Cabbage**
 - **Size of Full Configuration Space**: $2^4 = 16$ possible mathematical states.
 - **Initial State ($S_0$)**:
-  $S_0 = (0, 0, 0, 0) \quad [\text{All entities on the near bank}]$
-- **Goal State ($S_{\text{goal}}$)**:
-  $S_{\text{goal}} = (1, 1, 1, 1) \quad [\text{All entities safely on the far bank}]$
+  $S_0 = (0, 0, 0, 0) \\quad [\\text{All entities on the near bank}]$
+- **Goal State ($S_{\\text{goal}}$)**:
+  $S_{\\text{goal}} = (1, 1, 1, 1) \\quad [\\text{All entities safely on the far bank}]$
 
 ##### 2. Mathematical Safety Constraints (Forbidden States):
 The physical safety rules demand that vulnerable pairs cannot be left unattended by the farmer on either bank:
 1. *Wolf eats Goat*: If Wolf and Goat are on the same bank, the Farmer must also be on that bank:
-   $(W = G) \implies (F = W)$
-   Contrapositively: $(W = G \\land F \\ne W) \implies \text{FATAL / UNSAFE}$.
+   $(W = G) \\implies (F = W)$
+   Contrapositively: $(W = G \\land F \\ne W) \\implies \\text{FATAL / UNSAFE}$.
 2. *Goat eats Cabbage*: If Goat and Cabbage are on the same bank, the Farmer must also be on that bank:
-   $(G = C) \implies (F = G)$
-   Contrapositively: $(G = C \\land F \\ne G) \implies \text{FATAL / UNSAFE}$.
+   $(G = C) \\implies (F = G)$
+   Contrapositively: $(G = C \\land F \\ne G) \\implies \\text{FATAL / UNSAFE}$.
 
 **Formal Safe State Predicate**:
 $\\mathbf{Safe}(F, W, G, C) \\iff ((W \\ne G) \\lor (F = W)) \\;\\land\\; ((G \\ne C) \\lor (F = G))$

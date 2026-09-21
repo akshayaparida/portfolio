@@ -50,7 +50,7 @@ By the end of this module, you will be able to:
 **Combinatorics:**
 - n! — pronounced "n factorial" — n × (n-1) × ... × 1
 - P(n, r) or ^nP_r — pronounced "n permute r" — ordered arrangements
-- C(n, r) or \binom{n}{r} or ^nC_r — pronounced "n choose r" — unordered selections
+- C(n, r) or $\\binom{n}{r}$ or $^nC_r$ — pronounced "n choose r" — unordered selections
 
 ---
 
@@ -88,7 +88,7 @@ empty_set = set()
 - ℤ (Integers): \{..., -2, -1, 0, 1, 2, ...\}
 - ℚ (Rational Numbers): \{p/q \mid p, q ∈ ℤ, q ≠ 0\}
 - ℝ (Real Numbers): All points on the continuous number line
-- ℂ (Complex Numbers): \{a + bi \mid a, b ∈ ℝ, i = \sqrt{-1}\}
+- ℂ (Complex Numbers): $\{a + bi \\mid a, b \\in \\mathbb{R}, i = \\sqrt{-1}\}$
 - U (Universal Set): The overarching context containing all objects under consideration
 
 **Classification of Sets:**
@@ -384,24 +384,21 @@ print("Bitwise Difference:", {U[i] for i in range(len(U)) if diff_mask & (1 << i
 
 A **Permutation** is an ordered arrangement of r elements from n distinct elements.
 
-
-Formula: } P(n, r) = \frac{n!}{(n-r)!}
-
+$$\\text{Formula: } P(n, r) = \\frac{n!}{(n-r)!}$$
 
 #### 9.1 Permutations with Repetition & Identical Elements
-- **Repetition Allowed**: n^r (e.g. 4-digit PIN = 10^4 = 10,000).
+- **Repetition Allowed**: $n^r$ (e.g. 4-digit PIN = $10^4 = 10,000$).
 - **Multiset Permutations (Identical Elements)**:
   
-Arrangements of MISSISSIPPI (11 letters: 1 M, 4 I, 4 S, 2 P)} = \frac{11!}{1! × 4! × 4! × 2!} = 34,650
-
+$$\\text{Arrangements of MISSISSIPPI (11 letters: 1 M, 4 I, 4 S, 2 P)} = \\frac{11!}{1! \\times 4! \\times 4! \\times 2!} = 34,650$$
 
 #### 9.2 Grouping & Complementary Methods
 - **Must Be Together (Grouping Method)**: Treat the constrained group as 1 single block, arrange the total blocks, then multiply by internal arrangements.
 - **Never Together (Complementary Method)**:
   
-Never Together} = Total Unrestricted} - Always Together}
+$$\\text{Never Together} = \\text{Total Unrestricted} - \\text{Always Together}$$
 
-- **Circular Permutations**: Seating n people around a circular table = (n-1)! (fixing 1 person eliminates rotational symmetry).
+- **Circular Permutations**: Seating n people around a circular table = $(n-1)!$ (fixing 1 person eliminates rotational symmetry).
 
 ---
 
@@ -409,19 +406,16 @@ Never Together} = Total Unrestricted} - Always Together}
 
 A **Combination** is an unordered selection of r elements from n distinct elements.
 
+$$\\text{Formula: } C(n, r) = \\binom{n}{r} = \\frac{n!}{r!(n-r)!}$$
 
-Formula: } C(n, r) = \binom{n}{r} = \frac{n!}{r!(n-r)!}
-
-
-Fundamental Connection: } P(n, r) = r! × C(n, r)
-
+$$\\text{Fundamental Connection: } P(n, r) = r! \\times C(n, r)$$
 
 #### 10.1 Key Properties & Exam Identities
-1. **Symmetry**: \binom{n}{r} = \binom{n}{n-r} (e.g. \binom{10}{8} = \binom{10}{2} = 45).
-2. **Equivalence Property**: If \binom{n}{x} = \binom{n}{y}, then either x = y or x + y = n.
+1. **Symmetry**: $\\binom{n}{r} = \\binom{n}{n-r}$ (e.g. $\\binom{10}{8} = \\binom{10}{2} = 45$).
+2. **Equivalence Property**: If $\\binom{n}{x} = \\binom{n}{y}$, then either $x = y$ or $x + y = n$.
 3. **Diagonals of an n-gon**: Total lines joining vertices minus n sides:
    
-Diagonals} = \binom{n}{2} - n = \frac{n(n-3)}{2}
+$$\\text{Diagonals} = \\binom{n}{2} - n = \\frac{n(n-3)}{2}$$
 
 4. **Gap Method (No Two Adjacent)**: Place n unrestricted items first (forming n+1 gaps), then select gaps for the restricted items.
 
@@ -429,7 +423,7 @@ Diagonals} = \binom{n}{2} - n = \frac{n(n-3)}{2}
 
 ### 11. Pascal's Triangle & Binomial Coefficient Identities
 
-Pascal's Triangle visually computes combinatorial coefficients \binom{n}{r}:
+Pascal's Triangle visually computes combinatorial coefficients $\\binom{n}{r}$:
 
 \`\`\`text
 Row 0:                1                     -- C(0,0) = 1
@@ -442,13 +436,11 @@ Row 5:      1   5  10  10   5   1           -- C(5,0)=1, C(5,1)=5, C(5,2)=10, ..
 
 **Pascal's Identity:**
 
-\binom{n}{r} = \binom{n-1}{r-1} + \binom{n-1}{r}
-
+$$\\binom{n}{r} = \\binom{n-1}{r-1} + \\binom{n-1}{r}$$
 
 **Row Sum Theorem:**
 
-\sum_{k=0}^n \binom{n}{k} = \binom{n}{0} + \binom{n}{1} + ... + \binom{n}{n} = 2^n = |P(A)|
-
+$$\\sum_{k=0}^n \\binom{n}{k} = \\binom{n}{0} + \\binom{n}{1} + \\dots + \\binom{n}{n} = 2^n = |P(A)|$$
 
 ---
 
@@ -473,12 +465,12 @@ Row 5:      1   5  10  10   5   1           -- C(5,0)=1, C(5,1)=5, C(5,2)=10, ..
 | **Intersection** | A ∩ B = \{x \mid x ∈ A ∧ x ∈ B\} | Shared elements only |
 | **Difference** | A - B = \{x \mid x ∈ A ∧ x ∉ B\} | Elements in A outside B |
 | **Symmetric Difference** | A △ B = (A ∪ B) - (A ∩ B) | In exactly one set |
-| **De Morgan's Laws** | (A ∪ B)' = A' ∩ B', (A ∩ B)' = A' ∪ B' | Complement flips ∪ ≤ftrightarrow ∩ |
+| **De Morgan's Laws** | (A ∪ B)' = A' ∩ B', (A ∩ B)' = A' ∪ B' | Complement flips ∪ ↔ ∩ |
 | **Power Set Size** | |P(A)| = 2^n | Binary choices (include/exclude) |
 | **Inclusion-Exclusion** | |A ∪ B| = |A| + |B| - |A ∩ B| | Add singles, subtract overlaps |
 | **Russell's Paradox** | R = \{x \mid x ∉ x\} ⟹ R ∈ R ⟺ R ∉ R | Naive set comprehension flaw |
-| **Permutation** | P(n, r) = \frac{n!}{(n-r)!} | Order matters |
-| **Combination** | C(n, r) = \frac{n!}{r!(n-r)!} | Order does not matter |
+| **Permutation** | $P(n, r) = \\frac{n!}{(n-r)!}$ | Order matters |
+| **Combination** | $C(n, r) = \\frac{n!}{r!(n-r)!}$ | Order does not matter |
 
 ---
 

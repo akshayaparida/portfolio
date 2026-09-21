@@ -82,7 +82,7 @@ A classic conceptual pitfall in algorithmic analysis (frequently tested in **NPT
 #### The Fundamental Rule of Loop Condition Testing
 For any standard pre-tested loop (\`while (condition)\` or \`for (; condition; )\`), the condition must be evaluated **one extra time** beyond the iterations that succeed, in order to evaluate to \`false\` and terminate the loop:
 
-$$\text{Total Condition Evaluations} = (\text{Number of Successful Iterations}) + 1$$
+$$\\text{Total Condition Evaluations} = (\\text{Number of Successful Iterations}) + 1$$
 
 ---
 
