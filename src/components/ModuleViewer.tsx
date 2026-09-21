@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
@@ -114,6 +114,97 @@ function getNodeText(children: React.ReactNode): string {
 // Suppress duplicate markdown h1 that repeats the module title
 const Heading1 = () => null;
 
+// Reusable Listen Button with Live State Feedback
+const SectionListenButton = ({
+  headingText,
+  compact = false,
+}: {
+  headingText: string;
+  compact?: boolean;
+}) => {
+  const [speechState, setSpeechState] = useState<{
+    isActive: boolean;
+    isPlaying: boolean;
+    isPaused: boolean;
+  }>({ isActive: false, isPlaying: false, isPaused: false });
+
+  useEffect(() => {
+    const handleSpeechState = (e: Event) => {
+      const detail = (
+        e as CustomEvent<{
+          activeSection: string | null;
+          isPlaying: boolean;
+          isPaused: boolean;
+        }>
+      ).detail;
+      if (!detail) return;
+      const isActive =
+        Boolean(detail.activeSection) &&
+        detail.activeSection?.toLowerCase().trim() ===
+          headingText.toLowerCase().trim();
+      setSpeechState({
+        isActive,
+        isPlaying: isActive && detail.isPlaying,
+        isPaused: isActive && detail.isPaused,
+      });
+    };
+
+    window.addEventListener("study-speech-state", handleSpeechState);
+    return () => {
+      window.removeEventListener("study-speech-state", handleSpeechState);
+    };
+  }, [headingText]);
+
+  const handleListen = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("study-listen-section", {
+          detail: { heading: headingText },
+        }),
+      );
+    }
+  };
+
+  const isCurrentlyPlaying =
+    speechState.isActive && speechState.isPlaying && !speechState.isPaused;
+  const isCurrentlyPaused = speechState.isActive && speechState.isPaused;
+
+  return (
+    <button
+      type="button"
+      onClick={handleListen}
+      className={`heading-audio-listen-btn ${compact ? "compact" : ""} ${speechState.isActive ? "is-active" : ""}`}
+      title={
+        isCurrentlyPlaying
+          ? `Pause listening: ${headingText}`
+          : isCurrentlyPaused
+            ? `Resume listening: ${headingText}`
+            : `Listen to: ${headingText}`
+      }
+      aria-label={`Listen to: ${headingText}`}
+    >
+      {isCurrentlyPlaying ? (
+        <i className="fa-solid fa-pause"></i>
+      ) : isCurrentlyPaused ? (
+        <i className="fa-solid fa-play"></i>
+      ) : (
+        <i className="fa-solid fa-volume-high"></i>
+      )}
+      {!compact && (
+        <span className="listen-btn-text">
+          {isCurrentlyPlaying
+            ? "Playing"
+            : isCurrentlyPaused
+              ? "Paused"
+              : "Listen"}
+        </span>
+      )}
+    </button>
+  );
+};
+
 // Custom Headings with Auto-Generated IDs & Clean Hover Anchors
 const Heading2 = ({
   children,
@@ -122,28 +213,11 @@ const Heading2 = ({
   const text = getNodeText(children);
   const id = slugify(text);
 
-  const handleListen = () => {
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("study-listen-section", { detail: { heading: text } }),
-      );
-    }
-  };
-
   return (
     <h2 id={id} className="heading-with-anchor heading-h2 group" {...props}>
       <span className="heading-text">{children}</span>
       <div className="heading-actions-bar">
-        <button
-          type="button"
-          onClick={handleListen}
-          className="heading-audio-listen-btn"
-          title={`Listen to section: ${text}`}
-          aria-label={`Listen to section: ${text}`}
-        >
-          <i className="fa-solid fa-volume-high"></i>
-          <span className="listen-btn-text">Listen</span>
-        </button>
+        <SectionListenButton headingText={text} />
         <a
           href={`#${id}`}
           className="heading-anchor-link"
@@ -164,27 +238,11 @@ const Heading3 = ({
   const text = getNodeText(children);
   const id = slugify(text);
 
-  const handleListen = () => {
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("study-listen-section", { detail: { heading: text } }),
-      );
-    }
-  };
-
   return (
     <h3 id={id} className="heading-with-anchor heading-h3 group" {...props}>
       <span className="heading-text">{children}</span>
       <div className="heading-actions-bar">
-        <button
-          type="button"
-          onClick={handleListen}
-          className="heading-audio-listen-btn compact"
-          title={`Listen to subtopic: ${text}`}
-          aria-label={`Listen to subtopic: ${text}`}
-        >
-          <i className="fa-solid fa-volume-high"></i>
-        </button>
+        <SectionListenButton headingText={text} compact />
         <a
           href={`#${id}`}
           className="heading-anchor-link"
@@ -207,14 +265,17 @@ const Heading4 = ({
   return (
     <h4 id={id} className="heading-with-anchor heading-h4 group" {...props}>
       <span className="heading-text">{children}</span>
-      <a
-        href={`#${id}`}
-        className="heading-anchor-link"
-        aria-label={`Link to subtopic: ${text}`}
-        title="Direct section link"
-      >
-        #
-      </a>
+      <div className="heading-actions-bar">
+        <SectionListenButton headingText={text} compact />
+        <a
+          href={`#${id}`}
+          className="heading-anchor-link"
+          aria-label={`Link to subtopic: ${text}`}
+          title="Direct section link"
+        >
+          #
+        </a>
+      </div>
     </h4>
   );
 };

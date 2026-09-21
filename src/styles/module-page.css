@@ -2672,4 +2672,22 @@ html.dark .speed-pills-group {
   font-size: 0.75rem;
 }
 
+.heading-audio-listen-btn.is-active {
+  opacity: 1;
+  background: rgba(16, 185, 129, 0.22);
+  border-color: #10b981;
+  color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+  animation: listenPulse 2s infinite ease-in-out;
+}
+
+@keyframes listenPulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+  }
+}
+
 

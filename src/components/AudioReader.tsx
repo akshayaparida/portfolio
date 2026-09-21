@@ -40,6 +40,7 @@ export default function AudioReader({
   const chunksRef = useRef<string[]>([]);
   const selectedVoiceRef = useRef<SpeechSynthesisVoice | null>(null);
   const rateRef = useRef(1.0);
+  const activeSectionTitleRef = useRef<string | null>(null);
   const playerCardRef = useRef<HTMLDivElement>(null);
 
   // Keep refs synchronized with state
@@ -49,7 +50,15 @@ export default function AudioReader({
     currentChunkIndexRef.current = currentChunkIndex;
     chunksRef.current = chunks;
     rateRef.current = rate;
-  }, [isPlaying, isPaused, currentChunkIndex, chunks, rate]);
+    activeSectionTitleRef.current = activeSectionTitle;
+  }, [
+    isPlaying,
+    isPaused,
+    currentChunkIndex,
+    chunks,
+    rate,
+    activeSectionTitle,
+  ]);
 
   // Initialize SpeechSynthesis and available voices
   useEffect(() => {
@@ -271,12 +280,44 @@ export default function AudioReader({
     }
   };
 
+  // Broadcast speech state so section heading buttons can reflect active/playing state
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("study-speech-state", {
+          detail: {
+            activeSection: activeSectionTitle,
+            isPlaying,
+            isPaused,
+          },
+        }),
+      );
+    }
+  }, [activeSectionTitle, isPlaying, isPaused]);
+
   // Listen to Section Event from Section Buttons in ModuleViewer
   useEffect(() => {
     const handleListenSection = (e: Event) => {
       const customEvent = e as CustomEvent<{ heading: string }>;
       const heading = customEvent.detail?.heading;
       if (!heading || !synthRef.current) return;
+
+      const isSameSection =
+        activeSectionTitleRef.current?.toLowerCase().trim() ===
+        heading.toLowerCase().trim();
+
+      // If user clicks the listen button for the currently active section:
+      if (isSameSection && isPlayingRef.current) {
+        if (isPausedRef.current) {
+          synthRef.current.resume();
+          setIsPaused(false);
+          setIsPlaying(true);
+        } else {
+          synthRef.current.pause();
+          setIsPaused(true);
+        }
+        return;
+      }
 
       synthRef.current.cancel();
 
@@ -293,11 +334,14 @@ export default function AudioReader({
       setCurrentChunkIndex(0);
       speakChunk(0);
 
-      // Scroll player into view smoothly
-      playerCardRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
+      // Do NOT scroll to top card - stay right at the user's current reading position.
+      // If the top audio player card is out of view, immediately show the floating mini bar
+      if (playerCardRef.current) {
+        const rect = playerCardRef.current.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          setShowFloatingBar(true);
+        }
+      }
     };
 
     window.addEventListener("study-listen-section", handleListenSection);
