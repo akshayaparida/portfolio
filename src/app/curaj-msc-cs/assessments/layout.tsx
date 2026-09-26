@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "CURAJ MSc CS Continuous Internal Assessments (CIA) & Solutions",
   description:
-    "Official question papers, exam details, and step-by-step model solutions for MSc Computer Science (AI & ML) at Central University of Rajasthan (CURAJ). Includes Python CIA-1 and future assessments.",
+    "Official question papers, exam details, and step-by-step model solutions for MSc Computer Science at Central University of Rajasthan (CURAJ). Includes AI (6.0CSC01) CIA-1, Python (6.0CSC03) CIA-1, and semester assessments.",
   keywords: [
     "CURAJ MSc CS CIA 1",
+    "CURAJ AI CIA 1 Question Paper",
     "CURAJ Python CIA 1 Question Paper",
     "Central University of Rajasthan Computer Science",
+    "6.0CSC01 Introduction to Artificial Intelligence",
     "Advanced Python Programming CIA Solutions",
     "CURAJ Internal Assessments",
     "Akshaya Parida",

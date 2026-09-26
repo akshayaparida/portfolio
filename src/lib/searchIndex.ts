@@ -469,6 +469,23 @@ export function buildSearchIndex(): SearchIndexItem[] {
       ],
     },
     {
+      title:
+        "Introduction to Artificial Intelligence CIA-1 Question Paper & Solutions",
+      desc: "Official September 2026 CIA-1 paper for 6.0CSC01 with verified solutions: AI vs AI Techniques, 5-Gallon & 3-Gallon Water Jug State Space, and BFS vs DFS Courier Graph traversal.",
+      url: "/curaj-msc-cs/assessments?course=6.0CSC01&id=sem1-ai-cia1",
+      domain: "CURAJ",
+      icon: "fa-solid fa-robot",
+      keywords: [
+        "AI CIA 1",
+        "6.0CSC01 CIA",
+        "CURAJ AI Paper",
+        "Water Jug Problem",
+        "BFS DFS Graph",
+        "Courier Road Network",
+        "CIA 1 Solutions",
+      ],
+    },
+    {
       title: "CURAJ MSc CS — Artificial Intelligence (6.0CSC01) Notes",
       desc: "Comprehensive syllabus-aligned study notes and quizzes for Introduction to Artificial Intelligence at CURAJ: Uninformed Search, BFS, DFS, IDS, UCS, and CIA-1 exam prep.",
       url: "/curaj-msc-cs/ai",

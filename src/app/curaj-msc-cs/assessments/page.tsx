@@ -302,7 +302,7 @@ function AssessmentsContent() {
                       </button>
                       <a
                         href={activeAssessment.paperImages[0]}
-                        download="CURAJ-Python-CIA1.jpg"
+                        download={`CURAJ-${activeAssessment.courseSlug.toUpperCase()}-${activeAssessment.assessmentType}.jpg`}
                         className="btn-action btn-download"
                       >
                         <i className="fa-solid fa-download"></i> Download Image
@@ -317,7 +317,7 @@ function AssessmentsContent() {
                   >
                     <Image
                       src={activeAssessment.paperImages[0]}
-                      alt="CURAJ MSc CS CIA-1 Question Paper"
+                      alt={`CURAJ MSc CS ${activeAssessment.courseTitle} ${activeAssessment.assessmentType} Question Paper`}
                       width={1200}
                       height={900}
                       className="scan-image"

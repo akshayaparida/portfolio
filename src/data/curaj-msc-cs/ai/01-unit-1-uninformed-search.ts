@@ -145,6 +145,12 @@ export const unit1UninformedSearchModule: LearningModule = {
   resources: [
     {
       title:
+        "Official CURAJ First Mid-Term Examination (CIA-1) Question Paper (September 2026, 6.0CSC01)",
+      url: "/cia1ai26.jpeg",
+      type: "documentation",
+    },
+    {
+      title:
         "Official CURAJ First Mid-Term Examination (CIA-1) Question Paper (September 2025, CSC-401)",
       url: "/AICIA12025.jpg",
       type: "documentation",
@@ -215,7 +221,7 @@ export const unit1UninformedSearchModule: LearningModule = {
    - Bidirectional Search
    - Uniform Cost Search (UCS / Dijkstra's variant)
 9. **Comprehensive Search Strategies Comparison Matrix**: Definitive side-by-side performance table across all dimensions.
-10. **Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions**: Full papers and step-by-step marking scheme answers for September 2025 (CSC-401) and August 2024 (MAI-401), plus 9 subjective model answers.
+10. **Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions**: Full papers and step-by-step marking scheme answers for September 2026 (6.0CSC01), September 2025 (CSC-401), and August 2024 (MAI-401), plus 9 subjective model answers.
 11. **UGC NET / JRF & GATE CS Preparation Corner**: High-frequency exam traps and trick questions.
 12. **Master Formula Cheat Sheet & Quick-Reference Guide**: Rapid-revision formulas, derivations, and decision matrices.
 
@@ -1419,9 +1425,254 @@ The definitive comparison matrix required for university and competitive exams:
 
 ---
 
-## 10. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (2024 & 2025)
+## 10. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (2024, 2025 & 2026)
 
-### 10.1 Official CIA-1 Question Paper (September 2025, CSC-401) — 20 Marks
+### 10.1 Official CIA-1 Question Paper (September 2026, 6.0CSC01) — 20 Marks
+
+> [!IMPORTANT]
+> **Official University Examination Paper Analysis**:
+> - **Institution**: Central University of Rajasthan (CURAJ)
+> - **Examination**: First Mid Term Examination (September 2026)
+> - **Degree & Branch**: Integrated M.Sc. 7th Semester & M.Sc. 1st Semester (Computer Science)
+> - **Course Code & Title**: **6.0CSC01 & Introduction to Artificial Intelligence**
+> - **Exam Duration**: 1 Hour | **Maximum Marks**: 20 Marks
+> - **Instructions**:
+>   1. The Question Paper Contains Three Questions.
+>   2. Candidates Must Attempt All Questions.
+>   3. The Missing Data, If Any, May Be Assumed Suitably.
+> - **Coverage**: AI vs AI Techniques, Knowledge Representation & Task Domains, Water Jug Problem State Space (5-Gallon & 3-Gallon), and Courier Road Network Graph Traversal (BFS vs DFS).
+
+### 📸 Official Examination Question Paper (September 2026)
+
+![Official CURAJ First Mid-Term Examination (September-2026) Question Paper for 6.0CSC01 Introduction to Artificial Intelligence](/cia1ai26.jpeg)
+
+---
+
+#### Question 1: What is "Artificial Intelligence and Artificial Technique"? Briefly explain how AI Technique can be represented. List out some of the task domain of AI. [4 Marks]
+
+> **CURAJ Marking Scheme Rubric**:
+> - **Definition of AI & AI Technique**: 1.5 Marks (Clear distinction between general AI and knowledge-exploiting AI technique)
+> - **Representation of AI Techniques**: 1.5 Marks (State space search, production systems, formal logic, structured networks)
+> - **Task Domains of AI**: 1 Mark (Mundane, Formal, and Expert tasks with standard textbook examples)
+
+##### 1. Defining "Artificial Intelligence" and "AI Technique":
+- **Artificial Intelligence (AI)**:
+  - **Classical Definition (John McCarthy, 1956)**: *"The science and engineering of making intelligent machines, especially intelligent computer programs."*
+  - **Operational Definition (Elaine Rich, 1983)**: *"Artificial Intelligence is the study of how to make computers do things at which, at the moment, people are better."*
+  - **Modern Standard (Russell & Norvig, AIMA)**: The design and construction of **Rational Agents** that perceive their operating environment via sensors, deliberate computationally, and act through actuators to maximize expected utility given available percept history.
+- **Artificial Intelligence Technique (AI Technique)**:
+  - In *Artificial Intelligence* (Elaine Rich & Kevin Knight, Tata McGraw-Hill), an **AI Technique** is defined as a systematic method that exploits knowledge organized such that:
+    1. **Captures Generalizations**: The knowledge represents high-level generalizations rather than billions of hardcoded individual situations.
+    2. **Humanly Understandable**: It can be understood, verified, and audited by the human experts who provide it.
+    3. **Easily Modifiable**: It can be updated incrementally to correct errors and reflect changes in the world without rewriting the core inference engine.
+    4. **Tolerates Incompleteness & Inaccuracy**: It can be used productively even when inputs or domain rules are incomplete, ambiguous, or noisy.
+    5. **Overcomes Bulk by Narrowing Search**: It uses domain heuristics to prune and constrain exponential combinatorial state spaces.
+
+##### 2. How AI Techniques Can Be Represented:
+1. **State Space Search Representation**:
+   - Formulated as a 5-tuple $(S_0, Actions, Transition, GoalTest, PathCost)$. Problem spaces are searched using blind algorithms (BFS, DFS, IDS, UCS) or guided heuristic algorithms (Greedy, A*, IDA*).
+2. **Production Systems (Condition-Action Rules)**:
+   - Comprises:
+     - **Working Memory**: Current dynamic state or database of facts.
+     - **Production Rules**: Set of condition-action rules in the format \`IF <condition> THEN <action>\`.
+     - **Inference Engine**: Cycle of *Recognize-Act* with Conflict Resolution strategies (Specificity, Recency, Refractoriness, Rule Priority).
+3. **Formal Logic & Declarative Representations**:
+   - **Propositional Logic**: Boolean truth assignments with connectives ($\\land, \\lor, \\neg, \\to, \\leftrightarrow$).
+   - **First-Order Predicate Calculus (FOPC)**: Predicates, functions, constants, variables, and quantifiers ($\\forall, \\exists$). Solved via Unification and Resolution Refutation.
+4. **Structured & Associative Knowledge Networks**:
+   - **Semantic Networks**: Directed graphs where nodes represent entities/concepts and labeled arcs represent relationships (e.g., \`is-a\`, \`has-a\`, \`part-of\`), enabling property inheritance.
+   - **Frames & Scripts**: Slot-and-filler structures capturing stereotypical situations, default values, and event sequences.
+5. **Probabilistic Graphical Models**:
+   - **Bayesian Networks**: Directed Acyclic Graphs (DAGs) representing joint probability distributions and conditional independence for reasoning under uncertainty.
+
+##### 3. Task Domains of Artificial Intelligence (Rich & Knight Taxonomy):
+| Task Category | Description | Representative Problem Domains |
+|:---|:---|:---|
+| **Mundane Tasks** | Commonplace everyday human abilities acquired effortlessly without formal schooling. | • **Perception**: Computer Vision, Object Recognition, Speech Recognition.<br>• **Natural Language**: Machine Translation, Text Summarization, Syntactic Parsing.<br>• **Commonsense Reasoning**: Intuitive physics, spatial reasoning.<br>• **Robot Control**: Locomotion, obstacle avoidance, manipulator kinematics. |
+| **Formal Tasks** | Axiomatic, well-defined problem spaces with explicit rules and formal logic. | • **Games**: Chess (Deep Blue), Go (AlphaGo), Checkers, Othello.<br>• **Mathematics**: Automated Theorem Proving, Symbolic Calculus (MACSYMA), Geometry.<br>• **Logic**: Boolean Satisfiability (SAT), Constraint Satisfaction. |
+| **Expert Tasks** | Specialized professional tasks requiring years of post-secondary training and expert human acumen. | • **Medical Diagnosis**: Pathogen identification & antibiotic recommendation (MYCIN), radiological imaging.<br>• **Scientific Discovery**: Molecular structure elucidation (DENDRAL), protein 3D folding (AlphaFold).<br>• **Engineering Design**: VLSI circuit routing, structural stress simulation, fault diagnostics.<br>• **Finance**: Algorithmic quantitative trading, automated underwriting, fraud detection. |
+
+---
+
+#### Question 2: You are given two jugs, a 5-gallon one and a 3-gallon one. Neither has any measuring markers on it. There is a pump that can be used to fill the jugs with water. How can you get exactly 4 gallons of water into the 5-gallon jug? Describe the state space for this problem. [8 Marks]
+
+> **CURAJ Marking Scheme Rubric**:
+> - **Formal State Space Description**: 2 Marks (State vector $(x, y)$, domain bounds, initial state, goal states)
+> - **Complete Production Rules / Operators Table**: 3 Marks (8 formal rules with preconditions and transitions)
+> - **Step-by-Step Transition Sequence**: 2 Marks (Exact steps reaching $(4, y)$ with gallon accounting)
+> - **Mathematical Solvability & State Analysis**: 1 Mark (Bézout's identity, reachable states analysis)
+
+##### 1. Formal State Space Formulation:
+- **State Representation**: Any state is uniquely represented by an ordered pair $(x, y)$, where:
+  - $x$: Current volume of water in the 5-gallon jug ($x \\in \\{0, 1, 2, 3, 4, 5\\}$).
+  - $y$: Current volume of water in the 3-gallon jug ($y \\in \\{0, 1, 2, 3\\}$).
+- **Total Discrete States**: $|\\mathcal{S}| = (5 + 1) \\times (3 + 1) = 6 \\times 4 = 24$ states.
+- **Initial State**: $S_0 = (0, 0)$ (both jugs initially completely empty).
+- **Goal Condition**: Any state $(x, y)$ such that $x = 4$, i.e., $G = \\{(4, 0), (4, 1), (4, 2), (4, 3)\\}$.
+
+##### 2. Formal Production Rules (Operators):
+| Rule # | Action / Operator | Precondition | State Transition $(x, y) \\to$ | Explanation |
+|:---:|:---|:---|:---|:---|
+| **$R_1$** | Fill 5-gal jug | $x < 5$ | $(5, y)$ | Fill the 5-gallon jug completely from the pump |
+| **$R_2$** | Fill 3-gal jug | $y < 3$ | $(x, 3)$ | Fill the 3-gallon jug completely from the pump |
+| **$R_3$** | Empty 5-gal jug | $x > 0$ | $(0, y)$ | Dump all water from 5-gallon jug onto the ground |
+| **$R_4$** | Empty 3-gal jug | $y > 0$ | $(x, 0)$ | Dump all water from 3-gallon jug onto the ground |
+| **$R_5$** | Pour 3-gal into 5-gal until 5-gal is full | $x + y \\ge 5 \\land y > 0$ | $(5, y - (5 - x))$ | Fill 5-gal jug using water from 3-gal jug |
+| **$R_6$** | Pour 5-gal into 3-gal until 3-gal is full | $x + y \\ge 3 \\land x > 0$ | $(x - (3 - y), 3)$ | Fill 3-gal jug using water from 5-gal jug |
+| **$R_7$** | Pour all water from 3-gal into 5-gal | $x + y \\le 5 \\land y > 0$ | $(x + y, 0)$ | Empty entire 3-gal jug into 5-gal jug |
+| **$R_8$** | Pour all water from 5-gal into 3-gal | $x + y \\le 3 \\land x > 0$ | $(0, x + y)$ | Empty entire 5-gal jug into 3-gal jug |
+
+##### 3. Step-by-Step Solution:
+###### Method A: Optimal 6-Operation Sequence (Fill 5-Gallon Jug First):
+| Step | Current State $(x, y)$ | Applied Rule | Action Description | Gallons in 5-Gal | Gallons in 3-Gal |
+|:---:|:---:|:---:|:---|:---:|:---:|
+| **0** | $(0, 0)$ | — | Initial state: both jugs empty | 0 | 0 |
+| **1** | $(5, 0)$ | **$R_1$** | Fill 5-gallon jug from pump | 5 | 0 |
+| **2** | $(2, 3)$ | **$R_6$** | Pour from 5-gal into 3-gal until 3-gal is full ($5 - 3 = 2$ gal remains) | 2 | 3 |
+| **3** | $(2, 0)$ | **$R_4$** | Empty 3-gallon jug onto the ground | 2 | 0 |
+| **4** | $(0, 2)$ | **$R_8$** | Pour all 2 gallons from 5-gal into 3-gal | 0 | 2 |
+| **5** | $(5, 2)$ | **$R_1$** | Fill 5-gallon jug from pump | 5 | 2 |
+| **6** | $(4, 3)$ | **$R_6$** | Pour from 5-gal into 3-gal until full (needs $3 - 2 = 1$ gal; leaves $5 - 1 = \\mathbf{4}$ gal) | **4** | 3 |
+| *(7)* | $(4, 0)$ | *$R_4$* | *(Optional)* Empty 3-gallon jug to leave only the 4 gallons | **4** | 0 |
+
+> ⭐ **Target Reached**: Exactly **4 gallons** of water is obtained in the 5-gallon jug in **6 operations**!
+
+###### Method B: Alternative 8-Operation Sequence (Fill 3-Gallon Jug First):
+| Step | Current State $(x, y)$ | Applied Rule | Action Description |
+|:---:|:---:|:---:|:---|
+| **0** | $(0, 0)$ | — | Initial state |
+| **1** | $(0, 3)$ | **$R_2$** | Fill 3-gal jug from pump |
+| **2** | $(3, 0)$ | **$R_7$** | Pour all 3 gallons into 5-gal jug |
+| **3** | $(3, 3)$ | **$R_2$** | Fill 3-gal jug from pump again |
+| **4** | $(5, 1)$ | **$R_5$** | Pour from 3-gal into 5-gal until full (needs 2 gal, leaves 1 gal in 3-gal) |
+| **5** | $(0, 1)$ | **$R_3$** | Empty 5-gallon jug onto ground |
+| **6** | $(1, 0)$ | **$R_7$** | Pour remaining 1 gallon from 3-gal into 5-gal |
+| **7** | $(1, 3)$ | **$R_2$** | Fill 3-gal jug from pump |
+| **8** | $(4, 0)$ | **$R_7$** | Pour all 3 gallons from 3-gal into 5-gal ($1 + 3 = \\mathbf{4}$ gallons) |
+
+##### 4. Mathematical Solvability (Diophantine Analysis):
+According to **Bézout's Identity**, any integer quantity $d$ can be measured if and only if $d$ is a multiple of $\\gcd(a, b)$ and $d \\le \\max(a, b)$.
+$$\\gcd(5, 3) = 1 \\implies 1 \\mid 4 \\quad \\text{(Solvable)}$$
+The linear Diophantine equation $5m + 3n = 4$ has integer solutions:
+- $m = 2, n = -2 \\implies 5(2) + 3(-2) = 10 - 6 = 4$ (Matches Method A: Fill 5-gal twice, empty 3-gal twice).
+- $m = -1, n = 3 \\implies 5(-1) + 3(3) = -5 + 9 = 4$ (Matches Method B: Fill 3-gal thrice, empty 5-gal once).
+
+---
+
+#### Question 3: Courier Road Network Search (BFS vs DFS) [8 Marks]
+
+> A courier company operates in 10 cities, labelled A to J. The cities are connected by two-way roads. The adjacency list of the road network, with neighbours listed in alphabetical order, is:
+> - **A**: B, C, D
+> - **B**: A, E, F
+> - **C**: A, G
+> - **D**: A, H
+> - **E**: B, I
+> - **F**: B, G
+> - **G**: C, F, J
+> - **H**: D, I
+> - **I**: E, H, J
+> - **J**: G, I
+>
+> A parcel must be delivered from city A to city J. Assume that neighbours are explored in alphabetical order, a city is marked visited when it is added to the queue or stack.
+> - **a)** Apply BFS (Breadth First Search)
+> - **b)** Apply DFS (Depth First Search)
+> - **c)** Compare the two paths obtained in (a) and (b). Which algorithm found the shortest route, and why? Discuss the time and space complexity of BFS and DFS for this graph, and comment on the completeness and optimality of each algorithm.
+
+> **CURAJ Marking Scheme Rubric**:
+> - **Part (a) BFS Trace & Path**: 2.5 Marks (Queue progression table, visited set, parent pointers, path A-C-G-J)
+> - **Part (b) DFS Trace & Path**: 2.5 Marks (Exploration order, stack/recursion trace, backtracking, path A-B-E-I-J)
+> - **Part (c) Comparative Evaluation**: 3.0 Marks (Path comparison, shortest route justification, time/space complexity, completeness & optimality)
+
+##### Road Network Topology & Graph Schema:
+\`\`\`
+           (A) [Start]
+         /  |  \\
+       (B) (C) (D)
+      /  \\  |   |
+    (E)  (F)|  (H)
+      \\   \\ | /  
+       \\   (G)  / 
+        \\      /
+         \\    /
+          (I)
+           | \\
+           |  (J) [Goal]
+           +---/
+\`\`\`
+
+##### Part (a): Breadth First Search (BFS) Application:
+- **Data Structure**: First-In, First-Out (FIFO) Queue.
+- **Rule**: Nodes are marked visited immediately when **added** to the queue. Neighbours are expanded in strict alphabetical order.
+
+| Iteration | Dequeued Node | Unvisited Neighbours Added | Parent Pointer Assigned | Queue State (Front $\\to$ Rear) | Visited Cities Set |
+|:---:|:---:|:---:|:---:|:---|:---|
+| **0** | — | A (Initial) | \`Parent[A] = None\` | \`[A]\` | \`{"A"}\` |
+| **1** | **A** | **B, C, D** | \`B: A, C: A, D: A\` | \`[B, C, D]\` | \`{"A", "B", "C", "D"}\` |
+| **2** | **B** | **E, F** *(A visited)* | \`E: B, F: B\` | \`[C, D, E, F]\` | \`{"A", "B", "C", "D", "E", "F"}\` |
+| **3** | **C** | **G** *(A visited)* | \`G: C\` | \`[D, E, F, G]\` | \`{"A", "B", "C", "D", "E", "F", "G"}\` |
+| **4** | **D** | **H** *(A visited)* | \`H: D\` | \`[E, F, G, H]\` | \`{"A", "B", "C", "D", "E", "F", "G", "H"}\` |
+| **5** | **E** | **I** *(B visited)* | \`I: E\` | \`[F, G, H, I]\` | \`{"A", "B", "C", "D", "E", "F", "G", "H", "I"}\` |
+| **6** | **F** | *None* *(B, G already visited)* | — | \`[G, H, I]\` | \`{"A", ..., "I"}\` |
+| **7** | **G** | **J** *(C, F visited; J is Goal!)* | \`J: G\` | \`[H, I, J]\` | \`{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}\` |
+
+- **Goal Discovery**: City **J** is generated upon expanding **G** (or upon expanding J when dequeued).
+- **Path Reconstruction (Backtracing via Parent Pointers)**:
+  $$J \\xrightarrow{\\text{Parent}} G \\xrightarrow{\\text{Parent}} C \\xrightarrow{\\text{Parent}} A$$
+- **Final BFS Path**:
+  $$\\mathbf{A \\to C \\to G \\to J}$$
+- **Path Cost / Length**: **3 edges (3 hops, 4 cities)**.
+
+---
+
+##### Part (b): Depth First Search (DFS) Application:
+- **Data Structure**: Last-In, First-Out (LIFO) Stack (or Recursive Call Stack).
+- **Rule**: When choosing which neighbour to explore, always pick the unvisited neighbour that appears **first in alphabetical order**. Mark visited when added/entered.
+
+| Step | Current City | Unvisited Neighbours (Alphabetical) | Action Taken / Next Branch | Active Search Path / Stack | Visited Set |
+|:---:|:---:|:---|:---|:---|:---|
+| **1** | **A** | \`B, C, D\` | Choose first alphabetical neighbour: **B** | \`A -> B\` | \`{"A", "B"}\` |
+| **2** | **B** | \`E, F\` *(A visited)* | Choose first alphabetical neighbour: **E** | \`A -> B -> E\` | \`{"A", "B", "E"}\` |
+| **3** | **E** | \`I\` *(B visited)* | Choose only unvisited neighbour: **I** | \`A -> B -> E -> I\` | \`{"A", "B", "E", "I"}\` |
+| **4** | **I** | \`H, J\` *(E visited)* | Choose first alphabetical neighbour: **H** | \`A -> B -> E -> I -> H\` | \`{"A", "B", "E", "I", "H"}\` |
+| **5** | **H** | \`D\` *(I visited)* | Choose only unvisited neighbour: **D** | \`A -> B -> E -> I -> H -> D\` | \`{"A", "B", "E", "I", "H", "D"}\` |
+| **6** | **D** | *None* *(A, H both visited)* | **Dead End!** Backtrack to H $\\to$ Backtrack to I | \`A -> B -> E -> I\` | \`{"A", ..., "D"}\` |
+| **7** | **I** | \`J\` *(Next unvisited neighbour after H)* | Choose **J** $\\implies$ **GOAL REACHED!** | \`A -> B -> E -> I -> J\` | \`{"A", ..., "J"}\` |
+
+> *(Note: If an explicit LIFO stack pushes neighbours in forward alphabetical order [B, then C, then D], city D is on top and popped first, leading along the symmetric branch A $\\to$ D $\\to$ H $\\to$ I $\\to$ J, which also yields a length of 4 edges. Both formulations establish that DFS takes 4 hops).*
+
+- **Final DFS Path**:
+  $$\\mathbf{A \\to B \\to E \\to I \\to J}$$
+- **Path Cost / Length**: **4 edges (4 hops, 5 cities)**.
+
+---
+
+##### Part (c): Comparative Evaluation & Theoretical Analysis:
+
+###### 1. Path Comparison & Shortest Route Identification:
+- **BFS Path**: $A \\to C \\to G \\to J$ (Length: **3 edges**).
+- **DFS Path**: $A \\to B \\to E \\to I \\to J$ (Length: **4 edges**).
+- **Winner**: **BFS found the shortest route** ($3 < 4$).
+- **Why BFS Found the Shortest Route**:
+  In an unweighted graph where every road has uniform step cost ($c = 1$), the length of a route is simply the number of hops. BFS systematically explores the state space in concentric ripples of non-decreasing distance (level $0: \\{A\\}$, level $1: \\{B, C, D\\}$, level $2: \\{E, F, G, H\\}$, level $3: \\{I, J\\}$). Because goal $J$ exists at depth 3 via $C$ and $G$, BFS is guaranteed to discover $J$ at depth 3 before ever considering deeper paths.  
+  DFS, conversely, dives greedily down a single deep branch without assessing total path length. It committed to branch $B \\to E \\to I$, finding a 4-hop path to the goal before ever considering the shorter path through $C$.
+
+###### 2. Time and Space Complexity for this Graph ($|V| = 10, |E| = 11$):
+- **Breadth First Search (BFS)**:
+  - **Time Complexity**: $O(|V| + |E|)$. Every city is enqueued at most once, and its adjacency list is traversed once ($10 \\text{ vertices} + 11 \\text{ edges} = 21$ operations).
+  - **Space Complexity**: $O(|V|) = O(b^d)$ where $b$ is branching factor and $d$ is goal depth. The FIFO queue must simultaneously store all frontier nodes at the current depth wave (up to 4 cities in queue, plus 10 in visited set).
+- **Depth First Search (DFS)**:
+  - **Time Complexity**: $O(|V| + |E|)$. In the worst case, DFS may traverse every edge and vertex before finding the goal ($10 \\text{ vertices} + 11 \\text{ edges}$).
+  - **Space Complexity**: $O(m)$ where $m$ is the maximum search depth ($m \\le 10$). The stack stores only the nodes along the single active path plus unexplored siblings, requiring significantly less working memory than BFS.
+
+###### 3. Completeness and Optimality:
+| Criterion | Breadth First Search (BFS) | Depth First Search (DFS) |
+|:---|:---|:---|
+| **Completeness** | **YES** — Always guaranteed to find a path to the goal if one exists, provided the branching factor $b$ is finite. | **YES on finite graphs with visited set** — Avoids infinite cycling. (In general infinite state spaces, DFS is **incomplete** as it can get trapped in infinite left branches). |
+| **Optimality** | **YES** — Guaranteed to find the shallowest / shortest path when edge step costs are uniform ($c = 1$). | **NO** — DFS is not optimal; it returns the very first path it happens to reach down its deepest branch, even if a vastly shorter path exists adjacent to the root. |
+
+---
+
+### 10.2 Official CIA-1 Question Paper (September 2025, CSC-401) — 20 Marks
 
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
@@ -1664,7 +1915,7 @@ Since the boat holds at most 2 entities and only the farmer can row, each transi
 
 ---
 
-### 10.2 Official CIA-1 Question Paper (August 2024, MAI-401) — 20 Marks
+### 10.3 Official CIA-1 Question Paper (August 2024, MAI-401) — 20 Marks
 
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
