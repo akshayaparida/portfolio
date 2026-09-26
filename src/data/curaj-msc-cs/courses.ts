@@ -78,14 +78,19 @@ export const curajCourses: Course[] = [
     type: "AEC",
     credits: 2,
     description:
-      "Technical writing, research presentation skills, corporate communication, and academic paper drafting.",
+      "Communicative proficiency and fluency for engineering careers: grammar & syntax, oral communication, active listening & speaking barriers, reading strategies, scientific report writing, group discussions (PREP & REP), and interview skills.",
     units: [
-      "Technical & Academic Report Writing",
-      "Research Paper Formatting & Presentation Skills",
-      "Professional & Business Communication",
+      "Unit 1: Grammar and Vocabulary (Tenses, Subject-Verb Agreement, Simple/Compound/Complex Sentences, Phrases & Clauses: Adjective, Adverb, Noun, Voice, Narration, Gerund, Participle)",
+      "Unit 2: Oral Communication (Fundamentals of Spoken English, Dialogue Delivery, Phonetics, Articulation & Interactive Fluency)",
+      "Unit 3: Listening & Speaking Skills (Active Listening & Barriers, Stress Patterns in English, Questioning Skills, Overcoming Speaking Barriers)",
+      "Unit 4: Reading Skills (Skimming, Scanning, Intensive Reading, Cohesive Linking Devices in Text, Comparative Narratives)",
+      "Unit 5: Written Communication (Writing Process, Paragraph Organization, Technical vs Creative Writing, Scientific Report Writing)",
+      "Unit 6: Soft Skills & Career Readiness (Body Language, Group Discussion PREP & REP Techniques, PowerPoint Presentations, Tailor-made Resume Writing, Interview Skills)",
     ],
     nptelTitle: "NPTEL: Soft Skills and Personality Development (IIT Kanpur)",
     nptelUrl: "https://nptel.ac.in/courses/109104031",
+    notesUrl: "/professional-communication",
+    notesTitle: "Official Syllabus Breakdown & CIA Guide",
   },
 
   // Semester 2
