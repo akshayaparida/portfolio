@@ -12,12 +12,23 @@ export type AssessmentType =
   | "Assignment"
   | "Lab";
 
+export interface QuestionVideo {
+  id: string;
+  title: string;
+  channel: string;
+  duration?: string;
+  speed?: string;
+  relevance?: string;
+  takeaway?: string;
+}
+
 export interface AssessmentSolution {
   summary: string;
   explanation?: string[];
   code?: string;
   keyPoints?: string[];
   output?: string;
+  video?: QuestionVideo;
 }
 
 export interface AssessmentQuestion {

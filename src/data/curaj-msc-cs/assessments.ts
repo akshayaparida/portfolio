@@ -947,6 +947,18 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "Recommendation: Deploy 802.1X port authentication and Software-Defined Perimeter (SDP) in phase 1 by December 2025.",
             "--------------------------------------------------------------------------------",
           ],
+          video: {
+            id: "wv_nEUnhFFE",
+            title:
+              "How to Write a Formal Report: Structure, Subheadings & Format",
+            channel: "Teacher Phill (Cambridge English)",
+            duration: "11:42",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.01: Master standard formal report architecture (Title, Terms of Reference, Methodology, Findings with Subheadings, Conclusions, and Actionable Recommendations).",
+            takeaway:
+              "Subheadings chunk dense technical data and passive reporting voice maintains formal academic neutrality.",
+          },
         },
       },
       {
@@ -1003,6 +1015,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Example: 'The high-performance GPU cluster is situated in the computational laboratory.'",
             "    * PP: [in the computational laboratory] acts adverbially indicating location.",
           ],
+          video: {
+            id: "49EsnvxVQec",
+            title: "Phrases and Clauses: Syntax & Differences",
+            channel: "Khan Academy",
+            duration: "4:06",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.02: Clarifies why phrases lack subject-predicate pairs and breaks down Noun, Verb, Adjective, Adverbial, and Prepositional phrases.",
+            takeaway:
+              "A phrase operates as a unified single part of speech within a clause, never containing a finite verb acting on a subject.",
+          },
         },
       },
       {
@@ -1044,6 +1067,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Handling Interruptions: Maintain calm vocal pitch. Say politely: 'Allow me to conclude my thought in 10 seconds, and I will gladly pass the floor to you.'",
             "  - Non-Verbal Communication: Keep open palm posture, maintain eye contact across the full circle (not just the examiner), sit upright, and avoid aggressive finger-pointing.",
           ],
+          video: {
+            id: "e_n0M0Xw_k4",
+            title: "Group Discussion Skills, Do's & Don'ts & Body Language",
+            channel: "CareerRide / Soft Skills",
+            duration: "9:15",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.03: Demonstrates initiation tactics, constructive intervention, handling conflicting viewpoints, and applying the PREP / REP structured argument technique.",
+            takeaway:
+              "In GD evaluation, active listening and facilitating consensus score significantly higher than dominating speaking time.",
+          },
         },
       },
       {
@@ -1087,6 +1121,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "e) Structural Discipline & Editing Rigor:",
             "  - Raw inspiration alone does not make a narrative. Successful writers possess architectural control over plot progression, exposition, rising tension, climax, and the discipline to relentlessly prune superfluous text.",
           ],
+          video: {
+            id: "gV60dXy70No",
+            title: "How to Write Descriptively (Creative Writing Masterclass)",
+            channel: "TED-Ed (Nalo Hopkinson)",
+            duration: "4:42",
+            speed: "1.0x",
+            relevance:
+              "Essential for Q.04: Explores the core distinction between technical and creative writing, showing how sensory details and figurative devices evoke emotional resonance.",
+            takeaway:
+              "Creative writing prioritizes 'showing over telling' through evocative imagery, sensory anchors, and metaphoric nuance.",
+          },
         },
       },
       {
@@ -1136,6 +1181,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Differential Speech-Thought Ratio: The average human speaks at 125-150 words per minute, but the brain can process speech at 400-500 words per minute. This gap creates 'idle mental capacity' prone to daydreaming.",
             "  - Physical exhaustion, sleep deprivation, sensory overload, and hearing impairments.",
           ],
+          video: {
+            id: "7wUCyjiyXdg",
+            title: "Active Listening Skills: How to Be an Active Listener",
+            channel: "Communication Coach Alex Lyon",
+            duration: "8:24",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.05: Breaks down the 4-stage active listening cognitive process (Receiving, Evaluating, Responding, Remembering) and overcoming listening barriers.",
+            takeaway:
+              "Active listening requires intentional cognitive engagement, non-verbal feedback (SOLER), and reflective paraphrasing.",
+          },
         },
       },
     ],
@@ -1209,6 +1265,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "      * Condition: 'If the distributed consensus protocol fails, the cluster falls back to primary-secondary replication.'",
             "      * Concession: 'Although the computational complexity is exponential, heuristic pruning makes it tractable in practice.'",
           ],
+          video: {
+            id: "sAo6LbCUAQo",
+            title: "Dependent and Independent Clauses: Syntax",
+            channel: "Khan Academy",
+            duration: "3:48",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.01: Defines the grammatical criteria of clauses (Subject + Predicate) and classifies Independent vs Subordinate (Noun, Relative, Adverbial) clauses.",
+            takeaway:
+              "Independent clauses can stand alone as complete thoughts; dependent clauses require a subordinating conjunction or relative pronoun.",
+          },
         },
       },
       {
@@ -1255,6 +1322,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Diaphragmatic Breathing: Practicing 4-4-4 box breathing prior to presentations to steady heart rate and vocal cord tension.",
             "  - Structural Speech Anchoring: Utilizing clear roadmaps (Introduction Hook → 3 Core Points → Decisive Conclusion) so that even if nervous, logical signposts guide the speaker.",
           ],
+          video: {
+            id: "VEStYVONy-0",
+            title: "Public Speaking Anxiety Tips: Overcoming Speaking Barriers",
+            channel: "Communication Coach Alex Lyon",
+            duration: "7:18",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.02: Analyzes psychological glossophobia, physiological speech tension, Mother Tongue Influence (MTI), and cognitive reframing techniques.",
+            takeaway:
+              "Reframe stage anxiety from 'performance evaluation' to 'audience conversation', channeling adrenaline into vocal dynamism.",
+          },
         },
       },
       {
@@ -1302,6 +1380,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "d) Principle of Completeness & Proportion (Adequate Development):",
             "  - A paragraph must be neither anemic (1-2 vague lines) nor bloated (a 400-word unbroken wall of text). Typical optimal length in technical prose is 100-180 words, sufficiently developed to prove the controlling idea.",
           ],
+          video: {
+            id: "VtIpGl4715I",
+            title: "Writing Skills: The Paragraph - Structure, Flow & Unity",
+            channel: "Learn English with Adam [engVid]",
+            duration: "14:33",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.03: Teaches the 4 pillars of academic paragraph construction: Topic Sentence, Supporting Elaboration, Clincher, and Unity/Coherence transitions.",
+            takeaway:
+              "A well-crafted paragraph maintains single-idea thematic unity, reinforced by logical bridges and transitional signposts.",
+          },
         },
       },
       {
@@ -1353,6 +1442,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Hallmarks: Strict adherence to standards (IEEE, ACM, ISO), passive/objective voice, schematics, reproducible methodologies.",
             "  - Examples: API documentation, research papers, system specifications, technical patent filings.",
           ],
+          video: {
+            id: "2R-9T9TgGnE",
+            title: "5 Steps of the Academic Writing Process",
+            channel: "Scribbr",
+            duration: "6:14",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.04: Breaks down the 5 sequential writing phases (Pre-writing, Planning/Outlining, Drafting, Revising, Proofreading) and mode taxonomies.",
+            takeaway:
+              "Separating the drafting phase from the revising/editing phase prevents cognitive overload and sharpens academic prose.",
+          },
         },
       },
       {
@@ -1404,6 +1504,17 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
             "  - Listen attentively to each question without interrupting. Rephrase the question to verify understanding and allow the audience to hear.",
             "  - If an answer is unknown, maintain poise: 'That is a pertinent consideration; while we did not evaluate that specific variable in this phase, I will investigate and follow up with you.'",
           ],
+          video: {
+            id: "Iwpi1Lm6dFo",
+            title: "How to Avoid Death By PowerPoint: Slide Design & Delivery",
+            channel: "TEDx (David JP Phillips)",
+            duration: "16:53",
+            speed: "1.25x",
+            relevance:
+              "Essential for Q.05: Illustrates cognitive load theory in slides, 6x6 rule, contrast principles, vocal pacing, and professional body language.",
+            takeaway:
+              "Slides are visual anchors for the audience, not teleprompters for the speaker; limit one core message per slide.",
+          },
         },
       },
     ],

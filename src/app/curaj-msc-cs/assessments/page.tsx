@@ -396,6 +396,89 @@ function AssessmentsContent() {
                           {q.solution.summary}
                         </div>
 
+                        {/* Video Lecture Block (Tailored to this Question - Properly Sized & Justified) */}
+                        {q.solution.video && (
+                          <div className="q-video-container">
+                            <div className="q-video-card">
+                              <div className="q-video-top-bar">
+                                <div className="q-video-badge">
+                                  <i className="fa-brands fa-youtube q-video-badge-icon"></i>
+                                  <span>Concept Video Lecture</span>
+                                </div>
+                                <div className="q-video-meta-pills">
+                                  <span className="q-video-channel">
+                                    <i className="fa-solid fa-graduation-cap"></i>{" "}
+                                    {q.solution.video.channel}
+                                  </span>
+                                  {q.solution.video.duration && (
+                                    <span className="q-video-duration">
+                                      <i className="fa-regular fa-clock"></i>{" "}
+                                      {q.solution.video.duration}
+                                    </span>
+                                  )}
+                                  {q.solution.video.speed && (
+                                    <span
+                                      className="q-video-speed"
+                                      title="Recommended study speed"
+                                    >
+                                      <i className="fa-solid fa-gauge-high"></i>{" "}
+                                      Speed: {q.solution.video.speed}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+
+                              <h5 className="q-video-title">
+                                {q.solution.video.title}
+                              </h5>
+
+                              <div className="q-video-player-wrap">
+                                <iframe
+                                  src={`https://www.youtube-nocookie.com/embed/${q.solution.video.id}?rel=0&modestbranding=1`}
+                                  title={q.solution.video.title}
+                                  className="q-video-iframe"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowFullScreen
+                                  loading="lazy"
+                                />
+                              </div>
+
+                              <div className="q-video-footer">
+                                {q.solution.video.relevance && (
+                                  <div className="q-video-relevance-box">
+                                    <div className="q-video-relevance-label">
+                                      <i className="fa-solid fa-award"></i>
+                                      <span>Exam Relevance</span>
+                                    </div>
+                                    <p className="q-video-relevance-text">
+                                      {q.solution.video.relevance}
+                                    </p>
+                                  </div>
+                                )}
+                                {q.solution.video.takeaway && (
+                                  <p className="q-video-takeaway">
+                                    <i className="fa-solid fa-lightbulb"></i>{" "}
+                                    <strong>Key Takeaway:</strong>{" "}
+                                    {q.solution.video.takeaway}
+                                  </p>
+                                )}
+                                <div className="q-video-action-row">
+                                  <a
+                                    href={`https://www.youtube.com/watch?v=${q.solution.video.id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="q-video-external-btn"
+                                    title="Open in YouTube app for mobile offline view or 2x speed"
+                                  >
+                                    <span>Watch on YouTube</span>
+                                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
                         {/* Key Bullet Points */}
                         {q.solution.keyPoints &&
                           q.solution.keyPoints.length > 0 && (
@@ -411,6 +494,64 @@ function AssessmentsContent() {
                                   </li>
                                 ))}
                               </ul>
+                            </div>
+                          )}
+
+                        {/* Detailed Comprehensive Model Explanation */}
+                        {q.solution.explanation &&
+                          q.solution.explanation.length > 0 && (
+                            <div className="sol-explanation-box">
+                              <h5 className="section-subhead">
+                                <i className="fa-solid fa-file-lines"></i>{" "}
+                                Detailed Model Solution (Verified Academic
+                                Answer):
+                              </h5>
+                              <div className="explanation-text-stack">
+                                {q.solution.explanation.map((line, lIdx) => {
+                                  if (!line.trim()) {
+                                    return (
+                                      <div
+                                        key={lIdx}
+                                        className="explanation-spacer"
+                                      />
+                                    );
+                                  }
+                                  if (line.startsWith("---")) {
+                                    return (
+                                      <hr
+                                        key={lIdx}
+                                        className="explanation-divider"
+                                      />
+                                    );
+                                  }
+                                  if (
+                                    line.startsWith("1.") ||
+                                    line.startsWith("2.") ||
+                                    line.startsWith("3.") ||
+                                    line.startsWith("4.") ||
+                                    line.startsWith("5.") ||
+                                    line.startsWith("TITLE:") ||
+                                    line.startsWith("SUBMITTED")
+                                  ) {
+                                    return (
+                                      <h6
+                                        key={lIdx}
+                                        className="explanation-section-heading"
+                                      >
+                                        {line}
+                                      </h6>
+                                    );
+                                  }
+                                  return (
+                                    <p
+                                      key={lIdx}
+                                      className="explanation-paragraph"
+                                    >
+                                      {line}
+                                    </p>
+                                  );
+                                })}
+                              </div>
                             </div>
                           )}
 
@@ -1266,6 +1407,258 @@ function AssessmentsContent() {
         .point-bullet {
           color: var(--primary);
           font-weight: 800;
+        }
+
+        /* Justified & Perfectly Sized Question Video Player */
+        .q-video-container {
+          margin: 1rem 0 1.25rem;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+
+        .q-video-card {
+          width: 100%;
+          max-width: 680px; /* Constrains width so it is properly sized on large screens */
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          padding: 1.25rem;
+          box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.06);
+          transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+          box-sizing: border-box;
+        }
+
+        :global(html.dark) .q-video-card {
+          background: #141414;
+          border-color: #262626;
+          box-shadow: 0 6px 24px -4px rgba(0, 0, 0, 0.45);
+        }
+
+        .q-video-top-bar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+          margin-bottom: 0.65rem;
+        }
+
+        .q-video-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          padding: 0.24rem 0.65rem;
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid rgba(239, 68, 68, 0.25);
+          color: #ef4444;
+          border-radius: 9999px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
+        }
+
+        .q-video-badge-icon {
+          font-size: 0.9rem;
+        }
+
+        .q-video-meta-pills {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          flex-wrap: wrap;
+        }
+
+        .q-video-channel {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.2rem 0.55rem;
+          background: rgba(59, 130, 246, 0.1);
+          border: 1px solid rgba(59, 130, 246, 0.25);
+          color: #3b82f6;
+          border-radius: 6px;
+          font-size: 0.74rem;
+          font-weight: 650;
+        }
+
+        .q-video-duration {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          padding: 0.2rem 0.5rem;
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          color: var(--text-secondary);
+          font-size: 0.74rem;
+          font-weight: 550;
+        }
+
+        .q-video-speed {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          padding: 0.2rem 0.5rem;
+          background: rgba(245, 158, 11, 0.1);
+          border: 1px solid rgba(245, 158, 11, 0.25);
+          color: #d97706;
+          border-radius: 6px;
+          font-size: 0.74rem;
+          font-weight: 600;
+        }
+
+        :global(html.dark) .q-video-speed {
+          color: #fbbf24;
+        }
+
+        .q-video-title {
+          font-size: 1.05rem;
+          font-weight: 750;
+          color: var(--heading-color);
+          line-height: 1.4;
+          margin: 0 0 0.85rem;
+        }
+
+        .q-video-player-wrap {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9; /* Perfect 16:9 ratio */
+          background: #000;
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid var(--border);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+          margin-bottom: 0.85rem;
+        }
+
+        .q-video-iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+
+        .q-video-footer {
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+        }
+
+        .q-video-relevance-box {
+          background: rgba(16, 185, 129, 0.07);
+          border-left: 3px solid #10b981;
+          border-radius: 0 6px 6px 0;
+          padding: 0.55rem 0.8rem;
+        }
+
+        :global(html.dark) .q-video-relevance-box {
+          background: rgba(16, 185, 129, 0.1);
+        }
+
+        .q-video-relevance-label {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.72rem;
+          font-weight: 750;
+          color: #10b981;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          margin-bottom: 0.2rem;
+        }
+
+        .q-video-relevance-text {
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: var(--text-primary);
+          line-height: 1.45;
+          margin: 0;
+        }
+
+        .q-video-takeaway {
+          font-size: 0.82rem;
+          color: var(--text-secondary);
+          line-height: 1.45;
+          margin: 0;
+          padding: 0.4rem 0.6rem;
+          background: var(--bg-light);
+          border-radius: 6px;
+          border: 1px dashed var(--border);
+        }
+
+        .q-video-action-row {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 0.25rem;
+        }
+
+        .q-video-external-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+          font-size: 0.78rem;
+          font-weight: 650;
+          color: #ef4444;
+          text-decoration: none;
+          padding: 0.35rem 0.75rem;
+          border-radius: 6px;
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          transition: all 0.2s ease;
+        }
+
+        .q-video-external-btn:hover {
+          background: rgba(239, 68, 68, 0.16);
+          border-color: #ef4444;
+          transform: translateY(-1px);
+        }
+
+        /* Detailed Model Solution Box */
+        .sol-explanation-box {
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 1.25rem;
+          margin-top: 0.5rem;
+        }
+
+        .explanation-text-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          font-family: inherit;
+        }
+
+        .explanation-section-heading {
+          font-size: 0.92rem;
+          font-weight: 800;
+          color: var(--heading-color);
+          margin: 0.6rem 0 0.15rem;
+          padding-bottom: 0.25rem;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .explanation-paragraph {
+          font-size: 0.88rem;
+          line-height: 1.6;
+          color: var(--text-primary);
+          margin: 0;
+          white-space: pre-wrap;
+        }
+
+        .explanation-spacer {
+          height: 0.4rem;
+        }
+
+        .explanation-divider {
+          border: 0;
+          border-top: 1px dashed var(--border);
+          margin: 0.5rem 0;
         }
 
         /* Code & Output Blocks */

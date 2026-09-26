@@ -11,6 +11,133 @@ export default function ProfessionalCommunicationPage() {
     "syllabus" | "cia" | "nptel" | "books"
   >("syllabus");
   const [expandedUnit, setExpandedUnit] = useState<number | null>(null);
+  const [openVideoQuestionId, setOpenVideoQuestionId] = useState<string | null>(
+    null,
+  );
+
+  const questionVideos: Record<
+    string,
+    {
+      id: string;
+      title: string;
+      channel: string;
+      duration: string;
+      speed: string;
+      relevance: string;
+      takeaway: string;
+    }
+  > = {
+    "a1-q1": {
+      id: "wv_nEUnhFFE",
+      title: "How to Write a Formal Report: Structure, Subheadings & Format",
+      channel: "Teacher Phill (Cambridge English)",
+      duration: "11:42",
+      speed: "1.25x",
+      relevance:
+        "Q.01: Master standard formal report architecture (Title, Terms of Reference, Methodology, Findings with Subheadings, Conclusions, and Actionable Recommendations).",
+      takeaway:
+        "Subheadings chunk dense technical data and passive reporting voice maintains formal academic neutrality.",
+    },
+    "a1-q2": {
+      id: "49EsnvxVQec",
+      title: "Phrases and Clauses: Syntax & Differences",
+      channel: "Khan Academy",
+      duration: "4:06",
+      speed: "1.25x",
+      relevance:
+        "Q.02: Clarifies why phrases lack subject-predicate pairs and breaks down Noun, Verb, Adjective, Adverbial, and Prepositional phrases.",
+      takeaway:
+        "A phrase operates as a unified single part of speech within a clause, never containing a finite verb acting on a subject.",
+    },
+    "a1-q3": {
+      id: "e_n0M0Xw_k4",
+      title: "Group Discussion Skills, Do's & Don'ts & Body Language",
+      channel: "CareerRide / Soft Skills",
+      duration: "9:15",
+      speed: "1.25x",
+      relevance:
+        "Q.03: Demonstrates initiation tactics, constructive intervention, handling conflicting viewpoints, and applying the PREP / REP structured argument technique.",
+      takeaway:
+        "In GD evaluation, active listening and facilitating consensus score significantly higher than dominating speaking time.",
+    },
+    "a1-q4": {
+      id: "gV60dXy70No",
+      title: "How to Write Descriptively (Creative Writing Masterclass)",
+      channel: "TED-Ed (Nalo Hopkinson)",
+      duration: "4:42",
+      speed: "1.0x",
+      relevance:
+        "Q.04: Explores the core distinction between technical and creative writing, showing how sensory details and figurative devices evoke emotional resonance.",
+      takeaway:
+        "Creative writing prioritizes 'showing over telling' through evocative imagery, sensory anchors, and metaphoric nuance.",
+    },
+    "a1-q5": {
+      id: "7wUCyjiyXdg",
+      title: "Active Listening Skills: How to Be an Active Listener",
+      channel: "Communication Coach Alex Lyon",
+      duration: "8:24",
+      speed: "1.25x",
+      relevance:
+        "Q.05: Breaks down the 4-stage active listening cognitive process (Receiving, Evaluating, Responding, Remembering) and overcoming internal/external listening barriers.",
+      takeaway:
+        "Active listening requires intentional cognitive engagement, non-verbal feedback (SOLER), and reflective paraphrasing.",
+    },
+    "a2-q1": {
+      id: "sAo6LbCUAQo",
+      title: "Dependent and Independent Clauses: Syntax",
+      channel: "Khan Academy",
+      duration: "3:48",
+      speed: "1.25x",
+      relevance:
+        "Q.01: Defines the grammatical criteria of clauses (Subject + Predicate) and classifies Independent vs Subordinate (Noun, Relative, Adverbial) clauses.",
+      takeaway:
+        "Independent clauses can stand alone as complete thoughts; dependent clauses require a subordinating conjunction or relative pronoun.",
+    },
+    "a2-q2": {
+      id: "VEStYVONy-0",
+      title: "Public Speaking Anxiety Tips: Overcoming Speaking Barriers",
+      channel: "Communication Coach Alex Lyon",
+      duration: "7:18",
+      speed: "1.25x",
+      relevance:
+        "Q.02: Analyzes psychological glossophobia, physiological speech tension, Mother Tongue Influence (MTI), and cognitive reframing techniques.",
+      takeaway:
+        "Reframe stage anxiety from 'performance evaluation' to 'audience conversation', channeling adrenaline into vocal dynamism.",
+    },
+    "a2-q3": {
+      id: "VtIpGl4715I",
+      title: "Writing Skills: The Paragraph - Structure, Flow & Unity",
+      channel: "Learn English with Adam [engVid]",
+      duration: "14:33",
+      speed: "1.25x",
+      relevance:
+        "Q.03: Teaches the 4 pillars of academic paragraph construction: Topic Sentence, Supporting Elaboration, Clincher, and Unity/Coherence transitions.",
+      takeaway:
+        "A well-crafted paragraph maintains single-idea thematic unity, reinforced by logical bridges and transitional signposts.",
+    },
+    "a2-q4": {
+      id: "2R-9T9TgGnE",
+      title: "5 Steps of the Academic Writing Process",
+      channel: "Scribbr",
+      duration: "6:14",
+      speed: "1.25x",
+      relevance:
+        "Q.04: Breaks down the 5 sequential writing phases (Pre-writing, Planning/Outlining, Drafting, Revising, Proofreading) and mode taxonomies.",
+      takeaway:
+        "Separating the drafting phase from the revising/editing phase prevents cognitive overload and sharpens academic prose.",
+    },
+    "a2-q5": {
+      id: "Iwpi1Lm6dFo",
+      title: "How to Avoid Death By PowerPoint: Slide Design & Delivery",
+      channel: "TEDx (David JP Phillips)",
+      duration: "16:53",
+      speed: "1.25x",
+      relevance:
+        "Q.05: Illustrates cognitive load theory in slides, 6x6 rule, contrast principles, vocal pacing, and professional body language.",
+      takeaway:
+        "Slides are visual anchors for the audience, not teleprompters for the speaker; limit one core message per slide.",
+    },
+  };
 
   const syllabusUnits = [
     {
@@ -551,58 +678,123 @@ export default function ProfessionalCommunicationPage() {
                     </span>
                   </div>
                   <ul className="assignment-q-list">
-                    <li>
-                      <span className="q-badge">Q.01</span>
-                      <div>
-                        <strong>Report Writing Format:</strong>
-                        <p>
-                          Format of a formal report with structural components
-                          and a concrete technical report example.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.02</span>
-                      <div>
-                        <strong>Phrase & Its Types:</strong>
-                        <p>
-                          Definition of phrases, structural difference from
-                          clauses, and 5 major types (Noun, Verb, Adj, Adv,
-                          Prep).
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.03</span>
-                      <div>
-                        <strong>Group Discussion Techniques:</strong>
-                        <p>
-                          Dynamics of GD, non-verbal indicators, and application
-                          of the PREP and REP techniques.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.04</span>
-                      <div>
-                        <strong>Creative Writing:</strong>
-                        <p>
-                          Definition, distinction from technical writing, and 5
-                          essential literary qualities.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.05</span>
-                      <div>
-                        <strong>Active Listening & Barriers:</strong>
-                        <p>
-                          5-stage active listening model and comprehensive
-                          barriers (physical, psychological, semantic,
-                          physiological).
-                        </p>
-                      </div>
-                    </li>
+                    {[
+                      {
+                        key: "a1-q1",
+                        num: "Q.01",
+                        title: "Report Writing Format:",
+                        desc: "Format of a formal report with structural components and a concrete technical report example.",
+                      },
+                      {
+                        key: "a1-q2",
+                        num: "Q.02",
+                        title: "Phrase & Its Types:",
+                        desc: "Definition of phrases, structural difference from clauses, and 5 major types (Noun, Verb, Adj, Adv, Prep).",
+                      },
+                      {
+                        key: "a1-q3",
+                        num: "Q.03",
+                        title: "Group Discussion Techniques:",
+                        desc: "Dynamics of GD, non-verbal indicators, and application of the PREP and REP techniques.",
+                      },
+                      {
+                        key: "a1-q4",
+                        num: "Q.04",
+                        title: "Creative Writing:",
+                        desc: "Definition, distinction from technical writing, and 5 essential literary qualities.",
+                      },
+                      {
+                        key: "a1-q5",
+                        num: "Q.05",
+                        title: "Active Listening & Barriers:",
+                        desc: "5-stage active listening model and comprehensive barriers (physical, psychological, semantic, physiological).",
+                      },
+                    ].map((item) => {
+                      const video = questionVideos[item.key];
+                      const isOpen = openVideoQuestionId === item.key;
+                      return (
+                        <li
+                          key={item.key}
+                          className={isOpen ? "video-open" : ""}
+                        >
+                          <div className="q-item-header">
+                            <div className="q-item-main">
+                              <span className="q-badge">{item.num}</span>
+                              <div>
+                                <strong>{item.title}</strong>
+                                <p>{item.desc}</p>
+                              </div>
+                            </div>
+                            {video && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setOpenVideoQuestionId(
+                                    isOpen ? null : item.key,
+                                  )
+                                }
+                                className={`q-video-toggle-btn ${
+                                  isOpen ? "active" : ""
+                                }`}
+                                title={`Toggle video lecture for ${item.num}`}
+                              >
+                                <i className="fa-brands fa-youtube"></i>
+                                <span>
+                                  {isOpen ? "Hide Video" : "Watch Lecture"}
+                                </span>
+                              </button>
+                            )}
+                          </div>
+
+                          {isOpen && video && (
+                            <div className="inline-q-video-box">
+                              <div className="inline-q-video-meta">
+                                <span className="meta-channel">
+                                  <i className="fa-solid fa-graduation-cap"></i>{" "}
+                                  {video.channel}
+                                </span>
+                                <span className="meta-duration">
+                                  <i className="fa-regular fa-clock"></i>{" "}
+                                  {video.duration}
+                                </span>
+                                <span className="meta-speed">
+                                  <i className="fa-solid fa-gauge-high"></i>{" "}
+                                  Speed: {video.speed}
+                                </span>
+                              </div>
+                              <h5 className="inline-q-video-title">
+                                {video.title}
+                              </h5>
+                              <div className="inline-q-video-frame-wrap">
+                                <iframe
+                                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
+                                  title={video.title}
+                                  className="inline-q-video-iframe"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowFullScreen
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div className="inline-q-video-footer">
+                                <p className="inline-q-video-relevance">
+                                  <strong>Exam Relevance:</strong>{" "}
+                                  {video.relevance}
+                                </p>
+                                <a
+                                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-q-video-link"
+                                >
+                                  <span>Watch on YouTube</span>
+                                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                   <Link
                     href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia1"
@@ -621,58 +813,123 @@ export default function ProfessionalCommunicationPage() {
                     </span>
                   </div>
                   <ul className="assignment-q-list">
-                    <li>
-                      <span className="q-badge">Q.01</span>
-                      <div>
-                        <strong>Clause & Its Types:</strong>
-                        <p>
-                          Syntactic definition of clause; Independent vs
-                          Dependent (Noun, Adjective, Adverbial clauses) with
-                          examples.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.02</span>
-                      <div>
-                        <strong>Barriers of Speaking:</strong>
-                        <p>
-                          Psychological glossophobia, Mother Tongue Influence
-                          (MTI), physiological constraints & remedies.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.03</span>
-                      <div>
-                        <strong>Paragraph Writing Principles:</strong>
-                        <p>
-                          Topic sentence, supporting elaboration, clincher, and
-                          principles: Unity, Coherence, Order, and Completeness.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.04</span>
-                      <div>
-                        <strong>Writing Skills Taxonomy:</strong>
-                        <p>
-                          Writing stages (Pre-writing, drafting, editing) and 5
-                          major modes: Expository, Descriptive, Persuasive,
-                          Narrative, Technical.
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <span className="q-badge">Q.05</span>
-                      <div>
-                        <strong>Planning Successful Presentations:</strong>
-                        <p>
-                          Audience analysis, the 3-act structure, Rule of 6x6
-                          slide design, vocal pacing, and Q&A management.
-                        </p>
-                      </div>
-                    </li>
+                    {[
+                      {
+                        key: "a2-q1",
+                        num: "Q.01",
+                        title: "Clause & Its Types:",
+                        desc: "Syntactic definition of clause; Independent vs Dependent (Noun, Adjective, Adverbial clauses) with examples.",
+                      },
+                      {
+                        key: "a2-q2",
+                        num: "Q.02",
+                        title: "Barriers of Speaking:",
+                        desc: "Psychological glossophobia, Mother Tongue Influence (MTI), physiological constraints & remedies.",
+                      },
+                      {
+                        key: "a2-q3",
+                        num: "Q.03",
+                        title: "Paragraph Writing Principles:",
+                        desc: "Topic sentence, supporting elaboration, clincher, and principles: Unity, Coherence, Order, and Completeness.",
+                      },
+                      {
+                        key: "a2-q4",
+                        num: "Q.04",
+                        title: "Writing Skills Taxonomy:",
+                        desc: "Writing stages (Pre-writing, drafting, editing) and 5 major modes: Expository, Descriptive, Persuasive, Narrative, Technical.",
+                      },
+                      {
+                        key: "a2-q5",
+                        num: "Q.05",
+                        title: "Planning Successful Presentations:",
+                        desc: "Audience analysis, the 3-act structure, Rule of 6x6 slide design, vocal pacing, and Q&A management.",
+                      },
+                    ].map((item) => {
+                      const video = questionVideos[item.key];
+                      const isOpen = openVideoQuestionId === item.key;
+                      return (
+                        <li
+                          key={item.key}
+                          className={isOpen ? "video-open" : ""}
+                        >
+                          <div className="q-item-header">
+                            <div className="q-item-main">
+                              <span className="q-badge">{item.num}</span>
+                              <div>
+                                <strong>{item.title}</strong>
+                                <p>{item.desc}</p>
+                              </div>
+                            </div>
+                            {video && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setOpenVideoQuestionId(
+                                    isOpen ? null : item.key,
+                                  )
+                                }
+                                className={`q-video-toggle-btn ${
+                                  isOpen ? "active" : ""
+                                }`}
+                                title={`Toggle video lecture for ${item.num}`}
+                              >
+                                <i className="fa-brands fa-youtube"></i>
+                                <span>
+                                  {isOpen ? "Hide Video" : "Watch Lecture"}
+                                </span>
+                              </button>
+                            )}
+                          </div>
+
+                          {isOpen && video && (
+                            <div className="inline-q-video-box">
+                              <div className="inline-q-video-meta">
+                                <span className="meta-channel">
+                                  <i className="fa-solid fa-graduation-cap"></i>{" "}
+                                  {video.channel}
+                                </span>
+                                <span className="meta-duration">
+                                  <i className="fa-regular fa-clock"></i>{" "}
+                                  {video.duration}
+                                </span>
+                                <span className="meta-speed">
+                                  <i className="fa-solid fa-gauge-high"></i>{" "}
+                                  Speed: {video.speed}
+                                </span>
+                              </div>
+                              <h5 className="inline-q-video-title">
+                                {video.title}
+                              </h5>
+                              <div className="inline-q-video-frame-wrap">
+                                <iframe
+                                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
+                                  title={video.title}
+                                  className="inline-q-video-iframe"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowFullScreen
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div className="inline-q-video-footer">
+                                <p className="inline-q-video-relevance">
+                                  <strong>Exam Relevance:</strong>{" "}
+                                  {video.relevance}
+                                </p>
+                                <a
+                                  href={`https://www.youtube.com/watch?v=${video.id}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-q-video-link"
+                                >
+                                  <span>Watch on YouTube</span>
+                                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                   <Link
                     href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia2"
@@ -1435,8 +1692,195 @@ export default function ProfessionalCommunicationPage() {
 
         .assignment-q-list li {
           display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          padding: 0.65rem 0.75rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+        }
+
+        .assignment-q-list li.video-open {
+          border-color: rgba(239, 68, 68, 0.4);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+
+        .q-item-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0.75rem;
+          width: 100%;
+        }
+
+        .q-item-main {
+          display: flex;
           align-items: flex-start;
           gap: 0.65rem;
+          flex: 1;
+        }
+
+        .q-video-toggle-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.22rem 0.55rem;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #ef4444;
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.25);
+          border-radius: 6px;
+          cursor: pointer;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
+        }
+
+        .q-video-toggle-btn:hover,
+        .q-video-toggle-btn.active {
+          background: #ef4444;
+          color: #ffffff;
+          border-color: #ef4444;
+        }
+
+        /* Inline Video Player Box (Properly Justified & Sized) */
+        .inline-q-video-box {
+          width: 100%;
+          max-width: 580px; /* Constrained and properly sized */
+          margin: 0.35rem auto 0;
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+          padding: 0.85rem;
+          box-sizing: border-box;
+        }
+
+        :global(html.dark) .inline-q-video-box {
+          background: #141414;
+          border-color: #272727;
+        }
+
+        .inline-q-video-meta {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          flex-wrap: wrap;
+          margin-bottom: 0.4rem;
+        }
+
+        .meta-channel {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+          font-size: 0.7rem;
+          font-weight: 650;
+          color: #3b82f6;
+          background: rgba(59, 130, 246, 0.1);
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+        }
+
+        .meta-duration {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.7rem;
+          font-weight: 550;
+          color: var(--text-secondary);
+          background: var(--surface);
+          border: 1px solid var(--border);
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+        }
+
+        .meta-speed {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #d97706;
+          background: rgba(245, 158, 11, 0.1);
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+        }
+
+        :global(html.dark) .meta-speed {
+          color: #fbbf24;
+        }
+
+        .inline-q-video-title {
+          font-size: 0.92rem;
+          font-weight: 750;
+          color: var(--heading-color);
+          margin: 0 0 0.55rem;
+          line-height: 1.35;
+        }
+
+        .inline-q-video-frame-wrap {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9; /* Perfect 16:9 proportion, properly justified */
+          background: #000;
+          border-radius: 8px;
+          overflow: hidden;
+          border: 1px solid var(--border);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+          margin-bottom: 0.55rem;
+        }
+
+        .inline-q-video-iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+        }
+
+        .inline-q-video-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.65rem;
+          flex-wrap: wrap;
+        }
+
+        .inline-q-video-relevance {
+          font-size: 0.75rem;
+          line-height: 1.4;
+          color: var(--text-secondary);
+          margin: 0;
+          flex: 1;
+        }
+
+        .inline-q-video-relevance strong {
+          color: #10b981;
+          display: inline;
+        }
+
+        .inline-q-video-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: #ef4444;
+          text-decoration: none;
+          padding: 0.22rem 0.5rem;
+          border-radius: 5px;
+          background: rgba(239, 68, 68, 0.08);
+          border: 1px solid rgba(239, 68, 68, 0.2);
+          transition: all 0.2s ease;
+          white-space: nowrap;
+        }
+
+        .inline-q-video-link:hover {
+          background: rgba(239, 68, 68, 0.16);
+          border-color: #ef4444;
         }
 
         .q-badge {
