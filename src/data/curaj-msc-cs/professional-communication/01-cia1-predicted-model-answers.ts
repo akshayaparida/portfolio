@@ -26,7 +26,7 @@ export const cia1PredictedModelAnswersModule: LearningModule = {
       recommendedSpeed: "1.25x",
       description:
         "Understand phrases easily with everyday examples. Learn how to identify noun, verb, adjective, adverb, and prepositional phrases.",
-      examRelevance: "CURAJ CIA-1 Q1 (5 Marks) ⭐⭐⭐⭐⭐ | Core Grammar",
+      examRelevance: "CURAJ CIA-1 Q1 (5 Marks) — High Priority | Core Grammar",
       keyTopics: [
         "What is a Phrase?",
         "Phrase vs. Clause",
@@ -44,7 +44,7 @@ export const cia1PredictedModelAnswersModule: LearningModule = {
       recommendedSpeed: "1.25x",
       description:
         "Learn the difference between independent main clauses and dependent subordinate clauses with clear sentence examples.",
-      examRelevance: "CURAJ CIA-1 Q2 (5 Marks) ⭐⭐⭐⭐⭐ | Core Syntax",
+      examRelevance: "CURAJ CIA-1 Q2 (5 Marks) — High Priority | Core Syntax",
       keyTopics: [
         "Subject and Verb Pair",
         "Independent Clauses",
@@ -61,7 +61,8 @@ export const cia1PredictedModelAnswersModule: LearningModule = {
       recommendedSpeed: "1.25x",
       description:
         "How to use imagination, 'show don't tell', sensory details, and vivid descriptions to write engaging creative stories.",
-      examRelevance: "CURAJ CIA-1 Q3 (5 Marks) ⭐⭐⭐⭐⭐ | Written Discourse",
+      examRelevance:
+        "CURAJ CIA-1 Q3 (5 Marks) — High Priority | Written Discourse",
       keyTopics: [
         "What is Creative Writing?",
         "Creative vs Technical Writing",
@@ -78,7 +79,7 @@ export const cia1PredictedModelAnswersModule: LearningModule = {
       recommendedSpeed: "1.0x",
       description:
         "Practical tips for active listening: making eye contact, avoiding interruptions, paraphrasing, and overcoming distractions.",
-      examRelevance: "CURAJ CIA-1 Q4 (5 Marks) ⭐⭐⭐⭐⭐ | Oral Dynamics",
+      examRelevance: "CURAJ CIA-1 Q4 (5 Marks) — High Priority | Oral Dynamics",
       keyTopics: [
         "Hearing vs Listening",
         "Golden Rules of an Active Listener",
@@ -95,7 +96,7 @@ export const cia1PredictedModelAnswersModule: LearningModule = {
       recommendedSpeed: "1.25x",
       description:
         "How to conquer stage fright, overcome language hesitation, speak at the right speed, and speak with confidence.",
-      examRelevance: "CURAJ CIA-1 Q5 (5 Marks) ⭐⭐⭐⭐⭐ | Oral Fluency",
+      examRelevance: "CURAJ CIA-1 Q5 (5 Marks) — High Priority | Oral Fluency",
       keyTopics: [
         "Overcoming Stage Fear",
         "Language & Vocabulary Tips",
@@ -164,10 +165,10 @@ The most important rule about a phrase is that **it does NOT have both a subject
 
 | Feature | Phrase | Clause | Full Sentence |
 |:---|:---:|:---:|:---:|
-| **Has Words Grouped Together?** | ✅ Yes | ✅ Yes | ✅ Yes |
-| **Has a Subject (Who/What)?** | ❌ No | ✅ Yes | ✅ Yes |
-| **Has a Verb (Action)?** | ❌ No | ✅ Yes | ✅ Yes |
-| **Makes Complete Sense by Itself?** | ❌ No | ⚠️ Only if Independent | ✅ Yes |
+| **Has Words Grouped Together?** | Yes | Yes | Yes |
+| **Has a Subject (Who/What)?** | No | Yes | Yes |
+| **Has a Verb (Action)?** | No | Yes | Yes |
+| **Makes Complete Sense by Itself?** | No | Only if Independent | Yes |
 
 * **Phrase Example:** *"in the morning"* (We know when, but who did what? It is incomplete).
 * **Sentence Example:** *"She goes for a walk in the morning."* (Now it is a complete thought).
