@@ -89,8 +89,9 @@ export const curajCourses: Course[] = [
     ],
     nptelTitle: "NPTEL: Soft Skills and Personality Development (IIT Kanpur)",
     nptelUrl: "https://nptel.ac.in/courses/109104031",
-    notesUrl: "/professional-communication",
-    notesTitle: "Official Syllabus Breakdown & CIA Guide",
+    notesUrl: "/professional-communication/cia1-predicted-paper",
+    notesTitle: "CIA-1 Predicted Paper & In-Depth Solutions (Reader + Audio)",
+    availableNotesUnits: [1],
   },
 
   // Semester 2

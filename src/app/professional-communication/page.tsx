@@ -5,11 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import BlogPageHeader from "@/components/BlogPageHeader";
 import PageFooter from "@/components/PageFooter";
+import { curajAssessments } from "@/data/curaj-msc-cs/assessments";
 
 export default function ProfessionalCommunicationPage() {
   const [activeTab, setActiveTab] = useState<
-    "syllabus" | "cia" | "nptel" | "books"
-  >("syllabus");
+    "predicted" | "syllabus" | "cia" | "nptel" | "books"
+  >("predicted");
+  const [expandedAnswerId, setExpandedAnswerId] = useState<string | null>(
+    "comm-pred-q1",
+  );
+  const [predictedFilter, setPredictedFilter] = useState<
+    "all" | "core" | "backup"
+  >("all");
+
+  const predictedAssessment = curajAssessments.find(
+    (a) => a.id === "sem1-comm-predicted-cia1",
+  );
+  const predictedQuestions = predictedAssessment?.questions || [];
   const [expandedUnit, setExpandedUnit] = useState<number | null>(null);
   const [allUnitsExpanded, setAllUnitsExpanded] = useState(false);
   const [openVideoQuestionId, setOpenVideoQuestionId] = useState<string | null>(
@@ -661,8 +673,67 @@ export default function ProfessionalCommunicationPage() {
           </div>
         </section>
 
+        {/* Hero Featured Callout: CIA-1 Predicted Paper & Reader */}
+        <section className="predicted-hero-callout">
+          <div className="callout-glass-card">
+            <div className="callout-content-side">
+              <div className="callout-tags-row">
+                <span className="featured-pill">
+                  <i className="fa-solid fa-star"></i> CIA-1 2026 Predicted
+                  Paper
+                </span>
+                <span className="academic-pill">
+                  <i className="fa-solid fa-pen-nib"></i> 300–400 Words Per
+                  Answer
+                </span>
+                <span className="marks-pill">
+                  <i className="fa-solid fa-award"></i> 5 Marks × 3 Questions
+                </span>
+              </div>
+              <h3 className="callout-main-title">
+                CSC-406 Professional Communication — Predicted Paper & In-Depth
+                Solutions
+              </h3>
+              <p className="callout-desc">
+                Complete university-standard model solutions for all 12
+                questions (Phrases, Clauses, Creative Writing, Active Listening,
+                Barriers of Speaking, Adjectives, Adverbs, Tenses, Descriptive
+                Writing, Sentences, Empathy, Prejudgment). Read inline below or
+                experience our dedicated study reader with text-to-speech audio
+                and self-assessment quiz.
+              </p>
+            </div>
+            <div className="callout-actions-side">
+              <Link
+                href="/professional-communication/cia1-predicted-paper"
+                className="callout-btn primary"
+              >
+                <i className="fa-solid fa-headphones"></i>
+                <span>Launch Audio Reader</span>
+                <i className="fa-solid fa-arrow-right"></i>
+              </Link>
+              <button
+                type="button"
+                onClick={() => setActiveTab("predicted")}
+                className="callout-btn secondary"
+              >
+                <i className="fa-solid fa-list-check"></i>
+                <span>Browse 12 Model Answers</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* Tab Navigation */}
         <div className="tab-bar">
+          <button
+            className={`tab-btn ${activeTab === "predicted" ? "active" : ""}`}
+            onClick={() => setActiveTab("predicted")}
+          >
+            <i className="fa-solid fa-graduation-cap"></i>
+            <span>CIA-1 Predicted Paper</span>
+            <span className="tab-pill hot-pill">12 Qs + Audio</span>
+          </button>
           <button
             className={`tab-btn ${activeTab === "syllabus" ? "active" : ""}`}
             onClick={() => setActiveTab("syllabus")}
@@ -693,6 +764,320 @@ export default function ProfessionalCommunicationPage() {
             <span>Curated NPTEL Courses</span>
           </button>
         </div>
+
+        {/* TAB 0: CIA-1 PREDICTED QUESTION PAPER & IN-DEPTH MODEL ANSWERS */}
+        {activeTab === "predicted" && (
+          <section className="tab-content-section predicted-section">
+            <div className="predicted-paper-header-box">
+              <div className="paper-top-info">
+                <div className="dept-tag">
+                  <i className="fa-solid fa-building-columns"></i>
+                  <span>
+                    Central University of Rajasthan — Department of Computer
+                    Science
+                  </span>
+                </div>
+                <div className="paper-status-pills">
+                  <span className="exam-pill">
+                    <i className="fa-solid fa-award"></i> CSC-406 / 6.0CSC04
+                  </span>
+                  <span className="session-pill">
+                    <i className="fa-regular fa-calendar-check"></i> 2025–2026
+                    Session
+                  </span>
+                </div>
+              </div>
+
+              <div className="paper-title-block">
+                <span className="sub-title-tag">
+                  CONTINUOUS INTERNAL ASSESSMENT 1 (CIA-1)
+                </span>
+                <h2 className="predicted-title">
+                  Predicted Examination Question Paper & In-Depth Model
+                  Solutions
+                </h2>
+                <p className="predicted-meta-desc">
+                  Long Answer Type Questions • <strong>Attempt any 3</strong> •
+                  Word Limit: <strong>300–400 Words per question</strong> •
+                  Maximum Marks: <strong>15 [5 × 3 = 15]</strong>
+                </p>
+              </div>
+
+              <div className="reader-cta-banner">
+                <div className="reader-cta-text">
+                  <div className="reader-cta-badge">
+                    <i className="fa-solid fa-headphones"></i> Full Audio &
+                    Study Experience
+                  </div>
+                  <h4>
+                    Read with Interactive Audio Reader & Self-Assessment Quiz
+                  </h4>
+                  <p>
+                    Experience all 12 model answers in our dedicated university
+                    study reader featuring text-to-speech voice narration,
+                    sticky table of contents, speed control, and an 8-question
+                    practice quiz.
+                  </p>
+                </div>
+                <div className="reader-cta-buttons">
+                  <Link
+                    href="/professional-communication/cia1-predicted-paper"
+                    className="cta-primary-btn"
+                  >
+                    <i className="fa-solid fa-book-open-reader"></i>
+                    <span>Launch Study Reader & Audio</span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </Link>
+                  <Link
+                    href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-predicted-cia1"
+                    className="cta-secondary-btn"
+                  >
+                    <i className="fa-solid fa-graduation-cap"></i>
+                    <span>Open in Exam Solver</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Filter pills for Q1-Q5 vs Q6-Q12 */}
+              <div className="predicted-filter-bar">
+                <div className="filter-pill-label">
+                  <i className="fa-solid fa-filter"></i> Filter Questions:
+                </div>
+                <div className="filter-pill-buttons">
+                  <button
+                    onClick={() => setPredictedFilter("all")}
+                    className={`filter-pill-btn ${predictedFilter === "all" ? "active" : ""}`}
+                  >
+                    All 12 Questions (100% Complete)
+                  </button>
+                  <button
+                    onClick={() => setPredictedFilter("core")}
+                    className={`filter-pill-btn ${predictedFilter === "core" ? "active" : ""}`}
+                  >
+                    Core Questions (Q1–Q5)
+                  </button>
+                  <button
+                    onClick={() => setPredictedFilter("backup")}
+                    className={`filter-pill-btn ${predictedFilter === "backup" ? "active" : ""}`}
+                  >
+                    Alternative / Backup (Q6–Q12)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Questions List */}
+            <div className="predicted-questions-stack">
+              {predictedQuestions
+                .filter((q, idx) => {
+                  if (predictedFilter === "core") return idx < 5;
+                  if (predictedFilter === "backup") return idx >= 5;
+                  return true;
+                })
+                .map((q) => {
+                  const isCore = parseInt(q.qNumber.replace("Q", ""), 10) <= 5;
+                  const isExpanded = expandedAnswerId === q.id;
+                  const video = q.solution.video;
+                  const isVideoOpen = openVideoQuestionId === q.id;
+
+                  return (
+                    <article
+                      key={q.id}
+                      className={`predicted-q-card ${isExpanded ? "expanded" : ""}`}
+                    >
+                      <header className="predicted-q-header">
+                        <div className="q-badge-row">
+                          <span className="q-num-pill">{q.qNumber}</span>
+                          <span
+                            className={`q-category-pill ${isCore ? "core" : "backup"}`}
+                          >
+                            {isCore
+                              ? "Primary Question (Attempt Any 3)"
+                              : "Alternative / Backup"}
+                          </span>
+                          <span className="q-marks-pill">{q.marks} Marks</span>
+                          <span className="q-words-pill">300–400 Words</span>
+                        </div>
+                        <h3 className="predicted-q-text">{q.question}</h3>
+                        <p className="predicted-q-summary">
+                          <strong>Core Concept:</strong> {q.solution.summary}
+                        </p>
+                      </header>
+
+                      {/* Card Control Buttons */}
+                      <div className="predicted-q-actions">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setExpandedAnswerId(isExpanded ? null : q.id)
+                          }
+                          className={`ans-toggle-btn ${isExpanded ? "active" : ""}`}
+                        >
+                          <i
+                            className={`fa-solid ${isExpanded ? "fa-compress" : "fa-file-lines"}`}
+                          ></i>
+                          <span>
+                            {isExpanded
+                              ? "Hide Model Answer"
+                              : "Read In-Depth Model Answer (350+ Words)"}
+                          </span>
+                        </button>
+
+                        <Link
+                          href={`/professional-communication/cia1-predicted-paper#question-${q.qNumber.toLowerCase().replace("q", "")}`}
+                          className="ans-listen-link"
+                          title="Listen with Text-to-Speech Audio Reader"
+                        >
+                          <i className="fa-solid fa-volume-high"></i>
+                          <span>Listen Aloud</span>
+                        </Link>
+
+                        {video && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setOpenVideoQuestionId(isVideoOpen ? null : q.id)
+                            }
+                            className={`ans-video-btn ${isVideoOpen ? "active" : ""}`}
+                          >
+                            <i className="fa-brands fa-youtube"></i>
+                            <span>
+                              {isVideoOpen ? "Hide Video" : "Watch Lecture"}
+                            </span>
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Inline Video Player */}
+                      {isVideoOpen && video && (
+                        <div className="inline-video-wrap">
+                          <div className="video-meta-top">
+                            <span>
+                              <i className="fa-solid fa-graduation-cap"></i>{" "}
+                              {video.channel}
+                            </span>
+                            {video.duration && (
+                              <span>
+                                <i className="fa-regular fa-clock"></i>{" "}
+                                {video.duration}
+                              </span>
+                            )}
+                            {video.speed && (
+                              <span>
+                                <i className="fa-solid fa-gauge-high"></i>{" "}
+                                Speed: {video.speed}
+                              </span>
+                            )}
+                          </div>
+                          <h5>{video.title}</h5>
+                          <div className="iframe-box">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${video.id}?rel=0`}
+                              title={video.title}
+                              className="video-iframe"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              loading="lazy"
+                            />
+                          </div>
+                          {video.takeaway && (
+                            <p className="video-takeaway">
+                              <i className="fa-solid fa-lightbulb"></i>{" "}
+                              <strong>Takeaway:</strong> {video.takeaway}
+                            </p>
+                          )}
+                        </div>
+                      )}
+
+                      {/* In-Depth Model Answer Body */}
+                      {isExpanded && (
+                        <div className="predicted-solution-box">
+                          {q.solution.keyPoints &&
+                            q.solution.keyPoints.length > 0 && (
+                              <div className="solution-key-points">
+                                <h4>
+                                  <i className="fa-solid fa-check-double"></i>{" "}
+                                  Key Academic Points (Marking Criteria):
+                                </h4>
+                                <ul>
+                                  {q.solution.keyPoints.map((pt, pIdx) => (
+                                    <li key={pIdx}>
+                                      <span className="bullet-arrow">›</span>{" "}
+                                      {pt}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                          {q.solution.explanation &&
+                            q.solution.explanation.length > 0 && (
+                              <div className="solution-detailed-text">
+                                <h4>
+                                  <i className="fa-solid fa-pen-nib"></i>{" "}
+                                  Verified Academic Model Solution (300–400
+                                  Words):
+                                </h4>
+                                <div className="text-paragraphs">
+                                  {q.solution.explanation.map((line, lIdx) => {
+                                    if (!line.trim()) {
+                                      return (
+                                        <div
+                                          key={lIdx}
+                                          className="paragraph-spacer"
+                                        />
+                                      );
+                                    }
+                                    if (
+                                      line.startsWith("1.") ||
+                                      line.startsWith("2.") ||
+                                      line.startsWith("3.") ||
+                                      line.startsWith("a)") ||
+                                      line.startsWith("b)") ||
+                                      line.startsWith("c)") ||
+                                      line.startsWith("d)") ||
+                                      line.startsWith("e)")
+                                    ) {
+                                      return (
+                                        <h5
+                                          key={lIdx}
+                                          className="sol-subheading"
+                                        >
+                                          {line}
+                                        </h5>
+                                      );
+                                    }
+                                    return (
+                                      <p key={lIdx} className="sol-paragraph">
+                                        {line}
+                                      </p>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+
+                          <div className="solution-footer-bar">
+                            <span className="exam-compliance-tag">
+                              <i className="fa-solid fa-shield-check"></i>{" "}
+                              Standard CURAJ Academic Model Answer Format
+                            </span>
+                            <Link
+                              href="/professional-communication/cia1-predicted-paper"
+                              className="launch-full-reader-btn"
+                            >
+                              <span>Open in Distraction-Free Audio Reader</span>
+                              <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </article>
+                  );
+                })}
+            </div>
+          </section>
+        )}
 
         {/* TAB 1: SYLLABUS BREAKDOWN */}
         {activeTab === "syllabus" && (
@@ -2683,6 +3068,934 @@ export default function ProfessionalCommunicationPage() {
         .nptel-link-btn:hover {
           filter: brightness(1.1);
           transform: translateY(-1px);
+        }
+
+        /* Predicted Paper Hero Callout */
+        .predicted-hero-callout {
+          margin-bottom: 2rem;
+        }
+
+        .callout-glass-card {
+          background: linear-gradient(
+            135deg,
+            rgba(37, 99, 235, 0.08) 0%,
+            rgba(124, 58, 237, 0.08) 100%
+          );
+          border: 1px solid rgba(59, 130, 246, 0.25);
+          border-radius: 16px;
+          padding: 1.75rem 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+          box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1);
+        }
+
+        :global(html.dark) .callout-glass-card {
+          background: linear-gradient(
+            135deg,
+            rgba(30, 58, 138, 0.3) 0%,
+            rgba(88, 28, 135, 0.3) 100%
+          );
+          border-color: rgba(96, 165, 250, 0.3);
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        .callout-content-side {
+          flex: 1;
+        }
+
+        .callout-tags-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .featured-pill {
+          background: #2563eb;
+          color: #ffffff;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.25rem 0.65rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .academic-pill {
+          background: rgba(16, 185, 129, 0.15);
+          color: #059669;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.25rem 0.65rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        :global(html.dark) .academic-pill {
+          background: rgba(16, 185, 129, 0.25);
+          color: #34d399;
+        }
+
+        .marks-pill {
+          background: rgba(245, 158, 11, 0.15);
+          color: #d97706;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.25rem 0.65rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        :global(html.dark) .marks-pill {
+          background: rgba(245, 158, 11, 0.25);
+          color: #fbbf24;
+        }
+
+        .callout-main-title {
+          font-size: 1.35rem;
+          font-weight: 800;
+          color: #1e293b;
+          margin-bottom: 0.5rem;
+          line-height: 1.3;
+        }
+
+        :global(html.dark) .callout-main-title {
+          color: #f8fafc;
+        }
+
+        .callout-desc {
+          font-size: 0.92rem;
+          color: #475569;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        :global(html.dark) .callout-desc {
+          color: #cbd5e1;
+        }
+
+        .callout-actions-side {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          min-width: 240px;
+        }
+
+        .callout-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.25rem;
+          border-radius: 10px;
+          font-size: 0.88rem;
+          font-weight: 700;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .callout-btn.primary {
+          background: linear-gradient(135deg, #2563eb, #1d4ed8);
+          color: #ffffff;
+          border: none;
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .callout-btn.primary:hover {
+          filter: brightness(1.1);
+          transform: translateY(-1px);
+        }
+
+        .callout-btn.secondary {
+          background: #ffffff;
+          color: #1e293b;
+          border: 1px solid #cbd5e1;
+        }
+
+        :global(html.dark) .callout-btn.secondary {
+          background: #1e293b;
+          color: #f1f5f9;
+          border-color: #334155;
+        }
+
+        .callout-btn.secondary:hover {
+          background: #f8fafc;
+          border-color: #94a3b8;
+        }
+
+        :global(html.dark) .callout-btn.secondary:hover {
+          background: #334155;
+        }
+
+        .hot-pill {
+          background: #ef4444 !important;
+          color: #ffffff !important;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%,
+          100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.75;
+          }
+        }
+
+        /* Predicted Tab Content */
+        .predicted-paper-header-box {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        :global(html.dark) .predicted-paper-header-box {
+          background: #1e293b;
+          border-color: #334155;
+        }
+
+        .paper-top-info {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        :global(html.dark) .paper-top-info {
+          border-bottom-color: #334155;
+        }
+
+        .dept-tag {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #475569;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        :global(html.dark) .dept-tag {
+          color: #94a3b8;
+        }
+
+        .paper-status-pills {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        .exam-pill,
+        .session-pill {
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.25rem 0.6rem;
+          border-radius: 6px;
+        }
+
+        .exam-pill {
+          background: rgba(37, 99, 235, 0.1);
+          color: #2563eb;
+        }
+
+        :global(html.dark) .exam-pill {
+          background: rgba(37, 99, 235, 0.25);
+          color: #60a5fa;
+        }
+
+        .session-pill {
+          background: rgba(100, 116, 139, 0.1);
+          color: #475569;
+        }
+
+        :global(html.dark) .session-pill {
+          background: rgba(100, 116, 139, 0.25);
+          color: #cbd5e1;
+        }
+
+        .sub-title-tag {
+          display: inline-block;
+          font-size: 0.78rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          color: #2563eb;
+          margin-bottom: 0.25rem;
+        }
+
+        :global(html.dark) .sub-title-tag {
+          color: #60a5fa;
+        }
+
+        .predicted-title {
+          font-size: 1.6rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 0.5rem;
+          line-height: 1.25;
+        }
+
+        :global(html.dark) .predicted-title {
+          color: #f8fafc;
+        }
+
+        .predicted-meta-desc {
+          font-size: 0.95rem;
+          color: #475569;
+          margin-bottom: 1.5rem;
+        }
+
+        :global(html.dark) .predicted-meta-desc {
+          color: #94a3b8;
+        }
+
+        .reader-cta-banner {
+          background: linear-gradient(
+            135deg,
+            rgba(37, 99, 235, 0.06) 0%,
+            rgba(16, 185, 129, 0.06) 100%
+          );
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          border-radius: 12px;
+          padding: 1.25rem 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+
+        :global(html.dark) .reader-cta-banner {
+          background: linear-gradient(
+            135deg,
+            rgba(30, 58, 138, 0.2) 0%,
+            rgba(6, 78, 59, 0.2) 100%
+          );
+          border-color: rgba(96, 165, 250, 0.2);
+        }
+
+        .reader-cta-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.75rem;
+          font-weight: 800;
+          color: #2563eb;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.25rem;
+        }
+
+        :global(html.dark) .reader-cta-badge {
+          color: #60a5fa;
+        }
+
+        .reader-cta-text h4 {
+          font-size: 1.1rem;
+          font-weight: 800;
+          color: #1e293b;
+          margin-bottom: 0.25rem;
+        }
+
+        :global(html.dark) .reader-cta-text h4 {
+          color: #f1f5f9;
+        }
+
+        .reader-cta-text p {
+          font-size: 0.88rem;
+          color: #64748b;
+          margin: 0;
+          line-height: 1.45;
+        }
+
+        :global(html.dark) .reader-cta-text p {
+          color: #94a3b8;
+        }
+
+        .reader-cta-buttons {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          min-width: 220px;
+        }
+
+        .cta-primary-btn {
+          background: #2563eb;
+          color: #ffffff;
+          padding: 0.65rem 1.1rem;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.4rem;
+          transition: all 0.2s;
+        }
+
+        .cta-primary-btn:hover {
+          background: #1d4ed8;
+          transform: translateY(-1px);
+        }
+
+        .cta-secondary-btn {
+          background: #ffffff;
+          color: #334155;
+          border: 1px solid #cbd5e1;
+          padding: 0.6rem 1.1rem;
+          border-radius: 8px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.4rem;
+          transition: all 0.2s;
+        }
+
+        :global(html.dark) .cta-secondary-btn {
+          background: #1e293b;
+          color: #cbd5e1;
+          border-color: #334155;
+        }
+
+        .cta-secondary-btn:hover {
+          background: #f1f5f9;
+        }
+
+        :global(html.dark) .cta-secondary-btn:hover {
+          background: #334155;
+        }
+
+        .predicted-filter-bar {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+          padding-top: 1rem;
+          border-top: 1px solid #e2e8f0;
+        }
+
+        :global(html.dark) .predicted-filter-bar {
+          border-top-color: #334155;
+        }
+
+        .filter-pill-label {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #64748b;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        :global(html.dark) .filter-pill-label {
+          color: #94a3b8;
+        }
+
+        .filter-pill-buttons {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .filter-pill-btn {
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          color: #475569;
+          font-size: 0.8rem;
+          font-weight: 700;
+          padding: 0.4rem 0.85rem;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: all 0.15s;
+        }
+
+        :global(html.dark) .filter-pill-btn {
+          background: #0f172a;
+          border-color: #334155;
+          color: #94a3b8;
+        }
+
+        .filter-pill-btn.active {
+          background: #2563eb;
+          border-color: #2563eb;
+          color: #ffffff;
+        }
+
+        :global(html.dark) .filter-pill-btn.active {
+          background: #3b82f6;
+          border-color: #3b82f6;
+          color: #ffffff;
+        }
+
+        /* Question Cards Stack */
+        .predicted-questions-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .predicted-q-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 14px;
+          padding: 1.5rem 1.75rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          transition: border-color 0.2s;
+        }
+
+        :global(html.dark) .predicted-q-card {
+          background: #1e293b;
+          border-color: #334155;
+        }
+
+        .predicted-q-card.expanded {
+          border-color: #3b82f6;
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+
+        .q-badge-row {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .q-num-pill {
+          background: #2563eb;
+          color: #ffffff;
+          font-size: 0.78rem;
+          font-weight: 800;
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
+        }
+
+        .q-category-pill {
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
+        }
+
+        .q-category-pill.core {
+          background: rgba(16, 185, 129, 0.1);
+          color: #059669;
+        }
+
+        :global(html.dark) .q-category-pill.core {
+          background: rgba(16, 185, 129, 0.25);
+          color: #34d399;
+        }
+
+        .q-category-pill.backup {
+          background: rgba(100, 116, 139, 0.1);
+          color: #475569;
+        }
+
+        :global(html.dark) .q-category-pill.backup {
+          background: rgba(100, 116, 139, 0.25);
+          color: #cbd5e1;
+        }
+
+        .q-marks-pill {
+          background: rgba(245, 158, 11, 0.1);
+          color: #d97706;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
+        }
+
+        :global(html.dark) .q-marks-pill {
+          background: rgba(245, 158, 11, 0.25);
+          color: #fbbf24;
+        }
+
+        .q-words-pill {
+          background: rgba(99, 102, 241, 0.1);
+          color: #4f46e5;
+          font-size: 0.75rem;
+          font-weight: 700;
+          padding: 0.2rem 0.55rem;
+          border-radius: 6px;
+        }
+
+        :global(html.dark) .q-words-pill {
+          background: rgba(99, 102, 241, 0.25);
+          color: #a5b4fc;
+        }
+
+        .predicted-q-text {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin-bottom: 0.5rem;
+          line-height: 1.4;
+        }
+
+        :global(html.dark) .predicted-q-text {
+          color: #f8fafc;
+        }
+
+        .predicted-q-summary {
+          font-size: 0.9rem;
+          color: #475569;
+          line-height: 1.5;
+          margin: 0 0 1rem 0;
+        }
+
+        :global(html.dark) .predicted-q-summary {
+          color: #cbd5e1;
+        }
+
+        .predicted-q-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+
+        .ans-toggle-btn {
+          background: #2563eb;
+          color: #ffffff;
+          border: none;
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          transition: all 0.15s;
+        }
+
+        .ans-toggle-btn:hover {
+          background: #1d4ed8;
+        }
+
+        .ans-toggle-btn.active {
+          background: #0f172a;
+        }
+
+        :global(html.dark) .ans-toggle-btn.active {
+          background: #334155;
+        }
+
+        .ans-listen-link {
+          background: rgba(37, 99, 235, 0.1);
+          color: #2563eb;
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 0.5rem 0.9rem;
+          border-radius: 8px;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          transition: all 0.15s;
+        }
+
+        :global(html.dark) .ans-listen-link {
+          background: rgba(37, 99, 235, 0.25);
+          color: #60a5fa;
+        }
+
+        .ans-listen-link:hover {
+          background: #2563eb;
+          color: #ffffff;
+        }
+
+        .ans-video-btn {
+          background: #fee2e2;
+          color: #dc2626;
+          border: none;
+          font-size: 0.82rem;
+          font-weight: 700;
+          padding: 0.5rem 0.9rem;
+          border-radius: 8px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          transition: all 0.15s;
+        }
+
+        :global(html.dark) .ans-video-btn {
+          background: rgba(220, 38, 38, 0.25);
+          color: #f87171;
+        }
+
+        .ans-video-btn:hover,
+        .ans-video-btn.active {
+          background: #dc2626;
+          color: #ffffff;
+        }
+
+        /* Inline Video Player */
+        .inline-video-wrap {
+          margin-top: 1rem;
+          padding: 1rem;
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 10px;
+        }
+
+        :global(html.dark) .inline-video-wrap {
+          background: #0f172a;
+          border-color: #334155;
+        }
+
+        .video-meta-top {
+          display: flex;
+          gap: 1rem;
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: #64748b;
+          margin-bottom: 0.4rem;
+        }
+
+        :global(html.dark) .video-meta-top {
+          color: #94a3b8;
+        }
+
+        .inline-video-wrap h5 {
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin-bottom: 0.75rem;
+        }
+
+        :global(html.dark) .inline-video-wrap h5 {
+          color: #f1f5f9;
+        }
+
+        .iframe-box {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 8px;
+        }
+
+        .video-iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
+        .video-takeaway {
+          font-size: 0.85rem;
+          color: #334155;
+          margin: 0.75rem 0 0 0;
+          background: rgba(59, 130, 246, 0.08);
+          padding: 0.6rem 0.85rem;
+          border-radius: 6px;
+        }
+
+        :global(html.dark) .video-takeaway {
+          color: #cbd5e1;
+          background: rgba(59, 130, 246, 0.15);
+        }
+
+        /* In-Depth Model Solution Body */
+        .predicted-solution-box {
+          margin-top: 1.25rem;
+          padding-top: 1.25rem;
+          border-top: 1px dashed #cbd5e1;
+          animation: fadeIn 0.25s ease-out;
+        }
+
+        :global(html.dark) .predicted-solution-box {
+          border-top-color: #475569;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .solution-key-points {
+          background: rgba(16, 185, 129, 0.06);
+          border-left: 4px solid #10b981;
+          padding: 1rem 1.25rem;
+          border-radius: 0 8px 8px 0;
+          margin-bottom: 1.25rem;
+        }
+
+        :global(html.dark) .solution-key-points {
+          background: rgba(16, 185, 129, 0.12);
+        }
+
+        .solution-key-points h4 {
+          font-size: 0.92rem;
+          font-weight: 800;
+          color: #065f46;
+          margin-bottom: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        :global(html.dark) .solution-key-points h4 {
+          color: #34d399;
+        }
+
+        .solution-key-points ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .solution-key-points li {
+          font-size: 0.88rem;
+          color: #1e293b;
+          line-height: 1.45;
+          display: flex;
+          gap: 0.4rem;
+        }
+
+        :global(html.dark) .solution-key-points li {
+          color: #e2e8f0;
+        }
+
+        .bullet-arrow {
+          color: #10b981;
+          font-weight: bold;
+        }
+
+        .solution-detailed-text {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 10px;
+          padding: 1.25rem 1.5rem;
+          margin-bottom: 1.25rem;
+        }
+
+        :global(html.dark) .solution-detailed-text {
+          background: #0f172a;
+          border-color: #334155;
+        }
+
+        .solution-detailed-text h4 {
+          font-size: 0.95rem;
+          font-weight: 800;
+          color: #1e293b;
+          margin-bottom: 0.85rem;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        :global(html.dark) .solution-detailed-text h4 {
+          color: #f1f5f9;
+          border-bottom-color: #334155;
+        }
+
+        .text-paragraphs {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .paragraph-spacer {
+          height: 0.4rem;
+        }
+
+        .sol-subheading {
+          font-size: 0.92rem;
+          font-weight: 800;
+          color: #2563eb;
+          margin-top: 0.4rem;
+          margin-bottom: 0.15rem;
+        }
+
+        :global(html.dark) .sol-subheading {
+          color: #60a5fa;
+        }
+
+        .sol-paragraph {
+          font-size: 0.88rem;
+          color: #334155;
+          line-height: 1.6;
+          margin: 0;
+        }
+
+        :global(html.dark) .sol-paragraph {
+          color: #cbd5e1;
+        }
+
+        .solution-footer-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 1rem;
+          padding-top: 0.75rem;
+        }
+
+        .exam-compliance-tag {
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #059669;
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        :global(html.dark) .exam-compliance-tag {
+          color: #34d399;
+        }
+
+        .launch-full-reader-btn {
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: #2563eb;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          transition: color 0.15s;
+        }
+
+        :global(html.dark) .launch-full-reader-btn {
+          color: #60a5fa;
+        }
+
+        .launch-full-reader-btn:hover {
+          color: #1d4ed8;
+          text-decoration: underline;
         }
 
         @media (max-width: 768px) {
