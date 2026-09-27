@@ -11,8 +11,13 @@ export default function ProfessionalCommunicationPage() {
     "syllabus" | "cia" | "nptel" | "books"
   >("syllabus");
   const [expandedUnit, setExpandedUnit] = useState<number | null>(null);
+  const [allUnitsExpanded, setAllUnitsExpanded] = useState(false);
   const [openVideoQuestionId, setOpenVideoQuestionId] = useState<string | null>(
     null,
+  );
+  const [showPaperSheet, setShowPaperSheet] = useState(false);
+  const [assignmentFilter, setAssignmentFilter] = useState<"all" | "a1" | "a2">(
+    "all",
   );
 
   const questionVideos: Record<
@@ -28,21 +33,21 @@ export default function ProfessionalCommunicationPage() {
     }
   > = {
     "a1-q1": {
-      id: "wv_nEUnhFFE",
-      title: "How to Write a Formal Report: Structure, Subheadings & Format",
-      channel: "Teacher Phill (Cambridge English)",
-      duration: "11:42",
+      id: "-ZRombUgRs4",
+      title: "Report Writing: Format, Structure & Model Examples",
+      channel: "Dear Sir (Academic English)",
+      duration: "14:28",
       speed: "1.25x",
       relevance:
-        "Q.01: Master standard formal report architecture (Title, Terms of Reference, Methodology, Findings with Subheadings, Conclusions, and Actionable Recommendations).",
+        "Q.01: Master standard formal technical report architecture (Front Matter, Main Body, Methodology, Findings, Conclusions, and Recommendations with sample format).",
       takeaway:
-        "Subheadings chunk dense technical data and passive reporting voice maintains formal academic neutrality.",
+        "Organize reports logically with standard headings, objective voice, and clear separation between findings and actionable recommendations.",
     },
     "a1-q2": {
-      id: "49EsnvxVQec",
-      title: "Phrases and Clauses: Syntax & Differences",
-      channel: "Khan Academy",
-      duration: "4:06",
+      id: "3HPDFtZQ9ao",
+      title: "Types of Phrases in English Grammar (5 Core Types with Examples)",
+      channel: "Nihir Shah",
+      duration: "11:45",
       speed: "1.25x",
       relevance:
         "Q.02: Clarifies why phrases lack subject-predicate pairs and breaks down Noun, Verb, Adjective, Adverbial, and Prepositional phrases.",
@@ -50,10 +55,10 @@ export default function ProfessionalCommunicationPage() {
         "A phrase operates as a unified single part of speech within a clause, never containing a finite verb acting on a subject.",
     },
     "a1-q3": {
-      id: "e_n0M0Xw_k4",
-      title: "Group Discussion Skills, Do's & Don'ts & Body Language",
-      channel: "CareerRide / Soft Skills",
-      duration: "9:15",
+      id: "3w32jIsRlsw",
+      title: "Group Discussion Techniques, PREP Framework & Placement Tips",
+      channel: "Simplilearn",
+      duration: "10:15",
       speed: "1.25x",
       relevance:
         "Q.03: Demonstrates initiation tactics, constructive intervention, handling conflicting viewpoints, and applying the PREP / REP structured argument technique.",
@@ -61,32 +66,34 @@ export default function ProfessionalCommunicationPage() {
         "In GD evaluation, active listening and facilitating consensus score significantly higher than dominating speaking time.",
     },
     "a1-q4": {
-      id: "gV60dXy70No",
-      title: "How to Write Descriptively (Creative Writing Masterclass)",
-      channel: "TED-Ed (Nalo Hopkinson)",
-      duration: "4:42",
-      speed: "1.0x",
+      id: "HNlV48JhUAo",
+      title:
+        "Creative Writing: Definition, Types, Features & Literary Qualities",
+      channel: "Muhammad Ullah (English Literature)",
+      duration: "10:45",
+      speed: "1.25x",
       relevance:
-        "Q.04: Explores the core distinction between technical and creative writing, showing how sensory details and figurative devices evoke emotional resonance.",
+        "Q.04: Explores the core distinction between technical and creative writing, showing how sensory details, originality, and figurative devices evoke emotional resonance.",
       takeaway:
         "Creative writing prioritizes 'showing over telling' through evocative imagery, sensory anchors, and metaphoric nuance.",
     },
     "a1-q5": {
-      id: "7wUCyjiyXdg",
-      title: "Active Listening Skills: How to Be an Active Listener",
-      channel: "Communication Coach Alex Lyon",
-      duration: "8:24",
-      speed: "1.25x",
+      id: "aDMtx5ivKK0",
+      title: "The Art of Active Listening & Overcoming Cognitive Barriers",
+      channel: "Harvard Business Review",
+      duration: "6:50",
+      speed: "1.0x",
       relevance:
-        "Q.05: Breaks down the 4-stage active listening cognitive process (Receiving, Evaluating, Responding, Remembering) and overcoming internal/external listening barriers.",
+        "Q.05: Breaks down the active listening cognitive process (Receiving, Evaluating, Responding, Remembering) and overcoming internal/external listening barriers.",
       takeaway:
         "Active listening requires intentional cognitive engagement, non-verbal feedback (SOLER), and reflective paraphrasing.",
     },
     "a2-q1": {
-      id: "sAo6LbCUAQo",
-      title: "Dependent and Independent Clauses: Syntax",
-      channel: "Khan Academy",
-      duration: "3:48",
+      id: "zwsBcic8GZ4",
+      title:
+        "English Clauses Explained: Independent vs Dependent (Noun, Adjective & Adverb Clauses)",
+      channel: "English with Ananya",
+      duration: "10:15",
       speed: "1.25x",
       relevance:
         "Q.01: Defines the grammatical criteria of clauses (Subject + Predicate) and classifies Independent vs Subordinate (Noun, Relative, Adverbial) clauses.",
@@ -94,42 +101,44 @@ export default function ProfessionalCommunicationPage() {
         "Independent clauses can stand alone as complete thoughts; dependent clauses require a subordinating conjunction or relative pronoun.",
     },
     "a2-q2": {
-      id: "VEStYVONy-0",
-      title: "Public Speaking Anxiety Tips: Overcoming Speaking Barriers",
-      channel: "Communication Coach Alex Lyon",
-      duration: "7:18",
+      id: "0J8iHJKOKlY",
+      title:
+        "Barriers of Communication & Speaking: Semantic, Psychological, Physical & Physiological",
+      channel: "Study Lovers Kapil Gangwani",
+      duration: "11:20",
       speed: "1.25x",
       relevance:
         "Q.02: Analyzes psychological glossophobia, physiological speech tension, Mother Tongue Influence (MTI), and cognitive reframing techniques.",
       takeaway:
-        "Reframe stage anxiety from 'performance evaluation' to 'audience conversation', channeling adrenaline into vocal dynamism.",
+        "Overcoming speaking barriers requires structured speech preparation, phonetic practice to neutralize MTI, and cognitive reframing.",
     },
     "a2-q3": {
-      id: "VtIpGl4715I",
-      title: "Writing Skills: The Paragraph - Structure, Flow & Unity",
-      channel: "Learn English with Adam [engVid]",
-      duration: "14:33",
+      id: "vbMtBjoBalQ",
+      title: "Paragraph Writing in English: Paragraph Unity and Coherence",
+      channel: "Writing Better",
+      duration: "8:15",
       speed: "1.25x",
       relevance:
-        "Q.03: Teaches the 4 pillars of academic paragraph construction: Topic Sentence, Supporting Elaboration, Clincher, and Unity/Coherence transitions.",
+        "Q.03: Teaches the foundational principles of academic paragraph construction: Topic Sentence, Supporting Elaboration, Clincher, and Unity/Coherence transitions.",
       takeaway:
         "A well-crafted paragraph maintains single-idea thematic unity, reinforced by logical bridges and transitional signposts.",
     },
     "a2-q4": {
-      id: "2R-9T9TgGnE",
-      title: "5 Steps of the Academic Writing Process",
-      channel: "Scribbr",
-      duration: "6:14",
+      id: "PhSoh9aOdA4",
+      title:
+        "Types of Writing: Expository, Descriptive, Persuasive, Narrative & Technical",
+      channel: "Muhammad Ullah (English Literature)",
+      duration: "9:15",
       speed: "1.25x",
       relevance:
-        "Q.04: Breaks down the 5 sequential writing phases (Pre-writing, Planning/Outlining, Drafting, Revising, Proofreading) and mode taxonomies.",
+        "Q.04: Compares the 4 primary writing modes (Expository, Descriptive, Persuasive, Narrative) alongside Technical documentation.",
       takeaway:
-        "Separating the drafting phase from the revising/editing phase prevents cognitive overload and sharpens academic prose.",
+        "Selecting the proper writing style depends on authorial objective, intended audience, and communicative context.",
     },
     "a2-q5": {
       id: "Iwpi1Lm6dFo",
       title: "How to Avoid Death By PowerPoint: Slide Design & Delivery",
-      channel: "TEDx (David JP Phillips)",
+      channel: "David JP Phillips (TEDx)",
       duration: "16:53",
       speed: "1.25x",
       relevance:
@@ -366,6 +375,188 @@ export default function ProfessionalCommunicationPage() {
     },
   ];
 
+  const assignment1Questions = [
+    {
+      key: "a1-q1",
+      num: "Q.01",
+      title: "Report Writing Format:",
+      desc: "Format of a formal report with structural components and a concrete technical report example.",
+    },
+    {
+      key: "a1-q2",
+      num: "Q.02",
+      title: "Phrase & Its Types:",
+      desc: "Definition of phrases, structural difference from clauses, and 5 major types (Noun, Verb, Adj, Adv, Prep).",
+    },
+    {
+      key: "a1-q3",
+      num: "Q.03",
+      title: "Group Discussion Techniques:",
+      desc: "Dynamics of GD, non-verbal indicators, and application of the PREP and REP techniques.",
+    },
+    {
+      key: "a1-q4",
+      num: "Q.04",
+      title: "Creative Writing:",
+      desc: "Definition, distinction from technical writing, and 5 essential literary qualities.",
+    },
+    {
+      key: "a1-q5",
+      num: "Q.05",
+      title: "Active Listening & Barriers:",
+      desc: "5-stage active listening model and comprehensive barriers (physical, psychological, semantic, physiological).",
+    },
+  ];
+
+  const assignment2Questions = [
+    {
+      key: "a2-q1",
+      num: "Q.01",
+      title: "Clause & Its Types:",
+      desc: "Syntactic definition of clause; Independent vs Dependent (Noun, Adjective, Adverbial clauses) with examples.",
+    },
+    {
+      key: "a2-q2",
+      num: "Q.02",
+      title: "Barriers of Speaking:",
+      desc: "Psychological glossophobia, Mother Tongue Influence (MTI), physiological constraints & remedies.",
+    },
+    {
+      key: "a2-q3",
+      num: "Q.03",
+      title: "Paragraph Writing Principles:",
+      desc: "Topic sentence, supporting elaboration, clincher, and principles: Unity, Coherence, Order, and Completeness.",
+    },
+    {
+      key: "a2-q4",
+      num: "Q.04",
+      title: "Writing Skills Taxonomy:",
+      desc: "Writing stages (Pre-writing, drafting, editing) and 5 major modes: Expository, Descriptive, Persuasive, Narrative, Technical.",
+    },
+    {
+      key: "a2-q5",
+      num: "Q.05",
+      title: "Planning Successful Presentations:",
+      desc: "Audience analysis, the 3-act structure, Rule of 6x6 slide design, vocal pacing, and Q&A management.",
+    },
+  ];
+
+  const renderQuestionList = (
+    questions: typeof assignment1Questions,
+    assignId: "sem1-comm-cia1" | "sem1-comm-cia2",
+    assignTitle: string,
+    badgeText: string,
+  ) => (
+    <div className="assignment-box">
+      <div className="assignment-header">
+        <div>
+          <h4>{assignTitle}</h4>
+          <span className="criteria-pill">{badgeText}</span>
+        </div>
+        <Link
+          href={`/curaj-msc-cs/assessments?course=6.0CSC04&id=${assignId}`}
+          className="header-direct-link"
+          title="Open in full exam reader"
+        >
+          <i className="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Full Solutions</span>
+        </Link>
+      </div>
+
+      <ul className="assignment-q-list">
+        {questions.map((item) => {
+          const video = questionVideos[item.key];
+          const isOpen = openVideoQuestionId === item.key;
+          return (
+            <li key={item.key} className={isOpen ? "video-open" : ""}>
+              <div className="q-item-header">
+                <div className="q-item-main">
+                  <span className="q-badge">{item.num}</span>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <p>{item.desc}</p>
+                  </div>
+                </div>
+                {video && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenVideoQuestionId(isOpen ? null : item.key)
+                    }
+                    className={`q-video-toggle-btn ${isOpen ? "active" : ""}`}
+                    title={`Toggle video lecture for ${item.num}`}
+                  >
+                    <i className="fa-brands fa-youtube"></i>
+                    <span>{isOpen ? "Hide Video" : "Watch Lecture"}</span>
+                  </button>
+                )}
+              </div>
+
+              {isOpen && video && (
+                <div className="inline-q-video-box">
+                  <div className="inline-q-video-meta">
+                    <span className="meta-channel">
+                      <i className="fa-solid fa-graduation-cap"></i>{" "}
+                      {video.channel}
+                    </span>
+                    <span className="meta-duration">
+                      <i className="fa-regular fa-clock"></i> {video.duration}
+                    </span>
+                    <span className="meta-speed">
+                      <i className="fa-solid fa-gauge-high"></i> Speed:{" "}
+                      {video.speed}
+                    </span>
+                  </div>
+                  <h5 className="inline-q-video-title">{video.title}</h5>
+                  <div className="inline-q-video-frame-wrap">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.id}?rel=0`}
+                      title={video.title}
+                      className="inline-q-video-iframe"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="inline-q-video-footer">
+                    <p className="inline-q-video-relevance">
+                      <strong>Exam Relevance:</strong> {video.relevance}
+                    </p>
+                    {video.takeaway && (
+                      <p className="inline-q-video-takeaway">
+                        <strong>Key Takeaway:</strong> {video.takeaway}
+                      </p>
+                    )}
+                    <div className="inline-q-video-actions">
+                      <a
+                        href={`https://www.youtube.com/watch?v=${video.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-q-video-link"
+                      >
+                        <i className="fa-brands fa-youtube"></i>
+                        <span>Watch on YouTube (HD)</span>
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+
+      <Link
+        href={`/curaj-msc-cs/assessments?course=6.0CSC04&id=${assignId}`}
+        className="view-solutions-btn"
+      >
+        <span>View All 5 Full Model Solutions</span>
+        <i className="fa-solid fa-arrow-right"></i>
+      </Link>
+    </div>
+  );
+
   return (
     <div className="page-container">
       <BlogPageHeader
@@ -384,19 +575,19 @@ export default function ProfessionalCommunicationPage() {
               <span className="badge credits">2 Credits</span>
               <span className="badge univ">CURAJ M.Sc. Computer Science</span>
             </div>
-            <Link
-              href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia1"
+            <button
+              type="button"
+              onClick={() => setActiveTab("cia")}
               className="cia-quick-link"
             >
               <i className="fa-solid fa-file-circle-check"></i>
               <span>CIA-1 & CIA-2 Verified Solutions</span>
               <i className="fa-solid fa-arrow-right"></i>
-            </Link>
+            </button>
           </div>
 
           <h1 className="hero-title">
-            <i className="fa-solid fa-comments-dollar"></i> Professional
-            Communication
+            <i className="fa-solid fa-comments"></i> Professional Communication
           </h1>
           <p className="hero-subtitle">
             School of Mathematics, Statistics & Computational Sciences —
@@ -477,22 +668,22 @@ export default function ProfessionalCommunicationPage() {
             onClick={() => setActiveTab("syllabus")}
           >
             <i className="fa-solid fa-list-check"></i>
-            <span>6-Unit Syllabus Breakdown</span>
+            <span>6-Unit Syllabus</span>
           </button>
           <button
             className={`tab-btn ${activeTab === "cia" ? "active" : ""}`}
             onClick={() => setActiveTab("cia")}
           >
             <i className="fa-solid fa-file-invoice"></i>
-            <span>CIA Assessment Paper & Solutions</span>
-            <span className="tab-pill">pccia2025</span>
+            <span>CIA Questions & Solutions</span>
+            <span className="tab-pill">Assignments 01 & 02</span>
           </button>
           <button
             className={`tab-btn ${activeTab === "books" ? "active" : ""}`}
             onClick={() => setActiveTab("books")}
           >
             <i className="fa-solid fa-book"></i>
-            <span>Prescribed Reference Books (15)</span>
+            <span>Prescribed Books (15)</span>
           </button>
           <button
             className={`tab-btn ${activeTab === "nptel" ? "active" : ""}`}
@@ -517,11 +708,36 @@ export default function ProfessionalCommunicationPage() {
                   regulations and continuous internal evaluation.
                 </p>
               </div>
+              <div className="section-controls">
+                <button
+                  type="button"
+                  className="btn-outline-sm"
+                  onClick={() => {
+                    if (allUnitsExpanded) {
+                      setExpandedUnit(null);
+                      setAllUnitsExpanded(false);
+                    } else {
+                      setAllUnitsExpanded(true);
+                      setExpandedUnit(-1);
+                    }
+                  }}
+                >
+                  <i
+                    className={`fa-solid ${allUnitsExpanded ? "fa-compress" : "fa-expand"}`}
+                  ></i>
+                  <span>
+                    {allUnitsExpanded
+                      ? "Collapse All Units"
+                      : "Expand All Units"}
+                  </span>
+                </button>
+              </div>
             </div>
 
             <div className="units-container">
               {syllabusUnits.map((u) => {
-                const isExpanded = expandedUnit === u.unitNumber;
+                const isExpanded =
+                  allUnitsExpanded || expandedUnit === u.unitNumber;
                 return (
                   <div
                     key={u.unitNumber}
@@ -529,9 +745,18 @@ export default function ProfessionalCommunicationPage() {
                   >
                     <div
                       className="unit-header"
-                      onClick={() =>
-                        setExpandedUnit(isExpanded ? null : u.unitNumber)
-                      }
+                      onClick={() => {
+                        if (allUnitsExpanded) {
+                          setAllUnitsExpanded(false);
+                          setExpandedUnit(
+                            expandedUnit === u.unitNumber ? null : u.unitNumber,
+                          );
+                        } else {
+                          setExpandedUnit(
+                            expandedUnit === u.unitNumber ? null : u.unitNumber,
+                          );
+                        }
+                      }}
                     >
                       <div className="unit-header-left">
                         <span className="unit-number-pill">
@@ -557,20 +782,22 @@ export default function ProfessionalCommunicationPage() {
                       </div>
                     </div>
 
-                    <div className="unit-body">
-                      <h4 className="topics-heading">
-                        <i className="fa-solid fa-list-ul"></i> Prescribed
-                        Syllabus Topics:
-                      </h4>
-                      <ul className="topics-list">
-                        {u.topics.map((t, idx) => (
-                          <li key={idx}>
-                            <i className="fa-solid fa-check-circle"></i>
-                            <span>{t}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    {isExpanded && (
+                      <div className="unit-body">
+                        <h4 className="topics-heading">
+                          <i className="fa-solid fa-list-ul"></i> Prescribed
+                          Syllabus Topics:
+                        </h4>
+                        <ul className="topics-list">
+                          {u.topics.map((t, idx) => (
+                            <li key={idx}>
+                              <i className="fa-solid fa-check-circle"></i>
+                              <span>{t}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -610,7 +837,8 @@ export default function ProfessionalCommunicationPage() {
                   <p className="cia-showcase-desc">
                     Official internal assessment question sheet (Course Code:
                     6.0 ODLCSC04 / 6.0CSC04) with comprehensive 300-400 word
-                    verified model solutions for every question.
+                    verified model solutions and synchronized high-definition
+                    video lectures for every question.
                   </p>
                 </div>
 
@@ -629,316 +857,143 @@ export default function ProfessionalCommunicationPage() {
                     <i className="fa-solid fa-book-open"></i>
                     <span>Study Assignment 02 Solutions</span>
                   </Link>
-                  <a
-                    href="/pccia2025.png"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-outline"
-                  >
-                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                    <span>Open High-Res Sheet</span>
-                  </a>
                 </div>
               </div>
 
-              {/* Scanned Image Preview */}
+              {/* Scanned Image Preview with Toggle */}
               <div className="paper-preview-container">
                 <div className="paper-preview-header">
-                  <span>
-                    <i className="fa-solid fa-image"></i> Scanned Assessment
-                    Sheet (public/pccia2025.png)
-                  </span>
-                  <a
-                    href="/pccia2025.png"
-                    download="CURAJ-Professional-Communication-CIA.png"
-                    className="download-link"
-                  >
-                    <i className="fa-solid fa-download"></i> Download PNG
-                  </a>
+                  <div className="paper-header-left">
+                    <span className="paper-header-badge">
+                      <i className="fa-solid fa-file-lines"></i> Original
+                      Question Sheet
+                    </span>
+                    <span className="paper-session-text">
+                      CURAJ Semester I • Session 2025–2026
+                    </span>
+                  </div>
+                  <div className="paper-header-actions">
+                    <button
+                      type="button"
+                      onClick={() => setShowPaperSheet(!showPaperSheet)}
+                      className="paper-toggle-btn"
+                    >
+                      <i
+                        className={`fa-solid ${showPaperSheet ? "fa-eye-slash" : "fa-eye"}`}
+                      ></i>
+                      <span>
+                        {showPaperSheet
+                          ? "Hide Question Sheet"
+                          : "Preview Question Sheet"}
+                      </span>
+                    </button>
+                    <a
+                      href="/pccia2025.png"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="paper-action-btn"
+                      title="Open full resolution PNG in new tab"
+                    >
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      <span>Full Res</span>
+                    </a>
+                    <a
+                      href="/pccia2025.png"
+                      download="CURAJ-Professional-Communication-CIA.png"
+                      className="paper-action-btn download"
+                    >
+                      <i className="fa-solid fa-download"></i>
+                      <span>Download PNG</span>
+                    </a>
+                  </div>
                 </div>
-                <div className="image-wrapper">
-                  <Image
-                    src="/pccia2025.png"
-                    alt="CURAJ Professional Communication Assignment Question Paper"
-                    width={900}
-                    height={700}
-                    className="paper-image"
-                    priority
-                  />
-                </div>
+
+                {showPaperSheet && (
+                  <div className="image-wrapper">
+                    <div className="image-wrapper-bar">
+                      <span>Click image to open high-resolution view</span>
+                      <button
+                        type="button"
+                        onClick={() => setShowPaperSheet(false)}
+                        className="image-close-btn"
+                      >
+                        <i className="fa-solid fa-xmark"></i> Close Preview
+                      </button>
+                    </div>
+                    <a
+                      href="/pccia2025.png"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="image-clickable-link"
+                    >
+                      <Image
+                        src="/pccia2025.png"
+                        alt="CURAJ Professional Communication Assignment Question Paper"
+                        width={900}
+                        height={700}
+                        className="paper-image"
+                        priority
+                      />
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Assignment Filter Switcher */}
+              <div className="assignment-filter-bar">
+                <span className="filter-label">
+                  <i className="fa-solid fa-filter"></i> Filter View:
+                </span>
+                <button
+                  type="button"
+                  className={`filter-btn ${assignmentFilter === "all" ? "active" : ""}`}
+                  onClick={() => setAssignmentFilter("all")}
+                >
+                  <i className="fa-solid fa-table-columns"></i>
+                  <span>Both Assignments</span>
+                  <span className="count-pill">10 Questions</span>
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn ${assignmentFilter === "a1" ? "active" : ""}`}
+                  onClick={() => setAssignmentFilter("a1")}
+                >
+                  <i className="fa-solid fa-file-pen"></i>
+                  <span>Assignment 01 Only</span>
+                  <span className="count-pill">5 Qs</span>
+                </button>
+                <button
+                  type="button"
+                  className={`filter-btn ${assignmentFilter === "a2" ? "active" : ""}`}
+                  onClick={() => setAssignmentFilter("a2")}
+                >
+                  <i className="fa-solid fa-file-lines"></i>
+                  <span>Assignment 02 Only</span>
+                  <span className="count-pill">5 Qs</span>
+                </button>
               </div>
 
               {/* Questions Overview Table */}
-              <div className="assignments-dual-grid">
-                <div className="assignment-box">
-                  <div className="assignment-header">
-                    <h4>Assignment: 01 (Max Marks: 15)</h4>
-                    <span className="criteria-pill">
-                      Attempt any 3 • 300-400 words
-                    </span>
-                  </div>
-                  <ul className="assignment-q-list">
-                    {[
-                      {
-                        key: "a1-q1",
-                        num: "Q.01",
-                        title: "Report Writing Format:",
-                        desc: "Format of a formal report with structural components and a concrete technical report example.",
-                      },
-                      {
-                        key: "a1-q2",
-                        num: "Q.02",
-                        title: "Phrase & Its Types:",
-                        desc: "Definition of phrases, structural difference from clauses, and 5 major types (Noun, Verb, Adj, Adv, Prep).",
-                      },
-                      {
-                        key: "a1-q3",
-                        num: "Q.03",
-                        title: "Group Discussion Techniques:",
-                        desc: "Dynamics of GD, non-verbal indicators, and application of the PREP and REP techniques.",
-                      },
-                      {
-                        key: "a1-q4",
-                        num: "Q.04",
-                        title: "Creative Writing:",
-                        desc: "Definition, distinction from technical writing, and 5 essential literary qualities.",
-                      },
-                      {
-                        key: "a1-q5",
-                        num: "Q.05",
-                        title: "Active Listening & Barriers:",
-                        desc: "5-stage active listening model and comprehensive barriers (physical, psychological, semantic, physiological).",
-                      },
-                    ].map((item) => {
-                      const video = questionVideos[item.key];
-                      const isOpen = openVideoQuestionId === item.key;
-                      return (
-                        <li
-                          key={item.key}
-                          className={isOpen ? "video-open" : ""}
-                        >
-                          <div className="q-item-header">
-                            <div className="q-item-main">
-                              <span className="q-badge">{item.num}</span>
-                              <div>
-                                <strong>{item.title}</strong>
-                                <p>{item.desc}</p>
-                              </div>
-                            </div>
-                            {video && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  setOpenVideoQuestionId(
-                                    isOpen ? null : item.key,
-                                  )
-                                }
-                                className={`q-video-toggle-btn ${
-                                  isOpen ? "active" : ""
-                                }`}
-                                title={`Toggle video lecture for ${item.num}`}
-                              >
-                                <i className="fa-brands fa-youtube"></i>
-                                <span>
-                                  {isOpen ? "Hide Video" : "Watch Lecture"}
-                                </span>
-                              </button>
-                            )}
-                          </div>
+              <div
+                className={`assignments-dual-grid ${
+                  assignmentFilter !== "all" ? "single-column" : ""
+                }`}
+              >
+                {(assignmentFilter === "all" || assignmentFilter === "a1") &&
+                  renderQuestionList(
+                    assignment1Questions,
+                    "sem1-comm-cia1",
+                    "Assignment: 01 (Max Marks: 15)",
+                    "Attempt any 3 • 300-400 words",
+                  )}
 
-                          {isOpen && video && (
-                            <div className="inline-q-video-box">
-                              <div className="inline-q-video-meta">
-                                <span className="meta-channel">
-                                  <i className="fa-solid fa-graduation-cap"></i>{" "}
-                                  {video.channel}
-                                </span>
-                                <span className="meta-duration">
-                                  <i className="fa-regular fa-clock"></i>{" "}
-                                  {video.duration}
-                                </span>
-                                <span className="meta-speed">
-                                  <i className="fa-solid fa-gauge-high"></i>{" "}
-                                  Speed: {video.speed}
-                                </span>
-                              </div>
-                              <h5 className="inline-q-video-title">
-                                {video.title}
-                              </h5>
-                              <div className="inline-q-video-frame-wrap">
-                                <iframe
-                                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
-                                  title={video.title}
-                                  className="inline-q-video-iframe"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                  allowFullScreen
-                                  loading="lazy"
-                                />
-                              </div>
-                              <div className="inline-q-video-footer">
-                                <p className="inline-q-video-relevance">
-                                  <strong>Exam Relevance:</strong>{" "}
-                                  {video.relevance}
-                                </p>
-                                <a
-                                  href={`https://www.youtube.com/watch?v=${video.id}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-q-video-link"
-                                >
-                                  <span>Watch on YouTube</span>
-                                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                                </a>
-                              </div>
-                            </div>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <Link
-                    href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia1"
-                    className="view-solutions-btn"
-                  >
-                    <span>View All 5 Full Model Solutions</span>
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
-                </div>
-
-                <div className="assignment-box">
-                  <div className="assignment-header">
-                    <h4>Assignment: 02 (Max Marks: 15)</h4>
-                    <span className="criteria-pill">
-                      Attempt any 3 • 300-400 words
-                    </span>
-                  </div>
-                  <ul className="assignment-q-list">
-                    {[
-                      {
-                        key: "a2-q1",
-                        num: "Q.01",
-                        title: "Clause & Its Types:",
-                        desc: "Syntactic definition of clause; Independent vs Dependent (Noun, Adjective, Adverbial clauses) with examples.",
-                      },
-                      {
-                        key: "a2-q2",
-                        num: "Q.02",
-                        title: "Barriers of Speaking:",
-                        desc: "Psychological glossophobia, Mother Tongue Influence (MTI), physiological constraints & remedies.",
-                      },
-                      {
-                        key: "a2-q3",
-                        num: "Q.03",
-                        title: "Paragraph Writing Principles:",
-                        desc: "Topic sentence, supporting elaboration, clincher, and principles: Unity, Coherence, Order, and Completeness.",
-                      },
-                      {
-                        key: "a2-q4",
-                        num: "Q.04",
-                        title: "Writing Skills Taxonomy:",
-                        desc: "Writing stages (Pre-writing, drafting, editing) and 5 major modes: Expository, Descriptive, Persuasive, Narrative, Technical.",
-                      },
-                      {
-                        key: "a2-q5",
-                        num: "Q.05",
-                        title: "Planning Successful Presentations:",
-                        desc: "Audience analysis, the 3-act structure, Rule of 6x6 slide design, vocal pacing, and Q&A management.",
-                      },
-                    ].map((item) => {
-                      const video = questionVideos[item.key];
-                      const isOpen = openVideoQuestionId === item.key;
-                      return (
-                        <li
-                          key={item.key}
-                          className={isOpen ? "video-open" : ""}
-                        >
-                          <div className="q-item-header">
-                            <div className="q-item-main">
-                              <span className="q-badge">{item.num}</span>
-                              <div>
-                                <strong>{item.title}</strong>
-                                <p>{item.desc}</p>
-                              </div>
-                            </div>
-                            {video && (
-                              <button
-                                type="button"
-                                onClick={() =>
-                                  setOpenVideoQuestionId(
-                                    isOpen ? null : item.key,
-                                  )
-                                }
-                                className={`q-video-toggle-btn ${
-                                  isOpen ? "active" : ""
-                                }`}
-                                title={`Toggle video lecture for ${item.num}`}
-                              >
-                                <i className="fa-brands fa-youtube"></i>
-                                <span>
-                                  {isOpen ? "Hide Video" : "Watch Lecture"}
-                                </span>
-                              </button>
-                            )}
-                          </div>
-
-                          {isOpen && video && (
-                            <div className="inline-q-video-box">
-                              <div className="inline-q-video-meta">
-                                <span className="meta-channel">
-                                  <i className="fa-solid fa-graduation-cap"></i>{" "}
-                                  {video.channel}
-                                </span>
-                                <span className="meta-duration">
-                                  <i className="fa-regular fa-clock"></i>{" "}
-                                  {video.duration}
-                                </span>
-                                <span className="meta-speed">
-                                  <i className="fa-solid fa-gauge-high"></i>{" "}
-                                  Speed: {video.speed}
-                                </span>
-                              </div>
-                              <h5 className="inline-q-video-title">
-                                {video.title}
-                              </h5>
-                              <div className="inline-q-video-frame-wrap">
-                                <iframe
-                                  src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0&modestbranding=1`}
-                                  title={video.title}
-                                  className="inline-q-video-iframe"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                  allowFullScreen
-                                  loading="lazy"
-                                />
-                              </div>
-                              <div className="inline-q-video-footer">
-                                <p className="inline-q-video-relevance">
-                                  <strong>Exam Relevance:</strong>{" "}
-                                  {video.relevance}
-                                </p>
-                                <a
-                                  href={`https://www.youtube.com/watch?v=${video.id}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-q-video-link"
-                                >
-                                  <span>Watch on YouTube</span>
-                                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                                </a>
-                              </div>
-                            </div>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <Link
-                    href="/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia2"
-                    className="view-solutions-btn"
-                  >
-                    <span>View All 5 Full Model Solutions</span>
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </Link>
-                </div>
+                {(assignmentFilter === "all" || assignmentFilter === "a2") &&
+                  renderQuestionList(
+                    assignment2Questions,
+                    "sem1-comm-cia2",
+                    "Assignment: 02 (Max Marks: 15)",
+                    "Attempt any 3 • 300-400 words",
+                  )}
               </div>
             </div>
           </section>
@@ -1057,7 +1112,7 @@ export default function ProfessionalCommunicationPage() {
         }
 
         .content-wrapper {
-          max-width: 1200px;
+          max-width: 1240px;
           width: 100%;
           margin: 0 auto;
           padding: 2rem 1.5rem;
@@ -1078,6 +1133,12 @@ export default function ProfessionalCommunicationPage() {
           display: flex;
           flex-direction: column;
           gap: 1.25rem;
+        }
+
+        :global(html.dark) .course-hero-card {
+          background: #16181d;
+          border-color: #272c35;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
         }
 
         .hero-top-row {
@@ -1138,13 +1199,19 @@ export default function ProfessionalCommunicationPage() {
           border: 1px solid rgba(16, 185, 129, 0.25);
           padding: 0.4rem 0.85rem;
           border-radius: 8px;
-          text-decoration: none;
+          cursor: pointer;
           transition: all 0.2s ease;
         }
 
         .cia-quick-link:hover {
           background: rgba(16, 185, 129, 0.18);
           transform: translateY(-1px);
+        }
+
+        :global(html.dark) .cia-quick-link {
+          background: rgba(16, 185, 129, 0.14);
+          color: #34d399;
+          border-color: rgba(16, 185, 129, 0.35);
         }
 
         .hero-title {
@@ -1176,6 +1243,11 @@ export default function ProfessionalCommunicationPage() {
           border-radius: 0 10px 10px 0;
         }
 
+        :global(html.dark) .outline-box {
+          background: rgba(16, 185, 129, 0.08);
+          border-left-color: #059669;
+        }
+
         .outline-header {
           display: flex;
           align-items: center;
@@ -1183,6 +1255,10 @@ export default function ProfessionalCommunicationPage() {
           color: #059669;
           font-size: 0.9rem;
           margin-bottom: 0.35rem;
+        }
+
+        :global(html.dark) .outline-header {
+          color: #34d399;
         }
 
         .outline-box p {
@@ -1207,6 +1283,19 @@ export default function ProfessionalCommunicationPage() {
           display: flex;
           align-items: flex-start;
           gap: 0.75rem;
+          transition:
+            border-color 0.2s,
+            transform 0.15s;
+        }
+
+        .obj-card:hover {
+          border-color: #10b981;
+          transform: translateY(-1px);
+        }
+
+        :global(html.dark) .obj-card {
+          background: #111317;
+          border-color: #242933;
         }
 
         .obj-card.full-width {
@@ -1236,37 +1325,47 @@ export default function ProfessionalCommunicationPage() {
 
         /* Tab Navigation Bar */
         .tab-bar {
-          display: flex;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: 0.5rem;
           background: var(--surface);
           border: 1px solid var(--border);
-          padding: 0.4rem;
+          padding: 0.45rem;
           border-radius: 12px;
-          overflow-x: auto;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        :global(html.dark) .tab-bar {
+          background: #16181d;
+          border-color: #272c35;
         }
 
         .tab-btn {
-          flex: 1;
-          min-width: 170px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
-          padding: 0.75rem 1rem;
+          gap: 0.45rem;
+          padding: 0.75rem 0.85rem;
           border-radius: 8px;
-          font-size: 0.85rem;
-          font-weight: 600;
+          font-size: 0.84rem;
+          font-weight: 650;
           background: transparent;
           color: var(--text-secondary);
           border: none;
           cursor: pointer;
           transition: all 0.2s ease;
-          white-space: nowrap;
+          text-align: center;
+          line-height: 1.3;
         }
 
         .tab-btn:hover {
           color: var(--heading-color);
           background: var(--bg-light);
+        }
+
+        :global(html.dark) .tab-btn:hover {
+          background: #20242c;
+          color: #f3f4f6;
         }
 
         .tab-btn.active {
@@ -1276,10 +1375,22 @@ export default function ProfessionalCommunicationPage() {
         }
 
         .tab-pill {
-          font-size: 0.7rem;
-          background: rgba(255, 255, 255, 0.25);
-          padding: 0.15rem 0.45rem;
-          border-radius: 4px;
+          display: inline-flex;
+          align-items: center;
+          font-size: 0.68rem;
+          font-weight: 700;
+          background: rgba(255, 255, 255, 0.22);
+          color: #ffffff;
+          padding: 0.15rem 0.5rem;
+          border-radius: 9999px;
+          white-space: nowrap;
+          flex-shrink: 0;
+          letter-spacing: 0.02em;
+        }
+
+        :global(html:not(.dark)) .tab-btn:not(.active) .tab-pill {
+          background: rgba(16, 185, 129, 0.12);
+          color: #059669;
         }
 
         /* Tab Content Section */
@@ -1318,6 +1429,38 @@ export default function ProfessionalCommunicationPage() {
           line-height: 1.5;
         }
 
+        .btn-outline-sm {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.45rem 0.85rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          font-size: 0.8rem;
+          font-weight: 650;
+          color: var(--text-primary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .btn-outline-sm:hover {
+          border-color: #10b981;
+          color: #059669;
+          background: rgba(16, 185, 129, 0.05);
+        }
+
+        :global(html.dark) .btn-outline-sm {
+          background: #181b22;
+          border-color: #2a313d;
+          color: #e5e7eb;
+        }
+
+        :global(html.dark) .btn-outline-sm:hover {
+          color: #34d399;
+          border-color: #10b981;
+        }
+
         /* Units Accordion */
         .units-container {
           display: flex;
@@ -1333,6 +1476,11 @@ export default function ProfessionalCommunicationPage() {
           transition:
             border-color 0.2s ease,
             box-shadow 0.2s ease;
+        }
+
+        :global(html.dark) .unit-card {
+          background: #16181d;
+          border-color: #272c35;
         }
 
         .unit-card:hover {
@@ -1365,6 +1513,12 @@ export default function ProfessionalCommunicationPage() {
           padding: 0.3rem 0.6rem;
           border-radius: 6px;
           white-space: nowrap;
+        }
+
+        :global(html.dark) .unit-number-pill {
+          background: rgba(16, 185, 129, 0.16);
+          color: #34d399;
+          border-color: rgba(16, 185, 129, 0.3);
         }
 
         .unit-title {
@@ -1405,6 +1559,12 @@ export default function ProfessionalCommunicationPage() {
           gap: 0.35rem;
         }
 
+        :global(html.dark) .exam-tag {
+          background: rgba(59, 130, 246, 0.15);
+          color: #60a5fa;
+          border-color: rgba(59, 130, 246, 0.3);
+        }
+
         .toggle-icon {
           color: var(--text-muted);
           transition: transform 0.2s ease;
@@ -1415,21 +1575,21 @@ export default function ProfessionalCommunicationPage() {
         }
 
         .unit-body {
-          padding: 0 1.5rem 1.25rem 1.5rem;
+          padding: 0.75rem 1.5rem 1.5rem 1.5rem;
           border-top: 1px solid var(--border);
           background: var(--bg-light);
-          margin-top: 0.25rem;
         }
 
-        .unit-card:not(.expanded) .unit-body {
-          display: none;
+        :global(html.dark) .unit-body {
+          background: #111317;
+          border-color: #242933;
         }
 
         .topics-heading {
           font-size: 0.85rem;
           font-weight: 700;
           color: var(--heading-color);
-          margin: 1rem 0 0.75rem 0;
+          margin: 0.75rem 0 0.75rem 0;
           display: flex;
           align-items: center;
           gap: 0.45rem;
@@ -1449,7 +1609,7 @@ export default function ProfessionalCommunicationPage() {
         }
 
         .topics-list li {
-          font-size: 0.825rem;
+          font-size: 0.85rem;
           color: var(--text-primary);
           display: flex;
           align-items: flex-start;
@@ -1460,41 +1620,46 @@ export default function ProfessionalCommunicationPage() {
         .topics-list li i {
           color: #10b981;
           font-size: 0.75rem;
-          margin-top: 0.2rem;
+          margin-top: 0.25rem;
           flex-shrink: 0;
         }
 
-        /* Outcomes Card */
         .outcomes-card {
           background: var(--surface);
           border: 1px solid var(--border);
-          border-left: 4px solid #3b82f6;
           border-radius: 12px;
-          padding: 1.25rem 1.5rem;
+          padding: 1.5rem;
+          border-left: 4px solid #3b82f6;
+        }
+
+        :global(html.dark) .outcomes-card {
+          background: #16181d;
+          border-color: #272c35;
+          border-left-color: #3b82f6;
         }
 
         .outcomes-header {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.6rem;
           color: #3b82f6;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.5rem;
         }
 
         .outcomes-header h3 {
           margin: 0;
-          font-size: 1rem;
+          font-size: 1.05rem;
           font-weight: 700;
         }
 
         .outcomes-card p {
           margin: 0;
-          font-size: 0.875rem;
+          font-size: 0.9rem;
           line-height: 1.6;
           color: var(--text-secondary);
         }
 
-        /* CIA Showcase */
+        /* CIA Showcase Card */
         .cia-showcase-card {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -1503,6 +1668,13 @@ export default function ProfessionalCommunicationPage() {
           display: flex;
           flex-direction: column;
           gap: 1.75rem;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        :global(html.dark) .cia-showcase-card {
+          background: #16181d;
+          border-color: #272c35;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
         }
 
         .cia-showcase-header {
@@ -1510,22 +1682,32 @@ export default function ProfessionalCommunicationPage() {
           justify-content: space-between;
           align-items: flex-start;
           flex-wrap: wrap;
-          gap: 1.25rem;
+          gap: 1.5rem;
+          border-bottom: 1px solid var(--border);
+          padding-bottom: 1.5rem;
         }
 
         .available-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
           color: #059669;
           background: rgba(16, 185, 129, 0.1);
           border: 1px solid rgba(16, 185, 129, 0.25);
           margin-bottom: 0.5rem;
-          display: inline-block;
+        }
+
+        :global(html.dark) .available-badge {
+          background: rgba(16, 185, 129, 0.16);
+          color: #34d399;
+          border-color: rgba(16, 185, 129, 0.35);
         }
 
         .cia-showcase-title {
-          font-size: 1.4rem;
+          font-size: 1.45rem;
           font-weight: 800;
           color: var(--heading-color);
-          margin: 0 0 0.4rem 0;
+          margin: 0 0 0.5rem 0;
           display: flex;
           align-items: center;
           gap: 0.6rem;
@@ -1538,32 +1720,34 @@ export default function ProfessionalCommunicationPage() {
         .cia-showcase-desc {
           margin: 0;
           color: var(--text-secondary);
-          font-size: 0.9rem;
+          font-size: 0.925rem;
+          max-width: 750px;
           line-height: 1.55;
-          max-width: 650px;
         }
 
         .cia-action-buttons {
           display: flex;
-          flex-wrap: wrap;
           gap: 0.75rem;
+          flex-wrap: wrap;
         }
 
         .btn-primary {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.65rem 1.1rem;
+          padding: 0.65rem 1.15rem;
           background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           color: #ffffff;
-          font-weight: 700;
+          font-weight: 600;
           font-size: 0.85rem;
           border-radius: 8px;
           text-decoration: none;
-          transition: transform 0.15s ease;
+          box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+          transition: all 0.2s ease;
         }
 
         .btn-primary:hover {
+          filter: brightness(1.08);
           transform: translateY(-1px);
         }
 
@@ -1571,67 +1755,204 @@ export default function ProfessionalCommunicationPage() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.65rem 1.1rem;
-          background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 0.85rem;
-          border-radius: 8px;
-          text-decoration: none;
-          transition: transform 0.15s ease;
-        }
-
-        .btn-secondary:hover {
-          transform: translateY(-1px);
-        }
-
-        .btn-outline {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.65rem 1.1rem;
-          background: var(--bg-light);
-          border: 1px solid var(--border);
-          color: var(--text-primary);
+          padding: 0.65rem 1.15rem;
+          background: var(--surface);
+          border: 1px solid #10b981;
+          color: #059669;
           font-weight: 600;
           font-size: 0.85rem;
           border-radius: 8px;
           text-decoration: none;
+          transition: all 0.2s ease;
         }
 
+        :global(html.dark) .btn-secondary {
+          background: #1e222a;
+          color: #34d399;
+          border-color: #059669;
+        }
+
+        .btn-secondary:hover {
+          background: rgba(16, 185, 129, 0.1);
+          transform: translateY(-1px);
+        }
+
+        /* Scanned Paper Preview Container */
         .paper-preview-container {
           background: var(--bg-light);
           border: 1px solid var(--border);
           border-radius: 12px;
-          padding: 1rem;
+          padding: 0.85rem 1.1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        :global(html.dark) .paper-preview-container {
+          background: #111317;
+          border-color: #242933;
         }
 
         .paper-preview-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-size: 0.825rem;
-          font-weight: 600;
-          color: var(--text-secondary);
-          margin-bottom: 0.75rem;
+          flex-wrap: wrap;
+          gap: 0.75rem;
         }
 
-        .download-link {
+        .paper-header-left {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
+
+        .paper-header-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.825rem;
+          font-weight: 700;
+          color: var(--heading-color);
+        }
+
+        .paper-header-badge i {
+          color: #10b981;
+        }
+
+        .paper-session-text {
+          font-size: 0.75rem;
+          color: var(--text-muted);
+          font-weight: 550;
+        }
+
+        .paper-header-actions {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+
+        .paper-toggle-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.4rem 0.8rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          font-size: 0.78rem;
+          font-weight: 650;
+          color: var(--text-primary);
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .paper-toggle-btn:hover {
+          border-color: #10b981;
           color: #059669;
-          text-decoration: none;
+          background: rgba(16, 185, 129, 0.05);
+        }
+
+        :global(html.dark) .paper-toggle-btn {
+          background: #191c24;
+          border-color: #29313d;
+          color: #e5e7eb;
+        }
+
+        :global(html.dark) .paper-toggle-btn:hover {
+          color: #34d399;
+          border-color: #10b981;
+        }
+
+        .paper-action-btn {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          font-weight: 700;
+          padding: 0.4rem 0.75rem;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          border-radius: 6px;
+          font-size: 0.78rem;
+          font-weight: 650;
+          color: var(--text-secondary);
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+
+        .paper-action-btn:hover {
+          border-color: var(--text-secondary);
+          color: var(--heading-color);
+        }
+
+        :global(html.dark) .paper-action-btn {
+          background: #191c24;
+          border-color: #29313d;
+          color: #9ca3af;
+        }
+
+        .paper-action-btn.download {
+          color: #059669;
+          border-color: rgba(16, 185, 129, 0.3);
+          background: rgba(16, 185, 129, 0.08);
+        }
+
+        .paper-action-btn.download:hover {
+          background: rgba(16, 185, 129, 0.16);
+          border-color: #059669;
+        }
+
+        :global(html.dark) .paper-action-btn.download {
+          color: #34d399;
+          background: rgba(16, 185, 129, 0.14);
+          border-color: rgba(16, 185, 129, 0.35);
         }
 
         .image-wrapper {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
           background: #ffffff;
           border-radius: 8px;
           padding: 1rem;
           border: 1px solid var(--border);
+          margin-top: 0.25rem;
+        }
+
+        :global(html.dark) .image-wrapper {
+          background: #0f1013;
+          border-color: #242933;
+        }
+
+        .image-wrapper-bar {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.75rem;
+          color: var(--text-muted);
+          margin-bottom: 0.75rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .image-close-btn {
+          background: none;
+          border: none;
+          color: #ef4444;
+          font-size: 0.75rem;
+          font-weight: 650;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3rem;
+        }
+
+        .image-clickable-link {
+          display: block;
+          max-width: 100%;
+          cursor: zoom-in;
         }
 
         .paper-image {
@@ -1641,10 +1962,95 @@ export default function ProfessionalCommunicationPage() {
           border-radius: 4px;
         }
 
+        /* Filter Switcher */
+        .assignment-filter-bar {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+          padding: 0.35rem 0.5rem;
+          background: var(--bg-light);
+          border: 1px solid var(--border);
+          border-radius: 10px;
+        }
+
+        :global(html.dark) .assignment-filter-bar {
+          background: #111317;
+          border-color: #242933;
+        }
+
+        .filter-label {
+          font-size: 0.78rem;
+          font-weight: 700;
+          color: var(--text-muted);
+          margin-right: 0.25rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .filter-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.35rem 0.75rem;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          background: transparent;
+          color: var(--text-secondary);
+          font-size: 0.78rem;
+          font-weight: 650;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+          background: var(--surface);
+          color: var(--heading-color);
+        }
+
+        :global(html.dark) .filter-btn:hover {
+          background: #1a1e27;
+          color: #f3f4f6;
+        }
+
+        .filter-btn.active {
+          background: var(--surface);
+          border-color: #10b981;
+          color: #059669;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        :global(html.dark) .filter-btn.active {
+          background: #1a1e27;
+          color: #34d399;
+          border-color: #10b981;
+        }
+
+        .count-pill {
+          font-size: 0.68rem;
+          font-weight: 700;
+          padding: 0.1rem 0.4rem;
+          border-radius: 9999px;
+          background: rgba(16, 185, 129, 0.1);
+          color: #059669;
+        }
+
+        :global(html.dark) .count-pill {
+          background: rgba(16, 185, 129, 0.2);
+          color: #34d399;
+        }
+
+        /* Dual Grid - CRITICAL ALIGN-ITEMS FIX */
         .assignments-dual-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
           gap: 1.5rem;
+          align-items: start; /* Prevents empty dead space stretching when one column opens a video! */
+        }
+
+        .assignments-dual-grid.single-column {
+          grid-template-columns: 1fr;
         }
 
         .assignment-box {
@@ -1655,6 +2061,12 @@ export default function ProfessionalCommunicationPage() {
           display: flex;
           flex-direction: column;
           gap: 1rem;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        :global(html.dark) .assignment-box {
+          background: #111317;
+          border-color: #242933;
         }
 
         .assignment-header {
@@ -1663,6 +2075,7 @@ export default function ProfessionalCommunicationPage() {
           align-items: center;
           border-bottom: 1px solid var(--border);
           padding-bottom: 0.75rem;
+          gap: 0.75rem;
         }
 
         .assignment-header h4 {
@@ -1672,13 +2085,46 @@ export default function ProfessionalCommunicationPage() {
           color: var(--heading-color);
         }
 
+        .header-direct-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #3b82f6;
+          text-decoration: none;
+          padding: 0.25rem 0.55rem;
+          border-radius: 5px;
+          background: rgba(59, 130, 246, 0.08);
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          transition: all 0.2s ease;
+        }
+
+        .header-direct-link:hover {
+          background: rgba(59, 130, 246, 0.16);
+          border-color: #3b82f6;
+        }
+
+        :global(html.dark) .header-direct-link {
+          background: rgba(59, 130, 246, 0.14);
+          color: #60a5fa;
+          border-color: rgba(59, 130, 246, 0.3);
+        }
+
         .criteria-pill {
+          display: inline-block;
           font-size: 0.7rem;
           font-weight: 600;
           background: rgba(16, 185, 129, 0.1);
           color: #059669;
-          padding: 0.2rem 0.5rem;
+          padding: 0.15rem 0.45rem;
           border-radius: 4px;
+          margin-top: 0.25rem;
+        }
+
+        :global(html.dark) .criteria-pill {
+          background: rgba(16, 185, 129, 0.16);
+          color: #34d399;
         }
 
         .assignment-q-list {
@@ -1691,29 +2137,39 @@ export default function ProfessionalCommunicationPage() {
         }
 
         .assignment-q-list li {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-          padding: 0.65rem 0.75rem;
           background: var(--surface);
           border: 1px solid var(--border);
           border-radius: 8px;
+          padding: 0.85rem;
           transition:
             border-color 0.2s ease,
             box-shadow 0.2s ease;
         }
 
+        :global(html.dark) .assignment-q-list li {
+          background: #16181d;
+          border-color: #272c35;
+        }
+
+        .assignment-q-list li:hover {
+          border-color: #10b981;
+        }
+
         .assignment-q-list li.video-open {
-          border-color: rgba(239, 68, 68, 0.4);
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+          border-color: #ef4444;
+          box-shadow: 0 4px 16px rgba(239, 68, 68, 0.08);
+        }
+
+        :global(html.dark) .assignment-q-list li.video-open {
+          border-color: #dc2626;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .q-item-header {
           display: flex;
-          align-items: flex-start;
           justify-content: space-between;
+          align-items: flex-start;
           gap: 0.75rem;
-          width: 100%;
         }
 
         .q-item-main {
@@ -1723,11 +2179,43 @@ export default function ProfessionalCommunicationPage() {
           flex: 1;
         }
 
+        .q-item-main strong {
+          display: block;
+          font-size: 0.875rem;
+          color: var(--heading-color);
+          margin-bottom: 0.2rem;
+          line-height: 1.35;
+        }
+
+        .q-item-main p {
+          margin: 0;
+          font-size: 0.78rem;
+          color: var(--text-secondary);
+          line-height: 1.45;
+        }
+
+        .q-badge {
+          font-size: 0.72rem;
+          font-weight: 800;
+          background: var(--surface);
+          border: 1px solid var(--border);
+          color: #10b981;
+          padding: 0.15rem 0.45rem;
+          border-radius: 4px;
+          flex-shrink: 0;
+        }
+
+        :global(html.dark) .q-badge {
+          background: #1d212a;
+          border-color: #2a313d;
+          color: #34d399;
+        }
+
         .q-video-toggle-btn {
           display: inline-flex;
           align-items: center;
           gap: 0.35rem;
-          padding: 0.22rem 0.55rem;
+          padding: 0.28rem 0.65rem;
           font-size: 0.72rem;
           font-weight: 700;
           color: #ef4444;
@@ -1746,11 +2234,10 @@ export default function ProfessionalCommunicationPage() {
           border-color: #ef4444;
         }
 
-        /* Inline Video Player Box (Properly Justified & Sized) */
+        /* Inline Video Player Box */
         .inline-q-video-box {
           width: 100%;
-          max-width: 580px; /* Constrained and properly sized */
-          margin: 0.35rem auto 0;
+          margin: 0.75rem auto 0;
           background: var(--bg-light);
           border: 1px solid var(--border);
           border-radius: 10px;
@@ -1759,8 +2246,8 @@ export default function ProfessionalCommunicationPage() {
         }
 
         :global(html.dark) .inline-q-video-box {
-          background: #141414;
-          border-color: #272727;
+          background: #111317;
+          border-color: #262c37;
         }
 
         .inline-q-video-meta {
@@ -1783,6 +2270,11 @@ export default function ProfessionalCommunicationPage() {
           border-radius: 4px;
         }
 
+        :global(html.dark) .meta-channel {
+          background: rgba(59, 130, 246, 0.18);
+          color: #60a5fa;
+        }
+
         .meta-duration {
           display: inline-flex;
           align-items: center;
@@ -1794,6 +2286,12 @@ export default function ProfessionalCommunicationPage() {
           border: 1px solid var(--border);
           padding: 0.15rem 0.45rem;
           border-radius: 4px;
+        }
+
+        :global(html.dark) .meta-duration {
+          background: #1a1e27;
+          border-color: #2a313d;
+          color: #9ca3af;
         }
 
         .meta-speed {
@@ -1810,6 +2308,7 @@ export default function ProfessionalCommunicationPage() {
 
         :global(html.dark) .meta-speed {
           color: #fbbf24;
+          background: rgba(245, 158, 11, 0.16);
         }
 
         .inline-q-video-title {
@@ -1823,7 +2322,7 @@ export default function ProfessionalCommunicationPage() {
         .inline-q-video-frame-wrap {
           position: relative;
           width: 100%;
-          aspect-ratio: 16 / 9; /* Perfect 16:9 proportion, properly justified */
+          aspect-ratio: 16 / 9;
           background: #000;
           border-radius: 8px;
           overflow: hidden;
@@ -1843,10 +2342,9 @@ export default function ProfessionalCommunicationPage() {
 
         .inline-q-video-footer {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.65rem;
-          flex-wrap: wrap;
+          flex-direction: column;
+          gap: 0.45rem;
+          margin-top: 0.25rem;
         }
 
         .inline-q-video-relevance {
@@ -1854,24 +2352,43 @@ export default function ProfessionalCommunicationPage() {
           line-height: 1.4;
           color: var(--text-secondary);
           margin: 0;
-          flex: 1;
         }
 
         .inline-q-video-relevance strong {
           color: #10b981;
-          display: inline;
+        }
+
+        .inline-q-video-takeaway {
+          font-size: 0.75rem;
+          line-height: 1.4;
+          color: var(--text-muted);
+          margin: 0;
+        }
+
+        .inline-q-video-takeaway strong {
+          color: #3b82f6;
+        }
+
+        :global(html.dark) .inline-q-video-takeaway strong {
+          color: #60a5fa;
+        }
+
+        .inline-q-video-actions {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 0.35rem;
         }
 
         .inline-q-video-link {
           display: inline-flex;
           align-items: center;
-          gap: 0.35rem;
-          font-size: 0.72rem;
+          gap: 0.4rem;
+          font-size: 0.74rem;
           font-weight: 700;
           color: #ef4444;
           text-decoration: none;
-          padding: 0.22rem 0.5rem;
-          border-radius: 5px;
+          padding: 0.3rem 0.65rem;
+          border-radius: 6px;
           background: rgba(239, 68, 68, 0.08);
           border: 1px solid rgba(239, 68, 68, 0.2);
           transition: all 0.2s ease;
@@ -1883,51 +2400,44 @@ export default function ProfessionalCommunicationPage() {
           border-color: #ef4444;
         }
 
-        .q-badge {
-          font-size: 0.72rem;
-          font-weight: 800;
-          background: var(--surface);
-          border: 1px solid var(--border);
-          color: #10b981;
-          padding: 0.15rem 0.45rem;
-          border-radius: 4px;
-          flex-shrink: 0;
-          margin-top: 0.15rem;
-        }
-
-        .assignment-q-list strong {
-          display: block;
-          font-size: 0.85rem;
-          color: var(--heading-color);
-          margin-bottom: 0.15rem;
-        }
-
-        .assignment-q-list p {
-          margin: 0;
-          font-size: 0.8rem;
-          color: var(--text-secondary);
-          line-height: 1.4;
+        :global(html.dark) .inline-q-video-link {
+          background: rgba(239, 68, 68, 0.14);
+          color: #f87171;
+          border-color: rgba(239, 68, 68, 0.3);
         }
 
         .view-solutions-btn {
-          margin-top: auto;
           display: inline-flex;
           align-items: center;
-          justify-content: space-between;
-          padding: 0.6rem 0.85rem;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.65rem;
           background: var(--surface);
           border: 1px solid var(--border);
           border-radius: 8px;
-          text-decoration: none;
-          font-size: 0.825rem;
+          color: var(--heading-color);
+          font-size: 0.8rem;
           font-weight: 700;
-          color: #059669;
+          text-decoration: none;
           transition: all 0.2s ease;
         }
 
         .view-solutions-btn:hover {
           border-color: #10b981;
+          color: #059669;
           background: rgba(16, 185, 129, 0.05);
+        }
+
+        :global(html.dark) .view-solutions-btn {
+          background: #16181d;
+          border-color: #272c35;
+          color: #e5e7eb;
+        }
+
+        :global(html.dark) .view-solutions-btn:hover {
+          border-color: #10b981;
+          color: #34d399;
+          background: rgba(16, 185, 129, 0.1);
         }
 
         /* Books Grid */
@@ -1946,87 +2456,116 @@ export default function ProfessionalCommunicationPage() {
           flex-direction: column;
           gap: 0.5rem;
           transition:
-            transform 0.2s ease,
-            border-color 0.2s ease;
+            border-color 0.2s,
+            transform 0.15s,
+            box-shadow 0.2s;
+        }
+
+        :global(html.dark) .book-card {
+          background: #16181d;
+          border-color: #272c35;
         }
 
         .book-card:hover {
           border-color: #10b981;
           transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
         }
 
         .book-top {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-bottom: 0.25rem;
         }
 
         .book-category {
           font-size: 0.7rem;
           font-weight: 700;
-          text-transform: uppercase;
-          color: #059669;
-          background: rgba(16, 185, 129, 0.08);
-          padding: 0.2rem 0.5rem;
+          color: #8b5cf6;
+          background: rgba(139, 92, 246, 0.1);
+          padding: 0.15rem 0.5rem;
           border-radius: 4px;
         }
 
+        :global(html.dark) .book-category {
+          background: rgba(139, 92, 246, 0.18);
+          color: #a78bfa;
+        }
+
         .book-num {
-          font-size: 0.75rem;
-          color: var(--text-muted);
+          font-size: 0.72rem;
           font-weight: 700;
+          color: var(--text-muted);
         }
 
         .book-title {
           font-size: 1rem;
-          font-weight: 700;
+          font-weight: 750;
           color: var(--heading-color);
-          margin: 0.2rem 0;
+          margin: 0;
           line-height: 1.35;
         }
 
-        .book-author,
-        .book-publisher {
+        .book-author {
+          font-size: 0.825rem;
+          color: var(--text-primary);
           margin: 0;
-          font-size: 0.8rem;
-          color: var(--text-secondary);
           display: flex;
           align-items: center;
           gap: 0.4rem;
         }
 
-        .book-author i,
-        .book-publisher i {
+        .book-author i {
           color: #10b981;
+          font-size: 0.75rem;
+        }
+
+        .book-publisher {
+          font-size: 0.78rem;
+          color: var(--text-muted);
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        .book-publisher i {
+          color: var(--text-muted);
           font-size: 0.75rem;
         }
 
         /* NPTEL Grid */
         .nptel-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 1.25rem;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 1.5rem;
         }
 
         .nptel-card {
           background: var(--surface);
           border: 1px solid var(--border);
-          border-radius: 14px;
+          border-radius: 12px;
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          gap: 1.25rem;
           transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            border-color 0.2s ease;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            border-color 0.2s,
+            transform 0.15s,
+            box-shadow 0.2s;
+        }
+
+        :global(html.dark) .nptel-card {
+          background: #16181d;
+          border-color: #272c35;
         }
 
         .nptel-card:hover {
           border-color: #10b981;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
         }
 
         .nptel-card-top {
@@ -2055,6 +2594,12 @@ export default function ProfessionalCommunicationPage() {
           gap: 0.35rem;
         }
 
+        :global(html.dark) .nptel-badge-inst {
+          background: #111317;
+          border-color: #242933;
+          color: #9ca3af;
+        }
+
         .nptel-badge-inst i {
           color: #10b981;
         }
@@ -2070,6 +2615,11 @@ export default function ProfessionalCommunicationPage() {
           display: inline-flex;
           align-items: center;
           gap: 0.3rem;
+        }
+
+        :global(html.dark) .nptel-badge-weeks {
+          background: #111317;
+          border-color: #242933;
         }
 
         .nptel-course-title {
@@ -2146,8 +2696,27 @@ export default function ProfessionalCommunicationPage() {
             grid-template-columns: 1fr;
           }
           .tab-btn {
-            min-width: 140px;
             font-size: 0.78rem;
+            padding: 0.65rem 0.5rem;
+          }
+          .cia-showcase-card {
+            padding: 1.25rem;
+          }
+          .cia-action-buttons {
+            width: 100%;
+          }
+          .btn-primary,
+          .btn-secondary {
+            flex: 1;
+            justify-content: center;
+            text-align: center;
+          }
+          .q-item-header {
+            flex-direction: column;
+          }
+          .q-video-toggle-btn {
+            align-self: flex-start;
+            margin-top: 0.35rem;
           }
         }
       `}</style>
