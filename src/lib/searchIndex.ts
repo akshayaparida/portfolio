@@ -487,6 +487,33 @@ export function buildSearchIndex(): SearchIndexItem[] {
     },
     {
       title:
+        "Professional Communication CIA-1 Sept 2026 Official Paper & Solutions (PCCIA126)",
+      desc: "Official CURAJ First Mid-Semester Examination (September 2026) question paper (PCCIA126.jpeg) for 6.0CSC04 with complete 10-mark model solutions: Tense types & subtypes, Paragraph Writing principles, Phrases, and Sentences.",
+      url: "/professional-communication",
+      domain: "CURAJ",
+      icon: "fa-solid fa-file-shield",
+      keywords: [
+        "PCCIA126",
+        "PCCIA126.jpeg",
+        "pccia126",
+        "Professional Communication CIA-1",
+        "CIA-1 2026",
+        "September 2026",
+        "Mid-Semester",
+        "6.0CSC04",
+        "CSC-406",
+        "Tense",
+        "Tenses",
+        "Phrase",
+        "Phrases",
+        "Sentence",
+        "Sentences",
+        "Paragraph Writing",
+        "Principles of Paragraph Writing",
+      ],
+    },
+    {
+      title:
         "Professional Communication CIA Assignments 01 & 02 Question Paper & Solutions",
       desc: "Official CURAJ CIA question paper (pccia2025.png) for CSC-406 / 6.0CSC04 with complete verified model solutions: scientific report format, phrases & clauses, active listening, speaking barriers, paragraph writing, group discussions, and presentation skills.",
       url: "/curaj-msc-cs/assessments?course=6.0CSC04&id=sem1-comm-cia1",

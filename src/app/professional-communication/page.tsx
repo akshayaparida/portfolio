@@ -9,14 +9,22 @@ import { curajAssessments } from "@/data/curaj-msc-cs/assessments";
 
 export default function ProfessionalCommunicationPage() {
   const [activeTab, setActiveTab] = useState<
-    "predicted" | "syllabus" | "cia" | "nptel" | "books"
-  >("predicted");
+    "official2026" | "predicted" | "syllabus" | "cia" | "nptel" | "books"
+  >("official2026");
   const [expandedAnswerId, setExpandedAnswerId] = useState<string | null>(
     "comm-pred-q1",
   );
+  const [expandedOfficialAnswerId, setExpandedOfficialAnswerId] = useState<
+    string | null
+  >("comm-2026-q1");
   const [predictedFilter, setPredictedFilter] = useState<
     "all" | "core" | "backup"
   >("all");
+
+  const officialAssessment = curajAssessments.find(
+    (a) => a.id === "sem1-comm-cia1-2026",
+  );
+  const officialQuestions = officialAssessment?.questions || [];
 
   const predictedAssessment = curajAssessments.find(
     (a) => a.id === "sem1-comm-predicted-cia1",
@@ -27,7 +35,11 @@ export default function ProfessionalCommunicationPage() {
   const [openVideoQuestionId, setOpenVideoQuestionId] = useState<string | null>(
     null,
   );
+  const [openOfficialVideoId, setOpenOfficialVideoId] = useState<string | null>(
+    null,
+  );
   const [showPaperSheet, setShowPaperSheet] = useState(false);
+  const [showOfficialPaperSheet, setShowOfficialPaperSheet] = useState(true);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "a1" | "a2">(
     "all",
   );
@@ -681,39 +693,44 @@ export default function ProfessionalCommunicationPage() {
           </div>
         </section>
 
-        {/* Featured Callout: CIA-1 Predicted Paper & Reader */}
+        {/* Featured Callout: Official September 2026 Mid-Sem Exam Paper & Solutions */}
         <section className="predicted-hero-callout">
-          <div className="callout-glass-card">
+          <div
+            className="callout-glass-card"
+            style={{ borderColor: "rgba(16, 185, 129, 0.4)" }}
+          >
             <div className="callout-content-side">
               <div className="callout-meta-row">
-                <span className="callout-badge">
-                  <i className="fa-solid fa-graduation-cap"></i> CIA-1 2026
-                  Predicted Paper
+                <span
+                  className="callout-badge"
+                  style={{ background: "#059669", color: "#ffffff" }}
+                >
+                  <i className="fa-solid fa-file-shield"></i> Official Paper:
+                  PCCIA126.jpeg
                 </span>
                 <span className="callout-dot">•</span>
-                <span className="callout-meta-text">12 Questions</span>
+                <span className="callout-meta-text">September 2026</span>
                 <span className="callout-dot">•</span>
-                <span className="callout-meta-text">
-                  300–400 Words / Answer
-                </span>
+                <span className="callout-meta-text">Max 20 Marks</span>
                 <span className="callout-dot">•</span>
-                <span className="callout-meta-text">5 Marks Each</span>
+                <span className="callout-meta-text">300–350 Words / Q</span>
               </div>
               <h3 className="callout-main-title">
-                CSC-406 Professional Communication — Predicted Paper & In-Depth
-                Solutions
+                6.0CSC04 Professional Communication — CIA-1 Official Question
+                Paper & Verified Model Answers
               </h3>
               <p className="callout-desc">
-                Full academic model solutions covering Phrases, Clauses,
-                Creative Writing, Active Listening, Barriers of Speaking,
-                Adjectives, Adverbs, Tenses, Descriptive Writing, Sentences,
-                Empathy, and Prejudgment. Read inline or experience our study
-                reader with Text-to-Speech audio and interactive quiz.
+                Original question sheet (<strong>PCCIA126.jpeg</strong>) from
+                Central University of Rajasthan First Mid-Semester Examination
+                with complete verified 10-mark model answers for Tenses (types &
+                subtypes), Paragraph Writing principles, Phrases, and Sentences.
+                Study with high-res scan preview and Text-to-Speech audio study
+                reader.
               </p>
             </div>
             <div className="callout-actions-side">
               <Link
-                href="/professional-communication/cia1-predicted-paper"
+                href="/professional-communication/cia1-2026-paper"
                 className="callout-btn primary"
               >
                 <i className="fa-solid fa-headphones"></i>
@@ -722,11 +739,11 @@ export default function ProfessionalCommunicationPage() {
               </Link>
               <button
                 type="button"
-                onClick={() => setActiveTab("predicted")}
+                onClick={() => setActiveTab("official2026")}
                 className="callout-btn secondary"
               >
                 <i className="fa-solid fa-list-check"></i>
-                <span>Browse 12 Model Answers</span>
+                <span>Browse PCCIA126 Solutions</span>
               </button>
             </div>
           </div>
@@ -736,11 +753,19 @@ export default function ProfessionalCommunicationPage() {
         <div className="tab-bar-wrapper">
           <div className="tab-bar">
             <button
+              className={`tab-btn ${activeTab === "official2026" ? "active" : ""}`}
+              onClick={() => setActiveTab("official2026")}
+            >
+              <i className="fa-solid fa-file-shield"></i>
+              <span>CIA-1 Sept 2026 (PCCIA126)</span>
+              <span className="tab-count-badge highlight">Official</span>
+            </button>
+            <button
               className={`tab-btn ${activeTab === "predicted" ? "active" : ""}`}
               onClick={() => setActiveTab("predicted")}
             >
               <i className="fa-solid fa-graduation-cap"></i>
-              <span>CIA-1 Predicted Paper</span>
+              <span>Predicted Paper</span>
               <span className="tab-count-badge">12 Qs</span>
             </button>
             <button
@@ -775,7 +800,362 @@ export default function ProfessionalCommunicationPage() {
           </div>
         </div>
 
-        {/* TAB 0: CIA-1 PREDICTED QUESTION PAPER & IN-DEPTH MODEL ANSWERS */}
+        {/* TAB 0: OFFICIAL CIA-1 SEPTEMBER 2026 QUESTION PAPER & IN-DEPTH MODEL ANSWERS (PCCIA126) */}
+        {activeTab === "official2026" && (
+          <section className="tab-content-section predicted-section">
+            <div className="predicted-paper-header-box">
+              <div className="paper-top-info">
+                <div className="dept-tag">
+                  <i className="fa-solid fa-building-columns"></i>
+                  <span>
+                    Central University of Rajasthan — Department of Computer
+                    Science
+                  </span>
+                </div>
+                <div className="paper-status-pills">
+                  <span className="exam-pill">
+                    <i className="fa-solid fa-award"></i> 6.0CSC04 Professional
+                    Communication
+                  </span>
+                  <span className="session-pill">
+                    <i className="fa-regular fa-calendar-check"></i> September
+                    2026
+                  </span>
+                </div>
+              </div>
+
+              <div className="paper-title-block">
+                <span className="sub-title-tag">
+                  FIRST MID-SEMESTER EXAMINATION (CIA-1)
+                </span>
+                <h2 className="predicted-title">
+                  Official Examination Question Paper & Verified Model Solutions
+                  (PCCIA126)
+                </h2>
+                <p className="predicted-meta-desc">
+                  Long Answer Type Questions •{" "}
+                  <strong>Answer any two questions</strong> • Word Limit:{" "}
+                  <strong>300–350 Words per question</strong> • Maximum Marks:{" "}
+                  <strong>20 [10 × 2 = 20]</strong> • Time:{" "}
+                  <strong>One Hour</strong>
+                </p>
+              </div>
+
+              {/* Scanned Question Paper Image Card */}
+              <div
+                className="paper-preview-container"
+                style={{ margin: "1rem 0" }}
+              >
+                <div className="paper-preview-header">
+                  <div className="paper-header-left">
+                    <span className="paper-header-badge">
+                      <i className="fa-solid fa-camera"></i> Scanned Question
+                      Paper (PCCIA126.jpeg)
+                    </span>
+                    <span className="paper-session-text">
+                      CURAJ First Mid-Semester Exam • September 2026
+                    </span>
+                  </div>
+                  <div className="paper-header-actions">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowOfficialPaperSheet(!showOfficialPaperSheet)
+                      }
+                      className="paper-toggle-btn"
+                    >
+                      <i
+                        className={`fa-solid ${showOfficialPaperSheet ? "fa-eye-slash" : "fa-eye"}`}
+                      ></i>
+                      <span>
+                        {showOfficialPaperSheet
+                          ? "Hide Question Sheet"
+                          : "Preview Question Sheet"}
+                      </span>
+                    </button>
+                    <a
+                      href="/PCCIA126.jpeg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="paper-action-btn"
+                      title="Open full resolution in new tab"
+                    >
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      <span>Full Res</span>
+                    </a>
+                    <a
+                      href="/PCCIA126.jpeg"
+                      download="CURAJ-CSC406-CIA1-Sept2026.jpeg"
+                      className="paper-action-btn download"
+                    >
+                      <i className="fa-solid fa-download"></i>
+                      <span>Download JPEG</span>
+                    </a>
+                  </div>
+                </div>
+
+                {showOfficialPaperSheet && (
+                  <div className="image-wrapper">
+                    <div className="image-wrapper-bar">
+                      <span>Click image to open high-resolution view</span>
+                      <button
+                        type="button"
+                        onClick={() => setShowOfficialPaperSheet(false)}
+                        className="image-close-btn"
+                      >
+                        <i className="fa-solid fa-xmark"></i> Close Preview
+                      </button>
+                    </div>
+                    <a
+                      href="/PCCIA126.jpeg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="image-clickable-link"
+                    >
+                      <Image
+                        src="/PCCIA126.jpeg"
+                        alt="CURAJ Professional Communication First Mid-Semester Examination September 2026 (PCCIA126)"
+                        width={900}
+                        height={500}
+                        className="paper-image"
+                        priority
+                      />
+                    </a>
+                    <div
+                      style={{
+                        padding: "0.75rem 1rem",
+                        fontSize: "0.85rem",
+                        background: "rgba(37,99,235,0.06)",
+                        borderTop: "1px solid rgba(37,99,235,0.15)",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      <i
+                        className="fa-solid fa-circle-info"
+                        style={{ color: "#2563eb", marginRight: "0.4rem" }}
+                      ></i>
+                      <strong>Handwritten Modification on Paper:</strong> Beside
+                      the printed questions, the teacher wrote at the top:{" "}
+                      <em>
+                        &ldquo;Paragraph writing explain of principle paragraph
+                        writing&rdquo;
+                      </em>
+                      . Full in-depth model answers are provided below for all 4
+                      questions (Tenses, Paragraph Writing principles, Phrases,
+                      and Sentences).
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="reader-quick-strip">
+                <div className="quick-strip-left">
+                  <i className="fa-solid fa-headphones"></i>
+                  <span>
+                    Prefer listening? Open the{" "}
+                    <strong>Text-to-Speech Audio Reader</strong> with chapter
+                    tracking and study mode.
+                  </span>
+                </div>
+                <Link
+                  href="/professional-communication/cia1-2026-paper"
+                  className="quick-strip-link"
+                >
+                  <span>Open Audio Reader</span>
+                  <i className="fa-solid fa-arrow-right"></i>
+                </Link>
+              </div>
+            </div>
+
+            {/* List of Official 2026 Questions */}
+            <div className="predicted-questions-grid">
+              {officialQuestions.map((q) => {
+                const isExpanded = expandedOfficialAnswerId === q.id;
+                const video = q.solution.video;
+                const isVideoOpen = openOfficialVideoId === q.id;
+
+                return (
+                  <article
+                    key={q.id}
+                    className={`predicted-q-card ${isExpanded ? "expanded" : ""}`}
+                  >
+                    <header className="predicted-q-header">
+                      <div className="q-meta-line">
+                        <span className="q-number-badge">{q.qNumber}</span>
+                        <span className="q-category-tag">
+                          {q.id.includes("alt")
+                            ? "Handwritten Option on Paper"
+                            : "Printed on Paper"}
+                        </span>
+                        <span className="q-meta-dot">•</span>
+                        <span className="q-meta-text">{q.marks} Marks</span>
+                        <span className="q-meta-dot">•</span>
+                        <span className="q-meta-text">300–350 Words</span>
+                      </div>
+                      <h3 className="predicted-q-text">{q.question}</h3>
+                      <p className="predicted-q-summary">
+                        <strong>Core Concept:</strong> {q.solution.summary}
+                      </p>
+                    </header>
+
+                    <div className="predicted-q-actions">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedOfficialAnswerId(isExpanded ? null : q.id)
+                        }
+                        className={`ans-toggle-btn ${isExpanded ? "active" : ""}`}
+                      >
+                        <i
+                          className={`fa-solid ${isExpanded ? "fa-compress" : "fa-file-lines"}`}
+                        ></i>
+                        <span>
+                          {isExpanded
+                            ? "Hide Model Answer"
+                            : "Read Model Answer (10 Marks)"}
+                        </span>
+                      </button>
+
+                      <Link
+                        href={`/professional-communication/cia1-2026-paper#question-${q.qNumber.toLowerCase().replace(/[^a-z0-9]/g, "")}`}
+                        className="ans-listen-link"
+                        title="Listen with Text-to-Speech Audio Reader"
+                      >
+                        <i className="fa-solid fa-headphones"></i>
+                        <span>Listen Aloud</span>
+                      </Link>
+
+                      {video && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setOpenOfficialVideoId(isVideoOpen ? null : q.id)
+                          }
+                          className={`ans-video-btn ${isVideoOpen ? "active" : ""}`}
+                        >
+                          <i className="fa-solid fa-play"></i>
+                          <span>
+                            {isVideoOpen ? "Hide Video" : "Video Lecture"}
+                          </span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Inline Video Player */}
+                    {isVideoOpen && video && (
+                      <div className="inline-video-wrap">
+                        <div className="video-meta-top">
+                          <span>
+                            <i className="fa-solid fa-graduation-cap"></i>{" "}
+                            {video.channel}
+                          </span>
+                          {video.duration && (
+                            <span>
+                              <i className="fa-regular fa-clock"></i>{" "}
+                              {video.duration}
+                            </span>
+                          )}
+                          {video.speed && (
+                            <span>
+                              <i className="fa-solid fa-gauge-high"></i> Speed:{" "}
+                              {video.speed}
+                            </span>
+                          )}
+                        </div>
+                        <h5>{video.title}</h5>
+                        <div className="iframe-box">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${video.id}?rel=0`}
+                            title={video.title}
+                            className="video-iframe"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            loading="lazy"
+                          />
+                        </div>
+                        {video.takeaway && (
+                          <p className="video-takeaway">
+                            <i className="fa-solid fa-lightbulb"></i>{" "}
+                            <strong>Takeaway:</strong> {video.takeaway}
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {/* In-Depth Model Answer Body */}
+                    {isExpanded && (
+                      <div className="predicted-solution-box">
+                        {q.solution.keyPoints &&
+                          q.solution.keyPoints.length > 0 && (
+                            <div className="solution-key-points">
+                              <h4>
+                                <i className="fa-solid fa-check-double"></i> Key
+                                Academic Points (Marking Scheme):
+                              </h4>
+                              <ul>
+                                {q.solution.keyPoints.map((pt, pIdx) => (
+                                  <li key={pIdx}>
+                                    <span className="bullet-arrow">›</span> {pt}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                        {q.solution.explanation &&
+                          q.solution.explanation.length > 0 && (
+                            <div className="solution-detailed-text">
+                              <h4>
+                                <i className="fa-solid fa-pen-nib"></i> Verified
+                                Academic Model Solution (10 Marks • 300–350
+                                Words):
+                              </h4>
+                              <div className="text-paragraphs">
+                                {q.solution.explanation.map((line, lIdx) => {
+                                  if (!line.trim()) {
+                                    return (
+                                      <div
+                                        key={lIdx}
+                                        className="paragraph-spacer"
+                                      />
+                                    );
+                                  }
+                                  if (
+                                    line.startsWith("1.") ||
+                                    line.startsWith("2.") ||
+                                    line.startsWith("3.") ||
+                                    line.startsWith("4.") ||
+                                    line.startsWith("a)") ||
+                                    line.startsWith("b)") ||
+                                    line.startsWith("c)") ||
+                                    line.startsWith("d)") ||
+                                    line.startsWith("e)")
+                                  ) {
+                                    return (
+                                      <h5 key={lIdx} className="sol-subheading">
+                                        {line}
+                                      </h5>
+                                    );
+                                  }
+                                  return (
+                                    <p key={lIdx} className="sol-paragraph">
+                                      {line}
+                                    </p>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* TAB 1: CIA-1 PREDICTED QUESTION PAPER & IN-DEPTH MODEL ANSWERS */}
         {activeTab === "predicted" && (
           <section className="tab-content-section predicted-section">
             <div className="predicted-paper-header-box">
@@ -1775,6 +2155,16 @@ export default function ProfessionalCommunicationPage() {
         :global(html.dark) .tab-count-badge {
           background: #334155;
           color: #94a3b8;
+        }
+
+        .tab-count-badge.highlight {
+          background: #10b981;
+          color: #ffffff;
+        }
+
+        :global(html.dark) .tab-count-badge.highlight {
+          background: #059669;
+          color: #ffffff;
         }
 
         /* Tab Content Section */
