@@ -1,5 +1,6 @@
 import { LearningModule } from "@/types/learning";
 import { basicMathModule } from "./mathematics/basic-math";
+import { discreteMathWeek1Module } from "./mathematics/discrete-math-week-1";
 import { setTheoryModule } from "./mathematics/set-theory";
 import { mathematicalLogicModule } from "./mathematics/mathematical-logic";
 import { relationsModule } from "./mathematics/relations";
@@ -14,6 +15,7 @@ import { linearModelsModule } from "./mathematics/linear-models";
 
 export const mathematicsModules: LearningModule[] = [
   basicMathModule,
+  discreteMathWeek1Module,
   setTheoryModule,
   mathematicalLogicModule,
   relationsModule,

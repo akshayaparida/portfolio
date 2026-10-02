@@ -166,7 +166,7 @@ describe("Mathematics Dynamic Routes", () => {
           params: Promise.resolve({ moduleId: moduleWithDemos.id }),
         });
         render(pageEl);
-        expect(screen.getByText("Interactive Demos")).toBeInTheDocument();
+        expect(screen.getAllByText("Interactive Demos")[0]).toBeInTheDocument();
       }
     });
 

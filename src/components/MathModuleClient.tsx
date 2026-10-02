@@ -8,6 +8,7 @@ import PCAVisualization from "@/components/math-visualizations/PCAVisualization"
 import GradientDescentPlayground from "@/components/math-visualizations/GradientDescentPlayground";
 import ActivationFunctions from "@/components/math-visualizations/ActivationFunctions";
 import ScalarMultiplication from "@/components/math-visualizations/ScalarMultiplication";
+import DiscreteMathWeek1Playground from "@/components/math-visualizations/DiscreteMathWeek1Playground";
 import { LearningModule } from "@/types/learning";
 
 const demoComponents: Record<string, React.ComponentType> = {
@@ -17,6 +18,7 @@ const demoComponents: Record<string, React.ComponentType> = {
   "gradient-descent": GradientDescentPlayground,
   activations: ActivationFunctions,
   "scalar-mult": ScalarMultiplication,
+  "discrete-math-week1-lab": DiscreteMathWeek1Playground,
 };
 
 export default function MathModuleClient({

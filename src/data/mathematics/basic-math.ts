@@ -10,6 +10,10 @@ export const basicMathModule: LearningModule = {
 
 Master the foundational concepts that underpin every branch of mathematics — from number classification and arithmetic rules to geometry essentials. This module ensures you have a rock-solid base before moving on to algebra, calculus, and beyond.
 
+> [!TIP]
+> **NPTEL Discrete Mathematics Week 1 Rapid Recall**:
+> Revising for NPTEL Assignment 1 or preparing for GATE CS? Jump directly to our specialized [Discrete Math: Week 1 Assignment](/mathematics/discrete-math-week-1) cheatsheet for rapid formulas, Catalan tricks, Dyck paths, polygon triangulation, and LIFO stack permutations!
+
 ## What You'll Learn
 
 | # | Topic | Skill |
@@ -798,6 +802,9 @@ that exact sequence of 52 cards has NEVER existed in human history.
 
 ### Travelling Salesperson Problem (TSP):
 Given n cities, finding the shortest round-trip route by brute-force checking all (n-1)! / 2 routes becomes physically impossible for n ≥ 30, motivating the need for dynamic programming and approximation heuristics.
+
+> [!NOTE]
+> For the comprehensive rapid-recall cheatsheet covering all NPTEL Week 1 assignment formulas, Catalan recurrences, Dyck paths, polygon triangulations, stack permutations, and arrangements, visit the dedicated [Discrete Math: Week 1 Assignment](/mathematics/discrete-math-week-1) module.
 
 ## 13. The Rule of Sum (Addition Principle)
 
