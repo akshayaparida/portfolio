@@ -94,7 +94,7 @@ $$\\text{Total Ways} = n_1 \\times n_2 \\times n_3 \\times \\cdots \\times n_k$$
 
 ---
 
-### 2. Permutations ($^n P_r$)
+### 2. Permutations (ⁿPᵣ)
 
 A **permutation** is an ordered arrangement of $r$ objects selected from a set of $n$ distinct objects. **Order matters!**
 
@@ -113,7 +113,7 @@ $$^{10}P_3 = \\frac{10!}{(10 - 3)!} = 10 \\times 9 \\times 8 = 720 \\text{ ways}
 
 ---
 
-### 3. Combinations ($^n C_r = \\binom{n}{r}$)
+### 3. Combinations (ⁿCᵣ)
 
 A **combination** is a selection of $r$ objects from a set of $n$ distinct objects where **order does NOT matter**.
 
@@ -159,7 +159,7 @@ $$\\text{Paths Avoiding } (a,b) = \\binom{m + n}{m} - \\left[\\binom{a + b}{a} \
 
 ---
 
-### 5. Catalan Numbers ($C_n$)
+### 5. Catalan Numbers (Cₙ)
 
 The **Catalan numbers** form one of the most prolific integer sequences in combinatorics, appearing in over 60 distinct combinatorial structures.
 
@@ -374,7 +374,7 @@ $$\\text{Ways} = \\frac{(n - 1)!}{2}$$
 
 ---
 
-### 14. Growth Rates & Factorial Explosion ($n! > 2^n$)
+### 14. Growth Rates & Factorial Explosion (n! > 2ⁿ)
 
 Understanding algorithmic complexity and asymptotic growth rates is critical for Week 1 assignment questions on brute-force search vs tractability.
 

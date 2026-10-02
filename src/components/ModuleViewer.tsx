@@ -102,14 +102,23 @@ const ExamImage = ({
   </figure>
 );
 
-// Helper to extract plain text string from React children nodes
 function getNodeText(children: React.ReactNode): string {
   if (typeof children === "string") return children;
   if (typeof children === "number") return String(children);
   if (Array.isArray(children)) {
     return children.map(getNodeText).join("");
   }
-  if (React.isValidElement<{ children?: React.ReactNode }>(children)) {
+  if (
+    React.isValidElement<{
+      children?: React.ReactNode;
+      className?: string;
+    }>(children)
+  ) {
+    const className = String(children.props?.className || "");
+    // Ignore KaTeX MathML so we do not duplicate math characters
+    if (className.includes("katex-mathml")) {
+      return "";
+    }
     if (children.props?.children) {
       return getNodeText(children.props.children);
     }

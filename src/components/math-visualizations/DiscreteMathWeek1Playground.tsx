@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import katex from "katex";
 
 // Factorial helper
 function fact(n: number): bigint {
@@ -49,25 +50,21 @@ function simulateStackPermutation(target: number[]): {
 
   while (targetIdx < n) {
     const want = target[targetIdx];
-    // If top of stack matches, pop it
     if (stack.length > 0 && stack[stack.length - 1] === want) {
       stack.pop();
       steps.push({ action: "pop", value: want, stackState: [...stack] });
       targetIdx++;
     } else if (nextToPush <= n) {
-      // Need to push more
       stack.push(nextToPush);
       steps.push({ action: "push", value: nextToPush, stackState: [...stack] });
       nextToPush++;
     } else {
-      // Cannot satisfy
       break;
     }
   }
 
   const valid = targetIdx === n && stack.length === 0;
 
-  // Find 231 violation if invalid
   let violatingPattern: [number, number, number] | undefined;
   let reason: string | undefined;
 
@@ -81,7 +78,7 @@ function simulateStackPermutation(target: number[]): {
           // 231 pattern: c < a < b
           if (c < a && a < b) {
             violatingPattern = [a, b, c];
-            reason = `Contains forbidden 231-pattern: [${a}, ${b}, ${c}] at positions (${i + 1}, ${j + 1}, ${k + 1}). When '${b}' is pushed, '${a}' is trapped beneath it, so '${c}' cannot exit before '${a}' unless '${b}' has already exited.`;
+            reason = `Contains forbidden 231-pattern: [${a}, ${b}, ${c}] at positions (${i + 1}, ${j + 1}, ${k + 1}). When '${b}' is pushed, '${a}' is trapped beneath it in the LIFO stack, so '${c}' cannot exit before '${a}' unless '${b}' has already exited.`;
             break;
           }
         }
@@ -113,6 +110,34 @@ function generateDyckWords(n: number): string[] {
   return results;
 }
 
+// Math Formula KaTeX renderer component
+function MathFormula({
+  latex,
+  display = true,
+}: {
+  latex: string;
+  display?: boolean;
+}) {
+  const renderedHtml = useMemo(() => {
+    try {
+      return katex.renderToString(latex, {
+        throwOnError: false,
+        displayMode: display,
+      });
+    } catch {
+      return latex;
+    }
+  }, [latex, display]);
+
+  return (
+    <div
+      className="math-formula-rendered"
+      style={{ overflowX: "auto", margin: "0.25rem 0" }}
+      dangerouslySetInnerHTML={{ __html: renderedHtml }}
+    />
+  );
+}
+
 export default function DiscreteMathWeek1Playground() {
   const [activeTab, setActiveTab] = useState<
     "calc" | "stack" | "growth" | "dyck"
@@ -120,9 +145,9 @@ export default function DiscreteMathWeek1Playground() {
 
   // Calculator states
   const [calcMode, setCalcMode] = useState<
+    | "catalan"
     | "perm"
     | "comb"
-    | "catalan"
     | "grid"
     | "polygon"
     | "adjacent"
@@ -161,7 +186,6 @@ export default function DiscreteMathWeek1Playground() {
     return generateDyckWords(dyckN);
   }, [dyckN]);
 
-  // Safe index
   const activeDyckWord = dyckWords[selectedDyckIndex] || dyckWords[0] || "";
 
   // Dynamic calculation display
@@ -174,7 +198,7 @@ export default function DiscreteMathWeek1Playground() {
       case "perm": {
         const p = calcPerm(n, r);
         return {
-          formula: `^${n}P_${r} = \\frac{${n}!}{( ${n} - ${r} )!} = \\frac{${fact(n)}}{${fact(Math.max(0, n - r))}}`,
+          formula: `^${n}P_{${r}} = \\frac{${n}!}{( ${n} - ${r} )!} = \\frac{${fact(n)}}{${fact(Math.max(0, n - r))}} = ${p}`,
           result: p.toString(),
           explanation: `Number of ways to arrange ${r} distinct items from ${n} distinct items when ORDER MATTERS.`,
         };
@@ -182,7 +206,7 @@ export default function DiscreteMathWeek1Playground() {
       case "comb": {
         const c = calcComb(n, r);
         return {
-          formula: `^${n}C_${r} = \\binom{${n}}{${r}} = \\frac{${n}!}{${r}!( ${n} - ${r} )!} = \\frac{${fact(n)}}{${fact(r)} \\times ${fact(Math.max(0, n - r))}}`,
+          formula: `^${n}C_{${r}} = \\binom{${n}}{${r}} = \\frac{${n}!}{${r}! \\times ( ${n} - ${r} )!} = \\frac{${fact(n)}}{${fact(r)} \\times ${fact(Math.max(0, n - r))}} = ${c}`,
           result: c.toString(),
           explanation: `Number of ways to choose a subset of ${r} items from ${n} items when ORDER DOES NOT MATTER.`,
         };
@@ -191,7 +215,7 @@ export default function DiscreteMathWeek1Playground() {
         const cat = calcCatalan(n);
         const comb2n_n = calcComb(2 * n, n);
         return {
-          formula: `C_${n} = \\frac{1}{${n} + 1}\\binom{${2 * n}}{${n}} = \\frac{1}{${n + 1}} \\times ${comb2n_n}`,
+          formula: `C_{${n}} = \\frac{1}{${n} + 1}\\binom{${2 * n}}{${n}} = \\frac{1}{${n + 1}} \\times ${comb2n_n} = ${cat}`,
           result: cat.toString(),
           explanation: `The ${n}-th Catalan number. Counts valid parentheses pairs, Dyck paths, non-crossing circle chords, stack permutations, and binary trees with ${n} internal nodes.`,
         };
@@ -200,15 +224,15 @@ export default function DiscreteMathWeek1Playground() {
         const totalSteps = m + n;
         const paths = calcComb(totalSteps, n);
         return {
-          formula: `\\binom{${m} + ${n}}{${n}} = \\binom{${totalSteps}}{${n}} = \\frac{${totalSteps}!}{${m}! \\, ${n}!}`,
+          formula: `\\binom{${m} + ${n}}{${n}} = \\binom{${totalSteps}}{${n}} = \\frac{${totalSteps}!}{${m}! \\, ${n}!} = ${paths}`,
           result: paths.toString(),
-          explanation: `Number of monotonic paths from (0,0) to (${m},${n}) on a grid moving only Right and Up. For an ${n}×${n} square grid, this is \\binom{2n}{n} = \\binom{${2 * n}}{${n}} = ${calcComb(2 * n, n)}.`,
+          explanation: `Number of monotonic lattice paths from (0,0) to (${m},${n}) moving only Right and Up. For an ${n}×${n} square grid, this is \\binom{2n}{n} = ${calcComb(2 * n, n)}.`,
         };
       }
       case "polygon": {
         const cat = n >= 3 ? calcCatalan(n - 2) : BigInt(0);
         return {
-          formula: `C_{${n} - 2} = C_${Math.max(0, n - 2)} = \\frac{1}{${Math.max(1, n - 1)}}\\binom{${2 * Math.max(0, n - 2)}}{${Math.max(0, n - 2)}}`,
+          formula: `C_{${n} - 2} = C_{${Math.max(0, n - 2)}} = \\frac{1}{${Math.max(1, n - 1)}}\\binom{${2 * Math.max(0, n - 2)}}{${Math.max(0, n - 2)}} = ${cat}`,
           result: cat.toString(),
           explanation: `Number of ways to triangulate a convex ${n}-sided polygon (${n}-gon) using ${Math.max(0, n - 3)} non-intersecting internal diagonals into ${Math.max(0, n - 2)} triangles.`,
         };
@@ -216,9 +240,9 @@ export default function DiscreteMathWeek1Playground() {
       case "adjacent": {
         const ways = n >= 2 ? BigInt(2) * fact(n - 1) : fact(n);
         return {
-          formula: `2 \\times (${n} - 1)! = 2 \\times ${fact(Math.max(0, n - 1))}`,
+          formula: `2 \\times (${n} - 1)! = 2 \\times ${fact(Math.max(0, n - 1))} = ${ways}`,
           result: ways.toString(),
-          explanation: `Arrangements of ${n} distinct objects where 2 specified objects MUST stay together (treat the pair as 1 block with 2! internal orders).`,
+          explanation: `Arrangements of ${n} distinct objects where 2 specified objects MUST stay together (treat the pair as 1 unified super-block with 2! internal orderings).`,
         };
       }
       case "nonAdjacent": {
@@ -226,7 +250,7 @@ export default function DiscreteMathWeek1Playground() {
         const together = n >= 2 ? BigInt(2) * fact(n - 1) : BigInt(0);
         const nonAdj = total - together;
         return {
-          formula: `${n}! - 2(${n} - 1)! = ${total} - ${together} = (${n} - 2) \\times (${n} - 1)!`,
+          formula: `${n}! - 2(${n} - 1)! = ${total} - ${together} = ${nonAdj}`,
           result: nonAdj.toString(),
           explanation: `Arrangements of ${n} distinct objects where 2 specified objects are NEVER together (Total - Together complement rule).`,
         };
@@ -235,36 +259,18 @@ export default function DiscreteMathWeek1Playground() {
         const normalCirc = n >= 1 ? fact(n - 1) : BigInt(1);
         const necklace = n >= 3 ? normalCirc / BigInt(2) : normalCirc;
         return {
-          formula: `(n - 1)! = (${n} - 1)! = ${normalCirc} \\quad [\\text{Necklace / Keyring (flip)}: \\frac{(n-1)!}{2} = ${necklace}]`,
-          result: `${normalCirc} (Round Table) / ${necklace} (Necklace/Keyring)`,
-          explanation: `Circular arrangements fix 1 anchor object to break rotational symmetry, yielding (n-1)!. If reversible like beads on a necklace, divide by 2.`,
+          formula: `(n - 1)! = (${n} - 1)! = ${normalCirc} \\quad \\left[\\text{Necklace / Keyring}: \\frac{(${n} - 1)!}{2} = ${necklace}\\right]`,
+          result: `${normalCirc} (Round Table) / ${necklace} (Necklace)`,
+          explanation: `Circular arrangements fix 1 anchor object to break rotational symmetry, yielding (n-1)!. If reversible in 3D (like beads on a necklace), divide by 2.`,
         };
       }
     }
   }, [calcMode, nVal, rVal, mVal]);
 
   return (
-    <div
-      style={{
-        background: "var(--surface, #111827)",
-        border: "1px solid var(--border, #374151)",
-        borderRadius: "16px",
-        padding: "1.5rem",
-        color: "var(--text-primary, #f9fafb)",
-        fontFamily: "inherit",
-      }}
-    >
-      {/* Tab Navigation */}
-      <div
-        style={{
-          display: "flex",
-          gap: "0.5rem",
-          borderBottom: "1px solid var(--border, #374151)",
-          paddingBottom: "1rem",
-          marginBottom: "1.5rem",
-          flexWrap: "wrap",
-        }}
-      >
+    <div className="discrete-math-playground">
+      {/* Top Tab Navigation */}
+      <div className="dmp-tab-bar">
         {[
           { id: "calc", label: "Formula Calculator", icon: "fa-calculator" },
           {
@@ -283,49 +289,20 @@ export default function DiscreteMathWeek1Playground() {
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            style={{
-              padding: "0.5rem 1rem",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "0.875rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              background:
-                activeTab === tab.id
-                  ? "var(--accent, #3b82f6)"
-                  : "var(--surface-hover, #1f2937)",
-              color:
-                activeTab === tab.id
-                  ? "#ffffff"
-                  : "var(--text-secondary, #9ca3af)",
-              transition: "all 0.15s ease",
-            }}
+            className={`dmp-tab-btn ${activeTab === tab.id ? "active" : ""}`}
           >
             <i className={`fa-solid ${tab.icon}`} />
-            {tab.label}
+            <span>{tab.label}</span>
           </button>
         ))}
       </div>
 
       {/* TAB 1: FORMULA CALCULATOR */}
       {activeTab === "calc" && (
-        <div>
-          <div style={{ marginBottom: "1rem" }}>
-            <label
-              style={{
-                display: "block",
-                fontSize: "0.85rem",
-                color: "var(--text-secondary, #9ca3af)",
-                marginBottom: "0.5rem",
-                fontWeight: 600,
-              }}
-            >
-              Select Topic / Formula:
-            </label>
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+        <div className="dmp-panel">
+          <div className="dmp-section">
+            <span className="dmp-section-label">Select Topic / Formula:</span>
+            <div className="dmp-chip-row">
               {[
                 { id: "catalan", label: "Catalan (Cₙ)" },
                 { id: "perm", label: "Permutations (ⁿPᵣ)" },
@@ -340,24 +317,7 @@ export default function DiscreteMathWeek1Playground() {
                   key={m.id}
                   type="button"
                   onClick={() => setCalcMode(m.id as typeof calcMode)}
-                  style={{
-                    padding: "0.4rem 0.8rem",
-                    borderRadius: "6px",
-                    border: "1px solid var(--border, #374151)",
-                    cursor: "pointer",
-                    fontSize: "0.82rem",
-                    fontWeight: calcMode === m.id ? 700 : 500,
-                    background:
-                      calcMode === m.id
-                        ? "rgba(59, 130, 246, 0.2)"
-                        : "var(--surface, #1f2937)",
-                    color:
-                      calcMode === m.id
-                        ? "#60a5fa"
-                        : "var(--text-primary, #e5e7eb)",
-                    borderColor:
-                      calcMode === m.id ? "#3b82f6" : "var(--border, #374151)",
-                  }}
+                  className={`dmp-chip-btn ${calcMode === m.id ? "active" : ""}`}
                 >
                   {m.label}
                 </button>
@@ -365,30 +325,14 @@ export default function DiscreteMathWeek1Playground() {
             </div>
           </div>
 
-          {/* Inputs Row */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-              gap: "1rem",
-              margin: "1.25rem 0",
-              background: "rgba(0, 0, 0, 0.2)",
-              padding: "1rem",
-              borderRadius: "10px",
-            }}
-          >
-            <div>
-              <label
-                style={{
-                  display: "block",
-                  fontSize: "0.8rem",
-                  color: "var(--text-secondary, #9ca3af)",
-                  marginBottom: "0.25rem",
-                }}
-              >
+          {/* Dynamic Inputs Row */}
+          <div className="dmp-inputs-card">
+            <div className="dmp-input-group">
+              <label htmlFor="dmp-input-n" className="dmp-input-label">
                 Value of n:
               </label>
               <input
+                id="dmp-input-n"
                 type="number"
                 min={0}
                 max={20}
@@ -396,32 +340,17 @@ export default function DiscreteMathWeek1Playground() {
                 onChange={(e) =>
                   setNVal(Math.max(0, parseInt(e.target.value) || 0))
                 }
-                style={{
-                  width: "100%",
-                  padding: "0.5rem",
-                  background: "var(--surface, #111827)",
-                  border: "1px solid var(--border, #4b5563)",
-                  borderRadius: "6px",
-                  color: "#fff",
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                }}
+                className="dmp-number-input"
               />
             </div>
 
             {(calcMode === "perm" || calcMode === "comb") && (
-              <div>
-                <label
-                  style={{
-                    display: "block",
-                    fontSize: "0.8rem",
-                    color: "var(--text-secondary, #9ca3af)",
-                    marginBottom: "0.25rem",
-                  }}
-                >
+              <div className="dmp-input-group">
+                <label htmlFor="dmp-input-r" className="dmp-input-label">
                   Value of r:
                 </label>
                 <input
+                  id="dmp-input-r"
                   type="number"
                   min={0}
                   max={nVal}
@@ -429,33 +358,18 @@ export default function DiscreteMathWeek1Playground() {
                   onChange={(e) =>
                     setRVal(Math.max(0, parseInt(e.target.value) || 0))
                   }
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    background: "var(--surface, #111827)",
-                    border: "1px solid var(--border, #4b5563)",
-                    borderRadius: "6px",
-                    color: "#fff",
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                  }}
+                  className="dmp-number-input"
                 />
               </div>
             )}
 
             {calcMode === "grid" && (
-              <div>
-                <label
-                  style={{
-                    display: "block",
-                    fontSize: "0.8rem",
-                    color: "var(--text-secondary, #9ca3af)",
-                    marginBottom: "0.25rem",
-                  }}
-                >
+              <div className="dmp-input-group">
+                <label htmlFor="dmp-input-m" className="dmp-input-label">
                   Value of m (Grid Columns):
                 </label>
                 <input
+                  id="dmp-input-m"
                   type="number"
                   min={0}
                   max={20}
@@ -463,221 +377,95 @@ export default function DiscreteMathWeek1Playground() {
                   onChange={(e) =>
                     setMVal(Math.max(0, parseInt(e.target.value) || 0))
                   }
-                  style={{
-                    width: "100%",
-                    padding: "0.5rem",
-                    background: "var(--surface, #111827)",
-                    border: "1px solid var(--border, #4b5563)",
-                    borderRadius: "6px",
-                    color: "#fff",
-                    fontSize: "1rem",
-                    fontWeight: 600,
-                  }}
+                  className="dmp-number-input"
                 />
               </div>
             )}
           </div>
 
-          {/* Result Card */}
-          <div
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.08))",
-              border: "1px solid rgba(59, 130, 246, 0.3)",
-              borderRadius: "12px",
-              padding: "1.25rem",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "0.85rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                color: "#60a5fa",
-                fontWeight: 700,
-                marginBottom: "0.5rem",
-              }}
-            >
-              Calculated Result:
+          {/* Result Card with KaTeX rendering */}
+          <div className="dmp-result-card">
+            <div className="dmp-result-header">
+              <span className="dmp-result-badge">
+                <i className="fa-solid fa-check-circle" /> Calculated Result
+              </span>
             </div>
-            <div
-              style={{
-                fontSize: "1.85rem",
-                fontWeight: 800,
-                color: "#ffffff",
-                marginBottom: "0.5rem",
-              }}
-            >
-              {calcResult.result}
+
+            <div className="dmp-result-value">{calcResult.result}</div>
+
+            <div className="dmp-formula-box">
+              <div className="dmp-formula-title">Mathematical Formula:</div>
+              <MathFormula latex={calcResult.formula} display={true} />
             </div>
-            <div
-              style={{
-                fontSize: "0.9rem",
-                color: "#93c5fd",
-                fontFamily: "monospace",
-                marginBottom: "0.75rem",
-                background: "rgba(0, 0, 0, 0.3)",
-                padding: "0.5rem 0.75rem",
-                borderRadius: "6px",
-                display: "inline-block",
-              }}
-            >
-              Formula: {calcResult.formula}
-            </div>
-            <p
-              style={{
-                margin: 0,
-                fontSize: "0.88rem",
-                color: "var(--text-secondary, #d1d5db)",
-              }}
-            >
-              {calcResult.explanation}
-            </p>
+
+            <p className="dmp-result-desc">{calcResult.explanation}</p>
           </div>
         </div>
       )}
 
       {/* TAB 2: STACK PERMUTATION VALIDATOR */}
       {activeTab === "stack" && (
-        <div>
-          <p
-            style={{
-              fontSize: "0.9rem",
-              color: "var(--text-secondary, #9ca3af)",
-              marginTop: 0,
-            }}
-          >
+        <div className="dmp-panel">
+          <p className="dmp-tab-intro">
             Enter a permutation of digits to check if it can be generated by a{" "}
             <strong>LIFO Stack</strong> from input sequence{" "}
             <code>(1, 2, ..., n)</code> using valid Push and Pop operations.
+            Catalan numbers count all stack-sortable permutations!
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              gap: "0.5rem",
-              flexWrap: "wrap",
-              marginBottom: "1rem",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "0.85rem",
-                color: "#9ca3af",
-                alignSelf: "center",
-              }}
-            >
-              Quick Presets:
-            </span>
-            {[
-              { label: "[2, 3, 1] (Valid C₃)", val: "2, 3, 1" },
-              { label: "[3, 1, 2] (INVALID 231)", val: "3, 1, 2" },
-              { label: "[1, 2, 3] (Valid C₃)", val: "1, 2, 3" },
-              { label: "[3, 2, 1] (Valid C₃)", val: "3, 2, 1" },
-              { label: "[4, 3, 2, 1] (Valid C₄)", val: "4, 3, 2, 1" },
-              { label: "[3, 4, 1, 2] (INVALID C₄)", val: "3, 4, 1, 2" },
-              { label: "[3, 1, 4, 2] (INVALID C₄)", val: "3, 1, 4, 2" },
-            ].map((preset) => (
-              <button
-                key={preset.label}
-                type="button"
-                onClick={() => setStackInput(preset.val)}
-                style={{
-                  fontSize: "0.78rem",
-                  padding: "0.3rem 0.6rem",
-                  borderRadius: "6px",
-                  border: "1px solid var(--border, #374151)",
-                  background: "var(--surface, #1f2937)",
-                  color: "#d1d5db",
-                  cursor: "pointer",
-                }}
-              >
-                {preset.label}
-              </button>
-            ))}
+          <div className="dmp-section">
+            <span className="dmp-section-label">Quick Presets:</span>
+            <div className="dmp-chip-row">
+              {[
+                { label: "[2, 3, 1] (Valid C₃)", val: "2, 3, 1" },
+                { label: "[3, 1, 2] (INVALID 231)", val: "3, 1, 2" },
+                { label: "[1, 2, 3] (Valid C₃)", val: "1, 2, 3" },
+                { label: "[3, 2, 1] (Valid C₃)", val: "3, 2, 1" },
+                { label: "[4, 3, 2, 1] (Valid C₄)", val: "4, 3, 2, 1" },
+                { label: "[3, 4, 1, 2] (INVALID C₄)", val: "3, 4, 1, 2" },
+                { label: "[3, 1, 4, 2] (INVALID C₄)", val: "3, 1, 4, 2" },
+              ].map((preset) => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => setStackInput(preset.val)}
+                  className={`dmp-chip-btn ${stackInput === preset.val ? "active" : ""}`}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div style={{ marginBottom: "1.25rem" }}>
-            <label
-              style={{
-                display: "block",
-                fontSize: "0.82rem",
-                color: "var(--text-secondary, #9ca3af)",
-                marginBottom: "0.25rem",
-              }}
-            >
+          <div className="dmp-input-group" style={{ marginBottom: "1.25rem" }}>
+            <label htmlFor="dmp-stack-input" className="dmp-input-label">
               Permutation Sequence (comma or space separated):
             </label>
             <input
+              id="dmp-stack-input"
               type="text"
               value={stackInput}
               onChange={(e) => setStackInput(e.target.value)}
               placeholder="e.g. 3, 1, 2"
-              style={{
-                width: "100%",
-                padding: "0.6rem 0.8rem",
-                background: "var(--surface, #111827)",
-                border: "1px solid var(--border, #4b5563)",
-                borderRadius: "8px",
-                color: "#fff",
-                fontSize: "1rem",
-                fontWeight: 600,
-              }}
+              className="dmp-text-input"
             />
           </div>
 
           {stackResult && (
             <div
-              style={{
-                borderRadius: "12px",
-                border: stackResult.valid
-                  ? "1px solid rgba(16, 185, 129, 0.4)"
-                  : "1px solid rgba(239, 68, 68, 0.4)",
-                background: stackResult.valid
-                  ? "rgba(16, 185, 129, 0.08)"
-                  : "rgba(239, 68, 68, 0.08)",
-                padding: "1.25rem",
-              }}
+              className={`dmp-stack-result-card ${stackResult.valid ? "valid" : "invalid"}`}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  marginBottom: "0.75rem",
-                }}
-              >
+              <div className="dmp-stack-status-row">
                 <i
-                  className={
-                    stackResult.valid
-                      ? "fa-solid fa-circle-check"
-                      : "fa-solid fa-triangle-exclamation"
-                  }
-                  style={{
-                    fontSize: "1.5rem",
-                    color: stackResult.valid ? "#10b981" : "#ef4444",
-                  }}
+                  className={`fa-solid ${stackResult.valid ? "fa-circle-check" : "fa-triangle-exclamation"} dmp-status-icon`}
                 />
                 <div>
-                  <h4
-                    style={{
-                      margin: 0,
-                      fontSize: "1.1rem",
-                      fontWeight: 700,
-                      color: stackResult.valid ? "#10b981" : "#ef4444",
-                    }}
-                  >
+                  <h4 className="dmp-status-heading">
                     {stackResult.valid
                       ? "VALID Stack Permutation (LIFO Achievable)"
                       : "IMPOSSIBLE Stack Permutation (Forbidden Pattern)"}
                   </h4>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontSize: "0.85rem",
-                      color: "var(--text-secondary, #9ca3af)",
-                    }}
-                  >
+                  <p className="dmp-status-subtext">
                     {stackResult.valid
                       ? `Permutation [${parsedStackArray.join(", ")}] can be formed with ${stackResult.steps.length} push/pop operations.`
                       : stackResult.reason}
@@ -686,61 +474,25 @@ export default function DiscreteMathWeek1Playground() {
               </div>
 
               {/* Step-by-Step Simulation Trace */}
-              <div style={{ marginTop: "1rem" }}>
-                <div
-                  style={{
-                    fontSize: "0.82rem",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    color: "var(--text-secondary, #9ca3af)",
-                    marginBottom: "0.5rem",
-                  }}
-                >
+              <div className="dmp-trace-container">
+                <div className="dmp-trace-title">
                   Simulation Execution Trace:
                 </div>
-                <div
-                  style={{
-                    maxHeight: "180px",
-                    overflowY: "auto",
-                    background: "rgba(0, 0, 0, 0.4)",
-                    borderRadius: "8px",
-                    padding: "0.75rem",
-                    fontFamily: "monospace",
-                    fontSize: "0.82rem",
-                  }}
-                >
+                <div className="dmp-trace-body">
                   {stackResult.steps.map((st, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        padding: "0.2rem 0",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-                      }}
-                    >
+                    <div key={idx} className="dmp-trace-row">
                       <span
-                        style={{
-                          color: st.action === "push" ? "#60a5fa" : "#34d399",
-                          fontWeight: 600,
-                        }}
+                        className={`dmp-step-action ${st.action === "push" ? "push" : "pop"}`}
                       >
                         Step {idx + 1}: {st.action.toUpperCase()} {st.value}
                       </span>
-                      <span style={{ color: "#9ca3af" }}>
+                      <span className="dmp-step-stack">
                         Stack: [{st.stackState.join(", ")}]
                       </span>
                     </div>
                   ))}
                   {!stackResult.valid && (
-                    <div
-                      style={{
-                        color: "#f87171",
-                        fontWeight: 700,
-                        paddingTop: "0.5rem",
-                      }}
-                    >
+                    <div className="dmp-trace-halt">
                       [HALTED]: Target element cannot be popped because another
                       element is trapping it inside the stack!
                     </div>
@@ -754,81 +506,45 @@ export default function DiscreteMathWeek1Playground() {
 
       {/* TAB 3: GROWTH RATES */}
       {activeTab === "growth" && (
-        <div>
-          <p
-            style={{
-              fontSize: "0.9rem",
-              color: "var(--text-secondary, #9ca3af)",
-              marginTop: 0,
-            }}
-          >
+        <div className="dmp-panel">
+          <p className="dmp-tab-intro">
             Compare how rapidly <strong>Factorial Growth (n!)</strong> overtakes{" "}
             <strong>Exponential Growth (2ⁿ)</strong> and Polynomial Growth (n³,
             n²). Note that <code>n! &gt; 2ⁿ</code> strictly holds for all{" "}
             <code>n ≥ 4</code>.
           </p>
 
-          <div style={{ margin: "1rem 0" }}>
-            <label
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: "0.85rem",
-                color: "var(--text-secondary, #9ca3af)",
-                marginBottom: "0.5rem",
-              }}
-            >
-              <span>Current Input Size (n = {growthN}):</span>
-              <span style={{ color: "#60a5fa", fontWeight: 700 }}>
+          <div className="dmp-slider-card">
+            <div className="dmp-slider-header">
+              <span className="dmp-slider-label">
+                Current Input Size (n = {growthN}):
+              </span>
+              <span className="dmp-growth-callout">
                 {growthN >= 4
                   ? `n! is ${(Number(fact(growthN)) / 2 ** growthN).toFixed(1)}× larger than 2ⁿ`
                   : "n < 4 (Base transition zone)"}
               </span>
-            </label>
+            </div>
             <input
               type="range"
               min={1}
               max={10}
               value={growthN}
               onChange={(e) => setGrowthN(parseInt(e.target.value) || 1)}
-              style={{ width: "100%", cursor: "pointer" }}
+              className="dmp-range-slider"
             />
           </div>
 
-          <div
-            style={{
-              overflowX: "auto",
-              background: "rgba(0, 0, 0, 0.2)",
-              borderRadius: "10px",
-              padding: "0.5rem",
-            }}
-          >
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                fontSize: "0.85rem",
-                textAlign: "left",
-              }}
-            >
+          <div className="dmp-table-wrapper">
+            <table className="dmp-data-table">
               <thead>
-                <tr
-                  style={{
-                    borderBottom: "1px solid var(--border, #374151)",
-                    color: "#9ca3af",
-                  }}
-                >
-                  <th style={{ padding: "0.5rem" }}>n</th>
-                  <th style={{ padding: "0.5rem" }}>n</th>
-                  <th style={{ padding: "0.5rem" }}>n²</th>
-                  <th style={{ padding: "0.5rem" }}>n³</th>
-                  <th style={{ padding: "0.5rem", color: "#fbbf24" }}>
-                    2ⁿ (Exponential)
-                  </th>
-                  <th style={{ padding: "0.5rem", color: "#f87171" }}>
-                    n! (Factorial)
-                  </th>
-                  <th style={{ padding: "0.5rem" }}>Is n! &gt; 2ⁿ?</th>
+                <tr>
+                  <th>n</th>
+                  <th>n²</th>
+                  <th>n³</th>
+                  <th className="th-exp">2ⁿ (Exponential)</th>
+                  <th className="th-fact">n! (Factorial)</th>
+                  <th>Is n! &gt; 2ⁿ?</th>
                 </tr>
               </thead>
               <tbody>
@@ -841,50 +557,22 @@ export default function DiscreteMathWeek1Playground() {
                   return (
                     <tr
                       key={val}
-                      style={{
-                        background: isCurrent
-                          ? "rgba(59, 130, 246, 0.15)"
-                          : "transparent",
-                        fontWeight: isCurrent ? 700 : 400,
-                        borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-                      }}
+                      className={isCurrent ? "dmp-row-current" : ""}
                     >
-                      <td
-                        style={{
-                          padding: "0.45rem 0.5rem",
-                          color: isCurrent ? "#60a5fa" : "inherit",
-                        }}
-                      >
-                        {val}
+                      <td className="td-n">
+                        <strong>{val}</strong>
                       </td>
-                      <td style={{ padding: "0.45rem 0.5rem" }}>{val}</td>
-                      <td style={{ padding: "0.45rem 0.5rem" }}>{val ** 2}</td>
-                      <td style={{ padding: "0.45rem 0.5rem" }}>{val ** 3}</td>
-                      <td
-                        style={{
-                          padding: "0.45rem 0.5rem",
-                          color: "#fbbf24",
-                          fontFamily: "monospace",
-                        }}
-                      >
-                        {expVal.toLocaleString()}
-                      </td>
-                      <td
-                        style={{
-                          padding: "0.45rem 0.5rem",
-                          color: "#f87171",
-                          fontFamily: "monospace",
-                        }}
-                      >
-                        {fVal.toLocaleString()}
-                      </td>
-                      <td style={{ padding: "0.45rem 0.5rem" }}>
+                      <td>{val ** 2}</td>
+                      <td>{val ** 3}</td>
+                      <td className="td-exp">{expVal.toLocaleString()}</td>
+                      <td className="td-fact">{fVal.toLocaleString()}</td>
+                      <td>
                         {isGreater ? (
-                          <span style={{ color: "#34d399", fontWeight: 700 }}>
+                          <span className="dmp-badge-yes">
                             YES ({fVal} &gt; {expVal})
                           </span>
                         ) : (
-                          <span style={{ color: "#9ca3af" }}>
+                          <span className="dmp-badge-no">
                             NO ({fVal} ≤ {expVal})
                           </span>
                         )}
@@ -900,14 +588,8 @@ export default function DiscreteMathWeek1Playground() {
 
       {/* TAB 4: DYCK PATHS & PARENTHESES */}
       {activeTab === "dyck" && (
-        <div>
-          <p
-            style={{
-              fontSize: "0.9rem",
-              color: "var(--text-secondary, #9ca3af)",
-              marginTop: 0,
-            }}
-          >
+        <div className="dmp-panel">
+          <p className="dmp-tab-intro">
             A <strong>Dyck Path</strong> of semilength <code>n</code> consists
             of <code>n</code> Right steps and <code>n</code> Up steps on an{" "}
             <code>n × n</code> grid that{" "}
@@ -916,141 +598,55 @@ export default function DiscreteMathWeek1Playground() {
             string!
           </p>
 
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              alignItems: "center",
-              marginBottom: "1rem",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "0.85rem",
-                color: "var(--text-secondary, #9ca3af)",
-              }}
-            >
-              Grid Size (n):
-            </span>
-            {[1, 2, 3, 4].map((v) => (
-              <button
-                key={v}
-                type="button"
-                onClick={() => {
-                  setDyckN(v);
-                  setSelectedDyckIndex(0);
-                }}
-                style={{
-                  padding: "0.3rem 0.8rem",
-                  borderRadius: "6px",
-                  border: "1px solid var(--border, #374151)",
-                  background:
-                    dyckN === v
-                      ? "var(--accent, #3b82f6)"
-                      : "var(--surface, #1f2937)",
-                  color: "#fff",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                }}
-              >
-                n = {v} (C_{v} = {Number(calcCatalan(v))})
-              </button>
-            ))}
+          <div className="dmp-section" style={{ marginBottom: "1rem" }}>
+            <span className="dmp-section-label">Select Grid Size (n):</span>
+            <div className="dmp-chip-row">
+              {[1, 2, 3, 4].map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => {
+                    setDyckN(v);
+                    setSelectedDyckIndex(0);
+                  }}
+                  className={`dmp-chip-btn ${dyckN === v ? "active" : ""}`}
+                >
+                  n = {v} (C_{v} = {Number(calcCatalan(v))})
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "1.25rem",
-            }}
-          >
+          <div className="dmp-dyck-grid-layout">
             {/* List of valid strings */}
-            <div>
-              <div
-                style={{
-                  fontSize: "0.82rem",
-                  fontWeight: 700,
-                  color: "var(--text-secondary, #9ca3af)",
-                  marginBottom: "0.5rem",
-                  textTransform: "uppercase",
-                }}
-              >
+            <div className="dmp-dyck-list-col">
+              <div className="dmp-dyck-col-header">
                 Valid Strings ({dyckWords.length} total = C_{dyckN}):
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.4rem",
-                  maxHeight: "220px",
-                  overflowY: "auto",
-                }}
-              >
+              <div className="dmp-dyck-word-list">
                 {dyckWords.map((word, idx) => (
                   <button
                     key={word}
                     type="button"
                     onClick={() => setSelectedDyckIndex(idx)}
-                    style={{
-                      padding: "0.45rem 0.75rem",
-                      borderRadius: "6px",
-                      border: "1px solid",
-                      borderColor:
-                        selectedDyckIndex === idx
-                          ? "#3b82f6"
-                          : "rgba(255, 255, 255, 0.08)",
-                      background:
-                        selectedDyckIndex === idx
-                          ? "rgba(59, 130, 246, 0.2)"
-                          : "rgba(0, 0, 0, 0.2)",
-                      color: selectedDyckIndex === idx ? "#60a5fa" : "#e5e7eb",
-                      textAlign: "left",
-                      fontFamily: "monospace",
-                      fontSize: "0.95rem",
-                      fontWeight: 600,
-                      cursor: "pointer",
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
+                    className={`dmp-dyck-word-btn ${selectedDyckIndex === idx ? "active" : ""}`}
                   >
-                    <span>{word}</span>
-                    <span style={{ fontSize: "0.75rem", opacity: 0.7 }}>
-                      #{idx + 1}
-                    </span>
+                    <span className="dmp-dyck-word-text">{word}</span>
+                    <span className="dmp-dyck-word-num">#{idx + 1}</span>
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Dyck Path Grid Visualizer */}
-            <div
-              style={{
-                background: "rgba(0, 0, 0, 0.3)",
-                borderRadius: "10px",
-                padding: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "0.82rem",
-                  color: "#93c5fd",
-                  fontFamily: "monospace",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                Path: {activeDyckWord}
-              </div>
+            <div className="dmp-dyck-viz-col">
+              <div className="dmp-viz-title">Active Path: {activeDyckWord}</div>
 
               {/* Render SVG Grid & Path */}
               {(() => {
                 const gridSize = dyckN;
-                const svgSize = 180;
-                const pad = 20;
+                const svgSize = 220;
+                const pad = 24;
                 const stepPx = (svgSize - 2 * pad) / gridSize;
 
                 // Trace coordinates
@@ -1079,7 +675,7 @@ export default function DiscreteMathWeek1Playground() {
                   <svg
                     width={svgSize}
                     height={svgSize}
-                    style={{ border: "1px solid #374151", borderRadius: "8px" }}
+                    className="dmp-dyck-svg"
                   >
                     {/* Grid lines */}
                     {Array.from({ length: gridSize + 1 }).map((_, i) => (
@@ -1089,16 +685,14 @@ export default function DiscreteMathWeek1Playground() {
                           y1={pad + i * stepPx}
                           x2={svgSize - pad}
                           y2={pad + i * stepPx}
-                          stroke="#374151"
-                          strokeDasharray="2 2"
+                          className="dmp-grid-line"
                         />
                         <line
                           x1={pad + i * stepPx}
                           y1={pad}
                           x2={pad + i * stepPx}
                           y2={svgSize - pad}
-                          stroke="#374151"
-                          strokeDasharray="2 2"
+                          className="dmp-grid-line"
                         />
                       </React.Fragment>
                     ))}
@@ -1110,36 +704,32 @@ export default function DiscreteMathWeek1Playground() {
                       x2={svgSize - pad}
                       y2={pad}
                       stroke="#ef4444"
-                      strokeWidth="1.5"
-                      strokeDasharray="4 2"
+                      strokeWidth="2"
+                      strokeDasharray="4 3"
                     />
 
                     {/* Active Dyck Path */}
                     <path
                       d={pathData}
                       fill="none"
-                      stroke="#3b82f6"
-                      strokeWidth="3.5"
+                      stroke="#10b981"
+                      strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
 
                     {/* Start and end points */}
-                    <circle cx={pad} cy={svgSize - pad} r="4" fill="#10b981" />
-                    <circle cx={svgSize - pad} cy={pad} r="4" fill="#f59e0b" />
+                    <circle cx={pad} cy={svgSize - pad} r="5" fill="#10b981" />
+                    <circle cx={svgSize - pad} cy={pad} r="5" fill="#f59e0b" />
                   </svg>
                 );
               })()}
 
-              <div
-                style={{
-                  marginTop: "0.5rem",
-                  fontSize: "0.75rem",
-                  color: "#9ca3af",
-                }}
-              >
-                Green = (0,0), Orange = ({dyckN},{dyckN}), Red dashed = Diagonal
-                y=x
+              <div className="dmp-viz-legend">
+                <span className="legend-dot green" /> Start (0,0) &nbsp;
+                <span className="legend-dot amber" /> End ({dyckN},{dyckN})
+                &nbsp;
+                <span className="legend-dot red" /> Diagonal y = x
               </div>
             </div>
           </div>

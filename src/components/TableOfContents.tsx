@@ -16,10 +16,31 @@ interface TableOfContentsProps {
   quizCount?: number;
 }
 
+export function cleanTitleForToc(rawTitle: string): string {
+  return rawTitle
+    .replace(/\$\^n\s*P_r\$/g, "ⁿPᵣ")
+    .replace(/\$\^n\s*C_r(?:\s*=\s*\\binom\{n\}\{r\})?\$/g, "ⁿCᵣ")
+    .replace(/\$C_n\$/g, "Cₙ")
+    .replace(/\$n!\s*>\s*2\^n\$/g, "n! > 2ⁿ")
+    .replace(/\\binom\{([^}]+)\}\{([^}]+)\}/g, "C($1, $2)")
+    .replace(/\\neq/g, "≠")
+    .replace(/\\times/g, "×")
+    .replace(/\\le/g, "≤")
+    .replace(/\\ge/g, "≥")
+    .replace(/\$([^$]+)\$/g, "$1")
+    .replace(/[*_`]/g, "")
+    .trim();
+}
+
 // Generate URL/anchor-friendly slugs from markdown headings
 export function slugify(text: string): string {
   return text
     .toLowerCase()
+    .replace(/ⁿ/g, "n")
+    .replace(/ᵣ/g, "r")
+    .replace(/ₙ/g, "n")
+    .replace(/\$([^$]+)\$/g, "$1")
+    .replace(/\\binom\{([^}]+)\}\{([^}]+)\}/g, "$1-$2")
     .replace(/[^\w\s-]/g, "") // remove special punctuation
     .trim()
     .replace(/\s+/g, "-");
@@ -54,31 +75,20 @@ export function extractHeadings(
 
     const h2Match = line.match(/^##\s+(.+)$/);
     const h3Match = line.match(/^###\s+(.+)$/);
-    const h4Match = line.match(/^####\s+(.+)$/);
 
     if (h2Match) {
-      const rawTitle = h2Match[1].trim();
-      const cleanTitle = rawTitle.replace(/[*_`]/g, "");
+      const cleanTitle = cleanTitleForToc(h2Match[1]);
       items.push({
         id: getUniqueSlug(cleanTitle),
         title: cleanTitle,
         level: 2,
       });
     } else if (h3Match) {
-      const rawTitle = h3Match[1].trim();
-      const cleanTitle = rawTitle.replace(/[*_`]/g, "");
+      const cleanTitle = cleanTitleForToc(h3Match[1]);
       items.push({
         id: getUniqueSlug(cleanTitle),
         title: cleanTitle,
         level: 3,
-      });
-    } else if (h4Match) {
-      const rawTitle = h4Match[1].trim();
-      const cleanTitle = rawTitle.replace(/[*_`]/g, "");
-      items.push({
-        id: getUniqueSlug(cleanTitle),
-        title: cleanTitle,
-        level: 4,
       });
     }
   }
