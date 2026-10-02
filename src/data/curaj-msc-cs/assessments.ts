@@ -743,8 +743,252 @@ DFS Path: A -> B -> E -> I -> J | Total Edges: 4
   },
 
   // ==========================================
-  // SEMESTER 1: Advanced Algorithms CIA-1 & CIA-2 (Upcoming)
+  // SEMESTER 1: Advanced Algorithms (6.0CSC02) CIA-1 September 2026 (algocia126) & August 2024
   // ==========================================
+  {
+    id: "sem1-algo-cia1-2026",
+    courseCode: "6.0CSC02",
+    courseSlug: "advanced-algorithms",
+    courseTitle: "Advanced Algorithms",
+    semester: "Semester I",
+    assessmentType: "CIA-1",
+    title:
+      "Continuous Internal Assessment 1 (CIA-1) — September 2026 (algocia126)",
+    date: "September 2026",
+    time: "01 Hr.",
+    totalMarks: 20,
+    instructions: [
+      "Department of Computer Science, Central University of Rajasthan (CURAJ).",
+      "CIA I – September 2026 (Course: 6.0CSC02 Advanced Algorithms).",
+      "M.Sc. (CS) - I Semester / Integrated M.Sc. (CS) - VII Semester.",
+      "Time: 1 Hour | Maximum Marks: 20.",
+      "All four questions are compulsory; each question carries 5 marks [4 × 5 = 20 Marks].",
+    ],
+    paperImages: ["/algocia126.jpeg"],
+    status: "available",
+    notes:
+      "Department of Computer Science, Central University of Rajasthan (CURAJ). Official question paper algocia126.jpeg for 6.0CSC02 Advanced Algorithms (September 2026) with complete verified 5-mark model solutions for all four questions: Q1 (Time & Space Complexity, Best/Worst Case, 2-Way Merge Comparisons), Q2 (QuickSort Best-Case Recurrence Derivation & Solution), Q3 (Optimal Huffman Codes for frequencies 4, 5, 7, 8, 10, 12, 20 with Decode Tree & Time Complexity), and Q4 (Decision vs Counting Problems & Nondeterministic Linear Search).",
+    questions: [
+      {
+        id: "algo-2026-q1",
+        qNumber: "Q1",
+        marks: 5,
+        question:
+          "Define time and space complexity. What do you understand by the best-case and worst-case complexity of an algorithm? Find number of comparisons required for merging two sorted lists of sizes m and n into a sorted list of size m + n.",
+        solution: {
+          summary:
+            "Formal definitions of computational time and space complexity, best-case vs worst-case bounds, and exact comparison derivation for 2-way merge showing minimum min(m, n) and maximum (m + n - 1) comparisons.",
+          keyPoints: [
+            "Time Complexity: Number of elementary machine operations executed as a function of input size n, independent of hardware/compiler variance.",
+            "Space Complexity: Total memory space required during execution, split into Fixed Component (code, constants) and Variable Component (dynamic heap allocations, recursive call stack).",
+            "Best-Case: Minimum operations under the most favorable input configuration (e.g., target at index 0 in Linear Search takes Θ(1)).",
+            "Worst-Case: Maximum operations across all valid inputs of size n, guaranteeing a deterministic upper bound critical for mission-critical systems (e.g., Linear Search takes n comparisons).",
+            "2-Way Merge Exact Bounds: Minimum comparisons = min(m, n) (when one list is strictly smaller than the other). Maximum comparisons = m + n - 1 (when elements strictly alternate).",
+          ],
+          explanation: [
+            "1. Time Complexity Definition:",
+            "Time complexity quantifies the total computational time required by an algorithm to execute to termination as a function of the input size n. Because physical clock seconds depend on CPU frequency, OS scheduling, compiler optimization, and memory cache latency, computer scientists measure time complexity by counting the number of primitive elementary operations (arithmetic operations, assignments, comparisons, pointer dereferences) executed as n scales asymptotically.",
+            "",
+            "2. Space Complexity Definition:",
+            "Space complexity measures the total amount of memory space required by an algorithm during execution as a function of input size n. It comprises two major parts: S(P) = c + Sv(n).",
+            "  - Fixed Component (c): Space independent of input characteristics, including compiled bytecode/machine instructions, simple fixed-size variables, and constants.",
+            "  - Variable Component (Sv(n)): Space dynamically dependent on input size n, including heap-allocated dynamic data structures (arrays, linked nodes) and execution call stack frames allocated for recursive function calls (storing return addresses, activation records, and local variables).",
+            "  - Auxiliary Space: The temporary extra memory allocated by the algorithm outside the storage required for the inputs themselves.",
+            "",
+            "3. Best-Case vs Worst-Case Complexity:",
+            "  - Best-Case Complexity: The minimum number of basic operations executed for an input of size n under the most favorable arrangement of input data. Example: In Linear Search, finding the key at the very first index A[0] takes Θ(1) comparisons. In Insertion Sort, an already sorted array requires only Θ(n) comparisons.",
+            "  - Worst-Case Complexity: The maximum number of basic operations executed across ANY valid input instance of size n. It establishes a strictly guaranteed upper bound, ensuring the algorithm will never exceed this cost under any adversarial scenario. Example: In Linear Search, an absent element takes n comparisons (Θ(n)). In QuickSort with last-element pivot on a sorted array, partitioning degrades to Θ(n²).",
+            "",
+            "4. Number of Comparisons for Merging Two Sorted Lists (Sizes m and n):",
+            "Consider merging sorted list A of length m and sorted list B of length n into list C of length m + n using the standard 2-way Merge algorithm:",
+            "  - At each step of the while loop (while i < m and j < n), exactly one key comparison (A[i] <= B[j]) is performed, and exactly one element is placed into the output array C.",
+            "  - Comparisons terminate the instant one of the two lists is completely exhausted. The remaining elements of the non-exhausted list are appended directly without any further comparisons.",
+            "  - Maximum (Worst-Case) Comparisons: In the worst scenario, one list is exhausted only when exactly 1 element remains in the second list. At this point, exactly (m + n - 1) elements have been placed into C via comparisons. The last remaining element is appended without comparison. Thus, Comparisons_max = m + n - 1. (Occurs when elements of A and B strictly alternate in sorted order, e.g., A = [1, 3, 5] and B = [2, 4, 6] requiring 3 + 3 - 1 = 5 comparisons).",
+            "  - Minimum (Best-Case) Comparisons: When all elements of one list are smaller than the smallest element of the other list (e.g., A = [1, 2, 3] and B = [10, 20, 30, 40]). The smaller list is exhausted after comparing each of its elements against B[0]. Thus, Comparisons_min = min(m, n) = 3 comparisons. The rest of B is copied directly.",
+            "  - Summary Bounds: min(m, n) <= Comparisons <= m + n - 1.",
+          ],
+          code: `/* 2-Way Merge Procedure: C Implementation */
+#include <stdio.h>
+
+void merge_sorted_lists(const int A[], int m, const int B[], int n, int C[]) {
+    int i = 0, j = 0, k = 0;
+    int comparisons = 0;
+
+    /* Loop makes 1 comparison per placed element */
+    while (i < m && j < n) {
+        comparisons++;
+        if (A[i] <= B[j]) {
+            C[k++] = A[i++];
+        } else {
+            C[k++] = B[j++];
+        }
+    }
+
+    /* Remaining elements appended directly WITHOUT comparisons */
+    while (i < m) C[k++] = A[i++];
+    while (j < n) C[k++] = B[j++];
+
+    /* Comparison Limits: min(m, n) <= comparisons <= m + n - 1 */
+}`,
+        },
+      },
+      {
+        id: "algo-2026-q2",
+        qNumber: "Q2",
+        marks: 5,
+        question:
+          "Derive and solve recurrence equation for the best-case behavior of the quick sort.",
+        solution: {
+          summary:
+            "Formulation of the balanced partition recurrence T(n) = 2T(n/2) + cn for QuickSort under median pivot selection and solving via Master Theorem (Case 2, k=0) and Recursion Tree to Theta(n log n).",
+          keyPoints: [
+            "QuickSort relies on divide-and-conquer: partition takes linear time cn = Θ(n) using n - 1 comparisons.",
+            "Best-Case Condition: The pivot selected by partition always splits the array into two equal halves of size approximately n/2 at every recursive step.",
+            "Recurrence Relation: T(n) = 2T(n/2) + cn for n > 1, with base case T(1) = c0.",
+            "Solving via Master Theorem: a = 2, b = 2, f(n) = cn = Θ(n^1). Watershed function n^(log_b a) = n^(log_2 2) = n^1. Since f(n) = Θ(n^(log_b a)), Case 2 with k = 0 applies.",
+            "Final Time Complexity: T(n) = Θ(n^(log_b a) * log^(k+1) n) = Θ(n log n).",
+          ],
+          explanation: [
+            "1. Algorithmic Context & Best-Case Condition:",
+            "QuickSort divides an array A[p..r] of size n around a pivot element into two subarrays A[p..q-1] and A[q+1..r]. The partition subroutine requires linear time f(n) = cn (specifically n - 1 comparisons).",
+            "The best-case behavior occurs when the partition routine always selects the true median element as the pivot, splitting the input array into two subarrays of virtually equal size at each level of recursion: floor((n-1)/2) and ceil((n-1)/2).",
+            "",
+            "2. Derivation of the Recurrence Relation:",
+            "Ignoring floors and ceilings for asymptotic analysis:",
+            "  - Size of each subproblem = n/2",
+            "  - Number of recursive subproblems = 2",
+            "  - Time spent in partitioning = cn (where c > 0 is a constant)",
+            "  - Base case: For n <= 1, the array is already sorted, requiring constant time T(1) = c0.",
+            "Hence, the best-case recurrence relation is:",
+            "  T(n) = 2 T(n/2) + cn, for n > 1",
+            "  T(1) = c0, for n = 1",
+            "",
+            "3. Solving via Master Theorem (CLRS Theorem 4.1):",
+            "The recurrence fits the standard Master Theorem form: T(n) = a T(n/b) + f(n)",
+            "Here, a = 2, b = 2, and f(n) = cn = Θ(n^1).",
+            "  - Step 1: Compute the watershed function: n^(log_b a) = n^(log_2 2) = n^1 = n.",
+            "  - Step 2: Compare f(n) with n^(log_b a):",
+            "    f(n) = cn = Θ(n^1) = Θ(n^(log_b a)).",
+            "  - Step 3: Apply Master Theorem Case 2 (with k = 0):",
+            "    When f(n) = Θ(n^(log_b a) * log^k n), T(n) = Θ(n^(log_b a) * log^(k+1) n).",
+            "  - Substituting a = 2, b = 2, k = 0 yields:",
+            "    T(n) = Θ(n^1 * log^(0+1) n) = Θ(n log2 n).",
+            "",
+            "4. Verification via Recursion Tree Method:",
+            "  - Level 0 (Root): Work done = cn",
+            "  - Level 1: 2 subproblems of size n/2 -> Work = 2 * c(n/2) = cn",
+            "  - Level 2: 4 subproblems of size n/4 -> Work = 4 * c(n/4) = cn",
+            "  - Level i: 2^i subproblems of size n/2^i -> Work = 2^i * c(n/2^i) = cn",
+            "  - Height of tree: n / 2^h = 1 => h = log2 n levels.",
+            "  - Summing over all levels: T(n) = cn * (log2 n + 1) = Θ(n log n).",
+          ],
+        },
+      },
+      {
+        id: "algo-2026-q3",
+        qNumber: "Q3",
+        marks: 5,
+        question:
+          "Obtain a set of optimal Huffman codes for the messages (m1, m2, m3, m4, m5, m6, m7) with relative frequencies (q1, q2, q3, q4, q5, q6, q7) = (4, 5, 7, 8, 10, 12, 20). Draw the decode tree for this set of codes. Also, write time complexity for Huffman encoding.",
+        solution: {
+          summary:
+            "Greedy min-priority queue construction yielding optimal prefix-free codes: m1: 1000, m2: 1001, m3: 010, m4: 011, m5: 101, m6: 00, m7: 11 with total weighted bits = 175 (avg 2.65 bits/symbol) and O(n log n) encoding time complexity.",
+          keyPoints: [
+            "Given: Messages (m1..m7) with frequencies (4, 5, 7, 8, 10, 12, 20). Total frequency = 66.",
+            "Greedy Merges: (4+5=9: N1), (7+8=15: N2), (9+10=19: N3), (12+15=27: N4), (19+20=39: N5), (27+39=66: Root).",
+            "Assigned Optimal Codes (Left=0, Right=1): m1='1000' (4b), m2='1001' (4b), m3='010' (3b), m4='011' (3b), m5='101' (3b), m6='00' (2b), m7='11' (2b).",
+            "Total Weighted Length: 4(4)+5(4)+7(3)+8(3)+10(3)+12(2)+20(2) = 16+20+21+24+30+24+40 = 175 bits. Average length = 175/66 ≈ 2.6515 bits.",
+            "Time Complexity: O(n log n) using a binary min-heap for n distinct symbols. (Reducible to O(n) if frequencies are pre-sorted using two queues).",
+          ],
+          explanation: [
+            "1. Given Symbols and Frequency Distribution:",
+            "Symbols: m1(4), m2(5), m3(7), m4(8), m5(10), m6(12), m7(20). Total sum = 66.",
+            "",
+            "2. Step-by-Step Greedy Min-Priority Queue Merging:",
+            "Initial Q = { (m1, 4), (m2, 5), (m3, 7), (m4, 8), (m5, 10), (m6, 12), (m7, 20) }",
+            "  - Step 1: Extract min 4 (m1) and 5 (m2). Merge into N1 with weight 4 + 5 = 9. Q = { m3(7), m4(8), N1(9), m5(10), m6(12), m7(20) }",
+            "  - Step 2: Extract min 7 (m3) and 8 (m4). Merge into N2 with weight 7 + 8 = 15. Q = { N1(9), m5(10), m6(12), N2(15), m7(20) }",
+            "  - Step 3: Extract min 9 (N1) and 10 (m5). Merge into N3 with weight 9 + 10 = 19. Q = { m6(12), N2(15), N3(19), m7(20) }",
+            "  - Step 4: Extract min 12 (m6) and 15 (N2). Merge into N4 with weight 12 + 15 = 27. Q = { N3(19), m7(20), N4(27) }",
+            "  - Step 5: Extract min 19 (N3) and 20 (m7). Merge into N5 with weight 19 + 20 = 39. Q = { N4(27), N5(39) }",
+            "  - Step 6: Extract min 27 (N4) and 39 (N5). Merge into Root R with weight 27 + 39 = 66. Q = { R(66) }. Done!",
+            "",
+            "3. Decode Tree Structure & Code Assignment (Convention: Left=0, Right=1):",
+            "  - Root (66): Left -> N4 (27), Right -> N5 (39)",
+            "    - N4 (27): Left -> m6 (12) [Code: 00], Right -> N2 (15)",
+            "      - N2 (15): Left -> m3 (7) [Code: 010], Right -> m4 (8) [Code: 011]",
+            "    - N5 (39): Left -> N3 (19), Right -> m7 (20) [Code: 11]",
+            "      - N3 (19): Left -> N1 (9), Right -> m5 (10) [Code: 101]",
+            "        - N1 (9): Left -> m1 (4) [Code: 1000], Right -> m2 (5) [Code: 1001]",
+            "",
+            "4. Time Complexity of Huffman Encoding:",
+            "  - Building min-priority queue with n nodes: O(n) using BUILD-MIN-HEAP (or O(n log n) by successive insertions).",
+            "  - Merging loop runs (n - 1) times. Each iteration performs 2 EXTRACT-MIN and 1 INSERT operations on the heap, each taking O(log n) time.",
+            "  - Total time for (n - 1) iterations = (n - 1) * O(log n) = O(n log n).",
+            "  - Tree traversal to extract bit codes = O(n).",
+            "  - Overall Time Complexity: O(n log n).",
+          ],
+        },
+      },
+      {
+        id: "algo-2026-q4",
+        qNumber: "Q4",
+        marks: 5,
+        question:
+          "With the help of suitable examples differentiate between decision and counting problems. Write a nondeterministic algorithm for linear search. Analyze the algorithm and determine its time complexity.",
+        solution: {
+          summary:
+            "Comprehensive differentiation between Decision problems (binary YES/NO in P/NP) and Counting problems (integer solutions in #P), followed by nondeterministic linear search algorithm with O(1) choice and O(1) check, demonstrating O(1) total time.",
+          keyPoints: [
+            "Decision Problem: Answers with binary {YES, NO} (e.g., SAT, Hamiltonian Cycle, Subset Sum). Formally decides language membership.",
+            "Counting Problem: Determines total count of distinct valid solutions in N (e.g., #SAT, #Hamiltonian Cycles). Formally defines class #P (Leslie Valiant).",
+            "Relative Hardness: Counting is strictly at least as hard as decision; some problems have decision in P but counting is #P-complete (e.g., Bipartite Matching vs Permanent).",
+            "Nondeterministic Linear Search: Phase 1 guesses index j = choice(1, n) in O(1). Phase 2 verifies A[j] == key in O(1). If true, success() else failure().",
+            "Complexity: Total nondeterministic time = O(1) + O(1) = O(1) = Θ(1), proving verification is in polynomial time and Linear Search is in NP (and P).",
+          ],
+          explanation: [
+            "1. Decision vs Counting Problems:",
+            "  - Decision Problem: A problem whose output is binary: either YES or NO. Formally, given an instance x, determine whether x belongs to formal language L. Associated with complexity classes P, NP, co-NP. Example: 3-SAT (Does there exist a satisfying truth assignment?).",
+            "  - Counting Problem: A problem where the output is the number of distinct valid solutions. Associated with complexity class #P (Sharp-P). Example: #3-SAT (How many satisfying truth assignments exist?).",
+            "  - Contrast Example (Bipartite Matching): Deciding if a bipartite graph has a perfect matching is solvable in polynomial time O(E sqrt(V)) in P. However, counting the total number of perfect matchings (computing the 0-1 matrix permanent) is #P-complete!",
+            "",
+            "2. Nondeterministic Algorithm for Linear Search:",
+            "A nondeterministic algorithm operates in two conceptual stages:",
+            "  - Guessing Stage: Uses an ideal choice primitive to non-deterministically select a candidate index.",
+            "  - Checking Stage: Deterministically evaluates whether the chosen candidate satisfies the search condition.",
+            "",
+            "Pseudocode:",
+            "  Algorithm Nondeterministic_Linear_Search(A, n, key)",
+            "  1. j = choice(1, n)       // Nondeterministically picks index j in [1, n]",
+            "  2. if A[j] == key then",
+            "  3.     write('Found key at index ', j)",
+            "  4.     success()           // Computation path halts with success",
+            "  5. else",
+            "  6.     failure()           // Computation path halts with failure",
+            "",
+            "3. Time Complexity Analysis of Nondeterministic Linear Search:",
+            "  - Guessing Step: The choice(1, n) operation takes O(1) time in the theoretical nondeterministic Turing model.",
+            "  - Verification Step: A single array lookup A[j] and comparison A[j] == key takes O(1) time.",
+            "  - Total Nondeterministic Running Time: T_nondet(n) = O(1) + O(1) = O(1) = Θ(1).",
+            "  - Deterministic Comparison: Deterministic linear search requires Θ(n) worst-case sequential comparisons. The nondeterministic O(1) runtime formally demonstrates that Linear Search is in NP.",
+          ],
+          code: `/* Theoretical Nondeterministic Linear Search Model */
+void nondeterministic_linear_search(const int A[], int n, int key) {
+    /* Stage 1: Nondeterministic choice of candidate index in O(1) */
+    int j = choice(0, n - 1);
+
+    /* Stage 2: Deterministic verification in O(1) */
+    if (A[j] == key) {
+        printf("Key %d verified at index %d\\n", key, j);
+        success(); /* Oracle path succeeds */
+    } else {
+        failure(); /* Path halts with failure */
+    }
+}`,
+        },
+      },
+    ],
+  },
   {
     id: "sem1-algo-cia1",
     courseCode: "6.0CSC02",

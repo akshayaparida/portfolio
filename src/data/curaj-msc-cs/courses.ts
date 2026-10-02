@@ -47,7 +47,7 @@ export const curajCourses: Course[] = [
     nptelUrl: "https://nptel.ac.in/courses/106106131",
     notesUrl:
       "/curaj-msc-cs/advanced-algorithms/unit-1-analysis-divide-conquer",
-    notesTitle: "Unit 1: Analysis, Recurrences & Divide-Conquer Notes & Quiz",
+    notesTitle: "Unit 1 Notes & CIA-1 Sept 2026 (algocia126) Solutions",
     availableNotesUnits: [1],
   },
   {

@@ -736,6 +736,11 @@ int knapsack_01(int W, const int wt[], const int val[], int n) {
 
 ## 6. Official CURAJ CIA-1 Examination Papers & Comprehensive Model Solutions (August 2024, CSC-404)
 
+> [!TIP]
+> **🚀 Newly Added: September 2026 Official CIA-1 Paper (algocia126)**  
+> Looking for the latest **September 2026 First Mid-Semester Examination** question paper (\`algocia126.jpeg\`) for 6.0CSC02 Advanced Algorithms?  
+> 👉 **[Explore Official September 2026 Paper & Verified Model Solutions (algocia126)](/curaj-msc-cs/advanced-algorithms/algocia126)** — featuring complete verified solutions for Time & Space Complexity, 2-Way Merge comparisons, QuickSort Best-Case Recurrence, Optimal Huffman Codes (4, 5, 7, 8, 10, 12, 20) with decode tree, and Decision vs Counting Problems with Nondeterministic Linear Search.
+
 > [!IMPORTANT]
 > **Official University Examination Paper Analysis**:
 > - **Institution**: Central University of Rajasthan (CURAJ)
