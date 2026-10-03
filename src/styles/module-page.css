@@ -3387,4 +3387,107 @@ html.dark .dmp-dyck-word-btn.active {
   background: #ef4444;
 }
 
+/* ==========================================================================
+   Discrete Mathematics Dual-Week Switcher Navigation Styles
+   ========================================================================== */
+.discrete-math-week-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.discrete-math-week-nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .discrete-math-week-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
+.week-nav-btn {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1.15rem 1.25rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.week-nav-btn:hover {
+  transform: translateY(-2px);
+  border-color: #3b82f6;
+  box-shadow: 0 6px 20px -4px rgba(59, 130, 246, 0.15);
+}
+
+.week-nav-btn.active {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.04) 100%);
+  box-shadow: 0 8px 24px -4px rgba(59, 130, 246, 0.22);
+}
+
+.week-nav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.week-nav-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.week-nav-btn:nth-child(2) .week-nav-badge {
+  background: #10b981;
+}
+
+.week-nav-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.week-nav-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 0.35rem;
+}
+
+.week-nav-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.week-nav-btn.active .week-nav-title {
+  color: #3b82f6;
+}
+
+.week-nav-btn:nth-child(2).active .week-nav-title {
+  color: #10b981;
+}
+
+
 

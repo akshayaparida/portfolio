@@ -11,8 +11,8 @@ export const basicMathModule: LearningModule = {
 Master the foundational concepts that underpin every branch of mathematics — from number classification and arithmetic rules to geometry essentials. This module ensures you have a rock-solid base before moving on to algebra, calculus, and beyond.
 
 > [!TIP]
-> **NPTEL Discrete Mathematics Week 1 Rapid Recall**:
-> Revising for NPTEL Assignment 1 or preparing for GATE CS? Jump directly to our specialized [Discrete Math: Week 1 Assignment](/mathematics/discrete-math-week-1) cheatsheet for rapid formulas, Catalan tricks, Dyck paths, polygon triangulation, and LIFO stack permutations!
+> **NPTEL Discrete Mathematics Rapid Recall**:
+> Revising for NPTEL assignments or preparing for GATE CS? Jump directly to our specialized [Discrete Mathematics (Weeks 1 & 2)](/mathematics/discrete-math) cheatsheets covering Catalan tricks, Dyck paths, polygon triangulation, stack permutations, Set Theory, Venn diagrams, and 2/3-set Inclusion-Exclusion!
 
 ## What You'll Learn
 
@@ -804,7 +804,7 @@ that exact sequence of 52 cards has NEVER existed in human history.
 Given n cities, finding the shortest round-trip route by brute-force checking all (n-1)! / 2 routes becomes physically impossible for n ≥ 30, motivating the need for dynamic programming and approximation heuristics.
 
 > [!NOTE]
-> For the comprehensive rapid-recall cheatsheet covering all NPTEL Week 1 assignment formulas, Catalan recurrences, Dyck paths, polygon triangulations, stack permutations, and arrangements, visit the dedicated [Discrete Math: Week 1 Assignment](/mathematics/discrete-math-week-1) module.
+> For the comprehensive rapid-recall cheatsheet covering all NPTEL Week 1 and Week 2 formulas, Catalan recurrences, Dyck paths, polygon triangulations, stack permutations, Venn diagrams, and set counting, visit the dedicated [Discrete Mathematics](/mathematics/discrete-math) module.
 
 ## 13. The Rule of Sum (Addition Principle)
 
