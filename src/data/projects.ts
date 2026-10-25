@@ -14,6 +14,32 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "better_AQI",
+    date: "Oct 2026",
+    description:
+      "Hyper-local air quality intelligence, cleanest commute exposure planning, and automated health advisories built with AWS Strands Agents and Amazon Bedrock. Features CPCB 6-tier telemetry, real-time commute PM2.5 & cigarette equivalent exposure calculation, NASA FIRMS stubble fire plume tracking, and an indoor HEPA purifier CADR countdown timer.",
+    tech: [
+      "AWS Strands Agents",
+      "Amazon Bedrock",
+      "AWS Lambda",
+      "SAM CLI",
+      "LocalStack",
+      "React",
+      "Leaflet",
+    ],
+    links: [
+      {
+        label: "Live Demo",
+        url: "https://youtu.be/mKXzqpP7C8E?si=HPnkO-XRKNUJv71U",
+      },
+      {
+        label: "GitHub",
+        url: "https://github.com/akshayaparida/better_AQI",
+      },
+    ],
+    image: "/betteraqi.png",
+  },
+  {
     title: "Bengaluru Infra AI Reporter",
     date: "Oct 2025",
     description:

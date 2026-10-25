@@ -32,6 +32,8 @@ export default function ProjectCard({ project, onRef }: ProjectCardProps) {
               >
                 {link.label === "GitHub" ? (
                   <i className="fa-brands fa-github"></i>
+                ) : link.url.includes("youtu") ? (
+                  <i className="fa-brands fa-youtube"></i>
                 ) : (
                   <i className="fa-solid fa-arrow-up-right-from-square"></i>
                 )}

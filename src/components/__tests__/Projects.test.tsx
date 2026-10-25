@@ -22,6 +22,7 @@ describe("Projects", () => {
   it("renders project cards", () => {
     render(<Projects />);
     // Check for some known project titles from the data
+    expect(screen.getByText("better_AQI")).toBeInTheDocument();
     expect(screen.getByText("Bengaluru Infra AI Reporter")).toBeInTheDocument();
     expect(screen.getByText("GitHub Contribution Tracker")).toBeInTheDocument();
   });
