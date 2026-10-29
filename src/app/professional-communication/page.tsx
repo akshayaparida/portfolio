@@ -40,6 +40,7 @@ export default function ProfessionalCommunicationPage() {
   );
   const [showPaperSheet, setShowPaperSheet] = useState(false);
   const [showOfficialPaperSheet, setShowOfficialPaperSheet] = useState(true);
+  const [showSyllabusScan, setShowSyllabusScan] = useState(true);
   const [assignmentFilter, setAssignmentFilter] = useState<"all" | "a1" | "a2">(
     "all",
   );
@@ -607,15 +608,42 @@ export default function ProfessionalCommunicationPage() {
                 <i className="fa-solid fa-building-columns"></i> CURAJ MSc CS
               </span>
             </div>
-            <button
-              type="button"
-              onClick={() => setActiveTab("cia")}
-              className="cia-quick-link"
+            <div
+              style={{
+                display: "flex",
+                gap: "0.5rem",
+                flexWrap: "wrap",
+                alignItems: "center",
+              }}
             >
-              <i className="fa-solid fa-file-lines"></i>
-              <span>Assignments 01 & 02</span>
-              <i className="fa-solid fa-arrow-right"></i>
-            </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab("syllabus");
+                  setShowSyllabusScan(true);
+                }}
+                className="cia-quick-link"
+                style={{
+                  background: "rgba(16, 185, 129, 0.08)",
+                  borderColor: "rgba(16, 185, 129, 0.25)",
+                  color: "#059669",
+                }}
+                title="View CURAJ CSC-406 Official Syllabus Sheet"
+              >
+                <i className="fa-solid fa-file-image"></i>
+                <span>Official Syllabus Scan</span>
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("cia")}
+                className="cia-quick-link"
+              >
+                <i className="fa-solid fa-file-lines"></i>
+                <span>Assignments 01 & 02</span>
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
           <h1 className="hero-title">
@@ -628,8 +656,29 @@ export default function ProfessionalCommunicationPage() {
 
           <div className="outline-box">
             <div className="outline-header">
-              <i className="fa-solid fa-compass"></i>
-              <strong>Course Outline & Industry Rationale:</strong>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.45rem",
+                }}
+              >
+                <i className="fa-solid fa-compass"></i>
+                <strong>Course Outline & Industry Rationale:</strong>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab("syllabus");
+                  setShowSyllabusScan(true);
+                }}
+                className="outline-syllabus-link"
+                title="View Official Syllabus Document"
+              >
+                <i className="fa-solid fa-file-image"></i>
+                <span>View Syllabus Scan (pcsyallubus.jpeg)</span>
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
             </div>
             <p>
               The course has been designed keeping in mind the communicative
@@ -774,6 +823,12 @@ export default function ProfessionalCommunicationPage() {
             >
               <i className="fa-solid fa-list-check"></i>
               <span>6-Unit Syllabus</span>
+              <span
+                className="tab-count-badge highlight"
+                style={{ background: "#059669" }}
+              >
+                Doc Scan
+              </span>
             </button>
             <button
               className={`tab-btn ${activeTab === "cia" ? "active" : ""}`}
@@ -1468,6 +1523,22 @@ export default function ProfessionalCommunicationPage() {
                 <button
                   type="button"
                   className="btn-outline-sm"
+                  onClick={() => setShowSyllabusScan(!showSyllabusScan)}
+                  style={{ marginRight: "0.5rem" }}
+                  title="Toggle official syllabus document image preview"
+                >
+                  <i
+                    className={`fa-solid ${showSyllabusScan ? "fa-eye-slash" : "fa-file-image"}`}
+                  ></i>
+                  <span>
+                    {showSyllabusScan
+                      ? "Hide Syllabus Doc"
+                      : "Preview Syllabus Doc"}
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="btn-outline-sm"
                   onClick={() => {
                     if (allUnitsExpanded) {
                       setExpandedUnit(null);
@@ -1488,6 +1559,148 @@ export default function ProfessionalCommunicationPage() {
                   </span>
                 </button>
               </div>
+            </div>
+
+            {/* Official Syllabus Document Scanned Image Preview */}
+            <div
+              className="paper-preview-container"
+              style={{ margin: "1.25rem 0 1.5rem 0" }}
+            >
+              <div className="paper-preview-header">
+                <div className="paper-header-left">
+                  <span
+                    className="paper-header-badge"
+                    style={{
+                      background: "rgba(16, 185, 129, 0.08)",
+                      color: "#059669",
+                      borderColor: "rgba(16, 185, 129, 0.25)",
+                    }}
+                  >
+                    <i className="fa-solid fa-file-image"></i> Official
+                    Curriculum Sheet (pcsyallubus.jpeg)
+                  </span>
+                  <span className="paper-session-text">
+                    CURAJ Department of Computer Science • CSC-406
+                  </span>
+                </div>
+                <div className="paper-header-actions">
+                  <button
+                    type="button"
+                    onClick={() => setShowSyllabusScan(!showSyllabusScan)}
+                    className="paper-toggle-btn"
+                  >
+                    <i
+                      className={`fa-solid ${showSyllabusScan ? "fa-eye-slash" : "fa-eye"}`}
+                    ></i>
+                    <span>
+                      {showSyllabusScan
+                        ? "Hide Syllabus Sheet"
+                        : "Preview Syllabus Sheet"}
+                    </span>
+                  </button>
+                  <a
+                    href="/pcsyallubus.jpeg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="paper-action-btn"
+                    title="Open high-resolution syllabus in new tab"
+                  >
+                    <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>Full Res</span>
+                  </a>
+                  <a
+                    href="/pcsyallubus.jpeg"
+                    download="CURAJ-CSC406-Professional-Communication-Syllabus.jpeg"
+                    className="paper-action-btn download"
+                    style={{
+                      background: "#059669",
+                      borderColor: "#059669",
+                    }}
+                  >
+                    <i className="fa-solid fa-download"></i>
+                    <span>Download JPEG</span>
+                  </a>
+                </div>
+              </div>
+
+              {showSyllabusScan && (
+                <div className="image-wrapper">
+                  <div className="image-wrapper-bar">
+                    <span>
+                      <i
+                        className="fa-solid fa-circle-info"
+                        style={{ marginRight: "0.35rem" }}
+                      ></i>
+                      Click image to open high-resolution view in a new tab
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setShowSyllabusScan(false)}
+                      className="image-close-btn"
+                    >
+                      <i className="fa-solid fa-xmark"></i> Close Preview
+                    </button>
+                  </div>
+                  <a
+                    href="/pcsyallubus.jpeg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="image-clickable-link"
+                    title="Open full resolution syllabus in new tab"
+                  >
+                    <Image
+                      src="/pcsyallubus.jpeg"
+                      alt="CURAJ Professional Communication (CSC-406) Official Syllabus Document"
+                      width={831}
+                      height={1280}
+                      className="paper-image"
+                      priority
+                    />
+                  </a>
+                  <div
+                    style={{
+                      padding: "0.85rem 1.1rem",
+                      fontSize: "0.85rem",
+                      background: "rgba(16, 185, 129, 0.06)",
+                      borderTop: "1px solid rgba(16, 185, 129, 0.2)",
+                      color: "var(--text-secondary)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexWrap: "wrap",
+                      gap: "0.6rem",
+                    }}
+                  >
+                    <div>
+                      <i
+                        className="fa-solid fa-circle-check"
+                        style={{ color: "#059669", marginRight: "0.4rem" }}
+                      ></i>
+                      <strong>Official CURAJ Curriculum Document:</strong>{" "}
+                      Contains complete Course Outline, 5 Course Objectives,
+                      6-Unit syllabus content, 15 Reference Textbooks, and
+                      Learning Outcomes.
+                    </div>
+                    <a
+                      href="/pcsyallubus.jpeg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#059669",
+                        fontWeight: 700,
+                        fontSize: "0.82rem",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.3rem",
+                        textDecoration: "none",
+                      }}
+                    >
+                      <span>Open Scanned Document</span>
+                      <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="units-container">
@@ -1996,10 +2209,38 @@ export default function ProfessionalCommunicationPage() {
         .outline-header {
           display: flex;
           align-items: center;
-          gap: 0.45rem;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 0.5rem;
           color: #1e293b;
           font-size: 0.875rem;
-          margin-bottom: 0.25rem;
+          margin-bottom: 0.35rem;
+        }
+
+        .outline-syllabus-link {
+          background: rgba(16, 185, 129, 0.08);
+          border: 1px solid rgba(16, 185, 129, 0.25);
+          color: #059669;
+          font-size: 0.76rem;
+          font-weight: 700;
+          padding: 0.25rem 0.6rem;
+          border-radius: 6px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          transition: all 0.15s ease;
+        }
+
+        .outline-syllabus-link:hover {
+          background: rgba(16, 185, 129, 0.15);
+          border-color: #059669;
+        }
+
+        :global(html.dark) .outline-syllabus-link {
+          background: rgba(16, 185, 129, 0.12);
+          border-color: rgba(16, 185, 129, 0.3);
+          color: #34d399;
         }
 
         :global(html.dark) .outline-header {
@@ -2622,6 +2863,38 @@ export default function ProfessionalCommunicationPage() {
           gap: 0.75rem;
         }
 
+        .paper-header-left {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          flex-wrap: wrap;
+        }
+
+        .paper-header-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #2563eb;
+          background: rgba(37, 99, 235, 0.08);
+          border: 1px solid rgba(37, 99, 235, 0.2);
+          padding: 0.25rem 0.65rem;
+          border-radius: 6px;
+        }
+
+        :global(html.dark) .paper-header-badge {
+          color: #60a5fa;
+          background: rgba(96, 165, 250, 0.12);
+          border-color: rgba(96, 165, 250, 0.25);
+        }
+
+        .paper-session-text {
+          font-size: 0.8rem;
+          color: var(--text-muted);
+          font-weight: 500;
+        }
+
         .paper-preview-title {
           font-size: 0.9rem;
           font-weight: 700;
@@ -2639,12 +2912,15 @@ export default function ProfessionalCommunicationPage() {
           color: #60a5fa;
         }
 
+        .paper-header-actions,
         .paper-preview-actions {
           display: flex;
           gap: 0.5rem;
           align-items: center;
+          flex-wrap: wrap;
         }
 
+        .paper-toggle-btn,
         .preview-toggle-btn {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -2660,11 +2936,13 @@ export default function ProfessionalCommunicationPage() {
           transition: all 0.15s ease;
         }
 
+        .paper-toggle-btn:hover,
         .preview-toggle-btn:hover {
           border-color: #94a3b8;
           color: #2563eb;
         }
 
+        .paper-action-btn,
         .paper-download-link {
           background: var(--surface);
           border: 1px solid var(--border);
@@ -2680,9 +2958,58 @@ export default function ProfessionalCommunicationPage() {
           transition: all 0.15s ease;
         }
 
+        .paper-action-btn:hover,
         .paper-download-link:hover {
           color: var(--text-primary);
           border-color: #94a3b8;
+        }
+
+        .paper-action-btn.download {
+          background: #2563eb;
+          color: #ffffff;
+          border-color: #2563eb;
+        }
+
+        .paper-action-btn.download:hover {
+          background: #1d4ed8;
+          color: #ffffff;
+        }
+
+        .image-wrapper {
+          border: 1px solid var(--border);
+          border-radius: 8px;
+          overflow: hidden;
+          background: var(--surface);
+          margin-top: 0.5rem;
+        }
+
+        :global(html.dark) .image-wrapper {
+          background: #0f1115;
+          border-color: #242933;
+        }
+
+        .image-wrapper-bar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 1rem;
+          background: rgba(0, 0, 0, 0.02);
+          border-bottom: 1px solid var(--border);
+          font-size: 0.75rem;
+          color: var(--text-muted);
+        }
+
+        :global(html.dark) .image-wrapper-bar {
+          background: rgba(255, 255, 255, 0.03);
+        }
+
+        .paper-image {
+          display: block;
+          width: 100%;
+          height: auto;
+          max-height: 850px;
+          object-fit: contain;
+          background: #ffffff;
         }
 
         .paper-images-viewer {

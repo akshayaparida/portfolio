@@ -510,6 +510,11 @@ export function buildSearchIndex(): SearchIndexItem[] {
         "Sentences",
         "Paragraph Writing",
         "Principles of Paragraph Writing",
+        "pcsyallubus",
+        "pcsyallubus.jpeg",
+        "pcsyllabus",
+        "Professional Communication Syllabus",
+        "Syllabus Scan",
       ],
     },
     {

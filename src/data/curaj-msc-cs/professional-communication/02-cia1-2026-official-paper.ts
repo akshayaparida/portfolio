@@ -102,6 +102,11 @@ export const cia1OfficialPaper2026Module: LearningModule = {
       type: "documentation",
     },
     {
+      title: "Official CURAJ Syllabus Document (pcsyallubus.jpeg)",
+      url: "/pcsyallubus.jpeg",
+      type: "documentation",
+    },
+    {
       title: "High School English Grammar and Composition (Wren & Martin)",
       url: "https://www.s-chand.com/",
       type: "documentation",
