@@ -2831,9 +2831,14 @@ html.dark .yt-tab-btn.active {
   transition: all 0.2s ease;
 }
 
-.yt-nav-btn:hover {
+.yt-nav-btn:hover:not(:disabled) {
   background: var(--border);
   transform: translateY(-1px);
+}
+
+.yt-nav-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .yt-subscribe-btn {

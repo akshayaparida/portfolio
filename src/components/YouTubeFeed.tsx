@@ -8,13 +8,19 @@ export default function YouTubeFeed() {
   const [allVideos, setAllVideos] = useState<YouTubeVideo[]>([]);
   const [activeTab, setActiveTab] = useState<"videos" | "shorts">("videos");
   const [loading, setLoading] = useState<boolean>(true);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const fetchVideos = async () => {
+  const fetchVideos = async (forceRefresh = false) => {
     try {
-      setLoading(true);
-      const res = await fetch("/api/youtube");
+      if (forceRefresh) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
+      }
+      const url = forceRefresh ? "/api/youtube?refresh=1" : "/api/youtube";
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to load");
       const data = await res.json();
       if (data.videos && data.videos.length > 0) {
@@ -31,6 +37,7 @@ export default function YouTubeFeed() {
       setError(true);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -89,6 +96,20 @@ export default function YouTubeFeed() {
         </div>
 
         <div className="yt-actions-group">
+          <button
+            className="yt-nav-btn"
+            onClick={() => fetchVideos(true)}
+            aria-label="Sync YouTube Feed"
+            title="Sync latest videos & shorts from YouTube"
+            disabled={loading || refreshing}
+          >
+            <i
+              className={`fa-solid fa-arrows-rotate ${
+                refreshing ? "fa-spin" : ""
+              }`}
+            ></i>
+          </button>
+
           <div className="yt-nav-arrows">
             <button
               className="yt-nav-btn"
