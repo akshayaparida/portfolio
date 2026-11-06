@@ -9,6 +9,8 @@ async function generateSitemap() {
   const routes = [
     { path: "/", priority: "1.0", changeFreq: "weekly" },
     { path: "/learning-journey", priority: "0.9", changeFreq: "weekly" },
+    { path: "/internships-and-jobs", priority: "0.9", changeFreq: "weekly" },
+    { path: "/research", priority: "0.9", changeFreq: "weekly" },
     { path: "/mathematics", priority: "0.9", changeFreq: "weekly" },
     { path: "/gate-cs", priority: "0.9", changeFreq: "weekly" },
     { path: "/ugc-net-jrf", priority: "0.85", changeFreq: "weekly" },

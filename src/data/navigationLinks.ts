@@ -7,6 +7,16 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-book-open",
   },
   {
+    label: "Internships & Jobs",
+    href: "/internships-and-jobs",
+    icon: "fa-solid fa-briefcase",
+  },
+  {
+    label: "AI & ML Research",
+    href: "/research",
+    icon: "fa-solid fa-microscope",
+  },
+  {
     label: "CURAJ MSc CS (AI & ML)",
     href: "/curaj-msc-cs",
     icon: "fa-solid fa-graduation-cap",

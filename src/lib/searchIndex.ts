@@ -867,7 +867,86 @@ export function buildSearchIndex(): SearchIndexItem[] {
     });
   });
 
-  // 20. Top Navigation Links
+  // 20. Internships & Jobs Hub
+  index.push({
+    id: "hub-internships-jobs",
+    title: "Verified Internships & Jobs Hub",
+    description:
+      "Curated, verified portals for finding software engineering, AI/ML, and data science internships and jobs. Features IASc SRFP, IIT Fellowships, GSoC, Wellfound, Y Combinator, cold email templates, and ATS resume strategies.",
+    content:
+      "Internships, fellowships, academic research fellowships, IASc-INSA-NASI SRFP, IIT Bombay SURP, IIT Madras, IIT Roorkee SPARK, DAAD, Mitacs, GSoC, LFX, MLH Fellowship, Wellfound, Y Combinator, AICTE, cold email templates, ATS resume formula.",
+    category: "page",
+    categoryLabel: "Careers & Internships",
+    domain: "Careers",
+    icon: "fa-solid fa-briefcase",
+    url: "/internships-and-jobs",
+    breadcrumb: "Home > Internships & Jobs",
+    tags: [
+      "Internships",
+      "Fellowships",
+      "Jobs",
+      "AI/ML Careers",
+      "ATS Resume",
+      "Cold Email",
+    ],
+    keywords: [
+      "Internships",
+      "Jobs",
+      "Academic Fellowships",
+      "IIT Internships",
+      "SRFP",
+      "GSoC",
+      "LFX",
+      "MLH",
+      "Wellfound",
+      "Y Combinator",
+      "Cold Email",
+      "Resume",
+    ],
+  });
+
+  // 21. AI & ML Research Hub
+  index.push({
+    id: "hub-aiml-research",
+    title: "AI & ML Research Hub (Learn Research from Scratch)",
+    description:
+      "Complete scientific roadmap to learn artificial intelligence and machine learning research from scratch. Includes Keshav's 3-pass paper reading method, hypothesis formulation, ablation studies, LaTeX Overleaf writing, free GPUs, and top A* conference directories.",
+    content:
+      "AI research from scratch, machine learning research, how to read a research paper, Keshav three-pass method, hypothesis testing, ablation studies, reproducibility, LaTeX Overleaf templates, NeurIPS, ICML, ICLR, CVPR, ACL, arXiv, Hugging Face Papers, free GPUs Colab Kaggle.",
+    category: "page",
+    categoryLabel: "Research Hub",
+    domain: "Research",
+    icon: "fa-solid fa-microscope",
+    url: "/research",
+    breadcrumb: "Home > AI & ML Research",
+    tags: [
+      "Research",
+      "Paper Reading",
+      "Ablation Studies",
+      "LaTeX",
+      "Conferences",
+      "Free GPUs",
+    ],
+    keywords: [
+      "Research",
+      "AI Research",
+      "Paper Reading",
+      "Hypothesis",
+      "Ablation Studies",
+      "LaTeX",
+      "Overleaf",
+      "NeurIPS",
+      "ICML",
+      "ICLR",
+      "CVPR",
+      "arXiv",
+      "Free GPUs",
+      "Colab",
+      "Kaggle",
+    ],
+  });
+
+  // 22. Top Navigation Links
   navigationLinks.forEach((nav) => {
     if (!index.some((item) => item.url === nav.href)) {
       index.push({
