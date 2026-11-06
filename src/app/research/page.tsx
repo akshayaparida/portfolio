@@ -8,15 +8,27 @@ import {
   topicStarters,
   freeResearchTools,
   topConferences,
+  researchAcademies,
+  nptelResearchCourses,
+  howToStartResearchSteps,
 } from "@/data/researchHub";
 import "@/styles/research-hub.css";
 
-type ResearchViewTab = "methodology" | "topics" | "tools" | "conferences";
+type ResearchViewTab =
+  | "methodology"
+  | "academies-nptel"
+  | "topics"
+  | "tools"
+  | "conferences";
+
+type AcademySubFilter = "all" | "elsevier" | "nptel" | "roadmap";
 
 export default function ResearchPage() {
   const [activeTab, setActiveTab] = useState<ResearchViewTab>("methodology");
   const [selectedToolCategory, setSelectedToolCategory] =
     useState<string>("all");
+  const [academySubFilter, setAcademySubFilter] =
+    useState<AcademySubFilter>("all");
 
   const filteredTools = freeResearchTools.filter((tool) => {
     return (
@@ -45,9 +57,10 @@ export default function ResearchPage() {
           <p className="research-hero-subtitle">
             A comprehensive, rigorous guide designed for computer science
             students, engineers, and independent researchers to transition from
-            passive paper reading to formulating novel hypotheses, running
-            disciplined ablation experiments, and publishing at top-tier
-            peer-reviewed venues.
+            passive paper reading to formulating novel hypotheses, completing
+            certified courses (Elsevier Academy & NPTEL), running disciplined
+            ablation experiments, and publishing at top-tier peer-reviewed
+            venues.
           </p>
 
           <div className="research-stats-row">
@@ -56,12 +69,12 @@ export default function ResearchPage() {
               <span className="stat-label">Scientific Roadmap</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">4 Domains</span>
-              <span className="stat-label">Deep-Dive Topic Starters</span>
+              <span className="stat-number">Elsevier & NPTEL</span>
+              <span className="stat-label">Free Certified Courses</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">100% Free</span>
-              <span className="stat-label">Cloud GPUs & Tooling</span>
+              <span className="stat-number">4 AI Domains</span>
+              <span className="stat-label">Deep-Dive Topic Starters</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">A* Venues</span>
@@ -78,6 +91,13 @@ export default function ResearchPage() {
           >
             <i className="fa-solid fa-route"></i>
             Research Methodology (From Scratch)
+          </button>
+          <button
+            className={`research-tab-btn ${activeTab === "academies-nptel" ? "active" : ""}`}
+            onClick={() => setActiveTab("academies-nptel")}
+          >
+            <i className="fa-solid fa-graduation-cap"></i>
+            Elsevier Academy & NPTEL Courses
           </button>
           <button
             className={`research-tab-btn ${activeTab === "topics" ? "active" : ""}`}
@@ -158,7 +178,310 @@ export default function ResearchPage() {
           </div>
         )}
 
-        {/* Tab 2: Topic Research Starters */}
+        {/* Tab 2: Elsevier Academy & NPTEL Courses */}
+        {activeTab === "academies-nptel" && (
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
+          >
+            {/* Sub Filter Navigation */}
+            <div className="filter-tabs-row">
+              <button
+                className={`filter-tab-btn ${academySubFilter === "all" ? "active" : ""}`}
+                onClick={() => setAcademySubFilter("all")}
+              >
+                All Resources (
+                {researchAcademies.length + nptelResearchCourses.length})
+              </button>
+              <button
+                className={`filter-tab-btn ${academySubFilter === "roadmap" ? "active" : ""}`}
+                onClick={() => setAcademySubFilter("roadmap")}
+              >
+                <i className="fa-solid fa-timeline"></i>
+                12-Week Starter Roadmap
+              </button>
+              <button
+                className={`filter-tab-btn ${academySubFilter === "elsevier" ? "active" : ""}`}
+                onClick={() => setAcademySubFilter("elsevier")}
+              >
+                <i className="fa-solid fa-certificate"></i>
+                Elsevier & Global Academies
+              </button>
+              <button
+                className={`filter-tab-btn ${academySubFilter === "nptel" ? "active" : ""}`}
+                onClick={() => setAcademySubFilter("nptel")}
+              >
+                <i className="fa-solid fa-building-columns"></i>
+                Official NPTEL IIT Courses
+              </button>
+            </div>
+
+            {/* 12-Week Starter Roadmap */}
+            {(academySubFilter === "all" || academySubFilter === "roadmap") && (
+              <section className="starter-timeline-container">
+                <div className="section-heading-group">
+                  <h2 className="section-heading">
+                    <i
+                      className="fa-solid fa-flag-checkered"
+                      style={{ color: "#7c3aed", marginRight: "0.5rem" }}
+                    ></i>
+                    How to Start Research from Scratch (12-Week Blueprint)
+                  </h2>
+                  <p className="section-subtext">
+                    Follow this step-by-step pipeline connecting Elsevier
+                    e-learning, NPTEL IIT video lectures, and hands-on paper
+                    replication.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                  }}
+                >
+                  {howToStartResearchSteps.map((step) => (
+                    <article key={step.step} className="starter-step-card">
+                      <div className="starter-step-circle">{step.step}</div>
+                      <div className="starter-step-body">
+                        <div className="starter-step-meta">
+                          <span className="starter-timeframe-tag">
+                            {step.timeframe}
+                          </span>
+                          <h3 className="starter-step-title">{step.title}</h3>
+                        </div>
+                        <p className="starter-step-obj">{step.objective}</p>
+
+                        <div className="starter-resources-row">
+                          <strong
+                            style={{
+                              fontSize: "0.8rem",
+                              color: "var(--text-secondary)",
+                              alignSelf: "center",
+                            }}
+                          >
+                            Assigned Resources:
+                          </strong>
+                          {step.recommendedResources.map((res, i) => (
+                            <a
+                              key={i}
+                              href={res.url}
+                              target={
+                                res.url.startsWith("http")
+                                  ? "_blank"
+                                  : undefined
+                              }
+                              rel={
+                                res.url.startsWith("http")
+                                  ? "noopener noreferrer"
+                                  : undefined
+                              }
+                              className="starter-resource-link"
+                            >
+                              <span>{res.name}</span>
+                              <i
+                                className="fa-solid fa-arrow-up-right-from-square"
+                                style={{ fontSize: "0.7rem" }}
+                              ></i>
+                            </a>
+                          ))}
+                        </div>
+
+                        <div className="starter-deliverable-box">
+                          <strong>Milestone Deliverable: </strong>
+                          {step.milestoneDeliverable}
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Elsevier & Publisher Academies */}
+            {(academySubFilter === "all" ||
+              academySubFilter === "elsevier") && (
+              <section
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1.5rem",
+                }}
+              >
+                <div className="section-heading-group">
+                  <h2 className="section-heading">
+                    <i
+                      className="fa-solid fa-award"
+                      style={{ color: "#059669", marginRight: "0.5rem" }}
+                    ></i>
+                    Publisher Research Academies (Free Certified E-Learning)
+                  </h2>
+                  <p className="section-subtext">
+                    Free courses offered directly by global scientific
+                    publishers (Elsevier, Nature, IEEE, Clarivate) teaching
+                    scientific writing, peer review, and bibliometrics.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1.5rem",
+                  }}
+                >
+                  {researchAcademies.map((academy) => (
+                    <article key={academy.id} className="academy-card">
+                      <div className="academy-top-header">
+                        <div className="academy-title-row">
+                          <div>
+                            <h3 className="academy-name">{academy.name}</h3>
+                            <span className="academy-provider">
+                              {academy.provider}
+                            </span>
+                          </div>
+                          {academy.freeCertification && (
+                            <span className="academy-cert-badge">
+                              <i className="fa-solid fa-certificate"></i>{" "}
+                              Verified Certificate of Completion
+                            </span>
+                          )}
+                        </div>
+                        <p className="academy-desc">{academy.description}</p>
+                      </div>
+
+                      <div className="academy-tracks-grid">
+                        {academy.learningTracks.map((track, i) => (
+                          <div key={i} className="academy-track-box">
+                            <h4 className="track-title">{track.trackTitle}</h4>
+                            <p className="track-desc">{track.description}</p>
+                            <ul className="track-modules-list">
+                              {track.modules.map((mod, j) => (
+                                <li key={j}>{mod}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="portal-info-list">
+                        <strong>Key Highlights:</strong>
+                        <ul
+                          style={{
+                            margin: "0.25rem 0 0 0",
+                            paddingLeft: "1.2rem",
+                            fontSize: "0.825rem",
+                            color: "var(--text-secondary)",
+                          }}
+                        >
+                          {academy.keyHighlights.map((h, k) => (
+                            <li key={k}>{h}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <a
+                        href={academy.officialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portal-action-btn"
+                      >
+                        <span>Enroll Free in {academy.name}</span>
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Official NPTEL IIT Courses */}
+            {(academySubFilter === "all" || academySubFilter === "nptel") && (
+              <section
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1.5rem",
+                }}
+              >
+                <div className="section-heading-group">
+                  <h2 className="section-heading">
+                    <i
+                      className="fa-solid fa-building-columns"
+                      style={{ color: "#2563eb", marginRight: "0.5rem" }}
+                    ></i>
+                    Official NPTEL & SWAYAM Research Courses (IIT Faculty)
+                  </h2>
+                  <p className="section-subtext">
+                    Authoritative semester-length lecture series taught by
+                    senior faculty at IIT Madras, IISER Kolkata, IIT Kharagpur,
+                    and IIT Guwahati.
+                  </p>
+                </div>
+
+                <div className="nptel-grid">
+                  {nptelResearchCourses.map((course) => (
+                    <article key={course.id} className="nptel-card">
+                      <div className="nptel-card-top">
+                        <div className="nptel-meta-header">
+                          <span className="nptel-code-badge">
+                            {course.courseCode}
+                          </span>
+                          <span className="nptel-duration-badge">
+                            <i className="fa-regular fa-clock"></i>{" "}
+                            {course.duration}
+                          </span>
+                        </div>
+
+                        <h3 className="nptel-course-name">
+                          {course.courseName}
+                        </h3>
+                        <p className="nptel-instructor-line">
+                          <strong>{course.instructor}</strong> &bull;{" "}
+                          {course.institute}
+                        </p>
+                        <p className="nptel-desc">{course.description}</p>
+
+                        <div className="nptel-why-box">
+                          <strong>Why Take This: </strong>
+                          {course.whyTakeThis}
+                        </div>
+
+                        <div className="portal-info-list">
+                          <strong>Key Syllabus Modules:</strong>
+                          <ul
+                            style={{
+                              margin: "0.25rem 0 0 0",
+                              paddingLeft: "1.2rem",
+                              fontSize: "0.8rem",
+                              color: "var(--text-secondary)",
+                            }}
+                          >
+                            {course.keyTopics.map((topic, idx) => (
+                              <li key={idx}>{topic}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <a
+                        href={course.courseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portal-action-btn"
+                      >
+                        <span>Access Course on NPTEL / SWAYAM</span>
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+        )}
+
+        {/* Tab 3: Topic Research Starters */}
         {activeTab === "topics" && (
           <div className="topic-starters-grid">
             {topicStarters.map((topic) => (
@@ -301,7 +624,7 @@ export default function ResearchPage() {
           </div>
         )}
 
-        {/* Tab 3: Free Tools & Cloud GPUs */}
+        {/* Tab 4: Free Tools & Cloud GPUs */}
         {activeTab === "tools" && (
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
@@ -374,7 +697,7 @@ export default function ResearchPage() {
           </div>
         )}
 
-        {/* Tab 4: Conferences Directory */}
+        {/* Tab 5: Conferences Directory */}
         {activeTab === "conferences" && (
           <div className="conferences-grid">
             {topConferences.map((conf) => (

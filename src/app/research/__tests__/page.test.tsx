@@ -65,6 +65,74 @@ describe("ResearchPage", () => {
     expect(screen.getByText(/Attention Is All You Need/i)).toBeInTheDocument();
   });
 
+  it("switches to Elsevier Academy & NPTEL Courses tab and filters sub-sections", () => {
+    render(<ResearchPage />);
+
+    const coursesTab = screen.getByRole("button", {
+      name: /Elsevier Academy & NPTEL Courses/i,
+    });
+    fireEvent.click(coursesTab);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "Elsevier Researcher Academy",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "Introduction to Research",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByText(/Prof. Prathap Haridoss/i)[0],
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /How to Start Research from Scratch \(12-Week Blueprint\)/i,
+      ),
+    ).toBeInTheDocument();
+
+    // Filter to NPTEL only
+    const nptelSubFilter = screen.getByRole("button", {
+      name: /Official NPTEL IIT Courses/i,
+    });
+    fireEvent.click(nptelSubFilter);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "Introduction to Research",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", {
+        level: 3,
+        name: "Elsevier Researcher Academy",
+      }),
+    ).not.toBeInTheDocument();
+
+    // Filter to Elsevier only
+    const elsevierSubFilter = screen.getByRole("button", {
+      name: /Elsevier & Global Academies/i,
+    });
+    fireEvent.click(elsevierSubFilter);
+
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "Elsevier Researcher Academy",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", {
+        level: 3,
+        name: "Introduction to Research",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
   it("switches to Free Research Tools & GPUs tab and filters categories", () => {
     render(<ResearchPage />);
 

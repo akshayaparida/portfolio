@@ -52,6 +52,51 @@ export interface ConferenceVenue {
   description: string;
 }
 
+export interface ResearchAcademy {
+  id: string;
+  name: string;
+  provider: string;
+  badge: string;
+  description: string;
+  officialUrl: string;
+  freeCertification: boolean;
+  learningTracks: {
+    trackTitle: string;
+    description: string;
+    modules: string[];
+  }[];
+  keyHighlights: string[];
+}
+
+export interface NptelResearchCourse {
+  id: string;
+  courseName: string;
+  courseCode: string;
+  instructor: string;
+  institute: string;
+  duration: string;
+  level: string;
+  category: "methodology" | "writing" | "aiml";
+  categoryLabel: string;
+  description: string;
+  courseUrl: string;
+  keyTopics: string[];
+  whyTakeThis: string;
+}
+
+export interface ResearchStarterStep {
+  step: number;
+  timeframe: string;
+  title: string;
+  objective: string;
+  recommendedResources: {
+    name: string;
+    type: "Elsevier Academy" | "NPTEL Course" | "Hands-on Tool";
+    url: string;
+  }[];
+  milestoneDeliverable: string;
+}
+
 export const researchMethodologyStages: ResearchStage[] = [
   {
     stage: 1,
@@ -590,5 +635,423 @@ export const topConferences: ConferenceVenue[] = [
     officialUrl: "https://jmlr.org/tmlr/",
     description:
       "Modern sister journal of JMLR designed for fast, rigorous rolling peer review with zero publication fees.",
+  },
+];
+
+export const researchAcademies: ResearchAcademy[] = [
+  {
+    id: "elsevier-researcher-academy",
+    name: "Elsevier Researcher Academy",
+    provider: "Elsevier (Global Scientific Publisher)",
+    badge: "100% Free Certified E-Learning",
+    description:
+      "Elsevier's official, free online training platform designed to guide researchers through every stage of their academic journey. Developed by senior journal editors, peer reviewers, and scientometricians.",
+    officialUrl: "https://researcheracademy.elsevier.com/",
+    freeCertification: true,
+    learningTracks: [
+      {
+        trackTitle: "1. Research Preparation",
+        description:
+          "Laying solid scientific foundations before writing a single word of your paper.",
+        modules: [
+          "Funding: How to write a competitive grant proposal & identify funding calls",
+          "Research Data Management: Complying with FAIR data principles and open data mandates",
+          "Project Planning: Structuring milestones, literature mapping, and mentor alignment",
+        ],
+      },
+      {
+        trackTitle: "2. Writing for Research",
+        description:
+          "Mastering the architecture of scientific manuscripts to prevent desk-rejections.",
+        modules: [
+          "Structuring your article: Writing compelling Abstracts, Introductions, and Results",
+          "Technical English: Eliminating jargon, ambiguity, and non-native syntax traps",
+          "Book & Chapter Publishing: Extending peer-reviewed research into monograph chapters",
+        ],
+      },
+      {
+        trackTitle: "3. The Publication Process",
+        description:
+          "Navigating journal selection, editorial triage, and open-access licensing.",
+        modules: [
+          "Journal Choice: Using Elsevier Journal Finder, evaluating Impact Factor, CiteScore, and SJR",
+          "Open Access: Gold vs Green vs Diamond OA, APC waivers, and copyright retention",
+          "CrossCheck & iThenticate: Understanding automated plagiarism and similarity indexing",
+        ],
+      },
+      {
+        trackTitle: "4. Navigating Peer Review",
+        description:
+          "The complete guide to surviving peer review and becoming a certified referee.",
+        modules: [
+          "Certified Peer Reviewer Course: How to critically dissect and referee submissions",
+          "Responding to Referees: Crafting diplomatic, point-by-point rebuttal letters",
+          "Handling Major Revisions: Turning a difficult review into an accepted manuscript",
+        ],
+      },
+      {
+        trackTitle: "5. Research Impact & Ethics",
+        description:
+          "Maximizing citation velocity, academic visibility, and maintaining research integrity.",
+        modules: [
+          "Citation Metrics: Understanding your h-index, m-index, Field-Weighted Citation Impact (FWCI)",
+          "Academic Visibility: Leveraging ORCID, Google Scholar, and social academic networks",
+          "Research Ethics: Authorship criteria (ICMJE rules), conflict of interest, and data fraud",
+        ],
+      },
+    ],
+    keyHighlights: [
+      "100% Free interactive interactive modules with downloadable completion certificates.",
+      "Direct guidance from editors of top journals like Artificial Intelligence, Pattern Recognition, and Neurocomputing.",
+      "Recognized globally by academic hiring committees and PhD advisory panels.",
+    ],
+  },
+  {
+    id: "nature-masterclasses",
+    name: "Nature Masterclasses",
+    provider: "Springer Nature Portfolio",
+    badge: "Nature Editorial Insights",
+    description:
+      "Interactive training delivered directly by the editors of Nature and Nature research journals, teaching high-impact narrative scientific writing and peer review.",
+    officialUrl: "https://masterclasses.nature.com/",
+    freeCertification: false,
+    learningTracks: [
+      {
+        trackTitle: "Scientific Writing and Publishing",
+        description:
+          "How editors at Nature evaluate manuscripts for broad scientific impact.",
+        modules: [
+          "Developing a clear narrative thread through complex experimental data",
+          "Writing captivating titles and abstracts that hook multidisciplinary editors",
+          "Data presentation and publication-grade figure design",
+        ],
+      },
+      {
+        trackTitle: "Focus on Peer Review",
+        description:
+          "The ethics, responsibilities, and methodologies of high-standard peer reviewing.",
+        modules: [
+          "Evaluating methodological soundness vs conceptual novelty",
+          "Constructive criticism and preventing personal bias in scientific review",
+        ],
+      },
+    ],
+    keyHighlights: [
+      "Insider perspectives on how top-tier multidisciplinary journals triage submissions.",
+      "Emphasis on storytelling and visual data clarity.",
+    ],
+  },
+  {
+    id: "ieee-author-center",
+    name: "IEEE Author Center & Author Academy",
+    provider: "IEEE (Institute of Electrical and Electronics Engineers)",
+    badge: "Computer Science & Engineering Standard",
+    description:
+      "The official author portal for publishing in IEEE Transactions, Journals, and flagship conferences (CVPR, ICCV, IEEE TPAMI, IEEE TNNLS).",
+    officialUrl: "https://authorcenter.ieee.org/",
+    freeCertification: true,
+    learningTracks: [
+      {
+        trackTitle: "IEEE Manuscript Preparation",
+        description:
+          "Official guidelines for formatting engineering and computer science papers.",
+        modules: [
+          "Using the IEEE LaTeX template and formatting two-column mathematical equations",
+          "IEEE citation and bibliography standards (IEEEtran.bst)",
+          "Submitting reproducible source code and benchmark datasets with Code Ocean",
+        ],
+      },
+      {
+        trackTitle: "IEEE Peer Review & Publication Ethics",
+        description:
+          "Navigating ScholarOne Manuscripts and IEEE intellectual property policies.",
+        modules: [
+          "IEEE ScholarOne submission portals and tracking peer review stages",
+          "IEEE Open Access and institutional funding agreements",
+          "IEEE policies on preprints (arXiv) and copyright transfer (eCF)",
+        ],
+      },
+    ],
+    keyHighlights: [
+      "Essential for anyone targeting IEEE Transactions or flagship IEEE/CVF computer vision conferences.",
+      "Official free LaTeX document classes (`IEEEtran.cls`) and style guides.",
+    ],
+  },
+  {
+    id: "web-of-science-academy",
+    name: "Web of Science Academy",
+    provider: "Clarivate Analytics",
+    badge: "Citation Indexing & Reviewing",
+    description:
+      "Free practical online training developed by Clarivate to help researchers evaluate journal quality, understand indexing in SCI/SCIE, and conduct peer review.",
+    officialUrl: "https://webofscienceacademy.clarivate.com/",
+    freeCertification: true,
+    learningTracks: [
+      {
+        trackTitle: "Co-Reviewing & Peer Review Certification",
+        description:
+          "Comprehensive coursework on evaluating scientific validity.",
+        modules: [
+          "Introduction to Peer Review and structural evaluation",
+          "Reviewing with a Mentor (Co-reviewing real submissions)",
+          "Identifying Predatory Journals and citation cartels",
+        ],
+      },
+    ],
+    keyHighlights: [
+      "Certified Peer Reviewer credentials tracked automatically on Web of Science / Publons researcher profiles.",
+      "Learn how journals are evaluated for Science Citation Index Expanded (SCIE) indexing.",
+    ],
+  },
+];
+
+export const nptelResearchCourses: NptelResearchCourse[] = [
+  {
+    id: "nptel-intro-research",
+    courseName: "Introduction to Research",
+    courseCode: "noc24_ge01 / noc20_ge01",
+    instructor: "Prof. Prathap Haridoss (Dean of Academic Courses)",
+    institute: "IIT Madras",
+    duration: "8 Weeks",
+    level: "UG, PG & Ph.D. Scholars",
+    category: "methodology",
+    categoryLabel: "Research Foundation",
+    description:
+      "The gold-standard Indian course designed specifically to demystify research for early-stage investigators. Covers the full lifecycle from hypothesis formulation and literature survey tactics to error estimation, patent filing, and paper writing.",
+    courseUrl: "https://nptel.ac.in/courses/121106007",
+    keyTopics: [
+      "Philosophy of scientific research and hypothesis generation",
+      "Literature survey: Finding papers, citation chaining, and identifying gaps",
+      "Experimental design, measurement errors, and uncertainty propagation",
+      "Data analysis, statistical curves, and graph plotting integrity",
+      "Writing a research paper, publishing in peer-reviewed journals, and avoiding plagiarism",
+      "Patenting, copyright, and technology transfer in academia",
+    ],
+    whyTakeThis:
+      "Mandatory foundational course for any Indian student aiming to publish their first paper, pursue an M.S./Ph.D. at IITs/IISc, or apply for international research fellowships.",
+  },
+  {
+    id: "nptel-research-methodology",
+    courseName: "Research Methodology",
+    courseCode: "noc22_ge12",
+    instructor: "Prof. Soumitro Banerjee (Shanti Swarup Bhatnagar Awardee)",
+    institute: "IISER Kolkata & IIT Kharagpur",
+    duration: "8 Weeks",
+    level: "Postgraduate & Research Scholar",
+    category: "methodology",
+    categoryLabel: "Scientific Philosophy",
+    description:
+      "A deep, rigorous philosophical and practical exploration of how true scientific discoveries are made. Contrasts inductivism with Karl Popper's falsifiability, Thomas Kuhn's paradigm shifts, and ethical scientific modeling.",
+    courseUrl: "https://nptel.ac.in/courses/121107008",
+    keyTopics: [
+      "Epistemology of science: Inductive vs Deductive logic",
+      "The Falsification Principle (Karl Popper) and Paradigm Shifts (Thomas Kuhn)",
+      "Formulating testable scientific hypotheses",
+      "Designing controlled experiments and controlling confounding variables",
+      "Ethics in scientific research and historical case studies of flawed science",
+    ],
+    whyTakeThis:
+      "Teaches you to think with deep scientific skepticism rather than treating machine learning as purely empirical hyperparameter tweaking.",
+  },
+  {
+    id: "nptel-technical-writing",
+    courseName: "Technical Writing for Engineers and Scientists",
+    courseCode: "noc20_hs36",
+    instructor: "Prof. Hemant B. Kaushik",
+    institute: "IIT Guwahati",
+    duration: "4 Weeks",
+    level: "All Engineering & CS Students",
+    category: "writing",
+    categoryLabel: "Scientific Communication",
+    description:
+      "A targeted course focused on the mechanics of writing clear, precise, and concise research manuscripts. Breaks down the anatomy of journal papers, common grammatical pitfalls, and effective graphic design.",
+    courseUrl: "https://nptel.ac.in/courses/109106094",
+    keyTopics: [
+      "Structure of a technical manuscript: IMRaD format (Intro, Methods, Results, Discussion)",
+      "Drafting abstracts that pass editorial screening",
+      "Writing with clarity, precision, and active/passive voice balance",
+      "Referencing styles: IEEE, ACM, APA, and avoiding accidental plagiarism",
+      "Creating professional tables, schematics, and vector figures",
+    ],
+    whyTakeThis:
+      "Over 40% of papers are rejected prior to peer review due to poor language and confusing structural narrative. This course directly eliminates those flaws.",
+  },
+  {
+    id: "nptel-deep-learning",
+    courseName: "Deep Learning (Foundations to Frontier)",
+    courseCode: "noc24_cs123",
+    instructor: "Prof. Mitesh M. Khapra",
+    institute: "IIT Madras",
+    duration: "12 Weeks",
+    level: "Advanced UG & Postgraduate",
+    category: "aiml",
+    categoryLabel: "Deep Learning Math",
+    description:
+      "India's most mathematically rigorous deep learning course. Derives backpropagation, loss landscapes, optimization algorithms, convolutional networks, sequence models, autoencoders, and attention mechanisms completely from first principles.",
+    courseUrl: "https://nptel.ac.in/courses/106106184",
+    keyTopics: [
+      "Biological to Artificial Neurons, Perceptron convergence theorem",
+      "Multilayer perceptrons, Backpropagation calculus using Jacobian matrices",
+      "Optimization: Momentum, Nesterov, AdaGrad, RMSProp, Adam, AdamW",
+      "Convolutional Neural Networks: Receptive fields, parameter sharing, ResNets",
+      "Sequence Modeling: RNNs, LSTMs, GRUs, and the Attention Mechanism",
+      "Autoencoders, Variational Autoencoders (VAEs), and Generative Adversarial Networks (GANs)",
+    ],
+    whyTakeThis:
+      "Gives you the exact mathematical fluency (multivariate calculus, matrix calculus, optimization) required to create new model architectures rather than just using library APIs.",
+  },
+  {
+    id: "nptel-reinforcement-learning",
+    courseName: "Reinforcement Learning & Sequential Decision Making",
+    courseCode: "noc24_cs102",
+    instructor: "Prof. Balaraman Ravindran (Head of RBCDSAI / Wadhwani AI)",
+    institute: "IIT Madras",
+    duration: "12 Weeks",
+    level: "Advanced UG, PG & Ph.D.",
+    category: "aiml",
+    categoryLabel: "RL & Decision Theory",
+    description:
+      "Deep theoretical formulation of reinforcement learning. Covers Markov Decision Processes, Bellman equations, dynamic programming, temporal-difference learning, policy gradient methods, and deep RL.",
+    courseUrl: "https://nptel.ac.in/courses/106106198",
+    keyTopics: [
+      "Markov Decision Processes (MDPs), Value functions, Bellman Optimality",
+      "Dynamic Programming: Policy Iteration and Value Iteration",
+      "Monte Carlo methods and Temporal Difference learning (TD(0), Q-Learning, SARSA)",
+      "Function Approximation and Deep Q-Networks (DQN)",
+      "Policy Gradient Theorem, REINFORCE, Actor-Critic architectures, and PPO",
+    ],
+    whyTakeThis:
+      "Crucial for modern research in LLM post-training (RLHF, PPO, DPO), reasoning models (test-time search), and autonomous agent systems.",
+  },
+  {
+    id: "nptel-ipr-patents",
+    courseName: "Intellectual Property Rights and Patent Law for Researchers",
+    courseCode: "noc22_hs48",
+    instructor: "Prof. Tapas Kumar Bandyopadhyay",
+    institute: "IIT Kharagpur",
+    duration: "4 Weeks",
+    level: "All Research Disciplines",
+    category: "methodology",
+    categoryLabel: "IPR & Patenting",
+    description:
+      "Practical legal and technical guide to protecting computational and scientific discoveries. Covers patentability tests, prior art searching, software copyrights, and international patent filing (PCT).",
+    courseUrl: "https://nptel.ac.in/courses/109105112",
+    keyTopics: [
+      "Patentability criteria: Novelty, Inventive step (Non-obviousness), Industrial applicability",
+      "Conducting prior art searches in Google Patents, USPTO, and Indian Patent Office (IPO)",
+      "Patent drafting: Claims, Specifications, and Drawings",
+      "Software patenting in India (Section 3k of Indian Patents Act) vs US / Europe",
+      "PCT (Patent Cooperation Treaty) for international patent protection",
+    ],
+    whyTakeThis:
+      "Teaches you whether to open-source your code, publish it in a journal, or file an institutional patent before public disclosure.",
+  },
+];
+
+export const howToStartResearchSteps: ResearchStarterStep[] = [
+  {
+    step: 1,
+    timeframe: "Weeks 1 – 2",
+    title: "Master Scientific Thinking & Research Ethics",
+    objective:
+      "Build foundational intuition on how research is conducted, how to formulate research questions, and how the global publication ecosystem functions.",
+    recommendedResources: [
+      {
+        name: "NPTEL: Introduction to Research (Prof. Prathap Haridoss, IIT Madras)",
+        type: "NPTEL Course",
+        url: "https://nptel.ac.in/courses/121106007",
+      },
+      {
+        name: "Elsevier Researcher Academy: 'Research Preparation' Track",
+        type: "Elsevier Academy",
+        url: "https://researcheracademy.elsevier.com/",
+      },
+    ],
+    milestoneDeliverable:
+      "Complete the Elsevier Research Preparation modules and earn your verified certificate; set up a clean Zotero citation library.",
+  },
+  {
+    step: 2,
+    timeframe: "Weeks 3 – 4",
+    title: "Deep Literature Mapping & The 3-Pass Method",
+    objective:
+      "Pick a specific AI/ML sub-topic (e.g., Small Language Models, LoRA fine-tuning, Graph Attention, or Vision Transformers) and read 10 recent papers thoroughly.",
+    recommendedResources: [
+      {
+        name: "Keshav's 3-Pass Reading Technique (Stage 1 of Methodology)",
+        type: "Hands-on Tool",
+        url: "#methodology",
+      },
+      {
+        name: "Connected Papers & Hugging Face Daily Papers",
+        type: "Hands-on Tool",
+        url: "https://www.connectedpapers.com/",
+      },
+    ],
+    milestoneDeliverable:
+      "A structured 2-page Literature Review Matrix identifying at least 3 unresolved bottlenecks or unstated assumptions in existing literature.",
+  },
+  {
+    step: 3,
+    timeframe: "Weeks 5 – 7",
+    title: "Baseline Reproduction on Free Cloud GPUs",
+    objective:
+      "Download an open-source paper's official code from Papers With Code. Reproduce their published evaluation scores on a standard public benchmark.",
+    recommendedResources: [
+      {
+        name: "Kaggle GPU Notebooks (30h/week Dual T4 GPUs)",
+        type: "Hands-on Tool",
+        url: "https://www.kaggle.com/code",
+      },
+      {
+        name: "Papers With Code (Official Implementations)",
+        type: "Hands-on Tool",
+        url: "https://paperswithcode.com/",
+      },
+    ],
+    milestoneDeliverable:
+      "A reproducible Jupyter/Python script matching the original paper's baseline performance table within 1% margin of error.",
+  },
+  {
+    step: 4,
+    timeframe: "Weeks 8 – 10",
+    title: "Hypothesis Formulation & Ablation Matrix",
+    objective:
+      "Introduce your proposed algorithmic modification or optimization. Run rigorous ablation studies across 3-5 distinct random seeds, tracking all runs with Weights & Biases.",
+    recommendedResources: [
+      {
+        name: "Weights & Biases (Experiment Logging)",
+        type: "Hands-on Tool",
+        url: "https://wandb.ai/",
+      },
+      {
+        name: "NPTEL: Deep Learning (Prof. Mitesh Khapra, IIT Madras)",
+        type: "NPTEL Course",
+        url: "https://nptel.ac.in/courses/106106184",
+      },
+    ],
+    milestoneDeliverable:
+      "An Ablation Study Table demonstrating that your proposed change provides a statistically significant improvement (p < 0.05).",
+  },
+  {
+    step: 5,
+    timeframe: "Weeks 11 – 12",
+    title: "Manuscript Drafting in LaTeX & Preprinting",
+    objective:
+      "Write your paper following the official conference LaTeX template on Overleaf. Submit to arXiv and prepare for conference submission or rolling peer review on TMLR / ACL ARR.",
+    recommendedResources: [
+      {
+        name: "Elsevier Researcher Academy: 'Writing for Research' & 'Peer Review'",
+        type: "Elsevier Academy",
+        url: "https://researcheracademy.elsevier.com/",
+      },
+      {
+        name: "Overleaf (Collaborative LaTeX)",
+        type: "Hands-on Tool",
+        url: "https://www.overleaf.com/",
+      },
+    ],
+    milestoneDeliverable:
+      "A polished 8-page double-column paper PDF formatted in official NeurIPS/IEEE style with vector figures and complete BibTeX citations.",
   },
 ];
