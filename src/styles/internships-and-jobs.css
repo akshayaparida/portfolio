@@ -1,6 +1,7 @@
 /* ==========================================================================
    Internships & Jobs Portal Stylesheet
-   Glassmorphic, responsive, accessible design matching portfolio theme.
+   Minimalist, accessible, responsive design fully harmonized with
+   the portfolio's Emerald & Slate Stitch Design System.
    ========================================================================== */
 
 .internships-page-container {
@@ -16,7 +17,7 @@
   max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1.5rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -45,7 +46,7 @@
   left: 0;
   width: 5px;
   height: 100%;
-  background: linear-gradient(180deg, #3b82f6 0%, #10b981 100%);
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
   border-radius: 16px 0 0 16px;
 }
 
@@ -54,9 +55,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.85rem;
-  background: rgba(59, 130, 246, 0.1);
-  color: #2563eb;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 9999px;
   font-size: 0.825rem;
   font-weight: 600;
@@ -64,16 +65,17 @@
 }
 
 html.dark .internships-badge-pill {
-  background: rgba(59, 130, 246, 0.2);
-  color: #93c5fd;
-  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--primary);
+  border-color: rgba(34, 197, 94, 0.3);
 }
 
 .internships-hero-title {
-  font-size: 2rem;
+  font-size: clamp(1.85rem, 3.8vw, 2.5rem);
   font-weight: 800;
   margin: 0;
-  color: var(--text-primary);
+  color: var(--heading-color);
+  letter-spacing: -0.025em;
   line-height: 1.2;
 }
 
@@ -102,7 +104,7 @@ html.dark .internships-badge-pill {
 .stat-number {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--heading-color);
 }
 
 .stat-label {
@@ -128,12 +130,12 @@ html.dark .internships-badge-pill {
 
 .filter-tab-btn {
   padding: 0.55rem 1.1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text-secondary);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -142,15 +144,22 @@ html.dark .internships-badge-pill {
 }
 
 .filter-tab-btn:hover {
-  background: var(--border);
-  color: var(--text-primary);
+  background: var(--bg-light);
+  border-color: var(--text-muted);
+  color: var(--heading-color);
 }
 
 .filter-tab-btn.active {
-  background: #2563eb;
+  background: var(--primary);
   color: #ffffff;
-  border-color: #2563eb;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  border-color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+html.dark .filter-tab-btn.active {
+  color: #052e16;
+  font-weight: 700;
 }
 
 .search-box-row {
@@ -163,25 +172,25 @@ html.dark .internships-badge-pill {
 .search-input-icon {
   position: absolute;
   left: 1rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
 .internship-search-input {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.6rem;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--surface);
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .internship-search-input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
 }
 
 /* Opportunities Grid */
@@ -208,12 +217,17 @@ html.dark .internships-badge-pill {
   gap: 1.25rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
+  box-shadow: var(--shadow-sm);
 }
 
 .portal-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  border-color: #3b82f6;
+  border-color: var(--primary);
+}
+
+html.dark .portal-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .portal-card-top {
@@ -236,32 +250,30 @@ html.dark .internships-badge-pill {
   letter-spacing: 0.05em;
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
-  background: rgba(16, 185, 129, 0.1);
-  color: #059669;
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 html.dark .category-tag {
-  background: rgba(16, 185, 129, 0.2);
-  color: #6ee7b7;
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--primary);
+  border-color: rgba(34, 197, 94, 0.25);
 }
 
 .verified-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #2563eb;
-}
-
-html.dark .verified-badge {
-  color: #60a5fa;
+  color: var(--primary);
 }
 
 .portal-name {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--heading-color);
   margin: 0;
   line-height: 1.35;
 }
@@ -277,15 +289,11 @@ html.dark .verified-badge {
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
-  padding: 0.75rem;
-  background: rgba(0, 0, 0, 0.02);
+  padding: 0.85rem;
+  background: var(--bg-light);
   border-radius: 8px;
   border: 1px solid var(--border);
   font-size: 0.85rem;
-}
-
-html.dark .portal-info-list {
-  background: rgba(255, 255, 255, 0.03);
 }
 
 .portal-info-item {
@@ -296,13 +304,13 @@ html.dark .portal-info-list {
 }
 
 .portal-info-item i {
-  color: #2563eb;
+  color: var(--primary);
   margin-top: 0.2rem;
   font-size: 0.85rem;
 }
 
 .portal-info-item strong {
-  color: var(--text-primary);
+  color: var(--heading-color);
 }
 
 .portal-tags-row {
@@ -313,7 +321,7 @@ html.dark .portal-info-list {
 
 .portal-tag-chip {
   font-size: 0.75rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -329,13 +337,14 @@ html.dark .portal-info-list {
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #2563eb;
+  color: var(--primary);
   user-select: none;
   outline: none;
+  transition: color 0.2s ease;
 }
 
-html.dark .portal-tips-details summary {
-  color: #93c5fd;
+.portal-tips-details summary:hover {
+  color: var(--primary-dark);
 }
 
 .portal-tips-list {
@@ -356,28 +365,28 @@ html.dark .portal-tips-details summary {
   gap: 0.5rem;
   width: 100%;
   padding: 0.75rem 1rem;
-  border-radius: 10px;
-  background: #111827;
-  color: #ffffff;
+  border-radius: 8px;
+  background: var(--heading-color);
+  color: var(--surface);
+  border: 1px solid var(--heading-color);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
 .portal-action-btn:hover {
-  background: #2563eb;
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
   transform: translateY(-1px);
-}
-
-html.dark .portal-action-btn {
-  background: #374151;
-  color: #f9fafb;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 html.dark .portal-action-btn:hover {
-  background: #2563eb;
+  color: #052e16;
+  font-weight: 700;
 }
 
 /* Outreach Templates Section */
@@ -396,7 +405,8 @@ html.dark .portal-action-btn:hover {
 .section-heading {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--heading-color);
+  letter-spacing: -0.015em;
   margin: 0;
 }
 
@@ -414,7 +424,7 @@ html.dark .portal-action-btn:hover {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow-sm);
 }
 
 .template-header {
@@ -428,7 +438,7 @@ html.dark .portal-action-btn:hover {
 .template-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--heading-color);
   margin: 0 0 0.35rem 0;
 }
 
@@ -443,7 +453,7 @@ html.dark .portal-action-btn:hover {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--surface);
-  color: var(--text-primary);
+  color: var(--heading-color);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -454,37 +464,36 @@ html.dark .portal-action-btn:hover {
 }
 
 .copy-btn:hover {
-  background: var(--border);
-  border-color: #3b82f6;
+  background: var(--bg-light);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .copy-btn.copied {
-  background: #ecfdf5;
-  color: #047857;
-  border-color: #a7f3d0;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 html.dark .copy-btn.copied {
-  background: rgba(16, 185, 129, 0.2);
-  color: #6ee7b7;
-  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .template-subject-box {
   padding: 0.75rem 1rem;
-  background: rgba(59, 130, 246, 0.06);
+  background: var(--bg-light);
   border-radius: 8px;
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--primary);
   font-size: 0.9rem;
-  color: var(--text-primary);
-}
-
-html.dark .template-subject-box {
-  background: rgba(59, 130, 246, 0.15);
+  color: var(--heading-color);
+  font-weight: 600;
 }
 
 .template-pre {
-  background: var(--bg-light);
+  background: var(--code-bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.25rem;
@@ -501,20 +510,16 @@ html.dark .template-subject-box {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  background: rgba(0, 0, 0, 0.02);
+  background: var(--bg-light);
   border-radius: 8px;
   padding: 1rem;
   border: 1px solid var(--border);
 }
 
-html.dark .template-guidelines-box {
-  background: rgba(255, 255, 255, 0.03);
-}
-
 .template-guidelines-title {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--heading-color);
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -545,25 +550,39 @@ html.dark .template-guidelines-box {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ats-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
 }
 
 .ats-step-number {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #2563eb;
-  color: #ffffff;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.875rem;
+}
+
+html.dark .ats-step-number {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: var(--primary);
 }
 
 .ats-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--heading-color);
   margin: 0;
 }
 
@@ -593,8 +612,7 @@ html.dark .template-guidelines-box {
 }
 
 .ats-items-list li i {
-  color: #10b981;
+  color: var(--primary);
   margin-top: 0.2rem;
   font-size: 0.8rem;
 }
-

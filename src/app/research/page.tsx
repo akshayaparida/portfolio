@@ -146,7 +146,7 @@ export default function ResearchPage() {
                   <span className="stage-principles-heading">
                     <i
                       className="fa-solid fa-circle-check"
-                      style={{ color: "#10b981", marginRight: "0.4rem" }}
+                      style={{ color: "var(--primary)", marginRight: "0.4rem" }}
                     ></i>
                     Guiding Scientific Principles
                   </span>
@@ -222,7 +222,7 @@ export default function ResearchPage() {
                   <h2 className="section-heading">
                     <i
                       className="fa-solid fa-flag-checkered"
-                      style={{ color: "#7c3aed", marginRight: "0.5rem" }}
+                      style={{ color: "var(--primary)", marginRight: "0.5rem" }}
                     ></i>
                     How to Start Research from Scratch (12-Week Blueprint)
                   </h2>
@@ -312,7 +312,7 @@ export default function ResearchPage() {
                   <h2 className="section-heading">
                     <i
                       className="fa-solid fa-award"
-                      style={{ color: "#059669", marginRight: "0.5rem" }}
+                      style={{ color: "var(--primary)", marginRight: "0.5rem" }}
                     ></i>
                     Publisher Research Academies (Free Certified E-Learning)
                   </h2>
@@ -408,7 +408,7 @@ export default function ResearchPage() {
                   <h2 className="section-heading">
                     <i
                       className="fa-solid fa-building-columns"
-                      style={{ color: "#2563eb", marginRight: "0.5rem" }}
+                      style={{ color: "var(--primary)", marginRight: "0.5rem" }}
                     ></i>
                     Official NPTEL & SWAYAM Research Courses (IIT Faculty)
                   </h2>
@@ -523,7 +523,7 @@ export default function ResearchPage() {
                   >
                     <i
                       className="fa-solid fa-file-pdf"
-                      style={{ color: "#ef4444", marginRight: "0.4rem" }}
+                      style={{ color: "var(--primary)", marginRight: "0.4rem" }}
                     ></i>
                     Seminal Must-Read Papers (Download & Study)
                   </h4>
@@ -579,7 +579,10 @@ export default function ResearchPage() {
                     <strong>
                       <i
                         className="fa-solid fa-chart-line"
-                        style={{ color: "#2563eb", marginRight: "0.4rem" }}
+                        style={{
+                          color: "var(--primary)",
+                          marginRight: "0.4rem",
+                        }}
                       ></i>
                       Standard Benchmarks:
                     </strong>
@@ -601,7 +604,10 @@ export default function ResearchPage() {
                     <strong>
                       <i
                         className="fa-solid fa-compass"
-                        style={{ color: "#7c3aed", marginRight: "0.4rem" }}
+                        style={{
+                          color: "var(--primary)",
+                          marginRight: "0.4rem",
+                        }}
                       ></i>
                       Open Research Directions:
                     </strong>

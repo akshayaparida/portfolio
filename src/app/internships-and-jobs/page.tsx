@@ -250,7 +250,7 @@ export default function InternshipsAndJobsPage() {
                     style={{
                       fontSize: "2.5rem",
                       marginBottom: "1rem",
-                      color: "#9ca3af",
+                      color: "var(--text-muted)",
                     }}
                   ></i>
                   <p>
@@ -328,7 +328,7 @@ export default function InternshipsAndJobsPage() {
                     <span className="template-guidelines-title">
                       <i
                         className="fa-solid fa-circle-exclamation"
-                        style={{ color: "#2563eb" }}
+                        style={{ color: "var(--primary)" }}
                       ></i>
                       Rules for High Response Rates
                     </span>
