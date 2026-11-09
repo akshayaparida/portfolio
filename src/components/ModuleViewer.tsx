@@ -505,7 +505,12 @@ export default function ModuleViewer({
 }: ModuleViewerProps) {
   const readingTime = getReadingTime(module.detailedContent);
   const quizCount = module.practiceQuiz?.length || 0;
-  const hasDemos = Boolean(module.subModules && module.subModules.length > 0);
+  const hasDemos = Boolean(
+    module.subModules &&
+    module.subModules.some((subModule) =>
+      Boolean(demoComponents[subModule.id]),
+    ),
+  );
   const hasQuiz = quizCount > 0;
 
   const jsonLdSchemas =
