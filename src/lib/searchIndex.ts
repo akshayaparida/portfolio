@@ -14,6 +14,7 @@ import { dbmsModules } from "@/data/dbms";
 import { networksModules } from "@/data/networks";
 import { awsModules } from "@/data/aws";
 import { mlopsModules } from "@/data/mlops";
+import { openSourceModules } from "@/data/open-source";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import { reasoningModules } from "@/data/reasoning";
 import { learningModules } from "@/data/learningJourney";
@@ -291,6 +292,16 @@ export function buildSearchIndex(): SearchIndexItem[] {
       "/mlops",
       "MLOps",
       "fa-solid fa-gears",
+    ),
+  );
+
+  // 7b. Open Source Engineering
+  index.push(
+    ...indexModuleCategory(
+      openSourceModules,
+      "/open-source",
+      "Open Source",
+      "fa-solid fa-code-merge",
     ),
   );
 

@@ -9,6 +9,7 @@ import { algorithmsModules } from "@/data/algorithms";
 import { networksModules } from "@/data/networks";
 import { awsModules } from "@/data/aws";
 import { mlopsModules } from "@/data/mlops";
+import { openSourceModules } from "@/data/open-source";
 import { digitalFundamentalsModules } from "@/data/digital-fundamentals";
 import { reasoningModules } from "@/data/reasoning";
 import { aiModules } from "@/data/curaj-msc-cs/ai";
@@ -264,6 +265,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Dynamic Module Pages for Open Source Engineering
+  const openSourcePages: MetadataRoute.Sitemap = (openSourceModules || []).map(
+    (m) => ({
+      url: `${baseUrl}/open-source/${m.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    }),
+  );
+
   // Dynamic Module Pages for Digital Fundamentals
   const digitalPages: MetadataRoute.Sitemap = (
     digitalFundamentalsModules || []
@@ -314,6 +325,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...networkPages,
     ...awsPages,
     ...mlopsPages,
+    ...openSourcePages,
     ...digitalPages,
     ...reasoningPages,
     ...curajAiPages,

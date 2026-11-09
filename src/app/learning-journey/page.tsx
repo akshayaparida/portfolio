@@ -120,6 +120,25 @@ export default function LearningJourneyPage() {
               <i className="fa-solid fa-arrow-right"></i>
             </span>
           </Link>
+
+          <Link href="/open-source" className="journey-explore-card">
+            <div className="journey-explore-left">
+              <div className="journey-explore-icon">
+                <i className="fa-solid fa-code-merge"></i>
+              </div>
+              <div>
+                <h4 className="journey-explore-title">
+                  Open Source Engineering
+                </h4>
+                <p className="journey-explore-desc">
+                  Building and scaling world-class open-source software
+                </p>
+              </div>
+            </div>
+            <span className="journey-explore-arrow">
+              <i className="fa-solid fa-arrow-right"></i>
+            </span>
+          </Link>
         </div>
       </main>
 

@@ -37,6 +37,11 @@ export const navigationLinks: NavigationLink[] = [
     icon: "fa-solid fa-brain",
   },
   {
+    label: "Open Source",
+    href: "/open-source",
+    icon: "fa-solid fa-code-merge",
+  },
+  {
     label: "Engineering Blogs",
     href: "/engineering-blogs",
     icon: "fa-solid fa-newspaper",
